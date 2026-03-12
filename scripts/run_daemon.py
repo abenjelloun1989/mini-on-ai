@@ -10,6 +10,7 @@ waiting for your Telegram Go / No Go before generating anything.
 Usage: python3 scripts/run_daemon.py
 """
 
+import json
 import subprocess
 import sys
 import time
@@ -17,13 +18,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 PIPELINE_SCRIPT = ROOT / "scripts/run_pipeline.py"
+DAEMON_STATE = ROOT / "data/daemon-state.json"
 PAUSE_AFTER_SUCCESS = 10       # seconds before starting next cycle
 PAUSE_AFTER_FAILURE = 60       # seconds before retrying after error
+PAUSE_CHECK_INTERVAL = 15      # seconds between pause checks when paused
 
 
 def log(msg: str) -> None:
     ts = time.strftime("%Y-%m-%dT%H:%M:%S")
     print(f"[{ts}] [daemon] {msg}", flush=True)
+
+
+def is_paused() -> bool:
+    try:
+        state = json.loads(DAEMON_STATE.read_text())
+        return bool(state.get("paused", False))
+    except Exception:
+        return False
 
 
 def run_once() -> int:
@@ -41,6 +52,11 @@ def main():
     log("Pipeline will pause at each cycle waiting for your Telegram approval.")
 
     while True:
+        if is_paused():
+            log("Daemon is paused. Waiting for /resume...")
+            time.sleep(PAUSE_CHECK_INTERVAL)
+            continue
+
         code = run_once()
         if code == 0:
             log(f"Cycle complete (success). Next cycle in {PAUSE_AFTER_SUCCESS}s.")

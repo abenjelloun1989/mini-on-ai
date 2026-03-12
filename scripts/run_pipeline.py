@@ -185,26 +185,38 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
     site_url = os.getenv("SITE_URL", "file://./site")
     log("pipeline", f"Site: {site_url}/products/{meta['id']}.html")
 
-    # Stage 6: Git commit (site + data)
+    # Stage 6: Git commit + push (site + data + product assets)
     log("pipeline", "--- Stage: git-commit ---")
     try:
         subprocess.run(
             ["git", "add", "site/", "data/", f"products/{meta['id']}/"],
             cwd=str(ROOT), check=True, capture_output=True
         )
-        subprocess.run(
-            ["git", "commit", "-m", f"product: {meta['title']}"],
-            cwd=str(ROOT), check=True, capture_output=True
+        # Only commit if there are staged changes
+        diff = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"],
+            cwd=str(ROOT), capture_output=True
         )
-        log("pipeline", "Git committed site + data changes")
-        result = subprocess.run(
-            ["git", "remote"], cwd=str(ROOT), capture_output=True, text=True
+        if diff.returncode != 0:
+            subprocess.run(
+                ["git", "commit", "-m", f"product: {meta['title']}"],
+                cwd=str(ROOT), check=True, capture_output=True
+            )
+            log("pipeline", "Git commit created")
+        else:
+            log("pipeline", "No staged changes to commit")
+
+        # Always push to keep remote in sync
+        push = subprocess.run(
+            ["git", "push"],
+            cwd=str(ROOT), capture_output=True, text=True
         )
-        if result.stdout.strip():
-            subprocess.run(["git", "push"], cwd=str(ROOT), capture_output=True)
-            log("pipeline", "Pushed to remote")
+        if push.returncode == 0:
+            log("pipeline", "Pushed to remote — GitHub Pages deploy triggered")
+        else:
+            log("pipeline", f"Git push failed: {push.stderr.strip()}")
     except subprocess.CalledProcessError as e:
-        log("pipeline", f"Git commit skipped: {e.stderr.decode().strip() if e.stderr else str(e)}")
+        log("pipeline", f"Git stage error: {e.stderr.decode().strip() if e.stderr else str(e)}")
 
     # Stage 7: Telegram report
     log("pipeline", "--- Stage: telegram-report ---")

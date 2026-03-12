@@ -14,6 +14,8 @@ Commands:
   /run all  — run pipeline 4x with preset seeds
   /go       — approve pending idea (or tap button in chat)
   /nogo     — reject pending idea (or tap button in chat)
+  /holdon   — pause the pipeline daemon
+  /resume   — resume the pipeline daemon
 """
 
 import json
@@ -30,6 +32,8 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, timestamp, log, ROOT
+
+DAEMON_STATE = ROOT / "data/daemon-state.json"
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 CHAT_ID = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
@@ -87,6 +91,17 @@ def handle_approval(decision: str) -> str:
 
 # --- Command handlers ---
 
+def set_daemon_paused(paused: bool) -> str:
+    try:
+        DAEMON_STATE.write_text(json.dumps({"paused": paused}))
+        if paused:
+            return "⏸ <b>Pipeline paused.</b>\nThe daemon will finish any current approval wait, then stop.\nSend /resume to start again."
+        else:
+            return "▶️ <b>Pipeline resumed.</b>\nThe daemon will start a new cycle shortly."
+    except Exception as e:
+        return f"❌ Error updating daemon state: {e}"
+
+
 def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
@@ -98,6 +113,8 @@ def cmd_help() -> str:
         "/run all — run 4 seeds in sequence\n"
         "/go — approve pending idea\n"
         "/nogo — reject pending idea\n"
+        "/holdon — pause the pipeline\n"
+        "/resume — resume the pipeline\n"
         "/help — show this message"
     )
 
@@ -119,13 +136,19 @@ def cmd_status() -> str:
         duration = last.get("duration_seconds", "?")
         started = last.get("started_at", "?")[:16].replace("T", " ")
 
-        # Show approval status if pending
+        # Show pause and approval status
         approval_note = ""
+        try:
+            daemon_state = json.loads((ROOT / "data/daemon-state.json").read_text())
+            if daemon_state.get("paused"):
+                approval_note += "\n\n⏸ <b>Pipeline is paused.</b> Send /resume to restart."
+        except Exception:
+            pass
         try:
             approval = read_json("data/approval-state.json")
             if approval.get("status") == "pending":
                 idea_title = approval.get("idea", {}).get("title", "?")
-                approval_note = f"\n\n⏳ <b>Waiting for approval:</b> {idea_title}\nReply /go or /nogo"
+                approval_note += f"\n\n⏳ <b>Waiting for approval:</b> {idea_title}\nReply /go or /nogo"
         except Exception:
             pass
 
@@ -225,6 +248,12 @@ def handle_command(text: str) -> str:
     if lower == "/ideas":
         return cmd_ideas()
 
+    if lower == "/holdon":
+        return set_daemon_paused(True)
+
+    if lower == "/resume":
+        return set_daemon_paused(False)
+
     if lower == "/go":
         return handle_approval("approved")
 
@@ -268,15 +297,19 @@ def main():
                 cq_id = callback_query.get("id")
                 cq_chat_id = str(callback_query.get("from", {}).get("id", ""))
                 cq_data = callback_query.get("data", "")
+                log("bot", f"Callback query: data={cq_data} from={cq_chat_id}")
 
                 if cq_chat_id == str(CHAT_ID) and cq_data.startswith("approval:"):
                     decision = "approved" if cq_data == "approval:go" else "rejected"
+                    log("bot", f"Approval decision: {decision}")
                     reply = handle_approval(decision)
                     try:
                         api("answerCallbackQuery", {"callback_query_id": cq_id})
                     except Exception:
                         pass
                     send(reply, cq_chat_id)
+                else:
+                    log("bot", f"Callback ignored: chat_id mismatch or unknown data")
                 continue
 
             # Handle text commands
