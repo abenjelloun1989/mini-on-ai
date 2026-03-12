@@ -76,23 +76,32 @@ def trend_scan(seed: str = "", count: int = 10) -> list:
         messages=[
             {
                 "role": "user",
-                "content": f"""Generate {count} highly specific, niche prompt pack ideas for digital download.
+                "content": f"""Generate {count} highly specific, niche digital product ideas for download.
 
 Target audience for this batch: {active_seed}{trends_block}
 
 Rules:
-- Each pack must solve one specific, painful daily workflow problem that the target audience faces
+- Each product must solve one specific, painful daily workflow problem that the target audience faces
 - Title must be concrete (e.g. "Cold Email Sequences for SaaS Trials" not "Email Prompts")
 - Where the trend signals above are relevant to the target audience, use them to inspire ideas grounded in real demand
 - Avoid generic topics like "productivity", "writing", "ChatGPT tips" — go niche
 - Each idea must be genuinely different (different sub-audience or use case)
-- Think: what does this person struggle with every week that AI could help with?{avoid_block}
+- Think: what does this person struggle with every week?{avoid_block}
+
+Product categories:
+- "prompt-packs": 20-30 AI prompts for a specific workflow (use for most ideas)
+- "checklist": step-by-step checklist for a repeatable process or task
+- "swipe-file": curated real-world copy examples (hooks, subject lines, scripts, templates)
+- "mini-guide": concise focused guide covering one specific skill or framework
+
+Assign the best category. Default to "prompt-packs". Use others only when clearly a better fit.
 
 Return ONLY a valid JSON array, no other text. Schema:
 [
   {{
-    "title": "Specific pack title (5-9 words)",
+    "title": "Specific title (5-9 words)",
     "description": "One sentence: exact audience + exact benefit they get",
+    "category": "prompt-packs",
     "tags": ["tag1", "tag2", "tag3"]
   }}
 ]""",
@@ -112,7 +121,7 @@ Return ONLY a valid JSON array, no other text. Schema:
             "id": f"idea-{int(time.time())}-{i}",
             "title": idea["title"],
             "description": idea["description"],
-            "category": "prompt-packs",
+            "category": idea.get("category", "prompt-packs"),
             "tags": idea.get("tags", []),
             "score": None,
             "rationale": None,

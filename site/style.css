@@ -124,6 +124,19 @@ body {
   border-radius: 4px;
 }
 
+.category-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.category-prompt-packs { background: #1a3a5c; color: #7bb3e0; }
+.category-checklist    { background: #1a3d2b; color: #6fcf97; }
+.category-swipe-file   { background: #3d2a1a; color: #f2a65a; }
+.category-mini-guide   { background: #2d1a3d; color: #c084fc; }
+
 .product-title {
   font-size: 18px;
   font-weight: 600;

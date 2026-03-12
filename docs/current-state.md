@@ -41,7 +41,11 @@ Last updated: 2026-03-12
 - License: All Rights Reserved
 - Python 3.9, anthropic + python-dotenv
 
+### Product Categories (M13 ✅)
+- prompt-packs, checklist, swipe-file, mini-guide all supported
+- trend_scan assigns category per idea; generate_product dispatches accordingly
+- Site cards show colored category badges
+
 ## What Does NOT Exist Yet
 - Publisher step (auto-publishing to Gumroad, Reddit, etc.)
 - Analytics / download tracking
-- Multiple product categories (only prompt packs)

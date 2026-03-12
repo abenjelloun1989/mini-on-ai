@@ -32,7 +32,8 @@ def idea_rank():
         log("idea-rank", f"Scoring {len(unscored)} ideas...")
 
         ideas_for_prompt = [
-            {"id": i["id"], "title": i["title"], "description": i["description"]}
+            {"id": i["id"], "title": i["title"], "description": i["description"],
+             "category": i.get("category", "prompt-packs")}
             for i in unscored
         ]
 
@@ -42,7 +43,13 @@ def idea_rank():
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Score each of these prompt pack ideas for a digital product catalog.
+                    "content": f"""Score each of these digital product ideas for a free download catalog.
+
+Categories:
+- prompt-packs: AI prompt collections
+- checklist: actionable step-by-step checklists
+- swipe-file: curated copy examples (hooks, scripts, subject lines)
+- mini-guide: focused how-to guides
 
 Ideas to score:
 {json.dumps(ideas_for_prompt, indent=2)}
@@ -50,7 +57,7 @@ Ideas to score:
 Score each idea on:
 - demand (0-40): how large and urgent the audience need is
 - uniqueness (0-30): differentiation from what's freely available online
-- generability (0-30): how well AI can produce high-quality, consistent content for this
+- generability (0-30): how well AI can produce high-quality, consistent content for this category
 
 Return ONLY a valid JSON array, no other text. Schema:
 [

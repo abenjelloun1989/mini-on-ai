@@ -11,6 +11,13 @@ Full pipeline: trend scan → rank → generate → package → site → Telegra
 - Continuous daemon replaces 9am cron
 - Non-commercial license + README
 
+### M13 — Product Category Expansion (2026-03-12)
+- prompt-packs, checklist, swipe-file, mini-guide all supported
+- trend_scan generates category-diverse ideas
+- generate_product dispatches to category-specific generators
+- Site cards and pages are category-aware with colored badges
+- Scoring in idea_rank is category-aware
+
 ### M12 — Real Trend Scanning (2026-03-12)
 - pytrends (Google Trends) integration — rising queries last 7 days, US
 - 15-seed audience rotation for diverse idea generation
@@ -39,8 +46,9 @@ The factory produces, the publisher distributes.
 - Add structured data (JSON-LD) to product pages
 - Auto-submit sitemap to Google Search Console
 
-### M13 — Product Category Expansion
-Beyond prompt packs (from original brainstorm):
+### ~~M13 — Product Category Expansion~~ ✅ Done — see Completed above
+
+Beyond prompt packs (from original brainstorm) — implemented:
 - **Automation templates** — ready-to-use workflow scripts/configs
 - **Notion templates** — structured workspace setups
 - **Datasets** — curated lists, reference data, swipe files

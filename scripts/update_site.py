@@ -22,6 +22,65 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 from lib.utils import read_json, write_json, write_file, ROOT, log
 
 
+CATEGORY_LABELS = {
+    "prompt-packs": ("Prompt Pack", "{n} prompts"),
+    "checklist":    ("Checklist",   "{n} items"),
+    "swipe-file":   ("Swipe File",  "{n} examples"),
+    "mini-guide":   ("Mini Guide",  "focused guide"),
+}
+
+CATEGORY_INCLUDES = {
+    "prompt-packs": [
+        "{n} ready-to-use prompts",
+        "Works with ChatGPT, Claude, Gemini, and others",
+        "Markdown and JSON formats",
+        "Organized by use case",
+    ],
+    "checklist": [
+        "{n} actionable checklist items",
+        "Organized by phase",
+        "Context explaining why each step matters",
+        "Markdown and JSON formats",
+    ],
+    "swipe-file": [
+        "{n} copy-ready examples",
+        "Notes on when and how to use each one",
+        "Markdown and JSON formats",
+    ],
+    "mini-guide": [
+        "Concise practitioner-focused guide",
+        "Concrete tips, examples, and frameworks",
+        "Quick-reference summary at the end",
+        "Markdown format",
+    ],
+}
+
+
+def _item_count(meta: dict) -> int:
+    return meta.get("item_count") or meta.get("prompt_count", 0)
+
+
+def _category_badge(meta: dict) -> str:
+    cat = meta.get("category", "prompt-packs")
+    label = CATEGORY_LABELS.get(cat, ("Resource", ""))[0]
+    return f'<span class="category-badge category-{cat}">{escape_html(label)}</span>'
+
+
+def _count_label(meta: dict) -> str:
+    cat = meta.get("category", "prompt-packs")
+    n = _item_count(meta)
+    template = CATEGORY_LABELS.get(cat, ("", "{n} items"))[1]
+    return template.replace("{n}", str(n))
+
+
+def _includes_html(meta: dict) -> str:
+    cat = meta.get("category", "prompt-packs")
+    n = _item_count(meta)
+    items = CATEGORY_INCLUDES.get(cat, ["{n} items included"])
+    lines = "\n".join(f"        <li>{escape_html(i.replace('{n}', str(n)))}</li>" for i in items)
+    return f"      <ul>\n{lines}\n      </ul>"
+
+
 def escape_html(s: str) -> str:
     return (
         str(s)
@@ -33,9 +92,8 @@ def escape_html(s: str) -> str:
 
 
 def build_product_page(meta: dict) -> str:
-    site_url = os.getenv("SITE_URL", "")
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    download_path = "package.zip"  # served from site/products/{id}/package.zip
+    download_path = "package.zip"
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -54,12 +112,12 @@ def build_product_page(meta: dict) -> str:
   </header>
 
   <main class="product-detail">
-    <div class="product-tags">{tags_html}</div>
+    <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
     <h1>{escape_html(meta['title'])}</h1>
     <p class="product-desc-large">{escape_html(meta['description'])}</p>
 
     <div class="product-stats">
-      <span>{meta['prompt_count']} prompts included</span>
+      <span>{escape_html(_count_label(meta))}</span>
     </div>
 
     <a href="{download_path}" class="btn-download btn-large">
@@ -68,12 +126,7 @@ def build_product_page(meta: dict) -> str:
 
     <section class="product-details">
       <h2>What's included</h2>
-      <ul>
-        <li>{meta['prompt_count']} ready-to-use prompts</li>
-        <li>Works with any AI assistant (ChatGPT, Claude, Gemini, and others)</li>
-        <li>Markdown and JSON formats included</li>
-        <li>Organized by use case</li>
-      </ul>
+{_includes_html(meta)}
     </section>
   </main>
 
@@ -88,10 +141,10 @@ def build_product_page(meta: dict) -> str:
 def build_product_card(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     return f"""      <article class="product-card">
-        <div class="product-tags">{tags_html}</div>
+        <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
         <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
         <p class="product-desc">{escape_html(meta['description'])}</p>
-        <div class="product-meta">{meta['prompt_count']} prompts</div>
+        <div class="product-meta">{escape_html(_count_label(meta))}</div>
         <a href="products/{meta['id']}/package.zip" class="btn-download">Download Free</a>
       </article>"""
 
@@ -187,9 +240,10 @@ def update_site(product_id_arg: str = None) -> dict:
         "id": meta["id"],
         "title": meta["title"],
         "description": meta["description"],
-        "category": meta["category"],
+        "category": meta.get("category", "prompt-packs"),
         "tags": meta.get("tags", []),
-        "prompt_count": meta["prompt_count"],
+        "item_count": _item_count(meta),
+        "prompt_count": meta.get("prompt_count") or meta.get("item_count", 0),
         "created_at": meta["created_at"],
         "package_path": meta["package_path"],
         "site_path": f"site/products/{pid}.html",
