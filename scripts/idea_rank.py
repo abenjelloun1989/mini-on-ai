@@ -91,6 +91,7 @@ Sort by score descending.""",
 
     if not candidates:
         log("idea-rank", "No available ideas. Run trend_scan to add more.")
+        backlog["ideas"].sort(key=lambda x: 1 if x.get("status") == "rejected" else 0)
         write_json("data/idea-backlog.json", backlog)
         return None
 
@@ -98,6 +99,9 @@ Sort by score descending.""",
     selected = candidates[0]
     log("idea-rank", f"Selected: \"{selected['title']}\" (score: {selected['score']})")
     log("idea-rank", f"Rationale: {selected['rationale']}")
+
+    # Keep rejected ideas at the bottom
+    backlog["ideas"].sort(key=lambda x: 1 if x.get("status") == "rejected" else 0)
 
     write_json("data/idea-backlog.json", backlog)
     return selected
