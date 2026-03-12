@@ -13,6 +13,19 @@
         "description": "20 prompts for project managers to instantly transform messy meeting notes into clean summaries, assigned action items, and follow-up messages."
       },
       "duration_seconds": 127
+    },
+    {
+      "id": "run-1773351553",
+      "started_at": "2026-03-12T21:39:13.727115+00:00",
+      "status": "success",
+      "failed_stage": null,
+      "error": null,
+      "product": {
+        "id": "prompts-shopify-product-description-packs-for-e--20260312",
+        "title": "Shopify Product Description Packs for E-Commerce",
+        "description": "30 prompts for e-commerce store owners to write SEO-optimized, benefit-focused product descriptions that convert browsers into buyers."
+      },
+      "duration_seconds": 391
     }
   ]
 }
