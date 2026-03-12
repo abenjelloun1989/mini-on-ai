@@ -19,6 +19,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 import os
 import anthropic
 from lib.utils import read_json, write_json, timestamp, log, extract_json
+from lib.trend_sources import get_google_trends_rising
 
 client = anthropic.Anthropic()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
@@ -50,6 +51,17 @@ def trend_scan(seed: str = "", count: int = 10) -> list:
     active_seed = seed or random.choice(SEED_ROTATION)
     log("trend-scan", f"Generating {count} ideas (focus: {active_seed})...")
 
+    # Fetch real trend signals from Google Trends
+    log("trend-scan", "Fetching live trend signals from Google Trends...")
+    trend_signals = get_google_trends_rising(max_terms=20)
+    if trend_signals:
+        log("trend-scan", f"Got {len(trend_signals)} rising queries")
+        trends_block = "\n\nCurrently rising search trends (use these as inspiration for real demand):\n" + \
+            "\n".join(f"- {t}" for t in trend_signals)
+    else:
+        log("trend-scan", "No trend signals available — generating from seed only")
+        trends_block = ""
+
     # Pull titles already in backlog to avoid duplicates
     backlog = read_json("data/idea-backlog.json")
     existing_titles = [i["title"] for i in backlog.get("ideas", [])]
@@ -66,13 +78,14 @@ def trend_scan(seed: str = "", count: int = 10) -> list:
                 "role": "user",
                 "content": f"""Generate {count} highly specific, niche prompt pack ideas for digital download.
 
-Target audience for this batch: {active_seed}
+Target audience for this batch: {active_seed}{trends_block}
 
 Rules:
-- Each pack must solve one specific, painful daily workflow problem
+- Each pack must solve one specific, painful daily workflow problem that the target audience faces
 - Title must be concrete (e.g. "Cold Email Sequences for SaaS Trials" not "Email Prompts")
+- Where the trend signals above are relevant to the target audience, use them to inspire ideas grounded in real demand
 - Avoid generic topics like "productivity", "writing", "ChatGPT tips" — go niche
-- Each idea must be genuinely different (different audience segment, different use case)
+- Each idea must be genuinely different (different sub-audience or use case)
 - Think: what does this person struggle with every week that AI could help with?{avoid_block}
 
 Return ONLY a valid JSON array, no other text. Schema:

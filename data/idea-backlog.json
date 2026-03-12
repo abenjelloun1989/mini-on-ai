@@ -823,7 +823,7 @@
       ],
       "score": 88,
       "rationale": "E-commerce founders have a high-stakes, revenue-tied need for full launch email sequences; AI generates persuasive sequential email copy extremely well, and a complete funnel template in one pack has strong perceived value over scattered free examples.",
-      "selected": false,
+      "selected": true,
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:50:17.279691+00:00",
@@ -1202,7 +1202,7 @@
       "score": 89,
       "rationale": "Millions of Shopify store owners constantly need fresh product copy, the benefit-driven SEO angle adds differentiation, and AI is exceptionally strong at generating varied, conversion-focused product descriptions.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-12T21:51:09.898548+00:00",
       "source": "trend-scan"
@@ -1598,7 +1598,7 @@
       "score": 89,
       "rationale": "SaaS AEs are a high-value, urgent buyer segment with clear ROI on better discovery calls, and structured question frameworks are highly generatable with consistent AI quality.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-12T21:53:54.262878+00:00",
       "source": "trend-scan"
@@ -1979,6 +1979,186 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:55:35.115484+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354025-0",
+      "title": "Salary Negotiation Scripts for Nervous First-Timers",
+      "description": "Prompts that help entry-level and mid-career job seekers generate confident, data-backed counter-offer scripts for every awkward negotiation scenario they dread.",
+      "category": "prompt-packs",
+      "tags": [
+        "salary negotiation",
+        "job seekers",
+        "career growth"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:20:25.003773+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354025-1",
+      "title": "Career Pivot Cover Letters for Industry Switchers",
+      "description": "Prompts that help professionals changing industries reframe mismatched experience into compelling transferable-skill narratives tailored to their target sector.",
+      "category": "prompt-packs",
+      "tags": [
+        "career change",
+        "cover letters",
+        "transferable skills"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:20:25.005061+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354025-2",
+      "title": "LinkedIn Recruiter DM Replies for Passive Candidates",
+      "description": "Prompts that help employed professionals currently open to opportunities craft strategic, non-desperate responses to recruiter messages that open doors without burning bridges.",
+      "category": "prompt-packs",
+      "tags": [
+        "LinkedIn",
+        "recruiters",
+        "passive job search"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:20:25.006325+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354025-3",
+      "title": "Behavioral Interview Answer Builder Using STAR Method",
+      "description": "Prompts that help job seekers mine their own work history and instantly structure polished, specific STAR-format answers for the 20 most common behavioral interview questions.",
+      "category": "prompt-packs",
+      "tags": [
+        "interview prep",
+        "STAR method",
+        "behavioral questions"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:20:25.007600+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354025-4",
+      "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
+      "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems.",
+      "category": "prompt-packs",
+      "tags": [
+        "resume writing",
+        "ATS",
+        "job applications"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:20:25.008878+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354098-0",
+      "title": "YouTube Community Post Captions That Drive Engagement",
+      "description": "Prompts that help YouTubers generate scroll-stopping community tab posts that convert passive subscribers into active commenters and poll participants between upload weeks.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "community tab",
+        "audience engagement"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:21:38.316233+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354098-1",
+      "title": "AI-Generated B-Roll Shot Lists for Solo Creators",
+      "description": "Prompts that help solo video creators instantly produce detailed, scene-specific B-roll shot lists from a script draft so they never show up to a shoot underprepared.",
+      "category": "prompt-packs",
+      "tags": [
+        "video production",
+        "b-roll",
+        "solo creator"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:21:38.317529+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354098-2",
+      "title": "Brand Deal Negotiation Emails for Mid-Tier YouTubers",
+      "description": "Prompts that help creators with 10K–200K subscribers write confident, professional sponsorship counter-offer emails that increase deal value without burning brand relationships.",
+      "category": "prompt-packs",
+      "tags": [
+        "sponsorships",
+        "brand deals",
+        "monetization"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:21:38.318812+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354098-3",
+      "title": "Video Title and Thumbnail Concept Pairs by Niche",
+      "description": "Prompts that help content creators generate matched title and thumbnail concept combinations optimized for click-through rate within specific YouTube niches like finance, tech, or fitness.",
+      "category": "prompt-packs",
+      "tags": [
+        "thumbnails",
+        "video titles",
+        "CTR optimization"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:21:38.320104+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773354098-4",
+      "title": "Repurposing Long-Form Videos Into Short-Form Clips",
+      "description": "Prompts that help YouTubers identify the highest-retention moments in a video transcript and rewrite them as punchy, standalone Shorts or Reels scripts ready to film immediately.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube shorts",
+        "content repurposing",
+        "reels"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T22:21:38.321398+00:00",
       "source": "trend-scan"
     }
   ]
