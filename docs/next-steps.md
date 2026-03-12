@@ -2,32 +2,41 @@
 
 Last updated: 2026-03-12
 
-## Immediate: Grow the Catalog (M7)
+## Now — Grow the catalog
 
-Run 4 more times:
-  python3 scripts/run_pipeline.py --seed "marketing"
-  python3 scripts/run_pipeline.py --seed "freelancing"
-  python3 scripts/run_pipeline.py --seed "writing"
-  python3 scripts/run_pipeline.py --seed "coding"
+The daemon is running. Just approve ideas via Telegram until you have 8-10 products.
+Good seeds to feed the pipeline:
+  /run marketing
+  /run freelancing
+  /run writing
+  /run coding
+  /run productivity
 
-Target: 5 products before going public.
+Target: 8-10 products before tackling distribution.
 
-## Then: Deploy Site Publicly (M8)
+## Next — M11: Publisher Step
 
-Fastest path — Netlify drag-and-drop:
-1. Go to netlify.com
-2. Drag the site/ folder onto the deploy zone
-3. Get a public URL instantly
-4. Update SITE_URL in .env
+Build a `publish_product.py` script that runs after `update_site.py` in the pipeline.
 
-## Then: Auto-scheduling (M9)
+**Step 1: Gumroad**
+- Register for a free Gumroad account + get API key
+- Script calls Gumroad API to create a free product listing
+- Uploads the zip, sets name/description from meta.json
+- Stores the Gumroad URL back in meta.json
 
-Set up launchd to run daily at 9am.
-See docs/launchd-setup.md (to be created).
+**Step 2: Reddit**
+- Install PRAW: pip install praw
+- Create a Reddit app (script type) at reddit.com/prefs/apps
+- Script posts to 1-2 relevant subreddits per product
+- Uses a natural title + link to GitHub Pages download
 
-## Then: Git (M10)
+**Step 3: Wire into pipeline**
+- Add `publish_product` as stage 6 in run_pipeline.py
+- Telegram report includes all published URLs
 
-  git init
-  git add .
-  git commit -m "V1 complete"
-  # push to GitHub
+## Then — M12: Real Trend Scanning
+
+Replace fake idea generation with real data:
+- pip install pytrends
+- Scrape Google Trends for rising topics in "AI tools", "productivity", "freelance"
+- Feed trending keywords as seed to Claude instead of generating blind
