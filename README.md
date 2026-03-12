@@ -1,5 +1,7 @@
 # mini-on-ai
 
+![License: Non-Commercial](https://img.shields.io/badge/license-Non--Commercial-red)
+
 An AI-powered digital product factory running on a Mac mini. It automatically generates, packages, and publishes free prompt packs and digital resources — no manual work required.
 
 **Live site:** [mini-on-ai](https://abenjelloun1989.github.io/mini-on-ai)
@@ -18,3 +20,7 @@ An AI-powered digital product factory running on a Mac mini. It automatically ge
 - Static HTML site deployed to GitHub Pages
 - Telegram bot for monitoring and control
 - Runs on a Mac mini as a scheduled daily job
+
+## License
+
+Non-commercial use only. See [LICENSE](LICENSE) for details.
