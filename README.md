@@ -1,6 +1,6 @@
 # mini-on-ai
 
-![License: Non-Commercial](https://img.shields.io/badge/license-Non--Commercial-red)
+![License: All Rights Reserved](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
 
 An AI-powered digital product factory running on a Mac mini. It automatically generates, packages, and publishes free prompt packs and digital resources — no manual work required.
 
@@ -23,4 +23,4 @@ An AI-powered digital product factory running on a Mac mini. It automatically ge
 
 ## License
 
-Non-commercial use only. See [LICENSE](LICENSE) for details.
+All rights reserved. See [LICENSE](LICENSE) for details.
