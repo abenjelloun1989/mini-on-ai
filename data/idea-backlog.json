@@ -319,7 +319,7 @@
       ],
       "score": 89,
       "rationale": "E-commerce store owners represent a massive, monetization-motivated audience with urgent conversion needs, product descriptions are highly repeatable for AI, and SEO-benefit framing adds differentiation beyond generic free templates.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-shopify-product-description-packs-for-e--20260312",
       "generated_at": "2026-03-12T21:39:26.831202+00:00",
@@ -359,6 +359,1626 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:39:26.838472+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 84,
+      "rationale": "Cold email is a high-stakes, high-demand pain point for B2B sales teams, AI handles persuasive structured writing well, though many free templates already exist online.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.087625+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-1",
+      "title": "YouTube Script Hooks and Retention Loops",
+      "description": "25 prompts for YouTube creators to write compelling video hooks and mid-roll retention loops that reduce audience drop-off in the first 60 seconds.",
+      "category": "prompt-packs",
+      "tags": [
+        "video",
+        "content creation",
+        "YouTube"
+      ],
+      "score": 82,
+      "rationale": "YouTube creators urgently need retention solutions given algorithm pressure, hooks are a well-defined AI writing task, and the niche framing around the first 60 seconds adds useful differentiation.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.092661+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-2",
+      "title": "Client Onboarding SOPs for Freelancers",
+      "description": "20 prompts for freelancers to build structured onboarding documents, welcome emails, and kickoff call agendas that eliminate client confusion from day one.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelancing",
+        "onboarding",
+        "operations"
+      ],
+      "score": 77,
+      "rationale": "Freelancers have a genuine and underserved operational pain around onboarding, the structured document format suits AI generation well, and the niche is specific enough to stand out.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.097689+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-3",
+      "title": "Weekly LinkedIn Content for Consultants",
+      "description": "35 prompts for independent consultants to generate a full week of LinkedIn posts that showcase expertise and attract inbound inquiries without sounding promotional.",
+      "category": "prompt-packs",
+      "tags": [
+        "LinkedIn",
+        "personal brand",
+        "consulting"
+      ],
+      "score": 86,
+      "rationale": "LinkedIn content for consultants targets a large, monetarily motivated audience with a recurring weekly need, and AI generates varied professional content exceptionally well.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.102716+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-4",
+      "title": "Product Requirement Docs for Product Managers",
+      "description": "20 prompts for product managers to draft clear PRDs, user stories, and acceptance criteria that align engineering and design teams before sprint planning.",
+      "category": "prompt-packs",
+      "tags": [
+        "product management",
+        "documentation",
+        "agile"
+      ],
+      "score": 76,
+      "rationale": "Product managers are a high-value professional audience with real PRD pain points, AI produces structured technical documentation well, but the audience is narrower and already tool-served.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.107774+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-5",
+      "title": "Podcast Guest Pitch Emails That Land Spots",
+      "description": "15 prompts for thought leaders and entrepreneurs to write personalized podcast pitch emails that communicate unique value and get accepted by busy hosts.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcasting",
+        "PR",
+        "outreach"
+      ],
+      "score": 68,
+      "rationale": "Podcast pitching is a real pain point with a dedicated audience, but the market is smaller and more niche, and the 15-prompt count limits perceived value relative to competitors.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.112860+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-6",
+      "title": "E-Commerce Product Descriptions That Convert",
+      "description": "40 prompts for Shopify store owners to write benefit-driven product descriptions that address buyer objections and improve add-to-cart conversion rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "copywriting",
+        "Shopify"
+      ],
+      "score": 89,
+      "rationale": "E-commerce is a massive, evergreen market with high conversion pressure, product descriptions are a clear AI strength, and Shopify's huge user base creates strong sustained demand.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.114679+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-7",
+      "title": "Performance Review Self-Assessments for Employees",
+      "description": "20 prompts for corporate employees to articulate their achievements, impact metrics, and growth goals in self-review forms that make a strong case for promotion.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "HR",
+        "professional development"
+      ],
+      "score": 74,
+      "rationale": "Performance reviews create annual urgency across a massive corporate workforce, AI handles achievement framing well, but the use case is seasonal and moderately covered by free HR resources.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.115753+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-8",
+      "title": "Course Outline and Lesson Plans for Educators",
+      "description": "25 prompts for online course creators to structure module outlines, write lesson objectives, and design engagement activities that improve student completion rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "education",
+        "course creation",
+        "instructional design"
+      ],
+      "score": 79,
+      "rationale": "The online course creator market is large and growing, lesson planning is a highly structured task AI handles well, though free instructional design resources partially reduce uniqueness.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.118199+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-9",
+      "title": "Investor Update Emails for Startup Founders",
+      "description": "15 prompts for early-stage startup founders to write concise monthly investor updates that highlight traction, flag risks, and maintain strong stakeholder relationships.",
+      "category": "prompt-packs",
+      "tags": [
+        "startups",
+        "investor relations",
+        "fundraising"
+      ],
+      "score": 65,
+      "rationale": "Investor updates are a genuine founder pain point but the audience is small, the format is highly context-dependent making AI output less reliably useful, and free examples are widely available.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.121215+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase response rates across different industries and buyer personas.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 87,
+      "rationale": "B2B sales teams face constant pressure to improve cold email performance, the persona and industry customization adds clear uniqueness, and AI generates persuasive sequential copy very reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.127233+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-1",
+      "title": "YouTube Script Hooks and Retention Loops",
+      "description": "25 prompts for YouTube creators to write compelling video hooks, mid-roll retention triggers, and strong calls-to-action that reduce drop-off rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "video",
+        "content creation"
+      ],
+      "score": 81,
+      "rationale": "YouTube creators are a large audience with strong monetization incentives tied to retention, AI generates hook structures well, and the retention-loop framing is more specific than most free script templates.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.132281+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional welcome packets, project briefs, and expectation-setting emails that reduce back-and-forth with new clients.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "onboarding",
+        "client management"
+      ],
+      "score": 83,
+      "rationale": "Freelancers universally struggle with onboarding documentation and will pay to reduce client friction, AI produces professional document copy consistently, and the niche is underserved in prompt packs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.137316+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-3",
+      "title": "Weekly Newsletter Issues From Scratch",
+      "description": "30 prompts for newsletter writers to draft engaging intros, curate content sections, and write subscriber-growth CTAs for consistent weekly publishing.",
+      "category": "prompt-packs",
+      "tags": [
+        "newsletter",
+        "email",
+        "writing"
+      ],
+      "score": 76,
+      "rationale": "Newsletter writers have a genuine weekly publishing pain point and AI handles content curation framing well, but the audience skews DIY and free newsletter prompt resources are increasingly common.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.142343+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-4",
+      "title": "SaaS Onboarding In-App Microcopy",
+      "description": "25 prompts for product designers and UX writers to create tooltips, empty states, error messages, and onboarding modal copy that improves user activation.",
+      "category": "prompt-packs",
+      "tags": [
+        "UX writing",
+        "SaaS",
+        "product"
+      ],
+      "score": 85,
+      "rationale": "UX microcopy is a high-value niche with limited free prompt resources, AI handles constrained short-form copy excellently, and the activation-focused framing gives it strong product-team appeal.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.144270+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-5",
+      "title": "Job Interview Prep for Tech Roles",
+      "description": "35 prompts for software engineers and product managers to practice behavioral questions, system design explanations, and salary negotiation talking points.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "interviews",
+        "tech"
+      ],
+      "score": 82,
+      "rationale": "Tech job seekers represent a large, highly motivated audience willing to invest in interview prep, and AI reliably generates behavioral answers and system design narratives, though some free resources already exist.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.145989+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-6",
+      "title": "LinkedIn Thought Leadership Post Templates",
+      "description": "20 prompts for executives and consultants to turn personal experiences and industry opinions into high-engagement LinkedIn posts that build authority.",
+      "category": "prompt-packs",
+      "tags": [
+        "linkedin",
+        "personal brand",
+        "social media"
+      ],
+      "score": 79,
+      "rationale": "LinkedIn content demand is high among professionals building personal brands, but free post templates are abundant, so uniqueness is moderate despite AI performing well on opinion-driven narrative posts.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.149985+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-7",
+      "title": "E-commerce Product Description Variations",
+      "description": "30 prompts for Shopify store owners to write SEO-optimized product descriptions, bullet-point feature lists, and emotional benefit statements for different customer segments.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "SEO",
+        "copywriting"
+      ],
+      "score": 89,
+      "rationale": "E-commerce store owners have a massive, recurring need for product copy across SKUs, AI excels at structured description generation, and the multi-segment angle differentiates from generic free templates.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.154588+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-8",
+      "title": "Podcast Guest Outreach and Pitch Emails",
+      "description": "20 prompts for podcast hosts to write personalized guest invitation emails, pre-interview research summaries, and post-episode thank-you follow-ups.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcast",
+        "outreach",
+        "email"
+      ],
+      "score": 67,
+      "rationale": "Podcast host outreach is a narrower audience with lower urgency frequency, free email templates are widely available, and the three-use-case scope limits perceived value despite solid AI generability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.159114+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-9",
+      "title": "Performance Review Self-Assessments for Managers",
+      "description": "25 prompts for team leads and managers to articulate accomplishments, frame team impact, and set forward-looking goals in annual performance review documents.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "management",
+        "HR"
+      ],
+      "score": 74,
+      "rationale": "Performance reviews are a recurring corporate pain point with real urgency twice a year, AI generates self-assessment language well, but the audience may perceive this as too sensitive to outsource to a product.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.161527+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "b2b"
+      ],
+      "score": 85,
+      "rationale": "B2B sales reps have urgent, measurable need for reply-generating cold emails; AI handles personalization frameworks and sequence structure well, and role-specific prompt packs outperform the generic templates flooding free blogs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.254543+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-1",
+      "title": "YouTube Script Hooks and Retention Loops",
+      "description": "25 prompts for YouTubers to craft compelling opening hooks and mid-video retention triggers that reduce drop-off rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "video",
+        "content creation"
+      ],
+      "score": 77,
+      "rationale": "YouTubers are a large, growth-focused audience acutely aware of retention metrics; AI generates hook structures and pattern-interrupt copy well, though YouTube scriptwriting prompt packs are increasingly common in the creator economy space.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.259581+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional onboarding documents, welcome emails, and project briefs that set clear expectations.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "clients",
+        "onboarding"
+      ],
+      "score": 79,
+      "rationale": "Freelancers have a clear pain point around professionalism and client expectation-setting; AI generates structured onboarding documents reliably, and the specificity of welcome emails plus project briefs in one pack adds practical value over free templates.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.264614+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-3",
+      "title": "Weekly LinkedIn Posts for Consultants",
+      "description": "30 prompts for independent consultants to write thought leadership LinkedIn posts that attract inbound inquiries from ideal clients.",
+      "category": "prompt-packs",
+      "tags": [
+        "linkedin",
+        "consulting",
+        "personal brand"
+      ],
+      "score": 83,
+      "rationale": "Independent consultants are a growing, monetizable audience with clear inbound lead generation pain; AI generates thought leadership post structures reliably, and consultant-specific framing differentiates this from generic LinkedIn prompt lists.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.269635+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-4",
+      "title": "Bug Report and Tech Spec Writing Kit",
+      "description": "25 prompts for software developers to quickly write clear bug reports, technical specifications, and pull request descriptions that speed up code reviews.",
+      "category": "prompt-packs",
+      "tags": [
+        "developers",
+        "documentation",
+        "engineering"
+      ],
+      "score": 76,
+      "rationale": "Developer teams have consistent, repeated need for clear technical writing; AI produces structured bug reports and specs accurately, and the code-review speed angle is a compelling ROI hook, though the audience may prefer IDE-integrated tools over standalone packs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.274651+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-5",
+      "title": "Product Launch Email Funnel Builder",
+      "description": "35 prompts for e-commerce founders to write a full pre-launch, launch day, and post-launch email sequence that maximizes conversion revenue.",
+      "category": "prompt-packs",
+      "tags": [
+        "ecommerce",
+        "email marketing",
+        "product launch"
+      ],
+      "score": 88,
+      "rationale": "E-commerce founders have a high-stakes, revenue-tied need for full launch email sequences; AI generates persuasive sequential email copy extremely well, and a complete funnel template in one pack has strong perceived value over scattered free examples.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.279691+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-6",
+      "title": "Performance Review Self-Assessment Writer",
+      "description": "20 prompts for corporate employees to articulate their accomplishments, impact, and growth areas in annual performance reviews that strengthen promotion cases.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "hr",
+        "corporate"
+      ],
+      "score": 81,
+      "rationale": "Performance reviews are a high-anxiety, time-pressured annual need for a large corporate audience; AI is excellent at articulating accomplishments in structured formats, and this specific use case is underserved by free prompt resources.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.284757+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-7",
+      "title": "UX Research Interview Question Generator",
+      "description": "25 prompts for UX designers to craft unbiased user interview questions and usability test scripts that surface genuine behavioral insights.",
+      "category": "prompt-packs",
+      "tags": [
+        "ux",
+        "research",
+        "design"
+      ],
+      "score": 71,
+      "rationale": "UX researchers have a genuine need for unbiased interview scripts but it is a smaller professional niche; AI generates question frameworks adequately though truly unbiased, insight-rich UX questions require domain nuance that limits consistent AI quality.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.286061+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-8",
+      "title": "Podcast Guest Pitch and Outreach Pack",
+      "description": "20 prompts for entrepreneurs and authors to write personalized podcast pitch emails that secure guest spots on shows in their niche.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcast",
+        "outreach",
+        "pr"
+      ],
+      "score": 73,
+      "rationale": "Podcast guest pitching is a real but episodic need rather than a recurring one, limiting urgency; AI writes personalized outreach copy well, and the niche framing helps, but the audience size is narrower than most other ideas in this set.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.289063+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-9",
+      "title": "Social Media Ad Copy Variations Toolkit",
+      "description": "40 prompts for paid media managers to generate multiple headline, body copy, and CTA variations for Facebook and Instagram ads across different buyer awareness stages.",
+      "category": "prompt-packs",
+      "tags": [
+        "paid ads",
+        "copywriting",
+        "social media"
+      ],
+      "score": 89,
+      "rationale": "Paid media managers have urgent, recurring demand for copy variations; AI excels at generating structured ad copy permutations across awareness stages, and a 40-prompt toolkit with framework specificity is hard to replicate with generic free resources.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.291121+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 85,
+      "rationale": "Identical to idea-1773352217-0 in concept with the same large, motivated B2B audience and strong AI generability for structured outreach sequences that outperform freely available generic templates.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.091312+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-1",
+      "title": "YouTube Script Hooks and Intros",
+      "description": "25 prompts for YouTube creators to write attention-grabbing hooks and intros that reduce audience drop-off in the first 30 seconds.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "video",
+        "content creation"
+      ],
+      "score": 76,
+      "rationale": "Slightly narrower than idea-1773352217-1 by focusing only on hooks and intros rather than retention loops, but the 30-second drop-off framing is a sharp, data-aware angle that resonates with serious creators; AI handles hook formulas reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.092604+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional onboarding documents, welcome emails, and project kickoff checklists that set clear expectations.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "client management",
+        "onboarding"
+      ],
+      "score": 79,
+      "rationale": "Same strong freelancer audience need as idea-1773352217-2 with the added kickoff checklist component slightly improving comprehensiveness; AI handles document generation well and the niche framing differentiates from generic business writing prompts.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.093884+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-3",
+      "title": "Weekly Newsletter Issues From Scratch",
+      "description": "30 prompts for newsletter writers to draft engaging weekly issues, story angles, and reader CTAs that grow open rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "newsletter",
+        "email marketing",
+        "writing"
+      ],
+      "score": 74,
+      "rationale": "Newsletter writers are a passionate but smaller monetizable segment; AI generates content angles and CTAs well, though open-rate improvement is harder to attribute directly to prompts, and free newsletter writing guides are widely available.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.095158+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-4",
+      "title": "Job Interview Answer Frameworks",
+      "description": "25 prompts for job seekers to craft compelling STAR-method answers for behavioral interview questions across common industries.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "job search",
+        "interviews"
+      ],
+      "score": 80,
+      "rationale": "Job seekers represent a perennially large and highly motivated audience; STAR-method answer generation is something AI does very well, though free interview prep resources are abundant, reducing uniqueness somewhat.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.096434+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-5",
+      "title": "Product Listing Copy for E-Commerce Sellers",
+      "description": "30 prompts for e-commerce sellers to write benefit-driven product titles, bullet points, and descriptions that convert browsers into buyers.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "copywriting",
+        "Amazon"
+      ],
+      "score": 86,
+      "rationale": "The e-commerce seller audience is massive and perpetually needs fresh product copy; AI produces benefit-driven listing copy reliably, and a structured prompt kit saves significant time over trial-and-error with generic ChatGPT use.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.097698+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-6",
+      "title": "Slide Deck Narratives for Consultants",
+      "description": "20 prompts for consultants to structure persuasive slide deck narratives and executive summaries that win client approvals.",
+      "category": "prompt-packs",
+      "tags": [
+        "consulting",
+        "presentations",
+        "storytelling"
+      ],
+      "score": 78,
+      "rationale": "Consultants need persuasive slide narratives regularly and the executive summary angle is high-value; AI structures logical presentation flows well, and this is a less saturated niche than general presentation tips found freely online.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.098969+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-7",
+      "title": "LinkedIn Posts That Drive Profile Visits",
+      "description": "30 prompts for professionals to write scroll-stopping LinkedIn posts that showcase expertise and generate inbound connection requests.",
+      "category": "prompt-packs",
+      "tags": [
+        "LinkedIn",
+        "personal branding",
+        "social media"
+      ],
+      "score": 82,
+      "rationale": "LinkedIn content demand is broad and persistent across professionals; AI produces structured post formats consistently, though the space has moderate free competition, the profile-visit and inbound-focus framing adds useful differentiation.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.100251+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-8",
+      "title": "Bug Report and Tech Documentation Templates",
+      "description": "20 prompts for software developers to write clear bug reports, API documentation, and internal technical specs that reduce back-and-forth with teammates.",
+      "category": "prompt-packs",
+      "tags": [
+        "development",
+        "documentation",
+        "productivity"
+      ],
+      "score": 75,
+      "rationale": "Similar to idea-1773352217-4 with added API documentation coverage that broadens utility; developer demand is real but the audience is skeptical of prompt packs and often has access to internal templates, slightly limiting commercial appeal.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.101525+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352230-9",
+      "title": "Social Proof and Case Study Stories",
+      "description": "25 prompts for marketers to transform raw client results into compelling case studies and testimonial narratives that accelerate purchase decisions.",
+      "category": "prompt-packs",
+      "tags": [
+        "marketing",
+        "case studies",
+        "conversion"
+      ],
+      "score": 84,
+      "rationale": "Marketers urgently need case study content but consistently struggle to structure raw results into compelling narratives; AI is strong at story frameworks, and this angle is underserved compared to generic copywriting prompt packs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:30.102793+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 87,
+      "rationale": "Cold email is a persistent, high-value pain point for B2B sales teams, personalization angles provide differentiation from generic templates, and AI handles structured persuasive sequences very well.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.890879+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-1",
+      "title": "YouTube Scripts From Blog Posts",
+      "description": "25 prompts for content creators to repurpose existing blog articles into engaging, structured YouTube video scripts with hooks and CTAs.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "content repurposing",
+        "video"
+      ],
+      "score": 82,
+      "rationale": "Content repurposing is a widespread need among creators and marketers, the blog-to-YouTube workflow is a specific valuable use case, and AI produces well-structured scripts with hooks and CTAs consistently.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.892171+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-2",
+      "title": "Client Onboarding Docs in Minutes",
+      "description": "20 prompts for freelancers to generate professional client onboarding documents, welcome emails, and project kickoff agendas without starting from scratch.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "onboarding",
+        "client management"
+      ],
+      "score": 74,
+      "rationale": "Freelancers need onboarding docs but the audience size is moderate and the need is infrequent, the document variety adds value, and AI reliably produces professional structured documents from clear inputs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.893453+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-3",
+      "title": "Weekly LinkedIn Posts for Founders",
+      "description": "40 prompts for startup founders to consistently publish thought leadership LinkedIn posts that build audience trust and attract inbound leads.",
+      "category": "prompt-packs",
+      "tags": [
+        "linkedin",
+        "personal brand",
+        "founders"
+      ],
+      "score": 85,
+      "rationale": "Founder personal branding on LinkedIn is a booming trend with strong demand, 40 prompts tailored to thought leadership offers real breadth, and AI generates varied post formats and hooks reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.894719+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-4",
+      "title": "UX Microcopy for App Interfaces",
+      "description": "35 prompts for UX designers to write clear, user-friendly button labels, error messages, tooltips, and empty states for web and mobile apps.",
+      "category": "prompt-packs",
+      "tags": [
+        "ux",
+        "design",
+        "microcopy"
+      ],
+      "score": 78,
+      "rationale": "UX microcopy is a specialized niche with dedicated professionals who value quality, the interface-specific categorization is a meaningful differentiator, and AI handles concise contextual copy quite well.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.895991+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-5",
+      "title": "Performance Review Feedback Templates",
+      "description": "25 prompts for managers to write specific, balanced, and actionable employee performance review comments that motivate improvement and recognize strengths.",
+      "category": "prompt-packs",
+      "tags": [
+        "hr",
+        "management",
+        "feedback"
+      ],
+      "score": 80,
+      "rationale": "Performance review season creates recurring urgent demand among managers, balanced and actionable feedback is genuinely hard to write, and AI handles structured constructive commentary with strong consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.897275+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-6",
+      "title": "Product Description Copy for Shopify",
+      "description": "30 prompts for e-commerce store owners to write SEO-friendly product descriptions that highlight benefits, reduce objections, and convert browsers into buyers.",
+      "category": "prompt-packs",
+      "tags": [
+        "ecommerce",
+        "shopify",
+        "copywriting"
+      ],
+      "score": 89,
+      "rationale": "Millions of Shopify store owners constantly need fresh product copy, the benefit-driven SEO angle adds differentiation, and AI is exceptionally strong at generating varied, conversion-focused product descriptions.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.898548+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-7",
+      "title": "Podcast Show Notes and Summaries",
+      "description": "20 prompts for podcast producers to quickly generate compelling show notes, chapter timestamps, key takeaways, and SEO descriptions from episode transcripts.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcast",
+        "content",
+        "seo"
+      ],
+      "score": 70,
+      "rationale": "Podcast producers have a real but smaller audience, show notes tools already exist reducing uniqueness, though AI performs well at summarizing transcripts into structured SEO-friendly content.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.899823+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-8",
+      "title": "SaaS Onboarding Email Drip Campaigns",
+      "description": "30 prompts for SaaS marketers to write a full onboarding email sequence that guides new users to activation milestones and reduces early churn.",
+      "category": "prompt-packs",
+      "tags": [
+        "saas",
+        "email marketing",
+        "onboarding"
+      ],
+      "score": 91,
+      "rationale": "SaaS marketers have a high-urgency, well-funded need for onboarding sequences, the niche focus on activation milestones differentiates it, and AI excels at structured email series with clear goals.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.901098+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-9",
+      "title": "Job Interview Prep Answer Builder",
+      "description": "35 prompts for job seekers to craft compelling, story-driven answers to common behavioral and technical interview questions using the STAR method.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "job search",
+        "interview"
+      ],
+      "score": 84,
+      "rationale": "Job seekers represent a massive, highly motivated audience, the STAR-method framework provides clear structure that differentiates from generic advice, and AI is well-suited to crafting narrative-driven answers.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.902368+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email marketing",
+        "copywriting"
+      ],
+      "score": 88,
+      "rationale": "Cold email is a massive, evergreen pain point for B2B sales reps who desperately need personalization at scale, and AI excels at generating varied, targeted email sequences.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.378947+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-1",
+      "title": "YouTube Script Hooks and Intros",
+      "description": "25 prompts for YouTube creators to write compelling first 30 seconds that stop viewers from clicking away.",
+      "category": "prompt-packs",
+      "tags": [
+        "video content",
+        "YouTube",
+        "scriptwriting"
+      ],
+      "score": 81,
+      "rationale": "Audience retention in the first 30 seconds is a documented YouTube growth lever with millions of creators seeking hooks, and AI generates punchy, varied intros consistently.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.380230+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-2",
+      "title": "Client Onboarding Documents for Freelancers",
+      "description": "20 prompts for freelancers to generate professional onboarding emails, welcome packets, and kickoff meeting agendas that set clear expectations.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelancing",
+        "client management",
+        "onboarding"
+      ],
+      "score": 76,
+      "rationale": "Freelancer onboarding directly impacts client retention and perceived professionalism, and AI generates templated professional documents with high consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.381511+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-3",
+      "title": "Weekly Newsletter Editions in Minutes",
+      "description": "30 prompts for newsletter writers to structure, draft, and edit engaging weekly editions without staring at a blank page.",
+      "category": "prompt-packs",
+      "tags": [
+        "newsletter",
+        "content creation",
+        "writing"
+      ],
+      "score": 83,
+      "rationale": "Newsletter writers face recurring blank-page anxiety every week making demand consistent and high-frequency, and AI drafts structured editorial content very effectively.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.382790+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-4",
+      "title": "Product Listing Copy for Etsy Sellers",
+      "description": "25 prompts for Etsy shop owners to write SEO-optimized product titles, descriptions, and tags that convert browsers into buyers.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "Etsy",
+        "SEO copywriting"
+      ],
+      "score": 80,
+      "rationale": "Etsy has millions of active sellers who directly tie listing copy quality to revenue, SEO-optimized product copy is a concrete deliverable AI handles well.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.384067+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-5",
+      "title": "Job Descriptions That Attract Top Candidates",
+      "description": "20 prompts for HR managers and startup founders to write inclusive, compelling job postings that reduce unqualified applications.",
+      "category": "prompt-packs",
+      "tags": [
+        "HR",
+        "recruiting",
+        "hiring"
+      ],
+      "score": 75,
+      "rationale": "HR managers and founders are motivated buyers since bad job postings are costly, and inclusive compelling JD writing is a specific niche where AI adds measurable value.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.385342+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-6",
+      "title": "LinkedIn Thought Leadership Post Templates",
+      "description": "30 prompts for executives and consultants to turn personal experiences and opinions into high-engagement LinkedIn posts that build authority.",
+      "category": "prompt-packs",
+      "tags": [
+        "LinkedIn",
+        "personal branding",
+        "thought leadership"
+      ],
+      "score": 86,
+      "rationale": "LinkedIn thought leadership is a top priority for executives and consultants with strong willingness to pay, and AI is exceptionally well-suited to producing varied post structures and hooks.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.386614+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-7",
+      "title": "UX Microcopy for App Interfaces",
+      "description": "25 prompts for UX writers and product designers to craft clear, friendly button labels, error messages, and onboarding tooltips.",
+      "category": "prompt-packs",
+      "tags": [
+        "UX writing",
+        "product design",
+        "microcopy"
+      ],
+      "score": 71,
+      "rationale": "UX microcopy is genuinely specialized and underserved with a clear professional audience, though the buyer pool is narrower and free resources from Nielsen Norman and others reduce uniqueness.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.387878+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-8",
+      "title": "Podcast Show Notes and Episode Summaries",
+      "description": "20 prompts for podcast producers to quickly generate SEO-friendly show notes, chapter timestamps, and guest bios from episode transcripts.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcasting",
+        "SEO",
+        "content repurposing"
+      ],
+      "score": 73,
+      "rationale": "Show notes are a repetitive time-consuming task for podcast producers making demand real and recurring, and AI is excellent at summarizing transcripts into structured SEO content.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.389165+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-9",
+      "title": "Investor Update Emails for Startup Founders",
+      "description": "15 prompts for early-stage founders to write concise, transparent monthly investor updates that highlight progress, blockers, and asks.",
+      "category": "prompt-packs",
+      "tags": [
+        "startups",
+        "investor relations",
+        "fundraising"
+      ],
+      "score": 74,
+      "rationale": "Investor updates are high-stakes but the audience is relatively small and niche, though the specificity and clear structure make it highly generatable and differentiated.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.390484+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 88,
+      "rationale": "Identical to idea-1773352432-0 with the same large urgent audience and strong AI generability for personalized B2B cold email sequences.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.225708+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-1",
+      "title": "YouTube Script Hooks Under 30 Seconds",
+      "description": "25 prompts for YouTube creators to craft attention-grabbing video openings that reduce audience drop-off in the first 30 seconds.",
+      "category": "prompt-packs",
+      "tags": [
+        "video",
+        "youtube",
+        "content creation"
+      ],
+      "score": 81,
+      "rationale": "Near-identical value proposition to idea-1773352432-1 with the same large creator audience and strong AI output quality for short-form attention-grabbing scripts.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.230735+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional onboarding documents, welcome emails, and project kickoff agendas that set clear expectations.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "client management",
+        "onboarding"
+      ],
+      "score": 76,
+      "rationale": "Essentially the same offering as idea-1773352432-2 with the same solid freelancer demand and reliable AI document generation capability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.235766+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-3",
+      "title": "Weekly LinkedIn Posts for Consultants",
+      "description": "40 prompts for independent consultants to write thought leadership LinkedIn posts that attract inbound inquiries from ideal clients.",
+      "category": "prompt-packs",
+      "tags": [
+        "linkedin",
+        "personal brand",
+        "consulting"
+      ],
+      "score": 85,
+      "rationale": "Independent consultants are highly motivated buyers who rely on LinkedIn for client acquisition, and 40 prompts targeting inbound inquiries gives this strong perceived value.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.240820+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-4",
+      "title": "Bug Report and Ticket Writing for Developers",
+      "description": "15 prompts for software developers to write clear, reproducible bug reports and Jira tickets that cut back-and-forth with QA teams.",
+      "category": "prompt-packs",
+      "tags": [
+        "development",
+        "productivity",
+        "documentation"
+      ],
+      "score": 67,
+      "rationale": "Bug report writing is a real friction point for developers but the audience may resist paying for what feels like a basic task, and free templates are widely available on GitHub and Jira docs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.245580+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-5",
+      "title": "Product Packaging Copy for Shopify Sellers",
+      "description": "25 prompts for e-commerce store owners to write compelling product descriptions, unboxing inserts, and label copy that drives repeat purchases.",
+      "category": "prompt-packs",
+      "tags": [
+        "ecommerce",
+        "copywriting",
+        "shopify"
+      ],
+      "score": 79,
+      "rationale": "Shopify sellers are a large commercially motivated audience and packaging copy plus unboxing inserts is a differentiated angle beyond typical product description packs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.250150+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-6",
+      "title": "Performance Review Self-Assessments for Employees",
+      "description": "20 prompts for corporate employees to articulate their achievements, impact, and growth areas confidently during annual performance review cycles.",
+      "category": "prompt-packs",
+      "tags": [
+        "career",
+        "HR",
+        "professional development"
+      ],
+      "score": 78,
+      "rationale": "Performance reviews are a universally dreaded annual task across a massive corporate audience, and AI reliably helps reframe achievements into polished self-assessment language.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.255207+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-7",
+      "title": "Newsletter Welcome Sequences for Creators",
+      "description": "15 prompts for newsletter creators to build a 5-email welcome sequence that converts new subscribers into loyal, engaged readers.",
+      "category": "prompt-packs",
+      "tags": [
+        "newsletter",
+        "email marketing",
+        "audience building"
+      ],
+      "score": 82,
+      "rationale": "Welcome sequences have outsized impact on long-term subscriber retention and creators actively seek done-for-you frameworks, with AI producing polished sequential email copy reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.258065+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-8",
+      "title": "Discovery Call Scripts for SaaS Account Executives",
+      "description": "20 prompts for SaaS account executives to prepare tailored discovery call question frameworks that uncover pain points and accelerate deal cycles.",
+      "category": "prompt-packs",
+      "tags": [
+        "saas",
+        "sales",
+        "discovery calls"
+      ],
+      "score": 89,
+      "rationale": "SaaS AEs are a high-value, urgent buyer segment with clear ROI on better discovery calls, and structured question frameworks are highly generatable with consistent AI quality.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.262878+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-9",
+      "title": "Course Outline Builder for Online Educators",
+      "description": "30 prompts for online course creators to structure module outlines, learning objectives, and lesson summaries that improve student completion rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "education",
+        "course creation",
+        "instructional design"
+      ],
+      "score": 84,
+      "rationale": "The online education market is booming and course creators consistently struggle with structure and outcomes, while AI handles curriculum scaffolding with high reliability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.265893+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales professionals to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "B2B"
+      ],
+      "score": 85,
+      "rationale": "Cold email is a perennial high-demand B2B pain point with strong purchase intent, personalization-focused prompts differentiate from generic templates, and AI excels at generating varied email copy.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.383771+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-1",
+      "title": "YouTube Script Hooks That Stop the Scroll",
+      "description": "25 prompts for YouTube creators to craft compelling first 30-second hooks that reduce audience drop-off and improve watch time.",
+      "category": "prompt-packs",
+      "tags": [
+        "YouTube",
+        "video",
+        "content creation"
+      ],
+      "score": 79,
+      "rationale": "YouTube creators are a large and growth-hungry audience where hooks directly impact revenue, and AI generates varied hook structures reliably though free resources on this topic are abundant.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.388812+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional onboarding documents, welcome emails, and intake questionnaires that set clear expectations with new clients.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "onboarding",
+        "client management"
+      ],
+      "score": 77,
+      "rationale": "Freelancers have a clear, recurring need for professional onboarding documents, AI produces welcome emails and intake forms with high quality, but the audience size is moderate and free templates exist widely.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.393840+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-3",
+      "title": "Weekly LinkedIn Posts for Consultants",
+      "description": "40 prompts for independent consultants to write thought leadership LinkedIn posts that attract inbound inquiries without sounding like self-promotion.",
+      "category": "prompt-packs",
+      "tags": [
+        "LinkedIn",
+        "consulting",
+        "personal brand"
+      ],
+      "score": 86,
+      "rationale": "Large, commercially-minded audience of consultants hungry for inbound lead generation, thought leadership framing adds differentiation, and AI handles varied LinkedIn content formats reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.398866+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-4",
+      "title": "UX Research Interview Question Generator",
+      "description": "25 prompts for UX researchers to design unbiased user interview scripts that uncover genuine pain points and behavioral insights.",
+      "category": "prompt-packs",
+      "tags": [
+        "UX",
+        "research",
+        "product"
+      ],
+      "score": 74,
+      "rationale": "UX research is a specialized field with real methodological pain points, unbiased framing is a meaningful differentiator, and AI generates structured interview questions reliably but the purchasable audience is narrow.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.403915+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-5",
+      "title": "Etsy Product Listings That Convert Browsers",
+      "description": "35 prompts for Etsy sellers to write SEO-optimized product titles, descriptions, and bullet points that turn casual browsers into buyers.",
+      "category": "prompt-packs",
+      "tags": [
+        "ecommerce",
+        "Etsy",
+        "copywriting"
+      ],
+      "score": 82,
+      "rationale": "Etsy sellers are a large, commercially motivated niche with SEO and conversion pain points, and AI generates product listing copy with high reliability and format consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.408988+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-6",
+      "title": "Engineering Team Status Reports Made Easy",
+      "description": "20 prompts for engineering managers to quickly draft clear weekly status reports that communicate progress, blockers, and priorities to non-technical stakeholders.",
+      "category": "prompt-packs",
+      "tags": [
+        "engineering",
+        "management",
+        "communication"
+      ],
+      "score": 72,
+      "rationale": "Engineering managers have a recurring and time-consuming reporting task, non-technical stakeholder framing adds practical differentiation, but the audience is narrow and free internal templates from companies reduce urgency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.413188+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-7",
+      "title": "Podcast Guest Pitch Emails That Land Spots",
+      "description": "30 prompts for entrepreneurs and authors to write concise, compelling podcast guest pitch emails that demonstrate clear audience value and get accepted.",
+      "category": "prompt-packs",
+      "tags": [
+        "podcast",
+        "PR",
+        "outreach"
+      ],
+      "score": 80,
+      "rationale": "Podcast pitching is a specific, high-frustration task for entrepreneurs and authors, the concise format is well-suited to AI generation, and audience-value framing differentiates from free pitch templates.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.415297+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-8",
+      "title": "Online Course Module Outlines and Lessons",
+      "description": "40 prompts for course creators to structure module outlines, lesson scripts, and knowledge-check quizzes that improve student completion rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "online course",
+        "education",
+        "e-learning"
+      ],
+      "score": 84,
+      "rationale": "Course creators are a growing, monetization-focused audience with a complex, time-consuming task that AI handles very well across outlines, scripts, and quizzes at scale.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.420352+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352520-9",
+      "title": "Real Estate Listing Descriptions That Sell",
+      "description": "25 prompts for real estate agents to write emotionally engaging property listing descriptions that highlight unique features and motivate buyers to schedule showings.",
+      "category": "prompt-packs",
+      "tags": [
+        "real estate",
+        "copywriting",
+        "marketing"
+      ],
+      "score": 76,
+      "rationale": "Real estate agents are a financially motivated audience with high listing volume, emotionally engaging copy is a meaningful differentiator, and AI generates property descriptions consistently though the audience size is niche.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:20.425433+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that break through inbox noise and generate qualified responses.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "copywriting"
+      ],
+      "score": 85,
+      "rationale": "B2B sales reps represent a large, urgency-driven audience willing to pay for tools that generate pipeline, and AI produces reliable cold email variations with strong consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.103967+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-1",
+      "title": "YouTube Script Hooks and Retention Frameworks",
+      "description": "25 prompts for YouTube creators to write compelling video hooks, maintain viewer retention, and structure scripts that convert casual viewers into subscribers.",
+      "category": "prompt-packs",
+      "tags": [
+        "youtube",
+        "video",
+        "content creation"
+      ],
+      "score": 79,
+      "rationale": "Expanding beyond hooks to full retention frameworks increases value over single-focus alternatives, and AI handles script structuring well, though competition from free YouTube creator resources is high.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.105254+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-2",
+      "title": "Client Onboarding Docs for Freelancers",
+      "description": "20 prompts for freelancers to generate professional welcome packets, project briefs, and expectation-setting documents that reduce client miscommunication from day one.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelancing",
+        "client management",
+        "documentation"
+      ],
+      "score": 77,
+      "rationale": "Reducing client miscommunication is a compelling pain point with good purchase intent among freelancers, and AI handles structured document generation reliably, though differentiation from free Notion templates is modest.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.106534+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-3",
+      "title": "Weekly LinkedIn Content for Consultants",
+      "description": "40 prompts for independent consultants to create thought leadership posts, case study breakdowns, and engagement-driving LinkedIn content that attracts inbound leads.",
+      "category": "prompt-packs",
+      "tags": [
+        "linkedin",
+        "consulting",
+        "personal brand"
+      ],
+      "score": 87,
+      "rationale": "Consultants are a motivated buying audience with a persistent content need, 40 prompts offers strong perceived value, and LinkedIn post structures are highly reproducible by AI with consistent quality.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.107810+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-4",
+      "title": "E-Commerce Product Descriptions That Convert",
+      "description": "35 prompts for e-commerce store owners to write benefit-driven product descriptions that address buyer objections and increase add-to-cart rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "copywriting",
+        "conversion"
+      ],
+      "score": 83,
+      "rationale": "E-commerce store owners represent a massive, conversion-obsessed audience, objection-handling framing adds differentiation, and AI generates benefit-driven product copy with high consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.109085+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-5",
+      "title": "User Interview Questions for UX Researchers",
+      "description": "25 prompts for UX researchers to generate bias-free interview questions, follow-up probes, and usability test scripts that surface genuine user pain points.",
+      "category": "prompt-packs",
+      "tags": [
+        "UX",
+        "research",
+        "product design"
+      ],
+      "score": 75,
+      "rationale": "UX researchers have genuine demand for bias-free question design, including usability test scripts adds breadth, and AI handles structured interview question generation well though the buyer audience is relatively specialized.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.110357+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-6",
+      "title": "Performance Review Writing for Managers",
+      "description": "30 prompts for team managers to write specific, evidence-based performance reviews that motivate employees and satisfy HR documentation requirements.",
+      "category": "prompt-packs",
+      "tags": [
+        "management",
+        "HR",
+        "leadership"
+      ],
+      "score": 88,
+      "rationale": "Performance reviews are a high-pain, time-sensitive task for a massive audience of managers, the structured format is highly AI-generatable, and curated prompt packs with HR-compliant framing offer clear differentiation from generic free advice.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.111629+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-7",
+      "title": "Newsletter Issues for Niche Community Builders",
+      "description": "30 prompts for newsletter operators to draft engaging issue intros, curated commentary, and strong calls-to-action that grow open rates and paid subscriber conversions.",
+      "category": "prompt-packs",
+      "tags": [
+        "newsletter",
+        "community",
+        "email marketing"
+      ],
+      "score": 81,
+      "rationale": "Newsletter operators are a growing paid-subscriber-focused audience with a recurring weekly need, and AI handles editorial commentary, intros, and CTAs with strong and varied output.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.112920+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-8",
+      "title": "Grant Proposal Sections for Nonprofits",
+      "description": "20 prompts for nonprofit development staff to write compelling need statements, program descriptions, and evaluation plans that align with foundation grant requirements.",
+      "category": "prompt-packs",
+      "tags": [
+        "nonprofit",
+        "grant writing",
+        "fundraising"
+      ],
+      "score": 68,
+      "rationale": "Nonprofit grant writing is a high-stakes, specialized need with limited free AI-curated alternatives, but the buyer audience is small, budget-constrained, and grant requirements vary enough to limit prompt generalizability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.114206+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352535-9",
+      "title": "Technical README Files for Open Source Developers",
+      "description": "15 prompts for open source developers to write clear installation guides, contribution documentation, and project overviews that help new users onboard in under ten minutes.",
+      "category": "prompt-packs",
+      "tags": [
+        "developer",
+        "documentation",
+        "open source"
+      ],
+      "score": 62,
+      "rationale": "Open source developers have a real documentation pain point but are a small, price-resistant audience that expects free tools, and only 15 prompts limits perceived value relative to free README generators already available.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T21:55:35.115484+00:00",
       "source": "trend-scan"
     }
   ]

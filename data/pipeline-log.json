@@ -26,6 +26,69 @@
         "description": "30 prompts for e-commerce store owners to write SEO-optimized, benefit-focused product descriptions that convert browsers into buyers."
       },
       "duration_seconds": 391
+    },
+    {
+      "id": "run-1773351956",
+      "started_at": "2026-03-12T21:45:56.034133+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 57
+    },
+    {
+      "id": "run-1773352073",
+      "started_at": "2026-03-12T21:47:53.816234+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 83
+    },
+    {
+      "id": "run-1773352217",
+      "started_at": "2026-03-12T21:50:17.728266+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 145
+    },
+    {
+      "id": "run-1773352420",
+      "started_at": "2026-03-12T21:53:40.988810+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 63
+    },
+    {
+      "id": "run-1773352522",
+      "started_at": "2026-03-12T21:55:22.819095+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 50
+    },
+    {
+      "id": "run-1773353248",
+      "started_at": "2026-03-12T22:07:28.442424+00:00",
+      "status": "failed",
+      "failed_stage": "idea-rank",
+      "error": "No ideas available to rank",
+      "product": null,
+      "duration_seconds": 0
+    },
+    {
+      "id": "run-1773353308",
+      "started_at": "2026-03-12T22:08:28.886548+00:00",
+      "status": "failed",
+      "failed_stage": "idea-rank",
+      "error": "No ideas available to rank",
+      "product": null,
+      "duration_seconds": 0
     }
   ]
 }

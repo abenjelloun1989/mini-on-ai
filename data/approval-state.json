@@ -1,5 +1,5 @@
 {
-  "status": "pending",
+  "status": "rejected",
   "idea": {
     "id": "idea-1773352217-9",
     "title": "Social Media Ad Copy Variations Toolkit",
@@ -10,14 +10,14 @@
       "copywriting",
       "social media"
     ],
-    "score": 91,
-    "rationale": "Paid media managers face constant pressure to produce copy variations at scale, the audience is large and monetarily motivated, and AI excels at generating structured ad copy across awareness stages with high consistency.",
+    "score": 89,
+    "rationale": "Paid media managers have urgent, recurring demand for copy variations; AI excels at generating structured ad copy permutations across awareness stages, and a 40-prompt toolkit with framework specificity is hard to replicate with generic free resources.",
     "selected": true,
     "status": null,
     "product_id": null,
     "generated_at": "2026-03-12T21:50:17.291121+00:00",
     "source": "trend-scan"
   },
-  "requested_at": "2026-03-12T21:51:14.427721+00:00",
-  "decided_at": null
+  "requested_at": "2026-03-12T21:56:02.603528+00:00",
+  "decided_at": "2026-03-12T21:56:08.584785+00:00"
 }

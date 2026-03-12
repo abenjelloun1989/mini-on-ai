@@ -27,24 +27,22 @@ def idea_rank():
     backlog = read_json("data/idea-backlog.json")
     unscored = [i for i in backlog["ideas"] if i.get("score") is None and not i.get("selected")]
 
-    if not unscored:
-        log("idea-rank", "No unscored ideas found. Run trend_scan first.")
-        return None
+    # Score any unscored ideas (skip API call if all already scored)
+    if unscored:
+        log("idea-rank", f"Scoring {len(unscored)} ideas...")
 
-    log("idea-rank", f"Scoring {len(unscored)} ideas...")
+        ideas_for_prompt = [
+            {"id": i["id"], "title": i["title"], "description": i["description"]}
+            for i in unscored
+        ]
 
-    ideas_for_prompt = [
-        {"id": i["id"], "title": i["title"], "description": i["description"]}
-        for i in unscored
-    ]
-
-    message = client.messages.create(
-        model=MODEL,
-        max_tokens=2048,
-        messages=[
-            {
-                "role": "user",
-                "content": f"""Score each of these prompt pack ideas for a digital product catalog.
+        message = client.messages.create(
+            model=MODEL,
+            max_tokens=2048,
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"""Score each of these prompt pack ideas for a digital product catalog.
 
 Ideas to score:
 {json.dumps(ideas_for_prompt, indent=2)}
@@ -64,19 +62,20 @@ Return ONLY a valid JSON array, no other text. Schema:
 ]
 
 Sort by score descending.""",
-            }
-        ],
-    )
+                }
+            ],
+        )
 
-    raw = message.content[0].text.strip()
-    scores = extract_json(raw, array=True)
+        raw = message.content[0].text.strip()
+        scores = extract_json(raw, array=True)
 
-    # Apply scores
-    score_map = {s["id"]: s for s in scores}
-    for idea in backlog["ideas"]:
-        if idea["id"] in score_map:
-            idea["score"] = score_map[idea["id"]]["score"]
-            idea["rationale"] = score_map[idea["id"]]["rationale"]
+        score_map = {s["id"]: s for s in scores}
+        for idea in backlog["ideas"]:
+            if idea["id"] in score_map:
+                idea["score"] = score_map[idea["id"]]["score"]
+                idea["rationale"] = score_map[idea["id"]]["rationale"]
+    else:
+        log("idea-rank", "All ideas already scored — skipping API call")
 
     # Clear previous selection
     for idea in backlog["ideas"]:
@@ -90,12 +89,15 @@ Sort by score descending.""",
     ]
     candidates.sort(key=lambda x: x["score"], reverse=True)
 
-    selected = None
-    if candidates:
-        candidates[0]["selected"] = True
-        selected = candidates[0]
-        log("idea-rank", f"Selected: \"{selected['title']}\" (score: {selected['score']})")
-        log("idea-rank", f"Rationale: {selected['rationale']}")
+    if not candidates:
+        log("idea-rank", "No available ideas. Run trend_scan to add more.")
+        write_json("data/idea-backlog.json", backlog)
+        return None
+
+    candidates[0]["selected"] = True
+    selected = candidates[0]
+    log("idea-rank", f"Selected: \"{selected['title']}\" (score: {selected['score']})")
+    log("idea-rank", f"Rationale: {selected['rationale']}")
 
     write_json("data/idea-backlog.json", backlog)
     return selected
