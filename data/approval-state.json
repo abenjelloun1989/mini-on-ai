@@ -1,23 +1,23 @@
 {
-  "status": "approved",
+  "status": "pending",
   "idea": {
-    "id": "idea-1773351566-7",
-    "title": "Shopify Product Description Packs for E-Commerce",
-    "description": "30 prompts for e-commerce store owners to write SEO-optimized, benefit-focused product descriptions that convert browsers into buyers.",
+    "id": "idea-1773352217-9",
+    "title": "Social Media Ad Copy Variations Toolkit",
+    "description": "40 prompts for paid media managers to generate multiple headline, body copy, and CTA variations for Facebook and Instagram ads across different buyer awareness stages.",
     "category": "prompt-packs",
     "tags": [
-      "e-commerce",
-      "SEO",
-      "copywriting"
+      "paid ads",
+      "copywriting",
+      "social media"
     ],
-    "score": 89,
-    "rationale": "E-commerce store owners represent a massive, monetization-motivated audience with urgent conversion needs, product descriptions are highly repeatable for AI, and SEO-benefit framing adds differentiation beyond generic free templates.",
+    "score": 91,
+    "rationale": "Paid media managers face constant pressure to produce copy variations at scale, the audience is large and monetarily motivated, and AI excels at generating structured ad copy across awareness stages with high consistency.",
     "selected": true,
     "status": null,
     "product_id": null,
-    "generated_at": "2026-03-12T21:39:26.831202+00:00",
+    "generated_at": "2026-03-12T21:50:17.291121+00:00",
     "source": "trend-scan"
   },
-  "requested_at": "2026-03-12T21:39:43.274925+00:00",
-  "decided_at": "2026-03-12T21:43:43.950740+00:00"
+  "requested_at": "2026-03-12T21:51:14.427721+00:00",
+  "decided_at": null
 }

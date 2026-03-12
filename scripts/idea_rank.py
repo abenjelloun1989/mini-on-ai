@@ -82,10 +82,11 @@ Sort by score descending.""",
     for idea in backlog["ideas"]:
         idea["selected"] = False
 
-    # Select highest-scoring unproduced idea
+    # Select highest-scoring idea that hasn't been produced or rejected
     candidates = [
         i for i in backlog["ideas"]
-        if i.get("score") is not None and i.get("status") != "produced"
+        if i.get("score") is not None
+        and i.get("status") not in ("produced", "rejected")
     ]
     candidates.sort(key=lambda x: x["score"], reverse=True)
 
