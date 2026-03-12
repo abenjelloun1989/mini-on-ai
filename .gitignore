@@ -1,6 +1,6 @@
 .env
 node_modules/
-*.zip
+products/**/*.zip
 logs/
 __pycache__/
 *.pyc

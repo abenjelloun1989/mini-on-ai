@@ -109,11 +109,20 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
             log("telegram", f"Warning: notification failed: {e}")
         sys.exit(1)
 
-    # Stage 1: Trend scan
+    # Stage 1: Trend scan — only if available idea pool is low
     if not skip_scan:
         log("pipeline", "--- Stage: trend-scan ---")
         try:
-            trend_scan(seed=seed, count=10)
+            backlog = read_json("data/idea-backlog.json")
+            available = [
+                i for i in backlog.get("ideas", [])
+                if i.get("status") not in ("produced", "rejected")
+            ]
+            if len(available) < 5 or seed:
+                log("pipeline", f"Available ideas: {len(available)} — scanning for more...")
+                trend_scan(seed=seed, count=10)
+            else:
+                log("pipeline", f"Available ideas: {len(available)} — skipping scan (pool sufficient)")
         except Exception as e:
             fail("trend-scan", str(e))
     else:

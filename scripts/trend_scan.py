@@ -24,10 +24,39 @@ client = anthropic.Anthropic()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 
 
-def trend_scan(seed: str = "", count: int = 10) -> list:
-    log("trend-scan", f"Generating {count} prompt pack ideas{f' (seed: {seed})' if seed else ''}...")
+SEED_ROTATION = [
+    "solo freelancers and consultants",
+    "content creators and YouTubers",
+    "job seekers and career changers",
+    "startup founders and entrepreneurs",
+    "remote team managers",
+    "real estate agents",
+    "teachers and course creators",
+    "health and wellness coaches",
+    "legal and finance professionals",
+    "software developers and engineers",
+    "social media managers",
+    "small business owners",
+    "copywriters and marketers",
+    "UX designers and product managers",
+    "sales reps and account managers",
+]
 
-    seed_line = f"\nFocus area: {seed}" if seed else ""
+
+def trend_scan(seed: str = "", count: int = 10) -> list:
+    import random
+
+    # Pick a seed: user-supplied, or rotate through diverse topics
+    active_seed = seed or random.choice(SEED_ROTATION)
+    log("trend-scan", f"Generating {count} ideas (focus: {active_seed})...")
+
+    # Pull titles already in backlog to avoid duplicates
+    backlog = read_json("data/idea-backlog.json")
+    existing_titles = [i["title"] for i in backlog.get("ideas", [])]
+    avoid_block = ""
+    if existing_titles:
+        avoid_list = "\n".join(f"- {t}" for t in existing_titles[-30:])
+        avoid_block = f"\n\nDo NOT suggest any of these already-existing ideas:\n{avoid_list}"
 
     message = client.messages.create(
         model=MODEL,
@@ -35,21 +64,23 @@ def trend_scan(seed: str = "", count: int = 10) -> list:
         messages=[
             {
                 "role": "user",
-                "content": f"""Generate {count} specific, practical prompt pack ideas for digital creators and professionals.
+                "content": f"""Generate {count} highly specific, niche prompt pack ideas for digital download.
 
-Each idea should be:
-- Focused on a real workflow or pain point that people face daily
-- Immediately usable by the target audience
-- Described in one clear sentence that names both the audience and the benefit
-- Specific (not "prompts for writers" but "30 prompts for writing cold email sequences that get replies")
-- Different from each other — cover different audiences and use cases
-{seed_line}
+Target audience for this batch: {active_seed}
+
+Rules:
+- Each pack must solve one specific, painful daily workflow problem
+- Title must be concrete (e.g. "Cold Email Sequences for SaaS Trials" not "Email Prompts")
+- Avoid generic topics like "productivity", "writing", "ChatGPT tips" — go niche
+- Each idea must be genuinely different (different audience segment, different use case)
+- Think: what does this person struggle with every week that AI could help with?{avoid_block}
+
 Return ONLY a valid JSON array, no other text. Schema:
 [
   {{
-    "title": "Short pack title (5-8 words)",
-    "description": "One sentence: who it's for and what it helps them do",
-    "tags": ["tag1", "tag2"]
+    "title": "Specific pack title (5-9 words)",
+    "description": "One sentence: exact audience + exact benefit they get",
+    "tags": ["tag1", "tag2", "tag3"]
   }}
 ]""",
             }

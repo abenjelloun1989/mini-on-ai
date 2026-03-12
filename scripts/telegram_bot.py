@@ -14,8 +14,9 @@ Commands:
   /run all  — run pipeline 4x with preset seeds
   /go       — approve pending idea (or tap button in chat)
   /nogo     — reject pending idea (or tap button in chat)
-  /holdon   — pause the pipeline daemon
-  /resume   — resume the pipeline daemon
+  /holdon        — pause the pipeline daemon
+  /resume        — resume the pipeline daemon
+  /projectphases — show project roadmap and current phase
 """
 
 import json
@@ -102,6 +103,37 @@ def set_daemon_paused(paused: bool) -> str:
         return f"❌ Error updating daemon state: {e}"
 
 
+def cmd_projectphases() -> str:
+    try:
+        catalog = read_json("data/product-catalog.json")
+        product_count = len(catalog.get("products", []))
+    except Exception:
+        product_count = 0
+
+    return (
+        "🗺 <b>Project Phases</b>\n\n"
+        "✅ <b>V1 — Core Pipeline</b>\n"
+        "   trend-scan → rank → generate → package → site\n\n"
+        "✅ <b>V2 — Live Factory</b>\n"
+        "   GitHub Pages • Telegram approval gate\n"
+        "   Continuous daemon • License + README\n\n"
+        f"📦 <b>Current:</b> {product_count} product{'s' if product_count != 1 else ''} published\n\n"
+        "─────────────────────\n\n"
+        "🔜 <b>M11 — Publisher</b>\n"
+        "   Auto-post to Gumroad + Reddit after each product\n\n"
+        "🔜 <b>M12 — Real Trend Scanning</b>\n"
+        "   Replace AI-generated ideas with Google Trends\n"
+        "   + Reddit scraping for real demand signals\n\n"
+        "🔜 <b>M13 — More Product Types</b>\n"
+        "   Checklists, templates, swipe files, mini-guides\n\n"
+        "🔜 <b>M14 — Analytics</b>\n"
+        "   Track downloads — feed best performers back\n"
+        "   into idea scoring\n\n"
+        "🔜 <b>M15 — Email List</b>\n"
+        "   Capture audience you own (Beehiiv / Kit embed)"
+    )
+
+
 def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
@@ -115,6 +147,7 @@ def cmd_help() -> str:
         "/nogo — reject pending idea\n"
         "/holdon — pause the pipeline\n"
         "/resume — resume the pipeline\n"
+        "/projectphases — roadmap and current phase\n"
         "/help — show this message"
     )
 
@@ -247,6 +280,9 @@ def handle_command(text: str) -> str:
 
     if lower == "/ideas":
         return cmd_ideas()
+
+    if lower == "/projectphases":
+        return cmd_projectphases()
 
     if lower == "/holdon":
         return set_daemon_paused(True)

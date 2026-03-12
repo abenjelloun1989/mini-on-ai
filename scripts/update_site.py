@@ -9,6 +9,7 @@ Usage: python3 scripts/update_site.py [--id product-id]
 import argparse
 import json
 import os
+import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -34,7 +35,7 @@ def escape_html(s: str) -> str:
 def build_product_page(meta: dict) -> str:
     site_url = os.getenv("SITE_URL", "")
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    download_path = f"../{meta['package_path']}"
+    download_path = "package.zip"  # served from site/products/{id}/package.zip
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -91,7 +92,7 @@ def build_product_card(meta: dict) -> str:
         <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
         <p class="product-desc">{escape_html(meta['description'])}</p>
         <div class="product-meta">{meta['prompt_count']} prompts</div>
-        <a href="{meta['package_path']}" class="btn-download">Download Free</a>
+        <a href="products/{meta['id']}/package.zip" class="btn-download">Download Free</a>
       </article>"""
 
 
@@ -163,6 +164,17 @@ def update_site(product_id_arg: str = None) -> dict:
         pid, meta = candidates[-1]
 
     log("update-site", f"Adding to site: {meta['title']} ({pid})")
+
+    # Copy zip into site so GitHub Pages can serve it
+    zip_src = ROOT / meta["package_path"]
+    zip_dst_dir = ROOT / "site" / "products" / pid
+    zip_dst_dir.mkdir(parents=True, exist_ok=True)
+    zip_dst = zip_dst_dir / "package.zip"
+    if zip_src.exists():
+        shutil.copy2(zip_src, zip_dst)
+        log("update-site", f"Copied package.zip → site/products/{pid}/package.zip")
+    else:
+        log("update-site", f"Warning: zip not found at {zip_src}")
 
     # Write product page
     product_page = build_product_page(meta)
