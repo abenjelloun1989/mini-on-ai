@@ -1,0 +1,15 @@
+{
+  "name": "mini-on-factory",
+  "version": "1.0.0",
+  "description": "AI-powered digital product factory (Python scripts)",
+  "scripts": {
+    "pipeline": "python3 scripts/run_pipeline.py",
+    "scan": "python3 scripts/trend_scan.py",
+    "rank": "python3 scripts/idea_rank.py",
+    "generate": "python3 scripts/generate_product.py",
+    "package": "python3 scripts/package_product.py",
+    "site": "python3 scripts/update_site.py",
+    "notify": "python3 scripts/telegram_notify.py"
+  },
+  "note": "Runtime: Python 3.9+. Install deps: pip3 install anthropic python-dotenv"
+}

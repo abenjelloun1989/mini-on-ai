@@ -1,0 +1,185 @@
+{
+  "version": "1",
+  "ideas": [
+    {
+      "id": "idea-1773348175-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B salespeople to write personalized cold email sequences that increase response rates without sounding templated.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email",
+        "outreach"
+      ],
+      "score": 86,
+      "rationale": "B2B sales teams represent a large, urgent audience willing to pay for results, and AI generates strong personalized email copy, though free templates are widely available online.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.124179+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-1",
+      "title": "Weekly Review and Planning System",
+      "description": "25 prompts for solopreneurs to run a structured weekly review that surfaces bottlenecks, prioritizes tasks, and sets a clear focus for the week ahead.",
+      "category": "prompt-packs",
+      "tags": [
+        "planning",
+        "solopreneur",
+        "time-management"
+      ],
+      "score": 80,
+      "rationale": "Solopreneurs actively seek planning systems and the structured review format plays to AI's strengths, but weekly review frameworks are abundantly available for free.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.125490+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-2",
+      "title": "Meeting Notes to Action Items Fast",
+      "description": "20 prompts for project managers to instantly transform messy meeting notes into clean summaries, assigned action items, and follow-up messages.",
+      "category": "prompt-packs",
+      "tags": [
+        "meetings",
+        "project-management",
+        "documentation"
+      ],
+      "score": 88,
+      "rationale": "Project managers have a constant, high-frequency need for this workflow and AI excels at structuring unformatted text into clean outputs, making every prompt reliably useful.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-meeting-notes-to-action-items-fast-20260312",
+      "generated_at": "2026-03-12T20:42:55.126783+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-3",
+      "title": "SOPs Written in Half the Time",
+      "description": "25 prompts for operations managers to draft clear, step-by-step standard operating procedures from rough process notes without starting from scratch.",
+      "category": "prompt-packs",
+      "tags": [
+        "operations",
+        "documentation",
+        "systems"
+      ],
+      "score": 84,
+      "rationale": "Operations managers face a real bottleneck writing SOPs and AI is highly capable of converting rough notes into structured procedures, with moderate competition from free resources.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.128067+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-4",
+      "title": "Client Onboarding Emails on Autopilot",
+      "description": "20 prompts for freelancers to write professional client onboarding email sequences that set expectations, reduce back-and-forth, and build immediate trust.",
+      "category": "prompt-packs",
+      "tags": [
+        "freelance",
+        "client-management",
+        "email"
+      ],
+      "score": 83,
+      "rationale": "Freelancers are a motivated buying audience with a clear recurring need, and AI produces polished professional email sequences consistently with minimal prompting variation.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.129351+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-5",
+      "title": "Daily Standup and Status Updates",
+      "description": "15 prompts for remote team members to write concise, informative daily standups and async status updates that keep managers informed without long meetings.",
+      "category": "prompt-packs",
+      "tags": [
+        "remote-work",
+        "communication",
+        "async"
+      ],
+      "score": 68,
+      "rationale": "The audience need is real but narrow and low-urgency, and 15 prompts for a repetitive simple task limits perceived value relative to other packs in this set.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.130627+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-6",
+      "title": "Inbox Zero Declutter and Response Kit",
+      "description": "20 prompts for busy executives to quickly draft polished email replies, delegation messages, and decline responses that clear inbox backlogs in under an hour.",
+      "category": "prompt-packs",
+      "tags": [
+        "email",
+        "executive",
+        "inbox-management"
+      ],
+      "score": 81,
+      "rationale": "Executives with inbox overload represent a high-value segment and AI drafts polished email responses reliably, though the use case is broadly covered in free productivity content.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.131905+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-7",
+      "title": "Job Application Materials in One Hour",
+      "description": "25 prompts for job seekers to tailor resumes, write compelling cover letters, and prepare role-specific answers for each application without starting from zero.",
+      "category": "prompt-packs",
+      "tags": [
+        "job-search",
+        "career",
+        "writing"
+      ],
+      "score": 79,
+      "rationale": "Job seekers are a large motivated audience with urgent needs, but resume and cover letter prompts are among the most saturated free AI use cases online.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.133180+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-8",
+      "title": "Content Repurposing from One Long Post",
+      "description": "20 prompts for content creators to break down a single long-form blog post or video into LinkedIn posts, tweets, email newsletters, and short-form scripts.",
+      "category": "prompt-packs",
+      "tags": [
+        "content",
+        "repurposing",
+        "social-media"
+      ],
+      "score": 85,
+      "rationale": "Content repurposing is a top pain point for creators and AI handles format transformation exceptionally well, though many free repurposing prompt lists already exist.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.134453+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773348175-9",
+      "title": "Performance Review Self-Evaluations Made Easy",
+      "description": "20 prompts for employees and team leads to write confident, evidence-backed self-evaluations and peer reviews that clearly communicate impact and growth.",
+      "category": "prompt-packs",
+      "tags": [
+        "hr",
+        "career-growth",
+        "workplace"
+      ],
+      "score": 76,
+      "rationale": "Performance review season creates a strong recurring demand and AI handles structured self-advocacy writing well, but the audience window is periodic rather than ongoing.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-12T20:42:55.135725+00:00",
+      "source": "trend-scan"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""
+idea_rank.py
+Scores unscored ideas and marks the best one as selected.
+
+Usage: python3 scripts/idea_rank.py
+"""
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env", override=True)
+
+import json
+import os
+import anthropic
+from lib.utils import read_json, write_json, log, extract_json
+
+client = anthropic.Anthropic()
+MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
+
+
+def idea_rank():
+    backlog = read_json("data/idea-backlog.json")
+    unscored = [i for i in backlog["ideas"] if i.get("score") is None and not i.get("selected")]
+
+    if not unscored:
+        log("idea-rank", "No unscored ideas found. Run trend_scan first.")
+        return None
+
+    log("idea-rank", f"Scoring {len(unscored)} ideas...")
+
+    ideas_for_prompt = [
+        {"id": i["id"], "title": i["title"], "description": i["description"]}
+        for i in unscored
+    ]
+
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=2048,
+        messages=[
+            {
+                "role": "user",
+                "content": f"""Score each of these prompt pack ideas for a digital product catalog.
+
+Ideas to score:
+{json.dumps(ideas_for_prompt, indent=2)}
+
+Score each idea on:
+- demand (0-40): how large and urgent the audience need is
+- uniqueness (0-30): differentiation from what's freely available online
+- generability (0-30): how well AI can produce high-quality, consistent content for this
+
+Return ONLY a valid JSON array, no other text. Schema:
+[
+  {{
+    "id": "idea-id",
+    "score": 85,
+    "rationale": "One sentence explaining the score"
+  }}
+]
+
+Sort by score descending.""",
+            }
+        ],
+    )
+
+    raw = message.content[0].text.strip()
+    scores = extract_json(raw, array=True)
+
+    # Apply scores
+    score_map = {s["id"]: s for s in scores}
+    for idea in backlog["ideas"]:
+        if idea["id"] in score_map:
+            idea["score"] = score_map[idea["id"]]["score"]
+            idea["rationale"] = score_map[idea["id"]]["rationale"]
+
+    # Clear previous selection
+    for idea in backlog["ideas"]:
+        idea["selected"] = False
+
+    # Select highest-scoring unproduced idea
+    candidates = [
+        i for i in backlog["ideas"]
+        if i.get("score") is not None and i.get("status") != "produced"
+    ]
+    candidates.sort(key=lambda x: x["score"], reverse=True)
+
+    selected = None
+    if candidates:
+        candidates[0]["selected"] = True
+        selected = candidates[0]
+        log("idea-rank", f"Selected: \"{selected['title']}\" (score: {selected['score']})")
+        log("idea-rank", f"Rationale: {selected['rationale']}")
+
+    write_json("data/idea-backlog.json", backlog)
+    return selected
+
+
+def main():
+    result = idea_rank()
+    if not result:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

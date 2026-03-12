@@ -1,0 +1,20 @@
+{
+  "version": "1",
+  "products": [
+    {
+      "id": "prompts-meeting-notes-to-action-items-fast-20260312",
+      "title": "Meeting Notes to Action Items Fast",
+      "description": "20 prompts for project managers to instantly transform messy meeting notes into clean summaries, assigned action items, and follow-up messages.",
+      "category": "prompt-packs",
+      "tags": [
+        "meetings",
+        "project-management",
+        "documentation"
+      ],
+      "prompt_count": 25,
+      "created_at": "2026-03-12T20:44:48.223811+00:00",
+      "package_path": "products/prompts-meeting-notes-to-action-items-fast-20260312/package.zip",
+      "site_path": "site/products/prompts-meeting-notes-to-action-items-fast-20260312.html"
+    }
+  ]
+}

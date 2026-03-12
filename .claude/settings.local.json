@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Read(//private/etc/**)",
+      "Bash(echo ---PATH:$PATH)",
+      "Bash(python3.12 --version)",
+      "Bash(python3.12 -c \"import anthropic\")",
+      "Bash(python3.12 -c \"import dotenv\")",
+      "Bash(python3 -c \"import anthropic; print\\(''anthropic ok''\\)\")",
+      "Bash(python3 -c \"import dotenv; print\\(''dotenv ok''\\)\")",
+      "Bash(python3 -c \"import zipfile; print\\(''zipfile ok''\\)\")",
+      "Bash(python3 -m pip install anthropic python-dotenv)",
+      "Bash(python3 -m py_compile scripts/lib/utils.py scripts/trend_scan.py scripts/idea_rank.py scripts/generate_product.py scripts/package_product.py scripts/update_site.py scripts/telegram_notify.py scripts/run_pipeline.py)",
+      "Bash(python3 -c \":*)",
+      "Bash(env)",
+      "Bash(python3 -c \"import anthropic, os; c = anthropic.Anthropic\\(\\); r = c.messages.create\\(model=''claude-haiku-4-5-20251001'', max_tokens=50, messages=[{''role'':''user'',''content'':''Say OK''}]\\); print\\(r.content[0].text\\)\")",
+      "Bash(python3 scripts/package_product.py)",
+      "Bash(python3 scripts/update_site.py)",
+      "Bash(python3 scripts/run_pipeline.py --seed \"productivity\")",
+      "Bash(/Users/minion/Dev/mini-on-factory/docs/current-state.md:*)",
+      "Bash(__NEW_LINE_9515950774856836__ cat:*)",
+      "Bash(/Users/minion/Dev/mini-on-factory/docs/roadmap.md:*)",
+      "Bash(/Users/minion/Dev/mini-on-factory/docs/next-steps.md:*)",
+      "Bash(__NEW_LINE_9515950774856836__ echo:*)",
+      "Bash(python3 scripts/telegram_notify.py --message \"🏭 <b>mini-on-ai factory — Phase plan</b>:*)",
+      "Bash(grep -r \"telegram\\\\|bot\\\\|listener\\\\|webhook\\\\|message_handler\" /Users/minion/Dev/mini-on-factory --include=*.py --include=*.md)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"V1 complete: pipeline, static site, Telegram notifications:*)"
+    ]
+  }
+}
