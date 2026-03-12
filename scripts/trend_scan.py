@@ -93,8 +93,9 @@ Product categories:
 - "checklist": step-by-step checklist for a repeatable process or task
 - "swipe-file": curated real-world copy examples (hooks, subject lines, scripts, templates)
 - "mini-guide": concise focused guide covering one specific skill or framework
+- "n8n-template": a ready-to-import n8n automation workflow (use when the idea is about automating a specific repetitive task or integration between tools)
 
-Assign the best category. Default to "prompt-packs". Use others only when clearly a better fit.
+Assign the best category. Default to "prompt-packs". Use "n8n-template" when the idea is clearly about workflow automation (e.g. "auto-sync leads from form to CRM", "notify Slack when a task is overdue").
 
 Return ONLY a valid JSON array, no other text. Schema:
 [

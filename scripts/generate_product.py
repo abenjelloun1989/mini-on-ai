@@ -8,6 +8,7 @@ Supported categories:
   checklist     — actionable checklist in JSON + Markdown
   swipe-file    — curated copy examples in JSON + Markdown
   mini-guide    — focused how-to guide in Markdown
+  n8n-template  — importable n8n automation workflow JSON + README
 
 Usage: python3 scripts/generate_product.py
 """
@@ -28,7 +29,7 @@ from lib.utils import read_json, write_json, write_file, ensure_dir, product_id,
 client = anthropic.Anthropic()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 
-VALID_CATEGORIES = {"prompt-packs", "checklist", "swipe-file", "mini-guide"}
+VALID_CATEGORIES = {"prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template"}
 
 
 def generate_product() -> dict:
@@ -57,6 +58,8 @@ def generate_product() -> dict:
         meta = _gen_swipe_file(idea, pid, assets_dir)
     elif category == "mini-guide":
         meta = _gen_mini_guide(idea, pid, assets_dir)
+    elif category == "n8n-template":
+        meta = _gen_n8n_template(idea, pid, assets_dir)
 
     write_file(f"products/{pid}/meta.json", json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
 
@@ -393,6 +396,95 @@ def _guide_readme(idea):
 ## Files
 
 - `guide.md` — The complete guide
+- `README.md` — This file
+"""
+
+
+# ── n8n Template ─────────────────────────────────────────────────────────────
+
+def _gen_n8n_template(idea: dict, pid: str, assets_dir: str) -> dict:
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=8096,
+        messages=[{
+            "role": "user",
+            "content": f"""Create a complete, importable n8n workflow template for: "{idea['title']}".
+
+Purpose: {idea['description']}
+
+Generate a realistic n8n workflow JSON. Requirements:
+- Use common n8n node types (Webhook, Schedule Trigger, HTTP Request, Set, IF, Code, Email, Slack, Google Sheets, Telegram, etc.)
+- Include 4-10 nodes connected logically to accomplish the automation
+- Each node must have: id (short unique string), name, type (e.g. "n8n-nodes-base.webhook"), typeVersion (use 1 or 2), position ([x,y] with 200px spacing), parameters (realistic for that node type)
+- Connections must reference node names correctly
+- workflow "active" should be false
+- Include placeholder values for credentials/API keys (e.g. "YOUR_API_KEY", "your-email@example.com")
+
+Return a JSON object with two keys:
+1. "workflow": the complete n8n workflow JSON (importable)
+2. "setup_steps": array of strings describing setup steps (credentials to configure, values to replace)
+
+Format:
+{{
+  "workflow": {{ "name": "...", "nodes": [...], "connections": {{...}}, "active": false, "settings": {{}} }},
+  "setup_steps": ["Step 1: ...", "Step 2: ..."]
+}}
+
+Return ONLY valid JSON, no other text.""",
+        }],
+    )
+
+    raw = message.content[0].text.strip()
+    data = extract_json(raw, array=False)
+
+    workflow = data.get("workflow", {})
+    setup_steps = data.get("setup_steps", [])
+    node_count = len(workflow.get("nodes", []))
+    log("generate-product", f"Generated n8n workflow with {node_count} nodes")
+
+    write_file(f"{assets_dir}/workflow.json", json.dumps(workflow, indent=2, ensure_ascii=False) + "\n")
+    write_file(f"{assets_dir}/README.md", _n8n_readme(idea, setup_steps, node_count))
+
+    return {
+        "id": pid, "title": idea["title"], "description": idea["description"],
+        "category": "n8n-template", "tags": idea.get("tags", []),
+        "item_count": node_count,
+        "created_at": timestamp(), "status": "generated",
+        "package_path": None, "site_path": None,
+    }
+
+
+def _n8n_readme(idea: dict, setup_steps: list, node_count: int) -> str:
+    steps_md = "\n".join(f"{i+1}. {s}" for i, s in enumerate(setup_steps)) if setup_steps else "1. Configure credentials in n8n\n2. Activate the workflow"
+    return f"""# {idea['title']}
+
+{idea['description']}
+
+## What's included
+
+- Ready-to-import n8n workflow (`workflow.json`)
+- {node_count} connected nodes
+- Setup instructions for credentials and configuration
+
+## How to import
+
+1. Open your n8n instance
+2. Go to **Workflows** → **Import from file**
+3. Select `workflow.json`
+4. Follow the setup steps below
+
+## Setup
+
+{steps_md}
+
+## Requirements
+
+- n8n (self-hosted or n8n.cloud)
+- Relevant credentials configured in n8n (see setup steps above)
+
+## Files
+
+- `workflow.json` — Importable n8n workflow
 - `README.md` — This file
 """
 

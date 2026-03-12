@@ -23,10 +23,11 @@ from lib.utils import read_json, write_json, write_file, ROOT, log
 
 
 CATEGORY_LABELS = {
-    "prompt-packs": ("Prompt Pack", "{n} prompts"),
-    "checklist":    ("Checklist",   "{n} items"),
-    "swipe-file":   ("Swipe File",  "{n} examples"),
-    "mini-guide":   ("Mini Guide",  "focused guide"),
+    "prompt-packs":  ("Prompt Pack",  "{n} prompts"),
+    "checklist":     ("Checklist",    "{n} items"),
+    "swipe-file":    ("Swipe File",   "{n} examples"),
+    "mini-guide":    ("Mini Guide",   "focused guide"),
+    "n8n-template":  ("n8n Template", "{n}-node workflow"),
 }
 
 CATEGORY_INCLUDES = {
@@ -52,6 +53,12 @@ CATEGORY_INCLUDES = {
         "Concrete tips, examples, and frameworks",
         "Quick-reference summary at the end",
         "Markdown format",
+    ],
+    "n8n-template": [
+        "Ready-to-import n8n workflow (workflow.json)",
+        "Step-by-step setup instructions",
+        "Works with n8n self-hosted and n8n.cloud",
+        "Customizable — adapt to your own tools",
     ],
 }
 
