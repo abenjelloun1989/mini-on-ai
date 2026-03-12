@@ -2,6 +2,21 @@
   "version": "1",
   "products": [
     {
+      "id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
+      "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
+      "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems.",
+      "category": "prompt-packs",
+      "tags": [
+        "resume writing",
+        "ATS",
+        "job applications"
+      ],
+      "prompt_count": 25,
+      "created_at": "2026-03-12T22:30:36.752029+00:00",
+      "package_path": "products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312/package.zip",
+      "site_path": "site/products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.html"
+    },
+    {
       "id": "prompts-shopify-product-description-packs-for-e--20260312",
       "title": "Shopify Product Description Packs for E-Commerce",
       "description": "30 prompts for e-commerce store owners to write SEO-optimized, benefit-focused product descriptions that convert browsers into buyers.",

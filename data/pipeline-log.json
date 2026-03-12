@@ -89,6 +89,46 @@
       "error": "No ideas available to rank",
       "product": null,
       "duration_seconds": 0
+    },
+    {
+      "id": "run-1773353371",
+      "started_at": "2026-03-12T22:09:31.456349+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected or timed out",
+      "product": null,
+      "duration_seconds": 55
+    },
+    {
+      "id": "run-1773353487",
+      "started_at": "2026-03-12T22:11:27.083068+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected",
+      "product": null,
+      "duration_seconds": 30
+    },
+    {
+      "id": "run-1773353745",
+      "started_at": "2026-03-12T22:15:45.677703+00:00",
+      "status": "failed",
+      "failed_stage": "generate-product",
+      "error": "Unterminated string starting at: line 149 column 15 (char 29738)",
+      "product": null,
+      "duration_seconds": 208
+    },
+    {
+      "id": "run-1773354450",
+      "started_at": "2026-03-12T22:27:30.526182+00:00",
+      "status": "success",
+      "failed_stage": null,
+      "error": null,
+      "product": {
+        "id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
+        "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
+        "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems."
+      },
+      "duration_seconds": 186
     }
   ]
 }

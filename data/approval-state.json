@@ -1,23 +1,23 @@
 {
-  "status": "rejected",
+  "status": "approved",
   "idea": {
-    "id": "idea-1773352217-9",
-    "title": "Social Media Ad Copy Variations Toolkit",
-    "description": "40 prompts for paid media managers to generate multiple headline, body copy, and CTA variations for Facebook and Instagram ads across different buyer awareness stages.",
+    "id": "idea-1773354025-4",
+    "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
+    "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems.",
     "category": "prompt-packs",
     "tags": [
-      "paid ads",
-      "copywriting",
-      "social media"
+      "resume writing",
+      "ATS",
+      "job applications"
     ],
-    "score": 89,
-    "rationale": "Paid media managers have urgent, recurring demand for copy variations; AI excels at generating structured ad copy permutations across awareness stages, and a 40-prompt toolkit with framework specificity is hard to replicate with generic free resources.",
+    "score": 91,
+    "rationale": "Massive urgent demand from millions of active job seekers, the JD-matching angle is highly specific and differentiated from generic resume tips, and AI excels at keyword extraction and bullet rewriting with consistent quality.",
     "selected": true,
     "status": null,
     "product_id": null,
-    "generated_at": "2026-03-12T21:50:17.291121+00:00",
+    "generated_at": "2026-03-12T22:20:25.008878+00:00",
     "source": "trend-scan"
   },
-  "requested_at": "2026-03-12T21:56:02.603528+00:00",
-  "decided_at": "2026-03-12T21:56:08.584785+00:00"
+  "requested_at": "2026-03-12T22:27:47.507583+00:00",
+  "decided_at": "2026-03-12T22:28:09.247640+00:00"
 }
