@@ -8,6 +8,7 @@ Usage: python3 scripts/package_product.py [--id product-id]
 
 import argparse
 import json
+import shutil
 import sys
 import zipfile
 from pathlib import Path
@@ -62,7 +63,14 @@ def package_product(product_id_arg: str = None) -> dict:
     size_kb = round(zip_path.stat().st_size / 1024, 1)
     log("package-product", f"Created package.zip ({size_kb}KB)")
 
-    # Update meta
+    # Copy zip into site/ so GitHub Pages can serve it
+    site_zip_dir = ROOT / f"site/products/{pid}"
+    site_zip_dir.mkdir(parents=True, exist_ok=True)
+    site_zip_path = site_zip_dir / "package.zip"
+    shutil.copy2(zip_path, site_zip_path)
+    log("package-product", f"Copied to site/products/{pid}/package.zip")
+
+    # Update meta — package_path is now relative to site root
     meta["status"] = "packaged"
     meta["package_path"] = f"products/{pid}/package.zip"
     write_file(f"products/{pid}/meta.json", json.dumps(meta, indent=2, ensure_ascii=False) + "\n")

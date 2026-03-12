@@ -34,7 +34,7 @@ def escape_html(s: str) -> str:
 def build_product_page(meta: dict) -> str:
     site_url = os.getenv("SITE_URL", "")
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    download_path = f"/{meta['package_path']}"
+    download_path = f"../{meta['package_path']}"
 
     return f"""<!DOCTYPE html>
 <html lang="en">
