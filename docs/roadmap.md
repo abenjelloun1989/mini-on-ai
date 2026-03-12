@@ -24,9 +24,11 @@ Full pipeline: trend scan → rank → generate → package → site → Telegra
 Auto-publish each product to distribution platforms without manual work.
 The factory produces, the publisher distributes.
 
-**Phase A — Free download platforms**
-- Gumroad (free tier): create product via API, upload zip, set price $0
-- Ko-fi / Payhip: alternatives if Gumroad API is restrictive
+**Phase A — Paid marketplaces** (from original brainstorm)
+- Gumroad: create listing via API, upload zip, set price
+- Lemon Squeezy: alternative with better EU VAT handling
+- Etsy: digital downloads marketplace, broader reach
+- Automation template marketplaces (e.g. Zapier, Make marketplace)
 
 **Phase B — Community distribution**
 - Reddit auto-posting via PRAW (Python Reddit API Wrapper)
@@ -38,13 +40,16 @@ The factory produces, the publisher distributes.
 - Auto-submit sitemap to Google Search Console
 
 ### M13 — Product Category Expansion
-Beyond prompt packs:
-- Checklists (markdown / PDF)
-- Templates (Notion, Google Docs, email)
-- Swipe files (copywriting hooks, subject lines)
-- Mini-guides (1-page PDF on a specific topic)
+Beyond prompt packs (from original brainstorm):
+- **Automation templates** — ready-to-use workflow scripts/configs
+- **Notion templates** — structured workspace setups
+- **Datasets** — curated lists, reference data, swipe files
+- **Checklists** — markdown / printable PDF
+- **Mini-guides** — 1-page PDF on a specific topic
+- **Small utilities or scripts** — lightweight tools
 
-Pipeline already supports categories — needs new generation logic per type.
+Each type needs its own generation logic and product page layout.
+Pipeline category field already in place — extend `generate_product.py` per type.
 
 ### M14 — Analytics
 Know what is being downloaded.
