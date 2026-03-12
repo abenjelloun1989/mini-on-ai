@@ -129,7 +129,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
     log("pipeline", "--- Stage: git-commit ---")
     try:
         subprocess.run(
-            ["git", "add", "site/", "data/", f"products/{meta['id']}/"],
+            ["git", "add", "docs/", "data/", f"products/{meta['id']}/"],
             cwd=str(ROOT), check=True, capture_output=True
         )
         subprocess.run(
