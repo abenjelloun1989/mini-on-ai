@@ -166,8 +166,8 @@ def update_site(product_id_arg: str = None) -> dict:
 
     # Write product page
     product_page = build_product_page(meta)
-    write_file(f"docs/products/{pid}.html", product_page)
-    log("update-site", f"Created docs/products/{pid}.html")
+    write_file(f"site/products/{pid}.html", product_page)
+    log("update-site", f"Created site/products/{pid}.html")
 
     # Update catalog
     catalog = read_json("data/product-catalog.json")
@@ -180,7 +180,7 @@ def update_site(product_id_arg: str = None) -> dict:
         "prompt_count": meta["prompt_count"],
         "created_at": meta["created_at"],
         "package_path": meta["package_path"],
-        "site_path": f"docs/products/{pid}.html",
+        "site_path": f"site/products/{pid}.html",
     }
 
     existing_idx = next((i for i, p in enumerate(catalog["products"]) if p["id"] == pid), None)
@@ -193,15 +193,15 @@ def update_site(product_id_arg: str = None) -> dict:
 
     # Rebuild index
     index_html = rebuild_index(catalog)
-    write_file("docs/index.html", index_html)
-    log("update-site", "Rebuilt docs/index.html")
+    write_file("site/index.html", index_html)
+    log("update-site", "Rebuilt site/index.html")
 
     # Update meta status
     meta["status"] = "published"
-    meta["site_path"] = f"docs/products/{pid}.html"
+    meta["site_path"] = f"site/products/{pid}.html"
     write_file(f"products/{pid}/meta.json", json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
 
-    log("update-site", "Done. Open docs/index.html to preview.")
+    log("update-site", "Done. Open site/index.html to preview.")
     return meta
 
 
