@@ -27,7 +27,9 @@
       "Bash(grep -r \"telegram\\\\|bot\\\\|listener\\\\|webhook\\\\|message_handler\" /Users/minion/Dev/mini-on-factory --include=*.py --include=*.md)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"V1 complete: pipeline, static site, Telegram notifications:*)"
+      "Bash(git commit -m \"V1 complete: pipeline, static site, Telegram notifications:*)",
+      "Bash(python3 -m py_compile scripts/telegram_bot.py)",
+      "Bash(git commit -m \"feat: Telegram bot, launchd services, auto-deploy pipeline:*)"
     ]
   }
 }

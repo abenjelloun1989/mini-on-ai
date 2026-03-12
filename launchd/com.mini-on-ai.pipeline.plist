@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Pipeline: runs daily at 9am -->
+  <key>Label</key>
+  <string>com.mini-on-ai.pipeline</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/minion/Dev/mini-on-factory/scripts/run_pipeline.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/minion/Dev/mini-on-factory</string>
+
+  <!-- Run daily at 9:00 AM -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/minion/Dev/mini-on-factory/logs/pipeline.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/minion/Dev/mini-on-factory/logs/pipeline-error.log</string>
+</dict>
+</plist>

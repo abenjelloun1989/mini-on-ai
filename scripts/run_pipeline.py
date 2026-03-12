@@ -18,6 +18,7 @@ Stages:
 """
 
 import argparse
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -27,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-from lib.utils import read_json, write_json, timestamp, log
+from lib.utils import read_json, write_json, timestamp, log, ROOT
 from trend_scan import trend_scan
 from idea_rank import idea_rank
 from generate_product import generate_product
@@ -124,7 +125,29 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
     site_url = os.getenv("SITE_URL", "file://./site")
     log("pipeline", f"Site: {site_url}/products/{meta['id']}.html")
 
-    # Stage 6: Telegram report
+    # Stage 6: Git commit (site + data)
+    log("pipeline", "--- Stage: git-commit ---")
+    try:
+        subprocess.run(
+            ["git", "add", "site/", "data/", f"products/{meta['id']}/"],
+            cwd=str(ROOT), check=True, capture_output=True
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"product: {meta['title']}"],
+            cwd=str(ROOT), check=True, capture_output=True
+        )
+        log("pipeline", "Git committed site + data changes")
+        # Push if remote exists
+        result = subprocess.run(
+            ["git", "remote"], cwd=str(ROOT), capture_output=True, text=True
+        )
+        if result.stdout.strip():
+            subprocess.run(["git", "push"], cwd=str(ROOT), capture_output=True)
+            log("pipeline", "Pushed to remote")
+    except subprocess.CalledProcessError as e:
+        log("pipeline", f"Git commit skipped: {e.stderr.decode().strip() if e.stderr else str(e)}")
+
+    # Stage 7: Telegram report
     log("pipeline", "--- Stage: telegram-report ---")
     try:
         telegram_report()
