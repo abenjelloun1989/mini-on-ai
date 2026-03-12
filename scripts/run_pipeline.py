@@ -151,7 +151,16 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
             write_json("data/idea-backlog.json", backlog)
         except Exception as e:
             log("pipeline", f"Warning: could not update backlog: {e}")
-        fail("approval", "Idea rejected or timed out")
+
+        # Pause the daemon — don't propose the next idea until user sends /resume
+        try:
+            import json as _json
+            (ROOT / "data/daemon-state.json").write_text(_json.dumps({"paused": True}))
+            log("pipeline", "Daemon paused after rejection. Waiting for /resume.")
+        except Exception as e:
+            log("pipeline", f"Warning: could not pause daemon: {e}")
+
+        fail("approval", "Idea rejected")
 
     # Stage 3: Generate product
     log("pipeline", "--- Stage: generate-product ---")

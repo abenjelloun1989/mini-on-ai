@@ -87,7 +87,7 @@ def handle_approval(decision: str) -> str:
     if decision == "approved":
         return f"✅ <b>Go!</b> Building: <i>{idea_title}</i>\nI'll notify you when it's published."
     else:
-        return f"❌ <b>No Go.</b> Skipping: <i>{idea_title}</i>\nThe daemon will propose the next idea shortly."
+        return f"❌ <b>No Go.</b> Skipping: <i>{idea_title}</i>\n\nThe pipeline is now paused. Send /resume whenever you want the next idea."
 
 
 # --- Command handlers ---
