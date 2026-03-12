@@ -11,6 +11,11 @@ Full pipeline: trend scan → rank → generate → package → site → Telegra
 - Continuous daemon replaces 9am cron
 - Non-commercial license + README
 
+### M12 — Real Trend Scanning (2026-03-12)
+- pytrends (Google Trends) integration — rising queries last 7 days, US
+- 15-seed audience rotation for diverse idea generation
+- Duplicate title avoidance across backlog
+
 ---
 
 ## Upcoming
@@ -31,17 +36,6 @@ The factory produces, the publisher distributes.
 **Phase C — SEO**
 - Add structured data (JSON-LD) to product pages
 - Auto-submit sitemap to Google Search Console
-
-### M12 — Real Trend Scanning
-Replace Claude generating ideas from thin air with actual trend data.
-
-Options in order of effort:
-1. pytrends — Google Trends Python library, free, no API key
-2. Reddit scraping — r/ChatGPT, r/artificial, r/freelance rising topics
-3. Playwright scraping — Exploding Topics, Product Hunt, trending searches
-4. Twitter/X — trending hashtags (requires paid API access)
-
-Feed real trending topics to Claude as context — much higher quality ideas.
 
 ### M13 — Product Category Expansion
 Beyond prompt packs:

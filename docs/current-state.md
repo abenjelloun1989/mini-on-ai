@@ -26,9 +26,14 @@ Last updated: 2026-03-12
 - Auto-deployed via GitHub Actions on every push to main
 - Downloads working (package.zip served from site/products/{id}/)
 
+### Trend Scanning (M12 ✅)
+- Google Trends (pytrends) integrated — rising queries from last 7 days (US)
+- 15-seed audience rotation for diverse idea generation
+- Duplicate title avoidance across sessions
+
 ### Telegram Bot
-- Running as background process (pid 9077)
-- Commands: /help /status /products /ideas /run /go /nogo
+- Running via launchd (com.mini-on-ai.bot)
+- Commands: /help /status /products /ideas /run /go /nogo /holdon /resume /projectphases
 - Inline button support for approval gate
 
 ### Infrastructure
@@ -38,6 +43,5 @@ Last updated: 2026-03-12
 
 ## What Does NOT Exist Yet
 - Publisher step (auto-publishing to Gumroad, Reddit, etc.)
-- Real trend scraping (currently Claude generates ideas from thin air)
 - Analytics / download tracking
 - Multiple product categories (only prompt packs)
