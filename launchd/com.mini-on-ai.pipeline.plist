@@ -3,27 +3,26 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <!-- Pipeline: runs daily at 9am -->
+  <!-- Pipeline daemon: runs continuously, pausing at Telegram approval gate -->
   <key>Label</key>
   <string>com.mini-on-ai.pipeline</string>
 
   <key>ProgramArguments</key>
   <array>
     <string>/usr/bin/python3</string>
-    <string>/Users/minion/Dev/mini-on-factory/scripts/run_pipeline.py</string>
+    <string>/Users/minion/Dev/mini-on-factory/scripts/run_daemon.py</string>
   </array>
 
   <key>WorkingDirectory</key>
   <string>/Users/minion/Dev/mini-on-factory</string>
 
-  <!-- Run daily at 9:00 AM -->
-  <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key>
-    <integer>9</integer>
-    <key>Minute</key>
-    <integer>0</integer>
-  </dict>
+  <!-- Restart automatically if it crashes -->
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- Start when loaded -->
+  <key>RunAtLoad</key>
+  <true/>
 
   <key>StandardOutPath</key>
   <string>/Users/minion/Dev/mini-on-factory/logs/pipeline.log</string>

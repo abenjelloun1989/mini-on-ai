@@ -84,6 +84,46 @@ def telegram_report(override_message: str = None) -> bool:
     return send_telegram(text)
 
 
+def send_approval_request(idea: dict) -> bool:
+    """Send idea proposal with Go / No Go inline buttons. Returns True if sent."""
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        log("telegram", "Credentials missing — cannot send approval request")
+        return False
+
+    tags = " · ".join(idea.get("tags") or [])
+    text = (
+        f"💡 <b>New product idea ready</b>\n\n"
+        f"<b>{idea.get('title', '?')}</b>\n"
+        f"{idea.get('description', '')}\n\n"
+        f"Category: {idea.get('category', '?')}\n"
+        f"Score: {idea.get('score', '?')}\n"
+        + (f"Tags: {tags}\n" if tags else "") +
+        f"\nShould I build this?"
+    )
+    payload = json.dumps({
+        "chat_id": chat_id,
+        "text": text,
+        "parse_mode": "HTML",
+        "reply_markup": {
+            "inline_keyboard": [[
+                {"text": "✅ Go", "callback_data": "approval:go"},
+                {"text": "❌ No Go", "callback_data": "approval:nogo"},
+            ]]
+        },
+    }).encode("utf-8")
+
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req) as resp:
+        if resp.status != 200:
+            raise RuntimeError(f"Telegram API error {resp.status}")
+
+    log("telegram", "Approval request sent")
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description="Send Telegram pipeline report")
     parser.add_argument("--message", default=None, help="Custom message to send")

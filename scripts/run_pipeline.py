@@ -11,10 +11,12 @@ Usage:
 Stages:
   1. trend_scan    — generate ideas
   2. idea_rank     — score and select best idea
+  2.5 approval     — wait for Telegram Go / No Go
   3. generate      — create product content
   4. package       — zip product assets
   5. update_site   — add to showcase
-  6. telegram      — send report
+  6. git commit    — push to GitHub
+  7. telegram      — send report
 """
 
 import argparse
@@ -34,7 +36,49 @@ from idea_rank import idea_rank
 from generate_product import generate_product
 from package_product import package_product
 from update_site import update_site
-from telegram_notify import telegram_report
+from telegram_notify import telegram_report, send_approval_request
+
+APPROVAL_TIMEOUT_HOURS = 48
+
+
+def request_approval(idea: dict) -> bool:
+    """Send idea to Telegram for approval. Blocks until Go/No Go or timeout."""
+    state = {
+        "status": "pending",
+        "idea": idea,
+        "requested_at": timestamp(),
+        "decided_at": None,
+    }
+    write_json("data/approval-state.json", state)
+
+    try:
+        send_approval_request(idea)
+    except Exception as e:
+        log("pipeline", f"Warning: could not send approval request: {e}")
+
+    log("pipeline", f"Waiting for approval (timeout: {APPROVAL_TIMEOUT_HOURS}h)...")
+    deadline = time.time() + APPROVAL_TIMEOUT_HOURS * 3600
+
+    while time.time() < deadline:
+        try:
+            current = read_json("data/approval-state.json")
+        except Exception:
+            time.sleep(5)
+            continue
+
+        status = current.get("status")
+        if status == "approved":
+            log("pipeline", "Approval received: Go")
+            return True
+        if status == "rejected":
+            log("pipeline", "Approval received: No Go")
+            return False
+
+        time.sleep(5)
+
+    log("pipeline", "Approval timed out")
+    write_json("data/approval-state.json", {**state, "status": "timeout"})
+    return False
 
 
 def run_pipeline(seed: str = "", skip_scan: bool = False):
@@ -83,6 +127,22 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
             fail("idea-rank", "No ideas available to rank")
     except Exception as e:
         fail("idea-rank", str(e))
+
+    # Stage 2.5: Approval gate
+    log("pipeline", "--- Stage: approval ---")
+    approved = request_approval(selected)
+    if not approved:
+        # Mark idea as rejected so it won't be selected again
+        try:
+            backlog = read_json("data/idea-backlog.json")
+            for idea in backlog.get("ideas", []):
+                if idea.get("selected") and idea.get("title") == selected.get("title"):
+                    idea["selected"] = False
+                    idea["status"] = "rejected"
+            write_json("data/idea-backlog.json", backlog)
+        except Exception as e:
+            log("pipeline", f"Warning: could not update backlog: {e}")
+        fail("approval", "Idea rejected or timed out")
 
     # Stage 3: Generate product
     log("pipeline", "--- Stage: generate-product ---")
@@ -137,7 +197,6 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
             cwd=str(ROOT), check=True, capture_output=True
         )
         log("pipeline", "Git committed site + data changes")
-        # Push if remote exists
         result = subprocess.run(
             ["git", "remote"], cwd=str(ROOT), capture_output=True, text=True
         )

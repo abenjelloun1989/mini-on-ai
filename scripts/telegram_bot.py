@@ -12,6 +12,8 @@ Commands:
   /ideas    — show top scored ideas in backlog
   /run      — trigger pipeline (optional: /run marketing)
   /run all  — run pipeline 4x with preset seeds
+  /go       — approve pending idea (or tap button in chat)
+  /nogo     — reject pending idea (or tap button in chat)
 """
 
 import json
@@ -27,7 +29,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-from lib.utils import read_json, log, ROOT
+from lib.utils import read_json, write_json, timestamp, log, ROOT
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 CHAT_ID = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
@@ -60,6 +62,29 @@ def get_updates(offset: int) -> list:
         return []
 
 
+# --- Approval helpers ---
+
+def handle_approval(decision: str) -> str:
+    """Write approval decision to state file. Returns reply text."""
+    try:
+        state = read_json("data/approval-state.json")
+    except Exception:
+        state = {}
+
+    if state.get("status") != "pending":
+        return "ℹ️ No idea is currently waiting for approval."
+
+    state["status"] = decision  # "approved" or "rejected"
+    state["decided_at"] = timestamp()
+    write_json("data/approval-state.json", state)
+
+    idea_title = state.get("idea", {}).get("title", "idea")
+    if decision == "approved":
+        return f"✅ <b>Go!</b> Building: <i>{idea_title}</i>\nI'll notify you when it's published."
+    else:
+        return f"❌ <b>No Go.</b> Skipping: <i>{idea_title}</i>\nThe daemon will propose the next idea shortly."
+
+
 # --- Command handlers ---
 
 def cmd_help() -> str:
@@ -71,6 +96,8 @@ def cmd_help() -> str:
         "/run — trigger pipeline now\n"
         "/run [seed] — e.g. /run marketing\n"
         "/run all — run 4 seeds in sequence\n"
+        "/go — approve pending idea\n"
+        "/nogo — reject pending idea\n"
         "/help — show this message"
     )
 
@@ -92,6 +119,16 @@ def cmd_status() -> str:
         duration = last.get("duration_seconds", "?")
         started = last.get("started_at", "?")[:16].replace("T", " ")
 
+        # Show approval status if pending
+        approval_note = ""
+        try:
+            approval = read_json("data/approval-state.json")
+            if approval.get("status") == "pending":
+                idea_title = approval.get("idea", {}).get("title", "?")
+                approval_note = f"\n\n⏳ <b>Waiting for approval:</b> {idea_title}\nReply /go or /nogo"
+        except Exception:
+            pass
+
         return (
             f"📊 <b>Factory Status</b>\n\n"
             f"Products published: <b>{product_count}</b>\n"
@@ -100,6 +137,7 @@ def cmd_status() -> str:
             f"Product: {product_name}\n"
             f"Duration: {duration}s\n"
             f"At: {started} UTC"
+            f"{approval_note}"
         )
     except Exception as e:
         return f"❌ Error reading status: {e}"
@@ -115,7 +153,6 @@ def cmd_products() -> str:
         site_url = os.getenv("SITE_URL", "http://localhost:8080")
         lines = [f"📦 <b>Products ({len(products)})</b>\n"]
         for i, p in enumerate(products, 1):
-            tags = " · ".join(p.get("tags", []))
             lines.append(
                 f"{i}. <b>{p['title']}</b>\n"
                 f"   {p['description']}\n"
@@ -140,7 +177,14 @@ def cmd_ideas() -> str:
 
         lines = [f"💡 <b>Idea Backlog</b> ({len(ideas)} total, {len(unscored)} unscored)\n"]
         for i, idea in enumerate(top, 1):
-            status = "✅ produced" if idea.get("status") == "produced" else ("🎯 selected" if idea.get("selected") else f"score: {idea['score']}")
+            if idea.get("status") == "produced":
+                status = "✅ produced"
+            elif idea.get("status") == "rejected":
+                status = "❌ rejected"
+            elif idea.get("selected"):
+                status = "🎯 selected"
+            else:
+                status = f"score: {idea['score']}"
             lines.append(f"{i}. <b>{idea['title']}</b>\n   {status}")
 
         if not top:
@@ -181,19 +225,25 @@ def handle_command(text: str) -> str:
     if lower == "/ideas":
         return cmd_ideas()
 
+    if lower == "/go":
+        return handle_approval("approved")
+
+    if lower == "/nogo" or lower == "/no":
+        return handle_approval("rejected")
+
     if lower == "/run all":
         send("🚀 Starting 4 pipeline runs (marketing, freelancing, writing, coding).\nYou'll get a Telegram message after each one.")
         for seed in SEEDS_ALL:
             run_pipeline_bg(seed)
-            time.sleep(10)  # slight delay between spawns
-        return None  # already sent message above
+            time.sleep(10)
+        return None
 
     if lower.startswith("/run"):
         parts = text.split(None, 1)
         seed = parts[1].strip() if len(parts) > 1 else ""
         seed_note = f" with seed: <i>{seed}</i>" if seed else ""
         run_pipeline_bg(seed)
-        return f"🚀 Pipeline started{seed_note}.\nI'll notify you when it's done (~2 min)."
+        return f"🚀 Pipeline started{seed_note}.\nI'll send an approval request when an idea is ready."
 
     return f"Unknown command: <code>{text}</code>\n\nType /help for available commands."
 
@@ -211,11 +261,29 @@ def main():
         updates = get_updates(offset)
         for update in updates:
             offset = update["update_id"] + 1
+
+            # Handle inline button taps (callback queries)
+            callback_query = update.get("callback_query")
+            if callback_query:
+                cq_id = callback_query.get("id")
+                cq_chat_id = str(callback_query.get("from", {}).get("id", ""))
+                cq_data = callback_query.get("data", "")
+
+                if cq_chat_id == str(CHAT_ID) and cq_data.startswith("approval:"):
+                    decision = "approved" if cq_data == "approval:go" else "rejected"
+                    reply = handle_approval(decision)
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    send(reply, cq_chat_id)
+                continue
+
+            # Handle text commands
             message = update.get("message", {})
             text = message.get("text", "").strip()
             chat_id = str(message.get("chat", {}).get("id", ""))
 
-            # Only respond to the owner
             if chat_id != str(CHAT_ID):
                 log("bot", f"Ignoring message from unknown chat_id: {chat_id}")
                 continue
