@@ -1,21 +1,34 @@
 #!/usr/bin/env python3
 """
 publish_product.py
-Publishes a product to Gumroad after it has been packaged and added to the site.
+Handles Gumroad publishing for products.
 
-Requires env vars:
-  GUMROAD_API_TOKEN     — from Gumroad Settings → Advanced → Access token
-  PRODUCT_PRICE_CENTS   — default price in cents, e.g. 500 = $5.00 (default: 500)
+Gumroad's v2 API supports READ and UPDATE of existing products, but NOT
+creation of new listings via API (removed ~2023). New products must be
+created manually through the Gumroad dashboard.
+
+Workflow:
+  NEW product  → sends Telegram message with all details + zip file attached
+                  User creates on Gumroad, replies /seturl {id} {url}
+  KNOWN product → update listing via API + re-upload zip
 
 Usage:
-  python3 scripts/publish_product.py
-  python3 scripts/publish_product.py --id product-id
+  python3 scripts/publish_product.py              # auto-pick latest unpublished
+  python3 scripts/publish_product.py --id {id}   # specific product
+  python3 scripts/publish_product.py --seturl {id} {gumroad_url}  # save URL back
+
+Env vars:
+  GUMROAD_API_TOKEN   — from Gumroad Settings → Advanced → Access token
+  PRODUCT_PRICE_CENTS — default listing price in cents (default: 500 = $5.00)
+  TELEGRAM_BOT_TOKEN  — for sending publish-request notification
+  TELEGRAM_OWNER_ID   — your Telegram chat ID
 """
 
 import argparse
 import json
 import os
 import sys
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -29,15 +42,16 @@ from lib.utils import read_json, write_json, write_file, log, ROOT
 GUMROAD_API = "https://api.gumroad.com/v2"
 
 
-def _get_token() -> str:
-    token = os.getenv("GUMROAD_API_TOKEN", "")
-    if not token:
-        raise RuntimeError("GUMROAD_API_TOKEN not set. Add it to .env")
-    return token
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _token() -> str:
+    t = os.getenv("GUMROAD_API_TOKEN", "")
+    if not t:
+        raise RuntimeError("GUMROAD_API_TOKEN not set in .env")
+    return t
 
 
 def _build_description(meta: dict) -> str:
-    """Build an HTML product description for Gumroad from meta fields."""
     category = meta.get("category", "prompt-packs")
     item_count = meta.get("item_count") or meta.get("prompt_count", 0)
 
@@ -75,7 +89,6 @@ def _build_description(meta: dict) -> str:
 
     items = includes_map.get(category, [f"{item_count} items included"])
     items_html = "\n".join(f"<li>{i}</li>" for i in items)
-
     return (
         f"<p>{meta['description']}</p>\n"
         f"<h3>What's included</h3>\n"
@@ -83,125 +96,226 @@ def _build_description(meta: dict) -> str:
     )
 
 
-def publish_product(product_id_arg: str = None) -> dict:
-    """Publish or update a product on Gumroad. Returns updated meta."""
-    token = _get_token()
-    default_price = int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
+def _telegram_send_text(text: str) -> None:
+    token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
+    if not token or not chat_id:
+        log("publish", "Telegram not configured — skipping notification")
+        return
+    payload = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": "HTML"}).encode()
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{token}/sendMessage",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15):
+            pass
+    except Exception as e:
+        log("publish", f"Telegram text error: {e}")
 
-    # Resolve which product to publish
+
+def _telegram_send_file(file_path: Path, caption: str) -> None:
+    """Send a file (zip) via Telegram."""
+    token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
+    if not token or not chat_id:
+        return
+    try:
+        with open(file_path, "rb") as f:
+            resp = requests.post(
+                f"https://api.telegram.org/bot{token}/sendDocument",
+                data={"chat_id": chat_id, "caption": caption, "parse_mode": "HTML"},
+                files={"document": (file_path.name, f, "application/zip")},
+                timeout=60,
+            )
+        if resp.status_code != 200:
+            log("publish", f"Telegram file send failed: {resp.status_code} {resp.text[:200]}")
+    except Exception as e:
+        log("publish", f"Telegram file send error: {e}")
+
+
+def _resolve_product(product_id_arg: str = None) -> tuple:
+    """Return (pid, meta) for the product to publish."""
     if product_id_arg:
         pid = product_id_arg
         meta_path = ROOT / f"products/{pid}/meta.json"
         with open(meta_path) as f:
             meta = json.load(f)
-    else:
-        products_dir = ROOT / "products"
-        candidates = []
-        for d in products_dir.iterdir():
-            mp = d / "meta.json"
-            if mp.exists():
-                with open(mp) as f:
-                    m = json.load(f)
-                if m.get("status") == "published" and not m.get("gumroad_product_id"):
-                    candidates.append((d.name, m))
-        if not candidates:
-            raise RuntimeError(
-                "No publishable products found (status=published, no gumroad_product_id)."
-            )
-        candidates.sort(key=lambda x: x[1].get("created_at", ""))
-        pid, meta = candidates[-1]
+        return pid, meta
 
-    log("publish", f"Publishing: {meta['title']} ({pid})")
-
-    description = _build_description(meta)
-    price_cents = meta.get("price") or default_price
-
-    headers = {"Authorization": f"Bearer {token}"}
-
-    # ── Create or update listing ─────────────────────────────────────────────
-    existing_id = meta.get("gumroad_product_id")
-    if existing_id:
-        log("publish", f"Updating existing Gumroad product: {existing_id}")
-        resp = requests.put(
-            f"{GUMROAD_API}/products/{existing_id}",
-            headers=headers,
-            data={
-                "name": meta["title"],
-                "description": description,
-                "price": price_cents,
-            },
-            timeout=30,
+    products_dir = ROOT / "products"
+    candidates = []
+    for d in products_dir.iterdir():
+        mp = d / "meta.json"
+        if mp.exists():
+            with open(mp) as f:
+                m = json.load(f)
+            if m.get("status") == "published" and not m.get("gumroad_url"):
+                candidates.append((d.name, m))
+    if not candidates:
+        raise RuntimeError(
+            "No unpublished products found (status=published and no gumroad_url)."
         )
-    else:
-        log("publish", "Creating new Gumroad listing...")
-        resp = requests.post(
-            f"{GUMROAD_API}/products",
-            headers=headers,
-            data={
-                "name": meta["title"],
-                "description": description,
-                "price": price_cents,
-            },
-            timeout=30,
-        )
+    candidates.sort(key=lambda x: x[1].get("created_at", ""))
+    return candidates[-1]
 
-    resp.raise_for_status()
-    result = resp.json()
 
-    if not result.get("success"):
-        raise RuntimeError(f"Gumroad API error: {result.get('message', result)}")
+# ── Core publish logic ────────────────────────────────────────────────────────
 
-    product_data = result["product"]
-    gumroad_id = product_data["id"]
-    gumroad_url = product_data.get("short_url") or product_data.get("url", "")
+def notify_manual_publish(pid: str, meta: dict) -> None:
+    """
+    Gumroad no longer supports creating products via API.
+    Send a Telegram message with product details + zip so the user can
+    create the listing manually and reply /seturl {id} {url}.
+    """
+    price_cents = meta.get("price") or int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
+    price_str = f"${price_cents / 100:.2f}"
+    category = meta.get("category", "prompt-packs")
+    item_count = meta.get("item_count") or meta.get("prompt_count", 0)
 
-    log("publish", f"Gumroad listing ready: {gumroad_url}")
+    msg = (
+        f"📦 <b>New product ready — publish on Gumroad</b>\n\n"
+        f"<b>{meta['title']}</b>\n"
+        f"<i>{meta['description']}</i>\n\n"
+        f"Category: {category}  |  Items: {item_count}  |  Price: {price_str}\n\n"
+        f"<b>Steps:</b>\n"
+        f"1. Go to <a href='https://app.gumroad.com/products/new'>gumroad.com/products/new</a>\n"
+        f"2. Name: <code>{meta['title']}</code>\n"
+        f"3. Price: <code>{price_str}</code>\n"
+        f"4. Upload the zip attached to this message\n"
+        f"5. Publish, then copy the product URL\n"
+        f"6. Reply: <code>/seturl {pid} https://gumroad.com/l/xxxx</code>\n\n"
+        f"Product ID: <code>{pid}</code>"
+    )
+    _telegram_send_text(msg)
 
-    # ── Upload zip file ───────────────────────────────────────────────────────
     zip_path = ROOT / f"products/{pid}/package.zip"
     if zip_path.exists():
-        log("publish", "Uploading package.zip...")
+        _telegram_send_file(zip_path, f"📎 {meta['title']} — package.zip")
+    else:
+        log("publish", f"Warning: package.zip not found at {zip_path}")
+
+
+def update_existing_listing(pid: str, meta: dict) -> None:
+    """Update an existing Gumroad listing via API and re-upload the zip."""
+    token = _token()
+    gumroad_id = meta.get("gumroad_product_id")
+    description = _build_description(meta)
+    price_cents = meta.get("price") or int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
+
+    log("publish", f"Updating Gumroad product {gumroad_id}...")
+    resp = requests.put(
+        f"{GUMROAD_API}/products/{gumroad_id}",
+        data={
+            "access_token": token,
+            "name": meta["title"],
+            "description": description,
+            "price": price_cents,
+        },
+        timeout=30,
+    )
+    if resp.status_code != 200:
+        log("publish", f"Warning: Gumroad update returned {resp.status_code}: {resp.text[:200]}")
+        return
+
+    result = resp.json()
+    if not result.get("success"):
+        log("publish", f"Warning: Gumroad update failed: {result.get('message', result)}")
+        return
+
+    log("publish", "Listing updated. Re-uploading zip...")
+    zip_path = ROOT / f"products/{pid}/package.zip"
+    if zip_path.exists():
         with open(zip_path, "rb") as zf:
             upload_resp = requests.post(
                 f"{GUMROAD_API}/products/{gumroad_id}/files",
-                headers=headers,
+                data={"access_token": token},
                 files={"file": (f"{pid}.zip", zf, "application/zip")},
                 timeout=120,
             )
         if upload_resp.status_code == 200:
-            log("publish", "File uploaded successfully")
+            log("publish", "Zip re-uploaded successfully")
         else:
-            log("publish", f"Warning: file upload returned {upload_resp.status_code}: {upload_resp.text[:200]}")
-    else:
-        log("publish", f"Warning: package.zip not found at {zip_path}")
+            log("publish", f"Warning: zip upload returned {upload_resp.status_code}")
 
-    # ── Save back to meta.json ────────────────────────────────────────────────
-    meta["gumroad_product_id"] = gumroad_id
+
+def publish_product(product_id_arg: str = None) -> dict:
+    """
+    Main entry point: either notify manual publish (new) or update existing.
+    Returns the (possibly updated) meta dict.
+    """
+    pid, meta = _resolve_product(product_id_arg)
+    log("publish", f"Product: {meta['title']} ({pid})")
+
+    if meta.get("gumroad_product_id"):
+        # Known product — update listing via API
+        update_existing_listing(pid, meta)
+        log("publish", "Done (existing listing updated)")
+    else:
+        # New product — must be created manually; send Telegram notification
+        log("publish", "No Gumroad ID found — sending manual-publish notification via Telegram")
+        notify_manual_publish(pid, meta)
+        log("publish", "Telegram notification sent. Waiting for /seturl reply.")
+
+    return meta
+
+
+def set_gumroad_url(pid: str, gumroad_url: str) -> dict:
+    """
+    Called after user creates the Gumroad listing manually and sends /seturl.
+    Saves URL to meta.json + catalog, returns updated meta.
+    """
+    meta_path = ROOT / f"products/{pid}/meta.json"
+    if not meta_path.exists():
+        raise RuntimeError(f"Product not found: {pid}")
+    with open(meta_path) as f:
+        meta = json.load(f)
+
+    # Extract Gumroad product ID from URL if possible (e.g. gumroad.com/l/abcde)
+    gumroad_id = None
+    if "/l/" in gumroad_url:
+        gumroad_id = gumroad_url.rstrip("/").split("/l/")[-1].split("?")[0]
+
     meta["gumroad_url"] = gumroad_url
-    meta["price"] = price_cents
+    if gumroad_id:
+        meta["gumroad_product_id"] = gumroad_id
+
     write_file(
         f"products/{pid}/meta.json",
         json.dumps(meta, indent=2, ensure_ascii=False) + "\n",
     )
+    log("publish", f"Saved gumroad_url={gumroad_url} for {pid}")
 
-    # ── Update catalog entry ──────────────────────────────────────────────────
+    # Update catalog
     catalog = read_json("data/product-catalog.json")
-    for entry in catalog["products"]:
+    for entry in catalog.get("products", []):
         if entry["id"] == pid:
             entry["gumroad_url"] = gumroad_url
-            entry["price"] = price_cents
             break
     write_json("data/product-catalog.json", catalog)
+    log("publish", "Catalog updated")
 
-    log("publish", f"Done. Gumroad URL: {gumroad_url}")
     return meta
 
 
 def main():
     parser = argparse.ArgumentParser(description="Publish product to Gumroad")
     parser.add_argument("--id", default=None, help="Product ID to publish")
+    parser.add_argument(
+        "--seturl",
+        nargs=2,
+        metavar=("PRODUCT_ID", "GUMROAD_URL"),
+        help="Save a Gumroad URL back to a product (after manual creation)",
+    )
     args = parser.parse_args()
-    publish_product(args.id)
+
+    if args.seturl:
+        pid, url = args.seturl
+        set_gumroad_url(pid, url)
+        print(f"✅ Saved: {pid} → {url}")
+    else:
+        publish_product(args.id)
 
 
 if __name__ == "__main__":

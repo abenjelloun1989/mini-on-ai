@@ -103,6 +103,61 @@ def set_daemon_paused(paused: bool) -> str:
         return f"❌ Error updating daemon state: {e}"
 
 
+def cmd_seturl(args: str) -> str:
+    """Handle /seturl {product_id} {gumroad_url}"""
+    import subprocess
+    parts = args.strip().split(None, 1)
+    if len(parts) < 2:
+        return (
+            "Usage: <code>/seturl {product_id} {gumroad_url}</code>\n\n"
+            "Example:\n"
+            "<code>/seturl prompts-my-product-20260312 https://gumroad.com/l/abcde</code>"
+        )
+    pid, url = parts[0], parts[1]
+
+    try:
+        # Save URL to meta + catalog
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/publish_product.py"), "--seturl", pid, url],
+            capture_output=True, text=True, cwd=str(ROOT), timeout=30,
+        )
+        if result.returncode != 0:
+            return f"❌ Error saving URL:\n<code>{result.stderr[:300]}</code>"
+
+        # Rebuild site so the product page shows the Gumroad button
+        rebuild = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/update_site.py")],
+            capture_output=True, text=True, cwd=str(ROOT), timeout=60,
+        )
+        if rebuild.returncode != 0:
+            return f"⚠️ URL saved but site rebuild failed:\n<code>{rebuild.stderr[:300]}</code>"
+
+        # Push to GitHub
+        subprocess.run(
+            ["git", "add", "-A"],
+            cwd=str(ROOT), capture_output=True,
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"publish: link Gumroad URL for {pid}"],
+            cwd=str(ROOT), capture_output=True,
+        )
+        subprocess.run(
+            ["git", "push"],
+            cwd=str(ROOT), capture_output=True, timeout=60,
+        )
+
+        site_url = os.getenv("SITE_URL", "")
+        return (
+            f"✅ <b>Gumroad URL saved!</b>\n\n"
+            f"Product: <code>{pid}</code>\n"
+            f"Gumroad: {url}\n\n"
+            f"Site rebuilt and pushed to GitHub.\n"
+            f"Product page: {site_url}/products/{pid}.html"
+        )
+    except Exception as e:
+        return f"❌ Unexpected error: {e}"
+
+
 def cmd_projectphases() -> str:
     try:
         catalog = read_json("data/product-catalog.json")
@@ -119,14 +174,17 @@ def cmd_projectphases() -> str:
         "   Continuous daemon • License + README\n\n"
         "✅ <b>M12 — Real Trend Scanning</b>\n"
         "   Google Trends rising queries feed idea generation\n\n"
+        "✅ <b>M13 — Multi-Category Products</b>\n"
+        "   Checklists, swipe files, mini-guides, n8n templates\n\n"
+        "✅ <b>M11 — Gumroad Publisher</b>\n"
+        "   New products → Telegram notify + /seturl flow\n"
+        "   Existing products → auto-update via API\n\n"
         f"📦 <b>Current:</b> {product_count} product{'s' if product_count != 1 else ''} published\n\n"
         "─────────────────────\n\n"
-        "🔜 <b>M11 — Publisher</b> ← next\n"
-        "   Auto-post to Gumroad + Reddit after each product\n\n"
-        "🔜 <b>M13 — More Product Types</b>\n"
-        "   Checklists, templates, swipe files, mini-guides\n\n"
+        "🔜 <b>M11B — Reddit Distribution</b>\n"
+        "   Auto-post to relevant subreddits after publish\n\n"
         "🔜 <b>M14 — Analytics</b>\n"
-        "   Track downloads — feed best performers back\n"
+        "   Track clicks — feed best performers back\n"
         "   into idea scoring\n\n"
         "🔜 <b>M15 — Email List</b>\n"
         "   Capture audience you own (Beehiiv / Kit embed)"
@@ -146,6 +204,7 @@ def cmd_help() -> str:
         "/nogo — reject pending idea\n"
         "/holdon — pause the pipeline\n"
         "/resume — resume the pipeline\n"
+        "/seturl {id} {url} — link Gumroad URL to a product\n"
         "/projectphases — roadmap and current phase\n"
         "/help — show this message"
     )
@@ -208,10 +267,13 @@ def cmd_products() -> str:
         site_url = os.getenv("SITE_URL", "http://localhost:8080")
         lines = [f"📦 <b>Products ({len(products)})</b>\n"]
         for i, p in enumerate(products, 1):
+            gumroad = p.get("gumroad_url")
+            gumroad_line = f"\n   🛒 {gumroad}" if gumroad else "\n   🛒 <i>Gumroad pending</i>"
             lines.append(
                 f"{i}. <b>{p['title']}</b>\n"
                 f"   {p['description']}\n"
                 f"   🔗 {site_url}/products/{p['id']}.html"
+                f"{gumroad_line}"
             )
         return "\n\n".join(lines)
     except Exception as e:
@@ -294,6 +356,10 @@ def handle_command(text: str) -> str:
 
     if lower == "/nogo" or lower == "/no":
         return handle_approval("rejected")
+
+    if lower.startswith("/seturl"):
+        args = text[len("/seturl"):].strip()
+        return cmd_seturl(args)
 
     if lower == "/run all":
         send("🚀 Starting 4 pipeline runs (marketing, freelancing, writing, coding).\nYou'll get a Telegram message after each one.")
