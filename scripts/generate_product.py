@@ -519,63 +519,88 @@ def _n8n_readme(idea: dict, setup_steps: list, node_count: int) -> str:
 # ── Claude Code Skill Guide ──────────────────────────────────────────────────
 
 def _gen_skill_guide(idea: dict, pid: str, assets_dir: str) -> dict:
-    """Generate a full configuration guide for a Claude Code skill."""
-    message = client.messages.create(
+    """Generate a full configuration guide for a Claude Code skill (2 API calls)."""
+
+    # ── Call 1: structured metadata (no skill_template to keep JSON small) ──────
+    msg1 = client.messages.create(
         model=MODEL,
-        max_tokens=6144,
+        max_tokens=4096,
         messages=[{
             "role": "user",
-            "content": f"""Create a complete Claude Code skill configuration guide titled "{idea['title']}".
+            "content": f"""Create a Claude Code skill guide for: "{idea['title']}".
 
 Target audience and purpose: {idea['description']}
 
-This guide teaches practitioners how to build and configure a Claude Code skill (a SKILL.md file
-that gives Claude Code specialized capabilities). Claude Code skills are markdown files in a
-`skills/` directory that define tools, instructions, and context for Claude to use.
+Claude Code skills are SKILL.md files in a `skills/` directory that give Claude Code
+specialized capabilities for specific workflows.
 
-Generate the following JSON structure:
+Return ONLY this JSON object, no other text:
 
 {{
-  "skill_name": "Short name for this skill (e.g. 'commit', 'review-pr', 'deploy')",
+  "skill_name": "short-kebab-name (e.g. 'review-pr', 'deploy', 'doc-gen')",
   "skill_description": "One-sentence description of what this skill does",
-  "target_fields": ["field1", "field2"],
+  "target_fields": ["field1", "field2", "field3"],
   "use_cases": [
-    {{"scenario": "Description of when to use", "example_trigger": "/skill-name do X"}}
+    {{"scenario": "When to use this skill", "example_trigger": "/skill-name do X"}}
   ],
-  "skill_template": "Full SKILL.md content with frontmatter, description, instructions, and examples",
   "configuration_steps": [
-    {{"step": 1, "title": "Step title", "detail": "Detailed instructions"}}
+    {{"step": 1, "title": "Step title", "detail": "Concrete instructions with paths/commands"}}
   ],
   "field_variations": [
-    {{"field": "Field name (e.g. Marketing)", "adaptation": "How to adapt the skill for this field"}}
+    {{"field": "Field name (e.g. Marketing)", "adaptation": "How to adapt this skill for this field"}}
   ],
   "tips": ["Practical tip 1", "Practical tip 2", "Practical tip 3"],
-  "common_mistakes": ["Mistake 1 and how to avoid it", "Mistake 2 and how to avoid it"]
+  "common_mistakes": ["Mistake and how to avoid it", "Mistake and how to avoid it"]
 }}
 
 Requirements:
-- skill_template must be a complete, immediately usable SKILL.md file with realistic instructions
-- configuration_steps: 4-6 concrete steps with specific paths and commands
-- field_variations: 3-4 real fields where this skill adds value (e.g. dev, marketing, design, ops)
-- use_cases: 3-4 concrete scenarios with actual example slash commands
-- tips and common_mistakes: 3 each, practical and specific
-
-Return ONLY the JSON object, no other text.""",
+- configuration_steps: 4-6 steps with specific file paths and terminal commands
+- field_variations: 3-4 real roles/fields (dev, marketing, design, ops, etc.)
+- use_cases: 3-4 concrete scenarios with actual slash-command examples
+- tips and common_mistakes: 3 each, specific and actionable""",
         }],
     )
 
-    log_token_usage("generate-product", message.usage, MODEL)
-    if message.stop_reason == "max_tokens":
-        log("generate-product", "Warning: response truncated")
+    log_token_usage("generate-product", msg1.usage, MODEL)
+    if msg1.stop_reason == "max_tokens":
+        raise RuntimeError("Skill guide metadata truncated at max_tokens — aborting")
 
-    data = extract_json(message.content[0].text.strip())
+    data = extract_json(msg1.content[0].text.strip(), array=False)
     skill_name = data.get("skill_name", "skill")
-    skill_template = data.get("skill_template", "")
     config_steps = data.get("configuration_steps", [])
     field_variations = data.get("field_variations", [])
     tips = data.get("tips", [])
     mistakes = data.get("common_mistakes", [])
     use_cases = data.get("use_cases", [])
+
+    # ── Call 2: SKILL.md as raw Markdown (not embedded in JSON) ─────────────────
+    msg2 = client.messages.create(
+        model=MODEL,
+        max_tokens=4096,
+        messages=[{
+            "role": "user",
+            "content": f"""Write a complete, immediately usable SKILL.md file for a Claude Code skill.
+
+Skill name: {skill_name}
+Title: {idea['title']}
+Purpose: {idea['description']}
+Description: {data.get('skill_description', '')}
+
+A SKILL.md file tells Claude Code what the skill does and how to use it. It typically includes:
+- A frontmatter description block (what the skill is for, when to use it)
+- Clear instructions for Claude on HOW to execute the skill
+- Any specific constraints, output formats, or workflows to follow
+- 2-3 usage examples showing real slash-command invocations
+
+Output the SKILL.md file content only — raw Markdown, no code fences, no preamble.""",
+        }],
+    )
+
+    log_token_usage("generate-product", msg2.usage, MODEL)
+    if msg2.stop_reason == "max_tokens":
+        raise RuntimeError("SKILL.md template truncated at max_tokens — aborting")
+
+    skill_template = msg2.content[0].text.strip()
 
     # Write the skill template file
     write_file(f"{assets_dir}/SKILL.md", skill_template)
