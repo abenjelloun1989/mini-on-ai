@@ -124,9 +124,9 @@ def cmd_seturl(args: str) -> str:
         if result.returncode != 0:
             return f"❌ Error saving URL:\n<code>{result.stderr[:300]}</code>"
 
-        # Rebuild site so the product page shows the Gumroad button
+        # Rebuild all site pages so the Gumroad button appears everywhere
         rebuild = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/update_site.py")],
+            [sys.executable, str(ROOT / "scripts/update_site.py"), "--rebuild-all"],
             capture_output=True, text=True, cwd=str(ROOT), timeout=60,
         )
         if rebuild.returncode != 0:

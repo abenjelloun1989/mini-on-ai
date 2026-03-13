@@ -312,11 +312,58 @@ def update_site(product_id_arg: str = None) -> dict:
     return meta
 
 
+def rebuild_all() -> None:
+    """Rebuild every published product page and the index from current meta.json files."""
+    products_dir = ROOT / "products"
+    catalog = {"products": []}
+    metas = []
+    for d in sorted(products_dir.iterdir()):
+        meta_path = d / "meta.json"
+        if meta_path.exists():
+            with open(meta_path) as f:
+                m = json.load(f)
+            if m.get("status") in ("published", "packaged"):
+                metas.append((m.get("created_at", ""), m))
+
+    metas.sort(key=lambda x: x[0], reverse=True)  # newest first
+
+    for _, meta in metas:
+        pid = meta["id"]
+        product_page = build_product_page(meta)
+        write_file(f"site/products/{pid}.html", product_page)
+        log("update-site", f"Rebuilt site/products/{pid}.html")
+
+        n = _item_count(meta)
+        catalog["products"].append({
+            "id": meta["id"],
+            "title": meta["title"],
+            "description": meta["description"],
+            "category": meta.get("category", "prompt-packs"),
+            "tags": meta.get("tags", []),
+            "item_count": n,
+            "prompt_count": meta.get("prompt_count", n),
+            "status": meta.get("status"),
+            "created_at": meta.get("created_at"),
+            "site_path": f"site/products/{pid}.html",
+            "gumroad_url": meta.get("gumroad_url"),
+            "thumbnail": meta.get("thumbnail"),
+        })
+
+    write_json("data/product-catalog.json", catalog)
+    index_html = rebuild_index(catalog)
+    write_file("site/index.html", index_html)
+    log("update-site", f"Rebuilt index with {len(catalog['products'])} products.")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Add product to showcase site")
     parser.add_argument("--id", default=None, help="Product ID")
+    parser.add_argument("--rebuild-all", action="store_true", help="Rebuild every published product page and index")
     args = parser.parse_args()
-    update_site(args.id)
+    if args.rebuild_all:
+        rebuild_all()
+    else:
+        update_site(args.id)
 
 
 if __name__ == "__main__":
