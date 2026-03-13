@@ -431,7 +431,7 @@
       ],
       "score": 80,
       "rationale": "Clear demand for nurture briefs, stage-specific objection mapping offers differentiation, and prompt-packs are highly generatable.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-lead-nurture-content-brief-prompts-for-c-20260313",
       "generated_at": "2026-03-13T14:17:37.739524+00:00",
@@ -615,24 +615,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.099727+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773411458-8",
-      "title": "Sales Discovery Question Bank Swipe File by Buyer Role",
-      "description": "Account executives get a role-organized library of 60 proven discovery questions segmented by economic buyer, champion, and end user so every call uncovers real pain fast.",
-      "category": "swipe-file",
-      "tags": [
-        "discovery-calls",
-        "account-executive",
-        "buyer-personas"
-      ],
-      "score": 80,
-      "rationale": "Consistent AE demand for discovery frameworks, role-segmented organization differentiates from generic question lists, and swipe files are easily generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:38.103547+00:00",
       "source": "trend-scan"
     },
     {
@@ -823,6 +805,204 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T18:25:25.407445+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-0",
+      "title": "Lead Scoring Model Rebuild Prompts for RevOps",
+      "description": "Revenue operations managers get structured prompts to audit broken lead scoring logic, define weighted criteria by funnel stage, and output a rebuild-ready scoring rubric in their CRM.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead-scoring",
+        "revops",
+        "crm"
+      ],
+      "score": 78,
+      "rationale": "Acute demand from RevOps practitioners, but prompt quality requires deep scoring model expertise, and existing RevOps communities share similar frameworks.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.460462+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-1",
+      "title": "MQL to SQL Handoff SOP for B2B Sales Teams",
+      "description": "B2B marketing and sales ops leads get a ready-to-deploy standard operating procedure defining exact handoff triggers, ownership rules, and rejection feedback loops between marketing and SDRs.",
+      "category": "swipe-file",
+      "tags": [
+        "mql",
+        "sql",
+        "sales-handoff"
+      ],
+      "score": 79,
+      "rationale": "Clear demand for handoff clarity, but swipe-file format requires high editorial curation, and many SOP examples already circulate freely in sales communities.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.461978+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-3",
+      "title": "Inbound Lead Response Workflow: Typeform to HubSpot to Slack",
+      "description": "Growth teams get a ready-to-import n8n automation that routes inbound form submissions into HubSpot as contacts, scores them by field criteria, and pings the right Slack channel with a lead summary card.",
+      "category": "n8n-template",
+      "tags": [
+        "typeform",
+        "hubspot",
+        "slack"
+      ],
+      "score": 0,
+      "rationale": "Out of scope: n8n-template is not a supported category in the free download catalog.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.465014+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-4",
+      "title": "Lead Nurture Sequence Mapping Prompts for B2B SaaS",
+      "description": "B2B SaaS marketers get prompts to map nurture track logic by persona, buying stage, and objection type — producing a sequence architecture doc ready to hand off to a marketing automation builder.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead-nurture",
+        "b2b-saas",
+        "marketing-automation"
+      ],
+      "score": 85,
+      "rationale": "Urgent need across B2B SaaS segment, prompts excel at producing structured architecture docs, and nurture sequencing is a persistent operational challenge.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.466544+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-5",
+      "title": "Pipeline Forecast Conversation Frameworks for Sales Managers",
+      "description": "Sales managers get a swipe file of structured deal review frameworks, forecast call agendas, and rep-coaching question sets for weekly pipeline inspection meetings.",
+      "category": "swipe-file",
+      "tags": [
+        "pipeline",
+        "forecasting",
+        "sales-management"
+      ],
+      "score": 76,
+      "rationale": "Good demand from sales leadership, swipe-files are harder to generate at consistent quality, and many forecast conversation guides exist in sales training platforms.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.468071+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-6",
+      "title": "Lead Segment Definition Prompts for Product-Led Growth Teams",
+      "description": "PLG operators get prompts to define PQL behavioral thresholds, segment free users by expansion readiness, and produce a tiered segment brief aligned to sales capacity.",
+      "category": "prompt-packs",
+      "tags": [
+        "pql",
+        "product-led-growth",
+        "segmentation"
+      ],
+      "score": 84,
+      "rationale": "PLG is high-growth segment with specific demand, prompt-packs generate strong segmentation frameworks, though audience is smaller than broader RevOps.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.469588+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-7",
+      "title": "Demo Request Qualification Audit Checklist for SDR Managers",
+      "description": "SDR managers get a checklist to audit whether demo requests are being properly qualified before booking, covering discovery call criteria, disqualification rules, and CRM field hygiene.",
+      "category": "checklist",
+      "tags": [
+        "demo-qualification",
+        "sdr",
+        "sales-ops"
+      ],
+      "score": 81,
+      "rationale": "Solid demand from SDR operations, checklists generate consistent quality, but audit content is somewhat commoditized in existing sales ops resources.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.471112+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-8",
+      "title": "How to Build a Lead Velocity Rate Dashboard Mini-Guide",
+      "description": "Sales and marketing leaders get a concise practitioner guide explaining how to calculate, track, and act on Lead Velocity Rate as a predictive pipeline health metric inside their existing reporting stack.",
+      "category": "mini-guide",
+      "tags": [
+        "lead-velocity",
+        "pipeline-metrics",
+        "sales-analytics"
+      ],
+      "score": 86,
+      "rationale": "Strong demand for predictive metrics, fills a real gap in accessible guidance on LVR implementation, and mini-guides generate consistently high-quality output.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-how-to-build-a-lead-velocity-rate-dashbo-20260313",
+      "generated_at": "2026-03-13T19:02:58.472635+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-9",
+      "title": "Win-Loss Debrief Interview Prompts for Product Marketers",
+      "description": "Product marketers get a structured prompt set for conducting win-loss interviews with recent prospects, extracting competitive objections, and synthesizing findings into a positioning gap report.",
+      "category": "prompt-packs",
+      "tags": [
+        "win-loss",
+        "competitive-intel",
+        "product-marketing"
+      ],
+      "score": 83,
+      "rationale": "Strong demand from PMM function, prompts reliably generate quality interview structures, but win-loss insights require some contextual interpretation.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.474158+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-2",
+      "title": "Lead Source Attribution Audit Checklist for Demand Gen",
+      "description": "Demand generation managers get a structured audit checklist to identify broken UTM tracking, misattributed lead sources, and CRM data gaps that corrupt pipeline reporting.",
+      "category": "checklist",
+      "tags": [
+        "attribution",
+        "utm-tracking",
+        "demand-gen"
+      ],
+      "score": 88,
+      "rationale": "High demand from data-driven ops teams, deeply specific to common attribution failures, and checklists are highly generative formats.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.463489+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-8",
+      "title": "Sales Discovery Question Bank Swipe File by Buyer Role",
+      "description": "Account executives get a role-organized library of 60 proven discovery questions segmented by economic buyer, champion, and end user so every call uncovers real pain fast.",
+      "category": "swipe-file",
+      "tags": [
+        "discovery-calls",
+        "account-executive",
+        "buyer-personas"
+      ],
+      "score": 80,
+      "rationale": "Consistent AE demand for discovery frameworks, role-segmented organization differentiates from generic question lists, and swipe files are easily generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.103547+00:00",
       "source": "trend-scan"
     },
     {
