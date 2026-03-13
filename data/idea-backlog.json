@@ -470,24 +470,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773351969-6",
-      "title": "E-Commerce Product Descriptions That Convert",
-      "description": "40 prompts for Shopify store owners to write benefit-driven product descriptions that address buyer objections and improve add-to-cart conversion rates.",
-      "category": "prompt-packs",
-      "tags": [
-        "e-commerce",
-        "copywriting",
-        "Shopify"
-      ],
-      "score": 89,
-      "rationale": "E-commerce is a massive, evergreen market with high conversion pressure, product descriptions are a clear AI strength, and Shopify's huge user base creates strong sustained demand.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:46:09.114679+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773351969-7",
       "title": "Performance Review Self-Assessments for Employees",
       "description": "20 prompts for corporate employees to articulate their achievements, impact metrics, and growth goals in self-review forms that make a strong case for promotion.",
@@ -668,24 +650,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773352087-7",
-      "title": "E-commerce Product Description Variations",
-      "description": "30 prompts for Shopify store owners to write SEO-optimized product descriptions, bullet-point feature lists, and emotional benefit statements for different customer segments.",
-      "category": "prompt-packs",
-      "tags": [
-        "e-commerce",
-        "SEO",
-        "copywriting"
-      ],
-      "score": 89,
-      "rationale": "E-commerce store owners have a massive, recurring need for product copy across SKUs, AI excels at structured description generation, and the multi-segment angle differentiates from generic free templates.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:48:07.154588+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773352087-8",
       "title": "Podcast Guest Outreach and Pitch Emails",
       "description": "20 prompts for podcast hosts to write personalized guest invitation emails, pre-interview research summaries, and post-episode thank-you follow-ups.",
@@ -824,7 +788,7 @@
       "score": 88,
       "rationale": "E-commerce founders have a high-stakes, revenue-tied need for full launch email sequences; AI generates persuasive sequential email copy extremely well, and a complete funnel template in one pack has strong perceived value over scattered free examples.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-12T21:50:17.279691+00:00",
       "source": "trend-scan"
@@ -881,24 +845,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:50:17.289063+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773352217-9",
-      "title": "Social Media Ad Copy Variations Toolkit",
-      "description": "40 prompts for paid media managers to generate multiple headline, body copy, and CTA variations for Facebook and Instagram ads across different buyer awareness stages.",
-      "category": "prompt-packs",
-      "tags": [
-        "paid ads",
-        "copywriting",
-        "social media"
-      ],
-      "score": 89,
-      "rationale": "Paid media managers have urgent, recurring demand for copy variations; AI excels at generating structured ad copy permutations across awareness stages, and a 40-prompt toolkit with framework specificity is hard to replicate with generic free resources.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:50:17.291121+00:00",
       "source": "trend-scan"
     },
     {
@@ -1190,24 +1136,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773352269-6",
-      "title": "Product Description Copy for Shopify",
-      "description": "30 prompts for e-commerce store owners to write SEO-friendly product descriptions that highlight benefits, reduce objections, and convert browsers into buyers.",
-      "category": "prompt-packs",
-      "tags": [
-        "ecommerce",
-        "shopify",
-        "copywriting"
-      ],
-      "score": 89,
-      "rationale": "Millions of Shopify store owners constantly need fresh product copy, the benefit-driven SEO angle adds differentiation, and AI is exceptionally strong at generating varied, conversion-focused product descriptions.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:51:09.898548+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773352269-7",
       "title": "Podcast Show Notes and Summaries",
       "description": "20 prompts for podcast producers to quickly generate compelling show notes, chapter timestamps, key takeaways, and SEO descriptions from episode transcripts.",
@@ -1223,24 +1151,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:51:09.899823+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773352269-8",
-      "title": "SaaS Onboarding Email Drip Campaigns",
-      "description": "30 prompts for SaaS marketers to write a full onboarding email sequence that guides new users to activation milestones and reduces early churn.",
-      "category": "prompt-packs",
-      "tags": [
-        "saas",
-        "email marketing",
-        "onboarding"
-      ],
-      "score": 91,
-      "rationale": "SaaS marketers have a high-urgency, well-funded need for onboarding sequences, the niche focus on activation milestones differentiates it, and AI excels at structured email series with clear goals.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:51:09.901098+00:00",
       "source": "trend-scan"
     },
     {
@@ -1583,24 +1493,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T21:53:54.258065+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773352434-8",
-      "title": "Discovery Call Scripts for SaaS Account Executives",
-      "description": "20 prompts for SaaS account executives to prepare tailored discovery call question frameworks that uncover pain points and accelerate deal cycles.",
-      "category": "prompt-packs",
-      "tags": [
-        "saas",
-        "sales",
-        "discovery calls"
-      ],
-      "score": 89,
-      "rationale": "SaaS AEs are a high-value, urgent buyer segment with clear ROI on better discovery calls, and structured question frameworks are highly generatable with consistent AI quality.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:53:54.262878+00:00",
       "source": "trend-scan"
     },
     {
@@ -2065,7 +1957,7 @@
       ],
       "score": 91,
       "rationale": "Massive urgent demand from millions of active job seekers, the JD-matching angle is highly specific and differentiated from generic resume tips, and AI excels at keyword extraction and bullet rewriting with consistent quality.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
       "generated_at": "2026-03-12T22:20:25.008878+00:00",
@@ -2159,6 +2051,114 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-12T22:21:38.321398+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773351969-6",
+      "title": "E-Commerce Product Descriptions That Convert",
+      "description": "40 prompts for Shopify store owners to write benefit-driven product descriptions that address buyer objections and improve add-to-cart conversion rates.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "copywriting",
+        "Shopify"
+      ],
+      "score": 89,
+      "rationale": "E-commerce is a massive, evergreen market with high conversion pressure, product descriptions are a clear AI strength, and Shopify's huge user base creates strong sustained demand.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:46:09.114679+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352087-7",
+      "title": "E-commerce Product Description Variations",
+      "description": "30 prompts for Shopify store owners to write SEO-optimized product descriptions, bullet-point feature lists, and emotional benefit statements for different customer segments.",
+      "category": "prompt-packs",
+      "tags": [
+        "e-commerce",
+        "SEO",
+        "copywriting"
+      ],
+      "score": 89,
+      "rationale": "E-commerce store owners have a massive, recurring need for product copy across SKUs, AI excels at structured description generation, and the multi-segment angle differentiates from generic free templates.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:48:07.154588+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352217-9",
+      "title": "Social Media Ad Copy Variations Toolkit",
+      "description": "40 prompts for paid media managers to generate multiple headline, body copy, and CTA variations for Facebook and Instagram ads across different buyer awareness stages.",
+      "category": "prompt-packs",
+      "tags": [
+        "paid ads",
+        "copywriting",
+        "social media"
+      ],
+      "score": 89,
+      "rationale": "Paid media managers have urgent, recurring demand for copy variations; AI excels at generating structured ad copy permutations across awareness stages, and a 40-prompt toolkit with framework specificity is hard to replicate with generic free resources.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:50:17.291121+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-6",
+      "title": "Product Description Copy for Shopify",
+      "description": "30 prompts for e-commerce store owners to write SEO-friendly product descriptions that highlight benefits, reduce objections, and convert browsers into buyers.",
+      "category": "prompt-packs",
+      "tags": [
+        "ecommerce",
+        "shopify",
+        "copywriting"
+      ],
+      "score": 89,
+      "rationale": "Millions of Shopify store owners constantly need fresh product copy, the benefit-driven SEO angle adds differentiation, and AI is exceptionally strong at generating varied, conversion-focused product descriptions.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.898548+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352269-8",
+      "title": "SaaS Onboarding Email Drip Campaigns",
+      "description": "30 prompts for SaaS marketers to write a full onboarding email sequence that guides new users to activation milestones and reduces early churn.",
+      "category": "prompt-packs",
+      "tags": [
+        "saas",
+        "email marketing",
+        "onboarding"
+      ],
+      "score": 91,
+      "rationale": "SaaS marketers have a high-urgency, well-funded need for onboarding sequences, the niche focus on activation milestones differentiates it, and AI excels at structured email series with clear goals.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:51:09.901098+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352434-8",
+      "title": "Discovery Call Scripts for SaaS Account Executives",
+      "description": "20 prompts for SaaS account executives to prepare tailored discovery call question frameworks that uncover pain points and accelerate deal cycles.",
+      "category": "prompt-packs",
+      "tags": [
+        "saas",
+        "sales",
+        "discovery calls"
+      ],
+      "score": 89,
+      "rationale": "SaaS AEs are a high-value, urgent buyer segment with clear ROI on better discovery calls, and structured question frameworks are highly generatable with consistent AI quality.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:54.262878+00:00",
       "source": "trend-scan"
     }
   ]

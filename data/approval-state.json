@@ -1,23 +1,23 @@
 {
-  "status": "approved",
+  "status": "rejected",
   "idea": {
-    "id": "idea-1773354025-4",
-    "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
-    "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems.",
+    "id": "idea-1773352217-5",
+    "title": "Product Launch Email Funnel Builder",
+    "description": "35 prompts for e-commerce founders to write a full pre-launch, launch day, and post-launch email sequence that maximizes conversion revenue.",
     "category": "prompt-packs",
     "tags": [
-      "resume writing",
-      "ATS",
-      "job applications"
+      "ecommerce",
+      "email marketing",
+      "product launch"
     ],
-    "score": 91,
-    "rationale": "Massive urgent demand from millions of active job seekers, the JD-matching angle is highly specific and differentiated from generic resume tips, and AI excels at keyword extraction and bullet rewriting with consistent quality.",
+    "score": 88,
+    "rationale": "E-commerce founders have a high-stakes, revenue-tied need for full launch email sequences; AI generates persuasive sequential email copy extremely well, and a complete funnel template in one pack has strong perceived value over scattered free examples.",
     "selected": true,
     "status": null,
     "product_id": null,
-    "generated_at": "2026-03-12T22:20:25.008878+00:00",
+    "generated_at": "2026-03-12T21:50:17.279691+00:00",
     "source": "trend-scan"
   },
-  "requested_at": "2026-03-12T22:27:47.507583+00:00",
-  "decided_at": "2026-03-12T22:28:09.247640+00:00"
+  "requested_at": "2026-03-12T22:30:48.266231+00:00",
+  "decided_at": "2026-03-12T22:31:29.602060+00:00"
 }

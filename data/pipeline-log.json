@@ -129,6 +129,15 @@
         "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems."
       },
       "duration_seconds": 186
+    },
+    {
+      "id": "run-1773354648",
+      "started_at": "2026-03-12T22:30:48.264414+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected",
+      "product": null,
+      "duration_seconds": 46
     }
   ]
 }
