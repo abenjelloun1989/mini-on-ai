@@ -510,3 +510,11 @@ body {
   resize: vertical;
   box-sizing: border-box;
 }
+
+/* Plain-text description (pre-formatted, whitespace preserved) */
+.product-plaintext {
+  white-space: pre-line;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+}

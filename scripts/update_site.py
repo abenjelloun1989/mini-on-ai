@@ -127,12 +127,10 @@ def _gumroad_cta_card(meta: dict) -> str:
 
 
 def _rich_description_html(meta: dict) -> str:
-    """Return the Claude-generated rich description HTML, or fall back to static includes."""
+    """Render the plain-text Gumroad description as HTML, or fall back to static includes."""
     rich = meta.get("gumroad_description")
     if rich:
-        # Indent the raw HTML block for readability in the template
-        indented = "\n".join(f"      {line}" for line in rich.splitlines())
-        return indented
+        return f'      <div class="product-plaintext">{escape_html(rich)}</div>'
     # Fallback: static "What's included" list
     return f"      <h2>What's included</h2>\n{_includes_html(meta)}"
 

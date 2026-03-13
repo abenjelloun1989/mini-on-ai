@@ -536,24 +536,22 @@ One-liner: {idea['description']}
 Format: {format_note}
 
 Requirements:
-- Open with a BOLD hook sentence that names the exact pain this solves (no generic fluff)
+- Open with a hook sentence that names the exact pain this solves (no generic fluff)
 - "Who this is for" section: 2-3 specific bullet personas (not vague "anyone who...")
 - "What's inside" section: itemized list with value framing, not just counts
 - One short closing line + simple CTA ("Download and use it today.")
 - Tone: direct, confident, peer-to-peer. Not hype, not corporate.
 - Length: 120-200 words total
-- Output: valid HTML only (p, strong, h3, ul, li tags). No markdown. No preamble.
-
-Start with: <p><strong>[hook sentence]</strong></p>""",
+- Output: plain text only. Use blank lines between sections. Use "—" bullets. No HTML, no markdown, no preamble.""",
         }],
     )
 
     desc = message.content[0].text.strip()
-    # Strip markdown code fences if the model wrapped the HTML anyway
+    # Strip any accidental code fences
     desc = re.sub(r"^```[a-z]*\n?", "", desc)
     desc = re.sub(r"\n?```$", "", desc)
     desc = desc.strip()
-    desc += '\n\n<p>Discover more tools like this at <a href="https://mini-on-ai.com">mini-on-ai.com</a>.</p>'
+    desc += "\n\nDiscover more tools like this at mini-on-ai.com"
     log("generate-product", "Generated Gumroad description")
     return desc
 
