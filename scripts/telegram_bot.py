@@ -41,6 +41,14 @@ CHAT_ID = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
 
 SEEDS_ALL = ["marketing", "freelancing", "writing", "coding"]
 
+KNOWN_CATEGORIES = {
+    "prompt-packs":  ("Prompt Pack",   "20–30 ready-to-use prompts"),
+    "checklist":     ("Checklist",     "structured decision/action list"),
+    "swipe-file":    ("Swipe File",    "copy-ready examples and templates"),
+    "mini-guide":    ("Mini Guide",    "concise practitioner guide"),
+    "n8n-template":  ("n8n Template",  "ready-to-import automation workflow"),
+}
+
 
 def api(method: str, data: dict = None) -> dict:
     url = f"https://api.telegram.org/bot{TOKEN}/{method}"
@@ -191,14 +199,28 @@ def cmd_projectphases() -> str:
     )
 
 
+def cmd_categories() -> str:
+    lines = ["🗂 <b>Product Categories</b>\n"]
+    for key, (label, desc) in KNOWN_CATEGORIES.items():
+        lines.append(f"  <b>{key}</b> — {label}\n  <i>{desc}</i>")
+    lines.append("\n<b>Usage:</b>")
+    lines.append("  <code>/run prompt-packs</code> — generate only prompt packs")
+    lines.append("  <code>/run freelancing checklist</code> — seed + category focus")
+    lines.append("  <code>/run checklist</code> — pick best checklist idea from backlog")
+    return "\n".join(lines)
+
+
 def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
         "/status — last run + product count\n"
         "/products — list published products\n"
         "/ideas — top ideas in backlog\n"
+        "/categories — list product types you can generate\n"
         "/run — trigger pipeline now\n"
         "/run [seed] — e.g. /run marketing\n"
+        "/run [category] — e.g. /run checklist\n"
+        "/run [seed] [category] — e.g. /run freelancing swipe-file\n"
         "/run all — run 4 seeds in sequence\n"
         "/go — approve pending idea\n"
         "/nogo — reject pending idea\n"
@@ -321,13 +343,15 @@ def cmd_ideas() -> str:
         return f"❌ Error reading backlog: {e}"
 
 
-def run_pipeline_bg(seed: str = "") -> None:
+def run_pipeline_bg(seed: str = "", category: str = "") -> None:
     """Run pipeline in background subprocess."""
     cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py")]
     if seed:
         cmd += ["--seed", seed]
+    if category:
+        cmd += ["--category", category]
 
-    log("bot", f"Spawning pipeline subprocess (seed={seed or 'none'})")
+    log("bot", f"Spawning pipeline subprocess (seed={seed or 'none'}, category={category or 'any'})")
     subprocess.Popen(
         cmd,
         cwd=str(ROOT),
@@ -371,6 +395,9 @@ def handle_command(text: str) -> str:
         args = text[len("/seturl"):].strip()
         return cmd_seturl(args)
 
+    if lower == "/categories":
+        return cmd_categories()
+
     if lower == "/run all":
         send("🚀 Starting 4 pipeline runs (marketing, freelancing, writing, coding).\nYou'll get a Telegram message after each one.")
         for seed in SEEDS_ALL:
@@ -379,11 +406,36 @@ def handle_command(text: str) -> str:
         return None
 
     if lower.startswith("/run"):
-        parts = text.split(None, 1)
-        seed = parts[1].strip() if len(parts) > 1 else ""
-        seed_note = f" with seed: <i>{seed}</i>" if seed else ""
-        run_pipeline_bg(seed)
-        return f"🚀 Pipeline started{seed_note}.\nI'll send an approval request when an idea is ready."
+        parts = text.split(None, 3)
+        args = parts[1:]  # everything after /run
+
+        seed = ""
+        category = ""
+
+        if len(args) == 1:
+            # /run X — could be a seed or a category
+            if args[0].lower() in KNOWN_CATEGORIES:
+                category = args[0].lower()
+            else:
+                seed = args[0]
+        elif len(args) >= 2:
+            # /run X Y — first is seed, second is category
+            seed = args[0]
+            if args[1].lower() in KNOWN_CATEGORIES:
+                category = args[1].lower()
+            else:
+                seed = " ".join(args)  # treat whole thing as seed
+
+        note_parts = []
+        if seed:
+            note_parts.append(f"seed: <i>{seed}</i>")
+        if category:
+            note_parts.append(f"category: <b>{KNOWN_CATEGORIES[category][0]}</b>")
+        note = " · ".join(note_parts)
+        note_str = f" ({note})" if note else ""
+
+        run_pipeline_bg(seed=seed, category=category)
+        return f"🚀 Pipeline started{note_str}.\nI'll send an approval request when an idea is ready."
 
     return f"Unknown command: <code>{text}</code>\n\nType /help for available commands."
 

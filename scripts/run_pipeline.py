@@ -82,10 +82,12 @@ def request_approval(idea: dict) -> bool:
     return False
 
 
-def run_pipeline(seed: str = "", skip_scan: bool = False):
+def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
     start_time = time.time()
 
     import os as _os
+    if category:
+        _os.environ["PIPELINE_CATEGORY_FOCUS"] = category
     run = {
         "id": f"run-{int(time.time())}",
         "started_at": timestamp(),
@@ -270,9 +272,10 @@ def main():
     parser = argparse.ArgumentParser(description="Run the full product factory pipeline")
     parser.add_argument("--seed", default="", help="Keyword to seed the trend scan")
     parser.add_argument("--skip-scan", action="store_true", help="Skip trend scan, use existing backlog")
+    parser.add_argument("--category", default="", help="Focus generation on a specific category (e.g. checklist, swipe-file)")
     args = parser.parse_args()
 
-    run_pipeline(seed=args.seed, skip_scan=args.skip_scan)
+    run_pipeline(seed=args.seed, skip_scan=args.skip_scan, category=args.category)
 
 
 if __name__ == "__main__":

@@ -90,12 +90,24 @@ Sort by score descending.""",
         idea["selected"] = False
 
     # Select highest-scoring idea that hasn't been produced or rejected
+    category_focus = os.environ.get("PIPELINE_CATEGORY_FOCUS", "").strip()
+
     candidates = [
         i for i in backlog["ideas"]
         if i.get("score") is not None
         and i.get("status") not in ("produced", "rejected")
+        and (not category_focus or i.get("category") == category_focus)
     ]
     candidates.sort(key=lambda x: x["score"], reverse=True)
+
+    if category_focus and not candidates:
+        log("idea-rank", f"No available ideas for category '{category_focus}'. Falling back to any category.")
+        candidates = [
+            i for i in backlog["ideas"]
+            if i.get("score") is not None
+            and i.get("status") not in ("produced", "rejected")
+        ]
+        candidates.sort(key=lambda x: x["score"], reverse=True)
 
     if not candidates:
         log("idea-rank", "No available ideas. Run trend_scan to add more.")
