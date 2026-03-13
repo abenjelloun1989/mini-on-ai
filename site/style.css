@@ -144,14 +144,115 @@ body {
 }
 
 .catalog-header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .catalog-subtitle {
   color: var(--text-muted);
-  margin: 0;
+  margin: 0 0 20px;
   font-size: 15px;
   font-weight: 500;
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  font-family: var(--font);
+  line-height: 1;
+}
+
+.filter-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: var(--brand-light);
+}
+
+.filter-btn.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+.filter-btn.active:hover {
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
+}
+
+.filter-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.25);
+  padding: 1px 5px;
+  border-radius: 8px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.filter-btn:not(.active) .filter-count {
+  background: var(--tag-bg);
+  color: var(--text-muted);
+}
+
+/* Hidden card state for filtering */
+.product-card.filter-hidden {
+  display: none;
+}
+
+/* Empty filter state */
+.catalog-empty {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.catalog-empty.visible {
+  display: block;
+}
+
+.catalog-empty svg {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  opacity: 0.3;
+  display: block;
+}
+
+/* Dark mode adjustments for filter bar */
+.dark-mode .filter-btn:hover,
+:root:not(.light-mode-manual) .dark-mode .filter-btn:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+@media (max-width: 600px) {
+  .filter-bar {
+    gap: 6px;
+  }
+  .filter-btn {
+    font-size: 12px;
+    padding: 5px 11px;
+  }
 }
 
 /* Product grid */

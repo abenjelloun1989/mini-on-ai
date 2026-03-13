@@ -255,13 +255,14 @@ def build_product_card(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     thumb = meta.get("thumbnail")
     cat = meta.get("category", "prompt-packs")
+    tags_attr = ",".join(meta.get("tags") or [])
     if thumb:
         thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
     else:
         placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
         thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
     cta_html = _gumroad_cta_card(meta)
-    return f"""      <article class="product-card">{thumbnail_html}
+    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-tags="{escape_html(tags_attr)}">{thumbnail_html}
         <div class="product-card-body">
           <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
           <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
@@ -272,9 +273,79 @@ def build_product_card(meta: dict) -> str:
       </article>"""
 
 
+def _build_filter_bar(products: list) -> str:
+    """Build a filter bar HTML with category pills and counts."""
+    from collections import Counter
+    cat_counts = Counter(p.get("category", "prompt-packs") for p in products)
+    total = len(products)
+
+    cat_order = ["prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template"]
+    cat_labels = {
+        "prompt-packs":  "Prompt Packs",
+        "checklist":     "Checklists",
+        "swipe-file":    "Swipe Files",
+        "mini-guide":    "Mini Guides",
+        "n8n-template":  "n8n Templates",
+    }
+
+    btns = [f'    <button class="filter-btn active" data-filter="all">All <span class="filter-count">{total}</span></button>']
+    for cat in cat_order:
+        n = cat_counts.get(cat, 0)
+        if n > 0:
+            label = cat_labels.get(cat, cat)
+            btns.append(f'    <button class="filter-btn" data-filter="cat:{cat}">{label} <span class="filter-count">{n}</span></button>')
+
+    return "  <div class=\"filter-bar\">\n" + "\n".join(btns) + "\n  </div>"
+
+
+def _filter_js() -> str:
+    """Return the catalog filter JavaScript."""
+    return """  <script>
+    (function() {
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      var cards = document.querySelectorAll('.product-card');
+      var emptyMsg = document.getElementById('catalogEmpty');
+      var countEl = document.getElementById('catalogCount');
+      var totalCount = cards.length;
+
+      function applyFilter(filter) {
+        var visible = 0;
+        cards.forEach(function(card) {
+          var show = false;
+          if (filter === 'all') {
+            show = true;
+          } else if (filter.indexOf('cat:') === 0) {
+            show = card.dataset.category === filter.slice(4);
+          }
+          if (show) {
+            card.classList.remove('filter-hidden');
+            visible++;
+          } else {
+            card.classList.add('filter-hidden');
+          }
+        });
+        if (emptyMsg) emptyMsg.classList.toggle('visible', visible === 0);
+        if (countEl) countEl.textContent = visible === totalCount
+          ? totalCount + ' product' + (totalCount !== 1 ? 's' : '') + ' available'
+          : visible + ' of ' + totalCount + ' products';
+      }
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          applyFilter(btn.dataset.filter);
+        });
+      });
+    })();
+  </script>"""
+
+
 def rebuild_index(catalog: dict) -> str:
-    count = len(catalog["products"])
-    cards = "\n".join(build_product_card(p) for p in catalog["products"])
+    products = catalog["products"]
+    count = len(products)
+    cards = "\n".join(build_product_card(p) for p in products)
+    filter_bar = _build_filter_bar(products)
     year = datetime.now().year
 
     return f"""<!DOCTYPE html>
@@ -311,11 +382,15 @@ def rebuild_index(catalog: dict) -> str:
 
   <main class="catalog">
     <div class="catalog-header">
-      <p class="catalog-subtitle">{count} product{'s' if count != 1 else ''} available</p>
+      <p class="catalog-subtitle" id="catalogCount">{count} product{'s' if count != 1 else ''} available</p>
+{filter_bar}
     </div>
 
     <div class="product-grid">
 {cards}
+      <div class="catalog-empty" id="catalogEmpty">
+        <p>No products in this category yet.</p>
+      </div>
     </div>
   </main>
 
@@ -363,6 +438,7 @@ def rebuild_index(catalog: dict) -> str:
       initDarkMode();
     }})();
   </script>
+{_filter_js()}
 </body>
 </html>
 """

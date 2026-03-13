@@ -32,11 +32,18 @@
 
   <main class="catalog">
     <div class="catalog-header">
-      <p class="catalog-subtitle">23 products available</p>
+      <p class="catalog-subtitle" id="catalogCount">23 products available</p>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">23</span></button>
+    <button class="filter-btn" data-filter="cat:prompt-packs">Prompt Packs <span class="filter-count">6</span></button>
+    <button class="filter-btn" data-filter="cat:checklist">Checklists <span class="filter-count">5</span></button>
+    <button class="filter-btn" data-filter="cat:swipe-file">Swipe Files <span class="filter-count">5</span></button>
+    <button class="filter-btn" data-filter="cat:mini-guide">Mini Guides <span class="filter-count">7</span></button>
+  </div>
     </div>
 
     <div class="product-grid">
-      <article class="product-card">
+      <article class="product-card" data-category="checklist" data-tags="notion,workspace-audit,team-ops,information-architecture">
         <img src="images/placeholder-checklist.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-checklist">Checklist</span><span class="tag">notion</span> <span class="tag">workspace-audit</span> <span class="tag">team-ops</span> <span class="tag">information-architecture</span></div>
@@ -46,7 +53,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="notion,crm,freelance,relationship-management">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">notion</span> <span class="tag">crm</span> <span class="tag">freelance</span> <span class="tag">relationship-management</span></div>
@@ -56,7 +63,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="swipe-file" data-tags="notion,template-selling,product-page,creator-economy">
         <img src="images/placeholder-swipe-file.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">notion</span> <span class="tag">template-selling</span> <span class="tag">product-page</span> <span class="tag">creator-economy</span></div>
@@ -66,7 +73,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="lead-velocity,pipeline-metrics,sales-analytics">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">lead-velocity</span> <span class="tag">pipeline-metrics</span> <span class="tag">sales-analytics</span></div>
@@ -76,7 +83,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="lead nurture,content briefs,funnel marketing">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">lead nurture</span> <span class="tag">content briefs</span> <span class="tag">funnel marketing</span></div>
@@ -86,7 +93,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="n8n,documentation,handoff,SOPs">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">n8n</span> <span class="tag">documentation</span> <span class="tag">handoff</span> <span class="tag">SOPs</span></div>
@@ -96,7 +103,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="n8n,error-handling,automation,debugging">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">n8n</span> <span class="tag">error-handling</span> <span class="tag">automation</span> <span class="tag">debugging</span></div>
@@ -106,7 +113,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="checklist" data-tags="client-onboarding,consulting,project-kickoff">
         <img src="images/placeholder-checklist.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-checklist">Checklist</span><span class="tag">client-onboarding</span> <span class="tag">consulting</span> <span class="tag">project-kickoff</span></div>
@@ -116,7 +123,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="lead generation,channel strategy,startup growth">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">lead generation</span> <span class="tag">channel strategy</span> <span class="tag">startup growth</span></div>
@@ -126,7 +133,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="checklist" data-tags="client-screening,boundaries,sales">
         <img src="images/placeholder-checklist.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-checklist">Checklist</span><span class="tag">client-screening</span> <span class="tag">boundaries</span> <span class="tag">sales</span></div>
@@ -136,7 +143,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="lead-nurture,demand-gen,marketing-automation">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">lead-nurture</span> <span class="tag">demand-gen</span> <span class="tag">marketing-automation</span></div>
@@ -146,7 +153,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="positioning,marketing,niche">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">positioning</span> <span class="tag">marketing</span> <span class="tag">niche</span></div>
@@ -156,7 +163,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="pipeline-building,slow-season,lead-generation">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">pipeline-building</span> <span class="tag">slow-season</span> <span class="tag">lead-generation</span></div>
@@ -166,7 +173,7 @@
           <span class="btn-cta btn-coming-soon">Coming soon</span>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="swipe-file" data-tags="landing page,conversion rate,lead generation">
         <img src="images/placeholder-swipe-file.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">landing page</span> <span class="tag">conversion rate</span> <span class="tag">lead generation</span></div>
@@ -176,7 +183,7 @@
           <a href="https://kirozdor.gumroad.com/l/tmguv" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="mini-guide" data-tags="inbox zero,Gmail,email management,triage">
         <img src="images/placeholder-mini-guide.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">inbox zero</span> <span class="tag">Gmail</span> <span class="tag">email management</span> <span class="tag">triage</span></div>
@@ -186,7 +193,7 @@
           <a href="https://kirozdor.gumroad.com/l/atjzc" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="checklist" data-tags="crm,data-hygiene,sales-operations">
         <img src="images/placeholder-checklist.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-checklist">Checklist</span><span class="tag">crm</span> <span class="tag">data-hygiene</span> <span class="tag">sales-operations</span></div>
@@ -196,7 +203,7 @@
           <a href="https://kirozdor.gumroad.com/l/utowwv" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="checklist" data-tags="attribution,UTM tracking,lead analytics">
         <img src="images/placeholder-checklist.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-checklist">Checklist</span><span class="tag">attribution</span> <span class="tag">UTM tracking</span> <span class="tag">lead analytics</span></div>
@@ -206,7 +213,7 @@
           <a href="https://kirozdor.gumroad.com/l/srmajl" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="swipe-file" data-tags="pricing,productized-services,packages">
         <img src="images/placeholder-swipe-file.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">pricing</span> <span class="tag">productized-services</span> <span class="tag">packages</span></div>
@@ -216,7 +223,7 @@
           <a href="https://kirozdor.gumroad.com/l/jssco" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="swipe-file" data-tags="proposals,sales,client-work">
         <img src="images/placeholder-swipe-file.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">proposals</span> <span class="tag">sales</span> <span class="tag">client-work</span></div>
@@ -226,7 +233,7 @@
           <a href="https://kirozdor.gumroad.com/l/zbnmat" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="swipe-file" data-tags="invoicing,late-payment,client-communication">
         <img src="images/placeholder-swipe-file.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">invoicing</span> <span class="tag">late-payment</span> <span class="tag">client-communication</span></div>
@@ -236,7 +243,7 @@
           <a href="https://kirozdor.gumroad.com/l/qghpoi" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="resume writing,ATS,job applications">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">resume writing</span> <span class="tag">ATS</span> <span class="tag">job applications</span></div>
@@ -246,7 +253,7 @@
           <a href="https://kirozdor.gumroad.com/l/hromk" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="e-commerce,SEO,copywriting">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">e-commerce</span> <span class="tag">SEO</span> <span class="tag">copywriting</span></div>
@@ -256,7 +263,7 @@
           <a href="https://kirozdor.gumroad.com/l/eqiso" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
-      <article class="product-card">
+      <article class="product-card" data-category="prompt-packs" data-tags="meetings,project-management,documentation">
         <img src="images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail" aria-hidden="true">
         <div class="product-card-body">
           <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">meetings</span> <span class="tag">project-management</span> <span class="tag">documentation</span></div>
@@ -266,6 +273,9 @@
           <a href="https://kirozdor.gumroad.com/l/jvogn" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
+      <div class="catalog-empty" id="catalogEmpty">
+        <p>No products in this category yet.</p>
+      </div>
     </div>
   </main>
 
@@ -311,6 +321,45 @@
       }
 
       initDarkMode();
+    })();
+  </script>
+  <script>
+    (function() {
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      var cards = document.querySelectorAll('.product-card');
+      var emptyMsg = document.getElementById('catalogEmpty');
+      var countEl = document.getElementById('catalogCount');
+      var totalCount = cards.length;
+
+      function applyFilter(filter) {
+        var visible = 0;
+        cards.forEach(function(card) {
+          var show = false;
+          if (filter === 'all') {
+            show = true;
+          } else if (filter.indexOf('cat:') === 0) {
+            show = card.dataset.category === filter.slice(4);
+          }
+          if (show) {
+            card.classList.remove('filter-hidden');
+            visible++;
+          } else {
+            card.classList.add('filter-hidden');
+          }
+        });
+        if (emptyMsg) emptyMsg.classList.toggle('visible', visible === 0);
+        if (countEl) countEl.textContent = visible === totalCount
+          ? totalCount + ' product' + (totalCount !== 1 ? 's' : '') + ' available'
+          : visible + ' of ' + totalCount + ' products';
+      }
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          applyFilter(btn.dataset.filter);
+        });
+      });
     })();
   </script>
 </body>
