@@ -114,7 +114,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         "category": "prompt-packs", "tags": idea.get("tags", []),
         "item_count": len(prompts), "prompt_count": len(prompts),
         "created_at": timestamp(), "status": "generated",
-        "package_path": None, "site_path": None, "thumbnail": None,
+        "package_path": None, "site_path": None, "thumbnail": None, "price": None, "gumroad_product_id": None, "gumroad_url": None,
     }
 
 
@@ -196,7 +196,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         "category": "checklist", "tags": idea.get("tags", []),
         "item_count": len(items),
         "created_at": timestamp(), "status": "generated",
-        "package_path": None, "site_path": None, "thumbnail": None,
+        "package_path": None, "site_path": None, "thumbnail": None, "price": None, "gumroad_product_id": None, "gumroad_url": None,
     }
 
 
@@ -285,7 +285,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         "category": "swipe-file", "tags": idea.get("tags", []),
         "item_count": len(examples),
         "created_at": timestamp(), "status": "generated",
-        "package_path": None, "site_path": None, "thumbnail": None,
+        "package_path": None, "site_path": None, "thumbnail": None, "price": None, "gumroad_product_id": None, "gumroad_url": None,
     }
 
 
@@ -371,7 +371,7 @@ Return ONLY the guide in Markdown, starting with the title as an H1.""",
         "category": "mini-guide", "tags": idea.get("tags", []),
         "item_count": 1,
         "created_at": timestamp(), "status": "generated",
-        "package_path": None, "site_path": None, "thumbnail": None,
+        "package_path": None, "site_path": None, "thumbnail": None, "price": None, "gumroad_product_id": None, "gumroad_url": None,
     }
 
 
@@ -450,7 +450,7 @@ Return ONLY valid JSON, no other text.""",
         "category": "n8n-template", "tags": idea.get("tags", []),
         "item_count": node_count,
         "created_at": timestamp(), "status": "generated",
-        "package_path": None, "site_path": None, "thumbnail": None,
+        "package_path": None, "site_path": None, "thumbnail": None, "price": None, "gumroad_product_id": None, "gumroad_url": None,
     }
 
 

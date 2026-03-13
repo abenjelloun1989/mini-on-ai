@@ -9,7 +9,6 @@ Usage: python3 scripts/update_site.py [--id product-id]
 import argparse
 import json
 import os
-import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -21,6 +20,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, write_file, ROOT, log
 
+CONTACT_EMAIL = "hello@mini-on-ai.com"
 
 CATEGORY_LABELS = {
     "prompt-packs":  ("Prompt Pack",  "{n} prompts"),
@@ -98,17 +98,34 @@ def escape_html(s: str) -> str:
     )
 
 
-def _thumbnail_html_detail(meta: dict, pid: str) -> str:
+def _thumbnail_html_detail(meta: dict) -> str:
     thumb = meta.get("thumbnail")
     if thumb:
         return f'  <img src="../{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail" style="border-radius:12px;margin-bottom:28px;max-width:100%;">\n'
     return ""
 
 
+def _gumroad_cta_page(meta: dict) -> str:
+    """Gumroad CTA button for the product detail page."""
+    url = meta.get("gumroad_url")
+    if url:
+        return f'    <a href="{escape_html(url)}" class="btn-cta btn-large" target="_blank" rel="noopener">Get it on Gumroad →</a>'
+    return '    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>'
+
+
+def _gumroad_cta_card(meta: dict) -> str:
+    """Gumroad CTA button for catalog cards."""
+    url = meta.get("gumroad_url")
+    if url:
+        return f'<a href="{escape_html(url)}" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>'
+    return '<span class="btn-cta btn-coming-soon">Coming soon</span>'
+
+
 def build_product_page(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    download_path = "package.zip"
-    thumbnail_html = _thumbnail_html_detail(meta, meta.get("id", ""))
+    thumbnail_html = _thumbnail_html_detail(meta)
+    cta_html = _gumroad_cta_page(meta)
+    year = datetime.now().year
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -137,9 +154,7 @@ def build_product_page(meta: dict) -> str:
       <span>{escape_html(_count_label(meta))}</span>
     </div>
 
-    <a href="{download_path}" class="btn-download btn-large">
-      Download Free
-    </a>
+{cta_html}
 
     <section class="product-details">
       <h2>What's included</h2>
@@ -148,7 +163,7 @@ def build_product_page(meta: dict) -> str:
   </main>
 
   <footer class="site-footer">
-    <p>&copy; {datetime.now().year} mini-on-ai</p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 </body>
 </html>
@@ -162,13 +177,14 @@ def build_product_card(meta: dict) -> str:
         thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
     else:
         thumbnail_html = '\n        <div class="product-thumbnail-placeholder"></div>'
+    cta_html = _gumroad_cta_card(meta)
     return f"""      <article class="product-card">{thumbnail_html}
         <div class="product-card-body">
           <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
           <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
           <p class="product-desc">{escape_html(meta['description'])}</p>
           <div class="product-meta">{escape_html(_count_label(meta))}</div>
-          <a href="products/{meta['id']}/package.zip" class="btn-download">Download Free</a>
+          {cta_html}
         </div>
       </article>"""
 
@@ -183,9 +199,9 @@ def rebuild_index(catalog: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-on-ai — Free Digital Resources</title>
+  <title>mini-on-ai — AI-Powered Digital Products</title>
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Free digital resources, prompt packs, and tools. Download and use immediately.">
+  <meta name="description" content="Prompt packs, checklists, guides and automation templates. Discover AI-powered digital products.">
 </head>
 <body>
   <header class="site-header">
@@ -193,14 +209,21 @@ def rebuild_index(catalog: dict) -> str:
       <a href="index.html" class="site-logo">
         <img src="logo.svg" alt="mini-on-ai">
       </a>
-      <span class="product-count">{count} free resource{'s' if count != 1 else ''}</span>
+      <span class="product-count">{count} product{'s' if count != 1 else ''}</span>
     </div>
   </header>
 
+  <section class="hero">
+    <div class="hero-text">
+      <h1>AI-powered digital products</h1>
+      <p>Prompt packs, checklists, guides, and automation templates — crafted with AI, ready to use.</p>
+    </div>
+    <img src="images/hero.svg" class="hero-illustration" alt="">
+  </section>
+
   <main class="catalog">
     <div class="catalog-header">
-      <h1>Free Digital Resources</h1>
-      <p>Download and use immediately. No signup required.</p>
+      <p class="catalog-subtitle">{count} product{'s' if count != 1 else ''} available</p>
     </div>
 
     <div class="product-grid">
@@ -209,7 +232,7 @@ def rebuild_index(catalog: dict) -> str:
   </main>
 
   <footer class="site-footer">
-    <p>&copy; {year} mini-on-ai</p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 </body>
 </html>
@@ -244,17 +267,6 @@ def update_site(product_id_arg: str = None) -> dict:
 
     log("update-site", f"Adding to site: {meta['title']} ({pid})")
 
-    # Copy zip into site so GitHub Pages can serve it
-    zip_src = ROOT / meta["package_path"]
-    zip_dst_dir = ROOT / "site" / "products" / pid
-    zip_dst_dir.mkdir(parents=True, exist_ok=True)
-    zip_dst = zip_dst_dir / "package.zip"
-    if zip_src.exists():
-        shutil.copy2(zip_src, zip_dst)
-        log("update-site", f"Copied package.zip → site/products/{pid}/package.zip")
-    else:
-        log("update-site", f"Warning: zip not found at {zip_src}")
-
     # Write product page
     product_page = build_product_page(meta)
     write_file(f"site/products/{pid}.html", product_page)
@@ -274,6 +286,8 @@ def update_site(product_id_arg: str = None) -> dict:
         "package_path": meta["package_path"],
         "site_path": f"site/products/{pid}.html",
         "thumbnail": meta.get("thumbnail"),
+        "gumroad_url": meta.get("gumroad_url"),
+        "price": meta.get("price"),
     }
 
     existing_idx = next((i for i, p in enumerate(catalog["products"]) if p["id"] == pid), None)

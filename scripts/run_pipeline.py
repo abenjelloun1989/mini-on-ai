@@ -36,6 +36,7 @@ from idea_rank import idea_rank
 from generate_product import generate_product
 from package_product import package_product
 from update_site import update_site
+from publish_product import publish_product
 from telegram_notify import telegram_report, send_approval_request
 
 APPROVAL_TIMEOUT_HOURS = 48
@@ -183,6 +184,19 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
     except Exception as e:
         fail("update-site", str(e))
 
+    # Stage 5.5: Publish to Gumroad
+    log("pipeline", "--- Stage: publish-product ---")
+    gumroad_url = None
+    try:
+        meta = publish_product()
+        gumroad_url = meta.get("gumroad_url")
+        if gumroad_url:
+            log("pipeline", f"Gumroad listing: {gumroad_url}")
+        else:
+            log("pipeline", "Warning: Gumroad URL not returned")
+    except Exception as e:
+        log("pipeline", f"Warning: Gumroad publish failed (non-fatal): {e}")
+
     # Success
     duration = round(time.time() - start_time)
     run["status"] = "success"
@@ -190,6 +204,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
         "id": meta["id"],
         "title": meta["title"],
         "description": meta["description"],
+        "gumroad_url": gumroad_url,
     }
     run["duration_seconds"] = duration
 
@@ -202,6 +217,8 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
     import os
     site_url = os.getenv("SITE_URL", "file://./site")
     log("pipeline", f"Site: {site_url}/products/{meta['id']}.html")
+    if gumroad_url:
+        log("pipeline", f"Gumroad: {gumroad_url}")
 
     # Stage 6: Git commit + push (site + data + product assets)
     log("pipeline", "--- Stage: git-commit ---")
