@@ -82,25 +82,38 @@ Target audience for this batch: {active_seed}{trends_block}
 
 Rules:
 - Each product must solve one specific, painful daily workflow problem that the target audience faces
-- Title must be concrete (e.g. "Cold Email Sequences for SaaS Trials" not "Email Prompts")
+- Title must be concrete and operational (e.g. "Client Onboarding Checklist for Freelance Designers" not "Onboarding Tips")
 - Where the trend signals above are relevant to the target audience, use them to inspire ideas grounded in real demand
 - Avoid generic topics like "productivity", "writing", "ChatGPT tips" — go niche
 - Each idea must be genuinely different (different sub-audience or use case)
-- Think: what does this person struggle with every week?{avoid_block}
+- Think: what does this person struggle with every week in their actual work?{avoid_block}
 
-Product categories — assign the BEST fit, NOT always prompt-packs:
-- "prompt-packs"  → 20 AI prompts for a specific workflow
-- "checklist"     → step-by-step checklist for a repeatable process
-- "swipe-file"    → copy-ready examples (hooks, subject lines, scripts, cold emails)
-- "mini-guide"    → concise guide covering one specific skill or framework
-- "n8n-template"  → ready-to-import automation workflow (connecting tools, auto-notifications, syncing data)
+AVOID these over-used angles (already too many of these):
+- Do NOT suggest ideas primarily about writing emails or email subject lines
+- Do NOT suggest generic "AI prompt packs" — the content must be a real operational artifact, not meta-instructions about using AI
+- Do NOT suggest "ChatGPT prompts for X" or "AI prompts for Y" framing — focus on the work output, not the AI tool
+- Avoid ideas that are just templates for sending messages (cold outreach, DMs, follow-ups) unless the audience genuinely needs a full library
+
+Instead, focus on the operational work itself:
+- Analysis frameworks, audit checklists, decision trees
+- Client-facing deliverables: proposals, briefs, reports, SOPs
+- Research and planning tools: swipe files of real examples, reference guides
+- Process automation: specific tool integrations (Notion + Zapier, Typeform + Slack, etc.)
+- Domain-specific workflows: pricing calculators (as guides), project scoping, onboarding flows, retrospectives
+
+Product categories — assign the BEST fit:
+- "prompt-packs"  → 20 AI prompts for a specific operational workflow (only when prompts are genuinely the best format)
+- "checklist"     → step-by-step checklist for a repeatable process (use for audits, launches, onboarding, reviews)
+- "swipe-file"    → library of real copy-ready examples (proposals, scripts, pricing tiers, case study structures)
+- "mini-guide"    → concise practitioner guide for one specific skill or framework (600-900 words, actionable)
+- "n8n-template"  → automation workflow connecting SPECIFIC named tools (e.g. "Typeform → Notion → Slack")
 
 IMPORTANT — spread categories across this batch of {count} ideas:
 - At least 1 must be "checklist"
 - At least 1 must be "swipe-file"
 - At least 1 must be "mini-guide"
-- Only use "prompt-packs" when AI prompts are genuinely the best format
-- Use "n8n-template" if the idea is clearly about automating a repetitive task
+- At most 4 may be "prompt-packs" (not the majority)
+- At least 1 should be "n8n-template" if the seed audience uses automation tools
 
 Return ONLY a valid JSON array, no other text. Schema:
 [

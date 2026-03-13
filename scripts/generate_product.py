@@ -46,7 +46,7 @@ def generate_product() -> dict:
 
     log("generate-product", f"Generating {category} for: \"{idea['title']}\"")
 
-    pid = product_id(idea["title"])
+    pid = product_id(idea["title"], category)
     assets_dir = f"products/{pid}/assets"
     ensure_dir(assets_dir)
 
@@ -60,6 +60,13 @@ def generate_product() -> dict:
         meta = _gen_mini_guide(idea, pid, assets_dir)
     elif category == "n8n-template":
         meta = _gen_n8n_template(idea, pid, assets_dir)
+
+    # Generate rich Gumroad description and store in meta
+    try:
+        meta["gumroad_description"] = _gen_gumroad_description(idea, meta)
+    except Exception as e:
+        log("generate-product", f"Warning: could not generate Gumroad description: {e}")
+        meta["gumroad_description"] = None
 
     write_file(f"products/{pid}/meta.json", json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
 
@@ -411,7 +418,7 @@ def _guide_readme(idea):
 def _gen_n8n_template(idea: dict, pid: str, assets_dir: str) -> dict:
     message = client.messages.create(
         model=MODEL,
-        max_tokens=8096,
+        max_tokens=16000,
         messages=[{
             "role": "user",
             "content": f"""Create a complete, importable n8n workflow template for: "{idea['title']}".
@@ -439,6 +446,12 @@ Format:
 Return ONLY valid JSON, no other text.""",
         }],
     )
+
+    if message.stop_reason == "max_tokens":
+        raise RuntimeError(
+            "n8n workflow response truncated at max_tokens — skipping this product. "
+            "Try an idea with fewer nodes or simpler logic."
+        )
 
     raw = message.content[0].text.strip()
     data = extract_json(raw, array=False)
@@ -493,6 +506,50 @@ def _n8n_readme(idea: dict, setup_steps: list, node_count: int) -> str:
 - `workflow.json` — Importable n8n workflow
 - `README.md` — This file
 """
+
+
+# ── Gumroad Description ──────────────────────────────────────────────────────
+
+def _gen_gumroad_description(idea: dict, meta: dict) -> str:
+    """Generate a rich, persuasive Gumroad product description (HTML)."""
+    category = meta.get("category", "prompt-packs")
+    item_count = meta.get("item_count", 0)
+
+    format_note = {
+        "prompt-packs": f"{item_count} prompts • Markdown + JSON • Works with ChatGPT, Claude, Gemini",
+        "checklist":    f"{item_count} checklist items • Markdown + JSON • Context for each step",
+        "swipe-file":   f"{item_count} copy-ready examples • Markdown + JSON • Usage notes included",
+        "mini-guide":   f"~800-word focused guide • Markdown • Quick-reference summary",
+        "n8n-template": f"{item_count}-node n8n workflow • Importable JSON • Setup guide included",
+    }.get(category, f"{item_count} items included")
+
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=1024,
+        messages=[{
+            "role": "user",
+            "content": f"""Write a compelling Gumroad product page description for this digital product.
+
+Product: {idea['title']}
+One-liner: {idea['description']}
+Format: {format_note}
+
+Requirements:
+- Open with a BOLD hook sentence that names the exact pain this solves (no generic fluff)
+- "Who this is for" section: 2-3 specific bullet personas (not vague "anyone who...")
+- "What's inside" section: itemized list with value framing, not just counts
+- One short closing line + simple CTA ("Download and use it today.")
+- Tone: direct, confident, peer-to-peer. Not hype, not corporate.
+- Length: 120-200 words total
+- Output: valid HTML only (p, strong, h3, ul, li tags). No markdown. No preamble.
+
+Start with: <p><strong>[hook sentence]</strong></p>""",
+        }],
+    )
+
+    desc = message.content[0].text.strip()
+    log("generate-product", "Generated Gumroad description")
+    return desc
 
 
 def main():

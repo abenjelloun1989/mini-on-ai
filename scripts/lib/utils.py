@@ -56,10 +56,18 @@ def slugify(text: str) -> str:
     return text
 
 
-def product_id(title: str) -> str:
+def product_id(title: str, category: str = "prompt-packs") -> str:
+    prefix_map = {
+        "prompt-packs": "prompts",
+        "checklist": "checklist",
+        "swipe-file": "swipe",
+        "mini-guide": "guide",
+        "n8n-template": "n8n",
+    }
+    prefix = prefix_map.get(category, "prompts")
     date = datetime.now().strftime("%Y%m%d")
     slug = slugify(title)[:40]
-    return f"prompts-{slug}-{date}"
+    return f"{prefix}-{slug}-{date}"
 
 
 def timestamp() -> str:

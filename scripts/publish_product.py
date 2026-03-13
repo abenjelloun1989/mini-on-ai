@@ -193,6 +193,9 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
     }
     short_desc = includes_map.get(category, f"{item_count} items included.")
 
+    # Use rich description if available, otherwise fall back to short desc
+    gumroad_desc = meta.get("gumroad_description") or f"{meta['description']} {short_desc}"
+
     msg = (
         f"🏷 <b>New product ready for Gumroad</b>\n"
         f"<a href='https://app.gumroad.com/products/new'>👉 Open Gumroad → New Product</a>\n\n"
@@ -200,8 +203,8 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
         f"📋 <b>Copy these fields:</b>\n\n"
         f"<b>Name:</b>\n"
         f"<code>{meta['title']}</code>\n\n"
-        f"<b>Description:</b>\n"
-        f"<code>{meta['description']} {short_desc}</code>\n\n"
+        f"<b>Description (rich HTML):</b>\n"
+        f"<code>{gumroad_desc}</code>\n\n"
         f"<b>Price:</b> <code>{price_str}</code>\n"
         f"<b>Type:</b> {cat_label}  •  <b>Items:</b> {item_count}\n\n"
         f"━━━━━━━━━━━━━━━━━\n"
@@ -210,6 +213,7 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
         f"☐ Paste Description\n"
         f"☐ Set Price to {price_str}\n"
         f"☐ Upload zip (next message)\n"
+        f"☐ Upload cover: <code>site/images/cover-default.png</code>\n"
         f"☐ Click Publish\n"
         f"☐ Copy product URL\n\n"
         f"<b>Then reply:</b>\n"
@@ -233,7 +237,7 @@ def update_existing_listing(pid: str, meta: dict) -> None:
     """Update an existing Gumroad listing via API and re-upload the zip."""
     token = _token()
     gumroad_id = meta.get("gumroad_product_id")
-    description = _build_description(meta)
+    description = meta.get("gumroad_description") or _build_description(meta)
     price_cents = meta.get("price") or int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
 
     log("publish", f"Updating Gumroad product {gumroad_id}...")

@@ -2,46 +2,30 @@
 
 Last updated: 2026-03-13
 
-## Immediate — Activate Gumroad publishing
+## Immediate — Grow the catalog
 
-1. Create a Gumroad account at gumroad.com
-2. Go to Settings → Advanced → Access token → create one
-3. Add to `.env`:
-   ```
-   GUMROAD_API_TOKEN=your_token_here
-   PRODUCT_PRICE_CENTS=500
-   ```
-4. Publish existing products manually:
-   ```bash
-   python3 scripts/publish_product.py --id prompts-ats-optimized-resume-bullet-rewriter-by--20260312
-   python3 scripts/publish_product.py --id prompts-shopify-product-description-packs-for-e--20260312
-   python3 scripts/publish_product.py --id prompts-meeting-notes-to-action-items-fast-20260312
-   ```
-5. New products will publish automatically via the pipeline
+The pipeline and site are fully operational. Run the daemon and approve ideas until you have 10+ products.
 
-## Immediate — Set up domain + email
+Good seeds to run:
+```
+/run freelancing
+/run coding
+/run marketing
+/run operations
+/run design
+```
 
-1. **Buy** `mini-on-ai.com` at namecheap.com
-2. **DNS at Namecheap** — add these records:
-   ```
-   A     @    185.199.108.153
-   A     @    185.199.109.153
-   A     @    185.199.110.153
-   A     @    185.199.111.153
-   CNAME www  abenjelloun1989.github.io
-   ```
-3. **GitHub Pages** → Settings → Pages → Custom domain → `mini-on-ai.com` → Save → Enable HTTPS
-4. **Zoho Mail** (free) → zoho.com/mail → Add domain `mini-on-ai.com` → Add MX records → Create `hello@mini-on-ai.com`
+Each new product will:
+1. Be generated with diverse category (checklist, swipe-file, guide, n8n-template, or prompts)
+2. Get a rich Claude-written Gumroad description (stored in meta.json)
+3. Send a Telegram notification with tap-to-copy fields + zip attachment
+4. You create the Gumroad listing in ~30 sec, reply `/seturl {id} {url}`
+5. Site updates and pushes automatically
 
-## Next — Grow the catalog
+## Upload branded cover to each Gumroad product
 
-The daemon is running. Approve ideas via Telegram until you have 8-10 products.
-Good seeds:
-  /run marketing
-  /run freelancing
-  /run writing
-  /run coding
-  /run productivity
+The generic cover is at: `site/images/cover-default.png`
+Upload it to each product's Gumroad listing as the cover image.
 
 ## Then — M11 Phase B: Reddit distribution
 
