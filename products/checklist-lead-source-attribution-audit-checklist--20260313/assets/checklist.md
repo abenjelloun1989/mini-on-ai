@@ -6,66 +6,66 @@
 
 ## Preparation
 
-- [ ] **Define the audit scope and date range before touching any data**
-  *Without a fixed time window and defined channels, you risk comparing inconsistent data sets. Choose a 30, 60, or 90-day range and document it upfront.*
+- [ ] **Define the audit scope and time range before touching any data**
+  *Establishing a clear date range (e.g., last 90 days) and which channels are in scope prevents scope creep and ensures you're comparing apples to apples across all reports.*
 
-- [ ] **Inventory every active traffic source and campaign currently running**
-  *You need a complete list of paid, organic, email, social, and partner channels to cross-reference against what is actually appearing in your attribution reports.*
+- [ ] **Document your expected lead sources and their corresponding UTM parameter conventions**
+  *Without a source-of-truth for what UTM values should look like (e.g., utm_source=linkedin, utm_medium=paid-social), you cannot identify inconsistencies or typos in the wild.*
 
-- [ ] **Export your UTM parameter naming convention documentation and flag any gaps**
-  *Inconsistent naming (e.g., 'Facebook' vs 'facebook' vs 'FB') causes traffic to fragment into multiple source buckets, distorting your lead counts per channel.*
+- [ ] **Export your current UTM taxonomy spreadsheet or build one if it doesn't exist**
+  *A UTM taxonomy document is the baseline for every audit step. If one doesn't exist, creating it now exposes structural gaps before you analyze any data.*
 
-- [ ] **Confirm that GA4 data streams are actively firing on all landing pages and conversion pages**
-  *A missing or broken data stream silently drops tracking on entire page groups, causing leads to appear unattributed or fall into direct traffic.*
+- [ ] **Confirm that HubSpot tracking code or GA4 tag is firing correctly on all landing pages and thank-you pages**
+  *Missing or misfiring tracking scripts mean conversions are never recorded, making attribution incomplete at the most fundamental level. Use Google Tag Assistant or HubSpot's tracking status tool to verify.*
 
-- [ ] **Verify that the HubSpot tracking code is installed on every page that hosts a form or CTA**
-  *If HubSpot's tracking script is absent from even one high-traffic landing page, contact records will be created without original source data, permanently breaking attribution for those leads.*
+- [ ] **Verify that GA4 data streams are connected to the correct property and that events are flowing in real time**
+  *A misconfigured data stream silently drops data. Check the GA4 DebugView and the Realtime report to confirm events like form_submit and page_view are being captured.*
 
 ## Execution
 
-- [ ] **Pull a HubSpot contacts report filtered by 'Original Source = Direct Traffic' and sort by volume**
-  *An unusually high percentage of direct traffic is a red flag that UTM parameters are being stripped, links are untagged, or redirects are dropping query strings.*
+- [ ] **Pull the 'Original Source' and 'Latest Source' breakdown report in HubSpot for all contacts created in your audit period**
+  *Comparing original versus latest source reveals if campaigns are getting credit for assisted conversions or if the first-touch source is being overwritten incorrectly.*
 
-- [ ] **Click every active paid ad URL and confirm UTM parameters survive the redirect chain to the final landing page**
-  *301 redirects, link shorteners, or misconfigured landing page platforms frequently strip UTM parameters, causing paid traffic to register as direct or organic.*
+- [ ] **Filter HubSpot contacts by 'Original Source = Direct Traffic' and investigate what percentage of total leads this represents**
+  *An unusually high direct traffic percentage (above 20-30%) is a red flag that UTM parameters are being stripped, links are untagged, or dark social traffic is being miscategorized.*
 
-- [ ] **Test each active form submission using a dedicated test email and verify the contact record populates with the correct original source in HubSpot**
-  *This confirms the end-to-end tracking chain is working, not just the URL tagging. It catches issues where the HubSpot cookie is not being read at the moment of form submission.*
+- [ ] **Run a GA4 Exploration report using the UTM source/medium dimensions and filter for rows where source contains 'not set' or medium equals 'none'**
+  *'Not set' and '(none)' values indicate sessions where tracking parameters were absent or failed to pass through, representing a direct measurement gap in your attribution model.*
 
-- [ ] **Cross-reference GA4 session counts by source/medium against HubSpot contact creation counts by original source for the same date range**
-  *Large discrepancies between GA4 sessions and HubSpot contacts from the same source indicate a broken handoff, such as forms not connected to HubSpot or cookie consent blocking tracking.*
+- [ ] **Audit all active paid campaign URLs in Google Ads, LinkedIn Campaign Manager, and Meta Ads Manager to confirm every destination URL contains a complete UTM string**
+  *Paid campaigns without UTM parameters will be attributed to direct or organic traffic in both HubSpot and GA4, inflating those channels and hiding true paid media performance.*
 
-- [ ] **Audit the HubSpot 'Other Campaigns' and 'Offline Sources' buckets to identify misrouted contacts**
-  *These catch-all buckets often contain leads with malformed UTMs or unrecognized source values. Reviewing them reveals systemic tagging errors across specific campaigns or channels.*
+- [ ] **Check for UTM parameter case inconsistencies by searching your HubSpot contacts for duplicate source variations such as 'LinkedIn', 'linkedin', and 'LinkedIn-paid'**
+  *GA4 and HubSpot are case-sensitive for UTM values. Mixed casing fragments your data into multiple source buckets, making it impossible to accurately measure a single channel's total contribution.*
 
-- [ ] **Check GA4 for sessions tagged with (not set) as the campaign or source value and trace back to the originating URLs**
-  *'Not set' in GA4 means the parameter was expected but not received, commonly caused by auto-tagged Google Ads links conflicting with manual UTMs or broken campaign configurations.*
+- [ ] **Test five to ten recent form submission thank-you page URLs to confirm UTM parameters persist through the conversion flow**
+  *UTM parameters can be dropped by redirects, single-page application routing, or misconfigured HubSpot forms. If parameters don't reach the thank-you page, the conversion is attributed incorrectly.*
 
-- [ ] **Audit your Google Ads and Meta Ads accounts to confirm auto-tagging settings align with your GA4 and HubSpot integration setup**
-  *Google Ads auto-tagging (gclid) and manual UTMs can conflict if both are applied simultaneously, causing duplicate or misattributed sessions in GA4.*
+- [ ] **Cross-reference lead volume reported in HubSpot against conversion events recorded in GA4 for the same time period and channels**
+  *Significant discrepancies between HubSpot and GA4 conversion counts reveal integration gaps, double-counting issues, or events that are firing in one platform but not the other.*
 
-- [ ] **Review all email campaign links in HubSpot to ensure utm_medium=email and utm_source values are consistently applied**
-  *Email links without proper UTMs will attribute leads to direct traffic, making email appear to underperform while inflating direct channel numbers.*
+- [ ] **Inspect your HubSpot-to-GA4 integration settings to confirm that HubSpot form submissions are being passed as GA4 conversion events**
+  *Without explicit event bridging, GA4 only records the page visit but not the form completion as a conversion, causing your GA4 attribution paths to be incomplete.*
 
-- [ ] **Inspect the HubSpot attribution report for any conversion events mapped to the wrong deal or contact lifecycle stage**
-  *Misaligned conversion events cause the model to credit the wrong touchpoint, skewing first-touch or multi-touch attribution data used for budget decisions.*
+- [ ] **Review offline conversion imports if your team uses offline lead scoring or CRM syncs and verify that source data is being uploaded with each batch**
+  *Offline conversions imported without source information default to unattributed, which distorts your channel-level ROI calculations and makes pipeline attribution unreliable.*
 
-- [ ] **Validate that offline lead sources such as events, calls, and referrals are being manually logged in HubSpot with a standardized source property**
-  *Offline leads without a logged source default to unknown or direct, understating the ROI of offline channels and overstating digital channel efficiency.*
+- [ ] **Identify any third-party tools such as Calendly, Typeform, or Drift that collect leads and confirm they are passing UTM parameters back to HubSpot via hidden fields**
+  *Third-party tools are a common attribution black hole. If UTM values are not captured in hidden form fields and mapped to HubSpot contact properties, those leads will always appear as direct traffic.*
 
 ## Review
 
-- [ ] **Compare the total lead volume from your CRM against leads captured in GA4 conversion events to calculate your attribution coverage rate**
-  *This percentage tells you how much of your pipeline has traceable attribution. A rate below 80% signals significant blind spots that are distorting your channel performance data.*
+- [ ] **Compare channel-level lead counts in your attribution report to actual spend data from your ad platforms and flag any channels showing leads with zero associated spend**
+  *Leads appearing under a paid channel with no corresponding spend often indicate misattribution from untagged organic posts or brand mentions being incorrectly labeled as paid.*
 
-- [ ] **Document every broken or inconsistent UTM pattern found and create a standardized UTM taxonomy to enforce going forward**
-  *Without a documented and enforced standard, the same errors will recur with each new campaign. A shared taxonomy spreadsheet or UTM builder tool prevents future fragmentation.*
+- [ ] **Categorize all identified issues by severity (data loss, misattribution, or cosmetic) and assign an owner and deadline to each fix**
+  *Not all attribution issues have equal business impact. Prioritizing by severity ensures the fixes that most distort pipeline and revenue reporting are resolved first.*
 
-- [ ] **Reassign or update misattributed contact source properties in HubSpot where the correct source can be confidently determined**
-  *Cleaning historical records where attribution is provably wrong improves the accuracy of lifecycle reports and reduces distortion in closed-won analysis.*
+- [ ] **Document all findings in a shared audit report including screenshots, affected contact counts, and estimated attribution impact**
+  *A written audit report creates accountability, provides a before-and-after baseline for measuring improvement, and communicates the business case for resourcing the fixes to stakeholders.*
 
-- [ ] **Create a recurring monthly attribution health dashboard in GA4 or HubSpot that flags direct traffic spikes and untagged sessions automatically**
-  *A proactive monitoring dashboard catches new tracking breaks within days rather than quarters, preventing months of corrupted data from compounding before anyone notices.*
+- [ ] **Update your UTM taxonomy document with any new conventions discovered during the audit and share it with all teams who create campaign links**
+  *Attribution errors are mostly a process problem, not a technical one. Keeping the taxonomy document current and distributed prevents the same inconsistencies from reappearing next quarter.*
 
-- [ ] **Brief your demand generation, content, and paid media teams on the audit findings and distribute the updated UTM naming convention with mandatory adoption**
-  *Attribution breaks most often originate from human error across distributed teams. Shared accountability and clear documentation reduce repeat errors and maintain data integrity over time.*
+- [ ] **Schedule a recurring monthly UTM audit using this checklist and set a HubSpot or GA4 alert for when direct traffic exceeds your defined threshold**
+  *Attribution decay is continuous as new campaigns, tools, and team members are added. A monthly audit cadence and automated alerts catch new issues before they compound into quarters of bad data.*

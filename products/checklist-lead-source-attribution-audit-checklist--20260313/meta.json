@@ -9,7 +9,7 @@
     "lead analytics"
   ],
   "item_count": 20,
-  "created_at": "2026-03-13T14:18:43.663580+00:00",
+  "created_at": "2026-03-13T14:18:47.093533+00:00",
   "status": "published",
   "package_path": "products/checklist-lead-source-attribution-audit-checklist--20260313/package.zip",
   "site_path": "site/products/checklist-lead-source-attribution-audit-checklist--20260313.html",
@@ -17,5 +17,5 @@
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "LEAD SOURCE ATTRIBUTION AUDIT CHECKLIST FOR GROWTH MARKETERS\n\nYou're losing money on marketing because your UTM parameters are broken and you don't know which channels actually convert.\n\nWHO THIS IS FOR\n\n— Growth marketers managing 5+ lead sources who can't trust their conversion data\n— Demand gen leads responsible for reporting accuracy to leadership\n— Marketing ops pros auditing HubSpot or GA4 before a platform migration\n\nWHAT'S INSIDE\n\n— 20 specific audit steps you run in 90 minutes, not weeks\n— UTM validation framework that catches 80% of tracking gaps immediately\n— Conversion misattribution checks for common HubSpot/GA4 sync errors\n— Markdown checklist for daily use + JSON export for your martech stack\n— Plain-English context for each step so you know why it matters\n\nFix your lead source reporting. Stop guessing where conversions come from.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "LEAD SOURCE ATTRIBUTION AUDIT CHECKLIST FOR GROWTH MARKETERS\n\nYour UTM parameters are probably broken, and you don't know which marketing channels actually generated revenue.\n\nThis 20-item checklist walks you through the exact steps to audit your tracking setup, catch misattributed conversions, and plug the gaps in your HubSpot or GA4 reporting. Each item includes the context you need to fix it yourself—no consultant required.\n\nWHO THIS IS FOR\n\n— Growth marketers who own demand gen and need to prove what's working\n— RevOps professionals cleaning up lead source data after a tool migration\n— Marketing leaders who suspect their attribution model is silently killing budgets\n\nWHAT'S INSIDE\n\n— UTM parameter naming conventions that actually stick across campaigns\n— Common HubSpot and GA4 configuration mistakes that hide your best channels\n— Lead source sync validation steps to catch data gaps before they become reports\n— Checklist in Markdown and JSON formats for easy sharing with your team\n\nStop guessing which channels work.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
