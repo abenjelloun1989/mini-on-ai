@@ -105,6 +105,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
         run["failed_stage"] = stage
         run["error"] = error
         run["duration_seconds"] = round(time.time() - start_time)
+        run["tokens"] = get_run_token_summary(run["id"])
         pipeline_log["runs"].append(run)
         write_json("data/pipeline-log.json", pipeline_log)
         try:
@@ -210,6 +211,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
         "gumroad_url": gumroad_url,
     }
     run["duration_seconds"] = duration
+    run["tokens"] = get_run_token_summary(run["id"])
 
     pipeline_log["runs"].append(run)
     write_json("data/pipeline-log.json", pipeline_log)

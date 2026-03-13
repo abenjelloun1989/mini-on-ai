@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-from lib.utils import read_json, write_json, timestamp, log, ROOT
+from lib.utils import read_json, write_json, timestamp, log, ROOT, get_run_token_summary
 
 DAEMON_STATE = ROOT / "data/daemon-state.json"
 
@@ -243,7 +243,7 @@ def cmd_status() -> str:
         except Exception:
             pass
 
-        return (
+        msg = (
             f"📊 <b>Factory Status</b>\n\n"
             f"Products published: <b>{product_count}</b>\n"
             f"Total runs: {len(runs)}\n\n"
@@ -251,8 +251,18 @@ def cmd_status() -> str:
             f"Product: {product_name}\n"
             f"Duration: {duration}s\n"
             f"At: {started} UTC"
-            f"{approval_note}"
         )
+
+        # Add token usage if available
+        if last and last.get("tokens"):
+            tokens = last["tokens"]
+            cost = tokens.get("estimated_cost_usd", 0)
+            inp = tokens.get("input_tokens", 0)
+            out = tokens.get("output_tokens", 0)
+            msg += f"\n\n💰 Cost: ${cost:.4f}\n📊 Tokens: {inp:,} in / {out:,} out"
+
+        msg += approval_note
+        return msg
     except Exception as e:
         return f"❌ Error reading status: {e}"
 

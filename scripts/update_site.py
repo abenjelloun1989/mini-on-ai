@@ -171,6 +171,7 @@ def build_product_page(meta: dict) -> str:
       <a href="../index.html" class="site-logo">
         <img src="../logo.svg" alt="mini-on-ai">
       </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">☀️</button>
     </div>
   </header>
 
@@ -252,7 +253,10 @@ def rebuild_index(catalog: dict) -> str:
       <a href="index.html" class="site-logo">
         <img src="logo.svg" alt="mini-on-ai">
       </a>
-      <span class="product-count">{count} product{'s' if count != 1 else ''}</span>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <span class="product-count">{count} product{'s' if count != 1 else ''}</span>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">☀️</button>
+      </div>
     </div>
   </header>
 
@@ -277,6 +281,39 @@ def rebuild_index(catalog: dict) -> str:
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
+
+  <script>
+    (function() {{
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {{
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {{
+          document.documentElement.classList.add('dark-mode');
+          toggle.textContent = '🌙';
+        }} else {{
+          document.documentElement.classList.remove('dark-mode');
+          toggle.textContent = '☀️';
+        }}
+      }}
+
+      function toggleDarkMode() {{
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '🌙' : '☀️';
+      }}
+
+      if (toggle) {{
+        toggle.addEventListener('click', toggleDarkMode);
+      }}
+
+      initDarkMode();
+    }})();
+  </script>
 </body>
 </html>
 """
