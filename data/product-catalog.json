@@ -13,12 +13,11 @@
       ],
       "item_count": 1,
       "prompt_count": 1,
+      "status": "published",
       "created_at": "2026-03-13T14:29:37.145915+00:00",
-      "package_path": "products/guide-inbox-zero-triage-rules-for-high-volume--20260313/package.zip",
       "site_path": "site/products/guide-inbox-zero-triage-rules-for-high-volume--20260313.html",
-      "thumbnail": null,
       "gumroad_url": null,
-      "price": null
+      "thumbnail": null
     },
     {
       "id": "checklist-crm-data-hygiene-audit-checklist-for-sal-20260313",
@@ -32,12 +31,11 @@
       ],
       "item_count": 20,
       "prompt_count": 20,
+      "status": "published",
       "created_at": "2026-03-13T14:28:30.830477+00:00",
-      "package_path": "products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313/package.zip",
       "site_path": "site/products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.html",
-      "thumbnail": null,
-      "gumroad_url": null,
-      "price": null
+      "gumroad_url": "https://kirozdor.gumroad.com/l/utowwv",
+      "thumbnail": null
     },
     {
       "id": "checklist-lead-source-attribution-audit-checklist--20260313",

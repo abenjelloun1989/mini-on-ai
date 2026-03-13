@@ -85,6 +85,7 @@ def request_approval(idea: dict) -> bool:
 def run_pipeline(seed: str = "", skip_scan: bool = False):
     start_time = time.time()
 
+    import os as _os
     run = {
         "id": f"run-{int(time.time())}",
         "started_at": timestamp(),
@@ -93,7 +94,9 @@ def run_pipeline(seed: str = "", skip_scan: bool = False):
         "error": None,
         "product": None,
         "duration_seconds": None,
+        "tokens": None,
     }
+    _os.environ["PIPELINE_RUN_ID"] = run["id"]
 
     pipeline_log = read_json("data/pipeline-log.json")
 
