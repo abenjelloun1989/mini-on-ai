@@ -343,8 +343,8 @@
       "score": 88,
       "rationale": "Proposal templates are perpetually in demand by freelancers at all levels, the project-type segmentation adds real differentiation, and AI can generate varied yet structured proposal formats with high consistency.",
       "selected": true,
-      "status": null,
-      "product_id": null,
+      "status": "produced",
+      "product_id": "swipe-freelance-proposal-structure-swipe-file--20260313",
       "generated_at": "2026-03-13T13:02:15.452411+00:00",
       "source": "trend-scan"
     },

@@ -1,6 +1,25 @@
 {
   "products": [
     {
+      "id": "swipe-freelance-proposal-structure-swipe-file--20260313",
+      "title": "Freelance Proposal Structure Swipe File by Project Type",
+      "description": "Gives independent freelancers 12 real-format proposal structures across web design, copywriting, strategy, and development engagements so they stop writing proposals from scratch.",
+      "category": "swipe-file",
+      "tags": [
+        "proposals",
+        "sales",
+        "client-work"
+      ],
+      "item_count": 8,
+      "prompt_count": 8,
+      "created_at": "2026-03-13T13:07:00.055668+00:00",
+      "package_path": "products/swipe-freelance-proposal-structure-swipe-file--20260313/package.zip",
+      "site_path": "site/products/swipe-freelance-proposal-structure-swipe-file--20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
       "title": "Late Invoice Follow-Up Sequence for Freelancers",
       "description": "Freelancers chasing unpaid invoices get 6 escalating, professionally worded follow-up message templates that recover payment without burning the client relationship.",
