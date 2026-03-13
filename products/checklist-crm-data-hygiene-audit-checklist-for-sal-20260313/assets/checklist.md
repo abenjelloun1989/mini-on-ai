@@ -1,0 +1,71 @@
+# CRM Data Hygiene Audit Checklist for Sales Operations
+
+> Sales ops managers get a step-by-step audit process to find and fix duplicate records, missing fields, and stale opportunities that corrupt pipeline reporting.
+
+---
+
+## Preparation
+
+- [ ] **Define the audit scope and set a recurring audit cadence (monthly, quarterly)**
+  *Without a defined scope and schedule, audits become reactive fire-drills rather than proactive hygiene. Establish which CRM objects (Contacts, Leads, Accounts, Opportunities) are in scope before touching any data.*
+
+- [ ] **Pull a full data export of all active pipeline records into a staging spreadsheet or BI tool**
+  *Working from a snapshot prevents accidental live edits during analysis and gives you a baseline to measure improvement against after remediation.*
+
+- [ ] **Document all required and business-critical fields for each CRM object before beginning the audit**
+  *You cannot audit for completeness without first agreeing on which fields are mandatory. Align with sales leadership on the minimum viable data set needed for accurate reporting.*
+
+- [ ] **Assign a data owner or DRI (Directly Responsible Individual) for each CRM object being audited**
+  *Audits stall when no one owns remediation. Assigning ownership before execution ensures findings get acted on, not just documented.*
+
+## Execution
+
+- [ ] **Run a duplicate detection report using your CRM's native tool or a third-party app (e.g., Dedupely, DemandTools) filtering on email, company name, and phone number**
+  *Duplicate records inflate contact counts, split activity history, and cause reps to work the same prospect twice. Email and phone are the highest-confidence matching keys.*
+
+- [ ] **Merge or delete confirmed duplicate Contact and Lead records, preserving the record with the most complete activity history as the master**
+  *Keeping the richer record maintains historical context for the rep while eliminating the noise that duplicates create in segmentation and reporting.*
+
+- [ ] **Identify and flag all Opportunities missing a Close Date, Stage, or primary Contact role**
+  *Opportunities without these three fields are invisible in pipeline forecasts or distort weighted pipeline calculations, leading to inaccurate revenue projections.*
+
+- [ ] **Flag all Opportunities with a Close Date in the past that are still marked as Open and have had no activity logged in the last 30 days**
+  *Stale opportunities with past close dates are the single biggest source of pipeline inflation. They make forecast calls unreliable and erode leadership trust in CRM data.*
+
+- [ ] **Audit Opportunity Stage distribution and identify any stages with a disproportionately high record count compared to historical averages**
+  *Stage pile-ups often indicate reps are parking deals at a comfortable stage rather than advancing or closing them out, which masks true pipeline health.*
+
+- [ ] **Check all Lead and Contact records for missing or invalid email addresses using a regex validation report or email verification tool (e.g., NeverBounce, ZeroBounce)**
+  *Invalid emails break marketing automation sequences, skew deliverability rates, and prevent reps from following up. Even one bad character in an email field can cause silent failures.*
+
+- [ ] **Identify all Account records missing Industry, Company Size, or Owner fields and create a remediation task queue for the owning rep**
+  *These fields drive segmentation, territory assignments, and ICP scoring. Accounts missing them fall through the cracks of automated workflows and reporting filters.*
+
+- [ ] **Audit Lead-to-Contact conversion rates and identify Leads older than 90 days that have never been contacted or converted**
+  *Unconverted, untouched Leads accumulate in the database, inflate MQL counts, and signal either a routing failure or a rep follow-up gap that needs to be addressed.*
+
+- [ ] **Verify that all Opportunities above a defined ARR threshold have at least one associated Activity (call, email, or meeting) logged within the last 14 days**
+  *High-value deals without recent activity are at risk of going dark. This check surfaces deals that need manager attention before they slip or are lost silently.*
+
+- [ ] **Review picklist and dropdown field values for non-standard entries caused by free-text overrides or legacy imports (e.g., 'SMB', 'smb', 'Small Biz' all meaning the same segment)**
+  *Inconsistent picklist values break grouping in reports and dashboards. Standardizing them ensures that filters and roll-ups capture every relevant record.*
+
+- [ ] **Cross-reference CRM Opportunity data against your ERP or billing system to identify closed-won deals that were never marked as closed in the CRM**
+  *Revenue that exists in billing but not in CRM causes quota attainment and win-rate calculations to be understated, demotivating reps and misleading leadership.*
+
+## Review
+
+- [ ] **Generate a field completion rate scorecard by rep, showing the percentage of required fields populated across their owned records**
+  *Individual-level visibility makes coaching conversations specific and data-driven. Reps cannot improve hygiene habits without knowing where their personal gaps are.*
+
+- [ ] **Summarize audit findings into a prioritized remediation backlog ranked by business impact (pipeline distortion, reporting accuracy, automation failures)**
+  *Not all data issues are equally urgent. A prioritized backlog ensures the team fixes the problems that most directly affect revenue decisions first.*
+
+- [ ] **Present audit results and a before-and-after data quality score to sales leadership within 5 business days of completing execution**
+  *Leadership visibility creates accountability and justifies the time investment. A quantified improvement score (e.g., field completion rate up from 61% to 84%) builds the case for ongoing hygiene investment.*
+
+- [ ] **Implement or update CRM validation rules and required-field enforcement based on gaps identified during the audit**
+  *Fixing existing bad data without preventing future bad data entry is a short-term fix. Validation rules make it structurally harder to save incomplete records going forward.*
+
+- [ ] **Schedule a 30-day post-audit check-in to measure whether data quality metrics have held or degraded, and adjust enforcement rules accordingly**
+  *Data hygiene is a continuous process, not a one-time project. The 30-day check-in confirms whether process changes are sticking and identifies any new failure patterns before they compound.*

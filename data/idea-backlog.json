@@ -475,24 +475,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773411457-0",
-      "title": "Lead Qualification Scorecard for B2B Sales Reps",
-      "description": "B2B sales reps use this weighted scoring framework to objectively rank inbound and outbound leads by fit, urgency, and buying authority before wasting time on discovery calls.",
-      "category": "checklist",
-      "tags": [
-        "lead qualification",
-        "B2B sales",
-        "pipeline management"
-      ],
-      "score": 86,
-      "rationale": "Acute need from B2B sales teams, concrete scoring framework offers differentiation, and checklists are highly generatable with consistent quality.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:37.724430+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773411457-1",
       "title": "Lead Source Attribution Audit Checklist for Growth Marketers",
       "description": "Growth marketers use this step-by-step audit to identify broken UTM tracking, misattributed conversions, and gaps in their lead source reporting inside HubSpot or GA4.",
@@ -684,9 +666,9 @@
       ],
       "score": 85,
       "rationale": "Universal RevOps pain point with high urgency, specific audit methodology differentiates from generic best practices, and step-by-step checklists are reliably generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "checklist-crm-data-hygiene-audit-checklist-for-sal-20260313",
       "generated_at": "2026-03-13T14:17:38.094626+00:00",
       "source": "trend-scan"
     },
@@ -781,24 +763,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773411458-7",
-      "title": "Lead Magnet to Demo Conversion Audit Checklist",
-      "description": "SaaS marketing managers get a granular audit checklist to diagnose exactly where MQLs drop off between content download and booked demo across landing page, email, and SDR handoff.",
-      "category": "checklist",
-      "tags": [
-        "conversion-audit",
-        "mql",
-        "saas-marketing"
-      ],
-      "score": 87,
-      "rationale": "Urgent pain point in lead-to-demo conversion, specific enough to differentiate from generic funnels, and highly generatable diagnostic checklist format.",
-      "selected": true,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:38.102271+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773411458-8",
       "title": "Sales Discovery Question Bank Swipe File by Buyer Role",
       "description": "Account executives get a role-organized library of 60 proven discovery questions segmented by economic buyer, champion, and end user so every call uncovers real pain fast.",
@@ -832,6 +796,42 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-0",
+      "title": "Lead Qualification Scorecard for B2B Sales Reps",
+      "description": "B2B sales reps use this weighted scoring framework to objectively rank inbound and outbound leads by fit, urgency, and buying authority before wasting time on discovery calls.",
+      "category": "checklist",
+      "tags": [
+        "lead qualification",
+        "B2B sales",
+        "pipeline management"
+      ],
+      "score": 86,
+      "rationale": "Acute need from B2B sales teams, concrete scoring framework offers differentiation, and checklists are highly generatable with consistent quality.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.724430+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-7",
+      "title": "Lead Magnet to Demo Conversion Audit Checklist",
+      "description": "SaaS marketing managers get a granular audit checklist to diagnose exactly where MQLs drop off between content download and booked demo across landing page, email, and SDR handoff.",
+      "category": "checklist",
+      "tags": [
+        "conversion-audit",
+        "mql",
+        "saas-marketing"
+      ],
+      "score": 87,
+      "rationale": "Urgent pain point in lead-to-demo conversion, specific enough to differentiate from generic funnels, and highly generatable diagnostic checklist format.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.102271+00:00",
       "source": "trend-scan"
     },
     {

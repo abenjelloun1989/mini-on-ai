@@ -1,0 +1,18 @@
+[
+  {
+    "ts": "2026-03-13T14:28:30.828170+00:00",
+    "run_id": "run-1773412047",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 216,
+    "output_tokens": 1926
+  },
+  {
+    "ts": "2026-03-13T14:28:34.329449+00:00",
+    "run_id": "run-1773412047",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 245,
+    "output_tokens": 223
+  }
+]

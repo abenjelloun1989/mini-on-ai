@@ -1,0 +1,21 @@
+{
+  "id": "checklist-crm-data-hygiene-audit-checklist-for-sal-20260313",
+  "title": "CRM Data Hygiene Audit Checklist for Sales Operations",
+  "description": "Sales ops managers get a step-by-step audit process to find and fix duplicate records, missing fields, and stale opportunities that corrupt pipeline reporting.",
+  "category": "checklist",
+  "tags": [
+    "crm",
+    "data-hygiene",
+    "sales-operations"
+  ],
+  "item_count": 20,
+  "created_at": "2026-03-13T14:28:30.830477+00:00",
+  "status": "published",
+  "package_path": "products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313/package.zip",
+  "site_path": "site/products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Your CRM is lying to your sales team right now.\n\nDuplicate records, incomplete fields, and zombie opportunities are tanking your pipeline visibility—and you probably don't know the extent of it until forecasting breaks.\n\nThis checklist walks you through a systematic audit that catches what your CRM won't flag for you. You'll identify data rot, prioritize fixes, and rebuild reporting you can actually trust.\n\nWHO THIS IS FOR\n\n— Sales ops managers inheriting messy databases with no documentation\n— RevOps leaders prepping for enterprise software migrations\n— Sales leadership who know their numbers feel off but can't pinpoint why\n\nWHAT'S INSIDE\n\n— 20 audit steps covering duplicate detection, field validation, and opportunity freshness\n— Markdown checklist format (use it now) plus exportable JSON (integrate it into your workflow)\n— Plain-English context for each step so you know exactly why it matters and what to look for\n\nOne afternoon. One checklist. Pipeline reporting that works.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
