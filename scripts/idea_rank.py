@@ -20,7 +20,7 @@ import anthropic
 from lib.utils import read_json, write_json, log, extract_json
 
 client = anthropic.Anthropic()
-MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
+MODEL = "claude-haiku-4-5-20251001"  # scoring task — Haiku is sufficient
 
 
 def idea_rank():
@@ -39,7 +39,7 @@ def idea_rank():
 
         message = client.messages.create(
             model=MODEL,
-            max_tokens=2048,
+            max_tokens=1024,
             messages=[
                 {
                     "role": "user",

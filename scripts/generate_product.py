@@ -84,7 +84,7 @@ def generate_product() -> dict:
 def _gen_prompt_pack(idea: dict, pid: str, assets_dir: str) -> dict:
     message = client.messages.create(
         model=MODEL,
-        max_tokens=8096,
+        max_tokens=6144,
         messages=[{
             "role": "user",
             "content": f"""Create a professional prompt pack titled "{idea['title']}".
@@ -169,7 +169,7 @@ def _prompts_readme(idea, count):
 def _gen_checklist(idea: dict, pid: str, assets_dir: str) -> dict:
     message = client.messages.create(
         model=MODEL,
-        max_tokens=4096,
+        max_tokens=3072,
         messages=[{
             "role": "user",
             "content": f"""Create a professional actionable checklist titled "{idea['title']}".
@@ -525,7 +525,7 @@ def _gen_gumroad_description(idea: dict, meta: dict) -> str:
     }.get(category, f"{item_count} items included")
 
     message = client.messages.create(
-        model=MODEL,
+        model="claude-haiku-4-5-20251001",  # copywriting task — Haiku is sufficient
         max_tokens=1024,
         messages=[{
             "role": "user",
