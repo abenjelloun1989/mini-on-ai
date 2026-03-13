@@ -198,7 +198,7 @@
       ],
       "score": 91,
       "rationale": "Unpaid invoices are a near-universal freelancer pain point with high urgency, the escalating sequence format is highly specific and underserved, and AI excels at generating professionally calibrated email copy with consistent tone progression.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
       "generated_at": "2026-03-13T11:38:07.338609+00:00",
@@ -277,24 +277,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773401887-7",
-      "title": "Testimonial and Case Study Request Scripts for Freelancers",
-      "description": "Freelancers who awkwardly avoid asking for social proof get 12 ready-to-send scripts for requesting testimonials, LinkedIn recommendations, and mini case studies at the perfect moment in the client lifecycle.",
-      "category": "swipe-file",
-      "tags": [
-        "social-proof",
-        "testimonials",
-        "case-studies"
-      ],
-      "score": 88,
-      "rationale": "Social proof is critical for freelancer growth yet asking for it is widely avoided, the multi-format script variety is distinctive, and AI generates polished, context-sensitive request messages very reliably.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T11:38:07.361648+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773401887-8",
       "title": "Subcontractor Briefing Prompts for Freelance Agency Owners",
       "description": "Freelancers who delegate work to subcontractors get 20 AI prompts that generate precise creative briefs, quality benchmarks, and revision guidelines to prevent costly miscommunication.",
@@ -328,6 +310,204 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T11:38:07.371803+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-0",
+      "title": "Freelance Project Profitability Audit Checklist",
+      "description": "Helps freelancers retrospectively analyze completed projects to identify where hours bled, scope crept, and margins collapsed so they can price the next one accurately.",
+      "category": "checklist",
+      "tags": [
+        "pricing",
+        "project-management",
+        "profitability"
+      ],
+      "score": 80,
+      "rationale": "Retrospective profitability auditing is an underleveraged but high-need area for freelancers, and AI can produce detailed, logically sequenced audit checklist steps with good consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.447366+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-1",
+      "title": "Freelance Proposal Structure Swipe File by Project Type",
+      "description": "Gives independent freelancers 12 real-format proposal structures across web design, copywriting, strategy, and development engagements so they stop writing proposals from scratch.",
+      "category": "swipe-file",
+      "tags": [
+        "proposals",
+        "sales",
+        "client-work"
+      ],
+      "score": 88,
+      "rationale": "Proposal templates are perpetually in demand by freelancers at all levels, the project-type segmentation adds real differentiation, and AI can generate varied yet structured proposal formats with high consistency.",
+      "selected": true,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.452411+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-2",
+      "title": "Discovery Call to Project Brief Converter in n8n",
+      "description": "Automates the transformation of Typeform discovery call responses into a formatted project brief delivered to Notion and a Slack notification to the freelancer, eliminating manual write-up time.",
+      "category": "n8n-template",
+      "tags": [
+        "automation",
+        "client-onboarding",
+        "notion"
+      ],
+      "score": 52,
+      "rationale": "The automation solves a real workflow problem but n8n-template falls outside the four scored categories, limiting consistent AI generability and catalog fit despite strong practical demand.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.457438+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-3",
+      "title": "Freelance Niche Positioning Statement Builder Mini-Guide",
+      "description": "Walks solo freelancers through a four-step framework to craft a sharp positioning statement that attracts higher-budget clients and ends the race-to-the-bottom on generalist platforms.",
+      "category": "mini-guide",
+      "tags": [
+        "positioning",
+        "marketing",
+        "niche"
+      ],
+      "score": 83,
+      "rationale": "Niche positioning is a persistent pain point for solo freelancers drowning in generic advice, and a tight four-step framework is highly generable by AI with strong consistency and practical output.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.462474+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-4",
+      "title": "Client Red Flag Screening Decision Tree for Freelancers",
+      "description": "Gives freelancers a visual yes/no decision tree to evaluate prospect calls and project briefs so they can confidently decline bad-fit clients before wasting proposal effort.",
+      "category": "checklist",
+      "tags": [
+        "client-screening",
+        "boundaries",
+        "sales"
+      ],
+      "score": 82,
+      "rationale": "Red flag screening addresses a universal and emotionally resonant freelancer problem, the decision-tree format is distinctive among free downloads, and AI can generate logical branching criteria reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.467540+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-5",
+      "title": "Freelance Service Tier Pricing Architecture Swipe File",
+      "description": "Provides freelance consultants and creatives with 10 real-structure examples of three-tier service packaging so they can anchor client choices and increase average project value.",
+      "category": "swipe-file",
+      "tags": [
+        "pricing",
+        "productized-services",
+        "packages"
+      ],
+      "score": 86,
+      "rationale": "Pricing architecture is a high-anxiety topic for freelancers and concrete tiered-packaging examples are scarce in free resources, while AI excels at producing varied but structured pricing frameworks.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.471013+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-6",
+      "title": "End-of-Project Client Handoff Report Prompt Pack",
+      "description": "Gives freelance developers and designers 20 structured prompts to generate polished project handoff reports that document decisions, deliverables, and next steps for clients.",
+      "category": "prompt-packs",
+      "tags": [
+        "handoff",
+        "deliverables",
+        "client-communication"
+      ],
+      "score": 78,
+      "rationale": "Handoff documentation is a real pain point for developers and designers and prompt packs are well-suited to AI generation, though the audience is narrower than broader freelance business topics.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.476059+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-7",
+      "title": "Freelance Retainer Proposal Conversion Mini-Guide",
+      "description": "Teaches project-based freelancers a repeatable method to identify retainer candidates, frame ongoing value, and present a monthly engagement offer without feeling pushy.",
+      "category": "mini-guide",
+      "tags": [
+        "retainers",
+        "recurring-revenue",
+        "proposals"
+      ],
+      "score": 84,
+      "rationale": "Converting one-off projects to retainers is a high-value, widely desired skill with limited step-by-step free guidance, and AI can reliably produce focused narrative how-to content for this category.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.481098+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-8",
+      "title": "Freelance Capacity Planning and Workload Balancing Prompt Pack",
+      "description": "Provides solo freelancers with 20 prompts to assess current commitments, forecast bandwidth, and articulate workload trade-offs before accepting a new project mid-sprint.",
+      "category": "prompt-packs",
+      "tags": [
+        "capacity-planning",
+        "workload",
+        "scheduling"
+      ],
+      "score": 74,
+      "rationale": "Capacity planning prompts address a genuine solo freelancer need, but the use case feels less urgent than pricing or proposals, and prompt packs for internal planning are harder to make feel immediately actionable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.486132+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-9",
+      "title": "Automated Client Feedback Request and Testimonial Logger in n8n",
+      "description": "Connects Notion project records to a Typeform feedback form and logs approved testimonials into an Airtable base automatically, so freelancers never manually chase or lose social proof again.",
+      "category": "n8n-template",
+      "tags": [
+        "automation",
+        "testimonials",
+        "airtable"
+      ],
+      "score": 50,
+      "rationale": "Automated testimonial logging is a clever niche solution but n8n-template is outside the defined categories, the audience is narrower tech-comfortable freelancers, and AI content generation for this format is less standardized.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.491165+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-7",
+      "title": "Testimonial and Case Study Request Scripts for Freelancers",
+      "description": "Freelancers who awkwardly avoid asking for social proof get 12 ready-to-send scripts for requesting testimonials, LinkedIn recommendations, and mini case studies at the perfect moment in the client lifecycle.",
+      "category": "swipe-file",
+      "tags": [
+        "social-proof",
+        "testimonials",
+        "case-studies"
+      ],
+      "score": 88,
+      "rationale": "Social proof is critical for freelancer growth yet asking for it is widely avoided, the multi-format script variety is distinctive, and AI generates polished, context-sensitive request messages very reliably.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.361648+00:00",
       "source": "trend-scan"
     },
     {
