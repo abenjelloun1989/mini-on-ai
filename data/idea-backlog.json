@@ -106,7 +106,7 @@
       ],
       "score": 84,
       "rationale": "Inbox zero remains a perennial high-search pain point with a huge Gmail user base, and providing exact filter syntax elevates uniqueness significantly above generic email productivity advice.",
-      "selected": true,
+      "selected": false,
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T11:33:11.216914+00:00",
@@ -472,6 +472,366 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T13:02:15.491165+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-0",
+      "title": "Lead Qualification Scorecard for B2B Sales Reps",
+      "description": "B2B sales reps use this weighted scoring framework to objectively rank inbound and outbound leads by fit, urgency, and buying authority before wasting time on discovery calls.",
+      "category": "checklist",
+      "tags": [
+        "lead qualification",
+        "B2B sales",
+        "pipeline management"
+      ],
+      "score": 86,
+      "rationale": "Acute need from B2B sales teams, concrete scoring framework offers differentiation, and checklists are highly generatable with consistent quality.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.724430+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-1",
+      "title": "Lead Source Attribution Audit Checklist for Growth Marketers",
+      "description": "Growth marketers use this step-by-step audit to identify broken UTM tracking, misattributed conversions, and gaps in their lead source reporting inside HubSpot or GA4.",
+      "category": "checklist",
+      "tags": [
+        "attribution",
+        "UTM tracking",
+        "lead analytics"
+      ],
+      "score": 88,
+      "rationale": "High demand from growth teams struggling with broken tracking, strong uniqueness in audit-specific methodology, and excellent generability for step-by-step checklist format.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "checklist-lead-source-attribution-audit-checklist--20260313",
+      "generated_at": "2026-03-13T14:17:37.729469+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-2",
+      "title": "ICP Definition Prompts for B2B Demand Generation Teams",
+      "description": "Demand generation teams use these structured prompts to interrogate CRM data, sales call transcripts, and churn records to build a precise Ideal Customer Profile from scratch.",
+      "category": "prompt-packs",
+      "tags": [
+        "ICP",
+        "demand generation",
+        "customer profiling"
+      ],
+      "score": 82,
+      "rationale": "Strong demand for ICP definition, structured prompts add value over vague frameworks, and prompt-packs are easily generatable at scale.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.734499+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-3",
+      "title": "Lead Nurture Content Brief Prompts for Content Marketers",
+      "description": "Content marketers use these prompts to produce stage-specific nurture content briefs — from awareness to decision — mapped to real objections surfaced in sales conversations.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead nurture",
+        "content briefs",
+        "funnel marketing"
+      ],
+      "score": 80,
+      "rationale": "Clear demand for nurture briefs, stage-specific objection mapping offers differentiation, and prompt-packs are highly generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.739524+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-4",
+      "title": "Sales and Marketing Lead Handoff SOP Prompts for RevOps",
+      "description": "RevOps professionals use these prompts to document a clean, repeatable MQL-to-SQL handoff process including lead status definitions, SLA triggers, and rejection criteria.",
+      "category": "prompt-packs",
+      "tags": [
+        "RevOps",
+        "MQL to SQL",
+        "handoff process"
+      ],
+      "score": 79,
+      "rationale": "RevOps need is real but narrower audience, SOP-specific methodology offers differentiation, and structured prompts are highly generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.744590+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-5",
+      "title": "Lead Reengagement Campaign Prompts for Lifecycle Marketers",
+      "description": "Lifecycle marketers use these prompts to map dormant lead segments, identify re-entry triggers, and design a sequenced reengagement campaign logic before writing a single message.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead reengagement",
+        "lifecycle marketing",
+        "dormant leads"
+      ],
+      "score": 77,
+      "rationale": "Moderate demand from lifecycle teams, reengagement trigger mapping offers some differentiation, and prompt-based content is generatable but competitive.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.749648+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-6",
+      "title": "Landing Page Conversion Audit Swipe File for Performance Marketers",
+      "description": "Performance marketers use this annotated library of high-converting lead gen landing page structures — with breakdowns of headline formulas, form placement, and trust signal use — to diagnose and fix underperforming pages fast.",
+      "category": "swipe-file",
+      "tags": [
+        "landing page",
+        "conversion rate",
+        "lead generation"
+      ],
+      "score": 84,
+      "rationale": "Strong demand from performance marketers, swipe file of annotated page structures offers real differentiation, and visual/formula-based content is consistently generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.754725+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-7",
+      "title": "Lead Magnet Format and Hook Swipe File by Industry Vertical",
+      "description": "B2B marketers use this curated reference of proven lead magnet formats, titles, and value propositions across SaaS, professional services, and e-commerce to validate new lead magnet concepts before production.",
+      "category": "swipe-file",
+      "tags": [
+        "lead magnets",
+        "content offers",
+        "B2B marketing"
+      ],
+      "score": 81,
+      "rationale": "Solid demand for lead magnet validation, industry-vertical organization offers differentiation, and swipe files with real examples are consistently generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.759768+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-8",
+      "title": "Automated Lead Enrichment and Routing Workflow in n8n",
+      "description": "Sales ops teams use this n8n automation to pull new Typeform leads, enrich them via Clearbit, score them against custom criteria, and route qualified leads to the correct HubSpot pipeline with Slack notifications — eliminating manual triage.",
+      "category": "n8n-template",
+      "tags": [
+        "lead routing",
+        "lead enrichment",
+        "HubSpot automation"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.761714+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-9",
+      "title": "Lead Generation Channel Mix Mini-Guide for Early-Stage Startups",
+      "description": "Early-stage startup founders use this concise framework to evaluate, prioritize, and sequence their first three lead generation channels based on their sales cycle length, deal size, and current team bandwidth.",
+      "category": "mini-guide",
+      "tags": [
+        "lead generation",
+        "channel strategy",
+        "startup growth"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.766763+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-0",
+      "title": "Lead Qualification Scoring Framework for B2B Sales Reps",
+      "description": "B2B sales reps get a structured decision tree to instantly score inbound leads by fit, urgency, and budget so they stop wasting demos on dead-end prospects.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead-qualification",
+        "b2b-sales",
+        "pipeline-management"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.093339+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-1",
+      "title": "CRM Data Hygiene Audit Checklist for Sales Operations",
+      "description": "Sales ops managers get a step-by-step audit process to find and fix duplicate records, missing fields, and stale opportunities that corrupt pipeline reporting.",
+      "category": "checklist",
+      "tags": [
+        "crm",
+        "data-hygiene",
+        "sales-operations"
+      ],
+      "score": 85,
+      "rationale": "Universal RevOps pain point with high urgency, specific audit methodology differentiates from generic best practices, and step-by-step checklists are reliably generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.094626+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-2",
+      "title": "Lead Source Attribution Swipe File for Growth Marketers",
+      "description": "Growth marketers get a library of real UTM structures, attribution model comparisons, and channel tagging conventions to finally trace which sources drive qualified pipeline.",
+      "category": "swipe-file",
+      "tags": [
+        "attribution",
+        "lead-source",
+        "growth-marketing"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.095905+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-3",
+      "title": "Outbound Prospecting Research Prompts for SDRs",
+      "description": "SDRs get 20 targeted research prompts to surface trigger events, buying signals, and org chart details that turn cold accounts into warm, personalized outreach targets.",
+      "category": "prompt-packs",
+      "tags": [
+        "prospecting",
+        "sdr",
+        "account-research"
+      ],
+      "score": 82,
+      "rationale": "High demand from SDR teams, targeted research prompts differentiate from generic cold outreach guides, and prompt-based content is highly generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.097179+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-4",
+      "title": "Lead Nurture Sequence Logic Builder for Demand Gen Teams",
+      "description": "Demand generation managers get a visual branching framework to map nurture paths by persona, funnel stage, and engagement score so no lead falls into a dead sequence.",
+      "category": "mini-guide",
+      "tags": [
+        "lead-nurture",
+        "demand-gen",
+        "marketing-automation"
+      ],
+      "score": 83,
+      "rationale": "Clear demand for nurture mapping, visual branching framework is unique vs. linear templates, and mini-guides with frameworks are highly generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.098453+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-5",
+      "title": "Inbound Lead Response and Routing Automation in n8n",
+      "description": "Revenue ops teams get a pre-built n8n workflow connecting Typeform → HubSpot → Slack that scores, segments, and routes new inbound leads to the right rep within 60 seconds.",
+      "category": "n8n-template",
+      "tags": [
+        "lead-routing",
+        "revenue-ops",
+        "automation"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.099727+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-6",
+      "title": "ICP Definition and Lookalike Account Prompts for Sales Leaders",
+      "description": "Sales leaders get 20 structured prompts to extract precise ideal customer profile attributes from won deals and build a repeatable lookalike account list for targeting.",
+      "category": "prompt-packs",
+      "tags": [
+        "icp",
+        "account-targeting",
+        "sales-strategy"
+      ],
+      "score": 81,
+      "rationale": "Strong sales leader demand, lookalike account methodology differentiates from basic ICP templates, and structured prompts are reliably generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.100999+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-7",
+      "title": "Lead Magnet to Demo Conversion Audit Checklist",
+      "description": "SaaS marketing managers get a granular audit checklist to diagnose exactly where MQLs drop off between content download and booked demo across landing page, email, and SDR handoff.",
+      "category": "checklist",
+      "tags": [
+        "conversion-audit",
+        "mql",
+        "saas-marketing"
+      ],
+      "score": 87,
+      "rationale": "Urgent pain point in lead-to-demo conversion, specific enough to differentiate from generic funnels, and highly generatable diagnostic checklist format.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.102271+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-8",
+      "title": "Sales Discovery Question Bank Swipe File by Buyer Role",
+      "description": "Account executives get a role-organized library of 60 proven discovery questions segmented by economic buyer, champion, and end user so every call uncovers real pain fast.",
+      "category": "swipe-file",
+      "tags": [
+        "discovery-calls",
+        "account-executive",
+        "buyer-personas"
+      ],
+      "score": 80,
+      "rationale": "Consistent AE demand for discovery frameworks, role-segmented organization differentiates from generic question lists, and swipe files are easily generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.103547+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-9",
+      "title": "Pipeline Review Preparation Prompts for Sales Managers",
+      "description": "Sales managers get 20 prompts to interrogate rep deal data, surface coaching moments, and generate a structured deal risk summary before every weekly pipeline review meeting.",
+      "category": "prompt-packs",
+      "tags": [
+        "pipeline-review",
+        "sales-management",
+        "deal-coaching"
+      ],
+      "score": 79,
+      "rationale": "Sales managers have clear demand, structured deal review methodology differentiates, and manager-focused prompts are consistently generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.104818+00:00",
       "source": "trend-scan"
     },
     {
