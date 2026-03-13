@@ -1,6 +1,25 @@
 {
   "products": [
     {
+      "id": "guide-freelance-niche-positioning-statement-bu-20260313",
+      "title": "Freelance Niche Positioning Statement Builder Mini-Guide",
+      "description": "Walks solo freelancers through a four-step framework to craft a sharp positioning statement that attracts higher-budget clients and ends the race-to-the-bottom on generalist platforms.",
+      "category": "mini-guide",
+      "tags": [
+        "positioning",
+        "marketing",
+        "niche"
+      ],
+      "item_count": 1,
+      "prompt_count": 1,
+      "created_at": "2026-03-13T17:55:52.369910+00:00",
+      "package_path": "products/guide-freelance-niche-positioning-statement-bu-20260313/package.zip",
+      "site_path": "site/products/guide-freelance-niche-positioning-statement-bu-20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "guide-freelance-dry-spell-survival-and-pipelin-20260313",
       "title": "Freelance Dry Spell Survival and Pipeline Rebuild Mini-Guide",
       "description": "Freelancers hitting a sudden income gap get a concrete playbook covering immediate outreach prioritization, quick-win offer packaging, and a 14-day re-engagement sequence to fill their pipeline fast.",
