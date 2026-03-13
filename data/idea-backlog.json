@@ -151,24 +151,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773401887-0",
-      "title": "Freelance Contract Clause Swipe File for Scope Creep",
-      "description": "Freelancers who repeatedly get unpaid extra work get 25 copy-paste contract clauses that clearly define boundaries, revision limits, and kill fees to protect their income.",
-      "category": "swipe-file",
-      "tags": [
-        "contracts",
-        "scope-creep",
-        "freelance-protection"
-      ],
-      "score": 86,
-      "rationale": "Scope creep is one of the most searched freelancer problems giving it strong demand, contract clause copy is a differentiated format rarely offered as a free download, and AI produces legally-flavored protective language consistently well.",
-      "selected": true,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T11:38:07.328531+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773401887-1",
       "title": "Client Onboarding Checklist for Independent Consultants",
       "description": "Solo consultants starting a new engagement get a repeatable 30-step checklist covering intake forms, tool access, stakeholder intros, and deliverable alignment to eliminate chaotic project kickoffs.",
@@ -414,9 +396,9 @@
       ],
       "score": 86,
       "rationale": "Pricing architecture is a high-anxiety topic for freelancers and concrete tiered-packaging examples are scarce in free resources, while AI excels at producing varied but structured pricing frameworks.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "swipe-freelance-service-tier-pricing-architect-20260313",
       "generated_at": "2026-03-13T13:02:15.471013+00:00",
       "source": "trend-scan"
     },
@@ -490,6 +472,24 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T13:02:15.491165+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-0",
+      "title": "Freelance Contract Clause Swipe File for Scope Creep",
+      "description": "Freelancers who repeatedly get unpaid extra work get 25 copy-paste contract clauses that clearly define boundaries, revision limits, and kill fees to protect their income.",
+      "category": "swipe-file",
+      "tags": [
+        "contracts",
+        "scope-creep",
+        "freelance-protection"
+      ],
+      "score": 86,
+      "rationale": "Scope creep is one of the most searched freelancer problems giving it strong demand, contract clause copy is a differentiated format rarely offered as a free download, and AI produces legally-flavored protective language consistently well.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.328531+00:00",
       "source": "trend-scan"
     },
     {
