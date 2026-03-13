@@ -166,8 +166,7 @@ def _resolve_product(product_id_arg: str = None) -> tuple:
 def notify_manual_publish(pid: str, meta: dict) -> None:
     """
     Gumroad no longer supports creating products via API.
-    Send a Telegram message with product details + zip so the user can
-    create the listing in ~30 seconds and reply /seturl {id} {url}.
+    Send a compact Telegram notification; the full description is on the vitrine page.
     """
     price_cents = meta.get("price") or int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
     price_str = f"${price_cents / 100:.2f}"
@@ -183,44 +182,20 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
     }
     cat_label = category_labels.get(category, category)
 
-    # Build a compact plain-text description (Gumroad form field)
-    includes_map = {
-        "prompt-packs":  f"{item_count} ready-to-use prompts. Works with ChatGPT, Claude, Gemini. Markdown + JSON included.",
-        "checklist":     f"{item_count}-item checklist with context for each step. Markdown + JSON included.",
-        "swipe-file":    f"{item_count} copy-ready examples with usage notes. Markdown + JSON included.",
-        "mini-guide":    f"Focused {item_count}-word practitioner guide. Quick-reference summary included. Markdown format.",
-        "n8n-template":  f"Ready-to-import n8n workflow ({item_count} nodes). Setup guide + customization tips included.",
-    }
-    short_desc = includes_map.get(category, f"{item_count} items included.")
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+    product_url = f"{site_url}/products/{pid}.html"
 
-    # Message 1: compact checklist (always fits within Telegram's 4096-char limit)
     msg = (
-        f"🏷 <b>New product ready for Gumroad</b>\n"
-        f"<a href='https://app.gumroad.com/products/new'>👉 Open Gumroad → New Product</a>\n\n"
-        f"━━━━━━━━━━━━━━━━━\n"
-        f"<b>Name:</b>\n"
-        f"<code>{meta['title']}</code>\n\n"
-        f"<b>Price:</b> <code>{price_str}</code>  •  <b>Type:</b> {cat_label}  •  <b>Items:</b> {item_count}\n\n"
-        f"━━━━━━━━━━━━━━━━━\n"
-        f"<b>Checklist:</b>\n"
-        f"☐ Paste Name\n"
-        f"☐ Paste Description (next message ↓)\n"
-        f"☐ Set Price to {price_str}\n"
-        f"☐ Upload zip (follows)\n"
-        f"☐ Upload cover: <code>site/images/cover-default.png</code>\n"
-        f"☐ Click Publish\n"
-        f"☐ Copy product URL\n\n"
-        f"<b>Then reply:</b>\n"
+        f"🏷 <b>{meta['title']}</b>\n"
+        f"{cat_label}  •  {item_count} items  •  {price_str}\n\n"
+        f"<a href='{product_url}'>📄 Open vitrine page</a> — description is there, ready to copy\n\n"
+        f"<a href='https://app.gumroad.com/products/new'>➕ Create on Gumroad</a>\n\n"
+        f"<b>Name:</b> <code>{meta['title']}</code>\n"
+        f"<b>Price:</b> <code>{price_str}</code>\n\n"
+        f"After publishing:\n"
         f"<code>/seturl {pid} https://gumroad.com/l/PASTE_URL_HERE</code>"
     )
     _telegram_send_text(msg)
-
-    # Message 2: description HTML — separate message so it's easy to tap-copy in full
-    gumroad_desc = meta.get("gumroad_description") or f"{meta['description']} {short_desc}"
-    _telegram_send_text(
-        f"📝 <b>Description — paste into Gumroad:</b>\n\n"
-        f"<code>{gumroad_desc}</code>"
-    )
 
     zip_path = ROOT / f"products/{pid}/package.zip"
     if zip_path.exists():

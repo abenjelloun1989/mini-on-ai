@@ -472,3 +472,41 @@ body {
     height: 56px;
   }
 }
+
+/* Gumroad copy block */
+.gumroad-copy-block {
+  margin: 40px 0 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gumroad-copy-block summary {
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: #f9fafb;
+  user-select: none;
+}
+
+.gumroad-copy-block summary:hover {
+  color: var(--brand);
+}
+
+.gumroad-copy-block textarea {
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  padding: 16px 20px;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #374151;
+  background: #fff;
+  resize: vertical;
+  box-sizing: border-box;
+}

@@ -137,6 +137,19 @@ def _rich_description_html(meta: dict) -> str:
     return f"      <h2>What's included</h2>\n{_includes_html(meta)}"
 
 
+def _gumroad_copy_block(meta: dict) -> str:
+    """Collapsible block with the raw Gumroad description HTML for easy copy-paste."""
+    desc = meta.get("gumroad_description")
+    if not desc:
+        return ""
+    escaped = desc.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+    return f"""    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">{escaped}</textarea>
+    </details>
+"""
+
+
 def build_product_page(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     thumbnail_html = _thumbnail_html_detail(meta)
@@ -175,6 +188,8 @@ def build_product_page(meta: dict) -> str:
     <section class="product-details">
 {_rich_description_html(meta)}
     </section>
+
+{_gumroad_copy_block(meta)}
   </main>
 
   <footer class="site-footer">
