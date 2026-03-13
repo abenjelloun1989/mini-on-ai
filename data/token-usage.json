@@ -238,5 +238,93 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 248,
     "output_tokens": 248
+  },
+  {
+    "ts": "2026-03-13T19:16:59.266784+00:00",
+    "run_id": "run-1773429387",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1206,
+    "output_tokens": 1101
+  },
+  {
+    "ts": "2026-03-13T19:17:04.376510+00:00",
+    "run_id": "run-1773429388",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1206,
+    "output_tokens": 1157
+  },
+  {
+    "ts": "2026-03-13T19:17:06.173255+00:00",
+    "run_id": "run-1773429387",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 1230,
+    "output_tokens": 676
+  },
+  {
+    "ts": "2026-03-13T19:17:14.351301+00:00",
+    "run_id": "run-1773429388",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 2286,
+    "output_tokens": 1024
+  },
+  {
+    "ts": "2026-03-13T19:18:02.804190+00:00",
+    "run_id": "run-1773429460",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1209,
+    "output_tokens": 965
+  },
+  {
+    "ts": "2026-03-13T19:18:04.246715+00:00",
+    "run_id": "run-1773429460",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1209,
+    "output_tokens": 1062
+  },
+  {
+    "ts": "2026-03-13T19:18:12.169524+00:00",
+    "run_id": "run-1773429460",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 1805,
+    "output_tokens": 1021
+  },
+  {
+    "ts": "2026-03-13T19:18:13.899453+00:00",
+    "run_id": "run-1773429460",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 2811,
+    "output_tokens": 1024
+  },
+  {
+    "ts": "2026-03-13T19:20:52.642618+00:00",
+    "run_id": "run-1773429460",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 231,
+    "output_tokens": 6144
+  },
+  {
+    "ts": "2026-03-13T19:20:54.237634+00:00",
+    "run_id": "run-1773429460",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 231,
+    "output_tokens": 6144
+  },
+  {
+    "ts": "2026-03-13T19:20:55.925752+00:00",
+    "run_id": "run-1773429460",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 260,
+    "output_tokens": 211
   }
 ]

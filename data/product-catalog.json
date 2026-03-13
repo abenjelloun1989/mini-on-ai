@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "swipe-notion-template-sales-page-copy-swipe-fi-20260313",
+      "title": "Notion Template Sales Page Copy Swipe File for Creators",
+      "description": "Notion template creators selling on Gumroad or their own site get a swipe file of 12 high-converting product page structures with annotated headlines, benefit bullets, and FAQ sections pulled from top-selling templates.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "template-selling",
+        "product-page",
+        "creator-economy"
+      ],
+      "item_count": 15,
+      "prompt_count": 15,
+      "created_at": "2026-03-13T19:20:52.648611+00:00",
+      "package_path": "products/swipe-notion-template-sales-page-copy-swipe-fi-20260313/package.zip",
+      "site_path": "site/products/swipe-notion-template-sales-page-copy-swipe-fi-20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "guide-how-to-build-a-lead-velocity-rate-dashbo-20260313",
       "title": "How to Build a Lead Velocity Rate Dashboard Mini-Guide",
       "description": "Sales and marketing leaders get a concise practitioner guide explaining how to calculate, track, and act on Lead Velocity Rate as a predictive pipeline health metric inside their existing reporting stack.",

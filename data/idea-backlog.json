@@ -862,24 +862,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773428578-4",
-      "title": "Lead Nurture Sequence Mapping Prompts for B2B SaaS",
-      "description": "B2B SaaS marketers get prompts to map nurture track logic by persona, buying stage, and objection type — producing a sequence architecture doc ready to hand off to a marketing automation builder.",
-      "category": "prompt-packs",
-      "tags": [
-        "lead-nurture",
-        "b2b-saas",
-        "marketing-automation"
-      ],
-      "score": 85,
-      "rationale": "Urgent need across B2B SaaS segment, prompts excel at producing structured architecture docs, and nurture sequencing is a persistent operational challenge.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:02:58.466544+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773428578-5",
       "title": "Pipeline Forecast Conversation Frameworks for Sales Managers",
       "description": "Sales managers get a swipe file of structured deal review frameworks, forecast call agendas, and rep-coaching question sets for weekly pipeline inspection meetings.",
@@ -945,7 +927,7 @@
       ],
       "score": 86,
       "rationale": "Strong demand for predictive metrics, fills a real gap in accessible guidance on LVR implementation, and mini-guides generate consistently high-quality output.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-how-to-build-a-lead-velocity-rate-dashbo-20260313",
       "generated_at": "2026-03-13T19:02:58.472635+00:00",
@@ -967,6 +949,786 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:02:58.474158+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-0",
+      "title": "Notion Second Brain Weekly Review Audit Checklist",
+      "description": "Notion power users who run a personal knowledge management system get a step-by-step weekly audit to clear inbox clutter, resurface stale notes, and keep their second brain actually usable.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "pkm",
+        "second-brain",
+        "weekly-review"
+      ],
+      "score": 84,
+      "rationale": "Targets power users with active pain (second brain decay), strong demand for maintenance workflows, checklist category ensures consistent generatable structure.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.268177+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-2",
+      "title": "Notion Database Schema Design Prompts for Ops Teams",
+      "description": "Operations managers building multi-linked Notion databases get 20 structured prompts that force them to define relation logic, rollup calculations, and filter views before touching a single property.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "database-design",
+        "operations",
+        "relational-data"
+      ],
+      "score": 82,
+      "rationale": "Ops teams designing databases have high pain with relational logic, prompts force upfront thinking (valuable), moderate uniqueness as some schema guides exist, prompt packs highly generatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.271242+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-3",
+      "title": "Notion Project Retrospective Prompts for Agile Teams",
+      "description": "Small agile teams running retrospectives inside Notion get 20 targeted prompts that extract actionable sprint insights, surface recurring blockers, and auto-populate a lessons-learned database.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "retrospectives",
+        "agile",
+        "sprint-review"
+      ],
+      "score": 79,
+      "rationale": "Agile retrospectives in Notion have decent demand, prompts improve insight extraction (useful), moderate online competition for retro frameworks, prompt packs generatable but somewhat commoditized.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.272773+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-4",
+      "title": "Notion Content Calendar Planning Prompts for Solo Creators",
+      "description": "Solo content creators managing their editorial pipeline in Notion get 20 prompts to plan quarterly content pillars, map posts to audience segments, and populate their calendar database with ready-to-execute briefs.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "content-calendar",
+        "solo-creator",
+        "editorial-planning"
+      ],
+      "score": 76,
+      "rationale": "Solo creators managing content calendars have growing demand, prompts help pillar planning, decent uniqueness in creator-specific prompts, good prompt generability but moderately sized audience.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.274300+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-5",
+      "title": "Notion OKR Tracking Setup Prompts for Startup Founders",
+      "description": "Early-stage founders building their OKR system in Notion get 20 prompts to define measurable key results, configure progress rollups, and establish a weekly check-in cadence without hiring a strategy consultant.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "okrs",
+        "startup",
+        "goal-tracking"
+      ],
+      "score": 78,
+      "rationale": "Founder audience wants OKR setup help, specific Notion implementation adds value, prompts aid planning, decent demand but founders often buy consulting, prompt generability solid.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.275817+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-6",
+      "title": "Notion Workspace Architecture Swipe File for Agencies",
+      "description": "Agency owners structuring Notion for multi-client operations get a swipe file of 15 real workspace architecture examples including sidebar hierarchies, team permission structures, and project status systems they can copy immediately.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "agency",
+        "workspace-architecture",
+        "team-permissions"
+      ],
+      "score": 82,
+      "rationale": "Clear demand from agency ops teams, workspace architectures are hard to learn by example, swipe files require curation but deliver immediate implementability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.277342+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-7",
+      "title": "Notion Template Sales Page Copy Swipe File for Creators",
+      "description": "Notion template creators selling on Gumroad or their own site get a swipe file of 12 high-converting product page structures with annotated headlines, benefit bullets, and FAQ sections pulled from top-selling templates.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "template-selling",
+        "product-page",
+        "creator-economy"
+      ],
+      "score": 88,
+      "rationale": "High demand from growing Notion template creator community, genuinely scarce swipe file resource, and copywriting examples are easy to curate and verify.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "swipe-notion-template-sales-page-copy-swipe-fi-20260313",
+      "generated_at": "2026-03-13T19:16:59.278867+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-8",
+      "title": "How to Build a Notion CRM That Actually Gets Used",
+      "description": "Freelancers and small business owners who have abandoned multiple Notion CRM attempts get a concise practitioner guide covering the exact database structure, status logic, and daily capture habit that makes a lightweight CRM stick.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "crm",
+        "freelance",
+        "relationship-management"
+      ],
+      "score": 87,
+      "rationale": "Solves repeated failure pattern (abandoned Notion CRMs) for large freelancer audience, practitioner-specific insights hard to find free, mini-guides highly generatable with structured format.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.280390+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-9",
+      "title": "Tally Form to Notion to Slack New Client Intake Workflow",
+      "description": "Freelancers and boutique agencies using Tally, Notion, and Slack get a ready-to-import n8n workflow that automatically creates a new Notion client record, populates project properties from form responses, and posts a formatted Slack briefing to the team channel.",
+      "category": "n8n-template",
+      "tags": [
+        "notion",
+        "tally",
+        "slack",
+        "n8n",
+        "client-intake",
+        "automation"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.281912+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-0",
+      "title": "Notion Second Brain Weekly Review Audit Checklist",
+      "description": "For Notion power users who build second-brain systems but never actually review them, this checklist enforces a repeatable weekly capture-to-action loop that prevents inbox rot and orphaned pages.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "second-brain",
+        "weekly-review",
+        "pkm"
+      ],
+      "score": 83,
+      "rationale": "Near-duplicate of idea-1773429419-0 with slightly broader appeal to maintenance-neglecting users, strong urgency around review habits, highly generatable checklist format.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.378492+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-1",
+      "title": "Notion Workspace Debt Cleanup Checklist for Teams",
+      "description": "For team admins inheriting a chaotic Notion workspace, this structured checklist walks through database audits, permission hygiene, orphaned page removal, and naming convention enforcement in one sitting.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "workspace-audit",
+        "team-ops",
+        "information-architecture"
+      ],
+      "score": 85,
+      "rationale": "Team admin pain point (inherited chaos) is real and urgent, workspace cleanup checklists are underserved online, checklist format produces reliable AI content.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.387517+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-2",
+      "title": "Notion Database Relation and Rollup Design Swipe File",
+      "description": "For Notion builders who repeatedly guess at relational database structures, this swipe file provides 20 real-world database schema blueprints with relation types, rollup formulas, and use-case annotations across common business workflows.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "databases",
+        "relations",
+        "rollups",
+        "no-code"
+      ],
+      "score": 80,
+      "rationale": "Builders repeating database design mistakes have genuine need, swipe file of real schemas offers practical value, good generability of annotated blueprint format, solid uniqueness.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.396542+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-3",
+      "title": "Notion Client Portal Page Structures Swipe File",
+      "description": "For freelancers and agencies building client-facing Notion portals, this swipe file delivers 15 annotated page layout blueprints covering onboarding hubs, project dashboards, feedback trackers, and invoice views.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "client-portal",
+        "freelance",
+        "agency",
+        "client-management"
+      ],
+      "score": 78,
+      "rationale": "Freelancers/agencies building client portals face real structural decisions, swipe file format highly useful, good uniqueness in Notion portal examples, moderate audience size.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.405629+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-4",
+      "title": "Notion Formula Builder Prompts for Custom Property Logic",
+      "description": "For Notion users who lose hours translating workflow logic into formula syntax, these 20 prompts define the exact conditional, date, and text logic scenarios so the correct formula is produced without trial and error.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "formulas",
+        "automation",
+        "database-logic",
+        "no-code"
+      ],
+      "score": 81,
+      "rationale": "Addresses real frustration (formula syntax conversion), medium-sized audience of formula-building users, uniqueness in prompt-based formula generation, highly generatable prompt format.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.414686+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-5",
+      "title": "Notion Project Post-Mortem Meeting Prompts for Ops Teams",
+      "description": "For operations managers running project retrospectives inside Notion, these 20 structured prompts extract timeline breakdowns, decision failures, resource gaps, and process fixes directly into a reusable Notion database record.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "retrospectives",
+        "operations",
+        "project-management",
+        "post-mortem"
+      ],
+      "score": 77,
+      "rationale": "Ops teams running post-mortems have real need, prompts systematize retrospectives, moderate demand (niche to ops), prompt generability strong, some duplicate with idea-1773429419-3.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.421382+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-6",
+      "title": "Notion SOP Documentation Prompts for Solo Operators",
+      "description": "For solopreneurs who avoid writing SOPs because they don't know where to start, these 20 prompts extract step-by-step process documentation from their own workflows and format it directly into Notion toggle-and-table SOP structures.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "sops",
+        "solopreneur",
+        "documentation",
+        "systems"
+      ],
+      "score": 77,
+      "rationale": "Solopreneurs avoid SOP writing—strong pain point, AI prompts can generate context-specific guidance, but SOP need is somewhat niche outside ops roles.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.428469+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-7",
+      "title": "Notion Content Calendar Build Prompts for Creator Teams",
+      "description": "For content leads managing multi-format publishing inside Notion, these 20 prompts generate database property sets, filtered views, status workflows, and linked editorial brief structures tailored to video, newsletter, and social pipelines.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "content-calendar",
+        "creator-economy",
+        "editorial",
+        "content-ops"
+      ],
+      "score": 75,
+      "rationale": "Creator teams managing multi-format content have real workflow pain, prompts can generate database structures and views, but audience is more specialized than solopreneurs.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.436309+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-8",
+      "title": "How to Build a Notion CRM That Actually Gets Used Mini-Guide",
+      "description": "For consultants and freelancers who have built and abandoned multiple Notion CRMs, this practitioner guide explains the five structural decisions that determine adoption — covering pipeline view design, contact tagging logic, and follow-up trigger fields — in under 800 words.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "crm",
+        "freelance",
+        "consulting",
+        "relationship-management"
+      ],
+      "score": 86,
+      "rationale": "Addresses same pain point as idea-1773429419-8 with slightly refined positioning, strong demand from consultants/freelancers, mini-guide format ensures consistent quality output.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.445363+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-9",
+      "title": "Tally Form to Notion Database Auto-Logger via n8n",
+      "description": "For Notion workspace owners collecting intake forms, feedback, or leads via Tally, this n8n workflow template automatically maps every Tally submission to the correct Notion database, assigns status properties, and posts a Slack alert with a direct page link.",
+      "category": "n8n-template",
+      "tags": [
+        "notion",
+        "tally",
+        "n8n",
+        "automation",
+        "form-to-database",
+        "slack"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.453495+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-0",
+      "title": "Notion Database Schema Design Prompts for Ops Leads",
+      "description": "Helps operations leads generate precisely structured Notion database schemas with the right property types, relations, and rollups for complex multi-team workflows.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "database-design",
+        "operations"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.805558+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-1",
+      "title": "Notion Weekly Review System Build Prompts for Solopreneurs",
+      "description": "Gives solopreneurs a set of targeted prompts to build a fully functional weekly review and planning system inside Notion that surfaces blockers, wins, and next priorities automatically.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "weekly-review",
+        "solopreneur"
+      ],
+      "score": 74,
+      "rationale": "Solopreneurs seeking productivity systems represent solid demand, prompts can guide Notion system-building, but weekly review approach varies significantly by person.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.807087+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-2",
+      "title": "Notion Client Portal Page Prompts for Agency Account Managers",
+      "description": "Helps agency account managers rapidly generate structured Notion client portal pages with status dashboards, deliverable trackers, and feedback capture sections for each account.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "client-portal",
+        "agency"
+      ],
+      "score": 72,
+      "rationale": "Agency account managers need client portal structure, prompts can generate portal layouts, but need is somewhat specialized to service delivery teams.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.808618+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-3",
+      "title": "Notion Hiring Pipeline Build Prompts for Startup Founders",
+      "description": "Equips startup founders with prompts to build a complete Notion hiring pipeline covering role briefs, candidate scoring views, interview stage tracking, and offer status rollups.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "hiring",
+        "startup"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.810138+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-4",
+      "title": "Notion Workspace Audit Checklist for Team Admins",
+      "description": "Gives Notion workspace admins a repeatable audit checklist to identify duplicate databases, broken relations, unused pages, permission gaps, and structural debt across a growing team workspace.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "workspace-audit",
+        "team-admin"
+      ],
+      "score": 80,
+      "rationale": "Urgent need from growing team workspace admins, audit checklists are task-specific and underserved, checklist format is straightforward to execute and validate.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.811661+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-5",
+      "title": "Notion New Team Member Onboarding Setup Checklist",
+      "description": "Helps Notion workspace owners systematically configure access, orientation pages, database permissions, and guided views so new team members are productive inside Notion from day one.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "onboarding",
+        "team-setup"
+      ],
+      "score": 79,
+      "rationale": "Repeated onboarding pain point for workspace owners, setup checklists are practical and repeatable, moderate demand but high completion likelihood.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.813186+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-6",
+      "title": "Notion Formula Swipe File for Common Ops Calculations",
+      "description": "Gives Notion power users a ready-to-copy library of real, tested Notion formulas covering date math, status rollups, conditional flags, and progress tracking for recurring operational use cases.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "formulas",
+        "operations"
+      ],
+      "score": 84,
+      "rationale": "Strong demand from power users stuck on formula problems, formulas are vendor-specific and rarely documented together, easy to test and verify accuracy.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.814714+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-7",
+      "title": "Notion Dashboard Layout Swipe File for Knowledge Teams",
+      "description": "Provides knowledge managers and team leads with a curated library of proven Notion dashboard layouts showing real property configurations, linked database views, and filter logic for different team functions.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "dashboards",
+        "knowledge-management"
+      ],
+      "score": 78,
+      "rationale": "Knowledge teams actively seek dashboard inspiration, real layout examples are scarce online, visual swipe files require curation but have strong reference value.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.816238+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-8",
+      "title": "Notion Relations and Rollups Mini-Guide for Non-Technical Users",
+      "description": "Walks non-technical Notion users through exactly how to build multi-database relations and rollup properties to replace spreadsheet VLOOKUP logic without writing a single line of code.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "relations",
+        "rollups"
+      ],
+      "score": 77,
+      "rationale": "Non-technical users struggle with relations/rollups, mini-guide fills a genuine education gap, topic is evergreen and AI can produce clear step-by-step content.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.817751+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-9",
+      "title": "Typeform Intake to Notion Project Database via n8n",
+      "description": "Gives freelancers and agency ops teams a pre-built n8n workflow that automatically maps Typeform client intake responses into a structured Notion project database with status, owner, and deadline fields populated.",
+      "category": "n8n-template",
+      "tags": [
+        "notion",
+        "typeform",
+        "n8n"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.819269+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-0",
+      "title": "Notion Database Schema Design Prompts for Ops Leads",
+      "description": "Operations leads use these 20 structured prompts to design relational Notion databases with the right properties, rollups, and filters before building anything — eliminating costly rebuilds later.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "database-design",
+        "operations",
+        "workflow"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.248899+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-1",
+      "title": "Notion Client Portal Setup Prompts for Freelance Consultants",
+      "description": "Freelance consultants use these 20 prompts to define exactly what pages, permissions, and content blocks to include in a Notion client portal that replaces back-and-forth email chains.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "client-portal",
+        "freelance",
+        "consulting"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.257928+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-2",
+      "title": "Notion OKR Tracker Architecture Prompts for Startup Teams",
+      "description": "Startup operators use these 20 prompts to map out a fully linked OKR system in Notion — connecting company goals to team tasks without losing visibility across quarters.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "OKRs",
+        "startups",
+        "goal-tracking"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.266953+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-3",
+      "title": "Notion Weekly Review System Design Prompts for Solopreneurs",
+      "description": "Solopreneurs use these 20 prompts to build a personalized weekly review dashboard in Notion that surfaces stalled projects, overdue tasks, and next-week priorities in one structured session.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "weekly-review",
+        "solopreneur",
+        "productivity-system"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.276034+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-4",
+      "title": "Notion Workspace Audit Checklist for Agency Operations Managers",
+      "description": "Agency ops managers use this step-by-step checklist to identify redundant databases, broken relations, permission leaks, and structural bottlenecks before onboarding new team members.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "workspace-audit",
+        "agency",
+        "operations"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.280007+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-5",
+      "title": "Notion New Client Onboarding Setup Checklist for Service Businesses",
+      "description": "Service business owners use this checklist to configure every Notion page, shared view, and intake form needed to onboard a paying client within 24 hours of signing.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "client-onboarding",
+        "service-business",
+        "setup"
+      ],
+      "score": 73,
+      "rationale": "Service businesses have urgent onboarding need, checklist is actionable and repeatable, but audience is smaller than general team ops.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.286582+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-6",
+      "title": "Notion Template Landing Page Copy Swipe File for Creators",
+      "description": "Notion template creators use this swipe file of 30 real high-converting product page structures — including headlines, feature bullets, and FAQ formats — to write listings that drive purchases without guessing.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "template-selling",
+        "creators",
+        "product-pages"
+      ],
+      "score": 86,
+      "rationale": "Solves immediate pain point for Notion template sellers, hard to find competitive landing page examples in one place, swipe files are low-effort to maintain.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.292073+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-7",
+      "title": "Notion Workspace Structure Examples Swipe File for Team Leads",
+      "description": "Team leads use this swipe file of 25 real Notion workspace architectures — organized by team size and function — to make confident structural decisions instead of starting from a blank sidebar.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "workspace-structure",
+        "team-management",
+        "information-architecture"
+      ],
+      "score": 81,
+      "rationale": "Broad appeal to teams of all sizes, workspace structures lack public reference examples, swipe file format scales well with more examples.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.294916+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-8",
+      "title": "How to Build a Notion Second Brain That Stays Maintained",
+      "description": "Knowledge workers use this concise practitioner guide to implement a sustainable Notion second brain with a capture-to-distill workflow that doesn't collapse after week two.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "second-brain",
+        "knowledge-management",
+        "PKM"
+      ],
+      "score": 76,
+      "rationale": "Broad audience of knowledge workers seeking sustainability, practitioner guides are valuable, but maintenance advice requires real experience to feel credible.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.303299+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-9",
+      "title": "Typeform Intake to Notion Client Database via n8n Auto-Logger",
+      "description": "Freelancers and agencies use this ready-to-import n8n workflow to automatically push new Typeform client intake responses into a structured Notion database with status, tags, and linked project pages created instantly.",
+      "category": "n8n-template",
+      "tags": [
+        "notion",
+        "typeform",
+        "n8n",
+        "automation",
+        "client-intake"
+      ],
+      "score": null,
+      "rationale": null,
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.312360+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-1",
+      "title": "Notion Client Portal Launch Checklist for Consultants",
+      "description": "Independent consultants building client-facing Notion workspaces get a deployment checklist covering permissions, page hierarchy, branded cover assets, and handoff documentation so portals go live without embarrassing gaps.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "client-portal",
+        "consulting",
+        "workspace-setup"
+      ],
+      "score": 88,
+      "rationale": "High-demand niche (consultants launching client portals) with urgent need for deployment checklist, strong uniqueness in specific Notion context, and excellent checklist generability.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.269710+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-4",
+      "title": "Lead Nurture Sequence Mapping Prompts for B2B SaaS",
+      "description": "B2B SaaS marketers get prompts to map nurture track logic by persona, buying stage, and objection type — producing a sequence architecture doc ready to hand off to a marketing automation builder.",
+      "category": "prompt-packs",
+      "tags": [
+        "lead-nurture",
+        "b2b-saas",
+        "marketing-automation"
+      ],
+      "score": 85,
+      "rationale": "Urgent need across B2B SaaS segment, prompts excel at producing structured architecture docs, and nurture sequencing is a persistent operational challenge.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.466544+00:00",
       "source": "trend-scan"
     },
     {
