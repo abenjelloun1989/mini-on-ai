@@ -880,24 +880,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773428578-6",
-      "title": "Lead Segment Definition Prompts for Product-Led Growth Teams",
-      "description": "PLG operators get prompts to define PQL behavioral thresholds, segment free users by expansion readiness, and produce a tiered segment brief aligned to sales capacity.",
-      "category": "prompt-packs",
-      "tags": [
-        "pql",
-        "product-led-growth",
-        "segmentation"
-      ],
-      "score": 84,
-      "rationale": "PLG is high-growth segment with specific demand, prompt-packs generate strong segmentation frameworks, though audience is smaller than broader RevOps.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:02:58.469588+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773428578-7",
       "title": "Demo Request Qualification Audit Checklist for SDR Managers",
       "description": "SDR managers get a checklist to audit whether demo requests are being properly qualified before booking, covering discovery call criteria, disqualification rules, and CRM field hygiene.",
@@ -934,43 +916,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773428578-9",
-      "title": "Win-Loss Debrief Interview Prompts for Product Marketers",
-      "description": "Product marketers get a structured prompt set for conducting win-loss interviews with recent prospects, extracting competitive objections, and synthesizing findings into a positioning gap report.",
-      "category": "prompt-packs",
-      "tags": [
-        "win-loss",
-        "competitive-intel",
-        "product-marketing"
-      ],
-      "score": 83,
-      "rationale": "Strong demand from PMM function, prompts reliably generate quality interview structures, but win-loss insights require some contextual interpretation.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:02:58.474158+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429419-0",
-      "title": "Notion Second Brain Weekly Review Audit Checklist",
-      "description": "Notion power users who run a personal knowledge management system get a step-by-step weekly audit to clear inbox clutter, resurface stale notes, and keep their second brain actually usable.",
-      "category": "checklist",
-      "tags": [
-        "notion",
-        "pkm",
-        "second-brain",
-        "weekly-review"
-      ],
-      "score": 84,
-      "rationale": "Targets power users with active pain (second brain decay), strong demand for maintenance workflows, checklist category ensures consistent generatable structure.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:16:59.268177+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429419-2",
       "title": "Notion Database Schema Design Prompts for Ops Teams",
       "description": "Operations managers building multi-linked Notion databases get 20 structured prompts that force them to define relation logic, rollup calculations, and filter views before touching a single property.",
@@ -984,7 +929,7 @@
       "score": 82,
       "rationale": "Ops teams designing databases have high pain with relational logic, prompts force upfront thinking (valuable), moderate uniqueness as some schema guides exist, prompt packs highly generatable.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-13T19:16:59.271242+00:00",
       "source": "trend-scan"
@@ -1125,25 +1070,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429424-0",
-      "title": "Notion Second Brain Weekly Review Audit Checklist",
-      "description": "For Notion power users who build second-brain systems but never actually review them, this checklist enforces a repeatable weekly capture-to-action loop that prevents inbox rot and orphaned pages.",
-      "category": "checklist",
-      "tags": [
-        "notion",
-        "second-brain",
-        "weekly-review",
-        "pkm"
-      ],
-      "score": 83,
-      "rationale": "Near-duplicate of idea-1773429419-0 with slightly broader appeal to maintenance-neglecting users, strong urgency around review habits, highly generatable checklist format.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:17:04.378492+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429424-1",
       "title": "Notion Workspace Debt Cleanup Checklist for Teams",
       "description": "For team admins inheriting a chaotic Notion workspace, this structured checklist walks through database audits, permission hygiene, orphaned page removal, and naming convention enforcement in one sitting.",
@@ -1156,7 +1082,7 @@
       ],
       "score": 85,
       "rationale": "Team admin pain point (inherited chaos) is real and urgent, workspace cleanup checklists are underserved online, checklist format produces reliable AI content.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "checklist-notion-workspace-debt-cleanup-checklist--20260313",
       "generated_at": "2026-03-13T19:17:04.387517+00:00",
@@ -1412,24 +1338,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429482-6",
-      "title": "Notion Formula Swipe File for Common Ops Calculations",
-      "description": "Gives Notion power users a ready-to-copy library of real, tested Notion formulas covering date math, status rollups, conditional flags, and progress tracking for recurring operational use cases.",
-      "category": "swipe-file",
-      "tags": [
-        "notion",
-        "formulas",
-        "operations"
-      ],
-      "score": 84,
-      "rationale": "Strong demand from power users stuck on formula problems, formulas are vendor-specific and rarely documented together, easy to test and verify accuracy.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:18:02.814714+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429482-7",
       "title": "Notion Dashboard Layout Swipe File for Knowledge Teams",
       "description": "Provides knowledge managers and team leads with a curated library of proven Notion dashboard layouts showing real property configurations, linked database views, and filter logic for different team functions.",
@@ -1653,6 +1561,98 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:18:04.312360+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-0",
+      "title": "Notion Second Brain Weekly Review Audit Checklist",
+      "description": "For Notion power users who build second-brain systems but never actually review them, this checklist enforces a repeatable weekly capture-to-action loop that prevents inbox rot and orphaned pages.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "second-brain",
+        "weekly-review",
+        "pkm"
+      ],
+      "score": 83,
+      "rationale": "Near-duplicate of idea-1773429419-0 with slightly broader appeal to maintenance-neglecting users, strong urgency around review habits, highly generatable checklist format.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.378492+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-9",
+      "title": "Win-Loss Debrief Interview Prompts for Product Marketers",
+      "description": "Product marketers get a structured prompt set for conducting win-loss interviews with recent prospects, extracting competitive objections, and synthesizing findings into a positioning gap report.",
+      "category": "prompt-packs",
+      "tags": [
+        "win-loss",
+        "competitive-intel",
+        "product-marketing"
+      ],
+      "score": 83,
+      "rationale": "Strong demand from PMM function, prompts reliably generate quality interview structures, but win-loss insights require some contextual interpretation.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.474158+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-6",
+      "title": "Notion Formula Swipe File for Common Ops Calculations",
+      "description": "Gives Notion power users a ready-to-copy library of real, tested Notion formulas covering date math, status rollups, conditional flags, and progress tracking for recurring operational use cases.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "formulas",
+        "operations"
+      ],
+      "score": 84,
+      "rationale": "Strong demand from power users stuck on formula problems, formulas are vendor-specific and rarely documented together, easy to test and verify accuracy.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.814714+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-0",
+      "title": "Notion Second Brain Weekly Review Audit Checklist",
+      "description": "Notion power users who run a personal knowledge management system get a step-by-step weekly audit to clear inbox clutter, resurface stale notes, and keep their second brain actually usable.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "pkm",
+        "second-brain",
+        "weekly-review"
+      ],
+      "score": 84,
+      "rationale": "Targets power users with active pain (second brain decay), strong demand for maintenance workflows, checklist category ensures consistent generatable structure.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.268177+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-6",
+      "title": "Lead Segment Definition Prompts for Product-Led Growth Teams",
+      "description": "PLG operators get prompts to define PQL behavioral thresholds, segment free users by expansion readiness, and produce a tiered segment brief aligned to sales capacity.",
+      "category": "prompt-packs",
+      "tags": [
+        "pql",
+        "product-led-growth",
+        "segmentation"
+      ],
+      "score": 84,
+      "rationale": "PLG is high-growth segment with specific demand, prompt-packs generate strong segmentation frameworks, though audience is smaller than broader RevOps.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.469588+00:00",
       "source": "trend-scan"
     },
     {

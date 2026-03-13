@@ -15,7 +15,10 @@
       <a href="index.html" class="site-logo">
         <img src="logo.svg" alt="mini-on-ai">
       </a>
-      <span class="product-count">23 products</span>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <span class="product-count">23 products</span>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">☀️</button>
+      </div>
     </div>
   </header>
 
@@ -170,7 +173,7 @@
           <h2 class="product-title"><a href="products/swipe-landing-page-conversion-audit-swipe-file-20260313.html">Landing Page Conversion Audit Swipe File for Performance Marketers</a></h2>
           <p class="product-desc">Performance marketers use this annotated library of high-converting lead gen landing page structures — with breakdowns of headline formulas, form placement, and trust signal use — to diagnose and fix underperforming pages fast.</p>
           <div class="product-meta">18 examples</div>
-          <span class="btn-cta btn-coming-soon">Coming soon</span>
+          <a href="https://kirozdor.gumroad.com/l/tmguv" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>
         </div>
       </article>
       <article class="product-card">
@@ -269,5 +272,38 @@
   <footer class="site-footer">
     <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
   </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          toggle.textContent = '🌙';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          toggle.textContent = '☀️';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '🌙' : '☀️';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
 </body>
 </html>
