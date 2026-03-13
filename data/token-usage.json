@@ -358,5 +358,29 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 255,
     "output_tokens": 257
+  },
+  {
+    "ts": "2026-03-13T19:33:36.512585+00:00",
+    "run_id": "run-1773430415",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 320,
+    "output_tokens": 94
+  },
+  {
+    "ts": "2026-03-13T19:37:57.684437+00:00",
+    "run_id": "run-1773430568",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 224,
+    "output_tokens": 1785
+  },
+  {
+    "ts": "2026-03-13T19:38:00.657850+00:00",
+    "run_id": "run-1773430568",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 253,
+    "output_tokens": 234
   }
 ]

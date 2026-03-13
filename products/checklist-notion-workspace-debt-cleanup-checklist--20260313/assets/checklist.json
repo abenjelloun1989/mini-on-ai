@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "item": "Request full admin access and a list of all current members before touching anything",
+    "why": "Making changes without full visibility can break workflows or lock out active users. Confirm you have owner-level permissions and a complete member roster before proceeding.",
+    "section": "Preparation"
+  },
+  {
+    "id": 2,
+    "item": "Export a full workspace backup via Settings → Export content as a safety snapshot",
+    "why": "Irreversible deletions happen during cleanup. A full HTML or Markdown export gives you a restore reference point if something critical is accidentally removed.",
+    "section": "Preparation"
+  },
+  {
+    "id": 3,
+    "item": "Create a private 'Cleanup Staging' page to document findings, decisions, and items flagged for deletion",
+    "why": "A running log prevents duplicate work, creates an audit trail for stakeholders, and helps you communicate what changed and why after the session ends.",
+    "section": "Preparation"
+  },
+  {
+    "id": 4,
+    "item": "Interview or survey 2–3 active team members to identify the 5 most-used pages or databases",
+    "why": "You need a clear picture of what is actively relied upon before removing or restructuring anything. Protect high-traffic assets first.",
+    "section": "Preparation"
+  },
+  {
+    "id": 5,
+    "item": "Navigate to Settings → Members and remove deactivated, departed, or contractor accounts that no longer need access",
+    "why": "Ghost accounts inflate member counts, expose sensitive data, and can retain edit permissions on pages long after someone has left the organization.",
+    "section": "Execution"
+  },
+  {
+    "id": 6,
+    "item": "Audit every workspace-level Guest and review whether their page-level access is still appropriate",
+    "why": "Guests are often added for a one-off project and forgotten. Each guest with broad access is a potential data exposure risk.",
+    "section": "Execution"
+  },
+  {
+    "id": 7,
+    "item": "Review all pages set to 'Share to web' and disable public sharing on any that contain internal or sensitive information",
+    "why": "Public pages are indexed by search engines and accessible without authentication. Many teams forget these are on after a public launch or demo.",
+    "section": "Execution"
+  },
+  {
+    "id": 8,
+    "item": "Open the sidebar and identify all top-level pages that have not been edited in more than 90 days using the 'Last edited' metadata",
+    "why": "Stale top-level pages are the primary source of workspace clutter. The 90-day threshold surfaces genuinely dormant content without catching seasonally-used pages.",
+    "section": "Execution"
+  },
+  {
+    "id": 9,
+    "item": "Move all confirmed orphaned pages — pages with no parent, no backlinks, and no recent views — into a 'Pending Deletion' archive folder",
+    "why": "Deleting immediately is risky. A 2-week archive window lets team members flag anything incorrectly identified before permanent removal.",
+    "section": "Execution"
+  },
+  {
+    "id": 10,
+    "item": "Run a database audit: open each database, check for duplicate databases serving the same purpose, and merge or deprecate redundant ones",
+    "why": "Teams frequently create new databases instead of expanding existing ones. Duplicate databases fragment data, create sync issues, and confuse new members.",
+    "section": "Execution"
+  },
+  {
+    "id": 11,
+    "item": "Inspect every database schema and remove unused properties that have no data or have not been populated in over 60 days",
+    "why": "Unused properties add visual noise, slow down database loading, and confuse contributors about what fields are actually required.",
+    "section": "Execution"
+  },
+  {
+    "id": 12,
+    "item": "Check all Relation and Rollup properties across databases to confirm linked databases still exist and connections are intact",
+    "why": "When a linked database is deleted or renamed, Relation fields break silently and Rollups return empty or incorrect values, corrupting downstream reporting.",
+    "section": "Execution"
+  },
+  {
+    "id": 13,
+    "item": "Audit all active database views and delete saved views that are duplicates, have no filters, or belong to team members who have left",
+    "why": "Orphaned views accumulate quickly and make the view-switcher unusable. Each database should have a clear default view plus intentionally named filtered views.",
+    "section": "Execution"
+  },
+  {
+    "id": 14,
+    "item": "Define and document a naming convention (e.g., [TEAM] - [Type] - [Name]) and rename all top-level databases and pages to follow it",
+    "why": "Inconsistent naming is the root cause of most search failures in Notion. A standardized format makes pages scannable and searchable within seconds.",
+    "section": "Execution"
+  },
+  {
+    "id": 15,
+    "item": "Restructure the sidebar into a maximum of 5–7 top-level sections using clearly labeled teamspaces or parent pages",
+    "why": "A flat, sprawling sidebar forces users to scroll endlessly. Grouping by team or workflow function reduces cognitive load and speeds up navigation.",
+    "section": "Execution"
+  },
+  {
+    "id": 16,
+    "item": "Review all active Notion automations and integrations (Zapier, Make, API connections) and disable or update any pointing to deleted or renamed pages",
+    "why": "Broken automations fail silently or error loudly and can orphan data. This step prevents downstream tool failures after restructuring.",
+    "section": "Execution"
+  },
+  {
+    "id": 17,
+    "item": "Pin or favorite the 5 most-used databases and pages identified in your pre-work interviews to the sidebar for fast access",
+    "why": "Quick wins in discoverability immediately demonstrate value from the cleanup and increase adoption of the restructured workspace.",
+    "section": "Review"
+  },
+  {
+    "id": 18,
+    "item": "Document the finalized structure, naming conventions, and permission rules in a 'Workspace Guide' page pinned at the top of the sidebar",
+    "why": "Without documented standards, the workspace will return to chaos within months. A pinned guide sets expectations for new members and current contributors.",
+    "section": "Review"
+  },
+  {
+    "id": 19,
+    "item": "Share a summary of changes made, pages archived, and members removed with the team lead or stakeholders within 24 hours",
+    "why": "Transparency builds trust in the cleanup process, allows stakeholders to flag missed items, and gives leadership visibility into the scope of the debt that existed.",
+    "section": "Review"
+  },
+  {
+    "id": 20,
+    "item": "Schedule a recurring quarterly 30-minute workspace hygiene review on the team calendar to prevent debt from accumulating again",
+    "why": "A one-time cleanup without a maintenance cadence is temporary. Quarterly reviews catch stale pages, permission drift, and schema sprawl before they become unmanageable.",
+    "section": "Review"
+  }
+]

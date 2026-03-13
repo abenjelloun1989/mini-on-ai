@@ -1097,7 +1097,7 @@
       ],
       "score": 87,
       "rationale": "Solves repeated failure pattern (abandoned Notion CRMs) for large freelancer audience, practitioner-specific insights hard to find free, mini-guides highly generatable with structured format.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-how-to-build-a-notion-crm-that-actually--20260313",
       "generated_at": "2026-03-13T19:16:59.280390+00:00",
@@ -1156,9 +1156,9 @@
       ],
       "score": 85,
       "rationale": "Team admin pain point (inherited chaos) is real and urgent, workspace cleanup checklists are underserved online, checklist format produces reliable AI content.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "checklist-notion-workspace-debt-cleanup-checklist--20260313",
       "generated_at": "2026-03-13T19:17:04.387517+00:00",
       "source": "trend-scan"
     },
@@ -1280,26 +1280,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:17:04.436309+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429424-8",
-      "title": "How to Build a Notion CRM That Actually Gets Used Mini-Guide",
-      "description": "For consultants and freelancers who have built and abandoned multiple Notion CRMs, this practitioner guide explains the five structural decisions that determine adoption — covering pipeline view design, contact tagging logic, and follow-up trigger fields — in under 800 words.",
-      "category": "mini-guide",
-      "tags": [
-        "notion",
-        "crm",
-        "freelance",
-        "consulting",
-        "relationship-management"
-      ],
-      "score": 86,
-      "rationale": "Addresses same pain point as idea-1773429419-8 with slightly refined positioning, strong demand from consultants/freelancers, mini-guide format ensures consistent quality output.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:17:04.445363+00:00",
       "source": "trend-scan"
     },
     {
@@ -1618,25 +1598,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429484-6",
-      "title": "Notion Template Landing Page Copy Swipe File for Creators",
-      "description": "Notion template creators use this swipe file of 30 real high-converting product page structures — including headlines, feature bullets, and FAQ formats — to write listings that drive purchases without guessing.",
-      "category": "swipe-file",
-      "tags": [
-        "notion",
-        "template-selling",
-        "creators",
-        "product-pages"
-      ],
-      "score": 86,
-      "rationale": "Solves immediate pain point for Notion template sellers, hard to find competitive landing page examples in one place, swipe files are low-effort to maintain.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:18:04.292073+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429484-7",
       "title": "Notion Workspace Structure Examples Swipe File for Team Leads",
       "description": "Team leads use this swipe file of 25 real Notion workspace architectures — organized by team size and function — to make confident structural decisions instead of starting from a blank sidebar.",
@@ -1686,12 +1647,51 @@
         "automation",
         "client-intake"
       ],
-      "score": null,
-      "rationale": null,
+      "score": 0,
+      "rationale": "This idea doesn't fit any of the four specified categories (prompt-packs, checklist, swipe-file, mini-guide) and is instead an n8n workflow template, making it ineligible for scoring.",
       "selected": false,
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:18:04.312360+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429484-6",
+      "title": "Notion Template Landing Page Copy Swipe File for Creators",
+      "description": "Notion template creators use this swipe file of 30 real high-converting product page structures — including headlines, feature bullets, and FAQ formats — to write listings that drive purchases without guessing.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "template-selling",
+        "creators",
+        "product-pages"
+      ],
+      "score": 86,
+      "rationale": "Solves immediate pain point for Notion template sellers, hard to find competitive landing page examples in one place, swipe files are low-effort to maintain.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.292073+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-8",
+      "title": "How to Build a Notion CRM That Actually Gets Used Mini-Guide",
+      "description": "For consultants and freelancers who have built and abandoned multiple Notion CRMs, this practitioner guide explains the five structural decisions that determine adoption — covering pipeline view design, contact tagging logic, and follow-up trigger fields — in under 800 words.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "crm",
+        "freelance",
+        "consulting",
+        "relationship-management"
+      ],
+      "score": 86,
+      "rationale": "Addresses same pain point as idea-1773429419-8 with slightly refined positioning, strong demand from consultants/freelancers, mini-guide format ensures consistent quality output.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.445363+00:00",
       "source": "trend-scan"
     },
     {

@@ -1,0 +1,22 @@
+{
+  "id": "checklist-notion-workspace-debt-cleanup-checklist--20260313",
+  "title": "Notion Workspace Debt Cleanup Checklist for Teams",
+  "description": "For team admins inheriting a chaotic Notion workspace, this structured checklist walks through database audits, permission hygiene, orphaned page removal, and naming convention enforcement in one sitting.",
+  "category": "checklist",
+  "tags": [
+    "notion",
+    "workspace-audit",
+    "team-ops",
+    "information-architecture"
+  ],
+  "item_count": 20,
+  "created_at": "2026-03-13T19:37:57.687849+00:00",
+  "status": "published",
+  "package_path": "products/checklist-notion-workspace-debt-cleanup-checklist--20260313/package.zip",
+  "site_path": "site/products/checklist-notion-workspace-debt-cleanup-checklist--20260313.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "NOTION WORKSPACE DEBT CLEANUP CHECKLIST FOR TEAMS\n\nYou inherited a Notion workspace where nobody knows what's in half the databases, permissions are a mess, and pages disappear into the void—and you need to fix it without breaking things.\n\nWHO THIS IS FOR\n\n— Team admins taking over a neglected workspace and needing a battle plan\n— Engineering or ops leads cleaning up after rapid growth without process\n— Notion power users tasked with restoring order to shared team spaces\n\nWHAT'S INSIDE\n\n— 20 actionable checklist items in Markdown and JSON formats\n— Step-by-step database audits to identify duplicates and dead weight\n— Permission hygiene walkthrough: who actually needs access to what\n— Orphaned page removal strategy with safety guidelines\n— Naming convention enforcement templates you can copy directly\n— Context notes for every step so you understand the why, not just the what\n\nRun through this in one focused session. Your workspace will be auditable, navigable, and actually maintainable afterward.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
