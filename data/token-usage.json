@@ -190,5 +190,21 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 262,
     "output_tokens": 243
+  },
+  {
+    "ts": "2026-03-13T19:01:54.459175+00:00",
+    "run_id": "run-1773427329",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 262,
+    "output_tokens": 5431
+  },
+  {
+    "ts": "2026-03-13T19:01:58.020061+00:00",
+    "run_id": "run-1773427329",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 255,
+    "output_tokens": 239
   }
 ]

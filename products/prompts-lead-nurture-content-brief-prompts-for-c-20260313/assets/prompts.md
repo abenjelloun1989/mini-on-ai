@@ -1,0 +1,167 @@
+# Lead Nurture Content Brief Prompts for Content Marketers
+
+> Content marketers use these prompts to produce stage-specific nurture content briefs — from awareness to decision — mapped to real objections surfaced in sales conversations.
+
+---
+
+## Prompts (20 total)
+
+### 1. Awareness Stage Blog Brief from Pain Points
+
+**Use case:** Creating top-of-funnel blog briefs from sales objection data
+
+```
+You are a senior content strategist. Create a detailed content brief for an awareness-stage blog post for [PRODUCT NAME], a [BRIEF PRODUCT DESCRIPTION] targeting [TARGET AUDIENCE]. The brief must include: (1) a working title and 3 alternatives, (2) the primary pain point being addressed based on this common sales objection: '[INSERT OBJECTION FROM SALES CALLS]', (3) target keyword and 5 related semantic keywords, (4) recommended word count, (5) detailed outline with H2s and H3s, (6) tone and style guidance, (7) 3 internal linking suggestions, (8) a clear educational CTA that does NOT pitch the product. The content should educate without selling and position [COMPANY NAME] as a trusted authority.
+```
+
+### 2. Consideration Stage Comparison Guide Brief
+
+**Use case:** Building middle-of-funnel comparison content that handles evaluation objections
+
+```
+Act as a B2B content marketing expert. Write a comprehensive content brief for a consideration-stage comparison guide for [PRODUCT NAME] targeting [TARGET AUDIENCE] who are actively evaluating solutions. Use this real objection surfaced in sales conversations as the brief's strategic anchor: '[INSERT OBJECTION, e.g., We are not sure your tool is better than doing this in-house]'. The brief should include: (1) content goal and funnel stage, (2) reader persona and their evaluation mindset, (3) suggested title and structure, (4) key criteria the guide should compare (include at least 5), (5) what to include and explicitly avoid to maintain credibility, (6) proof points or data to incorporate, (7) recommended format (table, narrative, or hybrid), (8) mid-funnel CTA such as a demo or free trial. Ensure the tone is balanced and trust-building, not overtly promotional.
+```
+
+### 3. Email Nurture Sequence Brief for Cold Leads
+
+**Use case:** Reviving cold leads who downloaded content but stopped engaging
+
+```
+You are an email marketing strategist specializing in B2B lead nurturing. Create a detailed content brief for a 5-email nurture sequence targeting [TARGET AUDIENCE] who downloaded [LEAD MAGNET NAME] but have not engaged further with [PRODUCT NAME]. The sequence must address the following objection commonly heard in sales: '[INSERT OBJECTION]'. For each email provide: (1) subject line and preview text options, (2) goal of that email in the sequence, (3) core message and angle, (4) content format (story, data, case study, tip), (5) body copy outline, (6) CTA with specific next step, (7) send timing recommendation. The sequence arc should move from empathy and education in emails 1-2, to social proof in email 3, to value demonstration in email 4, and a soft conversion ask in email 5. Tone should be conversational and human, not templated.
+```
+
+### 4. Decision Stage Case Study Brief
+
+**Use case:** Creating proof-based content that closes decision-stage objections
+
+```
+Act as a content strategist and conversion copywriter. Write a full content brief for a decision-stage customer case study featuring [CUSTOMER COMPANY TYPE OR NAME] using [PRODUCT NAME]. The case study must directly address this objection that prospects raise before purchasing: '[INSERT DECISION-STAGE OBJECTION, e.g., We need to see proof this works for companies our size]'. The brief should include: (1) case study title and format (written, video, or both), (2) narrative arc using the Challenge-Solution-Results framework, (3) specific questions to ask the customer during interview, (4) metrics and outcomes to highlight, (5) pull quotes to seek, (6) how to weave in the objection and resolution naturally, (7) where this asset will be used in the sales cycle, (8) design and layout recommendations, (9) CTA tailored for bottom-of-funnel prospects. Include guidance on keeping the customer the hero, not the product.
+```
+
+### 5. Objection-Mapped Content Audit Brief
+
+**Use case:** Identifying and prioritizing content gaps based on real sales objections
+
+```
+You are a content strategist conducting a nurture content audit. Using the following list of top sales objections for [PRODUCT NAME] targeting [TARGET AUDIENCE] — [LIST 5 TO 7 OBJECTIONS FROM SALES CALLS] — create a structured content audit brief that: (1) maps each objection to a funnel stage (awareness, consideration, decision), (2) identifies what content type best addresses each objection, (3) lists specific content gaps where no asset currently exists, (4) recommends a prioritized content creation roadmap for the next 90 days, (5) suggests repurposing opportunities from existing content, (6) defines success metrics for each content type. Output the result as a structured brief with clear sections a content team can act on immediately. Include a rationale for prioritization decisions.
+```
+
+### 6. Awareness Stage Video Script Brief
+
+**Use case:** Briefing short-form educational video content for top-of-funnel awareness
+
+```
+Act as a video content strategist for a B2B brand. Create a detailed script brief for a 60 to 90 second awareness-stage video for [PRODUCT NAME] targeting [TARGET AUDIENCE]. The video should address the following problem surfaced in early-stage sales conversations: '[INSERT AWARENESS OBJECTION OR PAIN POINT, e.g., I did not know this was even a problem we needed to solve]'. The brief must include: (1) video goal and platform (LinkedIn, YouTube, website homepage), (2) hook strategy for the first 5 seconds, (3) scene-by-scene outline with visual and voiceover direction, (4) key message per scene, (5) tone and pacing guidance, (6) on-screen text and caption recommendations, (7) soft CTA at the end, (8) B-roll or visual asset suggestions, (9) estimated production complexity. The video should educate and create problem awareness without hard-selling the product.
+```
+
+### 7. Consideration Stage Webinar Brief
+
+**Use case:** Planning consideration-stage webinars that address ROI and value objections
+
+```
+You are a demand generation content strategist. Write a complete content brief for a consideration-stage educational webinar for [PRODUCT NAME] targeting [TARGET AUDIENCE] who are aware of their problem but evaluating whether and how to solve it. Ground the webinar in this objection heard in sales conversations: '[INSERT OBJECTION, e.g., We understand the problem but are not convinced the ROI justifies the investment]'. The brief should cover: (1) webinar title and positioning statement, (2) target attendee profile, (3) 45-minute agenda with timing for each segment, (4) speaker or presenter recommendations, (5) key learning outcomes for attendees, (6) data, frameworks, or models to present, (7) Q and A strategy to surface and handle objections live, (8) follow-up nurture email brief for registrants who attended versus those who did not, (9) repurposing plan for the recording. Tone should be expert-led and value-first.
+```
+
+### 8. Sales Enablement One-Pager Content Brief
+
+**Use case:** Equipping sales reps with objection-handling content at deal stages
+
+```
+Act as a content strategist working closely with a sales team. Create a brief for a sales enablement one-pager for [PRODUCT NAME] designed to help sales reps handle this specific objection in the consideration or decision stage: '[INSERT OBJECTION, e.g., Your pricing is higher than competitors]'. The brief should include: (1) title and headline options, (2) intended use case in the sales conversation, (3) core argument or reframing strategy for the objection, (4) three to five supporting proof points, data, or comparisons, (5) customer quote or social proof recommendation, (6) visual layout and section structure, (7) tone guidance for credibility and confidence without being defensive, (8) version recommendations (email attachment, printed leave-behind, or shared link). The one-pager should arm reps to handle the objection confidently and move the deal forward.
+```
+
+### 9. Interactive Assessment Content Brief
+
+**Use case:** Creating self-diagnosis tools that reveal problem severity to prospects
+
+```
+You are a content strategist specializing in interactive lead generation assets. Write a detailed content brief for an interactive self-assessment or quiz for [PRODUCT NAME] targeting [TARGET AUDIENCE] in the awareness to consideration stage. The tool should address this pain point or objection: '[INSERT OBJECTION, e.g., We are not sure if we actually have this problem or how severe it is]'. The brief must include: (1) assessment title and value proposition for the user, (2) 8 to 12 question recommendations with answer logic, (3) scoring methodology and outcome tiers, (4) personalized results page content for each tier, (5) how results connect to [PRODUCT NAME] use cases without being overly promotional, (6) follow-up email brief for each results tier, (7) lead capture strategy and gate recommendation, (8) promotion and distribution plan, (9) success metrics. The goal is to help prospects self-diagnose their need and see relevance organically.
+```
+
+### 10. Long-Form Guide Brief for SEO and Nurture
+
+**Use case:** Producing authoritative long-form guides that rank and nurture simultaneously
+
+```
+Act as a senior content strategist and SEO specialist. Create a full content brief for a long-form definitive guide (2,500 to 4,000 words) on [TOPIC RELATED TO PRODUCT CATEGORY] for [PRODUCT NAME] targeting [TARGET AUDIENCE]. The guide should address this common mid-funnel objection: '[INSERT OBJECTION]'. Include in the brief: (1) title, meta description, and target keyword with search intent analysis, (2) ideal reader profile and what they already know versus need to learn, (3) full chapter-level outline with rationale for each section, (4) data sources and expert quotes to seek, (5) internal linking strategy, (6) visual asset recommendations such as diagrams or charts, (7) how and where to naturally introduce [PRODUCT NAME] without disrupting the educational flow, (8) multiple CTA placements and offers mapped to reader readiness, (9) word count per section, (10) promotion plan post-publication. Balance SEO performance with genuine reader utility.
+```
+
+### 11. Retargeting Ad Content Brief
+
+**Use case:** Re-engaging pricing page visitors who stalled before converting
+
+```
+You are a performance content strategist. Write a content brief for a retargeting ad campaign for [PRODUCT NAME] targeting [TARGET AUDIENCE] who visited the pricing page but did not convert. Address this common decision-stage objection surfaced in sales: '[INSERT OBJECTION, e.g., I need to get buy-in from my team before moving forward]'. The brief should include: (1) campaign goal and funnel stage, (2) audience segmentation logic, (3) three ad creative concepts with distinct angles (social proof, urgency, and objection reframe), (4) headline and body copy options for each concept, (5) visual or creative direction for each ad, (6) landing page or destination recommendation for each ad variant, (7) offer or incentive recommendation such as a free trial extension or consultation, (8) A/B testing plan, (9) success metrics and optimization triggers. Each ad must feel contextually relevant, not generic.
+```
+
+### 12. Thought Leadership Article Brief for LinkedIn
+
+**Use case:** Ghostwriting executive thought leadership that reframes past failure objections
+
+```
+Act as a B2B content strategist and ghostwriter. Create a content brief for a thought leadership article to be published on LinkedIn by a senior leader or founder at [COMPANY NAME] for [PRODUCT NAME]. The article should indirectly address this objection heard in sales: '[INSERT OBJECTION, e.g., We already tried something like this and it did not work]'. The brief should include: (1) article title and hook concept, (2) the unique perspective or contrarian angle the author takes, (3) personal story or experience to open with, (4) three to five key arguments or insights with supporting evidence, (5) how to tie the narrative back to [COMPANY NAME] or [PRODUCT NAME] authentically in 1 to 2 paragraphs, (6) tone and voice guidance for authenticity, (7) recommended word count (800 to 1,200 words), (8) hashtag and tagging strategy, (9) repurposing opportunities for email or website. Avoid promotional language and keep the focus on genuine insight.
+```
+
+### 13. Nurture Content Brief for Free Trial Users
+
+**Use case:** Activating and converting low-engagement free trial users with content
+
+```
+You are a product-led growth content strategist. Create a detailed content brief for an in-trial nurture content series (emails plus in-app guidance) for [PRODUCT NAME] targeting [TARGET AUDIENCE] who have started a free trial but show low activation. The series should address this objection that often prevents conversion: '[INSERT OBJECTION, e.g., I signed up but I am not sure how to get value quickly enough]'. For each touchpoint (Days 1, 3, 7, 14, and 21) provide: (1) channel (email, in-app, or push), (2) goal of that message, (3) content type such as tutorial, success story, or tip, (4) subject line or notification copy, (5) body message outline, (6) CTA tied to a specific product action, (7) success metric. Include an overall narrative arc that moves from onboarding to habit formation to conversion ask. Tone should be helpful coach, not pushy salesperson.
+```
+
+### 14. FAQ Content Asset Brief from Sales Call Data
+
+**Use case:** Turning sales call objections into SEO-optimized FAQ content assets
+
+```
+Act as a content strategist with access to sales call insights. Write a content brief for a comprehensive FAQ page or resource for [PRODUCT NAME] targeting [TARGET AUDIENCE] in the consideration and decision stages. Base the brief on the following real objections and questions surfaced in sales calls: [LIST 8 TO 12 QUESTIONS OR OBJECTIONS FROM SALES CONVERSATIONS]. The brief should include: (1) page title and positioning copy, (2) recommended FAQ groupings and category labels, (3) answer framework for each question type including factual, comparison, and concern-based questions, (4) tone and length guidance per answer, (5) where to embed social proof, data, or links within answers, (6) internal linking strategy to deeper content assets, (7) CTA strategy at page level and within individual answers, (8) SEO optimization guidance for featured snippet targeting. The FAQ should function as both a sales tool and an organic search asset.
+```
+
+### 15. Customer Story Email Brief for Re-Engagement
+
+**Use case:** Re-engaging cold prospects using relevant customer success narratives
+
+```
+You are an email content strategist. Write a detailed content brief for a re-engagement email featuring a customer success story for [PRODUCT NAME] targeting [TARGET AUDIENCE] prospects who went dark after initial discovery calls. The email must address this objection that likely caused disengagement: '[INSERT OBJECTION, e.g., I did not think this was a priority for us right now]'. The brief must include: (1) subject line options with open rate rationale, (2) preview text, (3) opening hook that acknowledges the time lapse without being awkward, (4) customer story arc in 150 to 200 words covering situation, struggle, solution, and result, (5) how to connect the story back to the prospect's likely situation, (6) a soft and specific CTA such as a 15-minute call or a relevant resource, (7) post-script line recommendation, (8) send timing and segmentation guidance, (9) A/B testing variables. The email should feel personal and relevant, not automated.
+```
+
+### 16. Competitive Battlecard Content Brief
+
+**Use case:** Helping sales win deals when a specific competitor is in the evaluation
+
+```
+Act as a product marketing and content strategist. Create a content brief for a competitive battlecard for [PRODUCT NAME] versus [COMPETITOR NAME] to be used by sales reps in the decision stage with [TARGET AUDIENCE]. Ground the brief in this objection heard when a competitor is mentioned: '[INSERT COMPETITIVE OBJECTION, e.g., We are already evaluating Competitor X and they seem to offer the same thing for less]'. The brief should outline: (1) format and intended use (sales call reference, email follow-up, or shared resource), (2) comparison framework with 6 to 8 evaluation criteria, (3) where [PRODUCT NAME] wins clearly, (4) areas where the competitor is strong and how to reframe or neutralize them honestly, (5) suggested talk tracks for 3 common competitor scenarios, (6) proof points and customer quotes to include, (7) what NOT to say to maintain credibility, (8) update cadence recommendation. The tone should be confident and factual, never disparaging.
+```
+
+### 17. Persona-Specific Nurture Track Content Brief
+
+**Use case:** Building persona-tailored nurture tracks for specific buying committee roles
+
+```
+You are a B2B content strategist specializing in persona-based marketing. Write a full content brief for a persona-specific nurture track for [PRODUCT NAME] targeting the [SPECIFIC PERSONA, e.g., VP of Marketing, IT Director, or CFO] within [TARGET AUDIENCE] companies. This persona consistently raises this objection: '[INSERT PERSONA-SPECIFIC OBJECTION]'. The brief should define: (1) persona profile summary including goals, fears, and decision criteria, (2) a 6-touch content journey mapped across awareness, consideration, and decision stages, (3) for each touch: content type, channel, title or subject, core message, and CTA, (4) how the content arc builds trust specifically with this persona's priorities and language, (5) content differentiation from other personas in the buying committee, (6) handoff point to sales and what signal triggers it, (7) tone and language that resonates with this persona. Include reasoning for each content choice.
+```
+
+### 18. ROI Calculator Content and Promotion Brief
+
+**Use case:** Creating ROI tools that help prospects build internal budget justification
+
+```
+Act as a demand generation content strategist. Write a content brief for an ROI calculator tool and its surrounding content ecosystem for [PRODUCT NAME] targeting [TARGET AUDIENCE] in the consideration stage. This asset directly addresses the objection: '[INSERT ROI OBJECTION, e.g., We cannot get budget approved without showing a clear return on investment]'. The brief should cover: (1) calculator concept, name, and positioning, (2) 6 to 10 input variables to include with rationale, (3) output metrics to display and how to present them compellingly, (4) assumptions and methodology documentation for credibility, (5) landing page brief including headline, copy, and trust elements, (6) thank-you page and immediate follow-up email brief, (7) sales notification and follow-up workflow recommendation, (8) promotional content brief including blog post, LinkedIn post, and email announcement, (9) A/B testing plan for the landing page. The calculator should help prospects build an internal business case.
+```
+
+### 19. Objection-Specific Landing Page Brief
+
+**Use case:** Building focused landing pages that surgically neutralize one key objection
+
+```
+You are a conversion-focused content strategist. Write a detailed landing page brief for [PRODUCT NAME] targeting [TARGET AUDIENCE] that is specifically designed to address and overcome this single decision-stage objection: '[INSERT OBJECTION, e.g., We are a small team and I am worried about implementation complexity]'. The brief must include: (1) page URL and SEO slug recommendation, (2) hero section: headline, subheadline, and hero image or video direction, (3) above-the-fold CTA and form recommendation, (4) narrative flow for the full page with each section mapped to a stage in overcoming the objection, (5) social proof placement strategy including logos, testimonials, and case study snippets, (6) objection-specific FAQ section, (7) trust signals and certifications to feature, (8) secondary CTA options for non-converters, (9) page performance benchmarks to target, (10) personalization opportunities by traffic source or segment. Every element should serve to neutralize the single objection while building confidence.
+```
+
+### 20. Post-Demo Nurture Content Brief
+
+**Use case:** Nurturing demo attendees who stall due to internal stakeholder alignment challenges
+
+```
+Act as a B2B content strategist and sales enablement expert. Create a content brief for a post-demo nurture sequence for [PRODUCT NAME] targeting [TARGET AUDIENCE] prospects who attended a product demo but have not responded to follow-up in 7 to 14 days. The silence often reflects this objection: '[INSERT POST-DEMO OBJECTION, e.g., The demo was impressive but I am not sure I can get internal stakeholder buy-in]'. Design a 4-touch content and outreach sequence brief that includes: (1) overall sequence goal and success metric, (2) for each touch: timing, channel, content type, message angle, and CTA, (3) a stakeholder enablement asset brief such as an executive summary or slide deck the prospect can share internally, (4) a social proof content piece relevant to their industry or company size, (5) a low-friction next step offer such as a pilot program or proof of concept, (6) guidance on when to disqualify and remove from sequence. Each message should reduce friction for the internal champion to sell the solution upward.
+```
