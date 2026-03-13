@@ -1,6 +1,25 @@
 {
   "products": [
     {
+      "id": "checklist-client-red-flag-screening-decision-tree--20260313",
+      "title": "Client Red Flag Screening Decision Tree for Freelancers",
+      "description": "Gives freelancers a visual yes/no decision tree to evaluate prospect calls and project briefs so they can confidently decline bad-fit clients before wasting proposal effort.",
+      "category": "checklist",
+      "tags": [
+        "client-screening",
+        "boundaries",
+        "sales"
+      ],
+      "item_count": 20,
+      "prompt_count": 20,
+      "created_at": "2026-03-13T18:07:19.088613+00:00",
+      "package_path": "products/checklist-client-red-flag-screening-decision-tree--20260313/package.zip",
+      "site_path": "site/products/checklist-client-red-flag-screening-decision-tree--20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "guide-lead-nurture-sequence-logic-builder-for--20260313",
       "title": "Lead Nurture Sequence Logic Builder for Demand Gen Teams",
       "description": "Demand generation managers get a visual branching framework to map nurture paths by persona, funnel stage, and engagement score so no lead falls into a dead sequence.",
