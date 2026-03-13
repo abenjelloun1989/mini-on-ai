@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "prompts-n8n-workflow-documentation-prompts-for-t-20260313",
+      "title": "n8n Workflow Documentation Prompts for Team Handoffs",
+      "description": "Solo n8n builders handing off automation projects to teammates or clients get 20 structured prompts to produce clear node-by-node documentation, trigger logic summaries, and maintenance runbooks.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "documentation",
+        "handoff",
+        "SOPs"
+      ],
+      "item_count": 20,
+      "prompt_count": 20,
+      "created_at": "2026-03-13T18:41:53.055793+00:00",
+      "package_path": "products/prompts-n8n-workflow-documentation-prompts-for-t-20260313/package.zip",
+      "site_path": "site/products/prompts-n8n-workflow-documentation-prompts-for-t-20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "prompts-n8n-workflow-error-handling-prompts-for--20260313",
       "title": "n8n Workflow Error Handling Prompts for Automation Builders",
       "description": "n8n automation builders get 20 targeted prompts to systematically diagnose, document, and resolve node failures, retry logic gaps, and silent error conditions in production workflows.",

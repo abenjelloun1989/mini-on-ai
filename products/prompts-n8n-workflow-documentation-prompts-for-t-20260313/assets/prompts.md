@@ -1,0 +1,167 @@
+# n8n Workflow Documentation Prompts for Team Handoffs
+
+> Solo n8n builders handing off automation projects to teammates or clients get 20 structured prompts to produce clear node-by-node documentation, trigger logic summaries, and maintenance runbooks.
+
+---
+
+## Prompts (20 total)
+
+### 1. Node-by-Node Workflow Breakdown
+
+**Use case:** Documenting every node before handing off a workflow
+
+```
+I have an n8n workflow I need to document for a teammate or client handoff. Below I will describe each node in the workflow. For each node, generate a documentation block that includes: (1) Node name and type, (2) Purpose in plain English, (3) Key configuration settings and why they matter, (4) Input data it expects, (5) Output data it produces, (6) Any potential failure points or edge cases. Format each node as a clearly labeled section using headers. Keep language non-technical enough for a business stakeholder but detailed enough for a developer to recreate it. Here is my workflow description: [PASTE YOUR WORKFLOW DESCRIPTION OR NODE LIST HERE]
+```
+
+### 2. Trigger Logic Plain-English Summary
+
+**Use case:** Explaining trigger conditions to non-technical stakeholders
+
+```
+I need to write a plain-English summary of the trigger logic for an n8n workflow so that a non-technical client or new team member understands exactly what starts the automation and under what conditions. The workflow is called [WORKFLOW NAME] and it is triggered by [DESCRIBE YOUR TRIGGER: e.g., a webhook, a scheduled cron job, a form submission, an email, etc.]. Please write a 150–250 word summary that explains: (1) What event or schedule kicks off the workflow, (2) Any filters or conditions that must be true before the workflow proceeds, (3) What happens if the trigger fires but conditions are not met, (4) How often or how frequently this trigger is expected to fire. Use bullet points for clarity and avoid jargon.
+```
+
+### 3. Maintenance Runbook Generator
+
+**Use case:** Creating a living maintenance document for ongoing workflows
+
+```
+Create a professional maintenance runbook for an n8n workflow so that a new team member or client can keep it running without the original builder. The workflow is named [WORKFLOW NAME] and it does the following: [BRIEF DESCRIPTION OF WHAT THE WORKFLOW DOES]. It uses the following third-party services or APIs: [LIST SERVICES, e.g., Gmail, Airtable, Slack, OpenAI]. Please generate a runbook that includes the following sections: (1) Workflow Overview, (2) Scheduled Maintenance Tasks and how often to do them, (3) How to check if the workflow is running correctly, (4) Common error messages and how to resolve them, (5) Who to contact or what documentation to consult when something breaks, (6) How to pause or disable the workflow safely, (7) Credential and API key renewal schedule. Use numbered steps within each section.
+```
+
+### 4. Error Handling Documentation
+
+**Use case:** Documenting what breaks, why, and what to do about it
+
+```
+I need to document the error handling strategy for an n8n workflow so that any team member who takes over can understand what happens when things go wrong. My workflow is called [WORKFLOW NAME]. Here is how errors are currently handled: [DESCRIBE YOUR ERROR HANDLING: e.g., error branches, retry logic, fallback nodes, email alerts, Slack notifications, or lack thereof]. Please generate a structured error handling document that includes: (1) A summary of the current error handling approach, (2) A table listing each major failure point, the error type, and the automated response, (3) Steps a human should take when they receive an error alert, (4) Any gaps in error handling that the new owner should be aware of and how to address them, (5) Recommended improvements if the current handling is insufficient. Use clear headers and a table format where appropriate.
+```
+
+### 5. Credential and API Key Handoff Checklist
+
+**Use case:** Safely transferring API keys and credentials to a new owner
+
+```
+Generate a secure credential handoff checklist for an n8n workflow being transferred to a new owner, teammate, or client. The workflow uses the following credentials and integrations: [LIST ALL CREDENTIALS AND SERVICES, e.g., Google OAuth, OpenAI API key, Airtable Personal Access Token, SMTP credentials]. For each credential, produce a checklist item that includes: (1) The name of the credential as it appears in n8n, (2) The service it connects to, (3) The permission scope or access level required, (4) How to obtain or regenerate the credential, (5) Where it is stored or should be stored securely, (6) The expiration date or renewal process if applicable. Also include a final section with general security reminders for the new workflow owner. Format as a printable checklist with checkboxes.
+```
+
+### 6. Executive Summary for Non-Technical Client
+
+**Use case:** Presenting a finished workflow to a non-technical client
+
+```
+Write a one-page executive summary of an n8n automation workflow for a non-technical client or business stakeholder who does not need to understand the technical details but needs to know what the workflow does, why it exists, and what value it delivers. The workflow is called [WORKFLOW NAME] and it was built for [CLIENT NAME OR BUSINESS TYPE]. It automates the following process: [DESCRIBE THE BUSINESS PROCESS IN 2-3 SENTENCES]. It connects the following tools: [LIST TOOLS]. Please write the summary in three sections: (1) What This Automation Does (2-3 paragraphs in plain English), (2) Business Value and Time Savings (include placeholders for metrics like [HOURS SAVED PER WEEK] and [TASKS AUTOMATED PER MONTH]), (3) What the Client Needs to Know to Keep It Running (2-3 bullet points of key responsibilities). Keep the tone professional and confident.
+```
+
+### 7. Data Flow Diagram Description
+
+**Use case:** Helping developers understand data transformation logic
+
+```
+I need to create a written description of the data flow in my n8n workflow so that a developer or technical team member can understand exactly how data moves through the system and recreate or troubleshoot it. My workflow is called [WORKFLOW NAME]. Here is a step-by-step description of what happens to data from start to finish: [DESCRIBE DATA FLOW IN ORDER: e.g., webhook receives JSON payload, data is filtered, transformed, sent to API, response is stored in Airtable]. Please write a detailed data flow document that includes: (1) The data entry point and format of incoming data, (2) Each transformation or manipulation step with input and output examples, (3) Any conditional branches and what data triggers each path, (4) The final destination of the data and in what format, (5) A simple ASCII or text-based flow diagram illustrating the path. Use technical precision appropriate for a developer audience.
+```
+
+### 8. Workflow Dependency Map
+
+**Use case:** Mapping everything the workflow depends on to avoid surprises
+
+```
+Create a dependency map document for an n8n workflow that clearly shows everything this workflow relies on so that a new maintainer knows exactly what to monitor and what could cause it to break. The workflow is called [WORKFLOW NAME]. It depends on the following external services, APIs, and tools: [LIST ALL DEPENDENCIES, e.g., Google Sheets, a specific Typeform form ID, a Slack channel, a MySQL database, a specific webhook URL]. Please generate a dependency map document that includes: (1) A table of all external dependencies with columns for: Dependency Name, Type (API/Database/Webhook/etc.), Criticality (High/Medium/Low), What breaks if it fails, and Who owns it, (2) Internal dependencies such as specific workflow settings or n8n environment variables, (3) A dependency health check routine the new owner should run monthly, (4) Instructions for what to update in the workflow if a dependency changes. Format clearly with tables and numbered steps.
+```
+
+### 9. Step-by-Step Onboarding Guide
+
+**Use case:** Onboarding a new owner who has never seen the workflow
+
+```
+Write a step-by-step onboarding guide for a new team member or client who will be taking ownership of an existing n8n workflow. They are [DESCRIBE THEIR TECHNICAL LEVEL: e.g., a non-technical business owner, a junior developer, a marketing manager with basic tech skills]. The workflow is called [WORKFLOW NAME] and it handles [DESCRIBE WHAT IT DOES]. Please create an onboarding guide with the following sections: (1) Prerequisites — what accounts, access, and tools they need before starting, (2) How to access and log into the n8n instance, (3) A tour of the workflow — what each major section does in plain terms, (4) How to test the workflow safely without triggering real actions, (5) How to turn the workflow on and off, (6) How to know if it is working correctly day to day, (7) Who to contact if they have questions or something breaks. Use numbered steps and include screenshots callouts formatted as [SCREENSHOT: description] as placeholders.
+```
+
+### 10. Conditional Logic Documentation
+
+**Use case:** Documenting IF/SWITCH logic for complex branching workflows
+
+```
+I need to document all the conditional logic and branching paths in my n8n workflow so that a new maintainer can understand every decision the workflow makes and why. My workflow is called [WORKFLOW NAME]. The following conditions and branches exist in the workflow: [DESCRIBE EACH IF/SWITCH/FILTER NODE AND ITS CONDITIONS, e.g., 'If node checks whether email domain equals company.com, if true goes to path A, if false goes to path B']. Please create a conditional logic document that includes: (1) A plain-English summary of all decision points in the workflow, (2) A decision tree or structured outline showing each branch and what triggers it, (3) For each condition: the field being evaluated, the operator used, the value being compared, and what happens in each outcome, (4) Any logic that might be non-obvious or could trip up a new maintainer, (5) Instructions for how to modify a condition if business rules change. Use a structured outline format with clear labels.
+```
+
+### 11. Scheduled Workflow Timing Documentation
+
+**Use case:** Documenting when and how often a scheduled workflow runs
+
+```
+Create a timing and schedule documentation sheet for an n8n workflow that runs on a schedule so that any team member understands exactly when it runs, what time zones apply, and what to do if a scheduled run is missed or delayed. The workflow is called [WORKFLOW NAME] and it runs on the following schedule: [DESCRIBE THE CRON SCHEDULE OR INTERVAL, e.g., every weekday at 8:00 AM EST, every hour between 9 AM and 5 PM, first Monday of each month]. Please generate a scheduling document that includes: (1) The schedule in plain English and as a cron expression, (2) The time zone the schedule is set to and any daylight saving implications, (3) What the workflow processes during each run, (4) Expected run duration and volume of records processed, (5) How to verify that a scheduled run completed successfully, (6) What to do if a run is missed — can it be triggered manually and how, (7) Any blackout dates or holiday exceptions. Use a table for the schedule overview.
+```
+
+### 12. Webhook Configuration Reference Sheet
+
+**Use case:** Documenting webhook setup for developer handoffs
+
+```
+Generate a webhook configuration reference sheet for an n8n workflow that receives data from an external source via webhook so that any new team member or developer can understand, test, and maintain the webhook integration. The workflow is called [WORKFLOW NAME] and it receives webhook calls from [SOURCE SYSTEM, e.g., Typeform, Stripe, a custom application, Shopify]. Please create a reference sheet that includes: (1) The webhook URL format and where to find the live URL in n8n, (2) The HTTP method expected (GET/POST/PUT), (3) Required headers and their values, (4) The expected payload structure with an example JSON body, (5) How n8n authenticates or validates the incoming webhook, (6) How to test the webhook using a tool like Postman or curl — include an example command, (7) What happens in the workflow when the webhook payload is malformed or missing required fields, (8) How to update the webhook URL in the source system if the n8n URL changes. Use code blocks for JSON examples and commands.
+```
+
+### 13. Workflow Change Log Template
+
+**Use case:** Establishing a version history for long-lived workflows
+
+```
+Create a professional change log template for an n8n workflow that a team can use to track all modifications, updates, and bug fixes over time so that anyone maintaining the workflow has a clear history of what has changed and why. The workflow is called [WORKFLOW NAME] and it was originally built on [ORIGINAL BUILD DATE] by [ORIGINAL BUILDER NAME OR ROLE]. Please generate: (1) A change log table template with columns for: Version Number, Date, Changed By, Change Type (Bug Fix/Enhancement/Breaking Change/Maintenance), Description of Change, Nodes Affected, and Tested By, (2) A version numbering convention guide (e.g., when to increment major vs minor vs patch versions), (3) Three example change log entries demonstrating different change types to show the team how to fill it in, (4) Instructions for where to store and share this change log so all team members can access it, (5) A reminder checklist to complete before logging any change. Format as a practical working document.
+```
+
+### 14. API Rate Limit Risk Assessment
+
+**Use case:** Warning new owners about API limits before they cause outages
+
+```
+Write a rate limit risk assessment document for an n8n workflow that calls external APIs so that the new workflow owner understands the rate limit constraints, the risk of hitting them, and how to respond when limits are reached. The workflow is called [WORKFLOW NAME] and it makes calls to the following APIs: [LIST EACH API AND ITS RATE LIMITS IF KNOWN, e.g., OpenAI API: 3,500 requests per minute on current plan, Airtable: 5 requests per second per base]. For each API used, please document: (1) The current rate limit on the plan being used, (2) How many calls this workflow makes per run and per day, (3) The risk level of hitting the rate limit (Low/Medium/High), (4) What error code or message appears when the limit is hit, (5) How the workflow currently handles rate limit errors (retry logic, delays, etc.), (6) Recommended actions if rate limits are consistently being hit. Also include a general section on how to monitor API usage and when to upgrade a plan. Use a table for the per-API breakdown.
+```
+
+### 15. Testing and QA Protocol
+
+**Use case:** Enabling safe testing before and after workflow changes
+
+```
+Create a testing and quality assurance protocol for an n8n workflow so that a new team member or client can confidently test the workflow after making changes or when troubleshooting issues without accidentally triggering real-world actions. The workflow is called [WORKFLOW NAME] and it performs the following real-world actions when it runs: [LIST REAL ACTIONS, e.g., sends emails, creates records in CRM, charges customers, posts to Slack]. Please write a QA protocol that includes: (1) How to put the workflow into a safe testing mode without affecting production systems, (2) A list of test scenarios to run covering the happy path and common edge cases, (3) What to check after each test to confirm the workflow ran correctly, (4) Test data examples or instructions for generating safe test data, (5) How to roll back or undo an action if a test accidentally triggers something real, (6) A pre-deployment checklist to complete before re-activating the live workflow after any change. Use numbered steps and include a checklist format for the pre-deployment section.
+```
+
+### 16. Business Rules and Logic Reference
+
+**Use case:** Preserving business context that lives inside workflow logic
+
+```
+Document the business rules and logic embedded in an n8n workflow so that a new maintainer who understands the business context can interpret why the workflow behaves the way it does and make informed changes when business requirements evolve. The workflow is called [WORKFLOW NAME] and it was built for [BUSINESS OR CLIENT NAME] to handle [DESCRIBE THE BUSINESS PROCESS]. The following key business rules are implemented in this workflow: [LIST THE BUSINESS RULES, e.g., 'Only process orders over $50', 'Skip contacts who have unsubscribed in the last 30 days', 'Assign to sales rep based on geographic region']. For each business rule, please document: (1) The rule in plain English, (2) Where in the workflow it is implemented (which node or section), (3) The business reason or rationale for the rule, (4) What would happen if the rule were removed, (5) How to update the rule if the business requirement changes, and (6) Who approved or requested this rule. Format as a numbered reference list.
+```
+
+### 17. Monitoring and Alerting Setup Guide
+
+**Use case:** Setting up proactive monitoring so failures are caught early
+
+```
+Write a monitoring and alerting setup guide for an n8n workflow so that the new owner knows how to proactively detect when the workflow is failing, slow, or not running as expected, before it causes a business problem. The workflow is called [WORKFLOW NAME] and it currently has the following monitoring in place: [DESCRIBE CURRENT MONITORING: e.g., email alerts on error, no monitoring at all, a Slack notification node on failure]. Please generate a monitoring guide that includes: (1) A recommended monitoring checklist — what metrics or signals to watch and how often, (2) How to set up n8n's built-in error workflow feature if not already configured, step by step, (3) How to configure a Slack or email alert when the workflow fails, with example node configuration settings, (4) A daily or weekly health check routine the owner should perform, (5) Key questions to ask when reviewing workflow execution history, (6) Escalation steps if the workflow has been failing for more than [X HOURS] without resolution. Use numbered steps and include a simple checklist at the end.
+```
+
+### 18. Third-Party Integration Specs Sheet
+
+**Use case:** Creating a full technical spec for every service the workflow touches
+
+```
+Create a third-party integration specifications sheet for an n8n workflow that documents every external service connection so that a new owner, IT team, or developer has a complete technical reference for all integrations. The workflow is called [WORKFLOW NAME]. It integrates with the following external services: [LIST EACH SERVICE]. For each integration, please produce a specification block that includes: (1) Service name and what it is used for in this workflow, (2) Authentication method (OAuth2, API Key, Basic Auth, etc.) and where credentials are managed in n8n, (3) The specific API endpoints or actions being used, (4) The n8n node type used for this integration, (5) Data sent to the service and data received from it, (6) The account or plan tier required for this integration to work, (7) Link to official API documentation or n8n node documentation, (8) Known limitations or quirks specific to this integration. Format each integration as a clearly labeled card or section.
+```
+
+### 19. Rollback and Disaster Recovery Plan
+
+**Use case:** Preparing for worst-case scenarios with a clear recovery plan
+
+```
+Write a rollback and disaster recovery plan for an n8n workflow so that if the workflow breaks, produces bad data, or is accidentally deleted, the new owner has clear steps to restore normal operations quickly. The workflow is called [WORKFLOW NAME] and it is critical to the following business operation: [DESCRIBE THE BUSINESS IMPACT IF THIS WORKFLOW STOPS WORKING, e.g., 'new leads are not assigned to sales reps', 'customer invoices are not sent automatically']. Please generate a disaster recovery plan that includes: (1) How to export and back up the workflow JSON from n8n and how often backups should be taken, (2) How to restore the workflow from a JSON backup, step by step, (3) What to do if the workflow processes bad data and corrupts records in connected systems — include a data recovery checklist, (4) The manual fallback process for keeping the business running while the workflow is down, (5) Estimated recovery time objective (RTO) — how quickly the workflow should be restored, (6) A post-incident review checklist to complete after any major failure. Use numbered steps and highlight critical actions in bold.
+```
+
+### 20. Complete Handoff Package Cover Sheet
+
+**Use case:** Creating the cover page for a complete client handoff package
+
+```
+Generate a professional cover sheet and table of contents for a complete n8n workflow handoff documentation package that will be delivered to [RECIPIENT NAME OR ROLE, e.g., a client, a new team member, an IT department]. The workflow being handed off is called [WORKFLOW NAME] and was built by [BUILDER NAME] for [CLIENT OR COMPANY NAME]. The handoff is happening because [REASON FOR HANDOFF, e.g., end of contract, team expansion, ownership transfer]. Please create: (1) A professional cover page with the workflow name, handoff date, built-by information, handed-off-to information, and a one-sentence description of what the workflow does, (2) A table of contents listing all documentation sections included in the package with a brief one-line description of each section, (3) A handoff declaration statement that both parties can sign to confirm the handoff is complete and the new owner accepts responsibility, (4) A 'Quick Start' box at the top of the document highlighting the three most important things the new owner needs to know or do first, (5) A contacts and support resources section listing who to reach out to for questions about the workflow, n8n, or connected services. Format this as a polished, print-ready document.
+```

@@ -1,0 +1,23 @@
+{
+  "id": "prompts-n8n-workflow-documentation-prompts-for-t-20260313",
+  "title": "n8n Workflow Documentation Prompts for Team Handoffs",
+  "description": "Solo n8n builders handing off automation projects to teammates or clients get 20 structured prompts to produce clear node-by-node documentation, trigger logic summaries, and maintenance runbooks.",
+  "category": "prompt-packs",
+  "tags": [
+    "n8n",
+    "documentation",
+    "handoff",
+    "SOPs"
+  ],
+  "item_count": 20,
+  "prompt_count": 20,
+  "created_at": "2026-03-13T18:41:53.055793+00:00",
+  "status": "published",
+  "package_path": "products/prompts-n8n-workflow-documentation-prompts-for-t-20260313/package.zip",
+  "site_path": "site/products/prompts-n8n-workflow-documentation-prompts-for-t-20260313.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You built an n8n workflow that actually works, but your teammate has no idea what's happening inside it.\n\nThis is the handoff problem. You can either spend hours documenting node logic and error handling, or hand over a black box and hope they don't break it.\n\nThese 20 prompts do the first part for you.\n\nWHO THIS IS FOR\n\n— Solo automation builders shipping workflows to team members who need to maintain them\n— Agency owners documenting client projects before handing off access\n— n8n power users who build fast and document slow\n\n\nWHAT'S INSIDE\n\n— Trigger logic prompts that extract decision trees from your workflow conditions\n— Node-by-node documentation templates that turn your setup into clear narratives\n— Maintenance runbooks that flag error scenarios and common failure points\n— Prompts for both visual and written documentation workflows\n— Ready-to-paste into ChatGPT, Claude, or Gemini—no tinkering required\n\n\nNo more \"how does this work again?\" messages at midnight. No more time lost re-learning your own logic.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
