@@ -38,24 +38,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773352432-0",
-      "title": "Cold Email Sequences That Get Replies",
-      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
-      "category": "prompt-packs",
-      "tags": [
-        "sales",
-        "email marketing",
-        "copywriting"
-      ],
-      "score": 88,
-      "rationale": "Cold email is a massive, evergreen pain point for B2B sales reps who desperately need personalization at scale, and AI excels at generating varied, targeted email sequences.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-12T21:53:52.378947+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773354025-4",
       "title": "ATS-Optimized Resume Bullet Rewriter by Job Description",
       "description": "Prompts that help job seekers paste any job posting and transform weak, generic resume bullets into keyword-rich, metric-driven lines that pass applicant tracking systems.",
@@ -166,6 +148,204 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T11:33:11.239951+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-0",
+      "title": "Freelance Contract Clause Swipe File for Scope Creep",
+      "description": "Freelancers who repeatedly get unpaid extra work get 25 copy-paste contract clauses that clearly define boundaries, revision limits, and kill fees to protect their income.",
+      "category": "swipe-file",
+      "tags": [
+        "contracts",
+        "scope-creep",
+        "freelance-protection"
+      ],
+      "score": 86,
+      "rationale": "Scope creep is one of the most searched freelancer problems giving it strong demand, contract clause copy is a differentiated format rarely offered as a free download, and AI produces legally-flavored protective language consistently well.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.328531+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-1",
+      "title": "Client Onboarding Checklist for Independent Consultants",
+      "description": "Solo consultants starting a new engagement get a repeatable 30-step checklist covering intake forms, tool access, stakeholder intros, and deliverable alignment to eliminate chaotic project kickoffs.",
+      "category": "checklist",
+      "tags": [
+        "client-onboarding",
+        "consulting",
+        "project-kickoff"
+      ],
+      "score": 81,
+      "rationale": "Every new consultant engagement carries onboarding chaos making demand broad and recurring, a 30-step structured checklist is more comprehensive than typical blog posts, and AI generates detailed sequential checklists with high reliability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.333574+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-2",
+      "title": "Late Invoice Follow-Up Sequence for Freelancers",
+      "description": "Freelancers chasing unpaid invoices get 6 escalating, professionally worded follow-up message templates that recover payment without burning the client relationship.",
+      "category": "swipe-file",
+      "tags": [
+        "invoicing",
+        "late-payment",
+        "client-communication"
+      ],
+      "score": 91,
+      "rationale": "Unpaid invoices are a near-universal freelancer pain point with high urgency, the escalating sequence format is highly specific and underserved, and AI excels at generating professionally calibrated email copy with consistent tone progression.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
+      "generated_at": "2026-03-13T11:38:07.338609+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-3",
+      "title": "Freelance Rate Increase Proposal Mini-Guide",
+      "description": "Established freelancers afraid to raise their rates get a step-by-step framework for calculating, timing, and communicating a rate increase to existing clients without losing them.",
+      "category": "mini-guide",
+      "tags": [
+        "pricing",
+        "rate-increase",
+        "client-negotiation"
+      ],
+      "score": 84,
+      "rationale": "Rate increase anxiety is extremely common among established freelancers making demand high, a structured timing-and-communication framework is more actionable than generic advice found online, and AI can scaffold a clear step-by-step decision guide effectively.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.343670+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-4",
+      "title": "Automatic New Client Folder and Contract Generator in n8n",
+      "description": "Freelancers using Typeform and Google Drive get a ready-to-import n8n workflow that auto-creates a named client folder, populates a contract template, and sends a welcome email the moment a lead signs on.",
+      "category": "n8n-template",
+      "tags": [
+        "client-setup",
+        "automation",
+        "google-drive"
+      ],
+      "score": 58,
+      "rationale": "The n8n-template category falls outside the four supported catalog categories making it a poor fit, and while the automation idea has real appeal the generability via AI content creation is low since it requires tested workflow JSON rather than text output.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.346462+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-5",
+      "title": "Project Scope Definition Prompts for Freelance Designers",
+      "description": "Freelance designers who struggle to nail down vague briefs get 20 AI prompts that extract precise deliverables, technical specs, and approval criteria from clients before work begins.",
+      "category": "prompt-packs",
+      "tags": [
+        "scope-definition",
+        "design-briefs",
+        "client-clarity"
+      ],
+      "score": 76,
+      "rationale": "Vague client briefs frustrate most freelance designers giving solid demand, targeting brief extraction specifically for designers adds useful niche focus, and AI generates discovery and scoping prompts very effectively.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.351531+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-6",
+      "title": "Freelance Weekly Cash Flow Forecasting Checklist",
+      "description": "Self-employed freelancers with irregular income get a weekly 20-step checklist to track outstanding invoices, upcoming expenses, and pipeline probability so they never get caught short.",
+      "category": "checklist",
+      "tags": [
+        "cash-flow",
+        "finances",
+        "freelance-income"
+      ],
+      "score": 78,
+      "rationale": "Irregular income anxiety is a constant freelancer stressor ensuring steady demand, a weekly cash-flow-specific checklist is a practical format not widely available as a free download, and AI produces structured financial tracking steps competently though domain nuance slightly limits depth.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.356588+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-7",
+      "title": "Testimonial and Case Study Request Scripts for Freelancers",
+      "description": "Freelancers who awkwardly avoid asking for social proof get 12 ready-to-send scripts for requesting testimonials, LinkedIn recommendations, and mini case studies at the perfect moment in the client lifecycle.",
+      "category": "swipe-file",
+      "tags": [
+        "social-proof",
+        "testimonials",
+        "case-studies"
+      ],
+      "score": 88,
+      "rationale": "Social proof is critical for freelancer growth yet asking for it is widely avoided, the multi-format script variety is distinctive, and AI generates polished, context-sensitive request messages very reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.361648+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-8",
+      "title": "Subcontractor Briefing Prompts for Freelance Agency Owners",
+      "description": "Freelancers who delegate work to subcontractors get 20 AI prompts that generate precise creative briefs, quality benchmarks, and revision guidelines to prevent costly miscommunication.",
+      "category": "prompt-packs",
+      "tags": [
+        "subcontracting",
+        "delegation",
+        "freelance-agency"
+      ],
+      "score": 72,
+      "rationale": "The audience of freelancers who subcontract is narrower than general freelance topics reducing demand, the subcontractor briefing angle is genuinely underserved, and AI produces structured briefing prompts well though the niche limits overall reach.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.366733+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-9",
+      "title": "Freelance Dry Spell Survival and Pipeline Rebuild Mini-Guide",
+      "description": "Freelancers hitting a sudden income gap get a concrete playbook covering immediate outreach prioritization, quick-win offer packaging, and a 14-day re-engagement sequence to fill their pipeline fast.",
+      "category": "mini-guide",
+      "tags": [
+        "pipeline-building",
+        "slow-season",
+        "lead-generation"
+      ],
+      "score": 83,
+      "rationale": "Income dry spells create acute financial stress giving this urgent emotional pull, the 14-day re-engagement angle adds concrete specificity that differentiates it, and AI can map out prioritized outreach playbooks with strong consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.371803+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773352432-0",
+      "title": "Cold Email Sequences That Get Replies",
+      "description": "30 prompts for B2B sales reps to write personalized cold email sequences that increase open rates and book more discovery calls.",
+      "category": "prompt-packs",
+      "tags": [
+        "sales",
+        "email marketing",
+        "copywriting"
+      ],
+      "score": 88,
+      "rationale": "Cold email is a massive, evergreen pain point for B2B sales reps who desperately need personalization at scale, and AI excels at generating varied, targeted email sequences.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-12T21:53:52.378947+00:00",
       "source": "trend-scan"
     },
     {

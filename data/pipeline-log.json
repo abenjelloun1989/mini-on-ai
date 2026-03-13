@@ -138,6 +138,38 @@
       "error": "Idea rejected",
       "product": null,
       "duration_seconds": 46
+    },
+    {
+      "id": "run-1773401570",
+      "started_at": "2026-03-13T11:32:50.357594+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected",
+      "product": null,
+      "duration_seconds": 57
+    },
+    {
+      "id": "run-1773401683",
+      "started_at": "2026-03-13T11:34:43.744932+00:00",
+      "status": "failed",
+      "failed_stage": "approval",
+      "error": "Idea rejected",
+      "product": null,
+      "duration_seconds": 25
+    },
+    {
+      "id": "run-1773401867",
+      "started_at": "2026-03-13T11:37:47.738645+00:00",
+      "status": "success",
+      "failed_stage": null,
+      "error": null,
+      "product": {
+        "id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
+        "title": "Late Invoice Follow-Up Sequence for Freelancers",
+        "description": "Freelancers chasing unpaid invoices get 6 escalating, professionally worded follow-up message templates that recover payment without burning the client relationship.",
+        "gumroad_url": null
+      },
+      "duration_seconds": 226
     }
   ]
 }
