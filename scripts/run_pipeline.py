@@ -30,7 +30,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-from lib.utils import read_json, write_json, timestamp, log, ROOT
+from lib.utils import read_json, write_json, timestamp, log, ROOT, get_run_token_summary
 from trend_scan import trend_scan
 from idea_rank import idea_rank
 from generate_product import generate_product

@@ -78,6 +78,89 @@ def log(stage: str, message: str) -> None:
     print(f"[{stage}] {message}", flush=True)
 
 
+# ── Token tracking ────────────────────────────────────────────────────────────
+
+_COST_PER_MTOK = {
+    "claude-sonnet-4-6":          {"input": 3.00, "output": 15.00},
+    "claude-opus-4-6":            {"input": 15.00, "output": 75.00},
+    "claude-haiku-4-5-20251001":  {"input": 0.80,  "output": 4.00},
+}
+_TOKEN_LOG = "data/token-usage.json"
+
+
+def log_token_usage(stage: str, usage, model: str) -> None:
+    """Append one API call's token usage to data/token-usage.json."""
+    run_id = os.environ.get("PIPELINE_RUN_ID", "unknown")
+    entry = {
+        "ts": timestamp(),
+        "run_id": run_id,
+        "stage": stage,
+        "model": model,
+        "input_tokens": getattr(usage, "input_tokens", 0),
+        "output_tokens": getattr(usage, "output_tokens", 0),
+    }
+    log_file = ROOT / _TOKEN_LOG
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+    entries = []
+    if log_file.exists():
+        try:
+            entries = json.loads(log_file.read_text())
+        except Exception:
+            entries = []
+    entries.append(entry)
+    log_file.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n")
+
+
+def get_run_token_summary(run_id: str) -> dict:
+    """Sum tokens for a given run_id and estimate cost in USD."""
+    log_file = ROOT / _TOKEN_LOG
+    if not log_file.exists():
+        return {"input_tokens": 0, "output_tokens": 0, "estimated_cost_usd": 0.0}
+    try:
+        entries = json.loads(log_file.read_text())
+    except Exception:
+        return {"input_tokens": 0, "output_tokens": 0, "estimated_cost_usd": 0.0}
+    total_in = total_out = cost = 0.0
+    for e in entries:
+        if e.get("run_id") != run_id:
+            continue
+        inp = e.get("input_tokens", 0)
+        out = e.get("output_tokens", 0)
+        total_in += inp
+        total_out += out
+        rates = _COST_PER_MTOK.get(e.get("model", ""), {"input": 3.0, "output": 15.0})
+        cost += (inp * rates["input"] + out * rates["output"]) / 1_000_000
+    return {
+        "input_tokens": int(total_in),
+        "output_tokens": int(total_out),
+        "estimated_cost_usd": round(cost, 4),
+    }
+
+
+def get_lifetime_token_summary() -> dict:
+    """Sum all tokens across all runs."""
+    log_file = ROOT / _TOKEN_LOG
+    if not log_file.exists():
+        return {"input_tokens": 0, "output_tokens": 0, "estimated_cost_usd": 0.0}
+    try:
+        entries = json.loads(log_file.read_text())
+    except Exception:
+        return {"input_tokens": 0, "output_tokens": 0, "estimated_cost_usd": 0.0}
+    total_in = total_out = cost = 0.0
+    for e in entries:
+        inp = e.get("input_tokens", 0)
+        out = e.get("output_tokens", 0)
+        total_in += inp
+        total_out += out
+        rates = _COST_PER_MTOK.get(e.get("model", ""), {"input": 3.0, "output": 15.0})
+        cost += (inp * rates["input"] + out * rates["output"]) / 1_000_000
+    return {
+        "input_tokens": int(total_in),
+        "output_tokens": int(total_out),
+        "estimated_cost_usd": round(cost, 4),
+    }
+
+
 def extract_json(text: str, array: bool = True):
     """Extract first JSON array or object from a string.
     Falls back to repairing truncated arrays if strict parse fails.

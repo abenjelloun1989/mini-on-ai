@@ -25,7 +25,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import os
 import anthropic
-from lib.utils import read_json, write_json, write_file, ensure_dir, product_id, timestamp, log, extract_json
+from lib.utils import read_json, write_json, write_file, ensure_dir, product_id, timestamp, log, extract_json, log_token_usage
 
 client = anthropic.Anthropic()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
@@ -110,6 +110,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         }],
     )
 
+    log_token_usage("generate-product", message.usage, MODEL)
     if message.stop_reason == "max_tokens":
         log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     prompts = extract_json(message.content[0].text.strip(), array=True)
@@ -194,6 +195,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         }],
     )
 
+    log_token_usage("generate-product", message.usage, MODEL)
     if message.stop_reason == "max_tokens":
         log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     items = extract_json(message.content[0].text.strip(), array=True)
@@ -285,6 +287,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         }],
     )
 
+    log_token_usage("generate-product", message.usage, MODEL)
     if message.stop_reason == "max_tokens":
         log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     examples = extract_json(message.content[0].text.strip(), array=True)
@@ -374,6 +377,7 @@ Return ONLY the guide in Markdown, starting with the title as an H1.""",
         }],
     )
 
+    log_token_usage("generate-product", message.usage, MODEL)
     guide_md = message.content[0].text.strip()
     log("generate-product", f"Generated mini-guide ({len(guide_md)} chars)")
 
@@ -448,6 +452,7 @@ Return ONLY valid JSON, no other text.""",
         }],
     )
 
+    log_token_usage("generate-product", message.usage, MODEL)
     if message.stop_reason == "max_tokens":
         raise RuntimeError(
             "n8n workflow response truncated at max_tokens — skipping this product. "
@@ -546,6 +551,7 @@ Requirements:
         }],
     )
 
+    log_token_usage("generate-product", message.usage, "claude-haiku-4-5-20251001")
     desc = message.content[0].text.strip()
     # Strip any accidental code fences
     desc = re.sub(r"^```[a-z]*\n?", "", desc)

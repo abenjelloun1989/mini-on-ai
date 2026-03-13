@@ -17,7 +17,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 import json
 import os
 import anthropic
-from lib.utils import read_json, write_json, log, extract_json
+from lib.utils import read_json, write_json, log, extract_json, log_token_usage
 
 client = anthropic.Anthropic()
 MODEL = "claude-haiku-4-5-20251001"  # scoring task — Haiku is sufficient
@@ -73,6 +73,7 @@ Sort by score descending.""",
             ],
         )
 
+        log_token_usage("idea-rank", message.usage, MODEL)
         raw = message.content[0].text.strip()
         scores = extract_json(raw, array=True)
 

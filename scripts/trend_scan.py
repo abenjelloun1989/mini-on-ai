@@ -18,7 +18,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import os
 import anthropic
-from lib.utils import read_json, write_json, timestamp, log, extract_json
+from lib.utils import read_json, write_json, timestamp, log, extract_json, log_token_usage
 from lib.trend_sources import get_google_trends_rising
 
 client = anthropic.Anthropic()
@@ -129,6 +129,7 @@ Return ONLY a valid JSON array, no other text. Schema:
         ],
     )
 
+    log_token_usage("trend-scan", message.usage, MODEL)
     raw = message.content[0].text.strip()
     ideas_raw = extract_json(raw, array=True)
     log("trend-scan", f"Generated {len(ideas_raw)} ideas")
