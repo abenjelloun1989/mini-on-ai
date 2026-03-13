@@ -98,9 +98,17 @@ def escape_html(s: str) -> str:
     )
 
 
+def _thumbnail_html_detail(meta: dict, pid: str) -> str:
+    thumb = meta.get("thumbnail")
+    if thumb:
+        return f'  <img src="../{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail" style="border-radius:12px;margin-bottom:28px;max-width:100%;">\n'
+    return ""
+
+
 def build_product_page(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     download_path = "package.zip"
+    thumbnail_html = _thumbnail_html_detail(meta, meta.get("id", ""))
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -114,12 +122,14 @@ def build_product_page(meta: dict) -> str:
 <body>
   <header class="site-header">
     <div class="site-header-inner">
-      <a href="../index.html" class="site-logo">← Back to catalog</a>
+      <a href="../index.html" class="site-logo">
+        <img src="../logo.svg" alt="mini-on-ai">
+      </a>
     </div>
   </header>
 
   <main class="product-detail">
-    <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
+{thumbnail_html}    <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
     <h1>{escape_html(meta['title'])}</h1>
     <p class="product-desc-large">{escape_html(meta['description'])}</p>
 
@@ -147,12 +157,19 @@ def build_product_page(meta: dict) -> str:
 
 def build_product_card(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    return f"""      <article class="product-card">
-        <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
-        <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
-        <p class="product-desc">{escape_html(meta['description'])}</p>
-        <div class="product-meta">{escape_html(_count_label(meta))}</div>
-        <a href="products/{meta['id']}/package.zip" class="btn-download">Download Free</a>
+    thumb = meta.get("thumbnail")
+    if thumb:
+        thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
+    else:
+        thumbnail_html = '\n        <div class="product-thumbnail-placeholder"></div>'
+    return f"""      <article class="product-card">{thumbnail_html}
+        <div class="product-card-body">
+          <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
+          <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
+          <p class="product-desc">{escape_html(meta['description'])}</p>
+          <div class="product-meta">{escape_html(_count_label(meta))}</div>
+          <a href="products/{meta['id']}/package.zip" class="btn-download">Download Free</a>
+        </div>
       </article>"""
 
 
@@ -168,12 +185,14 @@ def rebuild_index(catalog: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mini-on-ai — Free Digital Resources</title>
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Free digital resources, prompt packs, and tools.">
+  <meta name="description" content="Free digital resources, prompt packs, and tools. Download and use immediately.">
 </head>
 <body>
   <header class="site-header">
     <div class="site-header-inner">
-      <a href="index.html" class="site-logo">mini-on-ai</a>
+      <a href="index.html" class="site-logo">
+        <img src="logo.svg" alt="mini-on-ai">
+      </a>
       <span class="product-count">{count} free resource{'s' if count != 1 else ''}</span>
     </div>
   </header>
@@ -254,6 +273,7 @@ def update_site(product_id_arg: str = None) -> dict:
         "created_at": meta["created_at"],
         "package_path": meta["package_path"],
         "site_path": f"site/products/{pid}.html",
+        "thumbnail": meta.get("thumbnail"),
     }
 
     existing_idx = next((i for i, p in enumerate(catalog["products"]) if p["id"] == pid), None)
