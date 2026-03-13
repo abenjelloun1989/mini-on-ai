@@ -162,9 +162,9 @@
       ],
       "score": 81,
       "rationale": "Every new consultant engagement carries onboarding chaos making demand broad and recurring, a 30-step structured checklist is more comprehensive than typical blog posts, and AI generates detailed sequential checklists with high reliability.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "checklist-client-onboarding-checklist-for-independ-20260313",
       "generated_at": "2026-03-13T11:38:07.333574+00:00",
       "source": "trend-scan"
     },
@@ -576,7 +576,7 @@
       ],
       "score": 82,
       "rationale": "High demand from founder audience, strong uniqueness in tactical early-stage framework, and mini-guides are highly generifiable with AI for consistent quality.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-lead-generation-channel-mix-mini-guide-f-20260313",
       "generated_at": "2026-03-13T14:17:37.766763+00:00",
@@ -634,24 +634,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.095905+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773411458-3",
-      "title": "Outbound Prospecting Research Prompts for SDRs",
-      "description": "SDRs get 20 targeted research prompts to surface trigger events, buying signals, and org chart details that turn cold accounts into warm, personalized outreach targets.",
-      "category": "prompt-packs",
-      "tags": [
-        "prospecting",
-        "sdr",
-        "account-research"
-      ],
-      "score": 82,
-      "rationale": "High demand from SDR teams, targeted research prompts differentiate from generic cold outreach guides, and prompt-based content is highly generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:38.097179+00:00",
       "source": "trend-scan"
     },
     {
@@ -742,6 +724,24 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-3",
+      "title": "Outbound Prospecting Research Prompts for SDRs",
+      "description": "SDRs get 20 targeted research prompts to surface trigger events, buying signals, and org chart details that turn cold accounts into warm, personalized outreach targets.",
+      "category": "prompt-packs",
+      "tags": [
+        "prospecting",
+        "sdr",
+        "account-research"
+      ],
+      "score": 82,
+      "rationale": "High demand from SDR teams, targeted research prompts differentiate from generic cold outreach guides, and prompt-based content is highly generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.097179+00:00",
       "source": "trend-scan"
     },
     {

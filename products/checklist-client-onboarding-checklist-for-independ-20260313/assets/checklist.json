@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "item": "Send and collect a signed contract or statement of work before any work begins",
+    "why": "Establishes legal protection, defines scope boundaries, and prevents scope creep from day one. Never start work on a handshake alone.",
+    "section": "Preparation"
+  },
+  {
+    "id": 2,
+    "item": "Issue and collect a completed client intake form covering business goals, pain points, budget, and timeline",
+    "why": "Forces the client to articulate their needs in writing, surfaces misalignments early, and gives you a reference document throughout the engagement.",
+    "section": "Preparation"
+  },
+  {
+    "id": 3,
+    "item": "Confirm payment terms, invoicing schedule, and preferred payment method in writing",
+    "why": "Eliminates payment disputes later. Clarify net-30 vs. net-15, accepted methods (ACH, credit card, check), and late-payment penalties upfront.",
+    "section": "Preparation"
+  },
+  {
+    "id": 4,
+    "item": "Request and review any existing documentation, reports, or prior work relevant to the engagement",
+    "why": "Prevents duplicating work already done, reveals institutional knowledge gaps, and helps you speak credibly in early stakeholder meetings.",
+    "section": "Preparation"
+  },
+  {
+    "id": 5,
+    "item": "Create a dedicated project folder structure in your file system or cloud storage before receiving any client assets",
+    "why": "A consistent folder structure (e.g., /Contracts, /Assets, /Deliverables, /Communications) keeps you organized and makes handoffs clean at project end.",
+    "section": "Preparation"
+  },
+  {
+    "id": 6,
+    "item": "Set up a dedicated communication channel and confirm the client's preferred method (email, Slack, Teams, etc.)",
+    "why": "Reduces missed messages and context-switching. Agree on response time expectations so neither party feels ignored or overwhelmed.",
+    "section": "Preparation"
+  },
+  {
+    "id": 7,
+    "item": "Request access credentials or invitations to all tools, platforms, and systems needed for the engagement",
+    "why": "Tool access delays are one of the most common causes of lost billable time in week one. Identify and request access at least 3–5 days before kickoff.",
+    "section": "Preparation"
+  },
+  {
+    "id": 8,
+    "item": "Confirm your primary point of contact and identify who has final decision-making authority on deliverables",
+    "why": "Prevents the frustration of delivering work only to learn the true decision-maker has different expectations. Know who can say yes.",
+    "section": "Preparation"
+  },
+  {
+    "id": 9,
+    "item": "Schedule and conduct a formal kickoff meeting with all key stakeholders before beginning any deliverables",
+    "why": "Aligns everyone on goals, roles, and timelines simultaneously. Reduces the risk of conflicting instructions from different team members.",
+    "section": "Execution"
+  },
+  {
+    "id": 10,
+    "item": "Document and distribute a kickoff meeting summary including agreed goals, next steps, owners, and deadlines within 24 hours",
+    "why": "Creates a shared written record that prevents 'but I thought we agreed' disputes. Makes accountability visible to everyone from the start.",
+    "section": "Execution"
+  },
+  {
+    "id": 11,
+    "item": "Introduce yourself via email to all secondary stakeholders or team members you will work with during the engagement",
+    "why": "Builds rapport early, signals professionalism, and ensures supporting team members know who you are before you need something from them.",
+    "section": "Execution"
+  },
+  {
+    "id": 12,
+    "item": "Build and share a project timeline or milestone map showing key deliverable dates and review checkpoints",
+    "why": "Gives the client visibility into progress and creates natural accountability moments. Use a simple Gantt chart or shared task board if needed.",
+    "section": "Execution"
+  },
+  {
+    "id": 13,
+    "item": "Define and document the deliverable review and approval process including number of revision rounds allowed",
+    "why": "Unlimited revisions are a profit killer. Specify in writing how many rounds of feedback are included and what constitutes a change-order trigger.",
+    "section": "Execution"
+  },
+  {
+    "id": 14,
+    "item": "Establish a weekly or bi-weekly standing check-in cadence with your primary point of contact",
+    "why": "Regular touchpoints prevent small misalignments from becoming major problems. They also reassure the client that progress is being made.",
+    "section": "Execution"
+  },
+  {
+    "id": 15,
+    "item": "Verify that all tool access, data permissions, and system integrations are functioning correctly within the first 48 hours",
+    "why": "Access issues discovered on day one are easier to resolve than those discovered mid-project when you are blocked on a deliverable with a deadline.",
+    "section": "Execution"
+  },
+  {
+    "id": 16,
+    "item": "Log all key decisions, change requests, and scope additions in a running decision log shared with the client",
+    "why": "Provides a defensible audit trail if scope disputes arise. Clients often forget verbal approvals; a written log protects both parties.",
+    "section": "Execution"
+  },
+  {
+    "id": 17,
+    "item": "Conduct a mid-engagement check-in to assess satisfaction, re-confirm priorities, and flag any emerging risks",
+    "why": "Catching dissatisfaction at the midpoint gives you time to course-correct. Surprises at final delivery damage client relationships and referrals.",
+    "section": "Review"
+  },
+  {
+    "id": 18,
+    "item": "Deliver a final summary document that maps completed deliverables back to the original goals stated in the intake form",
+    "why": "Demonstrates tangible value and reminds the client of the full scope of work completed. Strengthens the case for testimonials and renewals.",
+    "section": "Review"
+  },
+  {
+    "id": 19,
+    "item": "Offboard all access by revoking or transferring credentials, tools, and permissions upon project completion",
+    "why": "Protects the client's security posture and protects you from liability for any post-engagement system issues. Document all transfers in writing.",
+    "section": "Review"
+  },
+  {
+    "id": 20,
+    "item": "Send a close-out survey or request a testimonial within one week of project completion while the experience is fresh",
+    "why": "Timely feedback captures honest impressions and generates social proof. Delayed requests result in vague or forgotten responses that are less useful.",
+    "section": "Review"
+  }
+]
