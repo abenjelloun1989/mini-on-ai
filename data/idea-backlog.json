@@ -187,24 +187,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773401887-3",
-      "title": "Freelance Rate Increase Proposal Mini-Guide",
-      "description": "Established freelancers afraid to raise their rates get a step-by-step framework for calculating, timing, and communicating a rate increase to existing clients without losing them.",
-      "category": "mini-guide",
-      "tags": [
-        "pricing",
-        "rate-increase",
-        "client-negotiation"
-      ],
-      "score": 84,
-      "rationale": "Rate increase anxiety is extremely common among established freelancers making demand high, a structured timing-and-communication framework is more actionable than generic advice found online, and AI can scaffold a clear step-by-step decision guide effectively.",
-      "selected": true,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T11:38:07.343670+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773401887-4",
       "title": "Automatic New Client Folder and Contract Generator in n8n",
       "description": "Freelancers using Typeform and Google Drive get a ready-to-import n8n workflow that auto-creates a named client folder, populates a contract template, and sends a welcome email the moment a lead signs on.",
@@ -421,24 +403,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773406935-7",
-      "title": "Freelance Retainer Proposal Conversion Mini-Guide",
-      "description": "Teaches project-based freelancers a repeatable method to identify retainer candidates, frame ongoing value, and present a monthly engagement offer without feeling pushy.",
-      "category": "mini-guide",
-      "tags": [
-        "retainers",
-        "recurring-revenue",
-        "proposals"
-      ],
-      "score": 84,
-      "rationale": "Converting one-off projects to retainers is a high-value, widely desired skill with limited step-by-step free guidance, and AI can reliably produce focused narrative how-to content for this category.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T13:02:15.481098+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773406935-8",
       "title": "Freelance Capacity Planning and Workload Balancing Prompt Pack",
       "description": "Provides solo freelancers with 20 prompts to assess current commitments, forecast bandwidth, and articulate workload trade-offs before accepting a new project mid-sprint.",
@@ -576,9 +540,9 @@
       ],
       "score": 84,
       "rationale": "Strong demand from performance marketers, swipe file of annotated page structures offers real differentiation, and visual/formula-based content is consistently generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "swipe-landing-page-conversion-audit-swipe-file-20260313",
       "generated_at": "2026-03-13T14:17:37.754725+00:00",
       "source": "trend-scan"
     },
@@ -796,6 +760,42 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-7",
+      "title": "Freelance Retainer Proposal Conversion Mini-Guide",
+      "description": "Teaches project-based freelancers a repeatable method to identify retainer candidates, frame ongoing value, and present a monthly engagement offer without feeling pushy.",
+      "category": "mini-guide",
+      "tags": [
+        "retainers",
+        "recurring-revenue",
+        "proposals"
+      ],
+      "score": 84,
+      "rationale": "Converting one-off projects to retainers is a high-value, widely desired skill with limited step-by-step free guidance, and AI can reliably produce focused narrative how-to content for this category.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.481098+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401887-3",
+      "title": "Freelance Rate Increase Proposal Mini-Guide",
+      "description": "Established freelancers afraid to raise their rates get a step-by-step framework for calculating, timing, and communicating a rate increase to existing clients without losing them.",
+      "category": "mini-guide",
+      "tags": [
+        "pricing",
+        "rate-increase",
+        "client-negotiation"
+      ],
+      "score": 84,
+      "rationale": "Rate increase anxiety is extremely common among established freelancers making demand high, a structured timing-and-communication framework is more actionable than generic advice found online, and AI can scaffold a clear step-by-step decision guide effectively.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T11:38:07.343670+00:00",
       "source": "trend-scan"
     },
     {
