@@ -71,7 +71,10 @@ def get_updates(offset: int) -> list:
         result = api("getUpdates", {"offset": offset, "timeout": 20, "limit": 10})
         return result.get("result", [])
     except Exception as e:
-        log("bot", f"getUpdates error: {e}")
+        msg = str(e)
+        log("bot", f"getUpdates error: {msg}")
+        if "409" in msg:
+            time.sleep(5)  # back off before retry when another instance is still alive
         return []
 
 
@@ -298,15 +301,21 @@ def cmd_products() -> str:
 
         site_url = os.getenv("SITE_URL", "http://localhost:8080")
         lines = [f"📦 <b>Products ({len(products)})</b>\n"]
+        shown = 0
         for i, p in enumerate(products, 1):
             gumroad = p.get("gumroad_url")
             gumroad_line = f"\n   🛒 {gumroad}" if gumroad else "\n   🛒 <i>Gumroad pending</i>"
-            lines.append(
+            entry = (
                 f"{i}. <b>{p['title']}</b>\n"
-                f"   {p['description']}\n"
                 f"   🔗 {site_url}/products/{p['id']}.html"
                 f"{gumroad_line}"
             )
+            lines.append(entry)
+            shown += 1
+            # Keep under Telegram's 4096-char limit
+            if len("\n\n".join(lines)) > 3500:
+                lines.append(f"<i>…and {len(products) - shown} more. See {site_url}</i>")
+                break
         return "\n\n".join(lines)
     except Exception as e:
         return f"❌ Error reading products: {e}"
@@ -446,7 +455,10 @@ def main():
         sys.exit(1)
 
     log("bot", f"Starting Telegram bot (chat_id: {CHAT_ID})")
-    send("🤖 <b>mini-on-ai bot online</b>\n\nType /help to see commands.")
+    try:
+        send("🤖 <b>mini-on-ai bot online</b>\n\nType /help to see commands.")
+    except Exception as e:
+        log("bot", f"Startup notification failed (non-fatal): {e}")
 
     offset = 0
     while True:
