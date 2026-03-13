@@ -12,12 +12,11 @@
       ],
       "item_count": 17,
       "prompt_count": 17,
+      "status": "published",
       "created_at": "2026-03-13T14:03:08.797630+00:00",
-      "package_path": "products/swipe-freelance-service-tier-pricing-architect-20260313/package.zip",
       "site_path": "site/products/swipe-freelance-service-tier-pricing-architect-20260313.html",
-      "thumbnail": null,
-      "gumroad_url": null,
-      "price": null
+      "gumroad_url": "https://kirozdor.gumroad.com/l/zbnmat",
+      "thumbnail": null
     },
     {
       "id": "swipe-freelance-proposal-structure-swipe-file--20260313",
@@ -31,12 +30,11 @@
       ],
       "item_count": 8,
       "prompt_count": 8,
+      "status": "published",
       "created_at": "2026-03-13T13:07:00.055668+00:00",
-      "package_path": "products/swipe-freelance-proposal-structure-swipe-file--20260313/package.zip",
       "site_path": "site/products/swipe-freelance-proposal-structure-swipe-file--20260313.html",
-      "thumbnail": null,
       "gumroad_url": null,
-      "price": null
+      "thumbnail": null
     },
     {
       "id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
@@ -50,12 +48,11 @@
       ],
       "item_count": 23,
       "prompt_count": 23,
+      "status": "published",
       "created_at": "2026-03-13T11:41:33.245047+00:00",
-      "package_path": "products/prompts-late-invoice-follow-up-sequence-for-free-20260313/package.zip",
       "site_path": "site/products/prompts-late-invoice-follow-up-sequence-for-free-20260313.html",
-      "thumbnail": null,
       "gumroad_url": "https://kirozdor.gumroad.com/l/qghpoi",
-      "price": null
+      "thumbnail": null
     },
     {
       "id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
@@ -69,12 +66,11 @@
       ],
       "item_count": 25,
       "prompt_count": 25,
+      "status": "published",
       "created_at": "2026-03-12T22:30:36.752029+00:00",
-      "package_path": "products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312/package.zip",
       "site_path": "site/products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.html",
-      "thumbnail": null,
       "gumroad_url": "https://kirozdor.gumroad.com/l/hromk",
-      "price": null
+      "thumbnail": null
     },
     {
       "id": "prompts-shopify-product-description-packs-for-e--20260312",
@@ -88,12 +84,11 @@
       ],
       "item_count": 25,
       "prompt_count": 25,
+      "status": "published",
       "created_at": "2026-03-12T21:45:44.528587+00:00",
-      "package_path": "products/prompts-shopify-product-description-packs-for-e--20260312/package.zip",
       "site_path": "site/products/prompts-shopify-product-description-packs-for-e--20260312.html",
-      "thumbnail": null,
       "gumroad_url": "https://kirozdor.gumroad.com/l/eqiso",
-      "price": null
+      "thumbnail": null
     },
     {
       "id": "prompts-meeting-notes-to-action-items-fast-20260312",
@@ -107,12 +102,11 @@
       ],
       "item_count": 25,
       "prompt_count": 25,
+      "status": "published",
       "created_at": "2026-03-12T20:44:48.223811+00:00",
-      "package_path": "products/prompts-meeting-notes-to-action-items-fast-20260312/package.zip",
       "site_path": "site/products/prompts-meeting-notes-to-action-items-fast-20260312.html",
-      "thumbnail": null,
       "gumroad_url": "https://kirozdor.gumroad.com/l/jvogn",
-      "price": null
+      "thumbnail": null
     }
   ]
 }
