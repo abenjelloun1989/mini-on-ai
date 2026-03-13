@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" fill="none">
+  <rect width="400" height="225" fill="#FAF5FF"/>
+  <!-- Book pages open -->
+  <path d="M200 55 L120 65 L120 185 L200 175 Z" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+  <path d="M200 55 L280 65 L280 185 L200 175 Z" fill="white" stroke="#C4B5FD" stroke-width="1.5"/>
+  <!-- spine -->
+  <line x1="200" y1="55" x2="200" y2="175" stroke="#7C3AED" stroke-width="2" opacity="0.4"/>
+  <!-- left page lines -->
+  <rect x="132" y="86" width="56" height="5" rx="2" fill="#C4B5FD" opacity="0.7"/>
+  <rect x="132" y="98" width="48" height="5" rx="2" fill="#C4B5FD" opacity="0.6"/>
+  <rect x="132" y="110" width="52" height="5" rx="2" fill="#C4B5FD" opacity="0.5"/>
+  <rect x="132" y="122" width="44" height="5" rx="2" fill="#C4B5FD" opacity="0.4"/>
+  <rect x="132" y="134" width="50" height="5" rx="2" fill="#C4B5FD" opacity="0.3"/>
+  <!-- right page heading -->
+  <rect x="212" y="78" width="56" height="8" rx="3" fill="#7C3AED" opacity="0.4"/>
+  <rect x="212" y="94" width="64" height="5" rx="2" fill="#E5E7EB"/>
+  <rect x="212" y="106" width="58" height="5" rx="2" fill="#E5E7EB"/>
+  <rect x="212" y="118" width="62" height="5" rx="2" fill="#E5E7EB"/>
+  <rect x="212" y="130" width="50" height="5" rx="2" fill="#E5E7EB"/>
+  <rect x="212" y="142" width="56" height="5" rx="2" fill="#E5E7EB"/>
+  <!-- sparkle -->
+  <line x1="316" y1="56" x2="316" y2="66" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <line x1="311" y1="61" x2="321" y2="61" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <circle cx="305" cy="78" r="3.5" fill="#DDD6FE" opacity="0.7"/>
+</svg>

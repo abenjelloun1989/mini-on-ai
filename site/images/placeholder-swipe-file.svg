@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" fill="none">
+  <rect width="400" height="225" fill="#FFF7ED"/>
+  <!-- Stacked cards -->
+  <rect x="105" y="50" width="210" height="130" rx="12" fill="#FED7AA" stroke="#FB923C" stroke-width="1" opacity="0.6" transform="rotate(-4 210 115)"/>
+  <rect x="105" y="50" width="210" height="130" rx="12" fill="#FFEDD5" stroke="#FB923C" stroke-width="1.5" opacity="0.8" transform="rotate(2 210 115)"/>
+  <!-- Top card -->
+  <rect x="95" y="42" width="210" height="130" rx="12" fill="white" stroke="#FED7AA" stroke-width="1.5"/>
+  <!-- Quote mark -->
+  <text x="115" y="86" font-family="Georgia,serif" font-size="48" fill="#FB923C" opacity="0.3">"</text>
+  <!-- lines -->
+  <rect x="115" y="94" width="170" height="7" rx="3" fill="#FDE8D4"/>
+  <rect x="115" y="108" width="150" height="7" rx="3" fill="#FDE8D4"/>
+  <rect x="115" y="122" width="160" height="7" rx="3" fill="#FDE8D4"/>
+  <!-- tag -->
+  <rect x="115" y="144" width="72" height="20" rx="10" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1.5"/>
+  <rect x="127" y="151" width="48" height="6" rx="3" fill="#FB923C" opacity="0.5"/>
+</svg>

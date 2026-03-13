@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" fill="none">
+  <rect width="400" height="225" fill="#F0FDF4"/>
+  <!-- Card -->
+  <rect x="70" y="28" width="260" height="170" rx="14" fill="white" stroke="#BBF7D0" stroke-width="1.5"/>
+  <!-- Header -->
+  <rect x="70" y="28" width="260" height="38" rx="14" fill="#16A34A"/>
+  <rect x="70" y="52" width="260" height="14" fill="#16A34A"/>
+  <rect x="88" y="40" width="100" height="8" rx="3" fill="white" opacity="0.85"/>
+  <!-- Checklist rows -->
+  <circle cx="94" cy="90" r="9" fill="#DCFCE7"/>
+  <polyline points="89,90 93,94 100,86" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="110" y="86" width="130" height="7" rx="3" fill="#E5E7EB"/>
+  <circle cx="94" cy="116" r="9" fill="#DCFCE7"/>
+  <polyline points="89,116 93,120 100,112" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="110" y="112" width="110" height="7" rx="3" fill="#E5E7EB"/>
+  <circle cx="94" cy="142" r="9" fill="#F3F4F6"/>
+  <rect x="110" y="138" width="140" height="7" rx="3" fill="#F3F4F6"/>
+  <circle cx="94" cy="168" r="9" fill="#F3F4F6"/>
+  <rect x="110" y="164" width="95" height="7" rx="3" fill="#F3F4F6"/>
+</svg>

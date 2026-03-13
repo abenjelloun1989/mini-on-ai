@@ -100,9 +100,14 @@ def escape_html(s: str) -> str:
 
 def _thumbnail_html_detail(meta: dict) -> str:
     thumb = meta.get("thumbnail")
+    cat = meta.get("category", "prompt-packs")
     if thumb:
-        return f'  <img src="../{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail" style="border-radius:12px;margin-bottom:28px;max-width:100%;">\n'
-    return ""
+        src = f"../{escape_html(thumb)}"
+    else:
+        # Use category-specific placeholder on detail pages too
+        cat_key = cat if cat in ("prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template") else "prompt-packs"
+        src = f"../images/placeholder-{cat_key}.svg"
+    return f'  <img src="{src}" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">\n'
 
 
 def _gumroad_cta_page(meta: dict) -> str:
@@ -170,13 +175,24 @@ def build_product_page(meta: dict) -> str:
 """
 
 
+CATEGORY_PLACEHOLDER_IMG = {
+    "prompt-packs": "images/placeholder-prompt-packs.svg",
+    "checklist":    "images/placeholder-checklist.svg",
+    "swipe-file":   "images/placeholder-swipe-file.svg",
+    "mini-guide":   "images/placeholder-mini-guide.svg",
+    "n8n-template": "images/placeholder-n8n-template.svg",
+}
+
+
 def build_product_card(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     thumb = meta.get("thumbnail")
+    cat = meta.get("category", "prompt-packs")
     if thumb:
         thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
     else:
-        thumbnail_html = '\n        <div class="product-thumbnail-placeholder"></div>'
+        placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
+        thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
     cta_html = _gumroad_cta_card(meta)
     return f"""      <article class="product-card">{thumbnail_html}
         <div class="product-card-body">
