@@ -16,11 +16,12 @@ Good seeds to run:
 ```
 
 Each new product will:
-1. Be generated with diverse category (checklist, swipe-file, guide, n8n-template, or prompts)
-2. Get a rich Claude-written Gumroad description (stored in meta.json)
-3. Send a Telegram notification with tap-to-copy fields + zip attachment
-4. You create the Gumroad listing in ~30 sec, reply `/seturl {id} {url}`
-5. Site updates and pushes automatically
+1. Be generated with hard-quota category distribution (4×prompts, 2×checklist, 2×swipe-file, 1×guide, 1×n8n per 10-idea batch)
+2. Get a plain-text Claude-written description (paste-ready into Gumroad WYSIWYG editor)
+3. Send a compact Telegram notification with a link to the vitrine product page
+4. Open the vitrine page → click "📋 Copy description for Gumroad" → paste into Gumroad
+5. Create the Gumroad listing, reply `/seturl {id} {url}`
+6. Site updates and pushes automatically
 
 ## Upload branded cover to each Gumroad product
 

@@ -108,12 +108,13 @@ Product categories — assign the BEST fit:
 - "mini-guide"    → concise practitioner guide for one specific skill or framework (600-900 words, actionable)
 - "n8n-template"  → automation workflow connecting SPECIFIC named tools (e.g. "Typeform → Notion → Slack")
 
-IMPORTANT — spread categories across this batch of {count} ideas:
-- At least 1 must be "checklist"
-- At least 1 must be "swipe-file"
-- At least 1 must be "mini-guide"
-- At most 4 may be "prompt-packs" (not the majority)
-- At least 1 should be "n8n-template" if the seed audience uses automation tools
+REQUIRED category distribution for this batch of {count} ideas — these are hard counts, not suggestions:
+- Exactly 4 × "prompt-packs"
+- Exactly 2 × "checklist"
+- Exactly 2 × "swipe-file"
+- Exactly 1 × "mini-guide"
+- Exactly 1 × "n8n-template"
+You MUST output exactly these counts. Count your assignments before returning.
 
 Return ONLY a valid JSON array, no other text. Schema:
 [
