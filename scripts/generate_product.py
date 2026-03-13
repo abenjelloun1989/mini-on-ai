@@ -83,7 +83,7 @@ def _gen_prompt_pack(idea: dict, pid: str, assets_dir: str) -> dict:
 
 Target audience and purpose: {idea['description']}
 
-Generate exactly 25 high-quality, immediately usable prompts. Each prompt should:
+Generate exactly 20 high-quality, immediately usable prompts. Each prompt should:
 - Be complete and self-contained (works without additional context)
 - Include clear placeholders like [PRODUCT NAME] or [TARGET AUDIENCE] where customization is needed
 - Be specific enough to produce consistent, high-quality results
@@ -94,14 +94,16 @@ Return ONLY a valid JSON array, no other text. Schema:
 [
   {{
     "id": 1,
-    "title": "Short descriptive title of this prompt",
+    "title": "Short descriptive title (max 8 words)",
     "prompt": "The full prompt text ready to use",
-    "use_case": "When and how to use this prompt"
+    "use_case": "When to use this (max 12 words)"
   }}
 ]""",
         }],
     )
 
+    if message.stop_reason == "max_tokens":
+        log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     prompts = extract_json(message.content[0].text.strip(), array=True)
     log("generate-product", f"Generated {len(prompts)} prompts")
 
@@ -184,6 +186,8 @@ Return ONLY a valid JSON array, no other text. Schema:
         }],
     )
 
+    if message.stop_reason == "max_tokens":
+        log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     items = extract_json(message.content[0].text.strip(), array=True)
     log("generate-product", f"Generated {len(items)} checklist items")
 
@@ -273,6 +277,8 @@ Return ONLY a valid JSON array, no other text. Schema:
         }],
     )
 
+    if message.stop_reason == "max_tokens":
+        log("generate-product", "Warning: response truncated at max_tokens — attempting JSON repair")
     examples = extract_json(message.content[0].text.strip(), array=True)
     log("generate-product", f"Generated {len(examples)} swipe file examples")
 

@@ -71,9 +71,53 @@ def log(stage: str, message: str) -> None:
 
 
 def extract_json(text: str, array: bool = True):
-    """Extract first JSON array or object from a string."""
+    """Extract first JSON array or object from a string.
+    Falls back to repairing truncated arrays if strict parse fails.
+    """
     pattern = r"\[[\s\S]*\]" if array else r"\{[\s\S]*\}"
     match = re.search(pattern, text)
     if not match:
         raise ValueError(f"No JSON {'array' if array else 'object'} found in response")
-    return json.loads(match.group(0))
+    raw = match.group(0)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        if array:
+            return _repair_json_array(raw)
+        raise
+
+
+def _repair_json_array(raw: str) -> list:
+    """Recover a truncated JSON array by keeping only complete items."""
+    depth = 0
+    in_string = False
+    escape_next = False
+    last_complete = 1  # position just after opening '['
+
+    for i, ch in enumerate(raw):
+        if escape_next:
+            escape_next = False
+            continue
+        if ch == "\\" and in_string:
+            escape_next = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if ch in ("{", "["):
+            depth += 1
+        elif ch in ("}", "]"):
+            depth -= 1
+            if depth == 1 and ch == "}":
+                last_complete = i + 1  # end of a complete top-level object
+
+    truncated = raw[:last_complete].rstrip().rstrip(",") + "]"
+    try:
+        result = json.loads(truncated)
+        if isinstance(result, list) and result:
+            return result
+    except json.JSONDecodeError:
+        pass
+    raise ValueError("Could not repair truncated JSON array")
