@@ -1,6 +1,6 @@
 # Next Steps
 
-Last updated: 2026-03-13
+Last updated: 2026-03-13 (token tracking + dark mode complete)
 
 ## Immediate — Grow the catalog
 

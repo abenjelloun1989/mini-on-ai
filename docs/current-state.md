@@ -29,6 +29,7 @@ Last updated: 2026-03-13
 - Hero section with unDraw illustration + bold headline
 - Contact email `hello@mini-on-ai.com` in footer
 - Auto-deployed via GitHub Actions on every push to main
+- **Dark Mode (NEW)**: Toggle button in header (☀️/🌙), persists via localStorage, respects `prefers-color-scheme`
 
 ### Brand Identity ✅
 - Logo: 2×2 grid tiles SVG wordmark (`site/logo.svg`) + icon (`site/logo-icon.svg`)
@@ -71,6 +72,15 @@ Last updated: 2026-03-13
 - Running via launchd (com.mini-on-ai.bot)
 - Commands: /help /status /products /ideas /run /go /nogo /holdon /resume /projectphases
 - Inline button support for approval gate
+- `/status` now shows token usage: cost (USD) + input/output token counts per run
+- Each stage logs token usage to `data/token-usage.json`; per-run summary stored in `pipeline-log.json`
+
+### Token Tracking ✅
+- All API stages log tokens to `data/token-usage.json` with cost calculations
+- Per-run summaries calculated from token logs and stored in `run["tokens"]`
+- `/status` displays: Cost, Input Tokens, Output Tokens for last run
+- Cost model: Sonnet $3/$15 per MTok in/out, Haiku $0.80/$4
+- Enables monitoring of API spend per product and lifetime
 
 ### Infrastructure
 - Git repo: https://github.com/abenjelloun1989/mini-on-ai
