@@ -9,7 +9,7 @@
     "lead analytics"
   ],
   "item_count": 20,
-  "created_at": "2026-03-13T14:18:47.093533+00:00",
+  "created_at": "2026-03-13T14:18:49.564990+00:00",
   "status": "published",
   "package_path": "products/checklist-lead-source-attribution-audit-checklist--20260313/package.zip",
   "site_path": "site/products/checklist-lead-source-attribution-audit-checklist--20260313.html",
@@ -17,5 +17,5 @@
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "LEAD SOURCE ATTRIBUTION AUDIT CHECKLIST FOR GROWTH MARKETERS\n\nYour UTM parameters are probably broken, and you don't know which marketing channels actually generated revenue.\n\nThis 20-item checklist walks you through the exact steps to audit your tracking setup, catch misattributed conversions, and plug the gaps in your HubSpot or GA4 reporting. Each item includes the context you need to fix it yourself—no consultant required.\n\nWHO THIS IS FOR\n\n— Growth marketers who own demand gen and need to prove what's working\n— RevOps professionals cleaning up lead source data after a tool migration\n— Marketing leaders who suspect their attribution model is silently killing budgets\n\nWHAT'S INSIDE\n\n— UTM parameter naming conventions that actually stick across campaigns\n— Common HubSpot and GA4 configuration mistakes that hide your best channels\n— Lead source sync validation steps to catch data gaps before they become reports\n— Checklist in Markdown and JSON formats for easy sharing with your team\n\nStop guessing which channels work.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "YOUR LEAD ATTRIBUTION IS PROBABLY BROKEN—AND YOU DON'T KNOW IT.\n\nYou're losing deals because your UTM parameters aren't tracking, your GA4 data doesn't match HubSpot, and you can't tell which campaigns actually drove revenue. This audit fixes that.\n\nWHO THIS IS FOR\n\n— Growth marketers managing multi-channel campaigns who need real data to justify ad spend\n— RevOps leads trying to sync GA4 and HubSpot without pulling their hair out\n— Demand gen teams that know their reporting is off but don't know where to start\n\nWHAT'S INSIDE\n\nA 20-item checklist that walks you through:\n— Finding UTM parameter gaps before they destroy your reporting\n— Matching your GA4 source/medium to actual HubSpot lead sources\n— Spotting conversion misattribution in your pipeline\n— Setting up clean tracking rules for the next quarter\n\nEach item includes the exact why and how—not just a checkbox.\n\nFormat includes Markdown for easy reading plus JSON for automation.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
