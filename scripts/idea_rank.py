@@ -50,6 +50,8 @@ Categories:
 - checklist: actionable step-by-step checklists
 - swipe-file: curated copy examples (hooks, scripts, subject lines)
 - mini-guide: focused how-to guides
+- n8n-template: automation workflow for specific tools
+- claude-code-skill: full configuration guide for a Claude Code skill (SKILL.md template + guide)
 
 Ideas to score:
 {json.dumps(ideas_for_prompt, indent=2)}

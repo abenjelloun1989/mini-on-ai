@@ -125,11 +125,22 @@ def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
                 i for i in backlog.get("ideas", [])
                 if i.get("status") not in ("produced", "rejected")
             ]
-            if len(available) < 5 or seed:
-                log("pipeline", f"Available ideas: {len(available)} — scanning for more...")
-                trend_scan(seed=seed, count=10)
+            # When a category focus is set, check if that category has enough ideas
+            if category:
+                available_in_category = [i for i in available if i.get("category") == category]
+                needs_scan = len(available_in_category) < 3 or seed
+                if needs_scan:
+                    log("pipeline", f"Available {category} ideas: {len(available_in_category)} — scanning for more...")
+                else:
+                    log("pipeline", f"Available {category} ideas: {len(available_in_category)} — skipping scan (pool sufficient)")
             else:
-                log("pipeline", f"Available ideas: {len(available)} — skipping scan (pool sufficient)")
+                needs_scan = len(available) < 5 or seed
+                if needs_scan:
+                    log("pipeline", f"Available ideas: {len(available)} — scanning for more...")
+                else:
+                    log("pipeline", f"Available ideas: {len(available)} — skipping scan (pool sufficient)")
+            if needs_scan:
+                trend_scan(seed=seed, count=10)
         except Exception as e:
             fail("trend-scan", str(e))
     else:
