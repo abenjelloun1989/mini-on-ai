@@ -88,21 +88,26 @@ Rules:
 - Each idea must be genuinely different (different sub-audience or use case)
 - Think: what does this person struggle with every week?{avoid_block}
 
-Product categories:
-- "prompt-packs": 20-30 AI prompts for a specific workflow (use for most ideas)
-- "checklist": step-by-step checklist for a repeatable process or task
-- "swipe-file": curated real-world copy examples (hooks, subject lines, scripts, templates)
-- "mini-guide": concise focused guide covering one specific skill or framework
-- "n8n-template": a ready-to-import n8n automation workflow (use when the idea is about automating a specific repetitive task or integration between tools)
+Product categories — assign the BEST fit, NOT always prompt-packs:
+- "prompt-packs"  → 20 AI prompts for a specific workflow
+- "checklist"     → step-by-step checklist for a repeatable process
+- "swipe-file"    → copy-ready examples (hooks, subject lines, scripts, cold emails)
+- "mini-guide"    → concise guide covering one specific skill or framework
+- "n8n-template"  → ready-to-import automation workflow (connecting tools, auto-notifications, syncing data)
 
-Assign the best category. Default to "prompt-packs". Use "n8n-template" when the idea is clearly about workflow automation (e.g. "auto-sync leads from form to CRM", "notify Slack when a task is overdue").
+IMPORTANT — spread categories across this batch of {count} ideas:
+- At least 1 must be "checklist"
+- At least 1 must be "swipe-file"
+- At least 1 must be "mini-guide"
+- Only use "prompt-packs" when AI prompts are genuinely the best format
+- Use "n8n-template" if the idea is clearly about automating a repetitive task
 
 Return ONLY a valid JSON array, no other text. Schema:
 [
   {{
     "title": "Specific title (5-9 words)",
     "description": "One sentence: exact audience + exact benefit they get",
-    "category": "prompt-packs",
+    "category": "checklist",
     "tags": ["tag1", "tag2", "tag3"]
   }}
 ]""",
