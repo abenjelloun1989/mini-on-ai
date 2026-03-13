@@ -14,6 +14,7 @@ Usage: python3 scripts/generate_product.py
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -548,6 +549,10 @@ Start with: <p><strong>[hook sentence]</strong></p>""",
     )
 
     desc = message.content[0].text.strip()
+    # Strip markdown code fences if the model wrapped the HTML anyway
+    desc = re.sub(r"^```[a-z]*\n?", "", desc)
+    desc = re.sub(r"\n?```$", "", desc)
+    desc = desc.strip()
     log("generate-product", "Generated Gumroad description")
     return desc
 

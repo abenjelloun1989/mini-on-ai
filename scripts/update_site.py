@@ -126,6 +126,17 @@ def _gumroad_cta_card(meta: dict) -> str:
     return '<span class="btn-cta btn-coming-soon">Coming soon</span>'
 
 
+def _rich_description_html(meta: dict) -> str:
+    """Return the Claude-generated rich description HTML, or fall back to static includes."""
+    rich = meta.get("gumroad_description")
+    if rich:
+        # Indent the raw HTML block for readability in the template
+        indented = "\n".join(f"      {line}" for line in rich.splitlines())
+        return indented
+    # Fallback: static "What's included" list
+    return f"      <h2>What's included</h2>\n{_includes_html(meta)}"
+
+
 def build_product_page(meta: dict) -> str:
     tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
     thumbnail_html = _thumbnail_html_detail(meta)
@@ -162,8 +173,7 @@ def build_product_page(meta: dict) -> str:
 {cta_html}
 
     <section class="product-details">
-      <h2>What's included</h2>
-{_includes_html(meta)}
+{_rich_description_html(meta)}
     </section>
   </main>
 
