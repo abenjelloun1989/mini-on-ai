@@ -23,11 +23,12 @@ from lib.utils import read_json, write_json, write_file, ROOT, log
 CONTACT_EMAIL = "hello@mini-on-ai.com"
 
 CATEGORY_LABELS = {
-    "prompt-packs":  ("Prompt Pack",  "{n} prompts"),
-    "checklist":     ("Checklist",    "{n} items"),
-    "swipe-file":    ("Swipe File",   "{n} examples"),
-    "mini-guide":    ("Mini Guide",   "focused guide"),
-    "n8n-template":  ("n8n Template", "{n}-node workflow"),
+    "prompt-packs":      ("Prompt Pack",        "{n} prompts"),
+    "checklist":         ("Checklist",           "{n} items"),
+    "swipe-file":        ("Swipe File",          "{n} examples"),
+    "mini-guide":        ("Mini Guide",          "focused guide"),
+    "n8n-template":      ("n8n Template",        "{n}-node workflow"),
+    "claude-code-skill": ("Claude Code Skill",   "full skill guide"),
 }
 
 CATEGORY_INCLUDES = {
@@ -59,6 +60,12 @@ CATEGORY_INCLUDES = {
         "Step-by-step setup instructions",
         "Works with n8n self-hosted and n8n.cloud",
         "Customizable — adapt to your own tools",
+    ],
+    "claude-code-skill": [
+        "Ready-to-use SKILL.md template (drop-in, no setup required)",
+        "Full configuration guide with step-by-step instructions",
+        "Adaptations for 3–4 different fields and roles",
+        "Real-world use cases and common mistakes to avoid",
     ],
 }
 
@@ -243,11 +250,12 @@ def build_product_page(meta: dict) -> str:
 
 
 CATEGORY_PLACEHOLDER_IMG = {
-    "prompt-packs": "images/placeholder-prompt-packs.svg",
-    "checklist":    "images/placeholder-checklist.svg",
-    "swipe-file":   "images/placeholder-swipe-file.svg",
-    "mini-guide":   "images/placeholder-mini-guide.svg",
-    "n8n-template": "images/placeholder-n8n-template.svg",
+    "prompt-packs":      "images/placeholder-prompt-packs.svg",
+    "checklist":         "images/placeholder-checklist.svg",
+    "swipe-file":        "images/placeholder-swipe-file.svg",
+    "mini-guide":        "images/placeholder-mini-guide.svg",
+    "n8n-template":      "images/placeholder-n8n-template.svg",
+    "claude-code-skill": "images/placeholder-claude-code-skill.svg",
 }
 
 
@@ -279,13 +287,14 @@ def _build_filter_bar(products: list) -> str:
     cat_counts = Counter(p.get("category", "prompt-packs") for p in products)
     total = len(products)
 
-    cat_order = ["prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template"]
+    cat_order = ["prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template", "claude-code-skill"]
     cat_labels = {
-        "prompt-packs":  "Prompt Packs",
-        "checklist":     "Checklists",
-        "swipe-file":    "Swipe Files",
-        "mini-guide":    "Mini Guides",
-        "n8n-template":  "n8n Templates",
+        "prompt-packs":      "Prompt Packs",
+        "checklist":         "Checklists",
+        "swipe-file":        "Swipe Files",
+        "mini-guide":        "Mini Guides",
+        "n8n-template":      "n8n Templates",
+        "claude-code-skill": "CC Skills",
     }
 
     btns = [f'    <button class="filter-btn active" data-filter="all">All <span class="filter-count">{total}</span></button>']

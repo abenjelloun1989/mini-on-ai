@@ -341,11 +341,12 @@ body {
   padding: 3px 8px;
   border-radius: 4px;
 }
-.category-prompt-packs { background: #EEF2FF; color: #4F46E5; }
-.category-checklist    { background: #F0FDF4; color: #16A34A; }
-.category-swipe-file   { background: #FFF7ED; color: #C2410C; }
-.category-mini-guide   { background: #FAF5FF; color: #7C3AED; }
-.category-n8n-template { background: #FFF5F0; color: #C05621; }
+.category-prompt-packs      { background: #EEF2FF; color: #4F46E5; }
+.category-checklist         { background: #F0FDF4; color: #16A34A; }
+.category-swipe-file        { background: #FFF7ED; color: #C2410C; }
+.category-mini-guide        { background: #FAF5FF; color: #7C3AED; }
+.category-n8n-template      { background: #FFF5F0; color: #C05621; }
+.category-claude-code-skill { background: #ECFDF5; color: #065F46; }
 
 .product-title {
   font-size: 17px;

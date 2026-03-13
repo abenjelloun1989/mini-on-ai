@@ -30,7 +30,7 @@ from lib.utils import read_json, write_json, write_file, ensure_dir, product_id,
 client = anthropic.Anthropic()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 
-VALID_CATEGORIES = {"prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template"}
+VALID_CATEGORIES = {"prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template", "claude-code-skill"}
 
 
 def generate_product() -> dict:
@@ -61,6 +61,8 @@ def generate_product() -> dict:
         meta = _gen_mini_guide(idea, pid, assets_dir)
     elif category == "n8n-template":
         meta = _gen_n8n_template(idea, pid, assets_dir)
+    elif category == "claude-code-skill":
+        meta = _gen_skill_guide(idea, pid, assets_dir)
 
     # Generate rich Gumroad description and store in meta
     try:
@@ -514,6 +516,206 @@ def _n8n_readme(idea: dict, setup_steps: list, node_count: int) -> str:
 """
 
 
+# ── Claude Code Skill Guide ──────────────────────────────────────────────────
+
+def _gen_skill_guide(idea: dict, pid: str, assets_dir: str) -> dict:
+    """Generate a full configuration guide for a Claude Code skill."""
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=6144,
+        messages=[{
+            "role": "user",
+            "content": f"""Create a complete Claude Code skill configuration guide titled "{idea['title']}".
+
+Target audience and purpose: {idea['description']}
+
+This guide teaches practitioners how to build and configure a Claude Code skill (a SKILL.md file
+that gives Claude Code specialized capabilities). Claude Code skills are markdown files in a
+`skills/` directory that define tools, instructions, and context for Claude to use.
+
+Generate the following JSON structure:
+
+{{
+  "skill_name": "Short name for this skill (e.g. 'commit', 'review-pr', 'deploy')",
+  "skill_description": "One-sentence description of what this skill does",
+  "target_fields": ["field1", "field2"],
+  "use_cases": [
+    {{"scenario": "Description of when to use", "example_trigger": "/skill-name do X"}}
+  ],
+  "skill_template": "Full SKILL.md content with frontmatter, description, instructions, and examples",
+  "configuration_steps": [
+    {{"step": 1, "title": "Step title", "detail": "Detailed instructions"}}
+  ],
+  "field_variations": [
+    {{"field": "Field name (e.g. Marketing)", "adaptation": "How to adapt the skill for this field"}}
+  ],
+  "tips": ["Practical tip 1", "Practical tip 2", "Practical tip 3"],
+  "common_mistakes": ["Mistake 1 and how to avoid it", "Mistake 2 and how to avoid it"]
+}}
+
+Requirements:
+- skill_template must be a complete, immediately usable SKILL.md file with realistic instructions
+- configuration_steps: 4-6 concrete steps with specific paths and commands
+- field_variations: 3-4 real fields where this skill adds value (e.g. dev, marketing, design, ops)
+- use_cases: 3-4 concrete scenarios with actual example slash commands
+- tips and common_mistakes: 3 each, practical and specific
+
+Return ONLY the JSON object, no other text.""",
+        }],
+    )
+
+    log_token_usage("generate-product", message.usage, MODEL)
+    if message.stop_reason == "max_tokens":
+        log("generate-product", "Warning: response truncated")
+
+    data = extract_json(message.content[0].text.strip())
+    skill_name = data.get("skill_name", "skill")
+    skill_template = data.get("skill_template", "")
+    config_steps = data.get("configuration_steps", [])
+    field_variations = data.get("field_variations", [])
+    tips = data.get("tips", [])
+    mistakes = data.get("common_mistakes", [])
+    use_cases = data.get("use_cases", [])
+
+    # Write the skill template file
+    write_file(f"{assets_dir}/SKILL.md", skill_template)
+
+    # Write the full guide
+    guide_md = _skill_guide_md(idea, data)
+    write_file(f"{assets_dir}/guide.md", guide_md)
+
+    # Write README
+    write_file(f"{assets_dir}/README.md", _skill_readme(idea, skill_name, len(config_steps)))
+
+    item_count = len(config_steps) + len(field_variations) + len(tips)
+    return {
+        "id": pid,
+        "title": idea["title"],
+        "description": idea["description"],
+        "category": "claude-code-skill",
+        "tags": idea.get("tags", []),
+        "item_count": item_count,
+        "created_at": timestamp(),
+        "status": "generated",
+        "package_path": None, "site_path": None, "thumbnail": None,
+        "price": None, "gumroad_product_id": None, "gumroad_url": None,
+    }
+
+
+def _skill_guide_md(idea: dict, data: dict) -> str:
+    """Render the skill guide as a well-structured markdown document."""
+    lines = [
+        f"# {idea['title']}",
+        "",
+        f"> {idea['description']}",
+        "",
+        "---",
+        "",
+        "## What This Skill Does",
+        "",
+        data.get("skill_description", ""),
+        "",
+        "**Best for:** " + ", ".join(data.get("target_fields", [])),
+        "",
+        "---",
+        "",
+        "## Use Cases",
+        "",
+    ]
+    for uc in data.get("use_cases", []):
+        lines += [
+            f"**{uc.get('scenario', '')}**",
+            f"  → `{uc.get('example_trigger', '')}`",
+            "",
+        ]
+
+    lines += [
+        "---",
+        "",
+        "## Configuration Steps",
+        "",
+    ]
+    for s in data.get("configuration_steps", []):
+        lines += [
+            f"### Step {s.get('step', '')}: {s.get('title', '')}",
+            "",
+            s.get("detail", ""),
+            "",
+        ]
+
+    lines += [
+        "---",
+        "",
+        "## Ready-to-Use SKILL.md Template",
+        "",
+        "Copy this file to your project's `skills/` directory:",
+        "",
+        "```markdown",
+        data.get("skill_template", ""),
+        "```",
+        "",
+        "---",
+        "",
+        "## Adapting for Different Fields",
+        "",
+    ]
+    for fv in data.get("field_variations", []):
+        lines += [
+            f"### {fv.get('field', '')}",
+            "",
+            fv.get("adaptation", ""),
+            "",
+        ]
+
+    lines += [
+        "---",
+        "",
+        "## Tips for Best Results",
+        "",
+    ]
+    for tip in data.get("tips", []):
+        lines.append(f"- {tip}")
+    lines.append("")
+
+    lines += [
+        "---",
+        "",
+        "## Common Mistakes to Avoid",
+        "",
+    ]
+    for m in data.get("common_mistakes", []):
+        lines.append(f"- {m}")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
+def _skill_readme(idea: dict, skill_name: str, step_count: int) -> str:
+    return f"""# {idea['title']}
+
+{idea['description']}
+
+## What's included
+
+- **`SKILL.md`** — Ready-to-use skill template (drop into your project's `skills/` folder)
+- **`guide.md`** — Full configuration guide with {step_count} setup steps
+- Field-specific adaptations for different roles and industries
+- Tips, common mistakes, and real-world use cases
+
+## Quick Start
+
+1. Copy `SKILL.md` to `skills/{skill_name}.md` in your project
+2. Follow the setup steps in `guide.md`
+3. Run `claude` in your terminal — the skill is ready to use
+
+## Files
+
+- `SKILL.md` — The skill template to configure and use
+- `guide.md` — Complete guide: setup, use cases, field variations
+- `README.md` — This file
+"""
+
+
 # ── Gumroad Description ──────────────────────────────────────────────────────
 
 def _gen_gumroad_description(idea: dict, meta: dict) -> str:
@@ -522,11 +724,12 @@ def _gen_gumroad_description(idea: dict, meta: dict) -> str:
     item_count = meta.get("item_count", 0)
 
     format_note = {
-        "prompt-packs": f"{item_count} prompts • Markdown + JSON • Works with ChatGPT, Claude, Gemini",
-        "checklist":    f"{item_count} checklist items • Markdown + JSON • Context for each step",
-        "swipe-file":   f"{item_count} copy-ready examples • Markdown + JSON • Usage notes included",
-        "mini-guide":   f"~800-word focused guide • Markdown • Quick-reference summary",
-        "n8n-template": f"{item_count}-node n8n workflow • Importable JSON • Setup guide included",
+        "prompt-packs":      f"{item_count} prompts • Markdown + JSON • Works with ChatGPT, Claude, Gemini",
+        "checklist":         f"{item_count} checklist items • Markdown + JSON • Context for each step",
+        "swipe-file":        f"{item_count} copy-ready examples • Markdown + JSON • Usage notes included",
+        "mini-guide":        f"~800-word focused guide • Markdown • Quick-reference summary",
+        "n8n-template":      f"{item_count}-node n8n workflow • Importable JSON • Setup guide included",
+        "claude-code-skill": f"Complete guide + ready-to-use SKILL.md template • {item_count} configuration steps and field adaptations",
     }.get(category, f"{item_count} items included")
 
     message = client.messages.create(

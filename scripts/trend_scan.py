@@ -44,8 +44,101 @@ SEED_ROTATION = [
 ]
 
 
+SKILL_SEED_TOPICS = [
+    "code review and pull request automation",
+    "deployment and CI/CD pipelines",
+    "documentation generation from code",
+    "API design and testing workflows",
+    "data analysis and reporting pipelines",
+    "content creation and publishing automation",
+    "project management and sprint planning",
+    "database migration and schema management",
+    "security auditing and dependency checks",
+    "onboarding new team members to codebases",
+    "refactoring and technical debt reduction",
+    "customer support ticket triage and response",
+    "social media scheduling and analytics",
+    "design system and component library maintenance",
+]
+
+
+def _trend_scan_skills(count: int = 5) -> list:
+    """Generate Claude Code skill guide ideas based on high-demand workflows."""
+    import random
+    topic = random.choice(SKILL_SEED_TOPICS)
+    log("trend-scan", f"Generating {count} Claude Code skill ideas (topic: {topic})...")
+
+    backlog = read_json("data/idea-backlog.json")
+    existing_titles = [i["title"] for i in backlog.get("ideas", [])]
+    avoid_block = ""
+    if existing_titles:
+        avoid_list = "\n".join(f"- {t}" for t in existing_titles[-20:])
+        avoid_block = f"\n\nDo NOT suggest any of these already-existing ideas:\n{avoid_list}"
+
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=1536,
+        messages=[{
+            "role": "user",
+            "content": f"""Generate {count} Claude Code skill guide product ideas for the topic: "{topic}".
+
+Claude Code skills are SKILL.md files that give Claude Code specialized capabilities for specific
+workflows. Each guide teaches practitioners how to build and configure one skill.
+
+Rules:
+- Each skill must solve a real, recurring developer or professional workflow problem
+- Skills should work across different roles (devs, marketers, ops, designers, etc.)
+- Title format: "Claude Code Skill: [Skill Name] — [What It Does]"
+  e.g., "Claude Code Skill: PR Reviewer — Automated Code Review and Feedback"
+- Description: exact role + exact benefit from this skill
+- Tags: include "claude-code", "skills" + 2-3 domain-specific tags{avoid_block}
+
+Return ONLY a valid JSON array:
+[
+  {{
+    "title": "Claude Code Skill: Name — What It Does",
+    "description": "For [role], this skill [does what] so they can [benefit]",
+    "category": "claude-code-skill",
+    "tags": ["claude-code", "skills", "tag3", "tag4"]
+  }}
+]""",
+        }],
+    )
+
+    log_token_usage("trend-scan", message.usage, MODEL)
+    ideas_raw = extract_json(message.content[0].text.strip(), array=True)
+    log("trend-scan", f"Generated {len(ideas_raw)} skill ideas")
+
+    backlog = read_json("data/idea-backlog.json")
+    new_ideas = []
+    for i, idea in enumerate(ideas_raw):
+        new_idea = {
+            "id": f"idea-{int(time.time())}-skill-{i}",
+            "title": idea["title"],
+            "description": idea["description"],
+            "category": "claude-code-skill",
+            "tags": idea.get("tags", ["claude-code", "skills"]),
+            "score": None, "rationale": None, "selected": False,
+            "status": None, "product_id": None,
+            "generated_at": timestamp(),
+            "source": "trend-scan-skills",
+        }
+        new_ideas.append(new_idea)
+        time.sleep(0.001)
+
+    backlog["ideas"].extend(new_ideas)
+    write_json("data/idea-backlog.json", backlog)
+    log("trend-scan", f"Added {len(new_ideas)} skill ideas to backlog.")
+    return new_ideas
+
+
 def trend_scan(seed: str = "", count: int = 10) -> list:
     import random
+
+    # If the category focus is claude-code-skill, use the specialist scanner
+    category_focus = os.environ.get("PIPELINE_CATEGORY_FOCUS", "").strip()
+    if category_focus == "claude-code-skill":
+        return _trend_scan_skills(count=min(count, 5))
 
     # Pick a seed: user-supplied, or rotate through diverse topics
     active_seed = seed or random.choice(SEED_ROTATION)

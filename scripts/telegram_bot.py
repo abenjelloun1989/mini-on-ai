@@ -42,11 +42,12 @@ CHAT_ID = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
 SEEDS_ALL = ["marketing", "freelancing", "writing", "coding"]
 
 KNOWN_CATEGORIES = {
-    "prompt-packs":  ("Prompt Pack",   "20–30 ready-to-use prompts"),
-    "checklist":     ("Checklist",     "structured decision/action list"),
-    "swipe-file":    ("Swipe File",    "copy-ready examples and templates"),
-    "mini-guide":    ("Mini Guide",    "concise practitioner guide"),
-    "n8n-template":  ("n8n Template",  "ready-to-import automation workflow"),
+    "prompt-packs":       ("Prompt Pack",        "20–30 ready-to-use prompts"),
+    "checklist":          ("Checklist",           "structured decision/action list"),
+    "swipe-file":         ("Swipe File",          "copy-ready examples and templates"),
+    "mini-guide":         ("Mini Guide",          "concise practitioner guide"),
+    "n8n-template":       ("n8n Template",        "ready-to-import automation workflow"),
+    "claude-code-skill":  ("Claude Code Skill",   "full configuration guide for a Claude Code skill"),
 }
 
 
