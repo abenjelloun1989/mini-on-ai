@@ -1,0 +1,23 @@
+{
+  "id": "prompts-n8n-workflow-error-handling-prompts-for--20260313",
+  "title": "n8n Workflow Error Handling Prompts for Automation Builders",
+  "description": "n8n automation builders get 20 targeted prompts to systematically diagnose, document, and resolve node failures, retry logic gaps, and silent error conditions in production workflows.",
+  "category": "prompt-packs",
+  "tags": [
+    "n8n",
+    "error-handling",
+    "automation",
+    "debugging"
+  ],
+  "item_count": 20,
+  "prompt_count": 20,
+  "created_at": "2026-03-13T18:34:20.326497+00:00",
+  "status": "published",
+  "package_path": "products/prompts-n8n-workflow-error-handling-prompts-for--20260313/package.zip",
+  "site_path": "site/products/prompts-n8n-workflow-error-handling-prompts-for--20260313.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "YOUR n8n WORKFLOWS ARE FAILING SILENTLY, AND YOU DON'T KNOW WHY.\n\nProduction automation breaks in ways that are hard to debug: nodes that fail without alerting, retry logic that doesn't catch edge cases, errors that slip through because you didn't anticipate them. You end up guessing, rebuilding, losing hours to detective work.\n\nWHO THIS IS FOR\n\n— Automation builders managing production n8n workflows who need systematic error diagnosis\n— Technical ops people tired of workflows dying without visibility into what went wrong\n— No-code/low-code developers who want to think through failure scenarios before they happen\n\nWHAT'S INSIDE\n\n20 targeted prompts that walk you through:\n— Identifying and documenting node-level failures\n— Building robust retry logic and conditional error handling\n— Designing detection for silent failures and timeout conditions\n— Structuring error documentation so you actually prevent repeats\n\nUse them with ChatGPT, Claude, or Gemini. Markdown and JSON formats included.\n\nYou'll diagnose problems faster, build more resilient workflows, and stop firefighting production incidents.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

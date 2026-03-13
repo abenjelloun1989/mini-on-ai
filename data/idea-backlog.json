@@ -132,25 +132,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773401591-9",
-      "title": "Time Audit Swipe File for Freelancers Losing Billable Hours",
-      "description": "Provides freelancers with real-world time audit templates, tracking scripts, and category breakdowns used by six-figure independents to identify and eliminate non-billable time drains.",
-      "category": "swipe-file",
-      "tags": [
-        "time audit",
-        "billable hours",
-        "freelancers",
-        "time tracking"
-      ],
-      "score": 80,
-      "rationale": "Billable hour leakage is an urgent financial pain for freelancers, and anchoring the swipe file to real six-figure practitioner templates adds credibility and differentiation, though AI generation of swipe content requires more curation effort.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T11:33:11.239951+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773401887-1",
       "title": "Client Onboarding Checklist for Independent Consultants",
       "description": "Solo consultants starting a new engagement get a repeatable 30-step checklist covering intake forms, tool access, stakeholder intros, and deliverable alignment to eliminate chaotic project kickoffs.",
@@ -162,7 +143,7 @@
       ],
       "score": 81,
       "rationale": "Every new consultant engagement carries onboarding chaos making demand broad and recurring, a 30-step structured checklist is more comprehensive than typical blog posts, and AI generates detailed sequential checklists with high reliability.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "checklist-client-onboarding-checklist-for-independ-20260313",
       "generated_at": "2026-03-13T11:38:07.333574+00:00",
@@ -274,24 +255,6 @@
       "status": "produced",
       "product_id": "guide-freelance-dry-spell-survival-and-pipelin-20260313",
       "generated_at": "2026-03-13T11:38:07.371803+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773406935-0",
-      "title": "Freelance Project Profitability Audit Checklist",
-      "description": "Helps freelancers retrospectively analyze completed projects to identify where hours bled, scope crept, and margins collapsed so they can price the next one accurately.",
-      "category": "checklist",
-      "tags": [
-        "pricing",
-        "project-management",
-        "profitability"
-      ],
-      "score": 80,
-      "rationale": "Retrospective profitability auditing is an underleveraged but high-need area for freelancers, and AI can produce detailed, logically sequenced audit checklist steps with good consistency.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T13:02:15.447366+00:00",
       "source": "trend-scan"
     },
     {
@@ -529,24 +492,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773411457-7",
-      "title": "Lead Magnet Format and Hook Swipe File by Industry Vertical",
-      "description": "B2B marketers use this curated reference of proven lead magnet formats, titles, and value propositions across SaaS, professional services, and e-commerce to validate new lead magnet concepts before production.",
-      "category": "swipe-file",
-      "tags": [
-        "lead magnets",
-        "content offers",
-        "B2B marketing"
-      ],
-      "score": 81,
-      "rationale": "Solid demand for lead magnet validation, industry-vertical organization offers differentiation, and swipe files with real examples are consistently generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:37.759768+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773411457-8",
       "title": "Automated Lead Enrichment and Routing Workflow in n8n",
       "description": "Sales ops teams use this n8n automation to pull new Typeform leads, enrich them via Clearbit, score them against custom criteria, and route qualified leads to the correct HubSpot pipeline with Slack notifications — eliminating manual triage.",
@@ -673,24 +618,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773411458-6",
-      "title": "ICP Definition and Lookalike Account Prompts for Sales Leaders",
-      "description": "Sales leaders get 20 structured prompts to extract precise ideal customer profile attributes from won deals and build a repeatable lookalike account list for targeting.",
-      "category": "prompt-packs",
-      "tags": [
-        "icp",
-        "account-targeting",
-        "sales-strategy"
-      ],
-      "score": 81,
-      "rationale": "Strong sales leader demand, lookalike account methodology differentiates from basic ICP templates, and structured prompts are reliably generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:38.100999+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773411458-8",
       "title": "Sales Discovery Question Bank Swipe File by Buyer Role",
       "description": "Account executives get a role-organized library of 60 proven discovery questions segmented by economic buyer, champion, and end user so every call uncovers real pain fast.",
@@ -724,6 +651,270 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-0",
+      "title": "n8n Workflow Error Handling Prompts for Automation Builders",
+      "description": "n8n automation builders get 20 targeted prompts to systematically diagnose, document, and resolve node failures, retry logic gaps, and silent error conditions in production workflows.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "error-handling",
+        "automation",
+        "debugging"
+      ],
+      "score": 85,
+      "rationale": "Addresses acute pain point (workflow debugging), strong uniqueness for n8n-specific error scenarios, and prompt packs are reliable to generate with consistent quality when well-seeded.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-n8n-workflow-error-handling-prompts-for--20260313",
+      "generated_at": "2026-03-13T18:25:25.393749+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-1",
+      "title": "n8n API Authentication Troubleshooting Prompts by Auth Type",
+      "description": "n8n developers struggling with OAuth2, API key, and webhook authentication failures get 20 precise diagnostic prompts to identify misconfiguration, token expiry, and scope issues across third-party integrations.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "API",
+        "authentication",
+        "OAuth2"
+      ],
+      "score": 80,
+      "rationale": "High urgency around auth failures but narrower audience than general workflow issues, unique n8n auth guidance, and prompts are highly generative for systematic troubleshooting.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.395278+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-2",
+      "title": "n8n Workflow Documentation Prompts for Team Handoffs",
+      "description": "Solo n8n builders handing off automation projects to teammates or clients get 20 structured prompts to produce clear node-by-node documentation, trigger logic summaries, and maintenance runbooks.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "documentation",
+        "handoff",
+        "SOPs"
+      ],
+      "score": 82,
+      "rationale": "Solid demand from n8n teams scaling beyond solo builders, good uniqueness in n8n handoff documentation, and prompts generate structured outputs reliably.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.396805+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-3",
+      "title": "n8n Data Transformation Prompts for Complex JSON Manipulation",
+      "description": "n8n users working with nested JSON payloads get 20 targeted prompts to plan, write, and validate JavaScript expressions inside Function nodes for filtering, reshaping, and merging complex data structures.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "JSON",
+        "data-transformation",
+        "Function-node"
+      ],
+      "score": 76,
+      "rationale": "High demand from developers working with complex data, but JSON transformation prompts exist broadly online, and generative quality varies with prompt specificity.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.398332+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-5",
+      "title": "n8n Self-Hosted Instance Health Review Checklist",
+      "description": "Teams running self-hosted n8n instances get a recurring maintenance checklist covering queue backlog, execution log pruning, environment variable hygiene, webhook endpoint validation, and version upgrade readiness.",
+      "category": "checklist",
+      "tags": [
+        "n8n",
+        "self-hosted",
+        "maintenance",
+        "DevOps"
+      ],
+      "score": 78,
+      "rationale": "Moderate demand (self-hosted segment only), strong uniqueness in maintenance procedures, and checklist format is easily AI-generated but niche audience limits impact.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.401376+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-6",
+      "title": "n8n Workflow Architecture Patterns Swipe File by Use Case",
+      "description": "n8n builders architecting new automations get a reference library of 15 annotated real-world workflow structures covering polling vs webhook triggers, branching logic, sub-workflow patterns, and error notification routing.",
+      "category": "swipe-file",
+      "tags": [
+        "n8n",
+        "architecture",
+        "workflow-design",
+        "patterns"
+      ],
+      "score": 74,
+      "rationale": "Moderate-to-good demand for architecture patterns, decent uniqueness in n8n-specific workflows, but swipe files require editorial curation that AI struggles to validate for real-world accuracy.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.402901+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-7",
+      "title": "n8n Client Automation Proposal Structures Swipe File",
+      "description": "Freelance n8n developers pitching automation projects to clients get a swipe file of 12 annotated proposal structures showing how to scope workflows, define deliverables, set revision boundaries, and price by complexity tier.",
+      "category": "swipe-file",
+      "tags": [
+        "n8n",
+        "freelance",
+        "proposals",
+        "client-work"
+      ],
+      "score": 65,
+      "rationale": "Lower demand (narrow freelancer audience), moderate uniqueness in n8n proposal structures, and swipe files require subjective quality judgment that AI cannot reliably produce without expert review.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.404414+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-8",
+      "title": "Choosing Between n8n Cloud and Self-Hosted for Small Teams",
+      "description": "Technical operators and small engineering teams evaluating n8n deployment options get a concise decision framework covering cost thresholds, data residency requirements, maintenance overhead, and scaling breakpoints.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "self-hosted",
+        "cloud",
+        "infrastructure"
+      ],
+      "score": 70,
+      "rationale": "Solid decision-making demand but not urgent, moderate uniqueness (cloud vs self-hosted comparisons exist), and mini-guides risk becoming generic comparisons without n8n-specific depth.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.405925+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-9",
+      "title": "Airtable Form Submission to Notion Project Brief via n8n",
+      "description": "Operations managers using Airtable intake forms get an n8n workflow template that automatically creates a structured Notion project brief, posts a Slack channel summary, and assigns a Todoist task to the responsible owner.",
+      "category": "n8n-template",
+      "tags": [
+        "n8n",
+        "Airtable",
+        "Notion",
+        "Slack",
+        "Todoist"
+      ],
+      "score": 0,
+      "rationale": "Out of scope—this is an n8n-template category not included in the scoring framework and does not map to the four approved categories.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.407445+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773426325-4",
+      "title": "n8n Workflow Pre-Deployment Audit Checklist",
+      "description": "n8n automation builders preparing to push workflows to production get a step-by-step checklist covering error paths, credential scoping, rate limit handling, data validation nodes, and rollback procedures.",
+      "category": "checklist",
+      "tags": [
+        "n8n",
+        "deployment",
+        "QA",
+        "production"
+      ],
+      "score": 88,
+      "rationale": "High demand from n8n users avoiding production disasters, strong uniqueness as n8n-specific pre-deployment guidance is scarce, and checklists are highly generative and immediately actionable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T18:25:25.399858+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773406935-0",
+      "title": "Freelance Project Profitability Audit Checklist",
+      "description": "Helps freelancers retrospectively analyze completed projects to identify where hours bled, scope crept, and margins collapsed so they can price the next one accurately.",
+      "category": "checklist",
+      "tags": [
+        "pricing",
+        "project-management",
+        "profitability"
+      ],
+      "score": 80,
+      "rationale": "Retrospective profitability auditing is an underleveraged but high-need area for freelancers, and AI can produce detailed, logically sequenced audit checklist steps with good consistency.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T13:02:15.447366+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773401591-9",
+      "title": "Time Audit Swipe File for Freelancers Losing Billable Hours",
+      "description": "Provides freelancers with real-world time audit templates, tracking scripts, and category breakdowns used by six-figure independents to identify and eliminate non-billable time drains.",
+      "category": "swipe-file",
+      "tags": [
+        "time audit",
+        "billable hours",
+        "freelancers",
+        "time tracking"
+      ],
+      "score": 80,
+      "rationale": "Billable hour leakage is an urgent financial pain for freelancers, and anchoring the swipe file to real six-figure practitioner templates adds credibility and differentiation, though AI generation of swipe content requires more curation effort.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T11:33:11.239951+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411458-6",
+      "title": "ICP Definition and Lookalike Account Prompts for Sales Leaders",
+      "description": "Sales leaders get 20 structured prompts to extract precise ideal customer profile attributes from won deals and build a repeatable lookalike account list for targeting.",
+      "category": "prompt-packs",
+      "tags": [
+        "icp",
+        "account-targeting",
+        "sales-strategy"
+      ],
+      "score": 81,
+      "rationale": "Strong sales leader demand, lookalike account methodology differentiates from basic ICP templates, and structured prompts are reliably generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.100999+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-7",
+      "title": "Lead Magnet Format and Hook Swipe File by Industry Vertical",
+      "description": "B2B marketers use this curated reference of proven lead magnet formats, titles, and value propositions across SaaS, professional services, and e-commerce to validate new lead magnet concepts before production.",
+      "category": "swipe-file",
+      "tags": [
+        "lead magnets",
+        "content offers",
+        "B2B marketing"
+      ],
+      "score": 81,
+      "rationale": "Solid demand for lead magnet validation, industry-vertical organization offers differentiation, and swipe files with real examples are consistently generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.759768+00:00",
       "source": "trend-scan"
     },
     {

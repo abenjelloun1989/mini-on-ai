@@ -142,5 +142,37 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 254,
     "output_tokens": 245
+  },
+  {
+    "ts": "2026-03-13T18:25:25.392250+00:00",
+    "run_id": "run-1773426297",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1207,
+    "output_tokens": 1095
+  },
+  {
+    "ts": "2026-03-13T18:25:31.969757+00:00",
+    "run_id": "run-1773426297",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 1225,
+    "output_tokens": 727
+  },
+  {
+    "ts": "2026-03-13T18:34:20.323430+00:00",
+    "run_id": "run-1773426726",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 267,
+    "output_tokens": 5673
+  },
+  {
+    "ts": "2026-03-13T18:34:23.831009+00:00",
+    "run_id": "run-1773426726",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 260,
+    "output_tokens": 252
   }
 ]

@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "prompts-n8n-workflow-error-handling-prompts-for--20260313",
+      "title": "n8n Workflow Error Handling Prompts for Automation Builders",
+      "description": "n8n automation builders get 20 targeted prompts to systematically diagnose, document, and resolve node failures, retry logic gaps, and silent error conditions in production workflows.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "error-handling",
+        "automation",
+        "debugging"
+      ],
+      "item_count": 20,
+      "prompt_count": 20,
+      "created_at": "2026-03-13T18:34:20.326497+00:00",
+      "package_path": "products/prompts-n8n-workflow-error-handling-prompts-for--20260313/package.zip",
+      "site_path": "site/products/prompts-n8n-workflow-error-handling-prompts-for--20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "checklist-client-onboarding-checklist-for-independ-20260313",
       "title": "Client Onboarding Checklist for Independent Consultants",
       "description": "Solo consultants starting a new engagement get a repeatable 30-step checklist covering intake forms, tool access, stakeholder intros, and deliverable alignment to eliminate chaotic project kickoffs.",
