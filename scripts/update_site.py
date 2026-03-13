@@ -196,6 +196,47 @@ def build_product_page(meta: dict) -> str:
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
+
+  <script>
+    (function() {{
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {{
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {{
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = '🌙';
+        }} else {{
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = '☀️';
+        }}
+      }}
+
+      function toggleDarkMode() {{
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {{
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        }} else {{
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }}
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '🌙' : '☀️';
+      }}
+
+      if (toggle) {{
+        toggle.addEventListener('click', toggleDarkMode);
+      }}
+
+      initDarkMode();
+    }})();
+  </script>
 </body>
 </html>
 """
@@ -293,16 +334,24 @@ def rebuild_index(catalog: dict) -> str:
 
         if (isDark) {{
           document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
           toggle.textContent = '🌙';
         }} else {{
           document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
           toggle.textContent = '☀️';
         }}
       }}
 
       function toggleDarkMode() {{
         const isDark = !document.documentElement.classList.contains('dark-mode');
-        document.documentElement.classList.toggle('dark-mode', isDark);
+        if (isDark) {{
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        }} else {{
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }}
         localStorage.setItem('darkMode', isDark ? 'true' : 'false');
         toggle.textContent = isDark ? '🌙' : '☀️';
       }}
