@@ -193,26 +193,20 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
     }
     short_desc = includes_map.get(category, f"{item_count} items included.")
 
-    # Use rich description if available, otherwise fall back to short desc
-    gumroad_desc = meta.get("gumroad_description") or f"{meta['description']} {short_desc}"
-
+    # Message 1: compact checklist (always fits within Telegram's 4096-char limit)
     msg = (
         f"🏷 <b>New product ready for Gumroad</b>\n"
         f"<a href='https://app.gumroad.com/products/new'>👉 Open Gumroad → New Product</a>\n\n"
         f"━━━━━━━━━━━━━━━━━\n"
-        f"📋 <b>Copy these fields:</b>\n\n"
         f"<b>Name:</b>\n"
         f"<code>{meta['title']}</code>\n\n"
-        f"<b>Description (rich HTML):</b>\n"
-        f"<code>{gumroad_desc}</code>\n\n"
-        f"<b>Price:</b> <code>{price_str}</code>\n"
-        f"<b>Type:</b> {cat_label}  •  <b>Items:</b> {item_count}\n\n"
+        f"<b>Price:</b> <code>{price_str}</code>  •  <b>Type:</b> {cat_label}  •  <b>Items:</b> {item_count}\n\n"
         f"━━━━━━━━━━━━━━━━━\n"
         f"<b>Checklist:</b>\n"
         f"☐ Paste Name\n"
-        f"☐ Paste Description\n"
+        f"☐ Paste Description (next message ↓)\n"
         f"☐ Set Price to {price_str}\n"
-        f"☐ Upload zip (next message)\n"
+        f"☐ Upload zip (follows)\n"
         f"☐ Upload cover: <code>site/images/cover-default.png</code>\n"
         f"☐ Click Publish\n"
         f"☐ Copy product URL\n\n"
@@ -220,6 +214,13 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
         f"<code>/seturl {pid} https://gumroad.com/l/PASTE_URL_HERE</code>"
     )
     _telegram_send_text(msg)
+
+    # Message 2: description HTML — separate message so it's easy to tap-copy in full
+    gumroad_desc = meta.get("gumroad_description") or f"{meta['description']} {short_desc}"
+    _telegram_send_text(
+        f"📝 <b>Description — paste into Gumroad:</b>\n\n"
+        f"<code>{gumroad_desc}</code>"
+    )
 
     zip_path = ROOT / f"products/{pid}/package.zip"
     if zip_path.exists():
