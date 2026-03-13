@@ -81,10 +81,20 @@ def log(stage: str, message: str) -> None:
 def extract_json(text: str, array: bool = True):
     """Extract first JSON array or object from a string.
     Falls back to repairing truncated arrays if strict parse fails.
+    Handles truncated responses where the closing ] was never emitted.
     """
+    # Strip code fences in case model wrapped the JSON
+    text = re.sub(r"^```[a-z]*\n?", "", text.strip())
+    text = re.sub(r"\n?```$", "", text).strip()
+
     pattern = r"\[[\s\S]*\]" if array else r"\{[\s\S]*\}"
     match = re.search(pattern, text)
     if not match:
+        if array:
+            # Response may be truncated before the closing ] — attempt repair
+            start = text.find("[")
+            if start != -1:
+                return _repair_json_array(text[start:])
         raise ValueError(f"No JSON {'array' if array else 'object'} found in response")
     raw = match.group(0)
     try:

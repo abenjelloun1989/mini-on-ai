@@ -169,7 +169,7 @@ def _prompts_readme(idea, count):
 def _gen_checklist(idea: dict, pid: str, assets_dir: str) -> dict:
     message = client.messages.create(
         model=MODEL,
-        max_tokens=3072,
+        max_tokens=4096,
         messages=[{
             "role": "user",
             "content": f"""Create a professional actionable checklist titled "{idea['title']}".
