@@ -12,10 +12,16 @@
 <body>
   <header class="site-header">
     <div class="site-header-inner">
-      <a href="../index.html" class="site-logo">
-        <img src="../logo.svg" alt="mini-on-ai">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
       </a>
-      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">☀️</button>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
     </div>
   </header>
 
@@ -96,11 +102,11 @@ Discover more tools like this at mini-on-ai.com</textarea>
         if (isDark) {
           document.documentElement.classList.add('dark-mode');
           document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = '🌙';
+          toggle.textContent = 'Dark';
         } else {
           document.documentElement.classList.remove('dark-mode');
           document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = '☀️';
+          toggle.textContent = 'Light';
         }
       }
 
@@ -114,7 +120,7 @@ Discover more tools like this at mini-on-ai.com</textarea>
           document.documentElement.classList.add('light-mode-manual');
         }
         localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? '🌙' : '☀️';
+        toggle.textContent = isDark ? 'Dark' : 'Light';
       }
 
       if (toggle) {
