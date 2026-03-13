@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "guide-how-to-build-a-notion-crm-that-actually--20260313",
+      "title": "How to Build a Notion CRM That Actually Gets Used",
+      "description": "Freelancers and small business owners who have abandoned multiple Notion CRM attempts get a concise practitioner guide covering the exact database structure, status logic, and daily capture habit that makes a lightweight CRM stick.",
+      "category": "mini-guide",
+      "tags": [
+        "notion",
+        "crm",
+        "freelance",
+        "relationship-management"
+      ],
+      "item_count": 1,
+      "prompt_count": 1,
+      "created_at": "2026-03-13T19:33:20.084926+00:00",
+      "package_path": "products/guide-how-to-build-a-notion-crm-that-actually--20260313/package.zip",
+      "site_path": "site/products/guide-how-to-build-a-notion-crm-that-actually--20260313.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "swipe-notion-template-sales-page-copy-swipe-fi-20260313",
       "title": "Notion Template Sales Page Copy Swipe File for Creators",
       "description": "Notion template creators selling on Gumroad or their own site get a swipe file of 12 high-converting product page structures with annotated headlines, benefit bullets, and FAQ sections pulled from top-selling templates.",
