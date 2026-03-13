@@ -916,25 +916,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429419-2",
-      "title": "Notion Database Schema Design Prompts for Ops Teams",
-      "description": "Operations managers building multi-linked Notion databases get 20 structured prompts that force them to define relation logic, rollup calculations, and filter views before touching a single property.",
-      "category": "prompt-packs",
-      "tags": [
-        "notion",
-        "database-design",
-        "operations",
-        "relational-data"
-      ],
-      "score": 82,
-      "rationale": "Ops teams designing databases have high pain with relational logic, prompts force upfront thinking (valuable), moderate uniqueness as some schema guides exist, prompt packs highly generatable.",
-      "selected": false,
-      "status": "rejected",
-      "product_id": null,
-      "generated_at": "2026-03-13T19:16:59.271242+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429419-3",
       "title": "Notion Project Retrospective Prompts for Agile Teams",
       "description": "Small agile teams running retrospectives inside Notion get 20 targeted prompts that extract actionable sprint insights, surface recurring blockers, and auto-populate a lessons-learned database.",
@@ -989,25 +970,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:16:59.275817+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429419-6",
-      "title": "Notion Workspace Architecture Swipe File for Agencies",
-      "description": "Agency owners structuring Notion for multi-client operations get a swipe file of 15 real workspace architecture examples including sidebar hierarchies, team permission structures, and project status systems they can copy immediately.",
-      "category": "swipe-file",
-      "tags": [
-        "notion",
-        "agency",
-        "workspace-architecture",
-        "team-permissions"
-      ],
-      "score": 82,
-      "rationale": "Clear demand from agency ops teams, workspace architectures are hard to learn by example, swipe files require curation but deliver immediate implementability.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:16:59.277342+00:00",
       "source": "trend-scan"
     },
     {
@@ -1468,25 +1430,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429484-4",
-      "title": "Notion Workspace Audit Checklist for Agency Operations Managers",
-      "description": "Agency ops managers use this step-by-step checklist to identify redundant databases, broken relations, permission leaks, and structural bottlenecks before onboarding new team members.",
-      "category": "checklist",
-      "tags": [
-        "notion",
-        "workspace-audit",
-        "agency",
-        "operations"
-      ],
-      "score": 82,
-      "rationale": "High demand from agency ops managers seeking workspace optimization, actionable checklist format is ideal for this use case, and checklists are easily templatable for consistent quality.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:18:04.280007+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429484-5",
       "title": "Notion New Client Onboarding Setup Checklist for Service Businesses",
       "description": "Service business owners use this checklist to configure every Notion page, shared view, and intake form needed to onboard a paying client within 24 hours of signing.",
@@ -1561,6 +1504,158 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:18:04.312360+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773436193-skill-0",
+      "title": "Claude Code Skill: API Contract Enforcer — Validate and Lint OpenAPI Specs Against Team Standards",
+      "description": "For backend engineers and API platform teams, this skill automatically validates OpenAPI and AsyncAPI specifications against organizational design standards so they can catch inconsistencies, naming violations, and missing documentation before code review.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-design",
+        "openapi"
+      ],
+      "score": 71,
+      "rationale": "Demand exists but audience is more niche (platform teams), moderate uniqueness, and generability is constrained since linting rules are highly organization-specific and require custom configuration.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.613961+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-1",
+      "title": "Claude Code Skill: Mock Server Scaffolder — Generate Instant API Mocks from Specs or Curl Examples",
+      "description": "For frontend developers and QA engineers, this skill generates fully functional mock server configurations from OpenAPI specs or raw curl examples so they can unblock UI development and testing without waiting for backend endpoints to be production-ready.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-testing",
+        "mocking"
+      ],
+      "score": 88,
+      "rationale": "High demand from frontend/QA teams facing real blockers, strong uniqueness as a Claude Code skill for this specific workflow, and excellent generability since mock generation is deterministic and pattern-based.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-claude-code-skill-mock-server-scaffolder-20260313",
+      "generated_at": "2026-03-13T21:09:53.618989+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-2",
+      "title": "Claude Code Skill: Integration Test Writer — Auto-Generate API Integration Tests from Endpoint Definitions",
+      "description": "For QA engineers and full-stack developers, this skill reads endpoint definitions, request/response schemas, and example payloads to generate structured integration test suites so they can achieve consistent API coverage without writing boilerplate test code from scratch.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-testing",
+        "test-automation"
+      ],
+      "score": 85,
+      "rationale": "Strong demand across QA and full-stack teams, good uniqueness in automated test generation from specs, and high generability since test structures follow predictable patterns from schema definitions.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.624053+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-3",
+      "title": "Claude Code Skill: API Changelog Generator — Detect Breaking Changes and Draft Developer-Facing Release Notes",
+      "description": "For API product managers and developer relations teams, this skill diffs two versions of an API spec to detect breaking changes, deprecations, and additions, then drafts structured changelog entries so they can communicate API evolution clearly without manually reviewing spec diffs.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-design",
+        "developer-experience"
+      ],
+      "score": 76,
+      "rationale": "Moderate-to-high demand for DevRel teams but narrower audience, good uniqueness in Claude Code context, though generability is medium since changelog quality depends heavily on semantic understanding of API changes.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.628854+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-4",
+      "title": "Claude Code Skill: Postman Collection Builder — Convert API Docs or Specs into Ready-to-Run Postman Collections",
+      "description": "For solutions engineers and technical support teams, this skill transforms OpenAPI specs, markdown API documentation, or raw endpoint lists into fully structured Postman collections with example payloads and environment variables so they can onboard clients and reproduce issues faster without manual collection setup.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-testing",
+        "postman"
+      ],
+      "score": 82,
+      "rationale": "Solid demand from support and solutions engineering teams, moderate uniqueness (tools exist but Claude Code angle is fresh), and very high generability since collection building is highly structured and repeatable.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.630244+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773429484-4",
+      "title": "Notion Workspace Audit Checklist for Agency Operations Managers",
+      "description": "Agency ops managers use this step-by-step checklist to identify redundant databases, broken relations, permission leaks, and structural bottlenecks before onboarding new team members.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "workspace-audit",
+        "agency",
+        "operations"
+      ],
+      "score": 82,
+      "rationale": "High demand from agency ops managers seeking workspace optimization, actionable checklist format is ideal for this use case, and checklists are easily templatable for consistent quality.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:04.280007+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-6",
+      "title": "Notion Workspace Architecture Swipe File for Agencies",
+      "description": "Agency owners structuring Notion for multi-client operations get a swipe file of 15 real workspace architecture examples including sidebar hierarchies, team permission structures, and project status systems they can copy immediately.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "agency",
+        "workspace-architecture",
+        "team-permissions"
+      ],
+      "score": 82,
+      "rationale": "Clear demand from agency ops teams, workspace architectures are hard to learn by example, swipe files require curation but deliver immediate implementability.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.277342+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-2",
+      "title": "Notion Database Schema Design Prompts for Ops Teams",
+      "description": "Operations managers building multi-linked Notion databases get 20 structured prompts that force them to define relation logic, rollup calculations, and filter views before touching a single property.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "database-design",
+        "operations",
+        "relational-data"
+      ],
+      "score": 82,
+      "rationale": "Ops teams designing databases have high pain with relational logic, prompts force upfront thinking (valuable), moderate uniqueness as some schema guides exist, prompt packs highly generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.271242+00:00",
       "source": "trend-scan"
     },
     {

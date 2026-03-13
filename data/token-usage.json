@@ -382,5 +382,85 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 253,
     "output_tokens": 234
+  },
+  {
+    "ts": "2026-03-13T21:09:53.611397+00:00",
+    "run_id": "run-1773436182",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 560,
+    "output_tokens": 633
+  },
+  {
+    "ts": "2026-03-13T21:09:58.065246+00:00",
+    "run_id": "run-1773436182",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 865,
+    "output_tokens": 395
+  },
+  {
+    "ts": "2026-03-13T21:13:09.216725+00:00",
+    "run_id": "run-1773436182",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 536,
+    "output_tokens": 5954
+  },
+  {
+    "ts": "2026-03-13T21:24:14.431936+00:00",
+    "run_id": "unknown",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 428,
+    "output_tokens": 1743
+  },
+  {
+    "ts": "2026-03-13T21:25:14.492387+00:00",
+    "run_id": "unknown",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 428,
+    "output_tokens": 1842
+  },
+  {
+    "ts": "2026-03-13T21:26:11.241456+00:00",
+    "run_id": "unknown",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 224,
+    "output_tokens": 2670
+  },
+  {
+    "ts": "2026-03-13T21:26:14.030292+00:00",
+    "run_id": "unknown",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 248,
+    "output_tokens": 199
+  },
+  {
+    "ts": "2026-03-13T21:36:14.691993+00:00",
+    "run_id": "run-1773437721",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 456,
+    "output_tokens": 1934
+  },
+  {
+    "ts": "2026-03-13T21:37:11.885335+00:00",
+    "run_id": "run-1773437721",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 269,
+    "output_tokens": 2729
+  },
+  {
+    "ts": "2026-03-13T21:37:18.051488+00:00",
+    "run_id": "run-1773437721",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 276,
+    "output_tokens": 217
   }
 ]

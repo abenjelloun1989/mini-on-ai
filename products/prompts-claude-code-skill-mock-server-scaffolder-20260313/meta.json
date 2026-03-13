@@ -1,0 +1,22 @@
+{
+  "id": "prompts-claude-code-skill-mock-server-scaffolder-20260313",
+  "title": "Claude Code Skill: Mock Server Scaffolder — Generate Instant API Mocks from Specs or Curl Examples",
+  "description": "For frontend developers and QA engineers, this skill generates fully functional mock server configurations from OpenAPI specs or raw curl examples so they can unblock UI development and testing without waiting for backend endpoints to be production-ready.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "api-testing",
+    "mocking"
+  ],
+  "item_count": 13,
+  "created_at": "2026-03-13T21:37:11.887982+00:00",
+  "status": "published",
+  "package_path": "products/prompts-claude-code-skill-mock-server-scaffolder-20260313/package.zip",
+  "site_path": "site/products/prompts-claude-code-skill-mock-server-scaffolder-20260313.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Stop waiting for backend teams to finish APIs before you can build the UI.\n\nThis skill generates production-ready mock servers from OpenAPI specs or curl commands in minutes. Feed it your API documentation or a real request. Get instant, functional endpoints that behave exactly like your spec says they should. Your frontend and QA work moves forward today. No more blocked sprints.\n\nWHO THIS IS FOR\n\n— Frontend developers tired of stubbing fake data and refreshing API docs constantly\n— QA engineers who need realistic test environments before backend staging is stable\n— Teams running parallel development where frontend can't wait for backend completion\n\nWHAT'S INSIDE\n\n— Complete skill guide explaining the scaffolding logic and when to use it\n— SKILL.md template ready to drop into your Claude projects\n— 13 precise configuration steps covering spec parsing, response generation, and error handling\n— Curl-to-mock conversion walkthrough for teams without formal API specs\n— Field adaptation patterns for custom response behaviors\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
