@@ -360,7 +360,7 @@
       ],
       "score": 82,
       "rationale": "Red flag screening addresses a universal and emotionally resonant freelancer problem, the decision-tree format is distinctive among free downloads, and AI can generate logical branching criteria reliably.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "checklist-client-red-flag-screening-decision-tree--20260313",
       "generated_at": "2026-03-13T13:02:15.467540+00:00",
@@ -454,24 +454,6 @@
       "status": "produced",
       "product_id": "checklist-lead-source-attribution-audit-checklist--20260313",
       "generated_at": "2026-03-13T14:17:37.729469+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773411457-2",
-      "title": "ICP Definition Prompts for B2B Demand Generation Teams",
-      "description": "Demand generation teams use these structured prompts to interrogate CRM data, sales call transcripts, and churn records to build a precise Ideal Customer Profile from scratch.",
-      "category": "prompt-packs",
-      "tags": [
-        "ICP",
-        "demand generation",
-        "customer profiling"
-      ],
-      "score": 82,
-      "rationale": "Strong demand for ICP definition, structured prompts add value over vague frameworks, and prompt-packs are easily generatable at scale.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:37.734499+00:00",
       "source": "trend-scan"
     },
     {
@@ -594,9 +576,9 @@
       ],
       "score": 82,
       "rationale": "High demand from founder audience, strong uniqueness in tactical early-stage framework, and mini-guides are highly generifiable with AI for consistent quality.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-lead-generation-channel-mix-mini-guide-f-20260313",
       "generated_at": "2026-03-13T14:17:37.766763+00:00",
       "source": "trend-scan"
     },
@@ -760,6 +742,24 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773411457-2",
+      "title": "ICP Definition Prompts for B2B Demand Generation Teams",
+      "description": "Demand generation teams use these structured prompts to interrogate CRM data, sales call transcripts, and churn records to build a precise Ideal Customer Profile from scratch.",
+      "category": "prompt-packs",
+      "tags": [
+        "ICP",
+        "demand generation",
+        "customer profiling"
+      ],
+      "score": 82,
+      "rationale": "Strong demand for ICP definition, structured prompts add value over vague frameworks, and prompt-packs are easily generatable at scale.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.734499+00:00",
       "source": "trend-scan"
     },
     {
