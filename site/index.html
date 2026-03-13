@@ -284,16 +284,24 @@
 
         if (isDark) {
           document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
           toggle.textContent = '🌙';
         } else {
           document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
           toggle.textContent = '☀️';
         }
       }
 
       function toggleDarkMode() {
         const isDark = !document.documentElement.classList.contains('dark-mode');
-        document.documentElement.classList.toggle('dark-mode', isDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
         localStorage.setItem('darkMode', isDark ? 'true' : 'false');
         toggle.textContent = isDark ? '🌙' : '☀️';
       }
