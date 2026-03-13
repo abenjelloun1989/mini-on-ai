@@ -1,10 +1,10 @@
 # Next Steps
 
-Last updated: 2026-03-13 (token tracking + dark mode complete)
+Last updated: 2026-03-13 (category filter nav + Claude Code Skills + Telegram category commands)
 
-## Immediate — Grow the catalog
+## Immediate — Grow the catalog to 15+ products
 
-The pipeline and site are fully operational. Run the daemon and approve ideas until you have 10+ products.
+The pipeline and site are fully operational. Run the daemon and approve ideas until you have 15+ products.
 
 Good seeds to run:
 ```
@@ -13,10 +13,11 @@ Good seeds to run:
 /run marketing
 /run operations
 /run design
+/run claude-code-skill
 ```
 
 Each new product will:
-1. Be generated with hard-quota category distribution (4×prompts, 2×checklist, 2×swipe-file, 1×guide, 1×n8n per 10-idea batch)
+1. Be generated with hard-quota category distribution
 2. Get a plain-text Claude-written description (paste-ready into Gumroad WYSIWYG editor)
 3. Send a compact Telegram notification with a link to the vitrine product page
 4. Open the vitrine page → click "📋 Copy description for Gumroad" → paste into Gumroad
@@ -28,12 +29,17 @@ Each new product will:
 The generic cover is at: `site/images/cover-default.png`
 Upload it to each product's Gumroad listing as the cover image.
 
-## Then — M11 Phase B: Reddit distribution
+## Then — M11 Phase B: Reddit distribution (at 15+ products)
 
 - Install PRAW: `pip3 install praw`
 - Create a Reddit app at reddit.com/prefs/apps
 - Script posts to relevant subreddits per product category
 - Add `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USERNAME`, `REDDIT_PASSWORD` to `.env`
+- Target subreddits:
+  - r/freelance, r/entrepreneur for business/ops products
+  - r/ClaudeAI, r/ChatGPT for Claude Code skills
+  - r/n8n for automation templates
+  - r/productivity for checklists and guides
 
 ## Then — M14: Analytics
 

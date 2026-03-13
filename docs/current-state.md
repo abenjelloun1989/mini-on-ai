@@ -1,6 +1,6 @@
 # Current State
 
-Last updated: 2026-03-13
+Last updated: 2026-03-13 (category filter nav + Claude Code Skills + Telegram category commands)
 
 ## Status: V2 — Continuous factory, live at mini-on-ai.com
 
@@ -11,17 +11,16 @@ Last updated: 2026-03-13
 - `run_pipeline.py` — full pipeline with Telegram approval gate
 - Stages: trend-scan → idea-rank → **approval** → generate → package → update-site → **publish-gumroad** → git push → telegram report
 - Products auto-committed and pushed to GitHub after each run
+- `--category` flag: `/run claude-code-skill` focuses entire pipeline on one product type
 
 ### Approval Gate
 - After idea ranking, pipeline sends a Telegram message with ✅ Go / ❌ No Go buttons
 - Pipeline blocks until user approves or rejects
 - Rejection marks idea as skipped, daemon loops to next idea
 
-### Products Published (4)
-- ATS-Optimized Resume Bullet Rewriter by Job Description — Gumroad: kirozdor.gumroad.com/l/hromk
-- Shopify Product Description Packs for E-Commerce — Gumroad: kirozdor.gumroad.com/l/eqiso
-- Meeting Notes to Action Items Fast — Gumroad: kirozdor.gumroad.com/l/jvogn
-- Late Invoice Follow-Up Sequence for Freelancers — Gumroad: kirozdor.gumroad.com/l/qghpoi
+### Products Published (23)
+- All categories represented: prompt-packs, checklist, swipe-file, mini-guide
+- Full catalog at data/product-catalog.json
 
 ### Site (Vitrine v2 ✅)
 - Live at https://mini-on-ai.com (custom domain + HTTPS)
@@ -29,7 +28,8 @@ Last updated: 2026-03-13
 - Hero section with unDraw illustration + bold headline
 - Contact email `hello@mini-on-ai.com` in footer
 - Auto-deployed via GitHub Actions on every push to main
-- **Dark Mode (NEW)**: Toggle button in header (☀️/🌙), persists via localStorage, respects `prefers-color-scheme`
+- **Dark Mode**: Toggle button in header (☀️/🌙), persists via localStorage, respects `prefers-color-scheme`
+- **Category Filter Bar (NEW)**: Pills with live counts (All / Prompt Packs / Checklists / Swipe Files / Mini Guides / CC Skills), JS-only filtering, count subtitle updates dynamically
 
 ### Brand Identity ✅
 - Logo: 2×2 grid tiles SVG wordmark (`site/logo.svg`) + icon (`site/logo-icon.svg`)
@@ -61,18 +61,34 @@ Last updated: 2026-03-13
 - 15-seed audience rotation for diverse idea generation
 - Duplicate title avoidance across sessions
 - Anti-patterns enforced: no email-first ideas, no generic "AI prompt" framing
-- Category distribution: hard quotas per batch — 4×prompt-packs, 2×checklist, 2×swipe-file, 1×mini-guide, 1×n8n-template
+- Default category distribution: hard quotas per batch — 4×prompt-packs, 2×checklist, 2×swipe-file, 1×mini-guide, 1×n8n-template
+- **Skill scan mode (NEW)**: When `PIPELINE_CATEGORY_FOCUS=claude-code-skill`, uses `_trend_scan_skills()` to generate Claude Code skill guide ideas from 14 high-demand workflow topics
 
 ### Product Categories ✅
-- prompt-packs, checklist, swipe-file, mini-guide, n8n-template all supported
-- `product_id()` now uses category-specific prefix: `prompts-`, `checklist-`, `swipe-`, `guide-`, `n8n-`
+- prompt-packs, checklist, swipe-file, mini-guide, n8n-template, **claude-code-skill** all supported
+- `product_id()` uses category-specific prefix per category
 - Site cards show colored category badges per category
+- Each category has its own placeholder SVG image
 
-### Telegram Bot
+### Claude Code Skills Category (NEW) ✅
+- **Product format**: SKILL.md template + full guide.md + README.md
+- Guide includes: skill description, use cases, 4-6 setup steps, 3-4 field adaptations, tips, common mistakes
+- Trigger in Telegram: `/run claude-code-skill`
+- Badge color: emerald green (#065F46 on #ECFDF5)
+- Dedicated placeholder SVG: terminal window + skills icon theme
+
+### Telegram Bot ✅
 - Running via launchd (com.mini-on-ai.bot)
-- Commands: /help /status /products /ideas /run /go /nogo /holdon /resume /projectphases
+- Commands: /help /status /products /ideas /run /go /nogo /holdon /resume /projectphases /categories /seturl
 - Inline button support for approval gate
-- `/status` now shows token usage: cost (USD) + input/output token counts per run
+- `/status` shows token usage: cost (USD) + input/output token counts per run
+- **`/categories` (NEW)**: Lists all 6 product types with descriptions and usage examples
+- **Enhanced `/run` (NEW)**:
+  - `/run` — generate any category (existing behavior)
+  - `/run marketing` — seed-based (existing behavior)
+  - `/run checklist` — generate only checklists
+  - `/run claude-code-skill` — generate only Claude Code skill guides
+  - `/run freelancing prompt-packs` — seed + category focus
 - Each stage logs token usage to `data/token-usage.json`; per-run summary stored in `pipeline-log.json`
 
 ### Token Tracking ✅
@@ -80,7 +96,6 @@ Last updated: 2026-03-13
 - Per-run summaries calculated from token logs and stored in `run["tokens"]`
 - `/status` displays: Cost, Input Tokens, Output Tokens for last run
 - Cost model: Sonnet $3/$15 per MTok in/out, Haiku $0.80/$4
-- Enables monitoring of API spend per product and lifetime
 
 ### Infrastructure
 - Git repo: https://github.com/abenjelloun1989/mini-on-ai
@@ -88,6 +103,6 @@ Last updated: 2026-03-13
 - Python 3.9, anthropic + python-dotenv + requests
 
 ## What Does NOT Exist Yet
-- Reddit auto-posting (M11 Phase B)
+- Reddit auto-posting (M11 Phase B) — planned after 15+ products
 - Analytics / click tracking (M14)
 - Email list capture (M15)
