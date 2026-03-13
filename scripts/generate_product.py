@@ -553,6 +553,7 @@ Start with: <p><strong>[hook sentence]</strong></p>""",
     desc = re.sub(r"^```[a-z]*\n?", "", desc)
     desc = re.sub(r"\n?```$", "", desc)
     desc = desc.strip()
+    desc += '\n\n<p>Discover more tools like this at <a href="https://mini-on-ai.com">mini-on-ai.com</a>.</p>'
     log("generate-product", "Generated Gumroad description")
     return desc
 
