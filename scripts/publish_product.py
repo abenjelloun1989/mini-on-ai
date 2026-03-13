@@ -167,32 +167,64 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
     """
     Gumroad no longer supports creating products via API.
     Send a Telegram message with product details + zip so the user can
-    create the listing manually and reply /seturl {id} {url}.
+    create the listing in ~30 seconds and reply /seturl {id} {url}.
     """
     price_cents = meta.get("price") or int(os.getenv("PRODUCT_PRICE_CENTS", "500"))
     price_str = f"${price_cents / 100:.2f}"
     category = meta.get("category", "prompt-packs")
     item_count = meta.get("item_count") or meta.get("prompt_count", 0)
 
+    category_labels = {
+        "prompt-packs": "Prompt Pack",
+        "checklist": "Checklist",
+        "swipe-file": "Swipe File",
+        "mini-guide": "Mini Guide",
+        "n8n-template": "n8n Template",
+    }
+    cat_label = category_labels.get(category, category)
+
+    # Build a compact plain-text description (Gumroad form field)
+    includes_map = {
+        "prompt-packs":  f"{item_count} ready-to-use prompts. Works with ChatGPT, Claude, Gemini. Markdown + JSON included.",
+        "checklist":     f"{item_count}-item checklist with context for each step. Markdown + JSON included.",
+        "swipe-file":    f"{item_count} copy-ready examples with usage notes. Markdown + JSON included.",
+        "mini-guide":    f"Focused {item_count}-word practitioner guide. Quick-reference summary included. Markdown format.",
+        "n8n-template":  f"Ready-to-import n8n workflow ({item_count} nodes). Setup guide + customization tips included.",
+    }
+    short_desc = includes_map.get(category, f"{item_count} items included.")
+
     msg = (
-        f"📦 <b>New product ready — publish on Gumroad</b>\n\n"
-        f"<b>{meta['title']}</b>\n"
-        f"<i>{meta['description']}</i>\n\n"
-        f"Category: {category}  |  Items: {item_count}  |  Price: {price_str}\n\n"
-        f"<b>Steps:</b>\n"
-        f"1. Go to <a href='https://app.gumroad.com/products/new'>gumroad.com/products/new</a>\n"
-        f"2. Name: <code>{meta['title']}</code>\n"
-        f"3. Price: <code>{price_str}</code>\n"
-        f"4. Upload the zip attached to this message\n"
-        f"5. Publish, then copy the product URL\n"
-        f"6. Reply: <code>/seturl {pid} https://gumroad.com/l/xxxx</code>\n\n"
-        f"Product ID: <code>{pid}</code>"
+        f"🏷 <b>New product ready for Gumroad</b>\n"
+        f"<a href='https://app.gumroad.com/products/new'>👉 Open Gumroad → New Product</a>\n\n"
+        f"━━━━━━━━━━━━━━━━━\n"
+        f"📋 <b>Copy these fields:</b>\n\n"
+        f"<b>Name:</b>\n"
+        f"<code>{meta['title']}</code>\n\n"
+        f"<b>Description:</b>\n"
+        f"<code>{meta['description']} {short_desc}</code>\n\n"
+        f"<b>Price:</b> <code>{price_str}</code>\n"
+        f"<b>Type:</b> {cat_label}  •  <b>Items:</b> {item_count}\n\n"
+        f"━━━━━━━━━━━━━━━━━\n"
+        f"<b>Checklist:</b>\n"
+        f"☐ Paste Name\n"
+        f"☐ Paste Description\n"
+        f"☐ Set Price to {price_str}\n"
+        f"☐ Upload zip (next message)\n"
+        f"☐ Click Publish\n"
+        f"☐ Copy product URL\n\n"
+        f"<b>Then reply:</b>\n"
+        f"<code>/seturl {pid} https://gumroad.com/l/PASTE_URL_HERE</code>"
     )
     _telegram_send_text(msg)
 
     zip_path = ROOT / f"products/{pid}/package.zip"
     if zip_path.exists():
-        _telegram_send_file(zip_path, f"📎 {meta['title']} — package.zip")
+        zip_size_kb = zip_path.stat().st_size // 1024
+        _telegram_send_file(
+            zip_path,
+            f"📎 Upload this to Gumroad ({zip_size_kb} KB)\n"
+            f"Product: {meta['title']}",
+        )
     else:
         log("publish", f"Warning: package.zip not found at {zip_path}")
 
