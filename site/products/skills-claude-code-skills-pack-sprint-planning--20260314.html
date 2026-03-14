@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Skills Pack: Sprint Planning — 5 Skills for Agile Ceremony Preparation and Execution</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="For agile team leads and scrum masters, this pack automates backlog grooming, sprint goal writing, capacity planning, story point estimation, and sprint review summaries so they can run tighter ceremonies in half the prep time">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-claude-code-skill">CC Skills Pack</span><span class="tag">claude-code</span> <span class="tag">skills</span> <span class="tag">agile</span> <span class="tag">sprint-planning</span></div>
+    <h1>Claude Code Skills Pack: Sprint Planning — 5 Skills for Agile Ceremony Preparation and Execution</h1>
+    <p class="product-desc-large">For agile team leads and scrum masters, this pack automates backlog grooming, sprint goal writing, capacity planning, story point estimation, and sprint review summaries so they can run tighter ceremonies in half the prep time</p>
+
+    <div class="product-stats">
+      <span>5 skills</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-plaintext">Sprint planning prep that should take 2 hours is eating your whole afternoon—and your team's still walking out confused about capacity and priorities.
+
+WHO THIS IS FOR
+
+— Scrum masters juggling five ceremonies a week and tired of manual estimation debates
+— Agile team leads who write sprint goals from scratch every cycle instead of iterating on what works
+— Tech leads covering ceremonies on top of actual work, needing templates that stick
+
+
+WHAT'S INSIDE
+
+— Backlog Grooming Skill: surfaces orphaned stories and flags sizing inconsistencies automatically
+— Sprint Goal Generator: builds focused, testable goals from your team's language patterns
+— Capacity Planning Skill: real-time visibility into who's actually available next sprint
+— Story Point Estimator: reduces estimation noise by 40% through consistent comparison
+— Sprint Review Summarizer: turns ceremony notes into async-friendly summaries for stakeholders
+
+
+Five drop-in SKILL.md files. Installation takes 3 minutes. Reference sheet included.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</div>
+    </section>
+
+    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">Sprint planning prep that should take 2 hours is eating your whole afternoon—and your team's still walking out confused about capacity and priorities.
+
+WHO THIS IS FOR
+
+— Scrum masters juggling five ceremonies a week and tired of manual estimation debates
+— Agile team leads who write sprint goals from scratch every cycle instead of iterating on what works
+— Tech leads covering ceremonies on top of actual work, needing templates that stick
+
+
+WHAT'S INSIDE
+
+— Backlog Grooming Skill: surfaces orphaned stories and flags sizing inconsistencies automatically
+— Sprint Goal Generator: builds focused, testable goals from your team's language patterns
+— Capacity Planning Skill: real-time visibility into who's actually available next sprint
+— Story Point Estimator: reduces estimation noise by 40% through consistent comparison
+— Sprint Review Summarizer: turns ceremony notes into async-friendly summaries for stakeholders
+
+
+Five drop-in SKILL.md files. Installation takes 3 minutes. Reference sheet included.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</textarea>
+    </details>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+</body>
+</html>
