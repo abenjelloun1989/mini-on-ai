@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Skill: DocSync — Automatic README and API Reference Generator</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="For backend developers, this skill scans codebases and auto-generates structured README files and API reference docs from functions, routes, and comments so they can ship well-documented libraries without writing a single doc line manually">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-claude-code-skill">Claude Code Skill</span><span class="tag">claude-code</span> <span class="tag">skills</span> <span class="tag">documentation</span> <span class="tag">api-reference</span></div>
+    <h1>Claude Code Skill: DocSync — Automatic README and API Reference Generator</h1>
+    <p class="product-desc-large">For backend developers, this skill scans codebases and auto-generates structured README files and API reference docs from functions, routes, and comments so they can ship well-documented libraries without writing a single doc line manually</p>
+
+    <div class="product-stats">
+      <span>full skill guide</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-plaintext">You're shipping backend code but your docs are always three sprints behind.
+
+DocSync fixes that. This Claude Code Skill scans your entire codebase and generates accurate, structured README files and API reference docs in minutes—automatically pulling from your functions, routes, and existing comments. No manual writing. No outdated specs. Just ship.
+
+Who this is for:
+
+— Backend developers maintaining open-source libraries who can't afford documentation debt
+— Startups shipping APIs fast and need docs to match velocity, not slow the team down
+— Teams rebuilding docs after refactors but lacking bandwidth for manual updates
+
+What's inside:
+
+— Complete 13-step configuration guide tailored to your codebase structure
+— Ready-to-use SKILL.md template you drop into Claude and run immediately
+— Field adaptation instructions for routing libraries, REST APIs, and SDK frameworks
+— Output examples showing exactly what auto-generated docs look like
+
+Your documentation stays current. Your team ships faster. Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</div>
+    </section>
+
+    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">You're shipping backend code but your docs are always three sprints behind.
+
+DocSync fixes that. This Claude Code Skill scans your entire codebase and generates accurate, structured README files and API reference docs in minutes—automatically pulling from your functions, routes, and existing comments. No manual writing. No outdated specs. Just ship.
+
+Who this is for:
+
+— Backend developers maintaining open-source libraries who can't afford documentation debt
+— Startups shipping APIs fast and need docs to match velocity, not slow the team down
+— Teams rebuilding docs after refactors but lacking bandwidth for manual updates
+
+What's inside:
+
+— Complete 13-step configuration guide tailored to your codebase structure
+— Ready-to-use SKILL.md template you drop into Claude and run immediately
+— Field adaptation instructions for routing libraries, REST APIs, and SDK frameworks
+— Output examples showing exactly what auto-generated docs look like
+
+Your documentation stays current. Your team ships faster. Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</textarea>
+    </details>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+</body>
+</html>

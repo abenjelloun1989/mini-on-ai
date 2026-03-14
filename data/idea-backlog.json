@@ -1595,10 +1595,105 @@
       ],
       "score": 82,
       "rationale": "Solid demand from support and solutions engineering teams, moderate uniqueness (tools exist but Claude Code angle is fresh), and very high generability since collection building is highly structured and repeatable.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-claude-code-skill-postman-collection-bui-20260314",
       "generated_at": "2026-03-13T21:09:53.630244+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-0",
+      "title": "Claude Code Skill: DocSync — Automatic README and API Reference Generator",
+      "description": "For backend developers, this skill scans codebases and auto-generates structured README files and API reference docs from functions, routes, and comments so they can ship well-documented libraries without writing a single doc line manually",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "documentation",
+        "api-reference"
+      ],
+      "score": 85,
+      "rationale": "Strong demand from backend developers shipping libraries, genuinely novel automation (few tools auto-generate structured docs from code), and Claude can reliably extract and format API documentation.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-claude-code-skill-docsync-automatic-read-20260314",
+      "generated_at": "2026-03-14T06:35:04.890120+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-1",
+      "title": "Claude Code Skill: ChangelogCraft — Commit-to-Changelog Documentation Builder",
+      "description": "For engineering leads and DevOps teams, this skill transforms raw git commit histories into clean, user-facing changelog entries grouped by release version so they can maintain professional release notes without tedious manual summarization",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "changelog",
+        "devops"
+      ],
+      "score": 72,
+      "rationale": "Real pain point for engineering teams, some automation exists but Claude's contextual summarization is valuable, though changelog generation is somewhat commoditized and requires release context alignment.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.899145+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-3",
+      "title": "Claude Code Skill: ArchMapper — System Architecture Documentation Generator",
+      "description": "For solutions architects and technical leads, this skill reads project structure, dependency files, and configuration to auto-produce architecture overview documents and component relationship diagrams in Markdown so they can keep stakeholder-facing technical docs in sync with the actual codebase",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "architecture",
+        "technical-writing"
+      ],
+      "score": 78,
+      "rationale": "Solid demand from technical leads, moderately unique (some architecture tools exist but Claude-based automation is differentiated), and generating markdown architecture docs is well-suited to AI.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.914075+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-4",
+      "title": "Claude Code Skill: NonTechTranslator — Developer-to-Stakeholder Documentation Converter",
+      "description": "For product managers and technical writers embedded in engineering teams, this skill takes code-level documentation and rewrites it into plain-language feature summaries, user guides, and help center articles so they can bridge the gap between engineering output and end-user understanding without needing to read source code",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "technical-writing",
+        "product-management"
+      ],
+      "score": 68,
+      "rationale": "Niche audience (technical writers in eng teams are fewer), overlaps with existing content translation tools, and output quality highly depends on input documentation quality making consistency harder.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.920225+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-2",
+      "title": "Claude Code Skill: InlineDoc — Inline Comment and JSDoc/Docstring Injector",
+      "description": "For software engineers inheriting legacy codebases, this skill analyzes undocumented functions and injects accurate inline comments, JSDoc, or Python docstrings directly into source files so they can onboard new teammates faster and reduce knowledge-transfer bottlenecks",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "inline-docs",
+        "code-quality"
+      ],
+      "score": 89,
+      "rationale": "Extremely high demand (legacy code is ubiquitous), unique skill application (automated code annotation), and Claude excels at analyzing and documenting existing functions with high consistency.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.908212+00:00",
       "source": "trend-scan-skills"
     },
     {

@@ -1,0 +1,256 @@
+---
+name: doc-sync
+title: "DocSync — Automatic README and API Reference Generator"
+description: >
+  Scans codebases to automatically generate structured README files and API
+  reference documentation from functions, routes, comments, and type signatures.
+  Eliminates manual documentation work for backend developers shipping libraries,
+  services, or APIs.
+when_to_use: >
+  Use this skill whenever you need to create or update README files, generate
+  API reference documentation, document a new library or service, refresh
+  outdated docs after code changes, or produce structured documentation from
+  existing inline comments and type signatures — without writing docs by hand.
+---
+
+# DocSync — Automatic README and API Reference Generator
+
+## Purpose
+
+DocSync scans a codebase and automatically produces two documentation artifacts:
+
+1. **A structured README.md** — covering project overview, installation, usage, configuration, and examples
+2. **An API reference document** — covering all public functions, classes, routes, parameters, return types, and inline doc comments
+
+Backend developers can ship well-documented libraries and services without writing a single documentation line manually.
+
+---
+
+## How Claude Should Execute This Skill
+
+When this skill is invoked, follow these steps precisely and in order:
+
+### Step 1 — Discover the Codebase
+
+- Identify the root directory of the project (default: current working directory)
+- If a target path is specified in the command, scope scanning to that path
+- List all source files, filtering for relevant extensions:
+  - JavaScript/TypeScript: `.js`, `.ts`, `.mjs`, `.cjs`
+  - Python: `.py`
+  - Go: `.go`
+  - Ruby: `.rb`
+  - Java/Kotlin: `.java`, `.kt`
+  - Rust: `.rs`
+  - PHP: `.php`
+  - Other languages as present
+- Also locate: `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `Gemfile`, or equivalent manifest files
+- Check for any existing `README.md` or docs directory to understand current documentation state
+
+### Step 2 — Extract Structured Information
+
+For each source file, extract:
+
+**Functions and Methods**
+- Function/method name and signature
+- Parameters (names, types, defaults)
+- Return type
+- Any JSDoc, docstring, or inline comments directly above or within the function
+- Whether the function is exported/public or internal/private
+
+**Classes and Interfaces**
+- Class name and description
+- Constructor parameters
+- Public methods and properties
+- Implemented interfaces or extended classes
+- Associated doc comments
+
+**API Routes (if applicable)**
+- HTTP method (GET, POST, PUT, DELETE, PATCH, etc.)
+- Route path and any path parameters
+- Query parameters and request body shape
+- Response shape and status codes
+- Middleware or authentication requirements noted in comments or decorators
+- Route handler description from comments
+
+**Module/File-Level Comments**
+- Top-of-file module descriptions
+- Author, version, or license blocks
+- Usage examples embedded in comments
+
+**Configuration and Environment**
+- `.env.example`, `config.*`, or similar files
+- Required vs optional environment variables
+- Default values and descriptions
+
+**Dependencies**
+- Runtime dependencies and their versions from manifest files
+- Peer dependencies or prerequisites
+
+### Step 3 — Generate the README.md
+
+Produce a complete `README.md` with the following sections. Omit any section only if there is genuinely no relevant information to populate it.
+
+```
+# [Project Name]
+
+[One-paragraph description of what this project does and who it is for]
+
+## Table of Contents
+[Auto-generated links to each section below]
+
+## Features
+[Bullet list of key capabilities inferred from the codebase]
+
+## Requirements
+[Runtime, language version, and system prerequisites]
+
+## Installation
+[Step-by-step installation commands based on manifest file and package manager]
+
+## Configuration
+[Environment variables table: Variable | Required | Default | Description]
+
+## Quick Start
+[Minimal working example showing the most common use case]
+
+## Usage
+[Expanded usage examples covering major features and common patterns]
+
+## Project Structure
+[Directory tree with one-line descriptions of key files and folders]
+
+## API Overview
+[Brief summary pointing to the full API reference document]
+
+## Contributing
+[Standard contribution guidance placeholder, marked clearly as a template]
+
+## License
+[License name if found in manifest or LICENSE file, otherwise placeholder]
+```
+
+- Write in clear, direct technical prose
+- Use code blocks with correct language tags for all code samples
+- Infer project name from manifest file, directory name, or package declaration
+- If the project already has a README.md, preserve any sections that contain human-written content not derivable from code; clearly mark regenerated sections
+
+### Step 4 — Generate the API Reference Document
+
+Produce an `API_REFERENCE.md` (or `docs/api.md` if a docs directory exists) with the following structure:
+
+```
+# API Reference — [Project Name]
+
+> Auto-generated by DocSync. Last updated: [timestamp]
+
+## Table of Contents
+[Links to each module/route group below]
+
+---
+
+## [Module or File Name]
+
+### [FunctionName or ClassName or ROUTE METHOD /path]
+
+**Description**
+[Extracted from doc comment or inferred from function name and body]
+
+**Signature**
+[Full function signature or route definition]
+
+**Parameters**
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| ...  | ...  | ...      | ...     | ...         |
+
+**Returns**
+[Return type and description]
+
+**Throws / Error Responses**
+[Known exceptions or HTTP error codes if documented]
+
+**Example**
+[Code example from doc comment or constructed from signature]
+
+---
+```
+
+- Group entries by source file or logical module
+- For REST APIs, group routes by resource (e.g., `/users`, `/orders`)
+- Mark private/internal symbols with a `⚠️ Internal` badge and include them in a separate appendix section
+- If type definitions or interfaces exist, include a **Types** section at the end of the reference
+
+### Step 5 — Write the Output Files
+
+- Write `README.md` to the project root (or specified output path)
+- Write `API_REFERENCE.md` to the project root, or `docs/api.md` if a `docs/` directory exists
+- If files already exist, show a diff summary of what changed before writing and ask for confirmation unless `--force` was passed
+- Report a summary: files scanned, functions documented, routes documented, files written
+
+---
+
+## Output Format Requirements
+
+- All output files must be valid, well-formed Markdown
+- Use ATX-style headers (`#`, `##`, `###`) — never Setext style
+- Code blocks must include a language identifier (` ```js `, ` ```python `, etc.)
+- Tables must be properly aligned with header separators
+- All internal links in table-of-contents sections must be valid anchor links
+- Do not include placeholder text like `TODO` or `[Add content here]` in generated sections — if information is unavailable, omit the section entirely or state "Not specified in source" clearly
+
+---
+
+## Constraints and Behavior Rules
+
+- **Never fabricate** function behavior, parameter types, or route semantics that are not present in the source code or comments. If information is ambiguous, note it explicitly with `(inferred)`.
+- **Respect visibility** — do not promote private functions to the primary API reference. Document them in an appendix if at all.
+- **Preserve human content** — if an existing README has a hand-written "Philosophy" or "Why we built this" section, keep it verbatim.
+- **Language-agnostic** — apply equivalent extraction logic to any supported language; do not assume JavaScript/TypeScript-only patterns.
+- **Large codebases** — if more than 50 source files are present, process them in logical groups and report progress. Prioritize entry points, exported modules, and route files first.
+- **No external calls** — do not fetch external URLs, resolve remote schemas, or make network requests during execution.
+
+---
+
+## Usage Examples
+
+### Example 1 — Generate docs for the entire project in the current directory
+
+/doc-sync
+
+Scans all source files in the current directory tree, generates `README.md` and `API_REFERENCE.md` at the project root.
+
+---
+
+### Example 2 — Generate docs scoped to a specific subdirectory or package
+
+/doc-sync src/api
+
+Scans only the `src/api/` directory. Useful for monorepos or when documenting a specific package or service layer in isolation. Writes output files relative to `src/api/`.
+
+---
+
+### Example 3 — Regenerate and force-overwrite existing documentation
+
+/doc-sync --force
+
+Regenerates both `README.md` and `API_REFERENCE.md` from scratch without prompting for confirmation on overwrites. Useful in CI pipelines or post-refactor cleanup workflows where you want fully fresh documentation with no manual merge step.
+
+---
+
+## Notes for Claude
+
+- Begin by reading the manifest file (`package.json`, `go.mod`, `pyproject.toml`, etc.) first to establish project name, version, and dependencies before scanning source files.
+- When doc comments are absent, infer descriptions conservatively from function names using standard naming conventions (e.g., `getUserById` → "Retrieves a user record by their unique identifier"). Always mark these as `(inferred)`.
+- If the project contains a mix of languages, generate a single unified README but split the API reference by language or module boundary.
+- For Express, Fastify, Flask, Django, Gin, Rails, or similar framework route definitions, detect the framework pattern and apply the appropriate route extraction strategy.
+- Always close by printing a concise generation report in this format:
+
+```
+DocSync complete.
+  Files scanned:        [n]
+  Functions documented: [n]
+  Routes documented:    [n]
+  Files written:
+    → README.md
+    → API_REFERENCE.md
+```

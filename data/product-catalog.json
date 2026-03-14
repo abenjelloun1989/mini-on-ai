@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "prompts-claude-code-skill-docsync-automatic-read-20260314",
+      "title": "Claude Code Skill: DocSync — Automatic README and API Reference Generator",
+      "description": "For backend developers, this skill scans codebases and auto-generates structured README files and API reference docs from functions, routes, and comments so they can ship well-documented libraries without writing a single doc line manually",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "documentation",
+        "api-reference"
+      ],
+      "item_count": 13,
+      "prompt_count": 13,
+      "created_at": "2026-03-14T06:40:48.793864+00:00",
+      "package_path": "products/prompts-claude-code-skill-docsync-automatic-read-20260314/package.zip",
+      "site_path": "site/products/prompts-claude-code-skill-docsync-automatic-read-20260314.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "prompts-claude-code-skill-postman-collection-bui-20260314",
       "title": "Claude Code Skill: Postman Collection Builder — Convert API Docs or Specs into Ready-to-Run Postman Collections",
       "description": "For solutions engineers and technical support teams, this skill transforms OpenAPI specs, markdown API documentation, or raw endpoint lists into fully structured Postman collections with example payloads and environment variables so they can onboard clients and reproduce issues faster without manual collection setup.",
