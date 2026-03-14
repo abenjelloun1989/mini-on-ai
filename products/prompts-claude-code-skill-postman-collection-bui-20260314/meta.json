@@ -1,0 +1,22 @@
+{
+  "id": "prompts-claude-code-skill-postman-collection-bui-20260314",
+  "title": "Claude Code Skill: Postman Collection Builder — Convert API Docs or Specs into Ready-to-Run Postman Collections",
+  "description": "For solutions engineers and technical support teams, this skill transforms OpenAPI specs, markdown API documentation, or raw endpoint lists into fully structured Postman collections with example payloads and environment variables so they can onboard clients and reproduce issues faster without manual collection setup.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "api-testing",
+    "postman"
+  ],
+  "item_count": 12,
+  "created_at": "2026-03-14T06:32:21.188181+00:00",
+  "status": "published",
+  "package_path": "products/prompts-claude-code-skill-postman-collection-bui-20260314/package.zip",
+  "site_path": "site/products/prompts-claude-code-skill-postman-collection-bui-20260314.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "STOP MANUALLY BUILDING POSTMAN COLLECTIONS FROM API DOCS\n\nYou're spending hours copying endpoints, structuring payloads, and setting up variables when you should be onboarding clients and debugging production issues.\n\nThis skill transforms OpenAPI specs, markdown documentation, or raw endpoint lists into fully functional Postman collections—complete with example payloads, environment variables, and proper folder structure—in minutes.\n\n\nWHO THIS IS FOR\n\n— Solutions engineers managing multiple client integrations and tired of repetitive collection setup\n— Technical support teams reproducing customer issues without asking \"can you send me your endpoint details again?\"\n— Technical sales who need to demo APIs fast without fumbling through documentation\n\n\nWHAT'S INSIDE\n\n— Complete 12-step configuration guide with field-by-field adaptations\n— Ready-to-use SKILL.md template you copy, customize, and run immediately\n— Pattern for converting any API format (OpenAPI, Swagger, markdown, raw lists) into structured collections\n— Environment variable setup instructions for seamless client handoff\n\n\nStop treating collection building like a chore. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
