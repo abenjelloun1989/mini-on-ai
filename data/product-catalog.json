@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "skills-claude-code-skills-pack-user-story-writi-20260314",
+      "title": "Claude Code Skills Pack: User Story Writing — 5 Skills for Turning Requirements Into Actionable Tickets",
+      "description": "For product managers and business analysts, this pack converts raw feature requests into well-structured user stories, acceptance criteria, edge case lists, definition-of-done checklists, and Jira-ready ticket descriptions so they can eliminate ambiguity before development starts",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "user-stories",
+        "product-management"
+      ],
+      "item_count": 5,
+      "prompt_count": 5,
+      "created_at": "2026-03-14T08:16:40.216062+00:00",
+      "package_path": "products/skills-claude-code-skills-pack-user-story-writi-20260314/package.zip",
+      "site_path": "site/products/skills-claude-code-skills-pack-user-story-writi-20260314.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "prompts-n8n-api-authentication-troubleshooting-p-20260314",
       "title": "n8n API Authentication Troubleshooting Prompts by Auth Type",
       "description": "n8n developers struggling with OAuth2, API key, and webhook authentication failures get 20 precise diagnostic prompts to identify misconfiguration, token expiry, and scope issues across third-party integrations.",

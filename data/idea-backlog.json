@@ -667,7 +667,7 @@
       ],
       "score": 80,
       "rationale": "High urgency around auth failures but narrower audience than general workflow issues, unique n8n auth guidance, and prompts are highly generative for systematic troubleshooting.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-n8n-api-authentication-troubleshooting-p-20260314",
       "generated_at": "2026-03-13T18:25:25.395278+00:00",
@@ -1526,25 +1526,6 @@
       "source": "trend-scan-skills"
     },
     {
-      "id": "idea-1773436193-skill-3",
-      "title": "Claude Code Skill: API Changelog Generator — Detect Breaking Changes and Draft Developer-Facing Release Notes",
-      "description": "For API product managers and developer relations teams, this skill diffs two versions of an API spec to detect breaking changes, deprecations, and additions, then drafts structured changelog entries so they can communicate API evolution clearly without manually reviewing spec diffs.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "api-design",
-        "developer-experience"
-      ],
-      "score": 76,
-      "rationale": "Moderate-to-high demand for DevRel teams but narrower audience, good uniqueness in Claude Code context, though generability is medium since changelog quality depends heavily on semantic understanding of API changes.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T21:09:53.628854+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773436193-skill-4",
       "title": "Claude Code Skill: Postman Collection Builder — Convert API Docs or Specs into Ready-to-Run Postman Collections",
       "description": "For solutions engineers and technical support teams, this skill transforms OpenAPI specs, markdown API documentation, or raw endpoint lists into fully structured Postman collections with example payloads and environment variables so they can onboard clients and reproduce issues faster without manual collection setup.",
@@ -1583,44 +1564,6 @@
       "source": "trend-scan-skills"
     },
     {
-      "id": "idea-1773470104-skill-1",
-      "title": "Claude Code Skill: ChangelogCraft — Commit-to-Changelog Documentation Builder",
-      "description": "For engineering leads and DevOps teams, this skill transforms raw git commit histories into clean, user-facing changelog entries grouped by release version so they can maintain professional release notes without tedious manual summarization",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "changelog",
-        "devops"
-      ],
-      "score": 72,
-      "rationale": "Real pain point for engineering teams, some automation exists but Claude's contextual summarization is valuable, though changelog generation is somewhat commoditized and requires release context alignment.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-14T06:35:04.899145+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
-      "id": "idea-1773470104-skill-3",
-      "title": "Claude Code Skill: ArchMapper — System Architecture Documentation Generator",
-      "description": "For solutions architects and technical leads, this skill reads project structure, dependency files, and configuration to auto-produce architecture overview documents and component relationship diagrams in Markdown so they can keep stakeholder-facing technical docs in sync with the actual codebase",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "architecture",
-        "technical-writing"
-      ],
-      "score": 78,
-      "rationale": "Solid demand from technical leads, moderately unique (some architecture tools exist but Claude-based automation is differentiated), and generating markdown architecture docs is well-suited to AI.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-14T06:35:04.914075+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773470104-skill-4",
       "title": "Claude Code Skill: NonTechTranslator — Developer-to-Stakeholder Documentation Converter",
       "description": "For product managers and technical writers embedded in engineering teams, this skill takes code-level documentation and rewrites it into plain-language feature summaries, user guides, and help center articles so they can bridge the gap between engineering output and end-user understanding without needing to read source code",
@@ -1637,6 +1580,158 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-14T06:35:04.920225+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-0",
+      "title": "Claude Code Skills Pack: Sprint Planning — 5 Skills for Agile Ceremony Preparation and Execution",
+      "description": "For agile team leads and scrum masters, this pack automates backlog grooming, sprint goal writing, capacity planning, story point estimation, and sprint review summaries so they can run tighter ceremonies in half the prep time",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agile",
+        "sprint-planning"
+      ],
+      "score": 72,
+      "rationale": "Solid demand from scrum masters but audience is smaller than PM/engineering leaders, good generability for structured outputs, though agile ceremony templates are heavily commoditized.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T08:11:50.352172+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-1",
+      "title": "Claude Code Skills Pack: User Story Writing — 5 Skills for Turning Requirements Into Actionable Tickets",
+      "description": "For product managers and business analysts, this pack converts raw feature requests into well-structured user stories, acceptance criteria, edge case lists, definition-of-done checklists, and Jira-ready ticket descriptions so they can eliminate ambiguity before development starts",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "user-stories",
+        "product-management"
+      ],
+      "score": 82,
+      "rationale": "High demand from PMs/BAs who struggle with ticket clarity, strong generability since Claude excels at structured writing, but user story templates are somewhat commoditized online.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-user-story-writi-20260314",
+      "generated_at": "2026-03-14T08:11:50.357199+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-2",
+      "title": "Claude Code Skills Pack: Project Status Reporting — 5 Skills for Stakeholder Communication and Risk Visibility",
+      "description": "For project managers and engineering leads, this pack generates weekly status reports, RAG status summaries, risk and blocker escalations, milestone progress narratives, and executive briefing snapshots so they can keep every stakeholder aligned without spending hours writing updates",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "project-management",
+        "stakeholder-reporting"
+      ],
+      "score": 79,
+      "rationale": "Urgent daily need for status reporting across all teams, excellent generability for narrative generation, though stakeholder communication varies widely by company culture.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T08:11:50.362225+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-3",
+      "title": "Claude Code Skills Pack: Retrospective Facilitation — 5 Skills for Extracting Actionable Team Improvements",
+      "description": "For scrum masters and engineering managers, this pack structures retrospective agendas, clusters team feedback into themes, drafts action items with owners, tracks improvement trends across sprints, and writes retrospective summary documents so they can turn team reflection into measurable process change",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "retrospectives",
+        "agile"
+      ],
+      "score": 68,
+      "rationale": "Moderate demand since retrospectives are less frequent than other ceremonies, good AI generability for clustering and summaries, but retrospective facilitation is highly team-culture dependent.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T08:11:50.367247+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-4",
+      "title": "Claude Code Skills Pack: Roadmap Planning — 5 Skills for Quarterly Planning and Priority Alignment",
+      "description": "For product managers and heads of engineering, this pack builds opportunity sizing summaries, prioritization scoring matrices, now-next-later roadmap narratives, dependency mapping notes, and board-level roadmap presentations so they can move from chaotic feature lists to a defensible, stakeholder-approved plan",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "roadmap",
+        "product-strategy"
+      ],
+      "score": 76,
+      "rationale": "High-value audience (PMs/execs) with significant pain around prioritization, strong AI generability, but roadmap frameworks are well-established and widely available.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T08:11:50.372268+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-1",
+      "title": "Claude Code Skill: ChangelogCraft — Commit-to-Changelog Documentation Builder",
+      "description": "For engineering leads and DevOps teams, this skill transforms raw git commit histories into clean, user-facing changelog entries grouped by release version so they can maintain professional release notes without tedious manual summarization",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "changelog",
+        "devops"
+      ],
+      "score": 72,
+      "rationale": "Real pain point for engineering teams, some automation exists but Claude's contextual summarization is valuable, though changelog generation is somewhat commoditized and requires release context alignment.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.899145+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-3",
+      "title": "Claude Code Skill: API Changelog Generator — Detect Breaking Changes and Draft Developer-Facing Release Notes",
+      "description": "For API product managers and developer relations teams, this skill diffs two versions of an API spec to detect breaking changes, deprecations, and additions, then drafts structured changelog entries so they can communicate API evolution clearly without manually reviewing spec diffs.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-design",
+        "developer-experience"
+      ],
+      "score": 76,
+      "rationale": "Moderate-to-high demand for DevRel teams but narrower audience, good uniqueness in Claude Code context, though generability is medium since changelog quality depends heavily on semantic understanding of API changes.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.628854+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-3",
+      "title": "Claude Code Skill: ArchMapper — System Architecture Documentation Generator",
+      "description": "For solutions architects and technical leads, this skill reads project structure, dependency files, and configuration to auto-produce architecture overview documents and component relationship diagrams in Markdown so they can keep stakeholder-facing technical docs in sync with the actual codebase",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "architecture",
+        "technical-writing"
+      ],
+      "score": 78,
+      "rationale": "Solid demand from technical leads, moderately unique (some architecture tools exist but Claude-based automation is differentiated), and generating markdown architecture docs is well-suited to AI.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.914075+00:00",
       "source": "trend-scan-skills"
     },
     {
