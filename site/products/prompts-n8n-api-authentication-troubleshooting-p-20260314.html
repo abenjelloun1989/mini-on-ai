@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n API Authentication Troubleshooting Prompts by Auth Type</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="n8n developers struggling with OAuth2, API key, and webhook authentication failures get 20 precise diagnostic prompts to identify misconfiguration, token expiry, and scope issues across third-party integrations.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag">n8n</span> <span class="tag">API</span> <span class="tag">authentication</span> <span class="tag">OAuth2</span></div>
+    <h1>n8n API Authentication Troubleshooting Prompts by Auth Type</h1>
+    <p class="product-desc-large">n8n developers struggling with OAuth2, API key, and webhook authentication failures get 20 precise diagnostic prompts to identify misconfiguration, token expiry, and scope issues across third-party integrations.</p>
+
+    <div class="product-stats">
+      <span>20 prompts</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-plaintext">STOP WASTING HOURS DEBUGGING n8n AUTHENTICATION FAILURES
+
+You're staring at a 401 error at 2 AM. Is it OAuth2 misconfiguration? Token expiry? Missing scopes? You can't tell, and neither can Google.
+
+This pack cuts through the guesswork with 20 diagnostic prompts built by someone who's actually debugged these integrations.
+
+
+WHO THIS IS FOR
+
+— n8n workflow builders hitting authentication walls with third-party APIs
+— Automation engineers who need faster troubleshooting workflows
+— Teams managing multiple integration types (OAuth2, API keys, webhooks) at once
+
+
+WHAT'S INSIDE
+
+— 5 OAuth2-specific diagnostic prompts for token and consent issues
+— 8 API key prompts covering headers, permissions, and rotation problems
+— 4 webhook prompts for listener configuration and security validation
+— All prompts formatted for instant pasting into ChatGPT, Claude, or Gemini
+— Markdown and JSON files for flexibility across your workflow
+
+
+Skip the documentation rabbit holes. Copy a prompt, get your answer in seconds.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</div>
+    </section>
+
+    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">STOP WASTING HOURS DEBUGGING n8n AUTHENTICATION FAILURES
+
+You're staring at a 401 error at 2 AM. Is it OAuth2 misconfiguration? Token expiry? Missing scopes? You can't tell, and neither can Google.
+
+This pack cuts through the guesswork with 20 diagnostic prompts built by someone who's actually debugged these integrations.
+
+
+WHO THIS IS FOR
+
+— n8n workflow builders hitting authentication walls with third-party APIs
+— Automation engineers who need faster troubleshooting workflows
+— Teams managing multiple integration types (OAuth2, API keys, webhooks) at once
+
+
+WHAT'S INSIDE
+
+— 5 OAuth2-specific diagnostic prompts for token and consent issues
+— 8 API key prompts covering headers, permissions, and rotation problems
+— 4 webhook prompts for listener configuration and security validation
+— All prompts formatted for instant pasting into ChatGPT, Claude, or Gemini
+— Markdown and JSON files for flexibility across your workflow
+
+
+Skip the documentation rabbit holes. Copy a prompt, get your answer in seconds.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</textarea>
+    </details>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+</body>
+</html>
