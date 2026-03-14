@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion Workspace Structure Examples Swipe File for Team Leads</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Team leads use this swipe file of 25 real Notion workspace architectures — organized by team size and function — to make confident structural decisions instead of starting from a blank sidebar.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-swipe-file.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-swipe-file">Swipe File</span><span class="tag">notion</span> <span class="tag">workspace-structure</span> <span class="tag">team-management</span> <span class="tag">information-architecture</span></div>
+    <h1>Notion Workspace Structure Examples Swipe File for Team Leads</h1>
+    <p class="product-desc-large">Team leads use this swipe file of 25 real Notion workspace architectures — organized by team size and function — to make confident structural decisions instead of starting from a blank sidebar.</p>
+
+    <div class="product-stats">
+      <span>12 examples</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-plaintext">You're staring at a blank Notion sidebar wondering what a well-structured workspace actually looks like for your team size.
+
+This swipe file gives you 25 real workspace architectures—organized by team size and function—so you can stop guessing and start building with confidence.
+
+Who this is for
+— Team leads managing 3-15 people who need a foundation that scales without chaos
+— Ops or admin folks who own the Notion setup and want best practices, not trial-and-error
+— Managers hiring fast who need a structure ready before your first new hire joins
+
+What's inside
+— 12 copy-ready examples (SaaS teams, agencies, service businesses, remote-first ops)
+— Complete architecture breakdown: database structure, relation logic, view setup, and automation hooks
+— Markdown files for quick reference + JSON exports you can actually paste into your workspace
+— Usage notes explaining why each choice matters for your specific team context
+
+Stop redesigning your Notion from scratch every quarter. Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</div>
+    </section>
+
+    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">You're staring at a blank Notion sidebar wondering what a well-structured workspace actually looks like for your team size.
+
+This swipe file gives you 25 real workspace architectures—organized by team size and function—so you can stop guessing and start building with confidence.
+
+Who this is for
+— Team leads managing 3-15 people who need a foundation that scales without chaos
+— Ops or admin folks who own the Notion setup and want best practices, not trial-and-error
+— Managers hiring fast who need a structure ready before your first new hire joins
+
+What's inside
+— 12 copy-ready examples (SaaS teams, agencies, service businesses, remote-first ops)
+— Complete architecture breakdown: database structure, relation logic, view setup, and automation hooks
+— Markdown files for quick reference + JSON exports you can actually paste into your workspace
+— Usage notes explaining why each choice matters for your specific team context
+
+Stop redesigning your Notion from scratch every quarter. Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</textarea>
+    </details>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+</body>
+</html>

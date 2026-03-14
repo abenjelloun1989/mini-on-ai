@@ -880,24 +880,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773428578-7",
-      "title": "Demo Request Qualification Audit Checklist for SDR Managers",
-      "description": "SDR managers get a checklist to audit whether demo requests are being properly qualified before booking, covering discovery call criteria, disqualification rules, and CRM field hygiene.",
-      "category": "checklist",
-      "tags": [
-        "demo-qualification",
-        "sdr",
-        "sales-ops"
-      ],
-      "score": 81,
-      "rationale": "Solid demand from SDR operations, checklists generate consistent quality, but audit content is somewhat commoditized in existing sales ops resources.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:02:58.471112+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773428578-8",
       "title": "How to Build a Lead Velocity Rate Dashboard Mini-Guide",
       "description": "Sales and marketing leaders get a concise practitioner guide explaining how to calculate, track, and act on Lead Velocity Rate as a predictive pipeline health metric inside their existing reporting stack.",
@@ -1088,26 +1070,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:17:04.405629+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429424-4",
-      "title": "Notion Formula Builder Prompts for Custom Property Logic",
-      "description": "For Notion users who lose hours translating workflow logic into formula syntax, these 20 prompts define the exact conditional, date, and text logic scenarios so the correct formula is produced without trial and error.",
-      "category": "prompt-packs",
-      "tags": [
-        "notion",
-        "formulas",
-        "automation",
-        "database-logic",
-        "no-code"
-      ],
-      "score": 81,
-      "rationale": "Addresses real frustration (formula syntax conversion), medium-sized audience of formula-building users, uniqueness in prompt-based formula generation, highly generatable prompt format.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:17:04.414686+00:00",
       "source": "trend-scan"
     },
     {
@@ -1461,9 +1423,9 @@
       ],
       "score": 81,
       "rationale": "Broad appeal to teams of all sizes, workspace structures lack public reference examples, swipe file format scales well with more examples.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "swipe-notion-workspace-structure-examples-swip-20260314",
       "generated_at": "2026-03-13T19:18:04.294916+00:00",
       "source": "trend-scan"
     },
@@ -1614,7 +1576,7 @@
       ],
       "score": 85,
       "rationale": "Strong demand from backend developers shipping libraries, genuinely novel automation (few tools auto-generate structured docs from code), and Claude can reliably extract and format API documentation.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "prompts-claude-code-skill-docsync-automatic-read-20260314",
       "generated_at": "2026-03-14T06:35:04.890120+00:00",
@@ -1676,6 +1638,44 @@
       "product_id": null,
       "generated_at": "2026-03-14T06:35:04.920225+00:00",
       "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773429424-4",
+      "title": "Notion Formula Builder Prompts for Custom Property Logic",
+      "description": "For Notion users who lose hours translating workflow logic into formula syntax, these 20 prompts define the exact conditional, date, and text logic scenarios so the correct formula is produced without trial and error.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "formulas",
+        "automation",
+        "database-logic",
+        "no-code"
+      ],
+      "score": 81,
+      "rationale": "Addresses real frustration (formula syntax conversion), medium-sized audience of formula-building users, uniqueness in prompt-based formula generation, highly generatable prompt format.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.414686+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773428578-7",
+      "title": "Demo Request Qualification Audit Checklist for SDR Managers",
+      "description": "SDR managers get a checklist to audit whether demo requests are being properly qualified before booking, covering discovery call criteria, disqualification rules, and CRM field hygiene.",
+      "category": "checklist",
+      "tags": [
+        "demo-qualification",
+        "sdr",
+        "sales-ops"
+      ],
+      "score": 81,
+      "rationale": "Solid demand from SDR operations, checklists generate consistent quality, but audit content is somewhat commoditized in existing sales ops resources.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.471112+00:00",
+      "source": "trend-scan"
     },
     {
       "id": "idea-1773470104-skill-2",
