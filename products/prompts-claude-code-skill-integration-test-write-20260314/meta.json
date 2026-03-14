@@ -1,0 +1,22 @@
+{
+  "id": "prompts-claude-code-skill-integration-test-write-20260314",
+  "title": "Claude Code Skill: Integration Test Writer — Auto-Generate API Integration Tests from Endpoint Definitions",
+  "description": "For QA engineers and full-stack developers, this skill reads endpoint definitions, request/response schemas, and example payloads to generate structured integration test suites so they can achieve consistent API coverage without writing boilerplate test code from scratch.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "api-testing",
+    "test-automation"
+  ],
+  "item_count": 13,
+  "created_at": "2026-03-14T06:29:43.700348+00:00",
+  "status": "published",
+  "package_path": "products/prompts-claude-code-skill-integration-test-write-20260314/package.zip",
+  "site_path": "site/products/prompts-claude-code-skill-integration-test-write-20260314.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Stop writing the same test boilerplate for every API endpoint.\n\nThis Claude Code Skill reads your endpoint definitions and schemas, then generates complete integration test suites automatically. No more guessing at coverage gaps or copying test patterns across projects.\n\n\nWHO THIS IS FOR\n\n— QA engineers tired of manual test scaffolding for REST/GraphQL APIs\n— Full-stack developers shipping faster without sacrificing integration coverage\n— Teams standardizing test structure across multiple services\n\n\nWHAT'S INSIDE\n\n— Complete implementation guide explaining the skill's logic and customization points\n— Ready-to-use SKILL.md template you paste into Claude's custom instructions\n— 13 configuration steps to adapt the skill for your API patterns, frameworks, and assertion styles\n— Practical examples showing input (OpenAPI specs, request schemas) and output (working test code)\n\n\nGenerate test suites in seconds instead of hours. Maintain consistent patterns across your codebase. Stop leaving integration gaps because boilerplate is tedious.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
