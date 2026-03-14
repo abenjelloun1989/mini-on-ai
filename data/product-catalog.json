@@ -1,6 +1,26 @@
 {
   "products": [
     {
+      "id": "skills-claude-code-skills-pack-roadmap-planning-20260314",
+      "title": "Claude Code Skills Pack: Roadmap Planning — 5 Skills for Quarterly Planning and Priority Alignment",
+      "description": "For product managers and heads of engineering, this pack builds opportunity sizing summaries, prioritization scoring matrices, now-next-later roadmap narratives, dependency mapping notes, and board-level roadmap presentations so they can move from chaotic feature lists to a defensible, stakeholder-approved plan",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "roadmap",
+        "product-strategy"
+      ],
+      "item_count": 5,
+      "prompt_count": 5,
+      "created_at": "2026-03-14T08:35:18.935808+00:00",
+      "package_path": "products/skills-claude-code-skills-pack-roadmap-planning-20260314/package.zip",
+      "site_path": "site/products/skills-claude-code-skills-pack-roadmap-planning-20260314.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "skills-claude-code-skills-pack-project-status-r-20260314",
       "title": "Claude Code Skills Pack: Project Status Reporting — 5 Skills for Stakeholder Communication and Risk Visibility",
       "description": "For project managers and engineering leads, this pack generates weekly status reports, RAG status summaries, risk and blocker escalations, milestone progress narratives, and executive briefing snapshots so they can keep every stakeholder aligned without spending hours writing updates",
