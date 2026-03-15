@@ -1453,25 +1453,6 @@
       "source": "trend-scan-skills"
     },
     {
-      "id": "idea-1773470104-skill-4",
-      "title": "Claude Code Skill: NonTechTranslator — Developer-to-Stakeholder Documentation Converter",
-      "description": "For product managers and technical writers embedded in engineering teams, this skill takes code-level documentation and rewrites it into plain-language feature summaries, user guides, and help center articles so they can bridge the gap between engineering output and end-user understanding without needing to read source code",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "technical-writing",
-        "product-management"
-      ],
-      "score": 68,
-      "rationale": "Niche audience (technical writers in eng teams are fewer), overlaps with existing content translation tools, and output quality highly depends on input documentation quality making consistency harder.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-14T06:35:04.920225+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773475910-skill-0",
       "title": "Claude Code Skills Pack: Sprint Planning — 5 Skills for Agile Ceremony Preparation and Execution",
       "description": "For agile team leads and scrum masters, this pack automates backlog grooming, sprint goal writing, capacity planning, story point estimation, and sprint review summaries so they can run tighter ceremonies in half the prep time",
@@ -1598,7 +1579,7 @@
       ],
       "score": 72,
       "rationale": "Moderate demand as narrative generation is less universally critical than data quality/reporting, good uniqueness in Claude Code application, but narrative style varies significantly by org culture limiting generability.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
       "generated_at": "2026-03-14T15:54:12.913568+00:00",
@@ -1621,6 +1602,120 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-14T15:54:12.920165+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-0",
+      "title": "Claude Code Skills Pack: Database Migration — 5 Skills for Safe Schema Changes in Production",
+      "description": "For backend engineers and DBAs, this pack automates migration script generation, rollback planning, pre-flight validation, zero-downtime column renaming, and post-migration verification so they can ship schema changes confidently without data loss or downtime incidents.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "database-migration",
+        "schema-management"
+      ],
+      "score": 79,
+      "rationale": "Urgent demand from backend engineers and DBAs managing production risks, unique focus on zero-downtime migrations and rollback planning, and highly generatable since migration patterns are well-defined and repeatable across database systems.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-database-migrati-20260315",
+      "generated_at": "2026-03-15T18:26:09.749239+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-1",
+      "title": "Claude Code Skills Pack: Schema Design — 5 Skills for Modeling Relational and Document Databases",
+      "description": "For full-stack developers and data architects, this pack covers entity-relationship modeling, normalization auditing, index strategy recommendations, foreign key constraint planning, and schema documentation generation so they can build well-structured databases from day one.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "schema-design",
+        "data-modeling"
+      ],
+      "score": 72,
+      "rationale": "Solid demand from full-stack developers, but somewhat commoditized topic with existing ERD and normalization resources available, though Claude can generate index recommendations and schema documentation consistently.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.758252+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-2",
+      "title": "Claude Code Skills Pack: Multi-Tenant Migration — 5 Skills for Scaling SaaS Database Architectures",
+      "description": "For SaaS platform engineers, this pack handles tenant isolation strategy selection, shared-schema to per-tenant migration scripts, row-level security policy generation, tenant data backfill automation, and migration progress monitoring so they can scale database architecture without breaking existing customers.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "multi-tenant",
+        "saas-database"
+      ],
+      "score": 76,
+      "rationale": "Strong demand from growing SaaS companies facing scaling challenges, differentiated content around tenant isolation strategies, and good generability for RLS policy generation and migration scripts, though audience is more specialized than others.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.767281+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-4",
+      "title": "Claude Code Skills Pack: Legacy Database Modernization — 5 Skills for Migrating Off Aging Schemas",
+      "description": "For engineering teams inheriting undocumented legacy systems, this pack covers reverse-engineering existing schemas into readable ERDs, identifying deprecated columns and dead tables, translating stored procedures to application logic, generating incremental migration roadmaps, and writing compatibility shim queries so they can modernize aging databases incrementally without rewriting everything at once.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "legacy-migration",
+        "database-modernization"
+      ],
+      "score": 68,
+      "rationale": "High-value but niche audience (legacy system maintainers), unique guidance on incremental modernization, but lower generability since reverse-engineering and compatibility shimming require context-specific analysis that's harder to systematize.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.785378+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-3",
+      "title": "Claude Code Skills Pack: ORM Schema Sync — 5 Skills for Keeping Code and Database in Lockstep",
+      "description": "For developers using Prisma, Sequelize, SQLAlchemy, or ActiveRecord, this pack automates ORM model diffing, migration file scaffolding, seed data management, drift detection between environments, and schema changelog generation so they can eliminate the 'works on my machine' database problem across dev, staging, and production.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "orm",
+        "database-drift"
+      ],
+      "score": 82,
+      "rationale": "High demand from developers across multiple ORM ecosystems (Prisma, Sequelize, SQLAlchemy, ActiveRecord), strong uniqueness in addressing cross-ORM drift detection, and excellent generability since Claude can analyze schema diffs and generate migrations systematically.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.776307+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773470104-skill-4",
+      "title": "Claude Code Skill: NonTechTranslator — Developer-to-Stakeholder Documentation Converter",
+      "description": "For product managers and technical writers embedded in engineering teams, this skill takes code-level documentation and rewrites it into plain-language feature summaries, user guides, and help center articles so they can bridge the gap between engineering output and end-user understanding without needing to read source code",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "technical-writing",
+        "product-management"
+      ],
+      "score": 68,
+      "rationale": "Niche audience (technical writers in eng teams are fewer), overlaps with existing content translation tools, and output quality highly depends on input documentation quality making consistency harder.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T06:35:04.920225+00:00",
       "source": "trend-scan-skills"
     },
     {

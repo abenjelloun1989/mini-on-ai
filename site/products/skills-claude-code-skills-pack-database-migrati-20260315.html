@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Skills Pack: Database Migration — 5 Skills for Safe Schema Changes in Production</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="For backend engineers and DBAs, this pack automates migration script generation, rollback planning, pre-flight validation, zero-downtime column renaming, and post-migration verification so they can ship schema changes confidently without data loss or downtime incidents.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-claude-code-skill">CC Skills Pack</span><span class="tag">claude-code</span> <span class="tag">skills</span> <span class="tag">database-migration</span> <span class="tag">schema-management</span></div>
+    <h1>Claude Code Skills Pack: Database Migration — 5 Skills for Safe Schema Changes in Production</h1>
+    <p class="product-desc-large">For backend engineers and DBAs, this pack automates migration script generation, rollback planning, pre-flight validation, zero-downtime column renaming, and post-migration verification so they can ship schema changes confidently without data loss or downtime incidents.</p>
+
+    <div class="product-stats">
+      <span>5 skills</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-plaintext">DATABASE SCHEMA CHANGES ARE ONE MISPLACED CONSTRAINT OR MISSING ROLLBACK AWAY FROM A 3AM INCIDENT YOU'LL NEVER FORGET.
+
+Stop hand-writing migrations. Stop guessing at downtime implications. This pack gives you five Claude skills that generate bulletproof migration scripts, catch problems before they hit production, and handle zero-downtime renames automatically.
+
+WHO THIS IS FOR
+
+— Backend engineers managing live databases without a dedicated DBA
+— DBAs supporting multiple teams who need faster, safer migration reviews
+— Tech leads shipping schema changes under deadline pressure
+
+WHAT'S INSIDE
+
+— Migration script generation: Claude writes the boilerplate, you verify the logic
+— Rollback planning automation: Every migration ships with its reverse
+— Pre-flight validation: Catches foreign key conflicts and locking issues before deploy
+— Zero-downtime column renaming: The pattern that actually works
+— Post-migration verification: Automated checks that data integrity survived
+
+Five SKILL.md files. Drop into your Claude workspace. Start using them in minutes.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</div>
+    </section>
+
+    <details class="gumroad-copy-block">
+      <summary>📋 Copy description for Gumroad</summary>
+      <textarea readonly onclick="this.select()">DATABASE SCHEMA CHANGES ARE ONE MISPLACED CONSTRAINT OR MISSING ROLLBACK AWAY FROM A 3AM INCIDENT YOU'LL NEVER FORGET.
+
+Stop hand-writing migrations. Stop guessing at downtime implications. This pack gives you five Claude skills that generate bulletproof migration scripts, catch problems before they hit production, and handle zero-downtime renames automatically.
+
+WHO THIS IS FOR
+
+— Backend engineers managing live databases without a dedicated DBA
+— DBAs supporting multiple teams who need faster, safer migration reviews
+— Tech leads shipping schema changes under deadline pressure
+
+WHAT'S INSIDE
+
+— Migration script generation: Claude writes the boilerplate, you verify the logic
+— Rollback planning automation: Every migration ships with its reverse
+— Pre-flight validation: Catches foreign key conflicts and locking issues before deploy
+— Zero-downtime column renaming: The pattern that actually works
+— Post-migration verification: Automated checks that data integrity survived
+
+Five SKILL.md files. Drop into your Claude workspace. Start using them in minutes.
+
+Download and use it today.
+
+Discover more tools like this at mini-on-ai.com</textarea>
+    </details>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "id": "skills-claude-code-skills-pack-database-migrati-20260315",
+  "title": "Claude Code Skills Pack: Database Migration — 5 Skills for Safe Schema Changes in Production",
+  "description": "For backend engineers and DBAs, this pack automates migration script generation, rollback planning, pre-flight validation, zero-downtime column renaming, and post-migration verification so they can ship schema changes confidently without data loss or downtime incidents.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "database-migration",
+    "schema-management"
+  ],
+  "item_count": 5,
+  "created_at": "2026-03-15T18:32:04.764785+00:00",
+  "status": "published",
+  "package_path": "products/skills-claude-code-skills-pack-database-migrati-20260315/package.zip",
+  "site_path": "site/products/skills-claude-code-skills-pack-database-migrati-20260315.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "DATABASE SCHEMA CHANGES ARE ONE MISPLACED CONSTRAINT OR MISSING ROLLBACK AWAY FROM A 3AM INCIDENT YOU'LL NEVER FORGET.\n\nStop hand-writing migrations. Stop guessing at downtime implications. This pack gives you five Claude skills that generate bulletproof migration scripts, catch problems before they hit production, and handle zero-downtime renames automatically.\n\nWHO THIS IS FOR\n\n— Backend engineers managing live databases without a dedicated DBA\n— DBAs supporting multiple teams who need faster, safer migration reviews\n— Tech leads shipping schema changes under deadline pressure\n\nWHAT'S INSIDE\n\n— Migration script generation: Claude writes the boilerplate, you verify the logic\n— Rollback planning automation: Every migration ships with its reverse\n— Pre-flight validation: Catches foreign key conflicts and locking issues before deploy\n— Zero-downtime column renaming: The pattern that actually works\n— Post-migration verification: Automated checks that data integrity survived\n\nFive SKILL.md files. Drop into your Claude workspace. Start using them in minutes.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
