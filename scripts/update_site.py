@@ -357,7 +357,10 @@ def _filter_js() -> str:
 
 
 def rebuild_index(catalog: dict) -> str:
-    products = catalog["products"]
+    # Live products (gumroad_url set) first, coming-soon last; preserve insertion order within each group
+    _live = [p for p in catalog["products"] if p.get("gumroad_url")]
+    _soon = [p for p in catalog["products"] if not p.get("gumroad_url")]
+    products = _live + _soon
     count = len(products)
     cards = "\n".join(build_product_card(p) for p in products)
     filter_bar = _build_filter_bar(products)
@@ -372,7 +375,7 @@ def rebuild_index(catalog: dict) -> str:
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Prompt packs, checklists, swipe files, mini guides, n8n automation templates, and Claude Code skills. Discover AI-powered digital products.">
+  <meta name="description" content="Done-for-you prompt packs, swipe files, checklists, and Claude Code skills. Researched, written, and packaged — ready to deploy today.">
 </head>
 <body>
   <header class="site-header">
@@ -395,8 +398,8 @@ def rebuild_index(catalog: dict) -> str:
 
   <section class="hero">
     <div class="hero-text">
-      <h1>AI-powered digital products</h1>
-      <p>Prompt packs, checklists, swipe files, mini guides, n8n automation templates, and Claude Code skills — crafted with AI, ready to use.</p>
+      <h1>Done-for-you AI tools that work straight out of the box</h1>
+      <p>Prompt packs, swipe files, checklists, and Claude Code skills — each one researched, written, and packaged so you can deploy it today, not someday.</p>
     </div>
     <img src="images/hero.svg" class="hero-illustration" alt="">
   </section>
