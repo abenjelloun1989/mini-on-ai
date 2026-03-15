@@ -1543,7 +1543,7 @@
       "score": 68,
       "rationale": "Lower urgency than operational data tasks, unique Claude Code skill for documentation automation, but documentation quality heavily depends on existing pipeline complexity and team standards making consistent generation difficult.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-14T15:54:12.920165+00:00",
       "source": "trend-scan-skills"
@@ -1664,6 +1664,26 @@
       "source": "trend-scan-skills"
     },
     {
+      "id": "idea-1773602044-skill-4",
+      "title": "Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports",
+      "description": "For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "report-automation",
+        "data-distribution",
+        "analytics"
+      ],
+      "score": 76,
+      "rationale": "Recurring report automation solves concrete operational friction with moderate-to-large audience, good uniqueness in multi-format delivery coordination, and strong generability since Claude can template parameterized reports across different output formats.",
+      "selected": false,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-automated-report-20260315",
+      "generated_at": "2026-03-15T19:14:04.431243+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
       "id": "idea-1773602044-skill-3",
       "title": "Claude Code Skills Pack: Pipeline Observability — 5 Skills for Monitoring, Alerting, and Debugging Data Flows",
       "description": "For data platform engineers and DataOps teams, this pack scaffolds freshness checks, row-count anomaly alerts, lineage documentation, failure postmortem templates, and runbook generation across 5 skills so they can catch and resolve pipeline issues before stakeholders notice",
@@ -1678,29 +1698,9 @@
       "score": 71,
       "rationale": "Pipeline observability addresses real DataOps needs but audience is narrower (platform engineers only) and monitoring templates are moderately available; generability is solid for alert logic and postmortem scaffolding but harder for organization-specific lineage.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-15T19:14:04.422174+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
-      "id": "idea-1773602044-skill-4",
-      "title": "Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports",
-      "description": "For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "report-automation",
-        "data-distribution",
-        "analytics"
-      ],
-      "score": 76,
-      "rationale": "Recurring report automation solves concrete operational friction with moderate-to-large audience, good uniqueness in multi-format delivery coordination, and strong generability since Claude can template parameterized reports across different output formats.",
-      "selected": true,
-      "status": "produced",
-      "product_id": "skills-claude-code-skills-pack-automated-report-20260315",
-      "generated_at": "2026-03-15T19:14:04.431243+00:00",
       "source": "trend-scan-skills"
     },
     {

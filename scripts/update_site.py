@@ -28,7 +28,7 @@ CATEGORY_LABELS = {
     "swipe-file":        ("Swipe File",          "{n} examples"),
     "mini-guide":        ("Mini Guide",          "focused guide"),
     "n8n-template":      ("n8n Template",        "{n}-node workflow"),
-    "claude-code-skill": ("Claude Code Skill",   "full skill guide"),
+    "claude-code-skill": ("CC Skills Pack",        "{n} skills"),
 }
 
 CATEGORY_INCLUDES = {
@@ -62,10 +62,10 @@ CATEGORY_INCLUDES = {
         "Customizable — adapt to your own tools",
     ],
     "claude-code-skill": [
-        "Ready-to-use SKILL.md template (drop-in, no setup required)",
-        "Full configuration guide with step-by-step instructions",
-        "Adaptations for 3–4 different fields and roles",
-        "Real-world use cases and common mistakes to avoid",
+        "5 ready-to-use SKILL.md files (drop into `skills/`, no setup required)",
+        "Each skill covers a distinct sub-task in the workflow domain",
+        "Installation guide with quick-reference table of all triggers",
+        "Works immediately with Claude Code — just run `claude`",
     ],
 }
 

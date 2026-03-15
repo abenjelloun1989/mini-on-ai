@@ -63,10 +63,10 @@ SKILL_SEED_TOPICS = [
 
 
 def _trend_scan_skills(count: int = 5) -> list:
-    """Generate Claude Code skill guide ideas based on high-demand workflows."""
+    """Generate Claude Code Skills Pack ideas based on high-demand workflow domains."""
     import random
     topic = random.choice(SKILL_SEED_TOPICS)
-    log("trend-scan", f"Generating {count} Claude Code skill ideas (topic: {topic})...")
+    log("trend-scan", f"Generating {count} Claude Code Skills Pack ideas (topic: {topic})...")
 
     backlog = read_json("data/idea-backlog.json")
     existing_titles = [i["title"] for i in backlog.get("ideas", [])]
@@ -80,24 +80,25 @@ def _trend_scan_skills(count: int = 5) -> list:
         max_tokens=1536,
         messages=[{
             "role": "user",
-            "content": f"""Generate {count} Claude Code skill guide product ideas for the topic: "{topic}".
+            "content": f"""Generate {count} Claude Code Skills Pack product ideas for the domain: "{topic}".
 
-Claude Code skills are SKILL.md files that give Claude Code specialized capabilities for specific
-workflows. Each guide teaches practitioners how to build and configure one skill.
+A Claude Code Skills Pack is a bundle of 5 related SKILL.md files for a specific workflow
+domain. Each pack saves practitioners hours by giving them a ready-made toolkit of skills
+they can drop directly into their Claude Code `skills/` directory.
 
 Rules:
-- Each skill must solve a real, recurring developer or professional workflow problem
-- Skills should work across different roles (devs, marketers, ops, designers, etc.)
-- Title format: "Claude Code Skill: [Skill Name] — [What It Does]"
-  e.g., "Claude Code Skill: PR Reviewer — Automated Code Review and Feedback"
-- Description: exact role + exact benefit from this skill
+- Each pack must cover a coherent workflow domain with 5 natural sub-tasks
+- Packs should target real practitioners (developers, devops, content teams, etc.)
+- Title format: "Claude Code Skills Pack: [Domain] — 5 Skills for [use case]"
+  e.g., "Claude Code Skills Pack: Code Review — 5 Skills for PR Feedback and Quality Gates"
+- Description: exact audience + exact benefit of the 5-skill bundle
 - Tags: include "claude-code", "skills" + 2-3 domain-specific tags{avoid_block}
 
 Return ONLY a valid JSON array:
 [
   {{
-    "title": "Claude Code Skill: Name — What It Does",
-    "description": "For [role], this skill [does what] so they can [benefit]",
+    "title": "Claude Code Skills Pack: Domain — 5 Skills for Use Case",
+    "description": "For [role], this pack [does what across 5 skills] so they can [benefit]",
     "category": "claude-code-skill",
     "tags": ["claude-code", "skills", "tag3", "tag4"]
   }}

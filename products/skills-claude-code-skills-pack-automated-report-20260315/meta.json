@@ -19,5 +19,5 @@
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": null
+  "gumroad_description": "Manual report-running is a time tax. This pack ends it.\n\nWho this is for:\n— Analytics leads who re-run the same reports every Monday morning\n— Operations analysts who paste data into the same template weekly\n— Data engineers tired of fielding \"can you re-send that PDF?\" requests\n\nWhat's inside:\n— Skill 1: Parameterized report templating (reusable across any dataset)\n— Skill 2: Scheduling logic setup (cron-ready, environment-aware)\n— Skill 3: Multi-format export handler (PDF, CSV, and Slack push in one command)\n— Skill 4: Recipient segmentation rules (right report to right audience automatically)\n— Skill 5: Delivery audit logger (track what was sent, when, and to whom)\n— Installation guide + quick-reference trigger table\n\nFive skills, zero manual re-running. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

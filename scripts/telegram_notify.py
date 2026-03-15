@@ -63,6 +63,11 @@ def telegram_report(override_message: str = None) -> bool:
 
     if latest.get("status") == "success":
         product = latest.get("product") or {}
+        tokens = latest.get("tokens") or {}
+        total_tokens = tokens.get("input_tokens", 0) + tokens.get("output_tokens", 0)
+        cost_usd = tokens.get("estimated_cost_usd", 0.0)
+        cost_str = f"${cost_usd:.4f}" if cost_usd >= 0.0001 else "&lt;$0.0001"
+        token_line = f"🪙 {total_tokens:,} tokens ({tokens.get('input_tokens',0):,} in / {tokens.get('output_tokens',0):,} out) · {cost_str}"
         text = "\n".join([
             "✅ <b>New product published</b>",
             "",
@@ -71,6 +76,7 @@ def telegram_report(override_message: str = None) -> bool:
             "",
             f"🔗 {site_url}/products/{product.get('id', '')}.html",
             f"🕐 Completed in {latest.get('duration_seconds', '?')}s",
+            token_line,
         ])
     else:
         text = "\n".join([

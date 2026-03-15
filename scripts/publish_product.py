@@ -189,11 +189,11 @@ def notify_manual_publish(pid: str, meta: dict) -> None:
         f"🏷 <b>{meta['title']}</b>\n"
         f"{cat_label}  •  {item_count} items  •  {price_str}\n\n"
         f"<a href='{product_url}'>📄 Open vitrine page</a> — description is there, ready to copy\n\n"
-        f"<a href='https://app.gumroad.com/products/new'>➕ Create on Gumroad</a>\n\n"
+        f"<a href='https://minionai.gumroad.com/products/new'>➕ Create on Gumroad</a>\n\n"
         f"<b>Name:</b> <code>{meta['title']}</code>\n"
         f"<b>Price:</b> <code>{price_str}</code>\n\n"
         f"After publishing:\n"
-        f"<code>/seturl {pid} https://gumroad.com/l/PASTE_URL_HERE</code>"
+        f"<code>/seturl {pid} https://minionai.gumroad.com/l/PASTE_URL_HERE</code>"
     )
     _telegram_send_text(msg)
 

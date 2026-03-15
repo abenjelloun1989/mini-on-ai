@@ -123,7 +123,7 @@ def cmd_seturl(args: str) -> str:
         return (
             "Usage: <code>/seturl {product_id} {gumroad_url}</code>\n\n"
             "Example:\n"
-            "<code>/seturl prompts-my-product-20260312 https://gumroad.com/l/abcde</code>"
+            "<code>/seturl prompts-my-product-20260312 https://minionai.gumroad.com/l/abcde</code>"
         )
     pid, url = parts[0], parts[1]
 

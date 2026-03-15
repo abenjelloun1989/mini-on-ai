@@ -62,7 +62,7 @@ def generate_product() -> dict:
     elif category == "n8n-template":
         meta = _gen_n8n_template(idea, pid, assets_dir)
     elif category == "claude-code-skill":
-        meta = _gen_skill_guide(idea, pid, assets_dir)
+        meta = _gen_skill_pack(idea, pid, assets_dir)
 
     # Generate rich Gumroad description and store in meta
     try:
@@ -516,110 +516,110 @@ def _n8n_readme(idea: dict, setup_steps: list, node_count: int) -> str:
 """
 
 
-# ── Claude Code Skill Guide ──────────────────────────────────────────────────
+# ── Claude Code Skills Pack ───────────────────────────────────────────────────
 
-def _gen_skill_guide(idea: dict, pid: str, assets_dir: str) -> dict:
-    """Generate a full configuration guide for a Claude Code skill (2 API calls)."""
+def _gen_skill_pack(idea: dict, pid: str, assets_dir: str) -> dict:
+    """Generate a Skills Pack: 5 related SKILL.md files + guide + README (6 API calls)."""
 
-    # ── Call 1: structured metadata (no skill_template to keep JSON small) ──────
+    # ── Call 1: Pack structure — 5 skill specs ──────────────────────────────────
     msg1 = client.messages.create(
         model=MODEL,
-        max_tokens=4096,
+        max_tokens=2048,
         messages=[{
             "role": "user",
-            "content": f"""Create a Claude Code skill guide for: "{idea['title']}".
+            "content": f"""Define a Claude Code Skills Pack for: "{idea['title']}".
 
 Target audience and purpose: {idea['description']}
 
-Claude Code skills are SKILL.md files in a `skills/` directory that give Claude Code
-specialized capabilities for specific workflows.
+A Skills Pack bundles 5 related SKILL.md files around a single workflow domain.
+Each skill handles a distinct sub-task within that domain.
 
 Return ONLY this JSON object, no other text:
 
 {{
-  "skill_name": "short-kebab-name (e.g. 'review-pr', 'deploy', 'doc-gen')",
-  "skill_description": "One-sentence description of what this skill does",
-  "target_fields": ["field1", "field2", "field3"],
-  "use_cases": [
-    {{"scenario": "When to use this skill", "example_trigger": "/skill-name do X"}}
-  ],
-  "configuration_steps": [
-    {{"step": 1, "title": "Step title", "detail": "Concrete instructions with paths/commands"}}
-  ],
-  "field_variations": [
-    {{"field": "Field name (e.g. Marketing)", "adaptation": "How to adapt this skill for this field"}}
-  ],
-  "tips": ["Practical tip 1", "Practical tip 2", "Practical tip 3"],
-  "common_mistakes": ["Mistake and how to avoid it", "Mistake and how to avoid it"]
+  "pack_name": "kebab-case domain name (e.g. 'frontend-development')",
+  "pack_description": "One sentence describing what this pack does and for whom",
+  "skills": [
+    {{
+      "skill_name": "kebab-case-name",
+      "skill_description": "One sentence: what this skill does",
+      "trigger": "/slash-command"
+    }}
+  ]
 }}
 
 Requirements:
-- configuration_steps: 4-6 steps with specific file paths and terminal commands
-- field_variations: 3-4 real roles/fields (dev, marketing, design, ops, etc.)
-- use_cases: 3-4 concrete scenarios with actual slash-command examples
-- tips and common_mistakes: 3 each, specific and actionable""",
+- Exactly 5 skills in the array
+- Each skill must cover a distinct sub-task (not variations of the same thing)
+- Triggers must be unique slash commands (e.g. /review-pr, /gen-types, /mock-server)
+- Skills must be cohesive — a practitioner using one would naturally want the others""",
         }],
     )
 
     log_token_usage("generate-product", msg1.usage, MODEL)
     if msg1.stop_reason == "max_tokens":
-        raise RuntimeError("Skill guide metadata truncated at max_tokens — aborting")
+        raise RuntimeError("Skills pack structure truncated at max_tokens — aborting")
 
-    data = extract_json(msg1.content[0].text.strip(), array=False)
-    skill_name = data.get("skill_name", "skill")
-    config_steps = data.get("configuration_steps", [])
-    field_variations = data.get("field_variations", [])
-    tips = data.get("tips", [])
-    mistakes = data.get("common_mistakes", [])
-    use_cases = data.get("use_cases", [])
+    pack_data = extract_json(msg1.content[0].text.strip(), array=False)
+    skills = pack_data.get("skills", [])
+    if len(skills) < 5:
+        raise RuntimeError(f"Expected 5 skills in pack, got {len(skills)}")
 
-    # ── Call 2: SKILL.md as raw Markdown (not embedded in JSON) ─────────────────
-    msg2 = client.messages.create(
-        model=MODEL,
-        max_tokens=4096,
-        messages=[{
-            "role": "user",
-            "content": f"""Write a complete, immediately usable SKILL.md file for a Claude Code skill.
+    # ── Calls 2–6: One SKILL.md per skill ───────────────────────────────────────
+    skills_dir = f"{assets_dir}/skills"
+    ensure_dir(skills_dir)
 
-Skill name: {skill_name}
-Title: {idea['title']}
-Purpose: {idea['description']}
-Description: {data.get('skill_description', '')}
+    for i, skill in enumerate(skills, start=1):
+        skill_name = skill.get("skill_name", f"skill-{i}")
+        trigger = skill.get("trigger", f"/{skill_name}")
+        skill_desc = skill.get("skill_description", "")
 
-A SKILL.md file tells Claude Code what the skill does and how to use it. It typically includes:
+        msg = client.messages.create(
+            model=MODEL,
+            max_tokens=4096,
+            messages=[{
+                "role": "user",
+                "content": f"""Write a complete, immediately usable SKILL.md file for a Claude Code skill.
+
+Pack context: {idea['title']}
+Pack purpose: {idea['description']}
+
+This specific skill:
+- Name: {skill_name}
+- Trigger: {trigger}
+- Description: {skill_desc}
+
+A SKILL.md file tells Claude Code what the skill does and how to use it. Include:
 - A frontmatter description block (what the skill is for, when to use it)
-- Clear instructions for Claude on HOW to execute the skill
-- Any specific constraints, output formats, or workflows to follow
+- Clear step-by-step instructions for Claude on HOW to execute the skill
+- Specific constraints, output formats, and quality rules
 - 2-3 usage examples showing real slash-command invocations
 
+Keep it focused and practical — aim for 150-250 lines maximum.
 Output the SKILL.md file content only — raw Markdown, no code fences, no preamble.""",
-        }],
-    )
+            }],
+        )
 
-    log_token_usage("generate-product", msg2.usage, MODEL)
-    if msg2.stop_reason == "max_tokens":
-        raise RuntimeError("SKILL.md template truncated at max_tokens — aborting")
+        log_token_usage("generate-product", msg.usage, MODEL)
+        if msg.stop_reason == "max_tokens":
+            raise RuntimeError(f"SKILL.md for '{skill_name}' truncated at max_tokens — aborting")
 
-    skill_template = msg2.content[0].text.strip()
+        skill_md = msg.content[0].text.strip()
+        fname = f"0{i}-{skill_name}.md"
+        write_file(f"{skills_dir}/{fname}", skill_md)
+        log("generate-product", f"  Wrote skills/{fname}")
 
-    # Write the skill template file
-    write_file(f"{assets_dir}/SKILL.md", skill_template)
+    # ── Write guide.md and README.md ─────────────────────────────────────────────
+    write_file(f"{assets_dir}/guide.md", _skill_pack_guide_md(idea, pack_data))
+    write_file(f"{assets_dir}/README.md", _skill_pack_readme(idea, pack_data))
 
-    # Write the full guide
-    guide_md = _skill_guide_md(idea, data)
-    write_file(f"{assets_dir}/guide.md", guide_md)
-
-    # Write README
-    write_file(f"{assets_dir}/README.md", _skill_readme(idea, skill_name, len(config_steps)))
-
-    item_count = len(config_steps) + len(field_variations) + len(tips)
     return {
         "id": pid,
         "title": idea["title"],
         "description": idea["description"],
         "category": "claude-code-skill",
         "tags": idea.get("tags", []),
-        "item_count": item_count,
+        "item_count": len(skills),
         "created_at": timestamp(),
         "status": "generated",
         "package_path": None, "site_path": None, "thumbnail": None,
@@ -627,8 +627,8 @@ Output the SKILL.md file content only — raw Markdown, no code fences, no pream
     }
 
 
-def _skill_guide_md(idea: dict, data: dict) -> str:
-    """Render the skill guide as a well-structured markdown document."""
+def _skill_pack_guide_md(idea: dict, pack_data: dict) -> str:
+    skills = pack_data.get("skills", [])
     lines = [
         f"# {idea['title']}",
         "",
@@ -636,107 +636,102 @@ def _skill_guide_md(idea: dict, data: dict) -> str:
         "",
         "---",
         "",
-        "## What This Skill Does",
+        "## What's in This Pack",
         "",
-        data.get("skill_description", ""),
+        pack_data.get("pack_description", ""),
         "",
-        "**Best for:** " + ", ".join(data.get("target_fields", [])),
-        "",
-        "---",
-        "",
-        "## Use Cases",
+        "This pack includes **5 ready-to-use Claude Code skills**:",
         "",
     ]
-    for uc in data.get("use_cases", []):
+    for i, skill in enumerate(skills, start=1):
+        skill_name = skill.get("skill_name", f"skill-{i}")
+        trigger = skill.get("trigger", f"/{skill_name}")
+        desc = skill.get("skill_description", "")
         lines += [
-            f"**{uc.get('scenario', '')}**",
-            f"  → `{uc.get('example_trigger', '')}`",
+            f"**{i}. `{trigger}`** — `0{i}-{skill_name}.md`",
+            f"   {desc}",
             "",
         ]
 
     lines += [
         "---",
         "",
-        "## Configuration Steps",
+        "## How to Install",
         "",
+        "1. **Create a `skills/` directory** in your project root (if it doesn't exist):",
+        "   ```bash",
+        "   mkdir -p skills",
+        "   ```",
+        "",
+        "2. **Copy all skill files** from the `skills/` folder in this pack:",
+        "   ```bash",
+        "   cp skills/*.md /your-project/skills/",
+        "   ```",
+        "",
+        "3. **Run Claude Code** in your project directory — all skills are immediately available:",
+        "   ```bash",
+        "   claude",
+        "   ```",
+        "",
+        "---",
+        "",
+        "## Quick Reference",
+        "",
+        "| Skill | Trigger | File |",
+        "|-------|---------|------|",
     ]
-    for s in data.get("configuration_steps", []):
-        lines += [
-            f"### Step {s.get('step', '')}: {s.get('title', '')}",
-            "",
-            s.get("detail", ""),
-            "",
-        ]
+    for i, skill in enumerate(skills, start=1):
+        skill_name = skill.get("skill_name", f"skill-{i}")
+        trigger = skill.get("trigger", f"/{skill_name}")
+        desc = skill.get("skill_description", "")
+        lines.append(f"| {desc} | `{trigger}` | `0{i}-{skill_name}.md` |")
 
     lines += [
-        "---",
-        "",
-        "## Ready-to-Use SKILL.md Template",
-        "",
-        "Copy this file to your project's `skills/` directory:",
-        "",
-        "```markdown",
-        data.get("skill_template", ""),
-        "```",
         "",
         "---",
         "",
-        "## Adapting for Different Fields",
+        "## Tips",
+        "",
+        "- Each skill works independently — use only the ones you need",
+        "- Skills can be combined in the same session (e.g. scaffold a component, then review it)",
+        "- Customize any `.md` file to match your project's conventions",
+        "- Add the `skills/` folder to git to share the pack across your team",
         "",
     ]
-    for fv in data.get("field_variations", []):
-        lines += [
-            f"### {fv.get('field', '')}",
-            "",
-            fv.get("adaptation", ""),
-            "",
-        ]
-
-    lines += [
-        "---",
-        "",
-        "## Tips for Best Results",
-        "",
-    ]
-    for tip in data.get("tips", []):
-        lines.append(f"- {tip}")
-    lines.append("")
-
-    lines += [
-        "---",
-        "",
-        "## Common Mistakes to Avoid",
-        "",
-    ]
-    for m in data.get("common_mistakes", []):
-        lines.append(f"- {m}")
-    lines.append("")
-
     return "\n".join(lines)
 
 
-def _skill_readme(idea: dict, skill_name: str, step_count: int) -> str:
+def _skill_pack_readme(idea: dict, pack_data: dict) -> str:
+    skills = pack_data.get("skills", [])
+    skill_lines = "\n".join(
+        f"- `skills/0{i+1}-{s.get('skill_name', f'skill-{i+1}')}.md` "
+        f"— `{s.get('trigger', '')}` — {s.get('skill_description', '')}"
+        for i, s in enumerate(skills)
+    )
     return f"""# {idea['title']}
 
 {idea['description']}
 
 ## What's included
 
-- **`SKILL.md`** — Ready-to-use skill template (drop into your project's `skills/` folder)
-- **`guide.md`** — Full configuration guide with {step_count} setup steps
-- Field-specific adaptations for different roles and industries
-- Tips, common mistakes, and real-world use cases
+- **5 ready-to-use SKILL.md files** — drop into your project's `skills/` folder, no setup required
+- **guide.md** — installation instructions and quick-reference table for all 5 skills
+- Each skill is immediately usable with its slash-command trigger
+
+## Skills in this pack
+
+{skill_lines}
 
 ## Quick Start
 
-1. Copy `SKILL.md` to `skills/{skill_name}.md` in your project
-2. Follow the setup steps in `guide.md`
-3. Run `claude` in your terminal — the skill is ready to use
+1. Copy the `skills/` folder into your project root
+2. Run `claude` in your project directory
+3. Use any skill trigger listed above
 
 ## Files
 
-- `SKILL.md` — The skill template to configure and use
-- `guide.md` — Complete guide: setup, use cases, field variations
+- `skills/` — 5 SKILL.md files, one per skill
+- `guide.md` — Installation guide and quick-reference table
 - `README.md` — This file
 """
 
@@ -754,11 +749,11 @@ def _gen_gumroad_description(idea: dict, meta: dict) -> str:
         "swipe-file":        f"{item_count} copy-ready examples • Markdown + JSON • Usage notes included",
         "mini-guide":        f"~800-word focused guide • Markdown • Quick-reference summary",
         "n8n-template":      f"{item_count}-node n8n workflow • Importable JSON • Setup guide included",
-        "claude-code-skill": f"Complete guide + ready-to-use SKILL.md template • {item_count} configuration steps and field adaptations",
+        "claude-code-skill": f"{item_count} ready-to-use SKILL.md files • Drop-in `skills/` folder • Installation guide + quick-reference table",
     }.get(category, f"{item_count} items included")
 
     message = client.messages.create(
-        model="claude-haiku-4-5-20251001",  # copywriting task — Haiku is sufficient
+        model=MODEL,
         max_tokens=1024,
         messages=[{
             "role": "user",
@@ -779,7 +774,7 @@ Requirements:
         }],
     )
 
-    log_token_usage("generate-product", message.usage, "claude-haiku-4-5-20251001")
+    log_token_usage("generate-product", message.usage, MODEL)
     desc = message.content[0].text.strip()
     # Strip any accidental code fences
     desc = re.sub(r"^```[a-z]*\n?", "", desc)

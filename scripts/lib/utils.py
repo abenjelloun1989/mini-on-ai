@@ -63,6 +63,7 @@ def product_id(title: str, category: str = "prompt-packs") -> str:
         "swipe-file": "swipe",
         "mini-guide": "guide",
         "n8n-template": "n8n",
+        "claude-code-skill": "skills",
     }
     prefix = prefix_map.get(category, "prompts")
     date = datetime.now().strftime("%Y%m%d")
