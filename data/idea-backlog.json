@@ -844,25 +844,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429419-3",
-      "title": "Notion Project Retrospective Prompts for Agile Teams",
-      "description": "Small agile teams running retrospectives inside Notion get 20 targeted prompts that extract actionable sprint insights, surface recurring blockers, and auto-populate a lessons-learned database.",
-      "category": "prompt-packs",
-      "tags": [
-        "notion",
-        "retrospectives",
-        "agile",
-        "sprint-review"
-      ],
-      "score": 79,
-      "rationale": "Agile retrospectives in Notion have decent demand, prompts improve insight extraction (useful), moderate online competition for retro frameworks, prompt packs generatable but somewhat commoditized.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:16:59.272773+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429419-4",
       "title": "Notion Content Calendar Planning Prompts for Solo Creators",
       "description": "Solo content creators managing their editorial pipeline in Notion get 20 prompts to plan quarterly content pillars, map posts to audience segments, and populate their calendar database with ready-to-execute briefs.",
@@ -1149,24 +1130,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:18:02.810138+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429482-5",
-      "title": "Notion New Team Member Onboarding Setup Checklist",
-      "description": "Helps Notion workspace owners systematically configure access, orientation pages, database permissions, and guided views so new team members are productive inside Notion from day one.",
-      "category": "checklist",
-      "tags": [
-        "notion",
-        "onboarding",
-        "team-setup"
-      ],
-      "score": 79,
-      "rationale": "Repeated onboarding pain point for workspace owners, setup checklists are practical and repeatable, moderate demand but high completion likelihood.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:18:02.813186+00:00",
       "source": "trend-scan"
     },
     {
@@ -1510,25 +1473,6 @@
       "source": "trend-scan-skills"
     },
     {
-      "id": "idea-1773475910-skill-3",
-      "title": "Claude Code Skills Pack: Retrospective Facilitation — 5 Skills for Extracting Actionable Team Improvements",
-      "description": "For scrum masters and engineering managers, this pack structures retrospective agendas, clusters team feedback into themes, drafts action items with owners, tracks improvement trends across sprints, and writes retrospective summary documents so they can turn team reflection into measurable process change",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "retrospectives",
-        "agile"
-      ],
-      "score": 68,
-      "rationale": "Moderate demand since retrospectives are less frequent than other ceremonies, good AI generability for clustering and summaries, but retrospective facilitation is highly team-culture dependent.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-14T08:11:50.367247+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773475910-skill-4",
       "title": "Claude Code Skills Pack: Roadmap Planning — 5 Skills for Quarterly Planning and Priority Alignment",
       "description": "For product managers and heads of engineering, this pack builds opportunity sizing summaries, prioritization scoring matrices, now-next-later roadmap narratives, dependency mapping notes, and board-level roadmap presentations so they can move from chaotic feature lists to a defensible, stakeholder-approved plan",
@@ -1617,48 +1561,10 @@
       ],
       "score": 79,
       "rationale": "Urgent demand from backend engineers and DBAs managing production risks, unique focus on zero-downtime migrations and rollback planning, and highly generatable since migration patterns are well-defined and repeatable across database systems.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "skills-claude-code-skills-pack-database-migrati-20260315",
       "generated_at": "2026-03-15T18:26:09.749239+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
-      "id": "idea-1773599169-skill-1",
-      "title": "Claude Code Skills Pack: Schema Design — 5 Skills for Modeling Relational and Document Databases",
-      "description": "For full-stack developers and data architects, this pack covers entity-relationship modeling, normalization auditing, index strategy recommendations, foreign key constraint planning, and schema documentation generation so they can build well-structured databases from day one.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "schema-design",
-        "data-modeling"
-      ],
-      "score": 72,
-      "rationale": "Solid demand from full-stack developers, but somewhat commoditized topic with existing ERD and normalization resources available, though Claude can generate index recommendations and schema documentation consistently.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-15T18:26:09.758252+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
-      "id": "idea-1773599169-skill-2",
-      "title": "Claude Code Skills Pack: Multi-Tenant Migration — 5 Skills for Scaling SaaS Database Architectures",
-      "description": "For SaaS platform engineers, this pack handles tenant isolation strategy selection, shared-schema to per-tenant migration scripts, row-level security policy generation, tenant data backfill automation, and migration progress monitoring so they can scale database architecture without breaking existing customers.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "multi-tenant",
-        "saas-database"
-      ],
-      "score": 76,
-      "rationale": "Strong demand from growing SaaS companies facing scaling challenges, differentiated content around tenant isolation strategies, and good generability for RLS policy generation and migration scripts, though audience is more specialized than others.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-15T18:26:09.767281+00:00",
       "source": "trend-scan-skills"
     },
     {
@@ -1678,6 +1584,195 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-15T18:26:09.785378+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773600082-skill-0",
+      "title": "Claude Code Skills Pack: Documentation Generation — 5 Skills for Auto-Generating Docs from Source Code",
+      "description": "For backend and full-stack developers, this pack extracts inline comments, infers function intent, generates README files, produces API reference docs, and creates changelog entries from git history so they can ship well-documented codebases without writing a single doc manually",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "documentation",
+        "developer-tooling"
+      ],
+      "score": 83,
+      "rationale": "Strong demand from developers shipping code faster, good differentiation in automating multi-format doc generation, though somewhat overlaps with existing doc generation tools and may struggle with inferring intent from comments.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:41:22.071435+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773600082-skill-2",
+      "title": "Claude Code Skills Pack: Codebase Onboarding Docs — 5 Skills for Getting New Engineers Up to Speed Fast",
+      "description": "For engineering leads and staff engineers, this pack generates architecture overviews, maps module dependencies, documents environment setup steps, explains key design decisions, and produces contributor guides so new hires can become productive in days instead of weeks",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "onboarding",
+        "engineering-docs"
+      ],
+      "score": 86,
+      "rationale": "Urgent need for engineering teams scaling headcount, differentiates from generic onboarding docs by focusing on codebase-specific context generation, and Claude can reliably map dependencies and synthesize documentation.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-codebase-onboard-20260315",
+      "generated_at": "2026-03-15T18:41:22.089486+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773600082-skill-3",
+      "title": "Claude Code Skills Pack: Code Comment and Docstring Generation — 5 Skills for In-Code Documentation Quality",
+      "description": "For software engineers and open source maintainers, this pack audits missing docstrings, generates JSDoc and Python docstrings from function signatures, writes inline explanatory comments, flags overly complex logic blocks, and enforces comment style consistency so they can maintain readable codebases at scale",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "docstrings",
+        "code-quality"
+      ],
+      "score": 76,
+      "rationale": "Moderate demand since many teams already enforce linting for docstrings, overlaps significantly with existing linters and AI coding assistants, though Claude can generate reasonable docstring templates with decent consistency.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:41:22.098567+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773600082-skill-4",
+      "title": "Claude Code Skills Pack: Release and Changelog Documentation — 5 Skills for Communicating Code Changes Clearly",
+      "description": "For DevOps engineers and release managers, this pack generates human-readable changelogs from git commits, categorizes breaking vs non-breaking changes, drafts release notes for end users, documents migration steps for version upgrades, and creates internal post-release summaries so they can ship releases with clear communication every time",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "changelog",
+        "release-management"
+      ],
+      "score": 81,
+      "rationale": "Clear pain point for release managers, solid uniqueness in structured changelog categorization from git history, but market has mature changelog tools and Claude's consistency on release note tone varies by context.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T18:41:22.104468+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773600082-skill-1",
+      "title": "Claude Code Skills Pack: API Documentation — 5 Skills for Publishing Clear and Complete API References",
+      "description": "For platform engineers and developer advocates, this pack parses OpenAPI specs, generates endpoint descriptions, writes request/response examples, documents error codes, and produces SDK usage guides so they can publish API references that reduce integration support tickets",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-docs",
+        "developer-experience"
+      ],
+      "score": 88,
+      "rationale": "High demand from platform teams needing to reduce support burden, unique angle on API-specific documentation workflows, and Claude excels at parsing structured specs and generating consistent reference material.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T18:41:22.080461+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773475910-skill-3",
+      "title": "Claude Code Skills Pack: Retrospective Facilitation — 5 Skills for Extracting Actionable Team Improvements",
+      "description": "For scrum masters and engineering managers, this pack structures retrospective agendas, clusters team feedback into themes, drafts action items with owners, tracks improvement trends across sprints, and writes retrospective summary documents so they can turn team reflection into measurable process change",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "retrospectives",
+        "agile"
+      ],
+      "score": 68,
+      "rationale": "Moderate demand since retrospectives are less frequent than other ceremonies, good AI generability for clustering and summaries, but retrospective facilitation is highly team-culture dependent.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T08:11:50.367247+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773429482-5",
+      "title": "Notion New Team Member Onboarding Setup Checklist",
+      "description": "Helps Notion workspace owners systematically configure access, orientation pages, database permissions, and guided views so new team members are productive inside Notion from day one.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "onboarding",
+        "team-setup"
+      ],
+      "score": 79,
+      "rationale": "Repeated onboarding pain point for workspace owners, setup checklists are practical and repeatable, moderate demand but high completion likelihood.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.813186+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429419-3",
+      "title": "Notion Project Retrospective Prompts for Agile Teams",
+      "description": "Small agile teams running retrospectives inside Notion get 20 targeted prompts that extract actionable sprint insights, surface recurring blockers, and auto-populate a lessons-learned database.",
+      "category": "prompt-packs",
+      "tags": [
+        "notion",
+        "retrospectives",
+        "agile",
+        "sprint-review"
+      ],
+      "score": 79,
+      "rationale": "Agile retrospectives in Notion have decent demand, prompts improve insight extraction (useful), moderate online competition for retro frameworks, prompt packs generatable but somewhat commoditized.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:16:59.272773+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773599169-skill-1",
+      "title": "Claude Code Skills Pack: Schema Design — 5 Skills for Modeling Relational and Document Databases",
+      "description": "For full-stack developers and data architects, this pack covers entity-relationship modeling, normalization auditing, index strategy recommendations, foreign key constraint planning, and schema documentation generation so they can build well-structured databases from day one.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "schema-design",
+        "data-modeling"
+      ],
+      "score": 72,
+      "rationale": "Solid demand from full-stack developers, but somewhat commoditized topic with existing ERD and normalization resources available, though Claude can generate index recommendations and schema documentation consistently.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.758252+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773599169-skill-2",
+      "title": "Claude Code Skills Pack: Multi-Tenant Migration — 5 Skills for Scaling SaaS Database Architectures",
+      "description": "For SaaS platform engineers, this pack handles tenant isolation strategy selection, shared-schema to per-tenant migration scripts, row-level security policy generation, tenant data backfill automation, and migration progress monitoring so they can scale database architecture without breaking existing customers.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "multi-tenant",
+        "saas-database"
+      ],
+      "score": 76,
+      "rationale": "Strong demand from growing SaaS companies facing scaling challenges, differentiated content around tenant isolation strategies, and good generability for RLS policy generation and migration scripts, though audience is more specialized than others.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T18:26:09.767281+00:00",
       "source": "trend-scan-skills"
     },
     {

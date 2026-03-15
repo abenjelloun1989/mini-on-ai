@@ -1,0 +1,22 @@
+{
+  "id": "skills-claude-code-skills-pack-codebase-onboard-20260315",
+  "title": "Claude Code Skills Pack: Codebase Onboarding Docs — 5 Skills for Getting New Engineers Up to Speed Fast",
+  "description": "For engineering leads and staff engineers, this pack generates architecture overviews, maps module dependencies, documents environment setup steps, explains key design decisions, and produces contributor guides so new hires can become productive in days instead of weeks",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "onboarding",
+    "engineering-docs"
+  ],
+  "item_count": 5,
+  "created_at": "2026-03-15T18:47:38.553891+00:00",
+  "status": "published",
+  "package_path": "products/skills-claude-code-skills-pack-codebase-onboard-20260315/package.zip",
+  "site_path": "site/products/skills-claude-code-skills-pack-codebase-onboard-20260315.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Your new engineers are productive in days, not weeks.\n\nWhen onboarding takes three weeks of context-switching and \"can you explain X?\" Slack threads, you're burning money and morale. This pack cuts that time in half by automating the docs that actually matter.\n\nWho this is for\n\n— Engineering leads managing growing teams and tired of repeating the same explanations\n— Staff engineers who want ownership of knowledge transfer without doing it manually\n— Technical founders scaling to 5-10 engineers who need systems that don't break\n\nWhat's inside\n\n— Architecture overview generator for your codebase (the map new hires actually need)\n— Module dependency mapper (stops the \"where does this get called?\" detective work)\n— Environment setup documenter (no more \"worked on my machine\" problems)\n— Design decision explainer (captures the why, not just the what)\n— Contributor guide builder (gets them making PRs on day three)\n\nFive pre-built Claude Skills. Drop the folder in. Start using them today.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
