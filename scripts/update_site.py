@@ -466,6 +466,7 @@ def rebuild_index(catalog: dict) -> str:
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
   <meta name="description" content="Done-for-you prompt packs, swipe files, checklists, and Claude Code skills. Researched, written, and packaged — ready to deploy today.">
+  <meta name="google-site-verification" content="_bUSLc4yVdu115P3SlUFsKIZ15YTewr70wL6yFRxHGs">
 {og_tags}
 </head>
 <body>
