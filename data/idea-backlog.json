@@ -1625,6 +1625,125 @@
       "source": "trend-scan-skills"
     },
     {
+      "id": "idea-1773601074-skill-4",
+      "title": "Claude Code Skills Pack: Team Standards Bootstrapping — 5 Skills for Communicating Coding Conventions to New Hires",
+      "description": "For engineering leads and DevEx teams, this pack infers coding conventions from existing code, generates a CONTRIBUTING.md from scratch, documents naming patterns and folder structure rationale, produces a linting and tooling setup guide, and creates a decision log template capturing why key architectural choices were made so new team members understand not just what the rules are but why they exist.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "team-standards",
+        "developer-experience"
+      ],
+      "score": 81,
+      "rationale": "High demand from growing teams, differentiated in systematizing implicit conventions, though generability is slightly lower since inferring standards requires nuanced pattern recognition across codebases.",
+      "selected": false,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-team-standards-b-20260315",
+      "generated_at": "2026-03-15T18:57:54.066610+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773602044-skill-2",
+      "title": "Claude Code Skills Pack: Dashboard Narratives — 5 Skills for Turning Metrics into Stakeholder Stories",
+      "description": "For data analysts and product managers, this pack generates executive summaries, anomaly callouts, trend explanations, benchmark comparisons, and recommended-action blurbs across 5 skills so they can turn raw dashboard numbers into decisions-ready narratives",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "data-storytelling",
+        "reporting",
+        "stakeholder-communication"
+      ],
+      "score": 68,
+      "rationale": "Dashboard narratives have smaller, more specialized audience (analysts + PMs) and lower urgency than operational tasks; uniqueness is moderate (narrative templates exist), and generability is constrained since story quality depends heavily on domain context and judgment calls.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T19:14:04.413108+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773602044-skill-3",
+      "title": "Claude Code Skills Pack: Pipeline Observability — 5 Skills for Monitoring, Alerting, and Debugging Data Flows",
+      "description": "For data platform engineers and DataOps teams, this pack scaffolds freshness checks, row-count anomaly alerts, lineage documentation, failure postmortem templates, and runbook generation across 5 skills so they can catch and resolve pipeline issues before stakeholders notice",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "dataops",
+        "pipeline-monitoring",
+        "observability"
+      ],
+      "score": 71,
+      "rationale": "Pipeline observability addresses real DataOps needs but audience is narrower (platform engineers only) and monitoring templates are moderately available; generability is solid for alert logic and postmortem scaffolding but harder for organization-specific lineage.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-15T19:14:04.422174+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773602044-skill-4",
+      "title": "Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports",
+      "description": "For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "report-automation",
+        "data-distribution",
+        "analytics"
+      ],
+      "score": 76,
+      "rationale": "Recurring report automation solves concrete operational friction with moderate-to-large audience, good uniqueness in multi-format delivery coordination, and strong generability since Claude can template parameterized reports across different output formats.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-automated-report-20260315",
+      "generated_at": "2026-03-15T19:14:04.431243+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773602044-skill-0",
+      "title": "Claude Code Skills Pack: Data Ingestion — 5 Skills for Cleaning and Validating Raw Pipeline Inputs",
+      "description": "For data engineers and analysts, this pack automates schema inference, null handling, type coercion, outlier flagging, and source reconciliation across 5 skills so they can trust their raw inputs before a single transformation runs",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "data-engineering",
+        "etl",
+        "data-quality"
+      ],
+      "score": 79,
+      "rationale": "Data ingestion affects every pipeline but has smaller audience than reporting; demand is acute (broken pipelines block everything), uniqueness is strong (data validation skills are rarely packaged together), and generability is high for schema and type handling.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T19:14:04.395057+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773602044-skill-1",
+      "title": "Claude Code Skills Pack: SQL Reporting — 5 Skills for Writing and Optimizing Analytical Queries",
+      "description": "For BI developers and analytics engineers, this pack covers query generation from plain-English prompts, CTE structuring, index-aware optimization, window function patterns, and query documentation so they can ship readable and performant reports faster",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "sql",
+        "business-intelligence",
+        "analytics"
+      ],
+      "score": 82,
+      "rationale": "SQL reporting is a universal pain point with massive audience (every company needs analytics), high urgency (time-to-insight pressure), and Claude Code skills are uniquely positioned to generate query patterns that balance readability with performance optimization.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-15T19:14:04.404082+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
       "id": "idea-1773601074-skill-2",
       "title": "Claude Code Skills Pack: First Ticket Coaching — 5 Skills for Guiding Junior Devs Through Their First Contributions",
       "description": "For senior engineers and developer advocates, this pack breaks down tickets into actionable sub-tasks, recommends relevant files to read first, explains relevant patterns in the codebase, reviews first PRs with onboarding-sensitive feedback, and drafts a checklist of local dev environment validation steps so junior developers ship confidently from day one.",
@@ -1638,7 +1757,7 @@
       "score": 76,
       "rationale": "Real but narrower demand (mainly applicable to teams with junior developers), somewhat commoditized (similar PR review and ticket breakdown exist), and generability is limited by need for domain-specific context and mentoring sensitivity.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-15T18:57:54.048518+00:00",
       "source": "trend-scan-skills"
@@ -1657,28 +1776,9 @@
       "score": 78,
       "rationale": "Solid demand (legacy systems are widespread pain), moderately unique in archaeology-focused approach, but generability is constrained by high variance in legacy system complexity and documentation states.",
       "selected": false,
-      "status": null,
+      "status": "rejected",
       "product_id": null,
       "generated_at": "2026-03-15T18:57:54.057543+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
-      "id": "idea-1773601074-skill-4",
-      "title": "Claude Code Skills Pack: Team Standards Bootstrapping — 5 Skills for Communicating Coding Conventions to New Hires",
-      "description": "For engineering leads and DevEx teams, this pack infers coding conventions from existing code, generates a CONTRIBUTING.md from scratch, documents naming patterns and folder structure rationale, produces a linting and tooling setup guide, and creates a decision log template capturing why key architectural choices were made so new team members understand not just what the rules are but why they exist.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "team-standards",
-        "developer-experience"
-      ],
-      "score": 81,
-      "rationale": "High demand from growing teams, differentiated in systematizing implicit conventions, though generability is slightly lower since inferring standards requires nuanced pattern recognition across codebases.",
-      "selected": true,
-      "status": "produced",
-      "product_id": "skills-claude-code-skills-pack-team-standards-b-20260315",
-      "generated_at": "2026-03-15T18:57:54.066610+00:00",
       "source": "trend-scan-skills"
     },
     {

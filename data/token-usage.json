@@ -1318,5 +1318,69 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 317,
     "output_tokens": 243
+  },
+  {
+    "ts": "2026-03-15T19:14:04.391757+00:00",
+    "run_id": "run-1773602031",
+    "stage": "trend-scan",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 605,
+    "output_tokens": 686
+  },
+  {
+    "ts": "2026-03-15T19:14:09.211061+00:00",
+    "run_id": "run-1773602031",
+    "stage": "idea-rank",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 894,
+    "output_tokens": 440
+  },
+  {
+    "ts": "2026-03-15T19:15:12.766761+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 337,
+    "output_tokens": 483
+  },
+  {
+    "ts": "2026-03-15T19:15:58.670253+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 313,
+    "output_tokens": 2115
+  },
+  {
+    "ts": "2026-03-15T19:16:51.114016+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 309,
+    "output_tokens": 2279
+  },
+  {
+    "ts": "2026-03-15T19:17:40.031141+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 318,
+    "output_tokens": 2311
+  },
+  {
+    "ts": "2026-03-15T19:18:29.888717+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 306,
+    "output_tokens": 2286
+  },
+  {
+    "ts": "2026-03-15T19:19:22.792818+00:00",
+    "run_id": "run-1773602081",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 315,
+    "output_tokens": 2404
   }
 ]
