@@ -14,7 +14,7 @@
   "package_path": "products/checklist-lead-source-attribution-audit-checklist--20260313/package.zip",
   "site_path": "site/products/checklist-lead-source-attribution-audit-checklist--20260313.html",
   "thumbnail": null,
-  "price": null,
+  "price": 5.0,
   "gumroad_product_id": "srmajl",
   "gumroad_url": "https://minionai.gumroad.com/l/srmajl",
   "gumroad_description": "YOUR LEAD ATTRIBUTION IS PROBABLY BROKEN—AND YOU DON'T KNOW IT.\n\nYou're losing deals because your UTM parameters aren't tracking, your GA4 data doesn't match HubSpot, and you can't tell which campaigns actually drove revenue. This audit fixes that.\n\nWHO THIS IS FOR\n\n— Growth marketers managing multi-channel campaigns who need real data to justify ad spend\n— RevOps leads trying to sync GA4 and HubSpot without pulling their hair out\n— Demand gen teams that know their reporting is off but don't know where to start\n\nWHAT'S INSIDE\n\nA 20-item checklist that walks you through:\n— Finding UTM parameter gaps before they destroy your reporting\n— Matching your GA4 source/medium to actual HubSpot lead sources\n— Spotting conversion misattribution in your pipeline\n— Setting up clean tracking rules for the next quarter\n\nEach item includes the exact why and how—not just a checkbox.\n\nFormat includes Markdown for easy reading plus JSON for automation.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"

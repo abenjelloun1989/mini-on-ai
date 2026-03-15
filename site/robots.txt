@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://abenjelloun1989.github.io/mini-on-ai/sitemap.xml

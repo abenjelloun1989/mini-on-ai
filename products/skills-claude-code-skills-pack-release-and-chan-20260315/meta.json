@@ -15,7 +15,7 @@
   "package_path": "products/skills-claude-code-skills-pack-release-and-chan-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-release-and-chan-20260315.html",
   "thumbnail": null,
-  "price": null,
+  "price": 5.0,
   "gumroad_product_id": "yfiywi",
   "gumroad_url": "https://minionai.gumroad.com/l/yfiywi",
   "gumroad_description": "Shipping without a clear changelog is how you get angry Slack messages at 11pm.\n\nWho this is for:\n— DevOps engineers who hate writing release notes from scratch\n— Release managers who need to communicate breaking changes clearly\n— Backend leads who produce changelogs that only other engineers can read\n\nWhat's inside:\n— Skill 1: Human-readable changelog from git commits\n— Skill 2: Breaking vs non-breaking change categorizer\n— Skill 3: End-user release notes drafter (no jargon)\n— Skill 4: Migration steps generator for version upgrades\n— Skill 5: Internal post-release summary writer\n— Installation guide + quick-reference trigger table\n\nShip with a paper trail. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"

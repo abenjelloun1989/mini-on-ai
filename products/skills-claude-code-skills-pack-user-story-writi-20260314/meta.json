@@ -15,7 +15,7 @@
   "package_path": "products/skills-claude-code-skills-pack-user-story-writi-20260314/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-user-story-writi-20260314.html",
   "thumbnail": null,
-  "price": null,
+  "price": 5.0,
   "gumroad_product_id": "mcdnfk",
   "gumroad_url": "https://minionai.gumroad.com/l/mcdnfk",
   "gumroad_description": "Vague tickets are where sprint velocity goes to die.\n\nWho this is for:\n— Product managers writing stories faster than they can be properly defined\n— Business analysts translating stakeholder requests that change meaning every meeting\n— Delivery leads who've watched engineers build the wrong thing from an ambiguous ticket\n\nWhat's inside:\n— Skill 1: User story generator from raw feature requests\n— Skill 2: Acceptance criteria writer\n— Skill 3: Edge case and error state identifier\n— Skill 4: Definition-of-done checklist builder\n— Skill 5: Jira-ready ticket description formatter\n— Installation guide + quick-reference trigger table\n\nZero ambiguity before development starts. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"

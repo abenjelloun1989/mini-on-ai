@@ -21,6 +21,91 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 from lib.utils import read_json, write_json, write_file, ROOT, log
 
 CONTACT_EMAIL = "hello@mini-on-ai.com"
+SITE_URL = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+
+
+def _og_tags_product(meta: dict) -> str:
+    title = escape_html(meta.get("title", ""))
+    desc  = escape_html(meta.get("description", ""))
+    pid   = meta.get("id", "")
+    url   = f"{SITE_URL}/products/{pid}.html"
+    img   = f"{SITE_URL}/images/og-default.svg"
+    return (
+        f'  <meta property="og:type" content="product">\n'
+        f'  <meta property="og:title" content="{title}">\n'
+        f'  <meta property="og:description" content="{desc}">\n'
+        f'  <meta property="og:url" content="{url}">\n'
+        f'  <meta property="og:image" content="{img}">\n'
+        f'  <meta name="twitter:card" content="summary_large_image">\n'
+        f'  <meta name="twitter:title" content="{title}">\n'
+        f'  <meta name="twitter:description" content="{desc}">\n'
+        f'  <link rel="canonical" href="{url}">'
+    )
+
+
+def _og_tags_index() -> str:
+    title = "mini-on-ai — Done-for-you AI tools"
+    desc  = "Prompt packs, swipe files, checklists, and Claude Code skills — researched, written, and packaged so you can deploy today."
+    img   = f"{SITE_URL}/images/og-default.svg"
+    return (
+        f'  <meta property="og:type" content="website">\n'
+        f'  <meta property="og:title" content="{title}">\n'
+        f'  <meta property="og:description" content="{desc}">\n'
+        f'  <meta property="og:url" content="{SITE_URL}/">\n'
+        f'  <meta property="og:image" content="{img}">\n'
+        f'  <meta name="twitter:card" content="summary_large_image">\n'
+        f'  <meta name="twitter:title" content="{title}">\n'
+        f'  <meta name="twitter:description" content="{desc}">\n'
+        f'  <link rel="canonical" href="{SITE_URL}/">'
+    )
+
+
+def _json_ld_product(meta: dict) -> str:
+    import json as _json
+    pid   = meta.get("id", "")
+    url   = f"{SITE_URL}/products/{pid}.html"
+    price = meta.get("price")
+    gurl  = meta.get("gumroad_url") or url
+    data: dict = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": meta.get("title", ""),
+        "description": meta.get("description", ""),
+        "url": url,
+        "brand": {"@type": "Brand", "name": "mini-on-ai"},
+    }
+    if price is not None:
+        data["offers"] = {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": str(price),
+            "availability": "https://schema.org/InStock",
+            "url": gurl,
+        }
+    return f'  <script type="application/ld+json">\n  {_json.dumps(data, ensure_ascii=False)}\n  </script>'
+
+
+def write_sitemap(catalog: dict) -> None:
+    """Generate site/sitemap.xml from the product catalog."""
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        f'  <url><loc>{SITE_URL}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>',
+    ]
+    for p in catalog.get("products", []):
+        pid     = p.get("id", "")
+        lastmod = (p.get("created_at") or "")[:10]  # YYYY-MM-DD
+        loc     = f"{SITE_URL}/products/{pid}.html"
+        lines.append(
+            f'  <url><loc>{loc}</loc>'
+            + (f'<lastmod>{lastmod}</lastmod>' if lastmod else "")
+            + '<priority>0.8</priority></url>'
+        )
+    lines.append("</urlset>")
+    write_file("site/sitemap.xml", "\n".join(lines) + "\n")
+    log("update-site", f"Wrote site/sitemap.xml ({len(catalog.get('products', []))+1} URLs)")
+    write_file("site/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
+    log("update-site", "Wrote site/robots.txt")
 
 CATEGORY_LABELS = {
     "prompt-packs":      ("Prompt Pack",        "{n} prompts"),
@@ -160,6 +245,8 @@ def build_product_page(meta: dict) -> str:
     thumbnail_html = _thumbnail_html_detail(meta)
     cta_html = _gumroad_cta_page(meta)
     year = datetime.now().year
+    og_tags = _og_tags_product(meta)
+    json_ld = _json_ld_product(meta)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -171,6 +258,8 @@ def build_product_page(meta: dict) -> str:
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
   <meta name="description" content="{escape_html(meta['description'])}">
+{og_tags}
+{json_ld}
 </head>
 <body>
   <header class="site-header">
@@ -365,17 +454,19 @@ def rebuild_index(catalog: dict) -> str:
     cards = "\n".join(build_product_card(p) for p in products)
     filter_bar = _build_filter_bar(products)
     year = datetime.now().year
+    og_tags = _og_tags_index()
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-on-ai — AI-Powered Digital Products</title>
+  <title>mini-on-ai — Done-for-you AI Tools</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
   <meta name="description" content="Done-for-you prompt packs, swipe files, checklists, and Claude Code skills. Researched, written, and packaged — ready to deploy today.">
+{og_tags}
 </head>
 <body>
   <header class="site-header">
@@ -527,9 +618,10 @@ def update_site(product_id_arg: str = None) -> dict:
 
     write_json("data/product-catalog.json", catalog)
 
-    # Rebuild index
+    # Rebuild index + sitemap
     index_html = rebuild_index(catalog)
     write_file("site/index.html", index_html)
+    write_sitemap(catalog)
     log("update-site", "Rebuilt site/index.html")
 
     # Update meta status
@@ -581,6 +673,7 @@ def rebuild_all() -> None:
     write_json("data/product-catalog.json", catalog)
     index_html = rebuild_index(catalog)
     write_file("site/index.html", index_html)
+    write_sitemap(catalog)
     log("update-site", f"Rebuilt index with {len(catalog['products'])} products.")
 
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <!-- Grid tiles mark -->
+  <rect x="80"  y="160" width="72" height="72" rx="16" fill="#6366F1"/>
+  <rect x="164" y="160" width="72" height="72" rx="16" fill="#6366F1" opacity="0.35"/>
+  <rect x="80"  y="244" width="72" height="72" rx="16" fill="#6366F1" opacity="0.6"/>
+  <rect x="164" y="244" width="72" height="72" rx="16" fill="#6366F1" opacity="0.18"/>
+  <!-- Wordmark -->
+  <text x="268" y="302" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="88" font-weight="700" letter-spacing="-2" fill="#F8FAFC">mini-on-ai</text>
+  <!-- Tagline -->
+  <text x="80" y="400" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="36" font-weight="400" fill="#94A3B8">Done-for-you AI tools that work straight out of the box</text>
+</svg>
