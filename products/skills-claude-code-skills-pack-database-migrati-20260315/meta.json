@@ -16,7 +16,7 @@
   "site_path": "site/products/skills-claude-code-skills-pack-database-migrati-20260315.html",
   "thumbnail": null,
   "price": null,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
+  "gumroad_product_id": "lfpqrq",
+  "gumroad_url": "https://minionai.gumroad.com/l/lfpqrq",
   "gumroad_description": "Schema changes in production are risky. This pack makes them routine.\n\nWho this is for:\n— Backend engineers who've shipped a migration that caused downtime\n— DBAs managing high-traffic databases where zero-downtime is non-negotiable\n— Leads who want a repeatable process for every schema change, not one-off heroics\n\nWhat's inside:\n— Skill 1: Migration script generator with reversible structure\n— Skill 2: Rollback plan writer\n— Skill 3: Pre-flight validation checker\n— Skill 4: Zero-downtime column rename handler\n— Skill 5: Post-migration verification report\n— Installation guide + quick-reference trigger table\n\nSchema changes without incidents. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
