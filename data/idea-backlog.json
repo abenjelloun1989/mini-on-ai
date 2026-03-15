@@ -790,24 +790,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773428578-1",
-      "title": "MQL to SQL Handoff SOP for B2B Sales Teams",
-      "description": "B2B marketing and sales ops leads get a ready-to-deploy standard operating procedure defining exact handoff triggers, ownership rules, and rejection feedback loops between marketing and SDRs.",
-      "category": "swipe-file",
-      "tags": [
-        "mql",
-        "sql",
-        "sales-handoff"
-      ],
-      "score": 79,
-      "rationale": "Clear demand for handoff clarity, but swipe-file format requires high editorial curation, and many SOP examples already circulate freely in sales communities.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:02:58.461978+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773428578-3",
       "title": "Inbound Lead Response Workflow: Typeform to HubSpot to Slack",
       "description": "Growth teams get a ready-to-import n8n automation that routes inbound form submissions into HubSpot as contacts, scores them by field criteria, and pings the right Slack channel with a lead summary card.",
@@ -1585,25 +1567,6 @@
       "source": "trend-scan-skills"
     },
     {
-      "id": "idea-1773503652-skill-0",
-      "title": "Claude Code Skills Pack: Data Ingestion — 5 Skills for Building Robust ETL Pipelines",
-      "description": "For data engineers and analytics engineers, this pack automates schema inference, source validation, transformation logic generation, incremental load strategies, and ingestion error handling so they can ship reliable ETL pipelines in hours instead of days.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "etl",
-        "data-engineering"
-      ],
-      "score": 76,
-      "rationale": "Solid demand from data engineers facing ETL complexity, moderately unique Claude skill approach to pipeline building, though ETL patterns vary significantly by source/destination requiring customization.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-14T15:54:12.887870+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773503652-skill-2",
       "title": "Claude Code Skills Pack: Data Quality — 5 Skills for Pipeline Validation and Anomaly Detection",
       "description": "For data engineers and analytics leads, this pack generates data contract definitions, row-level validation checks, statistical anomaly detection rules, data freshness monitors, and incident summary reports so they can catch data issues before they reach dashboards or decision-makers.",
@@ -1616,7 +1579,7 @@
       ],
       "score": 79,
       "rationale": "Strong demand from data-driven organizations prioritizing data reliability, differentiated skill pack for automated validation/monitoring, and consistent generability of quality rules across data types.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
       "generated_at": "2026-03-14T15:54:12.905926+00:00",
@@ -1635,9 +1598,9 @@
       ],
       "score": 72,
       "rationale": "Moderate demand as narrative generation is less universally critical than data quality/reporting, good uniqueness in Claude Code application, but narrative style varies significantly by org culture limiting generability.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
       "generated_at": "2026-03-14T15:54:12.913568+00:00",
       "source": "trend-scan-skills"
     },
@@ -1658,6 +1621,43 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-14T15:54:12.920165+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773428578-1",
+      "title": "MQL to SQL Handoff SOP for B2B Sales Teams",
+      "description": "B2B marketing and sales ops leads get a ready-to-deploy standard operating procedure defining exact handoff triggers, ownership rules, and rejection feedback loops between marketing and SDRs.",
+      "category": "swipe-file",
+      "tags": [
+        "mql",
+        "sql",
+        "sales-handoff"
+      ],
+      "score": 79,
+      "rationale": "Clear demand for handoff clarity, but swipe-file format requires high editorial curation, and many SOP examples already circulate freely in sales communities.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:02:58.461978+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773503652-skill-0",
+      "title": "Claude Code Skills Pack: Data Ingestion — 5 Skills for Building Robust ETL Pipelines",
+      "description": "For data engineers and analytics engineers, this pack automates schema inference, source validation, transformation logic generation, incremental load strategies, and ingestion error handling so they can ship reliable ETL pipelines in hours instead of days.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "etl",
+        "data-engineering"
+      ],
+      "score": 76,
+      "rationale": "Solid demand from data engineers facing ETL complexity, moderately unique Claude skill approach to pipeline building, though ETL patterns vary significantly by source/destination requiring customization.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T15:54:12.887870+00:00",
       "source": "trend-scan-skills"
     },
     {

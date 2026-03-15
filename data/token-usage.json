@@ -990,5 +990,61 @@
     "model": "claude-haiku-4-5-20251001",
     "input_tokens": 286,
     "output_tokens": 243
+  },
+  {
+    "ts": "2026-03-15T18:19:27.361824+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 329,
+    "output_tokens": 391
+  },
+  {
+    "ts": "2026-03-15T18:20:26.634293+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 295,
+    "output_tokens": 2353
+  },
+  {
+    "ts": "2026-03-15T18:21:13.008723+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 293,
+    "output_tokens": 1897
+  },
+  {
+    "ts": "2026-03-15T18:22:12.221900+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 289,
+    "output_tokens": 2520
+  },
+  {
+    "ts": "2026-03-15T18:23:04.191171+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 291,
+    "output_tokens": 2023
+  },
+  {
+    "ts": "2026-03-15T18:24:01.203018+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 294,
+    "output_tokens": 2129
+  },
+  {
+    "ts": "2026-03-15T18:24:04.446793+00:00",
+    "run_id": "run-1773598749",
+    "stage": "generate-product",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 288,
+    "output_tokens": 216
   }
 ]

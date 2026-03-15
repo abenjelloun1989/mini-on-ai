@@ -1,0 +1,22 @@
+{
+  "id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
+  "title": "Claude Code Skills Pack: Dashboard Delivery — 5 Skills for Translating Data Into Executive Insights",
+  "description": "For analytics engineers and data product managers, this pack handles KPI narrative generation, chart annotation writing, dashboard layout recommendations, metric interpretation summaries, and executive briefing drafts so they can turn raw dashboard outputs into clear business communication without manual write-ups.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "data-visualization",
+    "reporting"
+  ],
+  "item_count": 5,
+  "created_at": "2026-03-15T18:24:01.208909+00:00",
+  "status": "published",
+  "package_path": "products/skills-claude-code-skills-pack-dashboard-delive-20260315/package.zip",
+  "site_path": "site/products/skills-claude-code-skills-pack-dashboard-delive-20260315.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You're spending hours writing summaries that Claude could generate in seconds.\n\nWHO THIS IS FOR\n\n— Analytics engineers tired of manual narrative writing for every dashboard update\n— Data product managers juggling stakeholder communication alongside technical work\n— Teams standardizing how insights get communicated across the org\n\n\nWHAT'S INSIDE\n\n— KPI Narrative Generator: Turns metric movements into business-focused story summaries\n— Chart Annotation Writer: Generates context and callouts for visual clarity\n— Dashboard Layout Advisor: Recommends information hierarchy for executive consumption\n— Metric Interpretation Skill: Translates technical anomalies into business implications\n— Executive Brief Composer: Drafts ready-to-send dashboard recaps in minutes\n\nFive ready-to-use SKILL.md files you drop straight into your `/skills/` folder. Installation guide included. Quick-reference table shows which skill handles which task.\n\n\nStop writing dashboards twice—once in tools, once in prose. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
