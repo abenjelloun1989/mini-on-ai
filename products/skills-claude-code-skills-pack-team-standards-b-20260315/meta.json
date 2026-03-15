@@ -1,0 +1,22 @@
+{
+  "id": "skills-claude-code-skills-pack-team-standards-b-20260315",
+  "title": "Claude Code Skills Pack: Team Standards Bootstrapping — 5 Skills for Communicating Coding Conventions to New Hires",
+  "description": "For engineering leads and DevEx teams, this pack infers coding conventions from existing code, generates a CONTRIBUTING.md from scratch, documents naming patterns and folder structure rationale, produces a linting and tooling setup guide, and creates a decision log template capturing why key architectural choices were made so new team members understand not just what the rules are but why they exist.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "team-standards",
+    "developer-experience"
+  ],
+  "item_count": 5,
+  "created_at": "2026-03-15T19:04:06.959093+00:00",
+  "status": "published",
+  "package_path": "products/skills-claude-code-skills-pack-team-standards-b-20260315/package.zip",
+  "site_path": "site/products/skills-claude-code-skills-pack-team-standards-b-20260315.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "ONBOARDING TAKES THREE WEEKS BECAUSE YOUR CODING STANDARDS LIVE IN SOMEONE'S HEAD.\n\nThis pack changes that. Five ready-to-use skills that let Claude extract your actual conventions, write your CONTRIBUTING.md, document why your folder structure exists, configure linting from your codebase, and build a decision log so people understand the reasoning behind the rules—not just the rules themselves.\n\nWHO THIS IS FOR\n\n— Engineering leads managing 5+ person teams without documented standards\n— DevEx engineers tasked with scaling onboarding processes\n— Teams hiring fast and tired of repeating the same explanations\n\nWHAT'S INSIDE\n\n— Inference skill: Analyzes existing code, surfaces hidden conventions\n— Contributing guide generator: Creates CONTRIBUTING.md from scratch\n— Pattern documentation: Names, folders, architectural choices explained\n— Tooling setup: Linting and formatter configuration guide\n— Decision log template: Captures the why behind key choices\n\nDrop into your skills/ folder, run the quick-start, watch your new hires stop asking \"but why?\"\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
