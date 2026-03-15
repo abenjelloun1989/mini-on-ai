@@ -438,24 +438,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773411457-4",
-      "title": "Sales and Marketing Lead Handoff SOP Prompts for RevOps",
-      "description": "RevOps professionals use these prompts to document a clean, repeatable MQL-to-SQL handoff process including lead status definitions, SLA triggers, and rejection criteria.",
-      "category": "prompt-packs",
-      "tags": [
-        "RevOps",
-        "MQL to SQL",
-        "handoff process"
-      ],
-      "score": 79,
-      "rationale": "RevOps need is real but narrower audience, SOP-specific methodology offers differentiation, and structured prompts are highly generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:37.744590+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773411457-5",
       "title": "Lead Reengagement Campaign Prompts for Lifecycle Marketers",
       "description": "Lifecycle marketers use these prompts to map dormant lead segments, identify re-entry triggers, and design a sequenced reengagement campaign logic before writing a single message.",
@@ -615,24 +597,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T14:17:38.099727+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773411458-9",
-      "title": "Pipeline Review Preparation Prompts for Sales Managers",
-      "description": "Sales managers get 20 prompts to interrogate rep deal data, surface coaching moments, and generate a structured deal risk summary before every weekly pipeline review meeting.",
-      "category": "prompt-packs",
-      "tags": [
-        "pipeline-review",
-        "sales-management",
-        "deal-coaching"
-      ],
-      "score": 79,
-      "rationale": "Sales managers have clear demand, structured deal review methodology differentiates, and manager-focused prompts are consistently generatable.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T14:17:38.104818+00:00",
       "source": "trend-scan"
     },
     {
@@ -1033,26 +997,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773429424-2",
-      "title": "Notion Database Relation and Rollup Design Swipe File",
-      "description": "For Notion builders who repeatedly guess at relational database structures, this swipe file provides 20 real-world database schema blueprints with relation types, rollup formulas, and use-case annotations across common business workflows.",
-      "category": "swipe-file",
-      "tags": [
-        "notion",
-        "databases",
-        "relations",
-        "rollups",
-        "no-code"
-      ],
-      "score": 80,
-      "rationale": "Builders repeating database design mistakes have genuine need, swipe file of real schemas offers practical value, good generability of annotated blueprint format, solid uniqueness.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:17:04.396542+00:00",
-      "source": "trend-scan"
-    },
-    {
       "id": "idea-1773429424-3",
       "title": "Notion Client Portal Page Structures Swipe File",
       "description": "For freelancers and agencies building client-facing Notion portals, this swipe file delivers 15 annotated page layout blueprints covering onboarding hubs, project dashboards, feedback trackers, and invoice views.",
@@ -1223,24 +1167,6 @@
       "status": null,
       "product_id": null,
       "generated_at": "2026-03-13T19:18:02.810138+00:00",
-      "source": "trend-scan"
-    },
-    {
-      "id": "idea-1773429482-4",
-      "title": "Notion Workspace Audit Checklist for Team Admins",
-      "description": "Gives Notion workspace admins a repeatable audit checklist to identify duplicate databases, broken relations, unused pages, permission gaps, and structural debt across a growing team workspace.",
-      "category": "checklist",
-      "tags": [
-        "notion",
-        "workspace-audit",
-        "team-admin"
-      ],
-      "score": 80,
-      "rationale": "Urgent need from growing team workspace admins, audit checklists are task-specific and underserved, checklist format is straightforward to execute and validate.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T19:18:02.811661+00:00",
       "source": "trend-scan"
     },
     {
@@ -1469,25 +1395,6 @@
       "source": "trend-scan"
     },
     {
-      "id": "idea-1773436193-skill-0",
-      "title": "Claude Code Skill: API Contract Enforcer — Validate and Lint OpenAPI Specs Against Team Standards",
-      "description": "For backend engineers and API platform teams, this skill automatically validates OpenAPI and AsyncAPI specifications against organizational design standards so they can catch inconsistencies, naming violations, and missing documentation before code review.",
-      "category": "claude-code-skill",
-      "tags": [
-        "claude-code",
-        "skills",
-        "api-design",
-        "openapi"
-      ],
-      "score": 71,
-      "rationale": "Demand exists but audience is more niche (platform teams), moderate uniqueness, and generability is constrained since linting rules are highly organization-specific and require custom configuration.",
-      "selected": false,
-      "status": null,
-      "product_id": null,
-      "generated_at": "2026-03-13T21:09:53.613961+00:00",
-      "source": "trend-scan-skills"
-    },
-    {
       "id": "idea-1773436193-skill-1",
       "title": "Claude Code Skill: Mock Server Scaffolder — Generate Instant API Mocks from Specs or Curl Examples",
       "description": "For frontend developers and QA engineers, this skill generates fully functional mock server configurations from OpenAPI specs or raw curl examples so they can unblock UI development and testing without waiting for backend endpoints to be production-ready.",
@@ -1595,7 +1502,7 @@
       ],
       "score": 72,
       "rationale": "Solid demand from scrum masters but audience is smaller than PM/engineering leaders, good generability for structured outputs, though agile ceremony templates are heavily commoditized.",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "skills-claude-code-skills-pack-sprint-planning--20260314",
       "generated_at": "2026-03-14T08:11:50.352172+00:00",
@@ -1676,6 +1583,194 @@
       "product_id": "skills-claude-code-skills-pack-roadmap-planning-20260314",
       "generated_at": "2026-03-14T08:11:50.372268+00:00",
       "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773503652-skill-0",
+      "title": "Claude Code Skills Pack: Data Ingestion — 5 Skills for Building Robust ETL Pipelines",
+      "description": "For data engineers and analytics engineers, this pack automates schema inference, source validation, transformation logic generation, incremental load strategies, and ingestion error handling so they can ship reliable ETL pipelines in hours instead of days.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "etl",
+        "data-engineering"
+      ],
+      "score": 76,
+      "rationale": "Solid demand from data engineers facing ETL complexity, moderately unique Claude skill approach to pipeline building, though ETL patterns vary significantly by source/destination requiring customization.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T15:54:12.887870+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773503652-skill-2",
+      "title": "Claude Code Skills Pack: Data Quality — 5 Skills for Pipeline Validation and Anomaly Detection",
+      "description": "For data engineers and analytics leads, this pack generates data contract definitions, row-level validation checks, statistical anomaly detection rules, data freshness monitors, and incident summary reports so they can catch data issues before they reach dashboards or decision-makers.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "data-quality",
+        "data-observability"
+      ],
+      "score": 79,
+      "rationale": "Strong demand from data-driven organizations prioritizing data reliability, differentiated skill pack for automated validation/monitoring, and consistent generability of quality rules across data types.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
+      "generated_at": "2026-03-14T15:54:12.905926+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773503652-skill-3",
+      "title": "Claude Code Skills Pack: Dashboard Delivery — 5 Skills for Translating Data Into Executive Insights",
+      "description": "For analytics engineers and data product managers, this pack handles KPI narrative generation, chart annotation writing, dashboard layout recommendations, metric interpretation summaries, and executive briefing drafts so they can turn raw dashboard outputs into clear business communication without manual write-ups.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "data-visualization",
+        "reporting"
+      ],
+      "score": 72,
+      "rationale": "Moderate demand as narrative generation is less universally critical than data quality/reporting, good uniqueness in Claude Code application, but narrative style varies significantly by org culture limiting generability.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T15:54:12.913568+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773503652-skill-4",
+      "title": "Claude Code Skills Pack: Pipeline Documentation — 5 Skills for Keeping Data Infrastructure Understandable",
+      "description": "For data platform teams and analytics engineers, this pack automates data lineage documentation, transformation logic explanations, column-level metadata generation, pipeline runbook creation, and changelog summarization so they can maintain living documentation that stays in sync with their actual pipelines.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "data-documentation",
+        "data-governance"
+      ],
+      "score": 68,
+      "rationale": "Lower urgency than operational data tasks, unique Claude Code skill for documentation automation, but documentation quality heavily depends on existing pipeline complexity and team standards making consistent generation difficult.",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-14T15:54:12.920165+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773411458-9",
+      "title": "Pipeline Review Preparation Prompts for Sales Managers",
+      "description": "Sales managers get 20 prompts to interrogate rep deal data, surface coaching moments, and generate a structured deal risk summary before every weekly pipeline review meeting.",
+      "category": "prompt-packs",
+      "tags": [
+        "pipeline-review",
+        "sales-management",
+        "deal-coaching"
+      ],
+      "score": 79,
+      "rationale": "Sales managers have clear demand, structured deal review methodology differentiates, and manager-focused prompts are consistently generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:38.104818+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773503652-skill-1",
+      "title": "Claude Code Skills Pack: SQL Reporting — 5 Skills for Automated Query Building and Report Generation",
+      "description": "For data analysts and BI developers, this pack covers complex query scaffolding, metric definition standardization, report template generation, query performance auditing, and stakeholder-ready output formatting so they can deliver consistent, optimized reports without starting from scratch each time.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "sql",
+        "business-intelligence"
+      ],
+      "score": 82,
+      "rationale": "High demand from BI/analytics teams with urgent reporting deadlines, unique Claude Code skill application for query optimization, and highly generatable standardized SQL patterns across industries.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-14T15:54:12.896864+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773436193-skill-0",
+      "title": "Claude Code Skill: API Contract Enforcer — Validate and Lint OpenAPI Specs Against Team Standards",
+      "description": "For backend engineers and API platform teams, this skill automatically validates OpenAPI and AsyncAPI specifications against organizational design standards so they can catch inconsistencies, naming violations, and missing documentation before code review.",
+      "category": "claude-code-skill",
+      "tags": [
+        "claude-code",
+        "skills",
+        "api-design",
+        "openapi"
+      ],
+      "score": 71,
+      "rationale": "Demand exists but audience is more niche (platform teams), moderate uniqueness, and generability is constrained since linting rules are highly organization-specific and require custom configuration.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T21:09:53.613961+00:00",
+      "source": "trend-scan-skills"
+    },
+    {
+      "id": "idea-1773411457-4",
+      "title": "Sales and Marketing Lead Handoff SOP Prompts for RevOps",
+      "description": "RevOps professionals use these prompts to document a clean, repeatable MQL-to-SQL handoff process including lead status definitions, SLA triggers, and rejection criteria.",
+      "category": "prompt-packs",
+      "tags": [
+        "RevOps",
+        "MQL to SQL",
+        "handoff process"
+      ],
+      "score": 79,
+      "rationale": "RevOps need is real but narrower audience, SOP-specific methodology offers differentiation, and structured prompts are highly generatable.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T14:17:37.744590+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429482-4",
+      "title": "Notion Workspace Audit Checklist for Team Admins",
+      "description": "Gives Notion workspace admins a repeatable audit checklist to identify duplicate databases, broken relations, unused pages, permission gaps, and structural debt across a growing team workspace.",
+      "category": "checklist",
+      "tags": [
+        "notion",
+        "workspace-audit",
+        "team-admin"
+      ],
+      "score": 80,
+      "rationale": "Urgent need from growing team workspace admins, audit checklists are task-specific and underserved, checklist format is straightforward to execute and validate.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:18:02.811661+00:00",
+      "source": "trend-scan"
+    },
+    {
+      "id": "idea-1773429424-2",
+      "title": "Notion Database Relation and Rollup Design Swipe File",
+      "description": "For Notion builders who repeatedly guess at relational database structures, this swipe file provides 20 real-world database schema blueprints with relation types, rollup formulas, and use-case annotations across common business workflows.",
+      "category": "swipe-file",
+      "tags": [
+        "notion",
+        "databases",
+        "relations",
+        "rollups",
+        "no-code"
+      ],
+      "score": 80,
+      "rationale": "Builders repeating database design mistakes have genuine need, swipe file of real schemas offers practical value, good generability of annotated blueprint format, solid uniqueness.",
+      "selected": false,
+      "status": "rejected",
+      "product_id": null,
+      "generated_at": "2026-03-13T19:17:04.396542+00:00",
+      "source": "trend-scan"
     },
     {
       "id": "idea-1773470104-skill-1",

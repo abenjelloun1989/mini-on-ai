@@ -1,0 +1,22 @@
+{
+  "id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
+  "title": "Claude Code Skills Pack: Data Quality — 5 Skills for Pipeline Validation and Anomaly Detection",
+  "description": "For data engineers and analytics leads, this pack generates data contract definitions, row-level validation checks, statistical anomaly detection rules, data freshness monitors, and incident summary reports so they can catch data issues before they reach dashboards or decision-makers.",
+  "category": "claude-code-skill",
+  "tags": [
+    "claude-code",
+    "skills",
+    "data-quality",
+    "data-observability"
+  ],
+  "item_count": 5,
+  "created_at": "2026-03-15T12:36:18.572999+00:00",
+  "status": "published",
+  "package_path": "products/skills-claude-code-skills-pack-data-quality-5-s-20260315/package.zip",
+  "site_path": "site/products/skills-claude-code-skills-pack-data-quality-5-s-20260315.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Your data pipeline is breaking in production because validation happens after dashboards load, not before.\n\nThis pack solves that. Five Claude skills that catch bad data at the source—contracts that fail fast, anomaly detection that actually works, freshness alerts that fire before stakeholders notice gaps.\n\nWHO THIS IS FOR\n\n— Data engineers maintaining pipelines for 50+ tables and tired of firefighting\n— Analytics leads fielding \"why is this number wrong?\" Slack messages at 6 PM\n— Teams using Claude for automation but missing the data validation layer\n\nWHAT'S INSIDE\n\n— Data contract definitions that document expectations, not just enforce them\n— Row-level validation checks that catch duplicates, nulls, and type mismatches\n— Statistical anomaly detection rules that distinguish signal from noise\n— Data freshness monitors that track staleness across your entire platform\n— Incident summary reports that show what broke and when\n\nDrop these five SKILL.md files into your Claude project's skills folder. One quick-reference table gets your team up to speed in minutes. No setup hell, no waiting for infrastructure.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
