@@ -1,0 +1,23 @@
+{
+  "id": "n8n-n8n-sms-filter-unknown-contacts-workflow-20260317",
+  "title": "N8N SMS Filter Unknown Contacts Workflow",
+  "description": "A ready-to-use n8n workflow template that filters incoming calls to identify unknown/unsaved contacts and sends SMS notifications only to numbers not in Google Contacts, eliminating manual exclusion lists.",
+  "category": "n8n-template",
+  "tags": [
+    "n8n",
+    "sms-automation",
+    "call-filtering",
+    "google-contacts",
+    "unknown-caller"
+  ],
+  "item_count": 9,
+  "created_at": "2026-03-17T21:46:16.582367+00:00",
+  "status": "published",
+  "package_path": "products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317/package.zip",
+  "site_path": "site/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You're tired of SMS notifications blowing up your phone for people already in your contacts.\n\nThis n8n workflow template automatically cross-references incoming call data against your Google Contacts and sends SMS alerts only for numbers that don't match — no manual blocklists, no maintenance.\n\nWho this is for:\n— Freelancers and solo operators screening inbound leads without missing real ones\n— Small business owners who want smart call filtering without hiring a developer\n— N8n users who want a working automation, not another tutorial to follow\n\nWhat's inside:\n— 9-node workflow (importable JSON) — plug it in, configure credentials, run it\n— Google Contacts integration built in — your saved contacts are the filter\n— SMS notification logic — only unknown numbers trigger an alert\n— Step-by-step setup guide — no guesswork on connections or node order\n\nNo subscriptions. No code required. Works with your existing n8n instance.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

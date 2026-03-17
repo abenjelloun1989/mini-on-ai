@@ -1,1 +1,554 @@
-{"posts": []}
+{
+  "posts": [
+    {
+      "post_id": "1kedw30",
+      "subreddit": "ClaudeAI",
+      "title": "Anyone else experimenting with creating academic didactic style images, have any suggestions?",
+      "body": "",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1kedw30/anyone_else_experimenting_with_creating_academic/",
+      "author": "W0to_1",
+      "found_at": "2026-03-17T21:20:49.686126+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Academic Didactic Image Generation Prompts",
+        "category": "prompt-packs",
+        "description": "A collection of specialized prompts for generating pedagogically-sound, academic-style educational illustrations and diagrams using Claude's vision capabilities.",
+        "tags": [
+          "education",
+          "image-generation",
+          "academic-content",
+          "visual-learning"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1k2p7qj",
+      "subreddit": "ClaudeAI",
+      "title": "Has anyone replicated Anthropic's Circuit Tracing Methodology?",
+      "body": "While a faithful representation is impossible for an independent researcher (don't have access to their models, or compute), but I am wondering if an attempt to use their approaches to open source models have been utilized.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1k2p7qj/has_anyone_replicated_anthropics_circuit_tracing/",
+      "author": "YungBoiSocrates",
+      "found_at": "2026-03-17T21:21:15.461303+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Circuit Tracing for Open Source Models",
+        "category": "mini-guide",
+        "description": "A practical guide teaching researchers how to adapt Anthropic's circuit tracing methodology to open source language models, with step-by-step instructions and reproducible examples.",
+        "tags": [
+          "mechanistic-interpretability",
+          "open-source-models",
+          "circuit-analysis",
+          "research-methodology"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1jv3uv6",
+      "subreddit": "ClaudeAI",
+      "title": "Has anyone used Claude or MCPs as their financial advisor?",
+      "body": "I usually need advice on simple investments, savings, which banks offer which rates and so on. I don't have a big enough net worth to consult a financial advisor + it is pretty expensive and intimidating. I am debating if I should upload some of my bank statements and so on to Claude. \n\nHas anyone done this and found good results? Or just hallucinations and so on?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1jv3uv6/has_anyone_used_claude_or_mcps_as_their_financial/",
+      "author": "mafiaboi77",
+      "found_at": "2026-03-17T21:21:25.975826+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Personal Finance Analysis with Claude",
+        "category": "prompt-packs",
+        "description": "A collection of specialized prompts that guide Claude to analyze bank statements, compare savings rates, and provide personalized investment guidance while highlighting limitations and risks.",
+        "tags": [
+          "finance",
+          "personal-banking",
+          "investment-guidance",
+          "financial-literacy"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1judhyd",
+      "subreddit": "ClaudeAI",
+      "title": "Has anyone successfully gotten a job stating they are proficient in AI Assisted coding?",
+      "body": "Things like coding roles or within new software companies, python heavy data analysis, or in bigger companies... do skills like knowing MCP Claude desktop, windsurf, Cursor etc actually wanted or good to have?\n\nThinking both in future terms or now... (asking for a friend lol)",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1judhyd/has_anyone_successfully_gotten_a_job_stating_they/",
+      "author": "sandwich_stevens",
+      "found_at": "2026-03-17T21:21:28.153127+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "AI-Assisted Coding Job Interview Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping developers demonstrate and articulate AI coding proficiency to employers, including how to showcase MCP/Cursor/Windsurf skills and position AI tools as job-relevant competencies.",
+        "tags": [
+          "career",
+          "ai-coding",
+          "job-interviews",
+          "skill-positioning"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1jnto4s",
+      "subreddit": "ClaudeAI",
+      "title": "Is anyone else having issues with Claude asking you if you want it to answer questions you just asked, even when prompted not to...?",
+      "body": "I'm tired of this. I'm trying to build a site, and it's almost like it's purposely wasting my chat limit... I explicitly request something, and it essentially goes in its response \"Oh, hey. Do you want me to answer that question you just had in the next reply?\" ...What?\n\nEven if I put in prompts asking it not to confirm, it still does, wasting responses. It also keeps giving me parts of code when I explicitly ask for the whole updated file as it was previously doing without issue. suddenly it's giving me 1/10 like that's the full file. Told me twice that it hit the message limit with barely anything in the message. It's connected to my github. What gives? Where's the rest? I'm making decent progress on my project and suddenly it's wasting my time.\n\nI understand in these images I wasn't jus",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1jnto4s/is_anyone_else_having_issues_with_claude_asking/",
+      "author": "IrishRepoMan",
+      "found_at": "2026-03-17T21:21:36.407842+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Claude System Prompts for Efficient Building",
+        "category": "prompt-packs",
+        "description": "A collection of pre-tested system prompts that eliminate Claude's confirmation-asking behavior and streamline code generation for web developers building sites efficiently.",
+        "tags": [
+          "claude-optimization",
+          "web-development",
+          "prompt-engineering",
+          "efficiency"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1kgpwlz",
+      "subreddit": "ClaudeAI",
+      "title": "I need a tool to enhance my every prompts, too lazy to type. Do you use one? give me a recommend.",
+      "body": "",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1kgpwlz/i_need_a_tool_to_enhance_my_every_prompts_too/",
+      "author": "Stv_L",
+      "found_at": "2026-03-17T21:21:40.387816+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Prompt Enhancement Framework & Templates",
+        "category": "prompt-packs",
+        "description": "A collection of meta-prompts and enhancement templates that automatically elevate any base prompt with better structure, clarity, and specificity without requiring manual rewriting.",
+        "tags": [
+          "prompt-enhancement",
+          "lazy-optimization",
+          "meta-prompts",
+          "productivity"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1j1oj6o",
+      "subreddit": "ClaudeAI",
+      "title": "Need help with creating a Master Project Builder Prompt",
+      "body": "AS the title says, I want to write a prompt where I just share my project idea with Claude along with some requirements that I can think of, and it needs to come up with the project features, step-by-step setup, folder structure, code, etc. I have recently come across with some people suggesting to ask it to create a PRD and a Mermaid Diagram for User Flow, but I am not too familiar with it.   \n  \nSo, looking for any good prompts that I can just simply copy paste into Claude along with my project idea and requirements and that would help me do the above.\n\n  \nThanks in advance.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1j1oj6o/need_help_with_creating_a_master_project_builder/",
+      "author": "Upstairs_Refuse_3521",
+      "found_at": "2026-03-17T21:21:47.253001+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 85,
+        "title": "Master Project Builder Prompt Pack",
+        "category": "prompt-packs",
+        "description": "A collection of specialized prompts that guide Claude through comprehensive project planning, including PRDs, architecture diagrams, folder structures, and implementation code from initial ideas to deployment.",
+        "tags": [
+          "project-planning",
+          "prd-generation",
+          "system-design",
+          "code-generation",
+          "mermaid-diagrams"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1j0o1xo",
+      "subreddit": "ClaudeAI",
+      "title": "Create a Parental Control app using Python with a nice UI (Blue grey) that is feature rich. We need a Server as the control board and the client side that does the monitoring. 5 prompts later I have a server with 4011 lines, and a client with 2892 lines that actually work.",
+      "body": "",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1j0o1xo/create_a_parental_control_app_using_python_with_a/",
+      "author": "Aelexi93",
+      "found_at": "2026-03-17T21:21:49.124721+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Parental Control App Claude Prompts",
+        "category": "prompt-packs",
+        "description": "A curated collection of 5+ Claude prompts that generate production-ready Python code for building feature-rich parental control applications with server-client architecture and modern UI.",
+        "tags": [
+          "python",
+          "parental-controls",
+          "full-stack",
+          "code-generation",
+          "ui-development"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1illknk",
+      "subreddit": "ClaudeAI",
+      "title": "I need a local model that would be the best to generate a prompt for an image generator, from a large text file.",
+      "body": "I am making, well Claude is, a py script that would take a large text and make a description for later user in an image generator. Right now I use Mistral Nemo it's not working great, What do you suggest.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1illknk/i_need_a_local_model_that_would_be_the_best_to/",
+      "author": "darkcard",
+      "found_at": "2026-03-17T21:21:51.117983+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Image Prompt Generation from Long Text",
+        "category": "claude-code-skill",
+        "description": "A Python skill pack that leverages Claude's API to transform large text documents into optimized, detailed prompts for image generators, replacing inferior local models.",
+        "tags": [
+          "image-generation",
+          "prompt-engineering",
+          "text-processing",
+          "python-automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ihl1yh",
+      "subreddit": "ClaudeAI",
+      "title": "ghostwriter needs help with better prompts",
+      "body": "",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1ihl1yh/ghostwriter_needs_help_with_better_prompts/",
+      "author": "soitgoes03",
+      "found_at": "2026-03-17T21:21:53.074282+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 75,
+        "title": "Ghostwriter Prompts for Better Client Work",
+        "category": "prompt-packs",
+        "description": "A collection of specialized prompts that help ghostwriters generate higher-quality, client-ready content by providing templates for different writing styles, genres, and revision workflows.",
+        "tags": [
+          "ghostwriting",
+          "writing",
+          "content-creation",
+          "client-work"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rwk11n",
+      "subreddit": "n8n",
+      "title": "My N8N workflow got too powerful so I turned it into a SaaS",
+      "body": "I think I can say for most editors, that being tasked with finding clips out of a long\n   form video is like being sent to hell\n                                                                                        \n  Especially if the content isn't all that interesting, you're forced to sit there, and \n  you can't relax, since a good opportunity for a clip might happen when you're not     \n  paying attention.                                                                     \n                                                                  \n  Since I just couldn't be asked to do this by hand anymore, or to pay Opus insane      \n  amounts of money to provide shit results, I took things upon myself and created\n  firstly, a prototype workflow in N8N, and secondly, a full-fledged SaaS that",
+      "url": "https://reddit.com/r/n8n/comments/1rwk11n/my_n8n_workflow_got_too_powerful_so_i_turned_it/",
+      "author": "Open_Box_60",
+      "found_at": "2026-03-17T21:42:50.886553+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "AI Video Clip Detection N8N Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that automatically detects and extracts engaging clip moments from long-form videos, saving editors hours of manual review time.",
+        "tags": [
+          "video-editing",
+          "automation",
+          "content-creation",
+          "ai-detection"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rwczys",
+      "subreddit": "n8n",
+      "title": "I got tired of manually calculating exchange rates from crumpled receipts. So I built a Telegram bot in n8n that does it for me.",
+      "body": "https://preview.redd.it/f0cwryeg3npg1.png?width=4824&amp;format=png&amp;auto=webp&amp;s=dfdf7f676ebccb6f604587a7a44f3a07d8487702\n\n👋 Hey everyone,\n\nI've been traveling a lot lately for client meetings, specifically outside the Eurozone (mostly the UK and US). Back at the office, my finance colleague runs our master budget strictly in EUR.\n\n# The Problem: The \"Pocket Trash\" Expense Report\n\nWhenever I buy a coffee in London or pay for a cab in New York, I shove the receipt in my pocket. Fast forward to the end of the month: I have a pile of faded, crumpled paper.\n\nNot only do I have to manually type all of these into a spreadsheet, but I also have to play the \"Exchange Rate Guessing Game.\" I literally find myself Googling *\"What was the GBP to EUR exchange rate on Tuesday the 14th?\"* just so",
+      "url": "https://reddit.com/r/n8n/comments/1rwczys/i_got_tired_of_manually_calculating_exchange/",
+      "author": "easybits_ai",
+      "found_at": "2026-03-17T21:42:53.000406+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 85,
+        "title": "Telegram Expense Bot n8n Template",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that connects Telegram to real-time exchange rate APIs, automatically converting foreign currency receipts to EUR and formatting expense reports for finance teams.",
+        "tags": [
+          "expense-management",
+          "telegram-integration",
+          "currency-conversion",
+          "automation",
+          "travel-finance"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rvh530",
+      "subreddit": "n8n",
+      "title": "Finally finished my \"InboxPilot\" – an AI triage engine that actually works.",
+      "body": "Got tired of a messy inbox, so I built this n8n workflow to handle the grunt work.\n\nIt polls my Gmail for unread messages, sends the content to Groq for sub-second classification, and then routes them through those IF nodes to auto-label everything (Billing, Newsletters, Urgent, etc.).\n\nThe best part is the last step...it doesn't just label them; it actually drafts a reply based on the context and saves it in my drafts folder so I just have to review and hit send.\n\nThe latency on Groq is insane for this. Happy to answer questions on the logic if anyone’s building something similar!...",
+      "url": "https://reddit.com/r/n8n/comments/1rvh530/finally_finished_my_inboxpilot_an_ai_triage/",
+      "author": "impromptu-guy",
+      "found_at": "2026-03-17T21:42:55.152148+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 92,
+        "title": "Gmail AI Triage Engine n8n Workflow",
+        "category": "n8n-template",
+        "description": "A complete n8n workflow template that automates email inbox management by using AI to classify messages, apply labels, and draft contextual replies, helping busy professionals reduce email overhead.",
+        "tags": [
+          "email-automation",
+          "ai-classification",
+          "gmail",
+          "groq-api",
+          "inbox-management"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ruf73n",
+      "subreddit": "n8n",
+      "title": "I automated 30 hours/month of manual sales work with a single weekly flow - I will Not promote",
+      "body": "I'm a sales lead at a content creation and ads management agency for brands.\n\nMy main target is companies that are already running ads. They know the game, they have the budget, and it's way easier to pitch against competitors when they already get what we do.\n\nHistorically the agency was purely inbound, and a few sales reps were doing outbound manually. Between sourcing and outreach, it was eating up roughly 1.5 hours a day per rep.\n\nThat's 7.5h/week, 30 hours a month. Per person.\n\nSo I built this automated flow that runs once a week and basically replaced all of that. Now the reps have more time to actually personalize their messages, and it also feeds our inbound strategy since the leads get retargeted with our content after being contacted. \n\nHas anyone built something similar or have",
+      "url": "https://reddit.com/r/n8n/comments/1ruf73n/i_automated_30_hoursmonth_of_manual_sales_work/",
+      "author": "SensitiveCold1662",
+      "found_at": "2026-03-17T21:42:59.698602+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "Sales Outreach Automation n8n Workflow",
+        "category": "n8n-template",
+        "description": "A production-ready n8n workflow that automates B2B sales prospecting and outreach for agencies targeting companies running ads, combining lead sourcing with personalized multi-channel outreach to eliminate manual work.",
+        "tags": [
+          "sales-automation",
+          "outreach",
+          "b2b",
+          "lead-generation",
+          "agencies"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rue8ua",
+      "subreddit": "n8n",
+      "title": "Instagram Messaging API error (#3) – “Application does not have the capability to make this API call”",
+      "body": "https://preview.redd.it/zlbn94d9p7pg1.png?width=1080&amp;format=png&amp;auto=webp&amp;s=b5acc155addd70f31f154f31ae87566418f8eda8\n\nhttps://preview.redd.it/vrti7qv9p7pg1.png?width=1080&amp;format=png&amp;auto=webp&amp;s=2c5e328139e1d9c8202c093a9786c3ff3bcb898a\n\n  \nHi everyone,\n\nI'm trying to send Instagram DMs using the Instagram Messaging API and I'm stuck with error **(#3) Application does not have the capability to make this API call**.\n\n**Setup:**\n\n* Instagram account is **Business**\n* Instagram account is **linked to a Facebook Page**\n* Messages to the **Facebook Page work fine via the Messenger API**\n\n**Permissions currently granted to the token:**\n\n* pages\\_show\\_list\n* pages\\_messaging\n* pages\\_manage\\_metadata\n* pages\\_read\\_engagement\n* pages\\_read\\_user\\_content\n* pages\\_utility\\_",
+      "url": "https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/",
+      "author": "AdSlight1867",
+      "found_at": "2026-03-17T21:43:01.816117+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 82,
+        "title": "Instagram Messaging API Setup Guide",
+        "category": "mini-guide",
+        "description": "Step-by-step troubleshooting guide for resolving Instagram Messaging API error #3 and permission issues in n8n workflows, helping developers properly configure app capabilities and authentication.",
+        "tags": [
+          "instagram-api",
+          "n8n",
+          "messaging-api",
+          "error-3",
+          "troubleshooting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ru89ad",
+      "subreddit": "n8n",
+      "title": "coding feels like 2050, debugging feels like 1999. i think the problem is the first cut is often wrong",
+      "body": "one thing i keep seeing in n8n workflows is that the hardest part is often not writing the flow.\n\nit is debugging the wrong part of the flow first.\n\nespecially once a workflow gets bigger, the first debug move often goes to the symptom instead of the broken layer. people tweak prompts, retry nodes, add extra guards, patch around outputs, or rewrite the wrong step, and the workflow gets noisier instead of cleaner.\n\nthat is the problem i have been trying to solve.\n\ni built **Problem Map 3.0**, a troubleshooting atlas for the first cut in AI debugging. in an n8n context, the idea is simple:\n\n**route first, repair second.**\n\nthis is not a full repair engine, and i am not claiming full root-cause closure. it is a routing layer first. the goal is to reduce wrong-path debugging when a complex wor",
+      "url": "https://reddit.com/r/n8n/comments/1ru89ad/coding_feels_like_2050_debugging_feels_like_1999/",
+      "author": "Over-Ad-6085",
+      "found_at": "2026-03-17T21:43:03.829791+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 78,
+        "title": "N8n Workflow Debugging Strategy Checklist",
+        "category": "checklist",
+        "description": "A systematic checklist that guides n8n users through root-cause debugging by identifying the broken layer first, preventing common mistakes like debugging symptoms instead of causes.",
+        "tags": [
+          "n8n",
+          "debugging",
+          "workflow-optimization",
+          "troubleshooting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rtsevb",
+      "subreddit": "n8n",
+      "title": "Anyone else tired of flying blind with n8n AI workflows? Building a \"Datadog/Sentry for n8n\" and want your thoughts.",
+      "body": "**Anyone else flying blind with n8n AI workflows? Building a “Datadog for n8n.”**\n\nI’ve been building a lot of AI agent workflows in n8n and observability is a nightmare.\n\nQuestions like:\n\n* Is an agent stuck in a loop burning tokens?\n* Which node is causing failures?\n* Are prompts quietly failing 20% of the time?\n\nI tried LangSmith, but it’s rough with n8n:\n\n* Hard to use on **n8n Cloud** (env var issues)\n* All traces go into one giant project\n* Hard to map traces back to specific visual nodes\n* Evals aren’t integrated into workflows\n\nSo I’m building a **plug-and-play n8n Community Node for AI observability**.\n\nIdea:\n\n* Drop the node after AI steps\n* Add API key\n* Get a dashboard with **token usage, latency, errors by workflow/node**, alerts for token bleed, and automatic output evals.\n\nW",
+      "url": "https://reddit.com/r/n8n/comments/1rtsevb/anyone_else_tired_of_flying_blind_with_n8n_ai/",
+      "author": "Soft_Statement_9725",
+      "found_at": "2026-03-17T21:43:06.721986+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n AI Workflow Observability Setup Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping n8n users implement monitoring, logging, and debugging strategies for AI agent workflows to catch token waste, failures, and performance issues.",
+        "tags": [
+          "n8n",
+          "AI workflows",
+          "observability",
+          "debugging",
+          "monitoring"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rsn90w",
+      "subreddit": "n8n",
+      "title": "[Help] MCP Client \"fetch failed\" connecting to local n8n MCP Server on Proxmox LXC",
+      "body": "# SOLVED\n\nHi everyone,\n\nI'm currently trying to get the MCP nodes to work on my self-hosted n8n instance. I'm trying to connect an MCP Client to an MCP Server hosted on the *exact same* n8n instance, but I keep hitting a wall.\n\nHoping someone with a similar Proxmox/LXC setup has figured this out!\n\n**My Setup:**\n\n* **Hosting:** Proxmox VE, running n8n inside an LXC container.\n* **Network:** Tailscale for external access (`n8n.taildXXXXX.ts.net`).\n* **n8n Version:** 2.11 (Self-hosted ).\n\n**The Scenario:**\n\n1. **Workflow A (The Server):** I created a custom MCP Server using the `MCP Server Trigger` node, connected to a Google Sheets tool to fetch some data. The workflow is Active and saved.\n2. **Workflow B (The Client):** I have an `AI Agent` node connected to an LLM (I tried both local Qwen",
+      "url": "https://reddit.com/r/n8n/comments/1rsn90w/help_mcp_client_fetch_failed_connecting_to_local/",
+      "author": "Hot_Presentation_218",
+      "found_at": "2026-03-17T21:43:08.885794+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n MCP Server Setup Guide",
+        "category": "mini-guide",
+        "description": "Step-by-step guide for configuring MCP Client-Server connections within self-hosted n8n instances, with specific solutions for Proxmox LXC and network isolation challenges.",
+        "tags": [
+          "n8n",
+          "MCP",
+          "self-hosted",
+          "Proxmox",
+          "troubleshooting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rs96jn",
+      "subreddit": "n8n",
+      "title": "N8N - fiiltering saved numbers",
+      "body": "Hey guys, my workflow sends sms to missed calls, however I am trying to filter out saved contacts so you don't spam everyone only unknown numbers not saved on the device. Has anyone had any luck with this? I have tried Google contacts, trying to avoid Google Sheets so we don't have to add excluded numbers manually. Any ideas are appreciated.",
+      "url": "https://reddit.com/r/n8n/comments/1rs96jn/n8n_fiiltering_saved_numbers/",
+      "author": "General-Leadership-7",
+      "found_at": "2026-03-17T21:43:11.262570+00:00",
+      "status": "built",
+      "brief": {
+        "score": 75,
+        "title": "N8N SMS Filter Unknown Contacts Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that filters incoming calls to identify unknown/unsaved contacts and sends SMS notifications only to numbers not in Google Contacts, eliminating manual exclusion lists.",
+        "tags": [
+          "n8n",
+          "sms-automation",
+          "call-filtering",
+          "google-contacts",
+          "unknown-caller"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": "n8n-n8n-sms-filter-unknown-contacts-workflow-20260317",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — N8N SMS Filter Unknown Contacts Workflow.\n\nA ready-to-use n8n workflow template that filters incoming calls to identify unknown/unsaved contacts and sends SMS notifications only to numbers not in Google Contacts, eliminating manual exclusion lists.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html\n\nHope it helps!",
+      "replied_at": null
+    },
+    {
+      "post_id": "1rrq0a9",
+      "subreddit": "n8n",
+      "title": "Building a 150+ Node AI Financial Assistant: 10 Key Learnings",
+      "body": "👋 Hey everyone,\n\nOver the last two weeks, I built a **158-node AI financial assistant** (I call him Milton). He handles document extraction, database routing, and contextual chat.\n\nBuilding at this scale taught me a lot about how to structure large n8n workflows and where AI **should – and shouldn’t – be used**. Here are the **10 biggest learnings** I took away from the project. I thought it would be valuable to share them with the community.\n\nThe workflow itself is still **under review**, but I’ll make sure to share it once it’s approved.\n\n# 1. Keyword Routing Beats AI Tool Selection\n\n**The Problem:**  \nWe initially tried using Gemini to decide which function to call based on user intent. It was unreliable, sometimes choosing the wrong tools, sometimes hallucinating tool names that didn’t",
+      "url": "https://reddit.com/r/n8n/comments/1rrq0a9/building_a_150_node_ai_financial_assistant_10_key/",
+      "author": "easybits_ai",
+      "found_at": "2026-03-17T21:43:12.983893+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 85,
+        "title": "158-Node AI Financial Assistant Blueprint",
+        "category": "n8n-template",
+        "description": "A production-ready n8n workflow template for building complex AI financial assistants with document extraction, database routing, and contextual chat capabilities at scale.",
+        "tags": [
+          "financial-automation",
+          "document-processing",
+          "ai-integration",
+          "large-workflows",
+          "enterprise-automation"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    }
+  ]
+}
