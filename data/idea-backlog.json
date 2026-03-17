@@ -3118,13 +3118,34 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rrzz4w/share_your_method_of_researching_workflow/",
-      "selected": true,
-      "status": "produced",
-      "product_id": "guide-n8n-production-ready-workflow-research-g-20260317",
+      "selected": false,
+      "status": null,
+      "product_id": null,
       "generated_at": "2026-03-17T22:53:48.132701+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rrzz4w",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rrzz4w/share_your_method_of_researching_workflow/"
+    },
+    {
+      "id": "idea-reddit-1rr73d6",
+      "title": "WhatsApp AI Agent Setup Guide",
+      "description": "A step-by-step guide helping users build a WhatsApp-connected AI agent that mimics their communication style using conversation history and automated responses.",
+      "category": "mini-guide",
+      "tags": [
+        "whatsapp-automation",
+        "ai-agents",
+        "personal-automation",
+        "n8n"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/automation: https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-whatsapp-ai-agent-setup-guide-20260317",
+      "generated_at": "2026-03-17T22:54:12.265683+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rr73d6",
+      "reddit_url": "https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/"
     }
   ]
 }

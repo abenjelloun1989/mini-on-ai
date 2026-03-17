@@ -613,7 +613,7 @@
       "url": "https://reddit.com/r/automation/comments/1rvxgc8/can_you_actually_automate_end_to_end_testing/",
       "author": "BOOMINATI-999",
       "found_at": "2026-03-17T22:25:44.959992+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "No-Code E2E Testing Reality Check Guide",
@@ -641,7 +641,7 @@
       "url": "https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/",
       "author": "Tasty_Reason_688",
       "found_at": "2026-03-17T22:25:46.787400+00:00",
-      "status": "building",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "WhatsApp AI Agent Setup Guide",
@@ -656,8 +656,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "guide-whatsapp-ai-agent-setup-guide-20260317",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — WhatsApp AI Agent Setup Guide.\n\nA step-by-step guide helping users build a WhatsApp-connected AI agent that mimics their communication style using conversation history and automated responses.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-whatsapp-ai-agent-setup-guide-20260317.html\n\nHope it helps!",
       "replied_at": null
     },
     {
