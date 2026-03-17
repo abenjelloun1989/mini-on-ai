@@ -407,8 +407,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": "n8n-n8n-sms-filter-unknown-contacts-workflow-20260317",
-      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — N8N SMS Filter Unknown Contacts Workflow.\n\nA ready-to-use n8n workflow template that filters incoming calls to identify unknown/unsaved contacts and sends SMS notifications only to numbers not in Google Contacts, eliminating manual exclusion lists.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html\n\nHope it helps!",
+      "product_id": "guide-instagram-messaging-api-setup-guide-20260317",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — Instagram Messaging API Setup Guide.\n\nStep-by-step troubleshooting guide for resolving Instagram Messaging API error #3 and permission issues in n8n workflows, helping developers properly configure app capabilities and authentication.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-instagram-messaging-api-setup-guide-20260317.html\n\nHope it helps!",
       "replied_at": null
     },
     {
