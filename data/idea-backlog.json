@@ -3139,13 +3139,34 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/automation: https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-whatsapp-ai-agent-setup-guide-20260317",
       "generated_at": "2026-03-17T22:54:12.265683+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rr73d6",
       "reddit_url": "https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/"
+    },
+    {
+      "id": "idea-reddit-1rsnv13",
+      "title": "AI Automation Agency Launch Playbook",
+      "description": "A step-by-step guide for beginners learning n8n who want to start and scale an AI automation agency, covering client acquisition, service offerings, and growth strategies.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "automation-agency",
+        "client-acquisition",
+        "scaling"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rsnv13/looking_for_help/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-ai-automation-agency-launch-playbook-20260318",
+      "generated_at": "2026-03-17T23:06:51.587417+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rsnv13",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rsnv13/looking_for_help/"
     }
   ]
 }

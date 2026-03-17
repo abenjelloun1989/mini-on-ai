@@ -821,6 +821,280 @@
       "product_id": "n8n-lead-qualifying-email-n8n-workflow-20260317",
       "reply_text": "Hey! I actually built a n8n workflow template for exactly this — Lead Qualifying & Email n8n Workflow.\n\nA ready-to-use n8n workflow template that automates lead qualification and sends personalized follow-up emails, helping sales teams save time on manual lead scoring and outreach.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-lead-qualifying-email-n8n-workflow-20260317.html\n\nHope it helps!",
       "replied_at": null
+    },
+    {
+      "post_id": "1rsnv13",
+      "subreddit": "n8n",
+      "title": "Looking for help",
+      "body": "Hey guys my names Krish and I’m really interested in the AI automation space and I’ve been learning n8n and other AI tools for a while now and I wanna build and scale an agency \n\nCan someone help me out when it comes to starting out , getting clients and scaling ?",
+      "url": "https://reddit.com/r/n8n/comments/1rsnv13/looking_for_help/",
+      "author": "Maximum_Climate4923",
+      "found_at": "2026-03-17T23:04:32.934070+00:00",
+      "status": "built",
+      "brief": {
+        "score": 72,
+        "title": "AI Automation Agency Launch Playbook",
+        "category": "mini-guide",
+        "description": "A step-by-step guide for beginners learning n8n who want to start and scale an AI automation agency, covering client acquisition, service offerings, and growth strategies.",
+        "tags": [
+          "n8n",
+          "automation-agency",
+          "client-acquisition",
+          "scaling"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": "guide-ai-automation-agency-launch-playbook-20260318",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — AI Automation Agency Launch Playbook.\n\nA step-by-step guide for beginners learning n8n who want to start and scale an AI automation agency, covering client acquisition, service offerings, and growth strategies.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-ai-automation-agency-launch-playbook-20260318.html\n\nHope it helps!",
+      "replied_at": null
+    },
+    {
+      "post_id": "1rsg6oa",
+      "subreddit": "n8n",
+      "title": "extract image and text from pdf, transcode image and merge them the text elements",
+      "body": "Hi,\n\nwould like to ask for some help of you guys.\n\nIm new to n8n and actually im trying to create a workflow that extracts images and text out of a pdf file, read the image and merge the text, create arrays based on regex and then save all data in a csv file.\n\nI could get most of it to work fine, only the image extraction brings me headache.\n\nI dont get it how i can extragt the icons and transcode them into text.\n\n  \n**Workflow Idea how i tried:**\n\nRead an directory and parse alle .eml files, extract text and attachments. (already working)\n\n(\\*\\*Problem is here\\*\\*)Give the output into an ai-agent, looking for categories  2.1, 8.1 and 14, there should be some icons that i want to extract and transcode. (Transcoding is the next step i dont know how to do, maybe i need a legend where i have",
+      "url": "https://reddit.com/r/n8n/comments/1rsg6oa/extract_image_and_text_from_pdf_transcode_image/",
+      "author": "traillight8015",
+      "found_at": "2026-03-17T23:04:36.344805+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "PDF Image & Text Extraction n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that extracts images and text from PDFs, transcodes images, merges text elements with regex-based arrays, and exports results to CSV.",
+        "tags": [
+          "pdf-processing",
+          "image-extraction",
+          "data-extraction",
+          "n8n-workflow"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rv6yow",
+      "subreddit": "n8n",
+      "title": "Need someone who can scrape decision makers name and email.",
+      "body": "I will give you list which contains thousand of data. Header - Company name, google map location url, website and some more details like address, phone number, zip.\n\nLinkedIn - [www.linkedin.com/in/dilipkaravadara](http://www.linkedin.com/in/dilipkaravadara)",
+      "url": "https://reddit.com/r/n8n/comments/1rv6yow/need_someone_who_can_scrape_decision_makers_name/",
+      "author": "pinnakle_media",
+      "found_at": "2026-03-17T23:04:38.496551+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "LinkedIn Decision Maker Scraper n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that extracts decision maker names and emails from company data (company name, website, map URL, address, phone) by enriching records with LinkedIn and email lookup integrations.",
+        "tags": [
+          "lead-generation",
+          "linkedin-scraping",
+          "email-enrichment",
+          "decision-makers",
+          "b2b-sales"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rpvqcg",
+      "subreddit": "automation",
+      "title": "Help For A Non-Technical Newbie?",
+      "body": "I’ve been creeping in this sub for awhile now and I’m finally ready to dedicate some meaningful time to creating my first automation - so thanks for the inspiration!\n\nI’m trying to build a simple lead capture: email &gt; CRM entry &gt; team member assignment funneling. Problem is I am 100% non-technical. Not a Luddite by any stretch but I don’t code. Like at all. \n\nCan someone point me in the right direction as to where to start? The CRM has a Zapier tool so should I start there?  Can ChatGPT or Claude help walk me through creating an automation? Is there a vibe code-type automation tool that I haven’t found? Should I download n8n or Zapier and just start tinkering? Is it even worth it to try to learn or should I look up someone who can build it for me faster?\n\nAny guidance would be great!",
+      "url": "https://reddit.com/r/automation/comments/1rpvqcg/help_for_a_nontechnical_newbie/",
+      "author": "acefields23",
+      "found_at": "2026-03-17T23:04:46.155616+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 78,
+        "title": "Non-Technical Lead Capture Automation Setup",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow template that captures emails, creates CRM entries, and assigns leads to team members—requiring zero coding knowledge to implement.",
+        "tags": [
+          "lead-capture",
+          "CRM",
+          "automation-for-beginners",
+          "email-integration"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rquet5",
+      "subreddit": "n8n",
+      "title": "How to find startups for inviting them in our startup showcase event of University",
+      "body": "I'm working as a secretary of Entrepreneurship Development Cell committee, I want to invite 50+ startups in our college to showcase their startup, they will get brand visibility as we're having more than 200k+ views on insta with 4k+ followers, they can hire the interns from college itself, as well as they'll get investments from the investors.. How can I contact or reach our with thousands of startups from Pune, India?\nDid anyone built any automation which can find the details of startups/ founders from Pune adding them in Google sheets / notion with columns like startup name, founder name, email, linkdin profile, (contect number if possible). Then agent will send auto email to each startups with personalized msg.. Or it will send dm on LinkedIn\nWhat you guess suggest? Which method will b",
+      "url": "https://reddit.com/r/n8n/comments/1rquet5/how_to_find_startups_for_inviting_them_in_our/",
+      "author": "RiseAlternative15",
+      "found_at": "2026-03-17T23:04:50.084108+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Startup Outreach & Recruitment Campaign Kit",
+        "category": "swipe-file",
+        "description": "Provides ready-to-use email templates, LinkedIn messaging frameworks, and outreach sequences for contacting startups about events, partnerships, or recruitment opportunities at scale.",
+        "tags": [
+          "startup-recruitment",
+          "outreach-templates",
+          "event-marketing",
+          "b2b-communication"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rw3h0r",
+      "subreddit": "n8n",
+      "title": "AI automations can be cool when you start making $12k recurring profits and keep delivering new automations.",
+      "body": "I'm not some agency owner running a six-figure operation but just a solo AI automation engineer.... I made $23K selling AI automations in 7 months, but I almost quit after month three because I kept making the same stupid mistake. I'm just someone who finally figured out why clients were ghosting me after delivery. Here's the one thing that actually separates automations that stick from ones that get abandoned... solve the pain they complain about out loud, not the inefficiency you can see.\n\nMost people build automations around what they notice. You walk into a business, spot ten obvious inefficiencies, pick the most impressive one to fix, and deliver something genuinely useful. Except the client doesn't care. Because you solved a problem they'd already mentally accepted. I learned this th",
+      "url": "https://reddit.com/r/n8n/comments/1rw3h0r/ai_automations_can_be_cool_when_you_start_making/",
+      "author": "Top-Bar3898",
+      "found_at": "2026-03-17T23:04:58.995636+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Client Retention Checklist for AI Automations",
+        "category": "checklist",
+        "description": "A checklist that helps solo automation engineers identify and fix the common mistakes that cause clients to ghost after delivery, based on patterns from successful automation sales.",
+        "tags": [
+          "ai-automation",
+          "client-retention",
+          "delivery-mistakes",
+          "solo-engineer"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rt6gq1",
+      "subreddit": "n8n",
+      "title": "Is automation and AI automation actually capable of making money?",
+      "body": "As someone currently strengthening my skills in n8n and looking to potentially go into AI automation, I'm curious if this is actually a valid skill/business model that has the potential to make money or is it just influencer and guru hype?\n\nTo be more specific when I say AI automation, I mean creating workflows with elements of AI in them, that can help solve repetitive tasks for business and reduce manual tasks internally. Not just selling templates but finding clients implementing custom workflows for their specific problems/repetitive tasks, integrates into their software and current workflow and processes.   \n  \nAlso when I say \"make money\" I know that 1. It's possible to make money with lots of things if you try hard enough and are smart enough and 2. It's not a get rich quick scheme,",
+      "url": "https://reddit.com/r/n8n/comments/1rt6gq1/is_automation_and_ai_automation_actually_capable/",
+      "author": "Cool_Violinist_7092",
+      "found_at": "2026-03-17T23:05:01.112679+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Automation Business Model Validation Guide",
+        "category": "mini-guide",
+        "description": "A practical guide showing real-world examples, revenue models, and case studies that prove AI automation is a legitimate business, helping aspiring automation professionals validate the opportunity and understand how to position themselves.",
+        "tags": [
+          "ai-automation",
+          "n8n",
+          "business-model",
+          "income-validation",
+          "workflow-automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rw1msp",
+      "subreddit": "automation",
+      "title": "Which AI automation tools are people actually using day to day in 2026?",
+      "body": "It feels like every company right now claims to be the AI automation platform.\n\n  \nBut I’m honestly struggling to figure out which tools are actually running in production vs sitting in a pilot that never made it past a demo.\n\n  \nA lot of tools sound amazing until you try to:\n\n  \n• run them on real systems\n\n• maintain them over time\n\n• hand them off to a team that didn’t build the workflow\n\n  \nFrom a QA perspective, reliability matters way more than novelty. I’d rather use something boring that runs consistently than something flashy that needs constant fixing.\n\n  \nAfter a few months of testing different options, here’s roughly where we landed.\n\n  \nZapier and Make are still our default for anything with clean APIs.\n\nIf it’s straightforward workflow automation, they’re hard to beat.\n\n  \nFor",
+      "url": "https://reddit.com/r/automation/comments/1rw1msp/which_ai_automation_tools_are_people_actually/",
+      "author": "resbeefspat",
+      "found_at": "2026-03-17T23:05:10.224703+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Automation Production Readiness Checklist",
+        "category": "checklist",
+        "description": "A checklist helping teams evaluate whether their AI automation workflows are production-ready, maintainable, and handoff-friendly across real systems and teams.",
+        "tags": [
+          "automation",
+          "production-readiness",
+          "team-handoff",
+          "workflow-maintenance"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rq4hx6",
+      "subreddit": "n8n",
+      "title": "Can I Build an AI Agent to Watch and Summarize My Saved Instagram Reels?",
+      "body": "There's the big problem which I face in my life is, I have various saved folders in my Instagram and each of them having more than 300+ reels.. One folder is there, where I store alm the things related to new technologies, ai tools, repositories and various tech related things it's having more than 800+ reels which is pending to watch.. if I watch them manually it will take my lots of time and efforts. So what if there can be a AI automation which can help me solve this problem?\nThe architecture which I'm expecting is:\n1. Ai agent will read my reels one by one\n2. It will copy the URL of Instagram reel\n3. Paste the URL to any LLM or any tool which can transcribe the reel. \n4. Once done with transcription it will generate key points from that reel.. like if that content creator tells any ext",
+      "url": "https://reddit.com/r/n8n/comments/1rq4hx6/can_i_build_an_ai_agent_to_watch_and_summarize_my/",
+      "author": "RiseAlternative15",
+      "found_at": "2026-03-17T23:05:12.208928+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "Instagram Reels Batch Summarizer n8n Workflow",
+        "category": "n8n-template",
+        "description": "An n8n workflow that automates downloading, extracting, and summarizing saved Instagram reels from folders, turning hours of manual review into minutes of AI-generated summaries.",
+        "tags": [
+          "instagram",
+          "automation",
+          "summarization",
+          "ai",
+          "time-saving"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rsohoq",
+      "subreddit": "n8n",
+      "title": "I can build AI automation, can't sell it. Looking for someone who's the opposite.",
+      "body": "Been building AI automation for about 2 years now. \n\nTargeting small businesses — RAG agents, AI voice agents, lead follow-up automations, workflow buildouts — think dental offices, HVAC companies, parts distributors, that kind of thing. in the US but honestly most of this is remote anyway.\n\nMy background is technical. I'm strong on the build side — n8n, Vapi, and the broader automation stack. I can take a business problem and turn it into a working solution fast. What I'm not is a salesperson. I don't have any experience in cold outreach, nor at getting in front of business owners, and for now I'd rather be building than being on a discovery call.\n\nLooking for someone who's genuinely strong on the sales side and doesn't want to deal with scoping builds or staring at a workflow canvas.\n\nNo",
+      "url": "https://reddit.com/r/n8n/comments/1rsohoq/i_can_build_ai_automation_cant_sell_it_looking/",
+      "author": "alhassan_almaznaei",
+      "found_at": "2026-03-17T23:05:16.886127+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Small Business AI Automation Sales Playbook",
+        "category": "mini-guide",
+        "description": "A go-to-market guide that teaches technical builders how to position, pitch, and sell AI automation solutions to small businesses like dental offices and HVAC companies.",
+        "tags": [
+          "sales",
+          "positioning",
+          "small-business",
+          "go-to-market",
+          "technical-founder"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }
