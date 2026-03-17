@@ -6,17 +6,14 @@ Persistent Telegram bot that listens for commands and controls the factory.
 Run as a background service (see docs/launchd-setup.md).
 
 Commands:
-  /help     — show available commands
-  /status   — last pipeline run + product count
-  /products — list all published products
-  /ideas    — show top scored ideas in backlog
-  /run      — trigger pipeline (optional: /run marketing)
-  /run all  — run pipeline 4x with preset seeds
-  /go       — approve pending idea (or tap button in chat)
-  /nogo     — reject pending idea (or tap button in chat)
-  /holdon        — pause the pipeline daemon
-  /resume        — resume the pipeline daemon
-  /projectphases — show project roadmap and current phase
+  /run      — generate a new product (e.g. /run marketing)
+  /reddit   — scan Reddit, propose up to 10 products
+  /go       — approve pending idea → build it
+  /skip     — skip pending idea
+  /pause    — pause the factory daemon
+  /resume   — resume the factory daemon
+  /status   — last run, product count, API costs
+  /products — all published products with links
 """
 
 import json
@@ -170,38 +167,6 @@ def cmd_seturl(args: str) -> str:
         return f"❌ Unexpected error: {e}"
 
 
-def cmd_projectphases() -> str:
-    try:
-        catalog = read_json("data/product-catalog.json")
-        product_count = len(catalog.get("products", []))
-    except Exception:
-        product_count = 0
-
-    return (
-        "🗺 <b>Project Phases</b>\n\n"
-        "✅ <b>V1 — Core Pipeline</b>\n"
-        "   trend-scan → rank → generate → package → site\n\n"
-        "✅ <b>V2 — Live Factory</b>\n"
-        "   GitHub Pages • Telegram approval gate\n"
-        "   Continuous daemon • License + README\n\n"
-        "✅ <b>M12 — Real Trend Scanning</b>\n"
-        "   Google Trends rising queries feed idea generation\n\n"
-        "✅ <b>M13 — Multi-Category Products</b>\n"
-        "   Checklists, swipe files, mini-guides, n8n templates\n\n"
-        "✅ <b>M11 — Gumroad Publisher</b>\n"
-        "   New products → Telegram notify + /seturl flow\n"
-        "   Existing products → auto-update via API\n\n"
-        f"📦 <b>Current:</b> {product_count} product{'s' if product_count != 1 else ''} published\n\n"
-        "─────────────────────\n\n"
-        "🔜 <b>M11B — Reddit Distribution</b>\n"
-        "   Auto-post to relevant subreddits after publish\n\n"
-        "🔜 <b>M14 — Analytics</b>\n"
-        "   Track clicks — feed best performers back\n"
-        "   into idea scoring\n\n"
-        "🔜 <b>M15 — Email List</b>\n"
-        "   Capture audience you own (Beehiiv / Kit embed)"
-    )
-
 
 def cmd_categories() -> str:
     lines = ["🗂 <b>Product Categories</b>\n"]
@@ -217,22 +182,14 @@ def cmd_categories() -> str:
 def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
-        "/status — last run + product count\n"
-        "/products — list published products\n"
-        "/ideas — top ideas in backlog\n"
-        "/categories — list product types you can generate\n"
-        "/run — trigger pipeline now\n"
-        "/run [seed] — e.g. /run marketing\n"
-        "/run [category] — e.g. /run checklist\n"
-        "/run [seed] [category] — e.g. /run freelancing swipe-file\n"
-        "/run all — run 4 seeds in sequence\n"
-        "/go — approve pending idea\n"
-        "/nogo — reject pending idea\n"
-        "/holdon — pause the pipeline\n"
-        "/resume — resume the pipeline\n"
-        "/seturl {id} {url} — link Gumroad URL to a product\n"
-        "/projectphases — roadmap and current phase\n"
-        "/help — show this message"
+        "/run — Generate a new product  (e.g. /run marketing)\n"
+        "/reddit — Scan Reddit, propose up to 10 products\n"
+        "/go — Approve pending idea → build it\n"
+        "/skip — Skip pending idea\n"
+        "/pause — Pause the factory\n"
+        "/resume — Resume the factory\n"
+        "/status — Last run, products count, API costs\n"
+        "/products — All published products with links"
     )
 
 
@@ -353,6 +310,16 @@ def cmd_ideas() -> str:
         return f"❌ Error reading backlog: {e}"
 
 
+def _skip_reddit_post(post_id: str) -> None:
+    """Mark a Reddit queue post as skipped."""
+    queue = read_json("data/reddit-queue.json")
+    for p in queue.get("posts", []):
+        if p["post_id"] == post_id:
+            p["status"] = "skipped"
+            break
+    write_json("data/reddit-queue.json", queue)
+
+
 def run_pipeline_bg(seed: str = "", category: str = "") -> None:
     """Run pipeline in background subprocess."""
     cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py")]
@@ -386,10 +353,7 @@ def handle_command(text: str) -> str:
     if lower == "/ideas":
         return cmd_ideas()
 
-    if lower == "/projectphases":
-        return cmd_projectphases()
-
-    if lower == "/holdon":
+    if lower == "/pause" or lower == "/holdon":
         return set_daemon_paused(True)
 
     if lower == "/resume":
@@ -398,8 +362,17 @@ def handle_command(text: str) -> str:
     if lower == "/go":
         return handle_approval("approved")
 
-    if lower == "/nogo" or lower == "/no":
+    if lower == "/skip" or lower == "/nogo" or lower == "/no":
         return handle_approval("rejected")
+
+    if lower == "/reddit":
+        subprocess.Popen(
+            [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-mode"],
+            cwd=str(ROOT),
+            stdout=open(ROOT / "logs/pipeline.log", "a"),
+            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+        )
+        return "🔍 Scanning Reddit for needs… candidates will arrive shortly."
 
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()
@@ -475,7 +448,9 @@ def main():
                 cq_data = callback_query.get("data", "")
                 log("bot", f"Callback query: data={cq_data} from={cq_chat_id}")
 
-                if cq_chat_id == str(CHAT_ID) and cq_data.startswith("approval:"):
+                if cq_chat_id != str(CHAT_ID):
+                    log("bot", f"Callback ignored: chat_id mismatch")
+                elif cq_data.startswith("approval:"):
                     decision = "approved" if cq_data == "approval:go" else "rejected"
                     log("bot", f"Approval decision: {decision}")
                     reply = handle_approval(decision)
@@ -484,8 +459,31 @@ def main():
                     except Exception:
                         pass
                     send(reply, cq_chat_id)
+                elif cq_data.startswith("reddit:build:"):
+                    post_id = cq_data.split(":", 2)[2]
+                    log("bot", f"Reddit build requested: {post_id}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    send("⏳ Building product for Reddit post…", cq_chat_id)
+                    subprocess.Popen(
+                        [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-build", post_id],
+                        cwd=str(ROOT),
+                        stdout=open(ROOT / "logs/pipeline.log", "a"),
+                        stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+                    )
+                elif cq_data.startswith("reddit:skip:"):
+                    post_id = cq_data.split(":", 2)[2]
+                    log("bot", f"Reddit skip: {post_id}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    _skip_reddit_post(post_id)
+                    send("⏭ Skipped.", cq_chat_id)
                 else:
-                    log("bot", f"Callback ignored: chat_id mismatch or unknown data")
+                    log("bot", f"Callback ignored: unknown data={cq_data}")
                 continue
 
             # Handle text commands

@@ -284,9 +284,19 @@ def main():
     parser.add_argument("--seed", default="", help="Keyword to seed the trend scan")
     parser.add_argument("--skip-scan", action="store_true", help="Skip trend scan, use existing backlog")
     parser.add_argument("--category", default="", help="Focus generation on a specific category (e.g. checklist, swipe-file)")
+    parser.add_argument("--reddit-mode", action="store_true", help="Scan Reddit for needs and send approval batch to Telegram")
+    parser.add_argument("--reddit-build", metavar="POST_ID", help="Build product for a Reddit post from the queue")
+    parser.add_argument("--reddit-dry-run", action="store_true", help="Scan Reddit and print candidates without saving")
     args = parser.parse_args()
 
-    run_pipeline(seed=args.seed, skip_scan=args.skip_scan, category=args.category)
+    if args.reddit_mode or args.reddit_dry_run or args.reddit_build:
+        from reddit_pipeline import reddit_pipeline, build_for_post
+        if args.reddit_build:
+            build_for_post(args.reddit_build)
+        else:
+            reddit_pipeline(dry_run=args.reddit_dry_run)
+    else:
+        run_pipeline(seed=args.seed, skip_scan=args.skip_scan, category=args.category)
 
 
 if __name__ == "__main__":
