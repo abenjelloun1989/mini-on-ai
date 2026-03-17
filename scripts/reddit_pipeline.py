@@ -66,6 +66,9 @@ def build_for_post(post_id: str):
 
     # Inject into idea-backlog so generate_product can pick it up
     backlog = read_json("data/idea-backlog.json")
+    # Clear any previously-selected ideas so generate_product picks THIS one
+    for existing in backlog.get("ideas", []):
+        existing["selected"] = False
     idea = {
         "id": f"idea-reddit-{post_id}",
         "title": brief.get("title", post_entry["title"]),
