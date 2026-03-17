@@ -183,7 +183,7 @@ def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
         "/run — Generate a new product  (e.g. /run marketing)\n"
-        "/reddit — Scan Reddit, propose up to 10 products\n"
+        "/reddit — Scan Reddit, propose up to 10 products  (e.g. /reddit n8n)\n"
         "/go — Approve pending idea → build it\n"
         "/skip — Skip pending idea\n"
         "/pause — Pause the factory\n"
@@ -365,14 +365,19 @@ def handle_command(text: str) -> str:
     if lower == "/skip" or lower == "/nogo" or lower == "/no":
         return handle_approval("rejected")
 
-    if lower == "/reddit":
+    if lower == "/reddit" or lower.startswith("/reddit "):
+        sub_arg = text[len("/reddit"):].strip()
+        cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-mode"]
+        if sub_arg:
+            cmd += ["--reddit-subreddit", sub_arg]
         subprocess.Popen(
-            [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-mode"],
+            cmd,
             cwd=str(ROOT),
             stdout=open(ROOT / "logs/pipeline.log", "a"),
             stderr=open(ROOT / "logs/pipeline-error.log", "a"),
         )
-        return "🔍 Scanning Reddit for needs… candidates will arrive shortly."
+        note = f" (r/{sub_arg})" if sub_arg else ""
+        return f"🔍 Scanning Reddit{note} for needs… candidates will arrive shortly."
 
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()

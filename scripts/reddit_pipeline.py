@@ -30,9 +30,10 @@ from update_site import update_site
 from telegram_notify import send_reddit_approval, send_reddit_built
 
 
-def _get_subreddits() -> list:
-    subs_env = os.getenv("REDDIT_SUBREDDITS", "ClaudeAI,ChatGPT,productivity,freelance,marketing")
-    return [s.strip() for s in subs_env.split(",") if s.strip()]
+def _get_subreddits(override: str = "") -> list:
+    from reddit_scan import DEFAULT_SUBREDDITS
+    raw = override or os.getenv("REDDIT_SUBREDDITS", DEFAULT_SUBREDDITS)
+    return [s.strip() for s in raw.split(",") if s.strip()]
 
 
 def _update_queue_post(post_id: str, **updates):
@@ -183,9 +184,9 @@ def _compose_reply(post_entry: dict, meta: dict, product_url: str) -> str:
     )
 
 
-def reddit_pipeline(dry_run: bool = False):
+def reddit_pipeline(dry_run: bool = False, subreddit: str = ""):
     """Main entry: scan subreddits, assess, send Telegram batch."""
-    subreddits = _get_subreddits()
+    subreddits = _get_subreddits(override=subreddit)
     log("reddit-pipeline", f"Starting Reddit demand scan on: {', '.join(subreddits)}")
 
     candidates = run_scan(subreddits, max_candidates=10, dry_run=dry_run)

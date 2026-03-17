@@ -287,6 +287,7 @@ def main():
     parser.add_argument("--reddit-mode", action="store_true", help="Scan Reddit for needs and send approval batch to Telegram")
     parser.add_argument("--reddit-build", metavar="POST_ID", help="Build product for a Reddit post from the queue")
     parser.add_argument("--reddit-dry-run", action="store_true", help="Scan Reddit and print candidates without saving")
+    parser.add_argument("--reddit-subreddit", default="", help="Single subreddit to scan (overrides REDDIT_SUBREDDITS)")
     args = parser.parse_args()
 
     if args.reddit_mode or args.reddit_dry_run or args.reddit_build:
@@ -294,7 +295,7 @@ def main():
         if args.reddit_build:
             build_for_post(args.reddit_build)
         else:
-            reddit_pipeline(dry_run=args.reddit_dry_run)
+            reddit_pipeline(dry_run=args.reddit_dry_run, subreddit=args.reddit_subreddit)
     else:
         run_pipeline(seed=args.seed, skip_scan=args.skip_scan, category=args.category)
 

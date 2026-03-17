@@ -29,8 +29,9 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 import anthropic
 from lib.utils import read_json, write_json, timestamp, log, ROOT
 
-# Base URL for pullpush.io — free Reddit archive, no auth required
-PULLPUSH_BASE = "https://api.pullpush.io/reddit/search/submission"
+# Reddit public JSON API — no auth required, just a descriptive User-Agent
+REDDIT_SEARCH_BASE = "https://www.reddit.com/r/{subreddit}/search.json"
+REDDIT_USER_AGENT = "mini-on-ai-scanner/1.0 (contact: scanner@mini-on-ai.com)"
 
 # ---------------------------------------------------------------------------
 # Categories the existing pipeline can build today
@@ -40,26 +41,39 @@ BUILDABLE_CATEGORIES = {
     "n8n-template", "claude-code-skill",
 }
 
-def _pullpush_search(subreddit: str, title_keyword: str, size: int = 25) -> list:
-    """Search pullpush.io for posts matching a title keyword in a single subreddit."""
+def _reddit_search(subreddit: str, keyword: str, size: int = 25) -> list:
+    """Search Reddit for posts matching a keyword in a single subreddit (last week)."""
     params = urllib.parse.urlencode({
-        "subreddit": subreddit,
-        "title": title_keyword,
-        "size": size,
-        "sort": "desc",
-        "sort_type": "created_utc",
+        "q": keyword,
+        "restrict_sr": 1,
+        "sort": "new",
+        "t": "week",
+        "limit": size,
     })
-    url = f"{PULLPUSH_BASE}/?{params}"
-    req = urllib.request.Request(url, headers={"User-Agent": "mini-on-ai-scanner/1.0"})
+    url = REDDIT_SEARCH_BASE.format(subreddit=subreddit) + f"?{params}"
+    req = urllib.request.Request(url, headers={"User-Agent": REDDIT_USER_AGENT})
     with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.loads(resp.read().decode("utf-8")).get("data", [])
+        children = json.loads(resp.read().decode("utf-8")).get("data", {}).get("children", [])
+    return [c["data"] for c in children if c.get("kind") == "t3"]
 
 
-def reddit_scan(subreddits: list, limit: int = 100) -> list:
+DEFAULT_SUBREDDITS = (
+    "n8n,automation,nocode,zapier,MakeNoCode,"
+    "freelance,Entrepreneur,smallbusiness,"
+    "productivity,ADHD,selfimprovement,LifeProTips,"
+    "writing,blogging,freelanceWriters,"
+    "learnprogramming,webdev,SideProject"
+)
+
+
+def reddit_scan(subreddits: list, limit: int = 100, max_age_days: int = 14) -> list:
     """
     Scan subreddits for posts expressing a need via pullpush.io.
     Runs multiple keyword searches per subreddit, deduplicates, and returns matches.
+    Only returns posts from the last max_age_days days.
     """
+    after = int(time.time()) - max_age_days * 86400
+
     # Load already-seen post IDs
     queue = read_json("data/reddit-queue.json")
     seen_ids = {p["post_id"] for p in queue.get("posts", [])}
@@ -90,15 +104,18 @@ def reddit_scan(subreddits: list, limit: int = 100) -> list:
             if len(candidates) >= limit:
                 break
             try:
-                posts = _pullpush_search(sub, keyword, size=25)
+                posts = _reddit_search(sub, keyword, size=25)
             except Exception as e:
-                log("reddit-scan", f"Warning: pullpush failed r/{sub} '{keyword}': {e}")
+                log("reddit-scan", f"Warning: Reddit search failed r/{sub} '{keyword}': {e}")
                 time.sleep(2)
                 continue
 
             for post in posts:
                 post_id = post.get("id", "")
                 if not post_id or post_id in seen_ids or post_id in seen_in_run:
+                    continue
+                # Skip posts older than max_age_days
+                if post.get("created_utc", 0) < after:
                     continue
                 seen_in_run.add(post_id)
 
@@ -121,7 +138,7 @@ def reddit_scan(subreddits: list, limit: int = 100) -> list:
 
             time.sleep(0.5)  # polite delay between API calls
 
-    log("reddit-scan", f"Found {len(candidates)} unique candidate posts across {len(subreddits)} subreddits")
+    log("reddit-scan", f"Found {len(candidates)} unique candidate posts (last {max_age_days}d) across {len(subreddits)} subreddits")
     return candidates
 
 
@@ -198,12 +215,12 @@ def _gen_build_prompt(post: dict, brief: dict) -> str:
     )
 
 
-def run_scan(subreddits: list, max_candidates: int = 10, dry_run: bool = False) -> list:
+def run_scan(subreddits: list, max_candidates: int = 10, dry_run: bool = False, max_age_days: int = 14) -> list:
     """
     Full scan + assess loop. Returns list of (post, brief) tuples for assessed candidates.
     If dry_run=True, prints results and does not save to queue.
     """
-    posts = reddit_scan(subreddits, limit=100)
+    posts = reddit_scan(subreddits, limit=100, max_age_days=max_age_days)
 
     results = []
     for post in posts:
@@ -262,14 +279,15 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print results without saving")
     parser.add_argument("--subreddits", default="", help="Comma-separated list (overrides .env)")
     parser.add_argument("--max", type=int, default=10, help="Max candidates to keep (default 10)")
+    parser.add_argument("--max-age", type=int, default=14, help="Max post age in days (default 14)")
     args = parser.parse_args()
 
-    subs_env = os.getenv("REDDIT_SUBREDDITS", "ClaudeAI,ChatGPT,productivity,freelance,marketing")
+    subs_env = os.getenv("REDDIT_SUBREDDITS", DEFAULT_SUBREDDITS)
     subs_raw = args.subreddits if args.subreddits else subs_env
     subreddits = [s.strip() for s in subs_raw.split(",") if s.strip()]
 
-    log("reddit-scan", f"Subreddits: {', '.join(subreddits)}")
-    run_scan(subreddits, max_candidates=args.max, dry_run=args.dry_run)
+    log("reddit-scan", f"Subreddits: {', '.join(subreddits)} | max age: {args.max_age}d")
+    run_scan(subreddits, max_candidates=args.max, dry_run=args.dry_run, max_age_days=args.max_age)
 
 
 if __name__ == "__main__":
