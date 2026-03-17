@@ -16,7 +16,7 @@
   "site_path": "site/products/n8n-pdf-image-text-extraction-n8n-workflow-20260318.html",
   "thumbnail": null,
   "price": null,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
+  "gumroad_product_id": "ddddd",
+  "gumroad_url": "https://minionai.gumroad.com/l/ddddd",
   "gumroad_description": "Manually pulling text and images out of PDFs is tedious, error-prone, and doesn't scale.\n\nThis n8n workflow does it for you — automatically.\n\n---\n\nWho this is for:\n\n— Developers processing invoice, report, or contract PDFs at volume\n— Ops teams extracting structured data from PDFs without writing custom scripts\n— Automation builders who want a working foundation, not a blank canvas\n\n---\n\nWhat's inside:\n\n— 10-node n8n workflow that handles the full pipeline, start to finish\n— Automatic image extraction with transcoding so files are ready to use\n— Regex-based array merging that keeps your text data clean and structured\n— CSV export built in, so results go somewhere useful immediately\n— Importable JSON file — drop it into n8n and run it\n— Plain-English setup guide so you're not guessing at configuration\n\n---\n\nNo duct tape. No half-finished logic. Just a workflow you can import, configure, and put to work.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
