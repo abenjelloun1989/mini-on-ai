@@ -3011,13 +3011,34 @@
       ],
       "score": 82,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-instagram-messaging-api-setup-guide-20260317",
       "generated_at": "2026-03-17T22:08:43.701960+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rue8ua",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/"
+    },
+    {
+      "id": "idea-reddit-1rqad8t",
+      "title": "n8n Starter Guide for Zapier Users",
+      "description": "A practical guide helping Zapier/Make.com users transition to n8n by mapping their existing knowledge to n8n concepts and showing what core features to learn first before taking on client projects.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "automation",
+        "zapier-alternative",
+        "getting-started"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rqad8t/getting_started_with_n8n/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-n8n-starter-guide-for-zapier-users-20260317",
+      "generated_at": "2026-03-17T22:28:42.894747+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rqad8t",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rqad8t/getting_started_with_n8n/"
     }
   ]
 }

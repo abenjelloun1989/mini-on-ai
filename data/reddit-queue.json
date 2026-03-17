@@ -549,6 +549,278 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1rqad8t",
+      "subreddit": "n8n",
+      "title": "getting started with n8n",
+      "body": "I have prior experience with Zapier and have built some automations in Make com for clients on freelance platforms. Now I want to learn n8n and start building automations with it. I have watched several tutorials and successfully installed n8n using Docker.\n\nMy question is: how much n8n do I need to learn before I can start working on automation projects?\n\nThe second thing is that I want to expand my freelance business and eventually create an agency. I would appreciate guidance on how I can transition from being a solo freelancer to an independent agency owner. My goal is to become less dependent on freelance platforms.",
+      "url": "https://reddit.com/r/n8n/comments/1rqad8t/getting_started_with_n8n/",
+      "author": "talha02422",
+      "found_at": "2026-03-17T22:25:30.307661+00:00",
+      "status": "built",
+      "brief": {
+        "score": 72,
+        "title": "n8n Starter Guide for Zapier Users",
+        "category": "mini-guide",
+        "description": "A practical guide helping Zapier/Make.com users transition to n8n by mapping their existing knowledge to n8n concepts and showing what core features to learn first before taking on client projects.",
+        "tags": [
+          "n8n",
+          "automation",
+          "zapier-alternative",
+          "getting-started"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": "guide-n8n-starter-guide-for-zapier-users-20260317",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — n8n Starter Guide for Zapier Users.\n\nA practical guide helping Zapier/Make.com users transition to n8n by mapping their existing knowledge to n8n concepts and showing what core features to learn first before taking on client projects.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-n8n-starter-guide-for-zapier-users-20260317.html\n\nHope it helps!",
+      "replied_at": null
+    },
+    {
+      "post_id": "1rsr72s",
+      "subreddit": "n8n",
+      "title": "I'm thinking of creating an automation system for my business. How can I do that?",
+      "body": "In short, folks:\n I want to create an automation system that displays the carpets I photograph in hilltop photography in suitable locations.\n\nCurrently, I'm doing this using Gemini and Photoshop.\n\n I would appreciate your advice on this.\n\nThank you.",
+      "url": "https://reddit.com/r/n8n/comments/1rsr72s/im_thinking_of_creating_an_automation_system_for/",
+      "author": "Active_Awareness_198",
+      "found_at": "2026-03-17T22:25:37.937093+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Carpet Photography Location Automation",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that automates the process of matching photographed carpets to suitable real-world locations using AI vision analysis, eliminating manual Gemini + Photoshop work.",
+        "tags": [
+          "automation",
+          "photography",
+          "gemini-ai",
+          "visual-matching",
+          "ecommerce"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rvxgc8",
+      "subreddit": "automation",
+      "title": "Can you actually automate end to end testing without coding or is that just marketing",
+      "body": "The no-code testing pitch has been around long enough that the skepticism is warranted at this point. Every tool claims you can set up full e2e coverage without writing a single line of code and then you get into the actual product and realize no code means less code than selenium which is a very different thing. The question is whether any of these tools have actually closed the gap or whether the non-technical user persona is still mostly a landing page fiction.\n\n\n\nCurious whether anyone has gotten real coverage running on a production app without a developer involved at any point in the setup. Not a demo flow, not a tutorial, an actual complex multi-step user flow that survives more than two sprints before breaking.",
+      "url": "https://reddit.com/r/automation/comments/1rvxgc8/can_you_actually_automate_end_to_end_testing/",
+      "author": "BOOMINATI-999",
+      "found_at": "2026-03-17T22:25:44.959992+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code E2E Testing Reality Check Guide",
+        "category": "mini-guide",
+        "description": "A practical guide that honestly evaluates which no-code e2e testing tools actually deliver on their promises, what their real limitations are, and when you need to write code versus when you truly don't.",
+        "tags": [
+          "testing",
+          "automation",
+          "no-code",
+          "e2e-testing",
+          "tool-evaluation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rr73d6",
+      "subreddit": "automation",
+      "title": "Want to make an AI that talks to my friend for me.. best approach?",
+      "body": "Hello everyone!!\n\nI want to try a small experiment...I’ll be away from my phone for some days and I thought it would be fun to have an AI agent reply to my friend on WhatsApp like I would. My friend knows about it, so it’s not meant to trick anyone, just for fun.\n\nThe idea is that the agent would read messages and respond automatically, ideally in my style, based on our past conversations.\n\nI know some coding but I’d prefer an approach that requires minimal coding if possible. Something low-code that lets me focus on the agent’s behavior..\n\nHas anyone tried something similar, or does anyone have advice on how I should approach building this? I’d love to hear suggestions or pointers for getting it done. Thanks.",
+      "url": "https://reddit.com/r/automation/comments/1rr73d6/want_to_make_an_ai_that_talks_to_my_friend_for_me/",
+      "author": "Tasty_Reason_688",
+      "found_at": "2026-03-17T22:25:46.787400+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "WhatsApp AI Agent Setup Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide helping users build a WhatsApp-connected AI agent that mimics their communication style using conversation history and automated responses.",
+        "tags": [
+          "whatsapp-automation",
+          "ai-agents",
+          "personal-automation",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rrzz4w",
+      "subreddit": "n8n",
+      "title": "Share your method of researching workflow templates",
+      "body": "Basically the title\n\nHow do you guys come across REAL and advanced workflows that are production ready ? What's your searching strategy ? Do you search on n8n's official template library or this subreddit ?\n\nWanna know your different strategies ! \n\nThanks !\n\nCurrently I look for workflows on official n8n library",
+      "url": "https://reddit.com/r/n8n/comments/1rrzz4w/share_your_method_of_researching_workflow/",
+      "author": "StructWWDC",
+      "found_at": "2026-03-17T22:25:50.806492+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Production-Ready Workflow Research Guide",
+        "category": "mini-guide",
+        "description": "A curated guide helping n8n users discover, evaluate, and research advanced production-ready workflows beyond the official template library through proven search strategies and vetting methods.",
+        "tags": [
+          "n8n",
+          "workflows",
+          "automation",
+          "research-strategy",
+          "production-ready"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rv3zdh",
+      "subreddit": "n8n",
+      "title": "A question regarding n8n powered customer service bot",
+      "body": "Hey all, I am trying to build a customer service bot for my client. Their site is running on wordpress and the customer service bot was pretty straight forward to built with n8n. Yesterday tho I started thinking that is the webhook secured by any means and it is not. Everyone who gets access to the webhook can just spam POST requests. Of course you could put basic auth, header auth etc but it does not make sense to put these since it is a cusotmer service bot and it should be available for everyone. Does anyone know how to help me? You can also DM me.",
+      "url": "https://reddit.com/r/n8n/comments/1rv3zdh/a_question_regarding_n8n_powered_customer_service/",
+      "author": "konst_nogiel",
+      "found_at": "2026-03-17T22:25:52.841277+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Secure n8n Webhook Authentication Setup Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping n8n users implement webhook security best practices (basic auth, header validation, request signing) to prevent spam and unauthorized access to their automation workflows.",
+        "tags": [
+          "n8n",
+          "webhook-security",
+          "authentication",
+          "customer-service-bot"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rrtvrp",
+      "subreddit": "n8n",
+      "title": "When it comes to AI: Agents aren't humans. Manage your expectations!",
+      "body": "Hey everyone, how's it going?\n\nAfter my first post in the \"When it comes to AI\" series, I started thinking about the next topic. Looking back (and even nowadays), I noticed a classic trap: myself and many others have fallen into the mistake of expecting miracles from AI agents.\n\nPicture this scenario: your company is growing and you need an extra set of hands. You open a position, interview, pick the ideal candidate, and... just drop them into the operation expecting perfection from day one, right?\n\nOf course not!\n\nIn real life, we do onboarding, provide training, and explain the processes. We do everything we can so the new talent feels at home and is 100% up to speed on what they need to do. It's the natural order of things.\n\n**So why, when dealing with an AI agent, do we expect it to gu",
+      "url": "https://reddit.com/r/n8n/comments/1rrtvrp/when_it_comes_to_ai_agents_arent_humans_manage/",
+      "author": "sonyprog",
+      "found_at": "2026-03-17T22:25:59.230432+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 65,
+        "title": "AI Agent Expectation Management Framework",
+        "category": "mini-guide",
+        "description": "A practical guide that helps teams understand realistic capabilities and limitations of AI agents, preventing costly over-expectations and failed implementations.",
+        "tags": [
+          "ai-agents",
+          "expectations-management",
+          "implementation-guide"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rss17g",
+      "subreddit": "automation",
+      "title": "Was only following up on 20% of unanswered calls, had to automate it",
+      "body": "Running a small consultancy. Go through maybe 30 outbound calls a day.\n\nStarted tracking last month how many people I actually follow up with when they don't answer. The honest number: maybe 20%…. The rest I meant to call back and didn't. Maybe I forgot, maybe I lost a contact, maybe I was distracted, the whole process in not properly built yet tbh\n\nFigured I could automate this, so now if someone doesn't pick up, they instantly get a text from my number: \"Hey, just tried to reach you. Let me know when’s a better time.\" It’s been only couple of days, but already I don have a pile of “needs follow up” contacts and some of them actually called back themselves and said they thought it was a spam at first! We’ll see how it’s actually working in the end of the month. \n\nI know that this is not r",
+      "url": "https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/",
+      "author": "Logical-Nebula-7520",
+      "found_at": "2026-03-17T22:26:01.657935+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Follow-Up Call Automation Workflow Pack",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that automatically logs unanswered calls, schedules follow-up reminders, and tracks callback completion for small business owners managing high call volumes.",
+        "tags": [
+          "sales-automation",
+          "call-tracking",
+          "follow-up-workflows",
+          "small-business"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rub2xm",
+      "subreddit": "automation",
+      "title": "Building a new Claude AI agent every week - sustainable strategy or just chaos",
+      "body": "Been thinking about this after seeing a few people commit to a 'one Claude agent per week' challenge. On paper it sounds productive, like you're shipping constantly and learning fast. But I've been building some automation stuff for LinkedIn outreach and that getting an agent to actually work reliably in production takes way longer than a week. You can have a POC running in a couple days sure, but then the edge cases, the model doing weird things, the API costs stacking up. it gets messy fast. I reckon it works if you're treating it as rapid prototyping and you're okay with most of them being throwaway experiments. But if you're expecting to maintain 10+ agents you built in 10 weeks, that sounds like a nightmare. Stuff breaks when models update, connectors change, and suddenly you've got t",
+      "url": "https://reddit.com/r/automation/comments/1rub2xm/building_a_new_claude_ai_agent_every_week/",
+      "author": "mokefeld",
+      "found_at": "2026-03-17T22:26:11.664881+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Production-Ready Claude Agent Build Checklist",
+        "category": "checklist",
+        "description": "A checklist that guides builders through the gap between POC and production-ready Claude agents, covering reliability, testing, and deployment considerations that take longer than a week.",
+        "tags": [
+          "claude-agents",
+          "production-deployment",
+          "reliability-testing",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ruflfy",
+      "subreddit": "n8n",
+      "title": "Please help me to find this workflow",
+      "body": "I was trying to build an ai automation workflow which includes lead qualifying and email sending steps please tell me where can i find the pre build workflow ? \n\nIf not Available then help me to figure out the steps ........its urgent",
+      "url": "https://reddit.com/r/n8n/comments/1ruflfy/please_help_me_to_find_this_workflow/",
+      "author": "Maleficent_Slice_269",
+      "found_at": "2026-03-17T22:26:13.527203+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 82,
+        "title": "Lead Qualifying & Email n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that automates lead qualification and sends personalized follow-up emails, helping sales teams save time on manual lead scoring and outreach.",
+        "tags": [
+          "lead-qualification",
+          "email-automation",
+          "sales-automation",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }
