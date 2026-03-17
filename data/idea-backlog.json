@@ -2974,6 +2974,28 @@
       "source": "reddit-scan",
       "reddit_post_id": "1rue8ua",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/"
+    },
+    {
+      "id": "idea-reddit-1rue8ua",
+      "title": "Instagram Messaging API Setup Guide",
+      "description": "Step-by-step troubleshooting guide for resolving Instagram Messaging API error #3 and permission issues in n8n workflows, helping developers properly configure app capabilities and authentication.",
+      "category": "mini-guide",
+      "tags": [
+        "instagram-api",
+        "n8n",
+        "messaging-api",
+        "error-3",
+        "troubleshooting"
+      ],
+      "score": 82,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/",
+      "selected": true,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-17T22:03:18.666523+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rue8ua",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/"
     }
   ]
 }

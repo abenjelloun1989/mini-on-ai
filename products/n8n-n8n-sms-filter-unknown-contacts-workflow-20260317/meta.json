@@ -11,7 +11,7 @@
     "unknown-caller"
   ],
   "item_count": 9,
-  "created_at": "2026-03-17T22:00:32.342847+00:00",
+  "created_at": "2026-03-17T22:04:08.729088+00:00",
   "status": "published",
   "package_path": "products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317/package.zip",
   "site_path": "site/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html",
@@ -19,5 +19,5 @@
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "You're missing calls that matter because your SMS filter is pinging you for contacts you already know.\n\n---\n\nWho this is for:\n— Founders and solopreneurs who route calls through automation and need clean, noise-free alerts\n— Operations people tired of maintaining manual exclusion lists that go stale immediately\n— Anyone running n8n workflows who wants unknown-caller filtering done right, without rebuilding it from scratch\n\n---\n\nWhat's inside:\n— A 9-node n8n workflow that checks every incoming number against your live Google Contacts before firing an SMS\n— Importable JSON file — drop it into n8n and it works\n— Plain-English setup guide so you're not reverse-engineering someone else's logic\n— Zero static exclusion lists — your Contacts are the source of truth, always current\n\n---\n\nIf you've wasted time tweaking brittle filter logic, this replaces that entirely.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "You're tired of manually managing exclusion lists just to stop spamming your own saved contacts with automated SMS.\n\n---\n\nWho this is for:\n— Freelancers and consultants screening inbound calls without a receptionist\n— Small business owners running SMS campaigns who need smarter filtering\n— n8n builders who want a real-world workflow they can ship immediately\n\n---\n\nWhat's inside:\n— A 9-node n8n workflow that cross-references incoming numbers against Google Contacts in real time\n— Importable JSON — drop it into your instance and it works\n— A setup guide that walks you through credentials, node config, and testing so you're not guessing\n\n---\n\nNo more maintaining a manual blocklist. No more accidental texts to people already in your phone. The logic is built in — Google Contacts is your source of truth, and the workflow handles the rest automatically.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

@@ -29,7 +29,6 @@
       ],
       "parameters": {
         "mode": "manual",
-        "duplicateItem": false,
         "assignments": {
           "assignments": [
             {
@@ -40,14 +39,14 @@
             },
             {
               "id": "assign2",
-              "name": "callSid",
-              "value": "={{ $json.body.CallSid || $json.body.call_id || '' }}",
+              "name": "callTimestamp",
+              "value": "={{ $now.toISO() }}",
               "type": "string"
             },
             {
               "id": "assign3",
-              "name": "callTimestamp",
-              "value": "={{ $now.toISO() }}",
+              "name": "callSid",
+              "value": "={{ $json.body.CallSid || $json.body.call_id || 'unknown' }}",
               "type": "string"
             }
           ]
@@ -67,14 +66,13 @@
       "parameters": {
         "method": "GET",
         "url": "https://people.googleapis.com/v1/people/me/connections",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "googleOAuth2Api",
+        "authentication": "oAuth2",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
             {
               "name": "personFields",
-              "value": "phoneNumbers,names"
+              "value": "names,phoneNumbers"
             },
             {
               "name": "pageSize",
@@ -85,24 +83,24 @@
         "options": {}
       },
       "credentials": {
-        "googleOAuth2Api": {
-          "id": "YOUR_GOOGLE_OAUTH2_CREDENTIAL_ID",
+        "oAuth2Api": {
+          "id": "google-oauth-cred",
           "name": "Google OAuth2 API"
         }
       }
     },
     {
       "id": "node4",
-      "name": "Check If Number In Contacts",
+      "name": "Parse Contacts List",
       "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "typeVersion": 1,
       "position": [
         800,
         300
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const callerNumber = $('Extract Caller Number').first().json.callerNumber || '';\nconst contactsData = $input.first().json;\n\nconst connections = contactsData.connections || [];\n\nconst normalize = (num) => {\n  return String(num).replace(/[^0-9+]/g, '');\n};\n\nconst normalizedCaller = normalize(callerNumber);\n\nlet isKnown = false;\nlet matchedName = '';\n\nfor (const contact of connections) {\n  const phones = contact.phoneNumbers || [];\n  for (const phone of phones) {\n    const normalizedPhone = normalize(phone.value || '');\n    if (\n      normalizedPhone === normalizedCaller ||\n      normalizedPhone.endsWith(normalizedCaller.slice(-10)) ||\n      normalizedCaller.endsWith(normalizedPhone.slice(-10))\n    ) {\n      isKnown = true;\n      const names = contact.names || [];\n      matchedName = names.length > 0 ? names[0].displayName : 'Unknown';\n      break;\n    }\n  }\n  if (isKnown) break;\n}\n\nreturn [{\n  json: {\n    callerNumber: callerNumber,\n    callSid: $('Extract Caller Number').first().json.callSid,\n    callTimestamp: $('Extract Caller Number').first().json.callTimestamp,\n    isKnownContact: isKnown,\n    matchedContactName: matchedName\n  }\n}];"
+        "jsCode": "const items = $input.all();\nconst callerNumber = items[0].json.callerNumber;\nconst callTimestamp = items[0].json.callTimestamp;\nconst callSid = items[0].json.callSid;\n\n// Get the Google Contacts response from the HTTP Request node\nconst contactsData = items[0].json;\nconst connections = contactsData.connections || [];\n\n// Extract all phone numbers from contacts\nconst savedNumbers = [];\nfor (const person of connections) {\n  const phones = person.phoneNumbers || [];\n  for (const phone of phones) {\n    // Normalize phone number by removing spaces, dashes, parentheses\n    const normalized = phone.value.replace(/[\\s\\-\\(\\)\\+]/g, '').replace(/^0/, '');\n    savedNumbers.push(normalized);\n    savedNumbers.push(phone.value.replace(/[\\s\\-\\(\\)]/g, ''));\n    savedNumbers.push(phone.value);\n  }\n}\n\n// Normalize the caller number\nconst normalizedCaller = callerNumber.replace(/[\\s\\-\\(\\)\\+]/g, '').replace(/^0/, '');\n\n// Check if caller is in contacts\nconst isKnownContact = savedNumbers.some(num => {\n  const normalizedSaved = num.replace(/[\\s\\-\\(\\)\\+]/g, '').replace(/^0/, '');\n  return normalizedSaved === normalizedCaller || \n         normalizedSaved.endsWith(normalizedCaller) || \n         normalizedCaller.endsWith(normalizedSaved);\n});\n\nreturn [{\n  json: {\n    callerNumber,\n    callTimestamp,\n    callSid,\n    isKnownContact,\n    totalContactsChecked: savedNumbers.length\n  }\n}];"
       }
     },
     {
@@ -153,7 +151,7 @@
             },
             {
               "name": "Body",
-              "value": "=📞 Unknown caller alert!\nNumber: {{ $json.callerNumber }}\nTime: {{ $json.callTimestamp }}\nThis number is NOT in your Google Contacts."
+              "value": "={{ 'Unknown caller: ' + $json.callerNumber + ' called at ' + $json.callTimestamp + '. This number is NOT in your Google Contacts.' }}"
             }
           ]
         },
@@ -161,14 +159,14 @@
       },
       "credentials": {
         "httpBasicAuth": {
-          "id": "YOUR_TWILIO_BASIC_AUTH_CREDENTIAL_ID",
+          "id": "twilio-basic-auth",
           "name": "Twilio Basic Auth"
         }
       }
     },
     {
       "id": "node7",
-      "name": "Log Unknown Call to Sheet",
+      "name": "Log to Google Sheets",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 2,
       "position": [
@@ -178,29 +176,29 @@
       "parameters": {
         "operation": "append",
         "documentId": "YOUR_GOOGLE_SHEET_ID",
-        "sheetName": "Unknown Calls",
+        "sheetName": "Unknown Callers",
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
+            "Caller Number": "={{ $json.callerNumber }}",
             "Timestamp": "={{ $json.callTimestamp }}",
-            "Phone Number": "={{ $json.callerNumber }}",
             "Call SID": "={{ $json.callSid }}",
-            "Status": "Unknown Contact",
-            "SMS Sent": "Yes"
+            "SMS Sent": "Yes",
+            "Contacts Checked": "={{ $json.totalContactsChecked }}"
           }
         },
         "options": {}
       },
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "id": "google-sheets-cred",
           "name": "Google Sheets OAuth2"
         }
       }
     },
     {
       "id": "node8",
-      "name": "Log Known Call to Sheet",
+      "name": "Log Known Contact",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 2,
       "position": [
@@ -210,40 +208,46 @@
       "parameters": {
         "operation": "append",
         "documentId": "YOUR_GOOGLE_SHEET_ID",
-        "sheetName": "Unknown Calls",
+        "sheetName": "Known Callers",
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
+            "Caller Number": "={{ $json.callerNumber }}",
             "Timestamp": "={{ $json.callTimestamp }}",
-            "Phone Number": "={{ $json.callerNumber }}",
             "Call SID": "={{ $json.callSid }}",
-            "Status": "=Known Contact: {{ $json.matchedContactName }}",
-            "SMS Sent": "No"
+            "SMS Sent": "No",
+            "Contacts Checked": "={{ $json.totalContactsChecked }}"
           }
         },
         "options": {}
       },
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "id": "google-sheets-cred",
           "name": "Google Sheets OAuth2"
         }
       }
     },
     {
       "id": "node9",
-      "name": "Respond to Webhook",
-      "type": "n8n-nodes-base.respondToWebhook",
+      "name": "Notify via Telegram",
+      "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
         1600,
-        300
+        200
       ],
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "={ \"status\": \"processed\", \"known\": {{ $('Is Unknown Contact?').first().json.isKnownContact }}, \"number\": \"{{ $('Is Unknown Contact?').first().json.callerNumber }}\" }",
-        "options": {
-          "responseCode": 200
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ '🚨 Unknown Caller Alert!\\n📞 Number: ' + $node['Parse Contacts List'].json.callerNumber + '\\n🕐 Time: ' + $node['Parse Contacts List'].json.callTimestamp + '\\n✅ SMS notification sent.' }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-cred",
+          "name": "Telegram Bot API"
         }
       }
     }
@@ -275,14 +279,14 @@
       "main": [
         [
           {
-            "node": "Check If Number In Contacts",
+            "node": "Parse Contacts List",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Check If Number In Contacts": {
+    "Parse Contacts List": {
       "main": [
         [
           {
@@ -304,7 +308,7 @@
         ],
         [
           {
-            "node": "Log Known Call to Sheet",
+            "node": "Log Known Contact",
             "type": "main",
             "index": 0
           }
@@ -315,29 +319,18 @@
       "main": [
         [
           {
-            "node": "Log Unknown Call to Sheet",
+            "node": "Log to Google Sheets",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Log Unknown Call to Sheet": {
+    "Log to Google Sheets": {
       "main": [
         [
           {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Log Known Call to Sheet": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
+            "node": "Notify via Telegram",
             "type": "main",
             "index": 0
           }
@@ -349,8 +342,7 @@
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
-    "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": ""
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "tags": [
     {
@@ -358,7 +350,7 @@
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
-      "name": "Contacts",
+      "name": "Contacts Filter",
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
