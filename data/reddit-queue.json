@@ -803,7 +803,7 @@
       "url": "https://reddit.com/r/n8n/comments/1ruflfy/please_help_me_to_find_this_workflow/",
       "author": "Maleficent_Slice_269",
       "found_at": "2026-03-17T22:26:13.527203+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 82,
         "title": "Lead Qualifying & Email n8n Workflow",
@@ -818,8 +818,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-lead-qualifying-email-n8n-workflow-20260317",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — Lead Qualifying & Email n8n Workflow.\n\nA ready-to-use n8n workflow template that automates lead qualification and sends personalized follow-up emails, helping sales teams save time on manual lead scoring and outreach.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-lead-qualifying-email-n8n-workflow-20260317.html\n\nHope it helps!",
       "replied_at": null
     }
   ]
