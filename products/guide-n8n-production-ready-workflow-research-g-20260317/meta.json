@@ -17,7 +17,7 @@
   "site_path": "site/products/guide-n8n-production-ready-workflow-research-g-20260317.html",
   "thumbnail": null,
   "price": null,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
+  "gumroad_product_id": "qnpkb",
+  "gumroad_url": "https://minionai.gumroad.com/l/qnpkb",
   "gumroad_description": "You've outgrown the official n8n template library and now you're burning hours searching Reddit, GitHub, and Discord hoping someone already solved your exact use case.\n\nThis guide cuts that research time down. It gives you proven search strategies, source lists, and a simple vetting framework so you can find production-ready n8n workflows fast and know whether to trust them before you build on top of them.\n\nWho this is for:\n— n8n users moving from hobby projects to workflows that actually run in production\n— Developers and ops folks who need reliable starting points, not half-finished examples\n— Anyone building client automations who can't afford to debug someone else's sloppy template\n\nWhat's inside:\n— Curated source list beyond the official library, with context on why each one matters\n— Search strategies that surface real production workflows, not tutorial fluff\n— A quick vetting checklist so you stop wasting time on workflows that break under real conditions\n— Markdown format with a quick-reference summary you'll actually reuse\n\nShort, focused, immediately useful. No padding.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
