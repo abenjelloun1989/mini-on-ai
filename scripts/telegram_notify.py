@@ -74,7 +74,7 @@ def telegram_report(override_message: str = None) -> bool:
             f"📦 <b>{product.get('title', 'Unknown')}</b>",
             product.get("description", ""),
             "",
-            f"🔗 {site_url}/products/{product.get('id', '')}.html",
+            f"🔗 https://gumroad.com/products/new",
             f"🕐 Completed in {latest.get('duration_seconds', '?')}s",
             token_line,
         ])
