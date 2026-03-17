@@ -391,7 +391,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rue8ua/instagram_messaging_api_error_3_application_does/",
       "author": "AdSlight1867",
       "found_at": "2026-03-17T21:43:01.816117+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 82,
         "title": "Instagram Messaging API Setup Guide",
@@ -407,8 +407,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-n8n-sms-filter-unknown-contacts-workflow-20260317",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — N8N SMS Filter Unknown Contacts Workflow.\n\nA ready-to-use n8n workflow template that filters incoming calls to identify unknown/unsaved contacts and sends SMS notifications only to numbers not in Google Contacts, eliminating manual exclusion lists.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html\n\nHope it helps!",
       "replied_at": null
     },
     {
@@ -419,7 +419,7 @@
       "url": "https://reddit.com/r/n8n/comments/1ru89ad/coding_feels_like_2050_debugging_feels_like_1999/",
       "author": "Over-Ad-6085",
       "found_at": "2026-03-17T21:43:03.829791+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 78,
         "title": "N8n Workflow Debugging Strategy Checklist",
@@ -446,7 +446,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rtsevb/anyone_else_tired_of_flying_blind_with_n8n_ai/",
       "author": "Soft_Statement_9725",
       "found_at": "2026-03-17T21:43:06.721986+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "n8n AI Workflow Observability Setup Guide",
