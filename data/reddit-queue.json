@@ -585,7 +585,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rsr72s/im_thinking_of_creating_an_automation_system_for/",
       "author": "Active_Awareness_198",
       "found_at": "2026-03-17T22:25:37.937093+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "n8n Carpet Photography Location Automation",
@@ -601,8 +601,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-n8n-carpet-photography-location-automati-20260317",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — n8n Carpet Photography Location Automation.\n\nA ready-to-use n8n workflow that automates the process of matching photographed carpets to suitable real-world locations using AI vision analysis, eliminating manual Gemini + Photoshop work.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-carpet-photography-location-automati-20260317.html\n\nHope it helps!",
       "replied_at": null
     },
     {

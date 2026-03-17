@@ -1,6 +1,27 @@
 {
   "products": [
     {
+      "id": "n8n-n8n-carpet-photography-location-automati-20260317",
+      "title": "n8n Carpet Photography Location Automation",
+      "description": "A ready-to-use n8n workflow that automates the process of matching photographed carpets to suitable real-world locations using AI vision analysis, eliminating manual Gemini + Photoshop work.",
+      "category": "n8n-template",
+      "tags": [
+        "automation",
+        "photography",
+        "gemini-ai",
+        "visual-matching",
+        "ecommerce"
+      ],
+      "item_count": 9,
+      "prompt_count": 9,
+      "created_at": "2026-03-17T22:31:05.483820+00:00",
+      "package_path": "products/n8n-n8n-carpet-photography-location-automati-20260317/package.zip",
+      "site_path": "site/products/n8n-n8n-carpet-photography-location-automati-20260317.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null
+    },
+    {
       "id": "guide-n8n-starter-guide-for-zapier-users-20260317",
       "title": "n8n Starter Guide for Zapier Users",
       "description": "A practical guide helping Zapier/Make.com users transition to n8n by mapping their existing knowledge to n8n concepts and showing what core features to learn first before taking on client projects.",

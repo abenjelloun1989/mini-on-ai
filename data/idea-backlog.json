@@ -3032,13 +3032,35 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rqad8t/getting_started_with_n8n/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-n8n-starter-guide-for-zapier-users-20260317",
       "generated_at": "2026-03-17T22:28:42.894747+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rqad8t",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rqad8t/getting_started_with_n8n/"
+    },
+    {
+      "id": "idea-reddit-1rsr72s",
+      "title": "n8n Carpet Photography Location Automation",
+      "description": "A ready-to-use n8n workflow that automates the process of matching photographed carpets to suitable real-world locations using AI vision analysis, eliminating manual Gemini + Photoshop work.",
+      "category": "n8n-template",
+      "tags": [
+        "automation",
+        "photography",
+        "gemini-ai",
+        "visual-matching",
+        "ecommerce"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rsr72s/im_thinking_of_creating_an_automation_system_for/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "n8n-n8n-carpet-photography-location-automati-20260317",
+      "generated_at": "2026-03-17T22:30:11.920624+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rsr72s",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rsr72s/im_thinking_of_creating_an_automation_system_for/"
     }
   ]
 }

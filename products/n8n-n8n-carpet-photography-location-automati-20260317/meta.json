@@ -1,0 +1,23 @@
+{
+  "id": "n8n-n8n-carpet-photography-location-automati-20260317",
+  "title": "n8n Carpet Photography Location Automation",
+  "description": "A ready-to-use n8n workflow that automates the process of matching photographed carpets to suitable real-world locations using AI vision analysis, eliminating manual Gemini + Photoshop work.",
+  "category": "n8n-template",
+  "tags": [
+    "automation",
+    "photography",
+    "gemini-ai",
+    "visual-matching",
+    "ecommerce"
+  ],
+  "item_count": 9,
+  "created_at": "2026-03-17T22:31:05.483820+00:00",
+  "status": "published",
+  "package_path": "products/n8n-n8n-carpet-photography-location-automati-20260317/package.zip",
+  "site_path": "site/products/n8n-n8n-carpet-photography-location-automati-20260317.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You've been manually running carpet photos through Gemini, then spending 20 minutes in Photoshop finding the right setting. There's a faster way.\n\nWHO THIS IS FOR\n— Interior photographers who stage carpets for client presentations\n— E-commerce teams producing carpet lifestyle imagery at volume\n— Freelancers tired of repeating the same AI-assisted location-matching process by hand\n\nWHAT'S INSIDE\n— A 9-node n8n workflow that handles image intake, AI vision analysis, and location matching in one automated run\n— Importable JSON file — drop it into your n8n instance and go\n— Step-by-step setup guide so you're running in under 30 minutes, not troubleshooting for hours\n— A repeatable process you can hand off or scale without rebuilding anything\n\nThis replaces a repetitive manual workflow with something that runs itself.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}
