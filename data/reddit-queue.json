@@ -474,7 +474,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rsn90w/help_mcp_client_fetch_failed_connecting_to_local/",
       "author": "Hot_Presentation_218",
       "found_at": "2026-03-17T21:43:08.885794+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "n8n MCP Server Setup Guide",
