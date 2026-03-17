@@ -3096,13 +3096,35 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/automation: https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "n8n-follow-up-call-automation-workflow-pack-20260317",
       "generated_at": "2026-03-17T22:45:09.412446+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rss17g",
       "reddit_url": "https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/"
+    },
+    {
+      "id": "idea-reddit-1rrzz4w",
+      "title": "n8n Production-Ready Workflow Research Guide",
+      "description": "A curated guide helping n8n users discover, evaluate, and research advanced production-ready workflows beyond the official template library through proven search strategies and vetting methods.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "workflows",
+        "automation",
+        "research-strategy",
+        "production-ready"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rrzz4w/share_your_method_of_researching_workflow/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-n8n-production-ready-workflow-research-g-20260317",
+      "generated_at": "2026-03-17T22:53:48.132701+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rrzz4w",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rrzz4w/share_your_method_of_researching_workflow/"
     }
   ]
 }
