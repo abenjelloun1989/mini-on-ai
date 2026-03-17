@@ -857,7 +857,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rsg6oa/extract_image_and_text_from_pdf_transcode_image/",
       "author": "traillight8015",
       "found_at": "2026-03-17T23:04:36.344805+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "PDF Image & Text Extraction n8n Workflow",
@@ -872,8 +872,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-pdf-image-text-extraction-n8n-workflow-20260318",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — PDF Image & Text Extraction n8n Workflow.\n\nA ready-to-use n8n workflow that extracts images and text from PDFs, transcodes images, merges text elements with regex-based arrays, and exports results to CSV.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-pdf-image-text-extraction-n8n-workflow-20260318.html\n\nHope it helps!",
       "replied_at": null
     },
     {

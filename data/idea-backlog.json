@@ -3160,13 +3160,34 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rsnv13/looking_for_help/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-ai-automation-agency-launch-playbook-20260318",
       "generated_at": "2026-03-17T23:06:51.587417+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rsnv13",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rsnv13/looking_for_help/"
+    },
+    {
+      "id": "idea-reddit-1rsg6oa",
+      "title": "PDF Image & Text Extraction n8n Workflow",
+      "description": "A ready-to-use n8n workflow that extracts images and text from PDFs, transcodes images, merges text elements with regex-based arrays, and exports results to CSV.",
+      "category": "n8n-template",
+      "tags": [
+        "pdf-processing",
+        "image-extraction",
+        "data-extraction",
+        "n8n-workflow"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rsg6oa/extract_image_and_text_from_pdf_transcode_image/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "n8n-pdf-image-text-extraction-n8n-workflow-20260318",
+      "generated_at": "2026-03-17T23:12:08.099728+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rsg6oa",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rsg6oa/extract_image_and_text_from_pdf_transcode_image/"
     }
   ]
 }

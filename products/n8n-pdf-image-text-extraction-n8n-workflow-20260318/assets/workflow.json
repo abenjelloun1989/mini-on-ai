@@ -1,0 +1,443 @@
+{
+  "name": "PDF Image & Text Extraction n8n Workflow",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pdf-extract",
+        "responseMode": "lastNode",
+        "options": {
+          "binaryData": true
+        }
+      }
+    },
+    {
+      "id": "node2",
+      "name": "Extract PDF Content",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdf.co/v1/pdf/convert/to/text",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "YOUR_PDFCO_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{$json[\"pdf_url\"]}}"
+            },
+            {
+              "name": "inline",
+              "value": "true"
+            },
+            {
+              "name": "pages",
+              "value": "0-"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node3",
+      "name": "Extract Images from PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        400,
+        500
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdf.co/v1/pdf/convert/to/png",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "YOUR_PDFCO_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{$json[\"pdf_url\"]}}"
+            },
+            {
+              "name": "inline",
+              "value": "true"
+            },
+            {
+              "name": "resolution",
+              "value": "150"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node4",
+      "name": "Process & Merge Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        600,
+        400
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Gather inputs from previous nodes\nconst textData = $input.all()[0]?.json || {};\nconst imageData = $input.all()[1]?.json || {};\n\n// Extract raw text\nconst rawText = textData.body || textData.text || '';\n\n// Regex-based extraction patterns\nconst emailRegex = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/g;\nconst urlRegex = /https?:\\/\\/[^\\s]+/g;\nconst phoneRegex = /(\\+?\\d[\\d\\-\\s]{7,}\\d)/g;\nconst dateRegex = /\\b(\\d{1,2}[\\/\\-\\.\\s]\\d{1,2}[\\/\\-\\.\\s]\\d{2,4})\\b/g;\nconst currencyRegex = /\\$[\\d,]+\\.?\\d{0,2}/g;\n\n// Extract matches\nconst emails = [...new Set(rawText.match(emailRegex) || [])];\nconst urls = [...new Set(rawText.match(urlRegex) || [])];\nconst phones = [...new Set(rawText.match(phoneRegex) || [])];\nconst dates = [...new Set(rawText.match(dateRegex) || [])];\nconst currencies = [...new Set(rawText.match(currencyRegex) || [])];\n\n// Split text into paragraphs\nconst paragraphs = rawText\n  .split(/\\n{2,}/)\n  .map(p => p.trim())\n  .filter(p => p.length > 10);\n\n// Image URLs from PDF conversion\nconst imageUrls = imageData.urls || imageData.body?.urls || [];\n\n// Build merged result array\nconst results = paragraphs.map((para, index) => ({\n  paragraph_index: index + 1,\n  text_content: para.substring(0, 500),\n  word_count: para.split(/\\s+/).length,\n  char_count: para.length,\n  extracted_emails: emails.join('; '),\n  extracted_urls: urls.join('; '),\n  extracted_phones: phones.join('; '),\n  extracted_dates: dates.join('; '),\n  extracted_currencies: currencies.join('; '),\n  image_count: imageUrls.length,\n  image_urls: imageUrls.join('; '),\n  processing_timestamp: new Date().toISOString()\n}));\n\nreturn results.map(r => ({ json: r }));"
+      }
+    },
+    {
+      "id": "node5",
+      "name": "Check Results Valid",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        800,
+        400
+      ],
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json[\"word_count\"]}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node6",
+      "name": "Transcode Images",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "file",
+              "value": "={{$json[\"image_urls\"].split('; ')[0]}}"
+            },
+            {
+              "name": "upload_preset",
+              "value": "YOUR_UPLOAD_PRESET"
+            },
+            {
+              "name": "format",
+              "value": "webp"
+            },
+            {
+              "name": "quality",
+              "value": "auto"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node7",
+      "name": "Build CSV Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        500
+      ],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "paragraph_index",
+              "value": "={{$json[\"paragraph_index\"]}}"
+            },
+            {
+              "name": "text_content",
+              "value": "={{$json[\"text_content\"]}}"
+            },
+            {
+              "name": "word_count",
+              "value": "={{$json[\"word_count\"]}}"
+            },
+            {
+              "name": "extracted_emails",
+              "value": "={{$json[\"extracted_emails\"]}}"
+            },
+            {
+              "name": "extracted_urls",
+              "value": "={{$json[\"extracted_urls\"]}}"
+            },
+            {
+              "name": "extracted_phones",
+              "value": "={{$json[\"extracted_phones\"]}}"
+            },
+            {
+              "name": "extracted_dates",
+              "value": "={{$json[\"extracted_dates\"]}}"
+            },
+            {
+              "name": "extracted_currencies",
+              "value": "={{$json[\"extracted_currencies\"]}}"
+            },
+            {
+              "name": "image_count",
+              "value": "={{$json[\"image_count\"]}}"
+            },
+            {
+              "name": "image_urls",
+              "value": "={{$json[\"image_urls\"]}}"
+            },
+            {
+              "name": "processing_timestamp",
+              "value": "={{$json[\"processing_timestamp\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node8",
+      "name": "Export to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        400
+      ],
+      "parameters": {
+        "operation": "append",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "PDF Extractions",
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        },
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "id": "node9",
+      "name": "Send Slack Notification",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        300
+      ],
+      "parameters": {
+        "operation": "post",
+        "channel": "#pdf-extractions",
+        "text": "✅ PDF Extraction Complete!\n\n📄 *Paragraphs Extracted:* {{$node[\"Process & Merge Results\"].runIndex + 1}}\n📧 *Emails Found:* {{$json[\"extracted_emails\"] || 'None'}}\n🖼️ *Images Found:* {{$json[\"image_count\"]}}\n⏰ *Processed At:* {{$json[\"processing_timestamp\"]}}\n\nResults saved to Google Sheets.",
+        "otherOptions": {
+          "mrkdwn": true
+        }
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack API"
+        }
+      }
+    },
+    {
+      "id": "node10",
+      "name": "Send Error Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        700
+      ],
+      "parameters": {
+        "fromEmail": "your-email@example.com",
+        "toEmail": "admin@example.com",
+        "subject": "⚠️ PDF Extraction Failed or Empty Result",
+        "text": "The PDF extraction workflow encountered an issue.\n\nNo valid text content was found in the processed document.\n\nPlease check the source PDF and retry.\n\nTimestamp: {{new Date().toISOString()}}\nWebhook payload: {{JSON.stringify($node[\"Webhook Trigger\"].json)}}",
+        "options": {}
+      },
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP Account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF Content",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Images from PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract PDF Content": {
+      "main": [
+        [
+          {
+            "node": "Process & Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Images from PDF": {
+      "main": [
+        [
+          {
+            "node": "Process & Merge Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Process & Merge Results": {
+      "main": [
+        [
+          {
+            "node": "Check Results Valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Results Valid": {
+      "main": [
+        [
+          {
+            "node": "Transcode Images",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build CSV Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Error Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcode Images": {
+      "main": [
+        [
+          {
+            "node": "Export to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build CSV Data": {
+      "main": [
+        [
+          {
+            "node": "Export to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    {
+      "name": "PDF",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "Extraction",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "Automation",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
