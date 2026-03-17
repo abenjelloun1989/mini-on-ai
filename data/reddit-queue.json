@@ -749,7 +749,7 @@
       "url": "https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/",
       "author": "Logical-Nebula-7520",
       "found_at": "2026-03-17T22:26:01.657935+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "Follow-Up Call Automation Workflow Pack",
@@ -764,8 +764,8 @@
         "why_not_buildable": null,
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-follow-up-call-automation-workflow-pack-20260317",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — Follow-Up Call Automation Workflow Pack.\n\nA ready-to-deploy n8n workflow that automatically logs unanswered calls, schedules follow-up reminders, and tracks callback completion for small business owners managing high call volumes.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-follow-up-call-automation-workflow-pack-20260317.html\n\nHope it helps!",
       "replied_at": null
     },
     {
@@ -776,7 +776,7 @@
       "url": "https://reddit.com/r/automation/comments/1rub2xm/building_a_new_claude_ai_agent_every_week/",
       "author": "mokefeld",
       "found_at": "2026-03-17T22:26:11.664881+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "Production-Ready Claude Agent Build Checklist",

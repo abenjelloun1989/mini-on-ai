@@ -1,0 +1,22 @@
+{
+  "id": "n8n-follow-up-call-automation-workflow-pack-20260317",
+  "title": "Follow-Up Call Automation Workflow Pack",
+  "description": "A ready-to-deploy n8n workflow that automatically logs unanswered calls, schedules follow-up reminders, and tracks callback completion for small business owners managing high call volumes.",
+  "category": "n8n-template",
+  "tags": [
+    "sales-automation",
+    "call-tracking",
+    "follow-up-workflows",
+    "small-business"
+  ],
+  "item_count": 10,
+  "created_at": "2026-03-17T22:45:53.210641+00:00",
+  "status": "published",
+  "package_path": "products/n8n-follow-up-call-automation-workflow-pack-20260317/package.zip",
+  "site_path": "site/products/n8n-follow-up-call-automation-workflow-pack-20260317.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "Every missed call that doesn't get followed up is a lost sale — and manually tracking them is a full-time job you didn't sign up for.\n\nThis n8n workflow handles it automatically, from the moment a call goes unanswered to the moment you mark it resolved.\n\nWho this is for:\n— Solo service providers juggling calls between jobs (plumbers, cleaners, contractors)\n— Small agency owners who can't afford to let leads slip through the cracks\n— Operations managers tired of chasing staff to confirm callbacks happened\n\nWhat's inside:\n— 10-node n8n workflow that logs missed calls, queues reminders, and closes the loop when callbacks are confirmed\n— Importable JSON file — drop it into your n8n instance and it's live in minutes\n— Plain-English setup guide so you're not guessing at configuration\n\nNo monthly fees. No extra software. Just a workflow that runs quietly in the background while you focus on actual work.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

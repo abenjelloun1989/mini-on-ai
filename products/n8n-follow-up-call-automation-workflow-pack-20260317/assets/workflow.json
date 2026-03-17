@@ -1,0 +1,375 @@
+{
+  "name": "Follow-Up Call Automation Workflow Pack",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Incoming Call Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "incoming-call",
+        "responseMode": "onReceived",
+        "responseData": "allEntries",
+        "options": {}
+      }
+    },
+    {
+      "id": "node2",
+      "name": "Parse Call Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "callerNumber",
+              "value": "={{ $json.body.caller_number || $json.caller_number || 'Unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "callerName",
+              "value": "={{ $json.body.caller_name || $json.caller_name || 'Unknown Caller' }}",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "callStatus",
+              "value": "={{ $json.body.call_status || $json.call_status || 'missed' }}",
+              "type": "string"
+            },
+            {
+              "id": "a4",
+              "name": "callTimestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "a5",
+              "name": "followUpDeadline",
+              "value": "={{ $now.plus({ hours: 2 }).toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "a6",
+              "name": "callbackStatus",
+              "value": "pending",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node3",
+      "name": "Check If Call Missed",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.callStatus }}",
+              "operation": "equal",
+              "value2": "missed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node4",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        800,
+        200
+      ],
+      "parameters": {
+        "operation": "append",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "MissedCalls",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CallerNumber": "={{ $json.callerNumber }}",
+            "CallerName": "={{ $json.callerName }}",
+            "CallTimestamp": "={{ $json.callTimestamp }}",
+            "FollowUpDeadline": "={{ $json.followUpDeadline }}",
+            "CallbackStatus": "={{ $json.callbackStatus }}"
+          }
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "id": "node5",
+      "name": "Send Slack Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        200
+      ],
+      "parameters": {
+        "operation": "post",
+        "channel": "#missed-calls",
+        "text": "📞 *Missed Call Alert!*\n\n*Caller:* {{ $json.callerName }}\n*Number:* {{ $json.callerNumber }}\n*Time:* {{ $json.callTimestamp }}\n*Follow-Up By:* {{ $json.followUpDeadline }}\n\nPlease call back as soon as possible!",
+        "otherOptions": {
+          "mrkdwn": true
+        }
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "id": "node6",
+      "name": "Schedule Reminder Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        550
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node7",
+      "name": "Fetch Pending Callbacks",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        400,
+        550
+      ],
+      "parameters": {
+        "operation": "read",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "MissedCalls",
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "CallbackStatus",
+              "lookupValue": "pending"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": false
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "id": "node8",
+      "name": "Check If Overdue",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        600,
+        550
+      ],
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst results = [];\n\nfor (const item of $input.all()) {\n  const deadline = new Date(item.json.FollowUpDeadline);\n  const isOverdue = now > deadline;\n  const minutesOverdue = isOverdue ? Math.round((now - deadline) / 60000) : 0;\n  \n  results.push({\n    json: {\n      ...item.json,\n      isOverdue: isOverdue,\n      minutesOverdue: minutesOverdue,\n      currentTime: now.toISOString()\n    }\n  });\n}\n\nreturn results;"
+      }
+    },
+    {
+      "id": "node9",
+      "name": "Send Overdue Email Reminder",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        800,
+        550
+      ],
+      "parameters": {
+        "fromEmail": "your-email@example.com",
+        "toEmail": "owner@yourbusiness.com",
+        "subject": "⚠️ Overdue Follow-Up Call: {{ $json.CallerName }} ({{ $json.CallerNumber }})",
+        "emailType": "html",
+        "html": "<h2>⚠️ Overdue Follow-Up Call Reminder</h2><p>You have a follow-up call that is <strong>{{ $json.minutesOverdue }} minutes overdue</strong>.</p><table border='1' cellpadding='8' cellspacing='0'><tr><th>Caller Name</th><td>{{ $json.CallerName }}</td></tr><tr><th>Caller Number</th><td>{{ $json.CallerNumber }}</td></tr><tr><th>Call Time</th><td>{{ $json.CallTimestamp }}</td></tr><tr><th>Deadline Was</th><td>{{ $json.FollowUpDeadline }}</td></tr></table><p>Please call back immediately and mark as complete in your tracking sheet.</p>",
+        "options": {}
+      },
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "id": "node10",
+      "name": "Telegram Urgent Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        550
+      ],
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "🚨 URGENT: Missed call follow-up OVERDUE!\n\n👤 Caller: {{ $json.CallerName }}\n📞 Number: {{ $json.CallerNumber }}\n⏰ Overdue by: {{ $json.minutesOverdue }} minutes\n\nCall back NOW and update the tracking sheet!",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Incoming Call Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Call Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Call Data": {
+      "main": [
+        [
+          {
+            "node": "Check If Call Missed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If Call Missed": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Log to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Reminder Check": {
+      "main": [
+        [
+          {
+            "node": "Fetch Pending Callbacks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Pending Callbacks": {
+      "main": [
+        [
+          {
+            "node": "Check If Overdue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If Overdue": {
+      "main": [
+        [
+          {
+            "node": "Send Overdue Email Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Overdue Email Reminder": {
+      "main": [
+        [
+          {
+            "node": "Telegram Urgent Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    {
+      "name": "Call Management"
+    },
+    {
+      "name": "Follow-Up Automation"
+    },
+    {
+      "name": "Small Business"
+    }
+  ]
+}

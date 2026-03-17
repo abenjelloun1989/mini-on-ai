@@ -3075,13 +3075,34 @@
       ],
       "score": 82,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1ruflfy/please_help_me_to_find_this_workflow/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "n8n-lead-qualifying-email-n8n-workflow-20260317",
       "generated_at": "2026-03-17T22:38:04.886646+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1ruflfy",
       "reddit_url": "https://reddit.com/r/n8n/comments/1ruflfy/please_help_me_to_find_this_workflow/"
+    },
+    {
+      "id": "idea-reddit-1rss17g",
+      "title": "Follow-Up Call Automation Workflow Pack",
+      "description": "A ready-to-deploy n8n workflow that automatically logs unanswered calls, schedules follow-up reminders, and tracks callback completion for small business owners managing high call volumes.",
+      "category": "n8n-template",
+      "tags": [
+        "sales-automation",
+        "call-tracking",
+        "follow-up-workflows",
+        "small-business"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/automation: https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "n8n-follow-up-call-automation-workflow-pack-20260317",
+      "generated_at": "2026-03-17T22:45:09.412446+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rss17g",
+      "reddit_url": "https://reddit.com/r/automation/comments/1rss17g/was_only_following_up_on_20_of_unanswered_calls/"
     }
   ]
 }
