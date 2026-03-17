@@ -159,11 +159,24 @@ A Reddit user posted this in r/{post['subreddit']}:
 
 {text_excerpt}
 
-Evaluate whether this post expresses a clear need that could be solved with one of our product types.
+Your job: determine whether this post expresses an UNMET NEED that someone else could solve with a digital product.
+
+CRITICAL — score 0-15 immediately if ANY of these are true:
+- The author is sharing something they built, made, or created ("I built", "I made", "I created", "I finished", "I wrote")
+- The author is showcasing or releasing something ("sharing my", "giving away", "releasing", "launched", "just published")
+- The author is celebrating an achievement or showing off results
+- The post is a tutorial, guide, or walkthrough the author wrote themselves
+- The author already has a solution and is presenting it
+
+Score 60+ ONLY if the post clearly shows:
+- Someone asking for help with a specific problem they can't solve
+- Someone expressing frustration or struggle without a resolution
+- Someone explicitly requesting a template, prompt, workflow, guide, or tool they don't have
+- Someone describing a recurring painful task they wish was easier
 
 Respond ONLY with valid JSON (no markdown, no prose):
 {{
-  "score": <0-100 integer — how well this need maps to a buildable digital product>,
+  "score": <0-100 integer>,
   "title": "<proposed product title, 4-8 words>",
   "category": "<one of: prompt-packs | checklist | swipe-file | mini-guide | n8n-template | claude-code-skill | OTHER>",
   "description": "<one sentence describing what the product does and who it helps>",
@@ -172,10 +185,11 @@ Respond ONLY with valid JSON (no markdown, no prose):
 }}
 
 Score guide:
-- 80-100: Clear, specific need perfectly matched by a product type
-- 60-79: Good fit but somewhat vague or broad
-- 40-59: Possible but weak signal
-- 0-39: Not a good fit"""
+- 80-100: Clear unmet need, specific ask, perfectly matched by a product type
+- 60-79: Good fit — someone struggling or requesting, somewhat vague
+- 40-59: Weak signal — need is implied but unclear
+- 20-39: Not a good fit (general question, already solved, off-topic)
+- 0-15: Author is showcasing/sharing something they built — NOT a need post"""
 
     try:
         response = client.messages.create(
