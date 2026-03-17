@@ -220,7 +220,9 @@ def run_scan(subreddits: list, max_candidates: int = 10, dry_run: bool = False, 
     Full scan + assess loop. Returns list of (post, brief) tuples for assessed candidates.
     If dry_run=True, prints results and does not save to queue.
     """
+    import random
     posts = reddit_scan(subreddits, limit=100, max_age_days=max_age_days)
+    random.shuffle(posts)  # spread candidates across subreddits, not just the first one
 
     results = []
     for post in posts:
