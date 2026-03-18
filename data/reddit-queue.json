@@ -1298,7 +1298,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/",
       "author": "DustFuzzy1702",
       "found_at": "2026-03-18T22:10:41.018028+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 75,
         "title": "AI Usage & Service Pricing Strategy Guide",
@@ -1314,8 +1314,8 @@
         "why_not_buildable": null,
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "guide-ai-usage-service-pricing-strategy-guide-20260318",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — AI Usage & Service Pricing Strategy Guide.\n\nA practical guide helping automation freelancers and agencies structure pricing models for n8n workflows, including strategies for charging development fees, AI token usage, and ongoing service fees.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-ai-usage-service-pricing-strategy-guide-20260318.html\n\nHope it helps!",
       "replied_at": null
     },
     {

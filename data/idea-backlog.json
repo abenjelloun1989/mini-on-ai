@@ -3223,13 +3223,35 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-google-calendar-service-account-setup-gu-20260318",
       "generated_at": "2026-03-18T22:21:32.610279+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rwmin6",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/"
+    },
+    {
+      "id": "idea-reddit-1rrodvh",
+      "title": "AI Usage & Service Pricing Strategy Guide",
+      "description": "A practical guide helping automation freelancers and agencies structure pricing models for n8n workflows, including strategies for charging development fees, AI token usage, and ongoing service fees.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "pricing-strategy",
+        "client-billing",
+        "automation-business",
+        "AI-costs"
+      ],
+      "score": 75,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-ai-usage-service-pricing-strategy-guide-20260318",
+      "generated_at": "2026-03-18T22:27:34.932130+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rrodvh",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/"
     }
   ]
 }
