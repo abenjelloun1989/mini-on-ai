@@ -14,12 +14,11 @@
       ],
       "item_count": 1,
       "prompt_count": 1,
+      "status": "published",
       "created_at": "2026-03-18T22:28:14.641852+00:00",
-      "package_path": "products/guide-ai-usage-service-pricing-strategy-guide-20260318/package.zip",
       "site_path": "site/products/guide-ai-usage-service-pricing-strategy-guide-20260318.html",
-      "thumbnail": null,
-      "gumroad_url": null,
-      "price": null
+      "gumroad_url": "https://minionai.gumroad.com/l/sgfuf",
+      "thumbnail": null
     },
     {
       "id": "guide-google-calendar-service-account-setup-gu-20260318",
