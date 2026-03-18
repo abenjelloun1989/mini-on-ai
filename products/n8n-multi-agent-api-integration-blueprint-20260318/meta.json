@@ -1,0 +1,22 @@
+{
+  "id": "n8n-multi-agent-api-integration-blueprint-20260318",
+  "title": "Multi-Agent API Integration Blueprint",
+  "description": "Pre-built n8n workflows that eliminate API plumbing work by providing ready-to-use connections, auth handling, and glue code for common multi-agent tool integrations.",
+  "category": "n8n-template",
+  "tags": [
+    "multi-agent",
+    "api-integration",
+    "automation",
+    "workflow-templates"
+  ],
+  "item_count": 10,
+  "created_at": "2026-03-18T22:15:15.268944+00:00",
+  "status": "published",
+  "package_path": "products/n8n-multi-agent-api-integration-blueprint-20260318/package.zip",
+  "site_path": "site/products/n8n-multi-agent-api-integration-blueprint-20260318.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You've built the agent logic. Now you're losing days to auth errors, rate limit handling, and glue code that has nothing to do with your actual product.\n\nWho this is for:\n— Developers shipping AI agents who want working tool integrations, not another tutorial\n— Founders prototyping multi-agent systems without a backend team\n— n8n builders tired of reverse-engineering API quirks from scratch every time\n\nWhat's inside:\n— A 10-node n8n workflow covering the integrations that slow most projects down\n— Pre-wired auth handling so you stop fighting OAuth and API keys on day one\n— Importable JSON you drop in and run, no rebuilding from scratch\n— A setup guide that gets you from import to working calls in under an hour\n\nThis is the starting point you wish you had three projects ago.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

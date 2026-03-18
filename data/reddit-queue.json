@@ -1095,6 +1095,284 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1ru0g2q",
+      "subreddit": "nocode",
+      "title": "Is anyone else tired of losing webhooks/data when Zapier or Bubble glitches?",
+      "body": "I’ve been building a few automations lately and it’s driving me crazy how fragile webhooks are.\nIf my app is down for a second during a deploy, or if Zapier has a hiccup, I just lose the data. Stripe or Shopify might retry, but it's a mess to track what actually went through and what didn't.\nI’m looking for a 'safety net', just a simple URL I can point my webhooks to that saves everything and lets me hit 'Retry' manually if my automation fails.\n\nDoes anyone have a simple way to handle this that doesn't cost $50/mo or require a degree in backend engineering?",
+      "url": "https://reddit.com/r/nocode/comments/1ru0g2q/is_anyone_else_tired_of_losing_webhooksdata_when/",
+      "author": "Living_Tumbleweed470",
+      "found_at": "2026-03-18T22:10:12.263544+00:00",
+      "status": "skipped",
+      "brief": {
+        "score": 72,
+        "title": "Webhook Data Loss Prevention Setup Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide showing no-code builders how to create a reliable webhook receiver that logs all incoming data, implements retry logic, and provides visibility into what succeeded or failed across Zapier, Bubble, and other automation tools.",
+        "tags": [
+          "webhooks",
+          "reliability",
+          "data-loss",
+          "automation",
+          "zapier",
+          "bubble"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rriu8j",
+      "subreddit": "automation",
+      "title": "MCP changed how I think about connecting agents to tools",
+      "body": "Been building multi-agent workflows for about 8 months now and the thing that kept slowing me down wasn't the agents themselves — it was the plumbing.\n\n  \nEvery time I wanted an agent to actually do something useful, I'd spend days wiring up API connections, handling auth, and writing glue code. The agents were smart but trapped.\n\n  \nThe visual workflow approach kind of flipped that for me. Once your tools are connected through drag-and-drop nodes and app integrations, agents can work with them without you hardcoding every possible interaction.\n\n  \nIt's a different mental model. You stop thinking “how do I connect agent A to tool B” and start thinking about what capabilities exist and letting the agent figure out when to reach for them.\n\n  \nThe orchestration gets cleaner when agents aren't",
+      "url": "https://reddit.com/r/automation/comments/1rriu8j/mcp_changed_how_i_think_about_connecting_agents/",
+      "author": "Daniel_Janifar",
+      "found_at": "2026-03-18T22:10:14.174372+00:00",
+      "status": "built",
+      "brief": {
+        "score": 72,
+        "title": "Multi-Agent API Integration Blueprint",
+        "category": "n8n-template",
+        "description": "Pre-built n8n workflows that eliminate API plumbing work by providing ready-to-use connections, auth handling, and glue code for common multi-agent tool integrations.",
+        "tags": [
+          "multi-agent",
+          "api-integration",
+          "automation",
+          "workflow-templates"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": "n8n-multi-agent-api-integration-blueprint-20260318",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — Multi-Agent API Integration Blueprint.\n\nPre-built n8n workflows that eliminate API plumbing work by providing ready-to-use connections, auth handling, and glue code for common multi-agent tool integrations.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-multi-agent-api-integration-blueprint-20260318.html\n\nHope it helps!",
+      "replied_at": null
+    },
+    {
+      "post_id": "1rr00n3",
+      "subreddit": "nocode",
+      "title": "Whats the cheapest and best no code app builder that actually works for someone with zero experience who wants to build both web and mobile apps without goin broke?",
+      "body": "ok so i have this app idea thats been stuck in my head for months and i finally want to actually build it but here's the thing... i have literally zero coding experience  \n  \ni need something that works for both web and mobile because my users would be on both. ive been looking at different no code app builder options for like a week now and honestly my brain is fried. some look super easy but seem really limited in what you can actually do, and others look more powerful but also way more complicated? it also has to be affordable  \n  \nhas anyone here actually built something real with a no code app builder? like what did you use and was it actually possible to create something decent without any tech background? would really appreciate any recommendations or just honest feedback on what ac",
+      "url": "https://reddit.com/r/nocode/comments/1rr00n3/whats_the_cheapest_and_best_no_code_app_builder/",
+      "author": "hutazonee",
+      "found_at": "2026-03-18T22:10:20.803114+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code App Builder Decision Framework",
+        "category": "mini-guide",
+        "description": "A structured guide comparing the top no-code platforms (Bubble, FlutterFlow, Adalo, etc.) with decision criteria for beginners choosing between web/mobile builders without coding experience or budget.",
+        "tags": [
+          "no-code",
+          "app-building",
+          "beginner-friendly",
+          "web-and-mobile"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rv5t0o",
+      "subreddit": "n8n",
+      "title": "Help automating marketplace scraper ??!!",
+      "body": "I’m brand new to coding in general.. not just n8n, but Gemini and gpt can only take me so far in setting up a scraper and alert workflow. \n\nIs it possible for me to do it very simply from \n\nhttp — html — telegram \n\nBecause that’s what every main engine is telling me to do .. if not where can I learn how to set one of these up or will there be silly amount of charges and fees for different 3rd party websites lol \n\nAny help at all or just blunt reality will help haha",
+      "url": "https://reddit.com/r/n8n/comments/1rv5t0o/help_automating_marketplace_scraper/",
+      "author": "Vegetable-Most1262",
+      "found_at": "2026-03-18T22:10:22.741322+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Marketplace Scraper Setup Guide",
+        "category": "mini-guide",
+        "description": "A beginner-friendly guide that walks non-coders through building a simple HTTP → HTML parsing → Telegram alert workflow in n8n, with cost breakdown and alternatives.",
+        "tags": [
+          "n8n",
+          "web-scraping",
+          "beginners",
+          "no-code",
+          "telegram"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rw7n5w",
+      "subreddit": "n8n",
+      "title": "Browser Control in N8N",
+      "body": "I have n8n self hosted and I have a browserless container. I have tried n8n-nodes-puppeteer but I have been hitting a wall with a OIDC/OAuth2 2FA login flow (iframes) where it is flaky and most times it fails to find selectors that it does find if I do the 2FA fast enough.\n\nI'm thinking on switching to playwright but want to go with a tried and tested approach. Can I for example run playwright in code nodes where I \"manually\" connect to the browserless? Or should I go with a open-source community node?\n\nAlso, do you know of any browser-in-container solution that exposes sessions on HTTP(S) so I can make hybrid flows? A workflow initiates something and sends me a message with a link (plan on only exposing this on my VPN network) and then I can access the browser session through my phone and",
+      "url": "https://reddit.com/r/n8n/comments/1rw7n5w/browser_control_in_n8n/",
+      "author": "ForestyForest",
+      "found_at": "2026-03-18T22:10:24.763134+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "N8N Playwright Browser Automation Guide",
+        "category": "mini-guide",
+        "description": "A practical guide for self-hosted n8n users implementing Playwright for reliable browser automation, specifically covering OAuth2/2FA login flows with iframe handling and selector reliability.",
+        "tags": [
+          "n8n",
+          "playwright",
+          "browser-automation",
+          "oauth2",
+          "2fa"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rwmin6",
+      "subreddit": "n8n",
+      "title": "Somebody can help with this problem?",
+      "body": "So, I’m trying to connect my service account to Google Calendar in n8n, but it doesn’t show the option to use a service account. It only allows me to use a Google Calendar OAuth2 account. Does anyone know how to solve this problem?",
+      "url": "https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/",
+      "author": "Great_Appointment_89",
+      "found_at": "2026-03-18T22:10:26.720154+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Google Calendar Service Account Setup Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide showing n8n users how to authenticate Google Calendar using service accounts instead of OAuth2, solving the limitation of missing service account options in the native connector.",
+        "tags": [
+          "n8n",
+          "google-calendar",
+          "service-accounts",
+          "authentication"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rwsv34",
+      "subreddit": "automation",
+      "title": "Automating life admin has improved my productivity more than any productivity hack",
+      "body": "Hi, I’m new to automation. Last month I spent an entire day negotiating bill discounts and canceling unnecessary subscriptions. That made me realize how many small, annoying tasks we usually overlook, like bills, subscriptions, customer service calls, and non-essential emails and reminders. They don’t feel like much, but they quietly eat up your mental bandwidth and kill focus.\n\nSince then, I've tried a few approaches. Here are some that really helped:\n\n- I use Monarch Money to consolidate accounts and subscriptions, automatically categorize expenses, send renewal reminders, and generate monthly cash flow reports.\n- I use Pine for my ISP stuff and negotiate the bill and sort out my bill so I don't have to spend hours on the phone.\n- Superhuman helps me not drown in emails, so I can actuall",
+      "url": "https://reddit.com/r/automation/comments/1rwsv34/automating_life_admin_has_improved_my/",
+      "author": "allcompanymobiles",
+      "found_at": "2026-03-18T22:10:30.219863+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Life Admin Automation Starter Checklist",
+        "category": "checklist",
+        "description": "A structured checklist helping users identify, prioritize, and automate recurring life admin tasks (bills, subscriptions, customer service) that drain mental bandwidth without feeling urgent.",
+        "tags": [
+          "life-admin",
+          "automation",
+          "productivity",
+          "mental-bandwidth",
+          "recurring-tasks"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rrodvh",
+      "subreddit": "n8n",
+      "title": "How to charge your clients for AI usage or workflows or service fee after initial development ?",
+      "body": "Basically title, I am currently talking with my first client understanding their needs, where they can use automation and can help them.\n\nBut I don't know how and what to charge them for workflows.\n\nI can think of an amount for initial workflow development, but how to charge them for AI token usage if any, different prompts can have different usage, some may not use AI at all.\n\nCan someone who has done similar work in past share their process of charging their clients and how they calculate it ?\n\nDo you use client's APIs for AI models then how do you explain them the usage of AI?   \nIf you use your own APIs how do you calculate AI usage ?\n\nAfter the initial workflow development charge do you charge them monthly maintenance ?  \nIf yes what can be included in this maintenance ?",
+      "url": "https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/",
+      "author": "DustFuzzy1702",
+      "found_at": "2026-03-18T22:10:41.018028+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "AI Usage & Service Pricing Strategy Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping automation freelancers and agencies structure pricing models for n8n workflows, including strategies for charging development fees, AI token usage, and ongoing service fees.",
+        "tags": [
+          "n8n",
+          "pricing-strategy",
+          "client-billing",
+          "automation-business",
+          "AI-costs"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rw5k8e",
+      "subreddit": "automation",
+      "title": "Are robotic process automation platforms still the best bet for legacy software integration in 2026?",
+      "body": "I’m currently auditing our tech stack and we have a lot of old software that doesn't have a clean API. I've been looking into various robotic process automation tools to bridge the gap, but I'm worried about the brittleness of UI-based bots.\n\nIs anyone still finding success with traditional RPA, or have you moved toward more modern workflow automation platforms that can handle both API and UI tasks more gracefully? I'm looking for reliability above all else because these are mission-critical financial workflows.",
+      "url": "https://reddit.com/r/automation/comments/1rw5k8e/are_robotic_process_automation_platforms_still/",
+      "author": "Sirwanga",
+      "found_at": "2026-03-18T22:10:42.935418+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Legacy Software Integration Strategy Guide",
+        "category": "mini-guide",
+        "description": "A practical guide comparing RPA vs modern workflow automation platforms for legacy software integration, with decision frameworks and implementation patterns for 2026.",
+        "tags": [
+          "legacy-systems",
+          "automation",
+          "api-integration",
+          "rpa-alternatives",
+          "workflow-automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rx2coh",
+      "subreddit": "nocode",
+      "title": "Best no-code CRM for custom workflows? I want to build a CRM without hiring a developer.",
+      "body": "As the title says, I want to build a CRM for custom workflows without having to hire a developer. I’m a non-technical founder trying to get out of spreadsheet hell. It’s become unmanageable at this point to keep doing what I’m doing with Google Sheets. My goal is to build something that behaves like a CRM. The challenge is that my pipeline is kind of specific, so the usual CRM options aren’t a good fit.\n\nI need a CRM that will let me create spreadsheet-like custom objects for partners and vendors. I’d like it to have functionality for contracts and onboarding steps, as well. I need to be able to define relationships between these objects to build custom workflows. I lack the funds to hire an agency to develop this. And I lack the time and will to learn Salesforce administration.\n\nI’m reall",
+      "url": "https://reddit.com/r/nocode/comments/1rx2coh/best_nocode_crm_for_custom_workflows_i_want_to/",
+      "author": "Cuteslave07",
+      "found_at": "2026-03-18T22:10:48.491655+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Custom CRM Pipeline Builder Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide helping non-technical founders design and build custom CRM workflows without code using no-code tools, moving beyond spreadsheets to professional pipeline management.",
+        "tags": [
+          "no-code",
+          "CRM",
+          "custom-workflows",
+          "non-technical-founders",
+          "spreadsheet-migration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }

@@ -1,0 +1,403 @@
+{
+  "name": "Multi-Agent API Integration Blueprint",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "multi-agent-trigger",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "node2",
+      "name": "Validate & Parse Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst agentName = body.agent_name || 'default-agent';\nconst task = body.task || '';\nconst payload = body.payload || {};\nconst apiTarget = body.api_target || 'openai';\n\nif (!task) {\n  throw new Error('Missing required field: task');\n}\n\nreturn [{\n  json: {\n    agentName,\n    task,\n    payload,\n    apiTarget,\n    timestamp: new Date().toISOString(),\n    requestId: Math.random().toString(36).substring(2, 15)\n  }\n}];"
+      }
+    },
+    {
+      "id": "node3",
+      "name": "Route by API Target",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json.apiTarget}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "openai",
+              "output": 0
+            },
+            {
+              "value2": "slack",
+              "output": 1
+            },
+            {
+              "value2": "sheets",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      }
+    },
+    {
+      "id": "node4",
+      "name": "Call OpenAI Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "headers": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_OPENAI_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "bodyParametersJson": "={\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"You are a helpful multi-agent assistant.\"},\n    {\"role\": \"user\", \"content\": \"{{$json.task}}\"}\n  ],\n  \"max_tokens\": 1024,\n  \"temperature\": 0.7\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "node5",
+      "name": "Post to Slack Agent",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "parameters": {
+        "operation": "postMessage",
+        "channel": "#agent-notifications",
+        "text": "=*Agent:* {{$json.agentName}}\n*Task:* {{$json.task}}\n*Request ID:* {{$json.requestId}}\n*Timestamp:* {{$json.timestamp}}",
+        "attachments": [],
+        "otherOptions": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "slack-cred-id",
+          "name": "Slack API - YOUR_WORKSPACE"
+        }
+      }
+    },
+    {
+      "id": "node6",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        800,
+        500
+      ],
+      "parameters": {
+        "operation": "append",
+        "spreadsheetId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "AgentLogs",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "RequestID": "={{$json.requestId}}",
+            "AgentName": "={{$json.agentName}}",
+            "Task": "={{$json.task}}",
+            "APITarget": "={{$json.apiTarget}}",
+            "Timestamp": "={{$json.timestamp}}",
+            "Status": "pending"
+          }
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "gsheets-cred-id",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "id": "node7",
+      "name": "Fallback HTTP Handler",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        700
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.example.com/agents/{{$json.apiTarget}}/execute",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "headers": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_FALLBACK_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "bodyParametersJson": "={\n  \"agent\": \"{{$json.agentName}}\",\n  \"task\": \"{{$json.task}}\",\n  \"payload\": {{JSON.stringify($json.payload)}},\n  \"requestId\": \"{{$json.requestId}}\"\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "node8",
+      "name": "Aggregate Results",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        400
+      ],
+      "parameters": {
+        "mode": "manual",
+        "fields": {
+          "values": [
+            {
+              "name": "requestId",
+              "type": "string",
+              "value": "={{$json.requestId || $('Validate & Parse Request').first().json.requestId}}"
+            },
+            {
+              "name": "agentName",
+              "type": "string",
+              "value": "={{$json.agentName || $('Validate & Parse Request').first().json.agentName}}"
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "value": "success"
+            },
+            {
+              "name": "result",
+              "type": "string",
+              "value": "={{JSON.stringify($json)}}"
+            },
+            {
+              "name": "completedAt",
+              "type": "string",
+              "value": "={{new Date().toISOString()}}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node9",
+      "name": "Send Telegram Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        400
+      ],
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=✅ *Agent Task Completed*\n\n📌 *Request ID:* `{{$json.requestId}}`\n🤖 *Agent:* {{$json.agentName}}\n📊 *Status:* {{$json.status}}\n🕐 *Completed:* {{$json.completedAt}}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-cred-id",
+          "name": "Telegram Bot API"
+        }
+      }
+    },
+    {
+      "id": "node10",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        400
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"requestId\": \"{{$json.requestId}}\",\n  \"agentName\": \"{{$json.agentName}}\",\n  \"status\": \"{{$json.status}}\",\n  \"completedAt\": \"{{$json.completedAt}}\",\n  \"message\": \"Multi-agent task processed successfully\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Validate & Parse Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Parse Request": {
+      "main": [
+        [
+          {
+            "node": "Route by API Target",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by API Target": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post to Slack Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fallback HTTP Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI Agent": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Slack Agent": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fallback HTTP Handler": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Results": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Telegram Notification": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "meta": {
+    "templateId": "multi-agent-api-integration-blueprint",
+    "description": "Pre-built multi-agent API integration workflow with routing to OpenAI, Slack, Google Sheets, and fallback HTTP handler. Includes auth handling, request validation, result aggregation, Telegram notifications, and webhook response."
+  }
+}
