@@ -1,0 +1,22 @@
+{
+  "id": "guide-google-calendar-service-account-setup-gu-20260318",
+  "title": "Google Calendar Service Account Setup Guide",
+  "description": "A step-by-step guide showing n8n users how to authenticate Google Calendar using service accounts instead of OAuth2, solving the limitation of missing service account options in the native connector.",
+  "category": "mini-guide",
+  "tags": [
+    "n8n",
+    "google-calendar",
+    "service-accounts",
+    "authentication"
+  ],
+  "item_count": 1,
+  "created_at": "2026-03-18T22:22:04.545306+00:00",
+  "status": "published",
+  "package_path": "products/guide-google-calendar-service-account-setup-gu-20260318/package.zip",
+  "site_path": "site/products/guide-google-calendar-service-account-setup-gu-20260318.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You've built the workflow. Google Calendar authentication is the only thing standing between you and done — and n8n's native connector doesn't show the service account option you need.\n\nThis guide walks you through exactly how to authenticate Google Calendar in n8n using a service account, step by step, with no gaps.\n\nWHO THIS IS FOR\n\n— n8n users building automation workflows that need Google Calendar access without OAuth2 prompts or user logins\n— Developers managing calendars programmatically across multiple accounts or on behalf of an organization\n— Anyone who hit the service account wall in n8n and started Googling with nothing useful coming back\n\nWHAT'S INSIDE\n\n— A focused step-by-step setup walkthrough that gets you authenticated and moving, not reading documentation in circles\n— A quick-reference summary you can return to the next time you need to repeat this setup\n— Clean Markdown formatting that's easy to follow and copy from\n\nOne guide, one problem, fully solved.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

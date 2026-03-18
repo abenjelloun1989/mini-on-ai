@@ -3202,13 +3202,34 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/automation: https://reddit.com/r/automation/comments/1rriu8j/mcp_changed_how_i_think_about_connecting_agents/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "n8n-multi-agent-api-integration-blueprint-20260318",
       "generated_at": "2026-03-18T22:14:32.579920+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rriu8j",
       "reddit_url": "https://reddit.com/r/automation/comments/1rriu8j/mcp_changed_how_i_think_about_connecting_agents/"
+    },
+    {
+      "id": "idea-reddit-1rwmin6",
+      "title": "Google Calendar Service Account Setup Guide",
+      "description": "A step-by-step guide showing n8n users how to authenticate Google Calendar using service accounts instead of OAuth2, solving the limitation of missing service account options in the native connector.",
+      "category": "mini-guide",
+      "tags": [
+        "n8n",
+        "google-calendar",
+        "service-accounts",
+        "authentication"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "guide-google-calendar-service-account-setup-gu-20260318",
+      "generated_at": "2026-03-18T22:21:32.610279+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rwmin6",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/"
     }
   ]
 }

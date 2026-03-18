@@ -1160,7 +1160,7 @@
       "url": "https://reddit.com/r/nocode/comments/1rr00n3/whats_the_cheapest_and_best_no_code_app_builder/",
       "author": "hutazonee",
       "found_at": "2026-03-18T22:10:20.803114+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "No-Code App Builder Decision Framework",
@@ -1187,7 +1187,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rv5t0o/help_automating_marketplace_scraper/",
       "author": "Vegetable-Most1262",
       "found_at": "2026-03-18T22:10:22.741322+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "n8n Marketplace Scraper Setup Guide",
@@ -1215,7 +1215,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rw7n5w/browser_control_in_n8n/",
       "author": "ForestyForest",
       "found_at": "2026-03-18T22:10:24.763134+00:00",
-      "status": "pending",
+      "status": "skipped",
       "brief": {
         "score": 72,
         "title": "N8N Playwright Browser Automation Guide",
@@ -1243,7 +1243,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rwmin6/somebody_can_help_with_this_problem/",
       "author": "Great_Appointment_89",
       "found_at": "2026-03-18T22:10:26.720154+00:00",
-      "status": "pending",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "Google Calendar Service Account Setup Guide",
@@ -1258,8 +1258,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "guide-google-calendar-service-account-setup-gu-20260318",
+      "reply_text": "Hey! I actually built a mini guide for exactly this — Google Calendar Service Account Setup Guide.\n\nA step-by-step guide showing n8n users how to authenticate Google Calendar using service accounts instead of OAuth2, solving the limitation of missing service account options in the native connector.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/guide-google-calendar-service-account-setup-gu-20260318.html\n\nHope it helps!",
       "replied_at": null
     },
     {
