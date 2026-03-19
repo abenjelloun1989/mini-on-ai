@@ -56,63 +56,81 @@ Happy to answer questions or take requests for other skill types.
 **Gumroad URL:** https://minionai.gumroad.com/l/hromk
 
 **Title:**
-I made 25 prompts that fix weak resume bullets to pass ATS filters — sharing 4 inline, full pack free
+I made 25 prompts that rewrite resume bullets to pass ATS filters — free
 
 ---
 
 **Body:**
 
-Job hunting tip that actually moved the needle for me: stop rewriting your bullets from memory and start using the job description as the rewrite brief.
+ATS systems just match keywords. If the job posting says "cross-functional stakeholder alignment" and your resume says "worked with teams", you get filtered before a human ever reads it.
 
-ATS systems are essentially keyword matchers. If the job posting says "cross-functional stakeholder alignment" and your resume says "worked with teams", you get filtered before a human ever sees it.
+The fix is using the job description as the rewrite brief. Paste your bullets and the JD, and you get back versions that mirror the exact language they're scanning for. I wrote 25 prompts covering different cases: keyword gap analysis, metric injection, career changers, executive summaries, cover letters.
 
-Here are 4 prompts I use. Paste them directly into ChatGPT or Claude:
+Works with ChatGPT or Claude. Free here: https://mini-on-ai.com/products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.html
 
-**1. Core bullet rewriter from job description**
-```
-I need you to rewrite my resume bullets to be ATS-optimized for a specific job posting. Here is the job description:
+I've been making other free tools like this, you can find them at https://mini-on-ai.com if you're curious. Happy to take feedback.
 
-[PASTE FULL JOB DESCRIPTION HERE]
+---
 
-Here are my current resume bullets:
-[PASTE YOUR CURRENT BULLETS HERE]
+## Post 3 — r/n8n
+**Status:** Ready
+**Product:** Multi-Agent API Integration Blueprint (10 n8n workflow templates)
+**Site:** https://mini-on-ai.com
 
-Please rewrite each bullet by: (1) incorporating exact keywords and phrases from the job description, (2) adding measurable metrics where I can insert them (use placeholders like [X%] or [$ amount] where I need to fill in numbers), (3) starting each bullet with a strong action verb that matches the job description's language, (4) keeping each bullet under 2 lines, and (5) prioritizing the top skills and requirements mentioned in the job posting.
-```
+**Title:**
+I got tired of rewriting the same API auth boilerplate for every n8n multi-agent project — made 10 templates, free
 
-**2. Keyword gap analyzer**
-```
-Before I rewrite my resume, I need to identify the keyword gaps between my current resume and this job description.
+---
 
-Job Description: [PASTE JOB DESCRIPTION]
-My Current Resume: [PASTE RESUME TEXT]
+**Body:**
 
-Extract the top 20 keywords from the JD, identify which are missing from my resume, flag which are likely ATS eliminators, and suggest where to insert each one naturally. Format as a table: Keyword | Found in Resume | Priority | Suggested Placement.
-```
+Every multi-agent project I build in n8n starts the same way: 30–60 minutes of plumbing before any actual logic — API key passing, OAuth token refresh, error propagation between agents, retry handling. None of it is hard, it's just always the same work.
 
-**3. Single weak bullet transformer**
-```
-Transform this single weak resume bullet into 3 ATS-optimized versions tailored to the job description below.
+I packaged the connection patterns I reuse most into 10 ready-to-import n8n workflow templates: auth handling for the common APIs (OpenAI, Anthropic, Perplexity, Serper, etc.), agent-to-agent data passing, error routing, and credential isolation so sub-agents don't inherit permissions they shouldn't have.
 
-Job Description: [PASTE JD]
-Weak Bullet: [PASTE YOUR BULLET]
+Nothing exotic — just the boilerplate so you can skip straight to the part that's actually specific to your project.
 
-For each version: use a different strong action verb, incorporate JD keywords, include a metric placeholder, and vary the structure. After the 3 versions, explain in one sentence what makes each stronger.
-```
+Free to grab at https://mini-on-ai.com
 
-**4. Metric injection specialist**
-```
-My resume bullets lack measurable results. For each bullet below: (1) rewrite it with a metric placeholder in the most logical position, (2) ask me one specific question to help me find the real number.
+---
 
-Job Description: [PASTE JD]
-My Bullets: [PASTE BULLETS]
+## Post 4 — r/productivity
+**Status:** Ready
+**Product:** Meeting Notes to Action Items Fast
+**Site:** https://mini-on-ai.com
 
-Format: Original → Rewritten Bullet → Question to Find Your Metric.
-```
+**Title:**
+I made a set of prompts that turn raw meeting notes into clean action items in under a minute — free
 
-I packaged 25 of these (covering career changers, executive summaries, skills sections, cover letter matching, etc.) into a pay-what-you-want pack if anyone wants the full set: https://minionai.gumroad.com/l/hromk
+---
 
-Drop a weak bullet in the comments and I'll run it through prompt #3 for you.
+**Body:**
+
+The pattern in most teams: someone takes notes during the meeting, they sit in a doc for a week, nobody follows up. The notes exist but extracting "who owns what by when" takes more effort than it should, so it doesn't happen.
+
+I wrote a small set of prompts for this. Paste your raw notes — even the messy, stream-of-consciousness kind — and it pulls out every action item, assigns an owner if one was named, adds a due date if one was mentioned, and flags anything that was left unresolved. Output is a clean list you can drop straight into Notion, Linear, or just reply-all.
+
+Works with ChatGPT, Claude, or any LLM. Free at https://mini-on-ai.com
+
+---
+
+## Post 5 — r/freelance
+**Status:** Ready
+**Product:** AI Usage & Service Pricing Strategy Guide
+**Site:** https://mini-on-ai.com
+
+**Title:**
+How do you charge clients for AI costs in your projects? I wrote up the pricing models that actually work for automation freelancers
+
+---
+
+**Body:**
+
+This comes up constantly in automation freelancing: you build an n8n workflow that hits the OpenAI API a few hundred times per day for a client. Do you absorb the token cost? Pass it through at cost? Mark it up? Wrap it into a monthly retainer?
+
+There's no obvious right answer and getting it wrong either eats your margin or kills the deal. I spent time mapping out the models that actually work — flat development fee + usage passthrough, service tiers with AI included, cost-plus with a buffer, and managed service pricing where you own the infrastructure. Each one has a different risk profile depending on how predictable the client's usage is.
+
+Wrote it up as a short guide. Free at https://mini-on-ai.com
 
 ---
 
@@ -120,3 +138,6 @@ Drop a weak bullet in the comments and I'll run it through prompt #3 for you.
 - Reply to every comment within the first hour for algorithm boost
 - For r/ChatGPT post: if someone drops a bullet in comments, run it through prompt 3 and reply with the rewrite — that engagement drives the post up
 - For r/ClaudeAI post: if someone asks about other skill types, offer to build one and mention the pack
+- For r/n8n post: if someone asks which APIs are covered, name 3-4 specifically (OpenAI, Anthropic, Serper, Perplexity)
+- For r/productivity post: if someone asks for an example, offer to run their notes through it in the comments
+- For r/freelance post: open with a question to invite discussion — the post title itself is question-framed, lean into that
