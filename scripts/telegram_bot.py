@@ -167,6 +167,67 @@ def cmd_seturl(args: str) -> str:
         return f"❌ Unexpected error: {e}"
 
 
+def cmd_setfree(pid: str) -> str:
+    """Handle /setfree {product_id} — mark a product as free and rebuild site."""
+    import json as _json
+    pid = pid.strip()
+    if not pid:
+        return (
+            "Usage: <code>/setfree {product_id}</code>\n\n"
+            "Example:\n"
+            "<code>/setfree skills-claude-code-skills-pack-codebase-onboard-20260315</code>\n\n"
+            "Use /products to see product IDs."
+        )
+    try:
+        # Update product-catalog.json
+        catalog_path = ROOT / "data/product-catalog.json"
+        with open(catalog_path) as f:
+            catalog = _json.load(f)
+        found = False
+        for p in catalog["products"]:
+            if p["id"] == pid:
+                p["is_free"] = True
+                found = True
+                break
+        if not found:
+            return f"❌ Product not found: <code>{pid}</code>"
+        with open(catalog_path, "w") as f:
+            _json.dump(catalog, f, indent=2, ensure_ascii=False)
+
+        # Update meta.json too so rebuild_all picks it up
+        meta_path = ROOT / f"products/{pid}/meta.json"
+        if meta_path.exists():
+            with open(meta_path) as f:
+                meta = _json.load(f)
+            meta["is_free"] = True
+            with open(meta_path, "w") as f:
+                _json.dump(meta, f, indent=2, ensure_ascii=False)
+
+        # Rebuild site
+        rebuild = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/update_site.py"), "--rebuild-all"],
+            capture_output=True, text=True, cwd=str(ROOT), timeout=60,
+        )
+        if rebuild.returncode != 0:
+            return f"⚠️ Marked free but site rebuild failed:\n<code>{rebuild.stderr[:300]}</code>"
+
+        # Push to GitHub
+        subprocess.run(["git", "add", "-A"], cwd=str(ROOT), capture_output=True)
+        subprocess.run(
+            ["git", "commit", "-m", f"site: mark {pid} as free"],
+            cwd=str(ROOT), capture_output=True,
+        )
+        subprocess.run(["git", "push"], cwd=str(ROOT), capture_output=True, timeout=60)
+
+        return (
+            f"✅ <b>Marked as free!</b>\n\n"
+            f"Product: <code>{pid}</code>\n"
+            f"Free badge now shows on the site."
+        )
+    except Exception as e:
+        return f"❌ Unexpected error: {e}"
+
+
 
 def cmd_categories() -> str:
     lines = ["🗂 <b>Product Categories</b>\n"]
@@ -382,6 +443,10 @@ def handle_command(text: str) -> str:
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()
         return cmd_seturl(args)
+
+    if lower.startswith("/setfree"):
+        args = text[len("/setfree"):].strip()
+        return cmd_setfree(args)
 
     if lower == "/categories":
         return cmd_categories()

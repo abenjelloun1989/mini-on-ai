@@ -10,7 +10,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -355,19 +355,36 @@ CATEGORY_PLACEHOLDER_IMG = {
 
 
 def build_product_card(meta: dict) -> str:
-    tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
+    tags = meta.get("tags") or []
+    tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags)
     thumb = meta.get("thumbnail")
     cat = meta.get("category", "prompt-packs")
-    tags_attr = ",".join(meta.get("tags") or [])
+    tags_attr = ",".join(tags)
     if thumb:
         thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
     else:
         placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
         thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
     cta_html = _gumroad_cta_card(meta)
-    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-tags="{escape_html(tags_attr)}">{thumbnail_html}
+
+    # Free badge
+    free_attr = ' data-free="true"' if meta.get("is_free") else ""
+    free_badge = '<span class="badge-free">Free</span>' if meta.get("is_free") else ""
+
+    # New badge — auto for products created in last 14 days
+    new_badge = ""
+    created = meta.get("created_at", "")
+    if created:
+        try:
+            dt = datetime.fromisoformat(created.replace("Z", "+00:00"))
+            if (datetime.now(timezone.utc) - dt) < timedelta(days=14):
+                new_badge = '<span class="badge-new">New</span>'
+        except Exception:
+            pass
+
+    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-tags="{escape_html(tags_attr)}"{free_attr}>{thumbnail_html}
         <div class="product-card-body">
-          <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
+          <div class="product-tags">{_category_badge(meta)}{free_badge}{new_badge}{tags_html}</div>
           <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
           <p class="product-desc">{escape_html(meta['description'])}</p>
           <div class="product-meta">{escape_html(_count_label(meta))}</div>
@@ -399,34 +416,52 @@ def _build_filter_bar(products: list) -> str:
             label = cat_labels.get(cat, cat)
             btns.append(f'    <button class="filter-btn" data-filter="cat:{cat}">{label} <span class="filter-count">{n}</span></button>')
 
+    free_count = sum(1 for p in products if p.get("is_free"))
+    if free_count:
+        btns.append(f'    <button class="filter-btn" data-filter="free">Free <span class="filter-count">{free_count}</span></button>')
+
     return "  <div class=\"filter-bar\">\n" + "\n".join(btns) + "\n  </div>"
 
 
 def _filter_js() -> str:
-    """Return the catalog filter JavaScript."""
+    """Return the catalog filter + search JavaScript."""
     return """  <script>
     (function() {
       var filterBtns = document.querySelectorAll('.filter-btn');
       var cards = document.querySelectorAll('.product-card');
       var emptyMsg = document.getElementById('catalogEmpty');
       var countEl = document.getElementById('catalogCount');
+      var searchInput = document.getElementById('productSearch');
+      var searchClear = document.getElementById('searchClear');
       var totalCount = cards.length;
 
-      function applyFilter(filter) {
+      var activeFilter = 'all';
+      var searchQuery = '';
+
+      function cardMatchesFilter(card) {
+        if (activeFilter === 'all') return true;
+        if (activeFilter === 'free') return card.dataset.free === 'true';
+        if (activeFilter.indexOf('cat:') === 0) return card.dataset.category === activeFilter.slice(4);
+        return true;
+      }
+
+      function cardMatchesSearch(card) {
+        if (!searchQuery) return true;
+        var q = searchQuery.toLowerCase();
+        var title = (card.querySelector('.product-title') || {}).textContent || '';
+        var desc = (card.querySelector('.product-desc') || {}).textContent || '';
+        var tags = card.dataset.tags || '';
+        return title.toLowerCase().indexOf(q) >= 0
+          || desc.toLowerCase().indexOf(q) >= 0
+          || tags.toLowerCase().indexOf(q) >= 0;
+      }
+
+      function applyFilters() {
         var visible = 0;
         cards.forEach(function(card) {
-          var show = false;
-          if (filter === 'all') {
-            show = true;
-          } else if (filter.indexOf('cat:') === 0) {
-            show = card.dataset.category === filter.slice(4);
-          }
-          if (show) {
-            card.classList.remove('filter-hidden');
-            visible++;
-          } else {
-            card.classList.add('filter-hidden');
-          }
+          var show = cardMatchesFilter(card) && cardMatchesSearch(card);
+          card.classList.toggle('filter-hidden', !show);
+          if (show) visible++;
         });
         if (emptyMsg) emptyMsg.classList.toggle('visible', visible === 0);
         if (countEl) countEl.textContent = visible === totalCount
@@ -438,7 +473,38 @@ def _filter_js() -> str:
         btn.addEventListener('click', function() {
           filterBtns.forEach(function(b) { b.classList.remove('active'); });
           btn.classList.add('active');
-          applyFilter(btn.dataset.filter);
+          activeFilter = btn.dataset.filter;
+          applyFilters();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          searchQuery = searchInput.value.trim();
+          if (searchClear) searchClear.style.display = searchQuery ? 'block' : 'none';
+          applyFilters();
+        });
+      }
+
+      if (searchClear) {
+        searchClear.addEventListener('click', function() {
+          searchInput.value = '';
+          searchQuery = '';
+          searchClear.style.display = 'none';
+          searchInput.focus();
+          applyFilters();
+        });
+      }
+
+      document.querySelectorAll('.tag[data-tag]').forEach(function(tag) {
+        tag.addEventListener('click', function() {
+          if (searchInput) {
+            searchInput.value = tag.dataset.tag;
+            searchQuery = tag.dataset.tag;
+            if (searchClear) searchClear.style.display = 'block';
+            applyFilters();
+            searchInput.focus();
+          }
         });
       });
     })();
@@ -499,6 +565,10 @@ def rebuild_index(catalog: dict) -> str:
   <main class="catalog">
     <div class="catalog-header">
       <p class="catalog-subtitle" id="catalogCount">{count} product{'s' if count != 1 else ''} available</p>
+      <div class="search-wrap">
+        <input type="search" id="productSearch" class="search-input" placeholder="Search products…" autocomplete="off">
+        <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+      </div>
 {filter_bar}
     </div>
 
@@ -609,6 +679,7 @@ def update_site(product_id_arg: str = None) -> dict:
         "thumbnail": meta.get("thumbnail"),
         "gumroad_url": meta.get("gumroad_url"),
         "price": meta.get("price"),
+        "is_free": meta.get("is_free"),
     }
 
     existing_idx = next((i for i, p in enumerate(catalog["products"]) if p["id"] == pid), None)
@@ -669,6 +740,7 @@ def rebuild_all() -> None:
             "site_path": f"site/products/{pid}.html",
             "gumroad_url": meta.get("gumroad_url"),
             "thumbnail": meta.get("thumbnail"),
+            "is_free": meta.get("is_free"),
         })
 
     write_json("data/product-catalog.json", catalog)
