@@ -36,6 +36,7 @@ from idea_rank import idea_rank
 from generate_product import generate_product
 from package_product import package_product
 from update_site import update_site
+from generate_thumbnails import generate_thumbnail, THUMB_DIR
 from publish_product import publish_product
 from telegram_notify import telegram_report, send_approval_request
 
@@ -201,6 +202,26 @@ def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
     except Exception as e:
         fail("update-site", str(e))
 
+    # Stage 5.2: Generate thumbnail
+    log("pipeline", "--- Stage: generate-thumbnail ---")
+    try:
+        THUMB_DIR.mkdir(parents=True, exist_ok=True)
+        pid = meta["id"]
+        thumb_path = THUMB_DIR / f"{pid}.png"
+        generate_thumbnail(meta["title"], meta.get("category", ""), thumb_path)
+        site_thumb = f"images/thumbnails/{pid}.png"
+        meta["thumbnail"] = site_thumb
+        # Update meta.json with thumbnail path
+        import json as _json
+        meta_path = ROOT / "products" / pid / "meta.json"
+        if meta_path.exists():
+            _meta = _json.loads(meta_path.read_text())
+            _meta["thumbnail"] = site_thumb
+            meta_path.write_text(_json.dumps(_meta, indent=2))
+        log("pipeline", f"Thumbnail generated: {thumb_path.name}")
+    except Exception as e:
+        log("pipeline", f"Warning: thumbnail generation failed (non-fatal): {e}")
+
     # Stage 5.5: Publish to Gumroad
     log("pipeline", "--- Stage: publish-product ---")
     gumroad_url = None
@@ -242,7 +263,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
     log("pipeline", "--- Stage: git-commit ---")
     try:
         subprocess.run(
-            ["git", "add", "site/", "data/", f"products/{meta['id']}/"],
+            ["git", "add", "site/", "data/", f"products/{meta['id']}/", "site/images/thumbnails/"],
             cwd=str(ROOT), check=True, capture_output=True
         )
         # Only commit if there are staged changes
