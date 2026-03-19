@@ -1,6 +1,6 @@
 {
   "id": "prompts-claude-code-skill-mock-server-scaffolder-20260313",
-  "title": "Claude Code Skill: Mock Server Scaffolder — Generate Instant API Mocks from Specs or Curl Examples",
+  "title": "Claude Code Skill: Mock Server Scaffolder \u2014 Generate Instant API Mocks from Specs or Curl Examples",
   "description": "For frontend developers and QA engineers, this skill generates fully functional mock server configurations from OpenAPI specs or raw curl examples so they can unblock UI development and testing without waiting for backend endpoints to be production-ready.",
   "category": "claude-code-skill",
   "tags": [
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/prompts-claude-code-skill-mock-server-scaffolder-20260313/package.zip",
   "site_path": "site/products/prompts-claude-code-skill-mock-server-scaffolder-20260313.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/prompts-claude-code-skill-mock-server-scaffolder-20260313.png",
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "Blocked on frontend work because the backend isn't ready yet? Fix that today.\n\nWho this is for:\n— Frontend developers waiting on API endpoints that keep getting delayed\n— QA engineers who need stable, reproducible mocks for test environments\n— Full-stack developers who want to prototype UI without touching production APIs\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Generates MSW, json-server, or Express mock configs from OpenAPI specs or curl examples\n— Realistic fake data, correct HTTP status codes, error handling included\n— Usage guide + real slash-command examples\n\nUnblock your UI work in one command. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Blocked on frontend work because the backend isn't ready yet? Fix that today.\n\nWho this is for:\n\u2014 Frontend developers waiting on API endpoints that keep getting delayed\n\u2014 QA engineers who need stable, reproducible mocks for test environments\n\u2014 Full-stack developers who want to prototype UI without touching production APIs\n\nWhat's inside:\n\u2014 1 ready-to-use SKILL.md file \u2014 drop into your project's skills/ folder\n\u2014 Generates MSW, json-server, or Express mock configs from OpenAPI specs or curl examples\n\u2014 Realistic fake data, correct HTTP status codes, error handling included\n\u2014 Usage guide + real slash-command examples\n\nUnblock your UI work in one command. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

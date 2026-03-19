@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-release-and-chan-20260315",
-  "title": "Claude Code Skills Pack: Release and Changelog Documentation — 5 Skills for Communicating Code Changes Clearly",
+  "title": "Claude Code Skills Pack: Release and Changelog Documentation \u2014 5 Skills for Communicating Code Changes Clearly",
   "description": "For DevOps engineers and release managers, this pack generates human-readable changelogs from git commits, categorizes breaking vs non-breaking changes, drafts release notes for end users, documents migration steps for version upgrades, and creates internal post-release summaries so they can ship releases with clear communication every time",
   "category": "claude-code-skill",
   "tags": [
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/skills-claude-code-skills-pack-release-and-chan-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-release-and-chan-20260315.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-release-and-chan-20260315.png",
   "price": 5.0,
   "gumroad_product_id": "yfiywi",
   "gumroad_url": "https://minionai.gumroad.com/l/yfiywi",
-  "gumroad_description": "Shipping without a clear changelog is how you get angry Slack messages at 11pm.\n\nWho this is for:\n— DevOps engineers who hate writing release notes from scratch\n— Release managers who need to communicate breaking changes clearly\n— Backend leads who produce changelogs that only other engineers can read\n\nWhat's inside:\n— Skill 1: Human-readable changelog from git commits\n— Skill 2: Breaking vs non-breaking change categorizer\n— Skill 3: End-user release notes drafter (no jargon)\n— Skill 4: Migration steps generator for version upgrades\n— Skill 5: Internal post-release summary writer\n— Installation guide + quick-reference trigger table\n\nShip with a paper trail. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Shipping without a clear changelog is how you get angry Slack messages at 11pm.\n\nWho this is for:\n\u2014 DevOps engineers who hate writing release notes from scratch\n\u2014 Release managers who need to communicate breaking changes clearly\n\u2014 Backend leads who produce changelogs that only other engineers can read\n\nWhat's inside:\n\u2014 Skill 1: Human-readable changelog from git commits\n\u2014 Skill 2: Breaking vs non-breaking change categorizer\n\u2014 Skill 3: End-user release notes drafter (no jargon)\n\u2014 Skill 4: Migration steps generator for version upgrades\n\u2014 Skill 5: Internal post-release summary writer\n\u2014 Installation guide + quick-reference trigger table\n\nShip with a paper trail. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

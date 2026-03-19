@@ -1,6 +1,6 @@
 {
   "id": "prompts-claude-code-skill-postman-collection-bui-20260314",
-  "title": "Claude Code Skill: Postman Collection Builder — Convert API Docs or Specs into Ready-to-Run Postman Collections",
+  "title": "Claude Code Skill: Postman Collection Builder \u2014 Convert API Docs or Specs into Ready-to-Run Postman Collections",
   "description": "For solutions engineers and technical support teams, this skill transforms OpenAPI specs, markdown API documentation, or raw endpoint lists into fully structured Postman collections with example payloads and environment variables so they can onboard clients and reproduce issues faster without manual collection setup.",
   "category": "claude-code-skill",
   "tags": [
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/prompts-claude-code-skill-postman-collection-bui-20260314/package.zip",
   "site_path": "site/products/prompts-claude-code-skill-postman-collection-bui-20260314.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/prompts-claude-code-skill-postman-collection-bui-20260314.png",
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "Manually rebuilding Postman collections from API docs wastes hours you don't have.\n\nWho this is for:\n— Solutions engineers setting up client environments from OpenAPI specs\n— Technical support teams who need to reproduce issues without manual collection setup\n— Backend developers who want a shareable Postman collection on every API release\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Converts OpenAPI specs, markdown docs, or raw endpoint lists into full Postman collections\n— Includes example payloads and environment variable scaffolding\n— Usage guide + real slash-command examples\n\nSpec in. Working collection out. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Manually rebuilding Postman collections from API docs wastes hours you don't have.\n\nWho this is for:\n\u2014 Solutions engineers setting up client environments from OpenAPI specs\n\u2014 Technical support teams who need to reproduce issues without manual collection setup\n\u2014 Backend developers who want a shareable Postman collection on every API release\n\nWhat's inside:\n\u2014 1 ready-to-use SKILL.md file \u2014 drop into your project's skills/ folder\n\u2014 Converts OpenAPI specs, markdown docs, or raw endpoint lists into full Postman collections\n\u2014 Includes example payloads and environment variable scaffolding\n\u2014 Usage guide + real slash-command examples\n\nSpec in. Working collection out. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

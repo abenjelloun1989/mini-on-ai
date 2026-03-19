@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
-  "title": "Claude Code Skills Pack: Data Quality — 5 Skills for Pipeline Validation and Anomaly Detection",
+  "title": "Claude Code Skills Pack: Data Quality \u2014 5 Skills for Pipeline Validation and Anomaly Detection",
   "description": "For data engineers and analytics leads, this pack generates data contract definitions, row-level validation checks, statistical anomaly detection rules, data freshness monitors, and incident summary reports so they can catch data issues before they reach dashboards or decision-makers.",
   "category": "claude-code-skill",
   "tags": [
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/skills-claude-code-skills-pack-data-quality-5-s-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-data-quality-5-s-20260315.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-data-quality-5-s-20260315.png",
   "price": 5.0,
   "gumroad_product_id": "jhlfcl",
   "gumroad_url": "https://minionai.gumroad.com/l/jhlfcl",
-  "gumroad_description": "Bad data in dashboards destroys stakeholder trust. Catch it in the pipeline.\n\nWho this is for:\n— Data engineers who've been blamed for a bad number that slipped through\n— Analytics leads running pipelines without formal data contracts\n— Platform teams building data quality tooling for internal consumers\n\nWhat's inside:\n— Skill 1: Data contract definition generator\n— Skill 2: Row-level validation check writer\n— Skill 3: Statistical anomaly detection rule builder\n— Skill 4: Data freshness monitor setup\n— Skill 5: Incident summary report generator\n— Installation guide + quick-reference trigger table\n\nIssues caught before they reach decision-makers. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Bad data in dashboards destroys stakeholder trust. Catch it in the pipeline.\n\nWho this is for:\n\u2014 Data engineers who've been blamed for a bad number that slipped through\n\u2014 Analytics leads running pipelines without formal data contracts\n\u2014 Platform teams building data quality tooling for internal consumers\n\nWhat's inside:\n\u2014 Skill 1: Data contract definition generator\n\u2014 Skill 2: Row-level validation check writer\n\u2014 Skill 3: Statistical anomaly detection rule builder\n\u2014 Skill 4: Data freshness monitor setup\n\u2014 Skill 5: Incident summary report generator\n\u2014 Installation guide + quick-reference trigger table\n\nIssues caught before they reach decision-makers. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

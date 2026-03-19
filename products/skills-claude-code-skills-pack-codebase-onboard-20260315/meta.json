@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-codebase-onboard-20260315",
-  "title": "Claude Code Skills Pack: Codebase Onboarding Docs — 5 Skills for Getting New Engineers Up to Speed Fast",
+  "title": "Claude Code Skills Pack: Codebase Onboarding Docs \u2014 5 Skills for Getting New Engineers Up to Speed Fast",
   "description": "For engineering leads and staff engineers, this pack generates architecture overviews, maps module dependencies, documents environment setup steps, explains key design decisions, and produces contributor guides so new hires can become productive in days instead of weeks",
   "category": "claude-code-skill",
   "tags": [
@@ -14,10 +14,10 @@
   "status": "published",
   "package_path": "products/skills-claude-code-skills-pack-codebase-onboard-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-codebase-onboard-20260315.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-codebase-onboard-20260315.png",
   "price": 5.0,
   "gumroad_product_id": "vpqbfs",
   "gumroad_url": "https://minionai.gumroad.com/l/vpqbfs",
-  "gumroad_description": "The onboarding docs that never got written are costing you a week per new hire.\n\nWho this is for:\n— Engineering leads whose onboarding process is \"read the code and ask questions\"\n— Staff engineers who explain the same architecture three times a year to new joiners\n— Platform teams building internal developer experience tools\n\nWhat's inside:\n— Skill 1: Architecture overview generator (how the system fits together)\n— Skill 2: Module dependency mapper (what calls what and why)\n— Skill 3: Environment setup step documenter\n— Skill 4: Key design decision explainer (the reasoning behind the choices)\n— Skill 5: Contributor guide writer\n— Installation guide + quick-reference trigger table\n\nProductive new hires in days, not weeks. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "gumroad_description": "The onboarding docs that never got written are costing you a week per new hire.\n\nWho this is for:\n\u2014 Engineering leads whose onboarding process is \"read the code and ask questions\"\n\u2014 Staff engineers who explain the same architecture three times a year to new joiners\n\u2014 Platform teams building internal developer experience tools\n\nWhat's inside:\n\u2014 Skill 1: Architecture overview generator (how the system fits together)\n\u2014 Skill 2: Module dependency mapper (what calls what and why)\n\u2014 Skill 3: Environment setup step documenter\n\u2014 Skill 4: Key design decision explainer (the reasoning behind the choices)\n\u2014 Skill 5: Contributor guide writer\n\u2014 Installation guide + quick-reference trigger table\n\nProductive new hires in days, not weeks. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
   "is_free": true
 }

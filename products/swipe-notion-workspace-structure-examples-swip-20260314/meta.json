@@ -1,7 +1,7 @@
 {
   "id": "swipe-notion-workspace-structure-examples-swip-20260314",
   "title": "Notion Workspace Structure Examples Swipe File for Team Leads",
-  "description": "Team leads use this swipe file of 25 real Notion workspace architectures — organized by team size and function — to make confident structural decisions instead of starting from a blank sidebar.",
+  "description": "Team leads use this swipe file of 25 real Notion workspace architectures \u2014 organized by team size and function \u2014 to make confident structural decisions instead of starting from a blank sidebar.",
   "category": "swipe-file",
   "tags": [
     "notion",
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/swipe-notion-workspace-structure-examples-swip-20260314/package.zip",
   "site_path": "site/products/swipe-notion-workspace-structure-examples-swip-20260314.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/swipe-notion-workspace-structure-examples-swip-20260314.png",
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "You're staring at a blank Notion sidebar wondering what a well-structured workspace actually looks like for your team size.\n\nThis swipe file gives you 25 real workspace architectures—organized by team size and function—so you can stop guessing and start building with confidence.\n\nWho this is for\n— Team leads managing 3-15 people who need a foundation that scales without chaos\n— Ops or admin folks who own the Notion setup and want best practices, not trial-and-error\n— Managers hiring fast who need a structure ready before your first new hire joins\n\nWhat's inside\n— 12 copy-ready examples (SaaS teams, agencies, service businesses, remote-first ops)\n— Complete architecture breakdown: database structure, relation logic, view setup, and automation hooks\n— Markdown files for quick reference + JSON exports you can actually paste into your workspace\n— Usage notes explaining why each choice matters for your specific team context\n\nStop redesigning your Notion from scratch every quarter. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "You're staring at a blank Notion sidebar wondering what a well-structured workspace actually looks like for your team size.\n\nThis swipe file gives you 25 real workspace architectures\u2014organized by team size and function\u2014so you can stop guessing and start building with confidence.\n\nWho this is for\n\u2014 Team leads managing 3-15 people who need a foundation that scales without chaos\n\u2014 Ops or admin folks who own the Notion setup and want best practices, not trial-and-error\n\u2014 Managers hiring fast who need a structure ready before your first new hire joins\n\nWhat's inside\n\u2014 12 copy-ready examples (SaaS teams, agencies, service businesses, remote-first ops)\n\u2014 Complete architecture breakdown: database structure, relation logic, view setup, and automation hooks\n\u2014 Markdown files for quick reference + JSON exports you can actually paste into your workspace\n\u2014 Usage notes explaining why each choice matters for your specific team context\n\nStop redesigning your Notion from scratch every quarter. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

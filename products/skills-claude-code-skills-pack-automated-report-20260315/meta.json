@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-automated-report-20260315",
-  "title": "Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports",
+  "title": "Claude Code Skills Pack: Automated Report Generation \u2014 5 Skills for Scheduling and Distributing Recurring Reports",
   "description": "For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely",
   "category": "claude-code-skill",
   "tags": [
@@ -15,9 +15,9 @@
   "status": "published",
   "package_path": "products/skills-claude-code-skills-pack-automated-report-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-automated-report-20260315.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-automated-report-20260315.png",
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "Manual report-running is a time tax. This pack ends it.\n\nWho this is for:\n— Analytics leads who re-run the same reports every Monday morning\n— Operations analysts who paste data into the same template weekly\n— Data engineers tired of fielding \"can you re-send that PDF?\" requests\n\nWhat's inside:\n— Skill 1: Parameterized report templating (reusable across any dataset)\n— Skill 2: Scheduling logic setup (cron-ready, environment-aware)\n— Skill 3: Multi-format export handler (PDF, CSV, and Slack push in one command)\n— Skill 4: Recipient segmentation rules (right report to right audience automatically)\n— Skill 5: Delivery audit logger (track what was sent, when, and to whom)\n— Installation guide + quick-reference trigger table\n\nFive skills, zero manual re-running. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Manual report-running is a time tax. This pack ends it.\n\nWho this is for:\n\u2014 Analytics leads who re-run the same reports every Monday morning\n\u2014 Operations analysts who paste data into the same template weekly\n\u2014 Data engineers tired of fielding \"can you re-send that PDF?\" requests\n\nWhat's inside:\n\u2014 Skill 1: Parameterized report templating (reusable across any dataset)\n\u2014 Skill 2: Scheduling logic setup (cron-ready, environment-aware)\n\u2014 Skill 3: Multi-format export handler (PDF, CSV, and Slack push in one command)\n\u2014 Skill 4: Recipient segmentation rules (right report to right audience automatically)\n\u2014 Skill 5: Delivery audit logger (track what was sent, when, and to whom)\n\u2014 Installation guide + quick-reference trigger table\n\nFive skills, zero manual re-running. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }

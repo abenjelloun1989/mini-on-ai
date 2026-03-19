@@ -1,6 +1,6 @@
 {
   "id": "prompts-claude-code-skill-docsync-automatic-read-20260314",
-  "title": "Claude Code Skill: DocSync — Automatic README and API Reference Generator",
+  "title": "Claude Code Skill: DocSync \u2014 Automatic README and API Reference Generator",
   "description": "For backend developers, this skill scans codebases and auto-generates structured README files and API reference docs from functions, routes, and comments so they can ship well-documented libraries without writing a single doc line manually",
   "category": "claude-code-skill",
   "tags": [
@@ -14,9 +14,9 @@
   "status": "published",
   "package_path": "products/prompts-claude-code-skill-docsync-automatic-read-20260314/package.zip",
   "site_path": "site/products/prompts-claude-code-skill-docsync-automatic-read-20260314.html",
-  "thumbnail": null,
+  "thumbnail": "images/thumbnails/prompts-claude-code-skill-docsync-automatic-read-20260314.png",
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "Shipping undocumented code is a gift to no one, especially your future self.\n\nWho this is for:\n— Backend developers who finish features and skip docs because there's never time\n— Open source maintainers whose README hasn't matched the code in six months\n— Engineering leads inheriting codebases with no documentation whatsoever\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Auto-generates structured README and API reference from functions, routes, and comments\n— Works with any codebase; no annotations required\n— Usage guide + real slash-command examples\n\nOne command. Complete documentation. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Shipping undocumented code is a gift to no one, especially your future self.\n\nWho this is for:\n\u2014 Backend developers who finish features and skip docs because there's never time\n\u2014 Open source maintainers whose README hasn't matched the code in six months\n\u2014 Engineering leads inheriting codebases with no documentation whatsoever\n\nWhat's inside:\n\u2014 1 ready-to-use SKILL.md file \u2014 drop into your project's skills/ folder\n\u2014 Auto-generates structured README and API reference from functions, routes, and comments\n\u2014 Works with any codebase; no annotations required\n\u2014 Usage guide + real slash-command examples\n\nOne command. Complete documentation. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
