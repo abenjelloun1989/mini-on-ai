@@ -74,13 +74,16 @@ def _json_ld_product(meta: dict) -> str:
         "url": url,
         "brand": {"@type": "Brand", "name": "mini-on-ai"},
     }
-    if price is not None:
+    # Always emit offers when product has a Gumroad URL or an explicit price.
+    # Free (PWYW) products use price "0". This satisfies Google's Product schema requirement.
+    if gurl or price is not None:
+        offer_price = "0" if (meta.get("is_free") or price is None) else str(price)
         data["offers"] = {
             "@type": "Offer",
             "priceCurrency": "USD",
-            "price": str(price),
+            "price": offer_price,
             "availability": "https://schema.org/InStock",
-            "url": gurl,
+            "url": gurl or url,
         }
     return f'  <script type="application/ld+json">\n  {_json.dumps(data, ensure_ascii=False)}\n  </script>'
 
