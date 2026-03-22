@@ -17,7 +17,7 @@
   "site_path": "site/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html",
   "thumbnail": null,
   "price": null,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
+  "gumroad_product_id": "kbwfrq",
+  "gumroad_url": "https://minionai.gumroad.com/l/kbwfrq",
   "gumroad_description": "Storing user tokens in your database is a liability you don't need to take on.\n\nThis n8n workflow handles OAuth authentication across multiple social platforms and lets users post AI-generated images and videos directly — without your app ever touching their credentials.\n\nWho this is for:\n— Indie developers building AI content tools who don't want to become an OAuth expert\n— No-code builders shipping social automation products for clients\n— SaaS founders who need social posting functionality without the compliance headache\n\nWhat's inside:\n— 14-node workflow you can import and run in minutes, not days\n— Multi-platform OAuth flow that keeps credentials with the user, not your server\n— AI-generated image and video posting support built into the routing logic\n— Step-by-step setup guide so you're not guessing at configuration\n\nThis saves you days of reading platform docs and debugging token refresh logic.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
