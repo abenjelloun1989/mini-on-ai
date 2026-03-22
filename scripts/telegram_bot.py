@@ -72,7 +72,7 @@ def get_updates(offset: int) -> list:
         msg = str(e)
         log("bot", f"getUpdates error: {msg}")
         if "409" in msg:
-            time.sleep(5)  # back off before retry when another instance is still alive
+            time.sleep(30)  # back off long enough for old instance to fully die
         return []
 
 
@@ -240,11 +240,25 @@ def cmd_categories() -> str:
     return "\n".join(lines)
 
 
+def cmd_karma() -> str:
+    """Handle /karma — scout Reddit for 5 posts worth commenting on."""
+    subprocess.Popen(
+        [sys.executable, str(ROOT / "scripts/karma_scout.py"), "--max", "5"],
+        cwd=str(ROOT),
+        stdout=open(ROOT / "logs/pipeline.log", "a"),
+        stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+    )
+    return "🎯 Scouting Reddit for posts to comment on… 5 drafts coming shortly."
+
+
 def cmd_help() -> str:
     return (
         "🏭 <b>mini-on-ai factory</b>\n\n"
         "/run — Generate a new product  (e.g. /run marketing)\n"
         "/reddit — Scan Reddit, propose up to 10 products  (e.g. /reddit n8n)\n"
+        "/karma — Scout 5 posts to comment on for Reddit karma\n"
+        "/karma {url} — Draft a comment for a specific Reddit post URL\n"
+        "/draft r/Sub | Title | Body — Draft a comment from pasted post text\n"
         "/go — Approve pending idea → build it\n"
         "/skip — Skip pending idea\n"
         "/pause — Pause the factory\n"
@@ -381,6 +395,16 @@ def _skip_reddit_post(post_id: str) -> None:
     write_json("data/reddit-queue.json", queue)
 
 
+def _skip_karma_post(post_id: str) -> None:
+    """Mark a karma queue post as skipped."""
+    queue = read_json("data/karma-queue.json")
+    for p in queue.get("posts", []):
+        if p["post_id"] == post_id:
+            p["status"] = "skipped"
+            break
+    write_json("data/karma-queue.json", queue)
+
+
 def run_pipeline_bg(seed: str = "", category: str = "") -> None:
     """Run pipeline in background subprocess."""
     cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py")]
@@ -425,6 +449,27 @@ def handle_command(text: str) -> str:
 
     if lower == "/skip" or lower == "/nogo" or lower == "/no":
         return handle_approval("rejected")
+
+    if lower == "/karma":
+        return cmd_karma()
+
+    if lower.startswith("/karma "):
+        url_arg = text[len("/karma "):].strip()
+        if url_arg.startswith("http"):
+            from karma_scout import comment_for_url
+            return comment_for_url(url_arg)
+        return "Usage: /karma https://reddit.com/r/..."
+
+    if lower.startswith("/draft "):
+        from karma_scout import draft_from_text
+        raw = text[len("/draft "):].strip()
+        parts = [p.strip() for p in raw.split("|")]
+        if len(parts) < 2:
+            return "Usage: /draft r/SubName | Post title | Optional body"
+        subreddit = parts[0].lstrip("r/")
+        title = parts[1]
+        body = parts[2] if len(parts) > 2 else ""
+        return draft_from_text(subreddit, title, body)
 
     if lower == "/reddit" or lower.startswith("/reddit "):
         sub_arg = text[len("/reddit"):].strip()
@@ -493,10 +538,40 @@ def handle_command(text: str) -> str:
     return f"Unknown command: <code>{text}</code>\n\nType /help for available commands."
 
 
+LOCKFILE = Path(ROOT) / "logs" / "bot.lock"
+
+
+def _acquire_lock() -> bool:
+    """Write PID to lock file. Return False if another instance is already running."""
+    import fcntl
+    global _lock_fh
+    _lock_fh = open(LOCKFILE, "w")
+    try:
+        fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        _lock_fh.write(str(os.getpid()))
+        _lock_fh.flush()
+        return True
+    except BlockingIOError:
+        return False
+
+
+_lock_fh = None
+
+
 def main():
     if not TOKEN:
         print("TELEGRAM_BOT_TOKEN not set. Exiting.")
         sys.exit(1)
+
+    # Prevent multiple instances from fighting over Telegram's getUpdates
+    retries = 0
+    while not _acquire_lock():
+        retries += 1
+        log("bot", f"Another instance is running, waiting... ({retries})")
+        time.sleep(10)
+        if retries > 12:  # give up after 2 minutes
+            log("bot", "Could not acquire lock after 2 minutes. Exiting.")
+            sys.exit(1)
 
     log("bot", f"Starting Telegram bot (chat_id: {CHAT_ID})")
     try:
@@ -551,6 +626,15 @@ def main():
                     except Exception:
                         pass
                     _skip_reddit_post(post_id)
+                    send("⏭ Skipped.", cq_chat_id)
+                elif cq_data.startswith("karma:skip:"):
+                    post_id = cq_data.split(":", 2)[2]
+                    log("bot", f"Karma skip: {post_id}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    _skip_karma_post(post_id)
                     send("⏭ Skipped.", cq_chat_id)
                 else:
                     log("bot", f"Callback ignored: unknown data={cq_data}")

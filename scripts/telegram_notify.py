@@ -237,6 +237,36 @@ def send_reddit_built(post: dict, meta: dict, product_url: str, reply_text: str)
         return False
 
 
+def send_karma_draft(post: dict, comment: str, score: int) -> bool:
+    """
+    Send a karma scout result to Telegram.
+    Includes the post title, link, and a copy-paste comment draft with a Skip button.
+    """
+    post_id = post.get("post_id", "")
+    sub = post.get("subreddit", "?")
+    title = post.get("title", "")
+    url = post.get("url", "")
+    short_url = url.replace("https://reddit.com", "reddit.com")
+
+    text = (
+        f"🎯 <b>r/{sub}</b>  |  Score {score}\n\n"
+        f"<i>\"{title[:120]}\"</i>\n"
+        f"<a href=\"{url}\">{short_url[:70]}</a>\n\n"
+        f"💬 <b>Draft comment</b> (tap to copy):\n"
+        f"<code>{comment}</code>"
+    )
+    buttons = [
+        {"text": "⏭ Skip", "callback_data": f"karma:skip:{post_id}"},
+    ]
+    try:
+        _send_with_buttons(text, buttons)
+        log("telegram", f"Karma draft sent for post {post_id}")
+        return True
+    except Exception as e:
+        log("telegram", f"Warning: could not send karma draft: {e}")
+        return False
+
+
 def main():
     parser = argparse.ArgumentParser(description="Send Telegram pipeline report")
     parser.add_argument("--message", default=None, help="Custom message to send")

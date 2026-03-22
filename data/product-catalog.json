@@ -14,12 +14,11 @@
       ],
       "item_count": 14,
       "prompt_count": 14,
+      "status": "published",
       "created_at": "2026-03-22T22:12:35.691232+00:00",
-      "package_path": "products/n8n-n8n-social-media-auth-posting-workflow-20260322/package.zip",
       "site_path": "site/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html",
-      "thumbnail": null,
       "gumroad_url": null,
-      "price": null,
+      "thumbnail": null,
       "is_free": null
     },
     {
@@ -36,12 +35,11 @@
       ],
       "item_count": 9,
       "prompt_count": 9,
+      "status": "published",
       "created_at": "2026-03-22T22:12:21.383776+00:00",
-      "package_path": "products/n8n-n8n-customer-dashboard-roi-template-20260322/package.zip",
       "site_path": "site/products/n8n-n8n-customer-dashboard-roi-template-20260322.html",
+      "gumroad_url": "https://minionai.gumroad.com/l/snujpg",
       "thumbnail": null,
-      "gumroad_url": null,
-      "price": null,
       "is_free": null
     },
     {
