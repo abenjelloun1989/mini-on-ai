@@ -1,6 +1,28 @@
 {
   "products": [
     {
+      "id": "n8n-n8n-customer-dashboard-roi-template-20260322",
+      "title": "N8n Customer Dashboard ROI Template",
+      "description": "A ready-to-deploy n8n workflow template that automatically calculates and visualizes time saved, cost savings, and ROI metrics for customers, eliminating the manual dashboard creation struggle.",
+      "category": "n8n-template",
+      "tags": [
+        "n8n",
+        "dashboard",
+        "ROI-tracking",
+        "client-reporting",
+        "automation"
+      ],
+      "item_count": 9,
+      "prompt_count": 9,
+      "created_at": "2026-03-22T22:12:21.383776+00:00",
+      "package_path": "products/n8n-n8n-customer-dashboard-roi-template-20260322/package.zip",
+      "site_path": "site/products/n8n-n8n-customer-dashboard-roi-template-20260322.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null,
+      "is_free": null
+    },
+    {
       "id": "guide-ai-usage-service-pricing-strategy-guide-20260318",
       "title": "AI Usage & Service Pricing Strategy Guide",
       "description": "A practical guide helping automation freelancers and agencies structure pricing models for n8n workflows, including strategies for charging development fees, AI token usage, and ongoing service fees.",

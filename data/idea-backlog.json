@@ -3245,13 +3245,56 @@
       ],
       "score": 75,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "guide-ai-usage-service-pricing-strategy-guide-20260318",
       "generated_at": "2026-03-18T22:27:34.932130+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rrodvh",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rrodvh/how_to_charge_your_clients_for_ai_usage_or/"
+    },
+    {
+      "id": "idea-reddit-1rx9xa1",
+      "title": "n8n Automation Prompt Pack for Claude",
+      "description": "A specialized prompt pack that teaches Claude to accurately guide n8n automation creation by verifying UI elements, double-checking workflows before suggesting them, and avoiding outdated or non-existent menu references.",
+      "category": "prompt-packs",
+      "tags": [
+        "n8n",
+        "automation",
+        "ai-assisted-workflows",
+        "claude-prompting"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rx9xa1/best_ai_for_n8n_automation_creation/",
+      "selected": false,
+      "status": null,
+      "product_id": null,
+      "generated_at": "2026-03-22T22:10:13.231711+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rx9xa1",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rx9xa1/best_ai_for_n8n_automation_creation/"
+    },
+    {
+      "id": "idea-reddit-1ryxna9",
+      "title": "N8n Customer Dashboard ROI Template",
+      "description": "A ready-to-deploy n8n workflow template that automatically calculates and visualizes time saved, cost savings, and ROI metrics for customers, eliminating the manual dashboard creation struggle.",
+      "category": "n8n-template",
+      "tags": [
+        "n8n",
+        "dashboard",
+        "ROI-tracking",
+        "client-reporting",
+        "automation"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1ryxna9/making_a_dashboard/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "n8n-n8n-customer-dashboard-roi-template-20260322",
+      "generated_at": "2026-03-22T22:11:22.279990+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1ryxna9",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1ryxna9/making_a_dashboard/"
     }
   ]
 }

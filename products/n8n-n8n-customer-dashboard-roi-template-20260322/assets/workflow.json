@@ -1,0 +1,330 @@
+{
+  "name": "N8n Customer Dashboard ROI Template",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 8,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node2",
+      "name": "Fetch Workflow Executions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://YOUR_N8N_INSTANCE/api/v1/executions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "YOUR_N8N_API_KEY"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "100"
+            },
+            {
+              "name": "status",
+              "value": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node3",
+      "name": "Calculate ROI Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "jsCode": "// ROI Calculation Configuration\nconst HOURLY_RATE = 50; // USD per hour for manual work\nconst AVG_MANUAL_MINUTES_PER_TASK = 30; // minutes saved per automated task\nconst MONTHLY_N8N_COST = 20; // USD per month for n8n subscription\n\nconst executions = $input.first().json.data || [];\n\n// Count successful executions this week\nconst totalExecutions = executions.length;\n\n// Calculate time saved (in hours)\nconst timeSavedMinutes = totalExecutions * AVG_MANUAL_MINUTES_PER_TASK;\nconst timeSavedHours = timeSavedMinutes / 60;\n\n// Calculate cost savings\nconst weeklyCostSavings = timeSavedHours * HOURLY_RATE;\nconst monthlyCostSavings = weeklyCostSavings * 4.33;\nconst annualCostSavings = monthlyCostSavings * 12;\n\n// Calculate ROI\nconst annualN8nCost = MONTHLY_N8N_COST * 12;\nconst netAnnualSavings = annualCostSavings - annualN8nCost;\nconst roiPercentage = ((netAnnualSavings / annualN8nCost) * 100).toFixed(2);\n\n// Workflow breakdown\nconst workflowCounts = {};\nexecutions.forEach(exec => {\n  const wfName = exec.workflowData?.name || 'Unknown Workflow';\n  workflowCounts[wfName] = (workflowCounts[wfName] || 0) + 1;\n});\n\nconst topWorkflows = Object.entries(workflowCounts)\n  .sort((a, b) => b[1] - a[1])\n  .slice(0, 5)\n  .map(([name, count]) => ({ name, count }));\n\nconst reportDate = new Date().toISOString().split('T')[0];\nconst reportWeek = `Week of ${reportDate}`;\n\nreturn [{\n  json: {\n    reportDate,\n    reportWeek,\n    totalExecutions,\n    timeSavedHours: timeSavedHours.toFixed(2),\n    timeSavedMinutes,\n    weeklyCostSavings: weeklyCostSavings.toFixed(2),\n    monthlyCostSavings: monthlyCostSavings.toFixed(2),\n    annualCostSavings: annualCostSavings.toFixed(2),\n    annualN8nCost,\n    netAnnualSavings: netAnnualSavings.toFixed(2),\n    roiPercentage,\n    topWorkflows,\n    hourlyRate: HOURLY_RATE,\n    avgMinutesPerTask: AVG_MANUAL_MINUTES_PER_TASK\n  }\n}];"
+      }
+    },
+    {
+      "id": "node4",
+      "name": "Check ROI Threshold",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.roiPercentage}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node5",
+      "name": "Update Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        200
+      ],
+      "parameters": {
+        "operation": "append",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "ROI Dashboard",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Report Week": "={{$json.reportWeek}}",
+            "Report Date": "={{$json.reportDate}}",
+            "Total Executions": "={{$json.totalExecutions}}",
+            "Time Saved (Hours)": "={{$json.timeSavedHours}}",
+            "Weekly Cost Savings ($)": "={{$json.weeklyCostSavings}}",
+            "Monthly Cost Savings ($)": "={{$json.monthlyCostSavings}}",
+            "Annual Cost Savings ($)": "={{$json.annualCostSavings}}",
+            "Annual N8n Cost ($)": "={{$json.annualN8nCost}}",
+            "Net Annual Savings ($)": "={{$json.netAnnualSavings}}",
+            "ROI (%)": "={{$json.roiPercentage}}"
+          }
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "id": "node6",
+      "name": "Format Slack Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        400
+      ],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "slackMessage",
+              "value": "=📊 *Weekly ROI Report - {{$json.reportWeek}}*\n\n✅ *Automation Summary*\n• Total Executions: {{$json.totalExecutions}}\n• Time Saved: {{$json.timeSavedHours}} hours\n\n💰 *Cost Savings*\n• This Week: ${{$json.weeklyCostSavings}}\n• This Month (projected): ${{$json.monthlyCostSavings}}\n• Annual (projected): ${{$json.annualCostSavings}}\n\n📈 *ROI Metrics*\n• Annual N8n Cost: ${{$json.annualN8nCost}}\n• Net Annual Savings: ${{$json.netAnnualSavings}}\n• ROI: {{$json.roiPercentage}}%\n\n🔗 View full dashboard: https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node7",
+      "name": "Send Slack Notification",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        400
+      ],
+      "parameters": {
+        "operation": "postMessage",
+        "channel": "#automation-roi",
+        "text": "={{$json.slackMessage}}",
+        "otherOptions": {
+          "mrkdwn": true
+        }
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack API"
+        }
+      }
+    },
+    {
+      "id": "node8",
+      "name": "Send Email Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        200
+      ],
+      "parameters": {
+        "fromEmail": "your-email@example.com",
+        "toEmail": "client@example.com",
+        "subject": "=Weekly ROI Report - {{$json.reportWeek}}",
+        "emailType": "html",
+        "html": "=<!DOCTYPE html><html><body style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;'><h1 style='color: #2d3748;'>📊 Weekly ROI Report</h1><p style='color: #718096;'>{{$node['Calculate ROI Metrics'].json.reportWeek}}</p><div style='background: #f7fafc; border-radius: 8px; padding: 20px; margin: 20px 0;'><h2 style='color: #2d3748;'>Automation Summary</h2><table style='width: 100%; border-collapse: collapse;'><tr><td style='padding: 8px; border-bottom: 1px solid #e2e8f0;'>Total Executions</td><td style='padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;'>{{$node['Calculate ROI Metrics'].json.totalExecutions}}</td></tr><tr><td style='padding: 8px; border-bottom: 1px solid #e2e8f0;'>Time Saved</td><td style='padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;'>{{$node['Calculate ROI Metrics'].json.timeSavedHours}} hours</td></tr></table></div><div style='background: #f0fff4; border-radius: 8px; padding: 20px; margin: 20px 0;'><h2 style='color: #276749;'>💰 Cost Savings</h2><table style='width: 100%; border-collapse: collapse;'><tr><td style='padding: 8px; border-bottom: 1px solid #c6f6d5;'>This Week</td><td style='padding: 8px; border-bottom: 1px solid #c6f6d5; font-weight: bold; color: #276749;'>${{$node['Calculate ROI Metrics'].json.weeklyCostSavings}}</td></tr><tr><td style='padding: 8px; border-bottom: 1px solid #c6f6d5;'>Monthly (projected)</td><td style='padding: 8px; border-bottom: 1px solid #c6f6d5; font-weight: bold; color: #276749;'>${{$node['Calculate ROI Metrics'].json.monthlyCostSavings}}</td></tr><tr><td style='padding: 8px;'>Annual (projected)</td><td style='padding: 8px; font-weight: bold; color: #276749;'>${{$node['Calculate ROI Metrics'].json.annualCostSavings}}</td></tr></table></div><div style='background: #ebf8ff; border-radius: 8px; padding: 20px; margin: 20px 0;'><h2 style='color: #2b6cb0;'>📈 ROI Metrics</h2><table style='width: 100%; border-collapse: collapse;'><tr><td style='padding: 8px; border-bottom: 1px solid #bee3f8;'>Annual N8n Cost</td><td style='padding: 8px; border-bottom: 1px solid #bee3f8; font-weight: bold;'>${{$node['Calculate ROI Metrics'].json.annualN8nCost}}</td></tr><tr><td style='padding: 8px; border-bottom: 1px solid #bee3f8;'>Net Annual Savings</td><td style='padding: 8px; border-bottom: 1px solid #bee3f8; font-weight: bold; color: #2b6cb0;'>${{$node['Calculate ROI Metrics'].json.netAnnualSavings}}</td></tr><tr><td style='padding: 8px;'>ROI</td><td style='padding: 8px; font-weight: bold; font-size: 1.2em; color: #2b6cb0;'>{{$node['Calculate ROI Metrics'].json.roiPercentage}}%</td></tr></table></div><p style='color: #718096; font-size: 0.9em;'>This report was automatically generated by your n8n automation system.</p></body></html>"
+      },
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP Email"
+        }
+      }
+    },
+    {
+      "id": "node9",
+      "name": "Log Low ROI Alert",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        550
+      ],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "alertMessage",
+              "value": "=⚠️ ROI Alert: Your automation ROI for {{$json.reportWeek}} is {{$json.roiPercentage}}%. Consider reviewing workflow configurations or adjusting cost parameters."
+            },
+            {
+              "name": "status",
+              "value": "low_roi"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Workflow Executions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Workflow Executions": {
+      "main": [
+        [
+          {
+            "node": "Calculate ROI Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate ROI Metrics": {
+      "main": [
+        [
+          {
+            "node": "Check ROI Threshold",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check ROI Threshold": {
+      "main": [
+        [
+          {
+            "node": "Update Google Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format Slack Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Low ROI Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Send Email Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Slack Message": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    {
+      "name": "ROI",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "Dashboard",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "Analytics",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}

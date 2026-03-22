@@ -1,0 +1,23 @@
+{
+  "id": "n8n-n8n-customer-dashboard-roi-template-20260322",
+  "title": "N8n Customer Dashboard ROI Template",
+  "description": "A ready-to-deploy n8n workflow template that automatically calculates and visualizes time saved, cost savings, and ROI metrics for customers, eliminating the manual dashboard creation struggle.",
+  "category": "n8n-template",
+  "tags": [
+    "n8n",
+    "dashboard",
+    "ROI-tracking",
+    "client-reporting",
+    "automation"
+  ],
+  "item_count": 9,
+  "created_at": "2026-03-22T22:12:21.383776+00:00",
+  "status": "published",
+  "package_path": "products/n8n-n8n-customer-dashboard-roi-template-20260322/package.zip",
+  "site_path": "site/products/n8n-n8n-customer-dashboard-roi-template-20260322.html",
+  "thumbnail": null,
+  "price": null,
+  "gumroad_product_id": null,
+  "gumroad_url": null,
+  "gumroad_description": "You're losing customers not because your product underperforms, but because they can't see the value — and you're spending hours building dashboards to prove it.\n\nWho this is for:\n— Automation consultants who need to show clients measurable ROI without rebuilding reports from scratch every engagement\n— SaaS founders running n8n who want retention-boosting metrics delivered automatically\n— Freelance n8n builders who want a polished, client-ready deliverable that justifies their fees\n\nWhat's inside:\n— A 9-node n8n workflow that pulls, calculates, and surfaces time saved, cost reduction, and ROI figures automatically — no manual number-crunching\n— Importable JSON file that drops straight into any n8n instance in under five minutes\n— A plain-English setup guide that walks you through configuration without assuming you've done this before\n\nThis is the template you'd charge three hours of consulting time to build. Now you don't have to.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+}

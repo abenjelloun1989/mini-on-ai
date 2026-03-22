@@ -1,0 +1,454 @@
+{
+  "posts": [
+    {
+      "post_id": "1jx8rkb",
+      "subreddit": "ClaudeAI",
+      "title": "New dev seeking advice on the \"right stack\" for building and deploying ideas efficiently",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1jx8rkb/new_dev_seeking_advice_on_the_right_stack_for/",
+      "found_at": "2026-03-21T20:48:47.462213+00:00",
+      "comment_draft": "Honestly, you're probably overthinking the stack part—the real issue is that you have too many *platforms* doing similar things. Pick one AI tool (Claude or ChatGPT, not both), one database (Supabase is solid), and one editor (Cursor is great for AI-assisted coding). The stack itself (TS/React) is fine. Then just commit to building one thing start-to-finish instead of switching tools every other day—that's where most new devs actually waste time.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1k7jdrc",
+      "subreddit": "ClaudeAI",
+      "title": "Can Claude AI Pro Be My Coding Super Move? Help Me Decide!",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1k7jdrc/can_claude_ai_pro_be_my_coding_super_move_help_me/",
+      "found_at": "2026-03-21T20:48:50.401683+00:00",
+      "comment_draft": "For mobile/web dev like yours, Pro is probably worth it—the longer context window and faster responses save a ton of time when you're juggling multiple language ecosystems. I'd suggest trying it for a month on a specific project (maybe that SwiftUI exploration?) and tracking how much time it actually saves you versus the free tier, since startup budgets are tight.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1k8owqy",
+      "subreddit": "ClaudeAI",
+      "title": "What is currently the best IDE environment for coding? Need something for different projects",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1k8owqy/what_is_currently_the_best_ide_environment_for/",
+      "found_at": "2026-03-21T20:48:53.742331+00:00",
+      "comment_draft": "For multi-project setups like yours, I'd suggest setting up MCP servers for your GitHub repos and Linux servers, then using them consistently across Cursor and Claude Desktop. The real win is having your project structure and server access available to Claude in both environments so you're not constantly re-explaining your setup. VSCode + extensions works too, but having Claude understand your actual codebase and deployment targets through MCP cuts down a lot of back-and-forth.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1khdyn8",
+      "subreddit": "ClaudeAI",
+      "title": "I don’t use AI. I work with it!",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1khdyn8/i_dont_use_ai_i_work_with_it/",
+      "found_at": "2026-03-21T20:48:57.842708+00:00",
+      "comment_draft": "This is a game-changer reframe. I started doing this with Claude and realized I was treating it like a search engine when it's actually better at helping me think through problems. The back-and-forth where it clarifies what I actually need has saved me so much time on projects that would've gone in the wrong direction otherwise.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1khiw7e",
+      "subreddit": "ClaudeAI",
+      "title": "Github x Claude - How does it work?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1khiw7e/github_x_claude_how_does_it_work/",
+      "found_at": "2026-03-21T20:49:00.425775+00:00",
+      "comment_draft": "The GitHub integration lets you paste repo code directly into Claude and it handles context way better than copying snippets manually. Just paste the file or repo link in your message and Claude will work with it—super helpful for debugging or asking questions about someone else's codebase without losing formatting.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1k5fgfm",
+      "subreddit": "ClaudeAI",
+      "title": "AI Conversation Quality vs. Cost: Claude Sonnet &amp; Alternatives Compared 💬💰",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1k5fgfm/ai_conversation_quality_vs_cost_claude_sonnet/",
+      "found_at": "2026-03-21T20:59:56.285446+00:00",
+      "comment_draft": "If you're building for mental health support, I'd prioritize testing Sonnet against GPT-4o on actual user conversations rather than benchmarks—the difference in how they handle vulnerable moments can matter more than raw intelligence scores. Also worth checking if your users actually need the fastest response times or if slightly slower but more thoughtful replies land better for grief/loneliness conversations.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1ki16ya",
+      "subreddit": "ClaudeAI",
+      "title": "How Claude helped make our LLM features “prod-ready”",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1ki16ya/how_claude_helped_make_our_llm_features_prodready/",
+      "found_at": "2026-03-21T21:00:00.781048+00:00",
+      "comment_draft": "Did you find that precision and recall pulled in different directions for your use cases? I'm curious whether you ended up weighting one more heavily than the other, especially for something like risk detection where a false negative could be costly but false positives might just clutter the summary.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1jrj34i",
+      "subreddit": "ClaudeAI",
+      "title": "Claude at unit tests for JSX?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1jrj34i/claude_at_unit_tests_for_jsx/",
+      "found_at": "2026-03-21T21:00:03.825630+00:00",
+      "comment_draft": "Try being really explicit about your test setup and what you're actually testing—Claude sometimes struggles with JSX because it's guessing at your project structure. Include a small code snippet showing your component and your testing library (Vitest, Jest, React Testing Library?) in your prompt, and ask Claude to explain what each test assertion does before it writes them. That usually catches the misunderstandings early rather than discovering them after you run the tests.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1jujili",
+      "subreddit": "ClaudeAI",
+      "title": "How I Created a TS/NextJS/React/Mongo Web Project with Claude and ~0.001% of My Own Code",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1jujili/how_i_created_a_tsnextjsreactmongo_web_project/",
+      "found_at": "2026-03-21T21:00:07.237883+00:00",
+      "comment_draft": "This is awesome and honestly the kind of thing that could help you land a job—employers love seeing you ship real projects, even if Claude did most of the heavy lifting. The key thing they care about is understanding the architecture and being able to maintain/extend what you built, so make sure you can walk through the decisions Claude made and explain why certain patterns were chosen.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1k8110w",
+      "subreddit": "ClaudeAI",
+      "title": "I've made an engine and then drunk-vibecoded a fully networked Poker game in less than an hour",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1k8110w/ive_made_an_engine_and_then_drunkvibecoded_a/",
+      "found_at": "2026-03-21T21:00:10.050018+00:00",
+      "comment_draft": "This is really cool—would love to hear what specific features of your engine made Claude's code generation so much smoother for the networking layer. Did you have to do a lot of iteration on the multiplayer logic, or did Claude nail it pretty quickly once you described the architecture?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s02afe",
+      "subreddit": "ClaudeAI",
+      "title": "using claude as the creative brain in a sticker generation pipeline",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s02afe/using_claude_as_the_creative_brain_in_a_sticker/",
+      "found_at": "2026-03-21T21:06:09.899017+00:00",
+      "comment_draft": "This is a clever use case. One thing worth experimenting with: have Claude generate the sticker concepts in a structured format (like JSON with mood/style/pose for each one) before sending to your image generation model. That extra step tends to give more consistent and varied outputs than just raw descriptions, especially when you're scaling to lots of users.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s01wow",
+      "subreddit": "ClaudeAI",
+      "title": "I use Claude mobile to brainstorm features while I'm out, then they get implemented automatically by the time I'm back",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s01wow/i_use_claude_mobile_to_brainstorm_features_while/",
+      "found_at": "2026-03-21T21:06:12.589813+00:00",
+      "comment_draft": "This is a solid workflow. I'd suggest being specific about what you're feeding Claude—like copy-pasting error logs or rough wireframes from your phone rather than just describing issues verbally. The more concrete the input, the more likely the generated code actually runs without modification when you get back.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s002ea",
+      "subreddit": "ClaudeAI",
+      "title": "Why are we boxing Claude agents into human workflows?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s002ea/why_are_we_boxing_claude_agents_into_human/",
+      "found_at": "2026-03-21T21:06:15.560094+00:00",
+      "comment_draft": "You're touching on something real about the limitations of mimicking human workflows, but self-iterating agents hit their own walls pretty quickly—usually around context limits, hallucination risk, and knowing when to actually stop iterating vs just going in circles. The sweet spot might be giving Claude the ability to *extend* predefined patterns rather than starting from scratch each time, so it can work within guardrails while still optimizing for the specific problem.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzzjxa",
+      "subreddit": "ChatGPT",
+      "title": "Why does ChatGPT invent arguments no one made and then ‘win’ them?",
+      "url": "https://reddit.com/r/ChatGPT/comments/1rzzjxa/why_does_chatgpt_invent_arguments_no_one_made_and/",
+      "found_at": "2026-03-21T21:06:18.782189+00:00",
+      "comment_draft": "This happens when you ask broad questions without enough context—ChatGPT fills gaps by inferring what it thinks you're debating. Try being hyper-specific about what you actually want to argue against (paste the exact claim, quote the person, or define the premise you're testing). You'll get way fewer strawman responses once it knows exactly what you're pushing back on.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzzh4u",
+      "subreddit": "ClaudeAI",
+      "title": "I run out of tasks",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1rzzh4u/i_run_out_of_tasks/",
+      "found_at": "2026-03-21T21:06:21.755980+00:00",
+      "comment_draft": "This is actually a great problem to have! Some people use Claude for things like learning new skills (writing short stories, coding exercises, learning a language through conversation), debugging their own projects, or exploring hypothetical scenarios just for fun. You could also try using it to brainstorm and flesh out ideas you've had sitting in your backlog, even if they weren't urgent.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzyqqt",
+      "subreddit": "ClaudeAI",
+      "title": "Found 3 instructions in Anthropic's docs that dramatically reduce Claude's hallucination. Most people don't know they exist.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1rzyqqt/found_3_instructions_in_anthropics_docs_that/",
+      "found_at": "2026-03-21T21:11:08.361934+00:00",
+      "comment_draft": "This is super useful. The biggest win for me was the first one - just telling Claude it's okay to say 'I don't know' cuts down on those confidently wrong answers by like 70%. Also worth noting that combining it with asking Claude to cite sources forces it to actually think about whether it's pulling from real knowledge or just pattern-matching. Have you noticed a difference in how it handles requests outside its training data?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s02owp",
+      "subreddit": "ChatGPT",
+      "title": "Where Can Real GPT Interaction Transcripts Be Found?",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s02owp/where_can_real_gpt_interaction_transcripts_be/",
+      "found_at": "2026-03-21T21:11:11.351604+00:00",
+      "comment_draft": "OpenAI publishes some anonymized examples in their research papers and the official docs have a few conversation samples, but for broader datasets you're mostly looking at what users voluntarily share on GitHub or in academic repos. Your best bet is searching for 'ChatGPT dataset' on GitHub or checking papers from researchers who've been granted access for studies—they sometimes include samples in their appendices.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s00bn8",
+      "subreddit": "ClaudeAI",
+      "title": "Claude speaks to me in English instead of Hungarian🥲",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s00bn8/claude_speaks_to_me_in_english_instead_of/",
+      "found_at": "2026-03-21T21:11:14.497092+00:00",
+      "comment_draft": "This is a known behavior with Claude - it tends to match the language of the conversation, but when you mix in English words/slang, it sometimes defaults to English as the \"primary\" language. Try starting your next conversation with a few sentences entirely in Hungarian before mixing in English, and Claude should stick with Hungarian throughout. You could also explicitly ask it at the beginning to respond in Hungarian regardless of any English words you use.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s02qmb",
+      "subreddit": "ClaudeAI",
+      "title": "Long post : The Security Blind Spots I Keep Finding in Vibe Coded Apps (A Checklist for Claude AI Builders)",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s02qmb/long_post_the_security_blind_spots_i_keep_finding/",
+      "found_at": "2026-03-21T21:11:24.184845+00:00",
+      "comment_draft": "This is the kind of post that needs to exist—Claude Code is genuinely fast but I've definitely shipped things that broke under load or had obvious input validation gaps because I was moving too quick. If you've got that checklist started, even posting the first 5-10 items would probably save a lot of people from learning these lessons the hard way. Would be really valuable to see what patterns you're actually catching most.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzzh1e",
+      "subreddit": "ClaudeAI",
+      "title": "Writing style",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1rzzh1e/writing_style/",
+      "found_at": "2026-03-21T21:11:30.192964+00:00",
+      "comment_draft": "Yeah, you just paste an example of the style you want in your prompt. For instance, if you want something written like Hemingway, paste a paragraph or two of his work and say 'write in this style' or 'match this tone.' Works best if you give Claude a few examples rather than just one, and it helps to be specific about what elements you want mimicked—like sentence length, vocabulary level, formality, whatever stands out to you.",
+      "score": 82,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzhyij",
+      "subreddit": "n8n",
+      "title": "I built 30+ automations this year. Most of them should not have been automations.",
+      "url": "https://reddit.com/r/n8n/comments/1rzhyij/i_built_30_automations_this_year_most_of_them/",
+      "found_at": "2026-03-21T22:16:12.719312+00:00",
+      "comment_draft": "This is such an important point. I've seen the same thing—businesses jump straight to automation when they haven't even documented their processes or cleaned up their data. It's like building on a foundation of sand. Did you end up creating some kind of pre-automation audit checklist for clients to work through first, or do you just walk them through it manually?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzt99n",
+      "subreddit": "n8n",
+      "title": "n8n for everything except email - what do you pair it with?",
+      "url": "https://reddit.com/r/n8n/comments/1rzt99n/n8n_for_everything_except_email_what_do_you_pair/",
+      "found_at": "2026-03-21T22:16:16.272010+00:00",
+      "comment_draft": "I've gone down this exact road. For transactional stuff I ended up using SendGrid's API directly from n8n, which gives you way more control over templates and delivery than trying to wrangle it all in n8n workflows. For drip campaigns though, something like Klaviyo or even just your email provider's native automation if you're already paying for it will save you massive headaches—n8n is honestly overkill for the delay/conditional branch part when those platforms do it natively.",
+      "score": 82,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzn4bs",
+      "subreddit": "n8n",
+      "title": "How I structure n8n workflows so they don't turn into spaghetti after 3 months",
+      "url": "https://reddit.com/r/n8n/comments/1rzn4bs/how_i_structure_n8n_workflows_so_they_dont_turn/",
+      "found_at": "2026-03-21T22:16:19.276493+00:00",
+      "comment_draft": "This is exactly what I needed to hear. I've been fighting the urge to cram everything into one workflow because I thought splitting them up would be harder to manage, but you're right that the pain of debugging dependencies across 5 unrelated processes is way worse. Did you find a particular trigger pattern that works best for connecting these single-job workflows together, or do you mostly use webhooks and task queues?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzpw5s",
+      "subreddit": "n8n",
+      "title": "email sequences in n8n vs dedicated email tools - where's the line?",
+      "url": "https://reddit.com/r/n8n/comments/1rzpw5s/email_sequences_in_n8n_vs_dedicated_email_tools/",
+      "found_at": "2026-03-21T22:16:22.639843+00:00",
+      "comment_draft": "I've hit this exact wall. The sweet spot for me was keeping n8n for orchestration and using it to call a dedicated email service's API for anything beyond basic sends — you still get the workflow automation without fighting n8n's email limitations. For sequences specifically, n8n's delay nodes can work but they're resource-heavy at scale, so offloading that logic to a tool built for it actually simplifies your setup overall.",
+      "score": 78,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzk304",
+      "subreddit": "n8n",
+      "title": "Suche Automatisierung für Jobs",
+      "url": "https://reddit.com/r/n8n/comments/1rzk304/suche_automatisierung_für_jobs/",
+      "found_at": "2026-03-21T22:16:25.704561+00:00",
+      "comment_draft": "For curating jobs from company websites, you could set up n8n workflows that scrape their career pages on a schedule and format the data consistently. Start with a manual list of 10-15 target companies and build the automation incrementally—testing what actually converts users before scaling to hundreds of companies. The trickier part will be handling the different HTML structures across sites, so you might want to combine scraping with some manual review initially.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s00x9y",
+      "subreddit": "ClaudeAI",
+      "title": "I gave Claude a 100-word prompt and now I can see the structure of my own thinking",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s00x9y/i_gave_claude_a_100word_prompt_and_now_i_can_see/",
+      "found_at": "2026-03-21T23:14:10.732563+00:00",
+      "comment_draft": "This is a really clever use case. Have you tried giving Claude the same prompt but asking it to suggest which frame you should *move toward* next, or does it work better when you're just noticing the pattern yourself? I'm thinking the meta-awareness alone might be half the benefit, but curious if you've experimented with having it prescribe next steps.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s011n4",
+      "subreddit": "ClaudeAI",
+      "title": "Learn Claude AI",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s011n4/learn_claude_ai/",
+      "found_at": "2026-03-21T23:14:13.866855+00:00",
+      "comment_draft": "Start with the official Claude documentation and API docs to understand what Claude can actually do, then pick one small use case and build with it—that's how you'll actually internalize the capabilities. Don't try to learn everything at once; instead, build something simple like a chatbot or document analyzer, hit limitations, and expand from there. The best way to understand Claude's strengths is by experimenting with different prompts and seeing how it responds to your specific problems.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s03evd",
+      "subreddit": "ChatGPT",
+      "title": "Agent Mode not working.",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s03evd/agent_mode_not_working/",
+      "found_at": "2026-03-21T23:14:16.480757+00:00",
+      "comment_draft": "Try refreshing the page or clearing your browser cache - I had the same issue and it was usually a temp glitch. If that doesn't work, check if you're on the latest version of whatever client you're using (web/app) since Agent mode can be finicky on older versions. Let me know if either of those fixes it for you.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s01ey3",
+      "subreddit": "ClaudeAI",
+      "title": "My Claude Code skills, hooks and slash commands collection",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s01ey3/my_claude_code_skills_hooks_and_slash_commands/",
+      "found_at": "2026-03-21T23:14:19.612091+00:00",
+      "comment_draft": "This sounds like exactly the kind of practical guide the community needs. Since you mention pushing secrets and running unsafe commands, I'd be curious if your collection includes patterns for prompt structuring that help Claude ask for confirmation before executing anything risky, or ways you've set up your workflow to catch issues before deployment. Those specific safeguards would probably help a lot of people avoid the same mistakes.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s04a2m",
+      "subreddit": "ClaudeAI",
+      "title": "Neat trick to connect Cowork to Claude in Chrome and give Tabs my project and personal context (without persistent memory)",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s04a2m/neat_trick_to_connect_cowork_to_claude_in_chrome/",
+      "found_at": "2026-03-21T23:14:24.457430+00:00",
+      "comment_draft": "This is a clever workaround. Have you found that the compressed style prompt stays consistent across different conversation types, or do you sometimes need to tweak it depending on what you're asking Claude to help with? I've been doing something similar but keep having to re-paste context, so the /me shortcut idea might save me a lot of time.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0dku6",
+      "subreddit": "ClaudeAI",
+      "title": "I built a free quiz platform that helps engineers find their blind spots — 4 role tracks, adaptive difficulty, topic-by-topic breakdown",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0dku6/i_built_a_free_quiz_platform_that_helps_engineers/",
+      "found_at": "2026-03-22T06:45:05.554342+00:00",
+      "comment_draft": "This is genuinely useful for the gap between \"I can do my job\" and \"I actually know what I don't know.\" The adaptive difficulty angle is smart because most practice tools either feel too easy or frustrate you into quitting. Would be curious if you're tracking which topics trip people up most across roles—that anonymized data could be really valuable for seeing where the industry actually struggles.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0amhf",
+      "subreddit": "ClaudeAI",
+      "title": "Claude + Canva Question",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0amhf/claude_canva_question/",
+      "found_at": "2026-03-22T06:45:12.347105+00:00",
+      "comment_draft": "The Canva integration can be a bit finicky with bulk updates. Make sure you're using specific variable names in your Canva template (like {{product_name}}, {{product_image}}) and then reference those exact names in your Claude prompt. You might also have better luck creating a template in Canva first, sharing the edit link with Claude, and then asking it to generate a list of the specific changes needed for each product rather than trying to have Claude do the actual Canva edits directly.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s08e8f",
+      "subreddit": "ClaudeAI",
+      "title": "Infinite loop",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s08e8f/infinite_loop/",
+      "found_at": "2026-03-22T06:45:18.081295+00:00",
+      "comment_draft": "Check if your .env file has the right PORT variable and that nothing else is already running on that port (lsof -i :3000 or whatever port you're using). Also worth grepping through your logs for the actual error message before the loop starts—that first error is usually the real culprit, everything after is just the cascade. Since your DB is healthy, it's almost always a connection string mismatch or a process that won't die.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0a98n",
+      "subreddit": "ChatGPT",
+      "title": "ChatGPT has been having difficulty searching for certain messages that I never deleted or saving a backup of all my messages so I can check whether those messages are still there",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s0a98n/chatgpt_has_been_having_difficulty_searching_for/",
+      "found_at": "2026-03-22T06:45:21.561929+00:00",
+      "comment_draft": "Have you tried exporting your chat history through the settings menu? It's under your account settings and lets you download all conversations as JSON files, which might help you search through them more easily or confirm if those messages are actually there. If the export is also missing those messages, it could be a syncing issue on OpenAI's end and might be worth reaching out to their support.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s08m7k",
+      "subreddit": "ClaudeAI",
+      "title": "I built a Matrix channel for Claude Code",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s08m7k/i_built_a_matrix_channel_for_claude_code/",
+      "found_at": "2026-03-22T06:45:25.559363+00:00",
+      "comment_draft": "That's a wild workflow—using Claude to build the Matrix integration while it's running on your VPS is peak dogfooding. Did you hit any specific pain points with E2EE that took longer than expected, or was the Rust learning curve the main friction? Would be curious if you're planning to open source it since Matrix adoption seems to be growing in dev communities.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0rdr2",
+      "subreddit": "ClaudeAI",
+      "title": "Why use Claude Code CLI instead of VS Code / Copilot extensions?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0rdr2/why_use_claude_code_cli_instead_of_vs_code/",
+      "found_at": "2026-03-22T18:11:10.574881+00:00",
+      "comment_draft": "Honestly for your use case the VS Code extension sounds like the right call—you're already in there editing, so context switching to the terminal is just friction. The CLI shines when you want to pipe files through Claude or automate stuff in scripts, but if you're doing occasional platform extensions, staying in the editor makes way more sense. Stick with what keeps you productive.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0s8mu",
+      "subreddit": "ClaudeAI",
+      "title": "Do you ask your agents “please” or do you just smack them around?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0s8mu/do_you_ask_your_agents_please_or_do_you_just/",
+      "found_at": "2026-03-22T18:11:14.797647+00:00",
+      "comment_draft": "I've noticed Claude actually responds better to polite requests and appreciation too. Being respectful seems to make it more thoughtful and engaged with the problem, and you'll often get better outputs. Plus it just makes the whole interaction feel less exhausting than treating it like a tool you're beating into submission.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0qgwy",
+      "subreddit": "ClaudeAI",
+      "title": "Real Vibe Design With Claude",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0qgwy/real_vibe_design_with_claude/",
+      "found_at": "2026-03-22T18:11:19.817402+00:00",
+      "comment_draft": "This is a really clever idea—the gap between developers who can code but can't design is huge. Have you thought about how you'd handle design system consistency as people iterate? Like if someone creates a button on the canvas and then adjusts it, do you have a way to propagate those changes across the codebase or keep things in sync?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0r82o",
+      "subreddit": "ClaudeAI",
+      "title": "Can Claude help automate writing primary school student reports (without replacing teacher judgment)?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0r82o/can_claude_help_automate_writing_primary_school/",
+      "found_at": "2026-03-22T18:11:23.143634+00:00",
+      "comment_draft": "Claude can definitely help here as a first-pass draft generator. Have her try giving Claude a student's assessment notes (behavior, academic performance, areas for growth) and ask it to write in the style of her school's reports—it'll handle the repetitive structure and phrasing while she focuses on personalizing the actual content. The key is treating it as a writing assistant that handles boilerplate rather than something that captures her professional judgment, which she'd review and edit anyway.",
+      "score": 78,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0nvd0",
+      "subreddit": "ChatGPT",
+      "title": "You really gotta keep his ass in line",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s0nvd0/you_really_gotta_keep_his_ass_in_line/",
+      "found_at": "2026-03-22T18:11:28.057404+00:00",
+      "comment_draft": "Try being more explicit about what you want and use direct quotes when it misrepresents you. When GPT twists your words, calling it out mid-conversation and saying \"that's not what I said, I meant X\" usually makes it recalibrate pretty fast. Also helps to start fresh if it keeps doing it—sometimes it gets stuck in a bad interpretation loop.",
+      "score": 72,
+      "status": "skipped"
+    },
+    {
+      "post_id": "1s0w8u7",
+      "subreddit": "ClaudeAI",
+      "title": "Agents that can die, trade, steal, chat, spawn, craft",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0w8u7/agents_that_can_die_trade_steal_chat_spawn_craft/",
+      "found_at": "2026-03-22T22:03:03.958327+00:00",
+      "comment_draft": "This sounds really cool—the persistent memory and emergent behavior angle is exactly what makes agent interactions feel alive. Have you noticed any issues with the agents' context getting too cluttered over time, or do they naturally prune their memories? That's been the tricky part I've seen people run into with long-running simulations.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0xol8",
+      "subreddit": "ChatGPT",
+      "title": "Chatgbt Speed Booster for Branch Chat?",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s0xol8/chatgbt_speed_booster_for_branch_chat/",
+      "found_at": "2026-03-22T22:03:09.243214+00:00",
+      "comment_draft": "Branch chats usually load as separate instances, so the extension might not be injecting into those new windows properly. Try checking if the extension has permissions for all ChatGPT URLs or if there's a setting to enable it for new tabs/windows. If that doesn't work, you could also try disabling and re-enabling the extension, or switching to ChatGPT Plus since the speed improvements are sometimes just about network optimization rather than extension features.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0tbe0",
+      "subreddit": "ChatGPT",
+      "title": "Question for community",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s0tbe0/question_for_community/",
+      "found_at": "2026-03-22T22:03:13.308497+00:00",
+      "comment_draft": "ChatGPT Plus gives you web browsing in the regular chat interface—just start a new chat and you'll see a web browsing toggle near the message box. For market research specifically, you can ask it to search for competitor info, industry trends, or customer reviews, then it'll pull current data and summarize it for you. Way faster than doing it manually.",
+      "score": 75,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0x3vc",
+      "subreddit": "ClaudeAI",
+      "title": "Multiple cowork agents on one computer",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0x3vc/multiple_cowork_agents_on_one_computer/",
+      "found_at": "2026-03-22T22:03:16.270224+00:00",
+      "comment_draft": "The extension isn't really designed for multi-agent setups on one machine, which is probably why you're hitting those crashes. Your best bet might be running separate browser profiles instead of a VM—each profile gets its own extension instance and they won't fight over the same session data. Some people have had luck with that approach, though you'll still need to manage which agent is active in each profile.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s0y0ny",
+      "subreddit": "ClaudeAI",
+      "title": "Looking for Anthropic's official blessing and a way to reach the team",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s0y0ny/looking_for_anthropics_official_blessing_and_a/",
+      "found_at": "2026-03-22T22:03:19.213557+00:00",
+      "comment_draft": "Your best bet is probably reaching out through their contact form on the Anthropic website rather than trying to find individual team members. They're pretty responsive to legitimate projects, especially ones that are genuinely trying to work within their guidelines. Make sure your GitHub readme clearly explains the ToS compliance angle—that's what they'll care about most when they're evaluating it.",
+      "score": 72,
+      "status": "pending"
+    }
+  ]
+}

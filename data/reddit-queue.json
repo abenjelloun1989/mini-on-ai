@@ -1373,6 +1373,282 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1rxua0w",
+      "subreddit": "automation",
+      "title": "Spent way too long figuring out why my multi-step workflows kept breaking mid-run",
+      "body": "I probably wasted two weeks on this before figuring it out. Had a workflow that pulled data from a form, ran it through an LLM, to generate a summary, then pushed results into a CRM and triggered a Slack notification. Simple enough on paper. But every few days something would silently fail in the middle, and I'd only find out when someone complained the CRM wasn't updating.\n\n  \nThe deeper issue wasn't the individual steps, it was that each tool in my stack was stateless. No shared memory between runs, no way to inspect what the LLM actually received vs. what it returned, and error handling that basically amounted to 'it failed, good luck.' I was duct-taping four different services together and calling it a pipeline.\n\n  \nSwitched to building the whole thing inside Latenode, mostly because i",
+      "url": "https://reddit.com/r/automation/comments/1rxua0w/spent_way_too_long_figuring_out_why_my_multistep/",
+      "author": "Such_Grace",
+      "found_at": "2026-03-22T22:07:59.553776+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Multi-Step Workflow Debugging & Error Handling",
+        "category": "mini-guide",
+        "description": "A guide that teaches users how to identify, diagnose, and prevent silent failures in multi-step automation workflows (especially those involving APIs, LLMs, and integrations), with practical debugging strategies and error-handling patterns.",
+        "tags": [
+          "workflow-automation",
+          "error-handling",
+          "debugging",
+          "n8n",
+          "api-integration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rud9xn",
+      "subreddit": "nocode",
+      "title": "Canva is great for humans. It's terrible for automation.",
+      "body": "I want to be clear upfront, Canva is an amazing product. For what it does, it's probably the best design tool out there for non-designers. I use it myself for quick stuff.\n\nBut if you've ever tried to use Canva for anything automated or programmatic, you know how frustrating it gets.\n\nI run a SaaS that does design automation and the number of people that come to us after trying to make Canva work for their automation needs is wild. It's always the same story: \"I need to generate 500 product images\" or \"I need to create a social media post every time we publish an article\" or \"I need my users to be able to edit templates inside my app.\"\n\nAnd every time they try Canva, they hit the same walls.\n\nTheir API is locked behind enterprise pricing. We're talking sales calls, long contracts, and pric",
+      "url": "https://reddit.com/r/nocode/comments/1rud9xn/canva_is_great_for_humans_its_terrible_for/",
+      "author": "camposped",
+      "found_at": "2026-03-22T22:08:03.325678+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Design Automation Without Canva Guide",
+        "category": "mini-guide",
+        "description": "A practical guide showing no-code builders and SaaS founders how to set up programmatic design automation workflows using alternatives to Canva, with specific tools and integration patterns.",
+        "tags": [
+          "design-automation",
+          "canva-alternatives",
+          "no-code",
+          "saas-builders"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rx9xa1",
+      "subreddit": "n8n",
+      "title": "Best AI for n8n automation creation",
+      "body": "I’ve been using Gemini for guidance on creating n8n automations, and I feel like it’s…garbage.\n\n\\- It assumes it knows the answer immediately, but doesn’t double check its own work, leading me down branches and branches of failed effort to correct errors\n\n\\- leads me down wild goose chase looking for menu items that don’t exist (such as “credentials” in the bottom left settings. \n\n\\- constantly blames n8n UI changes for its lack of correctness\n\n \\- isn’t that great at providing JavaScript code\n\n\\- etc.\n\nDo other people see the same thing? I have updated “gems”, master prompt for it to double check work, etc. with no success. \n\nWhat do other people use?  I’m curious whether it’s just me, and I have more learning to do.",
+      "url": "https://reddit.com/r/n8n/comments/1rx9xa1/best_ai_for_n8n_automation_creation/",
+      "author": "Evilstib",
+      "found_at": "2026-03-22T22:08:09.090503+00:00",
+      "status": "build-failed",
+      "brief": {
+        "score": 72,
+        "title": "n8n Automation Prompt Pack for Claude",
+        "category": "prompt-packs",
+        "description": "A specialized prompt pack that teaches Claude to accurately guide n8n automation creation by verifying UI elements, double-checking workflows before suggesting them, and avoiding outdated or non-existent menu references.",
+        "tags": [
+          "n8n",
+          "automation",
+          "ai-assisted-workflows",
+          "claude-prompting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null,
+      "error": "Could not repair truncated JSON array"
+    },
+    {
+      "post_id": "1rxbiek",
+      "subreddit": "n8n",
+      "title": "Why doesn't my Anthropic Language Model work??",
+      "body": "v. 2.8.3.\n\nTwo weeks ago I created a Claude Developer Account in order to use Anthropic as language model for my Agents in n8n. I added credits, created the API keys, but seems to be no way to get it to work. I only get **\"The resource you are requesting could not be found\"**\n\nI have set up API integrations many times before, so I now I'm not doing anything wrong in the actual configuration. Can't find anyone who have had similar issues and don't know what to do. Claude's support are of course not accommodating and more or less impossible to reach\n\nI set up a Claude Developer Account two weeks ago specifically to use Anthropic as the language model for my AI Agents in n8n. Added credits, generated API keys, configured the Anthropic Chat Model node — and all I get is:\n\n&gt;\n\nWhat I've alrea",
+      "url": "https://reddit.com/r/n8n/comments/1rxbiek/why_doesnt_my_anthropic_language_model_work/",
+      "author": "CommercialGur3720",
+      "found_at": "2026-03-22T22:08:11.030494+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Anthropic API Setup for n8n Agents",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that walks users through properly configuring Anthropic API credentials and Claude models in n8n, with troubleshooting for common authentication and resource errors.",
+        "tags": [
+          "n8n",
+          "anthropic",
+          "api-setup",
+          "troubleshooting",
+          "claude"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rx0vug",
+      "subreddit": "n8n",
+      "title": "n8n and o365 integration",
+      "body": "Thoughts for anyone out there.. wanting to use the Outlook, SharePoint etc nodes but because we are part of a large company n8n is requesting full access to o365 mailboxes etc and this will not be permitted. Is there a way to use the nodes but only allow it to have access to one mailbox? what is everyone using  or doing? thanks for your feedback.",
+      "url": "https://reddit.com/r/n8n/comments/1rx0vug/n8n_and_o365_integration/",
+      "author": "monraya",
+      "found_at": "2026-03-22T22:08:13.274908+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "O365 Limited Access n8n Setup Guide",
+        "category": "mini-guide",
+        "description": "A practical guide showing enterprise users how to configure n8n's O365 nodes with restricted permissions and shared mailbox access instead of full tenant access.",
+        "tags": [
+          "n8n",
+          "O365",
+          "enterprise-security",
+          "mailbox-delegation",
+          "Azure-permissions"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ryxna9",
+      "subreddit": "n8n",
+      "title": "Making a Dashboard",
+      "body": "Now that I’ve been working on n8n for a while, I want to convert it into a business. I’ve worked in a couple projects and it’s  been very good and useful to people. I’ve been having problems creating a dashboard. I’m trying to make my customer see the amount of time they’re saving and the money and everything, but I have a problem creating it so is there a way some one can help me  step-by-step through this? I’ve watched YouTube videos but they don’t help. I just need the dashboard to show the value of my workflows to the business so they see that they need it.And also I was asking if the input could just manually go in the dashboard and I don’t have to type it in every month.",
+      "url": "https://reddit.com/r/n8n/comments/1ryxna9/making_a_dashboard/",
+      "author": "Responsible-Bike-214",
+      "found_at": "2026-03-22T22:08:25.593552+00:00",
+      "status": "built",
+      "brief": {
+        "score": 72,
+        "title": "N8n Customer Dashboard ROI Template",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow template that automatically calculates and visualizes time saved, cost savings, and ROI metrics for customers, eliminating the manual dashboard creation struggle.",
+        "tags": [
+          "n8n",
+          "dashboard",
+          "ROI-tracking",
+          "client-reporting",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": "n8n-n8n-customer-dashboard-roi-template-20260322",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — N8n Customer Dashboard ROI Template.\n\nA ready-to-deploy n8n workflow template that automatically calculates and visualizes time saved, cost savings, and ROI metrics for customers, eliminating the manual dashboard creation struggle.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-customer-dashboard-roi-template-20260322.html\n\nHope it helps!",
+      "replied_at": null
+    },
+    {
+      "post_id": "1rzmxiz",
+      "subreddit": "n8n",
+      "title": "n8n's new AI builder is good. Here's exactly where it breaks (and when to use Claude Code instead)",
+      "body": "I'll be honest. When n8n dropped the native prompt-to-workflow builder, I assumed it would either be a gimmick or replace half my setup. I tested it hard across easy, medium, and genuinely complex builds. The truth is messier and more useful than either of those takes.\n\n**First, the thing nobody's saying: your expectations are the actual problem**\n\nThe hype around these AI builders sets people up to quit on day two. You paste a prompt, it generates something, and when it doesn't *just work*, you either blame yourself or the tool. Both are wrong.\n\nWhat it actually gives you is a 70-80% draft. That's it. That's the product. Once I reframed it that way, it became genuinely useful instead of constantly disappointing.\n\n**I tested it on a \"simple\" pre-built example and it humbled me**\n\nUsed thei",
+      "url": "https://reddit.com/r/n8n/comments/1rzmxiz/n8ns_new_ai_builder_is_good_heres_exactly_where/",
+      "author": "AxZyzz",
+      "found_at": "2026-03-22T22:08:27.838221+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "When to Use AI Builder vs Claude Code",
+        "category": "mini-guide",
+        "description": "A practical decision framework showing n8n users exactly when to use n8n's native AI builder versus Claude Code, with real examples of where each breaks down.",
+        "tags": [
+          "n8n",
+          "AI-builders",
+          "Claude-Code",
+          "workflow-automation"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1rz6lol",
+      "subreddit": "n8n",
+      "title": "I need some advice on something",
+      "body": "I created a app for creating and editing of images and videos using ai \nBut I want to implement a feature that allows the users to post what they created directly on their various social media platforms and I want to use a n8n workflow as the engine for that posting, but I am having issues and I have some questions \n1. If I create the workflow for the app don't I need the credentials of the users to implement a posting feature \n2. I want to implement a schedule posting feature and connect it to a workflow aswell to post when the user sets the timer \n3. How will it work, for people who have used n8n for the engine of their software, do you need to create multiple workflow to deal withe the multiple number of users and please if you have done this before please any advice is appreciated",
+      "url": "https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/",
+      "author": "KEAVEN007",
+      "found_at": "2026-03-22T22:08:29.805236+00:00",
+      "status": "building",
+      "brief": {
+        "score": 72,
+        "title": "n8n Social Media Auth & Posting Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that handles OAuth authentication for multiple social platforms and enables users to post AI-generated images/videos without requiring app developers to store user credentials.",
+        "tags": [
+          "n8n",
+          "social-media",
+          "oauth",
+          "automation",
+          "api-integration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s0nvgd",
+      "subreddit": "n8n",
+      "title": "Connections Whats App API BUSINESS META",
+      "body": "Hello everyone,\n\nI’m writing this message because I’m trying to build an AI agent for a restaurant using n8n and Meta Business (Facebook).\n\nI’ve successfully created my agent on n8n and verified my business profile on Facebook. However, I’m currently stuck. My assistant (ChatGPT) is telling me that I need to create a webhook, but when I watch tutorials, they all use a WhatsApp trigger instead — so I’m not sure what I’m supposed to do.\n\nAs you can see in the screenshot, I have my setup, but I’m unable to properly connect it with Meta Business, and I feel like I haven’t fully understood how everything works yet.\n\nBasically, I understand that I won’t be able to use a regular WhatsApp account on my phone, but then how do I view the conversations from my AI agent?\n\nAlso, I just discovered in a",
+      "url": "https://reddit.com/r/n8n/comments/1s0nvgd/connections_whats_app_api_business_meta/",
+      "author": "HugeVirus9357",
+      "found_at": "2026-03-22T22:08:40.106343+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "WhatsApp Business API Setup for n8n",
+        "category": "n8n-template",
+        "description": "A step-by-step n8n workflow template that guides users through connecting Meta Business WhatsApp API to n8n, eliminating confusion between webhook vs. trigger approaches for restaurant AI agents.",
+        "tags": [
+          "whatsapp",
+          "meta-business",
+          "n8n-workflows",
+          "restaurant-automation"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ryn8x7",
+      "subreddit": "n8n",
+      "title": "No matching version error when updating",
+      "body": "Hi everyone,\n\nWhen I try to update n8n using `npm install -g n8n@2.11.4`I get this error. At first, I tried it with `n8n@latest` and got the same error. I asked Gemini for help, but none of its suggestions worked. Can anyone help with this please?\n\n    npm error code ETARGET\n    npm error notarget No matching version found for n8n-editor-ui@2.11.3.\n    npm error notarget In most cases you or one of your dependencies are requesting\n    npm error notarget a package version that doesn't exist.\n    npm error A complete log of this run can be found in:",
+      "url": "https://reddit.com/r/n8n/comments/1ryn8x7/no_matching_version_error_when_updating/",
+      "author": "caramel_ice_capp",
+      "found_at": "2026-03-22T22:08:44.589388+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Installation & Update Troubleshooting Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that helps n8n users diagnose and resolve npm version mismatch errors (ETARGET) when installing or updating n8n, including common causes like registry issues, cache problems, and dependency conflicts.",
+        "tags": [
+          "n8n",
+          "npm-errors",
+          "installation",
+          "troubleshooting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }
