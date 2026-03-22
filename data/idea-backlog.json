@@ -3288,13 +3288,35 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1ryxna9/making_a_dashboard/",
-      "selected": true,
-      "status": "produced",
-      "product_id": "n8n-n8n-customer-dashboard-roi-template-20260322",
+      "selected": false,
+      "status": null,
+      "product_id": null,
       "generated_at": "2026-03-22T22:11:22.279990+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1ryxna9",
       "reddit_url": "https://reddit.com/r/n8n/comments/1ryxna9/making_a_dashboard/"
+    },
+    {
+      "id": "idea-reddit-1rz6lol",
+      "title": "n8n Social Media Auth & Posting Workflow",
+      "description": "A ready-to-use n8n workflow template that handles OAuth authentication for multiple social platforms and enables users to post AI-generated images/videos without requiring app developers to store user credentials.",
+      "category": "n8n-template",
+      "tags": [
+        "n8n",
+        "social-media",
+        "oauth",
+        "automation",
+        "api-integration"
+      ],
+      "score": 72,
+      "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/",
+      "selected": true,
+      "status": "produced",
+      "product_id": "n8n-n8n-social-media-auth-posting-workflow-20260322",
+      "generated_at": "2026-03-22T22:11:45.517756+00:00",
+      "source": "reddit-scan",
+      "reddit_post_id": "1rz6lol",
+      "reddit_url": "https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/"
     }
   ]
 }

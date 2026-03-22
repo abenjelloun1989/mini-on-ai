@@ -1,0 +1,540 @@
+{
+  "name": "n8n Social Media Auth & Posting Workflow",
+  "nodes": [
+    {
+      "id": "node1",
+      "name": "OAuth Callback Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "social-oauth-callback",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "node2",
+      "name": "Extract OAuth Params",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const query = $input.first().json.query;\nconst code = query.code || '';\nconst state = query.state || '';\nconst platform = query.platform || state.split(':')[0] || 'unknown';\nconst userId = state.split(':')[1] || 'unknown';\n\nreturn [{\n  json: {\n    code,\n    state,\n    platform,\n    userId,\n    receivedAt: new Date().toISOString()\n  }\n}];"
+      }
+    },
+    {
+      "id": "node3",
+      "name": "Route by Platform",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.platform }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "twitter",
+              "output": 0
+            },
+            {
+              "value2": "instagram",
+              "output": 1
+            },
+            {
+              "value2": "linkedin",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      }
+    },
+    {
+      "id": "node4",
+      "name": "Exchange Twitter Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.twitter.com/2/oauth2/token",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "authorization_code"
+            },
+            {
+              "name": "code",
+              "value": "={{ $json.code }}"
+            },
+            {
+              "name": "redirect_uri",
+              "value": "https://YOUR_N8N_DOMAIN/webhook/social-oauth-callback"
+            },
+            {
+              "name": "code_verifier",
+              "value": "challenge"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node5",
+      "name": "Exchange Instagram Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.instagram.com/oauth/access_token",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "client_id",
+              "value": "YOUR_INSTAGRAM_CLIENT_ID"
+            },
+            {
+              "name": "client_secret",
+              "value": "YOUR_INSTAGRAM_CLIENT_SECRET"
+            },
+            {
+              "name": "grant_type",
+              "value": "authorization_code"
+            },
+            {
+              "name": "redirect_uri",
+              "value": "https://YOUR_N8N_DOMAIN/webhook/social-oauth-callback"
+            },
+            {
+              "name": "code",
+              "value": "={{ $json.code }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node6",
+      "name": "Exchange LinkedIn Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        500
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.linkedin.com/oauth/v2/accessToken",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "authorization_code"
+            },
+            {
+              "name": "code",
+              "value": "={{ $json.code }}"
+            },
+            {
+              "name": "client_id",
+              "value": "YOUR_LINKEDIN_CLIENT_ID"
+            },
+            {
+              "name": "client_secret",
+              "value": "YOUR_LINKEDIN_CLIENT_SECRET"
+            },
+            {
+              "name": "redirect_uri",
+              "value": "https://YOUR_N8N_DOMAIN/webhook/social-oauth-callback"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node7",
+      "name": "Save Tokens to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        300
+      ],
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "UserTokens",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "userId": "={{ $('Extract OAuth Params').item.json.userId }}",
+            "platform": "={{ $('Extract OAuth Params').item.json.platform }}",
+            "accessToken": "={{ $json.access_token }}",
+            "refreshToken": "={{ $json.refresh_token || '' }}",
+            "expiresIn": "={{ $json.expires_in || '' }}",
+            "tokenSavedAt": "={{ new Date().toISOString() }}"
+          }
+        },
+        "matchingColumns": [
+          "userId",
+          "platform"
+        ],
+        "options": {}
+      }
+    },
+    {
+      "id": "node8",
+      "name": "Post Content Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        700
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "social-post-content",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "node9",
+      "name": "Generate AI Image Caption",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        400,
+        700
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_OPENAI_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "body": "={\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a social media expert. Generate engaging captions for posts.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Generate a caption for this post: {{ $json.body.topic }}. Platform: {{ $json.body.platform }}. Tone: {{ $json.body.tone || 'professional' }}.\"\n    }\n  ],\n  \"max_tokens\": 200\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "node10",
+      "name": "Fetch User Token from Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        600,
+        700
+      ],
+      "parameters": {
+        "operation": "read",
+        "documentId": "YOUR_GOOGLE_SHEET_ID",
+        "sheetName": "UserTokens",
+        "filters": {
+          "conditions": [
+            {
+              "leftValue": "userId",
+              "operator": "equals",
+              "rightValue": "={{ $('Post Content Webhook').item.json.body.userId }}"
+            },
+            {
+              "leftValue": "platform",
+              "operator": "equals",
+              "rightValue": "={{ $('Post Content Webhook').item.json.body.platform }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "node11",
+      "name": "Post to Social Platform",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        700
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Post Content Webhook').item.json.body.platform === 'twitter' ? 'https://api.twitter.com/2/tweets' : $('Post Content Webhook').item.json.body.platform === 'instagram' ? 'https://graph.instagram.com/me/media' : 'https://api.linkedin.com/v2/ugcPosts' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.accessToken }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "body": "={\n  \"text\": \"{{ $('Generate AI Image Caption').item.json.choices[0].message.content }}\",\n  \"image_url\": \"{{ $('Post Content Webhook').item.json.body.imageUrl || '' }}\"\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "node12",
+      "name": "Notify via Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        700
+      ],
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=✅ Post published successfully!\n\nPlatform: {{ $('Post Content Webhook').item.json.body.platform }}\nUser: {{ $('Post Content Webhook').item.json.body.userId }}\nCaption: {{ $('Generate AI Image Caption').item.json.choices[0].message.content.substring(0, 100) }}...\nTime: {{ new Date().toISOString() }}",
+        "additionalFields": {}
+      }
+    },
+    {
+      "id": "node13",
+      "name": "OAuth Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        300
+      ],
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html><html><body style='font-family:Arial;text-align:center;padding:50px'><h2>✅ Authorization Successful!</h2><p>Your account has been connected. You can close this window.</p></body></html>",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "text/html"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "node14",
+      "name": "Post Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        700
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Content posted successfully', platform: $('Post Content Webhook').item.json.body.platform, timestamp: new Date().toISOString() }) }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "OAuth Callback Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract OAuth Params",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract OAuth Params": {
+      "main": [
+        [
+          {
+            "node": "Route by Platform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Platform": {
+      "main": [
+        [
+          {
+            "node": "Exchange Twitter Token",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Exchange Instagram Token",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Exchange LinkedIn Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Exchange Twitter Token": {
+      "main": [
+        [
+          {
+            "node": "Save Tokens to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Exchange Instagram Token": {
+      "main": [
+        [
+          {
+            "node": "Save Tokens to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Exchange LinkedIn Token": {
+      "main": [
+        [
+          {
+            "node": "Save Tokens to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Tokens to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "OAuth Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Content Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate AI Image Caption",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AI Image Caption": {
+      "main": [
+        [
+          {
+            "node": "Fetch User Token from Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch User Token from Sheets": {
+      "main": [
+        [
+          {
+            "node": "Post to Social Platform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Social Platform": {
+      "main": [
+        [
+          {
+            "node": "Notify via Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify via Telegram": {
+      "main": [
+        [
+          {
+            "node": "Post Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    "social-media",
+    "oauth",
+    "ai",
+    "automation"
+  ],
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

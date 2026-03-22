@@ -1576,7 +1576,7 @@
       "url": "https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/",
       "author": "KEAVEN007",
       "found_at": "2026-03-22T22:08:29.805236+00:00",
-      "status": "building",
+      "status": "built",
       "brief": {
         "score": 72,
         "title": "n8n Social Media Auth & Posting Workflow",
@@ -1592,8 +1592,8 @@
         "why_not_buildable": "",
         "buildable": true
       },
-      "product_id": null,
-      "reply_text": null,
+      "product_id": "n8n-n8n-social-media-auth-posting-workflow-20260322",
+      "reply_text": "Hey! I actually built a n8n workflow template for exactly this — n8n Social Media Auth & Posting Workflow.\n\nA ready-to-use n8n workflow template that handles OAuth authentication for multiple social platforms and enables users to post AI-generated images/videos without requiring app developers to store user credentials.\n\nIt's free (pay what you want): https://mini-on-ai.com/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html\n\nHope it helps!",
       "replied_at": null
     },
     {
