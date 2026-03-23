@@ -267,6 +267,104 @@ def send_karma_draft(post: dict, comment: str, score: int) -> bool:
         return False
 
 
+def send_holiday_question(question: str, step: int, total: int) -> bool:
+    """Send a holiday planning question with step indicator."""
+    text = f"🏝️ <b>Planification voyage</b> ({step}/{total})\n\n{question}"
+    try:
+        send_telegram(text)
+        return True
+    except Exception as e:
+        log("telegram", f"Warning: could not send holiday question: {e}")
+        return False
+
+
+def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
+    """Send one trip proposal to Telegram."""
+    emoji = proposal.get("emoji", "🌍")
+    title = proposal.get("title", "Proposition")
+    destination = proposal.get("destination", "")
+    why = proposal.get("why", "")
+    weather = proposal.get("weather_note", "")
+    stroller = proposal.get("stroller_note", "")
+    journey_time = proposal.get("journey_time_note", "")
+    nights = proposal.get("nights", "?")
+    total_eur = proposal.get("total_estimate_eur", "?")
+
+    transport = proposal.get("transport", {})
+    t_desc = transport.get("description", "")
+    t_price = transport.get("total_transport_eur", "?")
+    t_duration = transport.get("duration", "")
+    t_notes = transport.get("notes", "")
+
+    accom = proposal.get("accommodation", {})
+    a_desc = accom.get("description", "")
+    a_price_night = accom.get("price_per_night_eur", "?")
+    a_total = accom.get("total_accommodation_eur", "?")
+    a_notes = accom.get("notes", "")
+
+    booking_links = proposal.get("booking_links", [])
+
+    lines = [
+        f"{emoji} <b>Option {index}/{total} — {title}</b>",
+        f"📍 {destination} · {nights} nuits",
+        "",
+        f"<b>Pourquoi cette option?</b>",
+        why,
+        "",
+    ]
+
+    if journey_time:
+        lines.append(f"🕐 <i>{journey_time}</i>")
+    if weather:
+        lines.append(f"☀️ <i>{weather}</i>")
+    if stroller:
+        lines.append(f"🦽 <i>{stroller}</i>")
+    if journey_time or weather or stroller:
+        lines.append("")
+
+    lines += [
+        f"<b>Transport:</b> {t_desc}",
+    ]
+    if t_duration:
+        lines.append(f"⏱ {t_duration}")
+    lines.append(f"💶 ~{t_price}€ (transport total)")
+    if t_notes:
+        lines.append(f"<i>{t_notes}</i>")
+
+    lines += [
+        "",
+        f"<b>Hébergement:</b> {a_desc}",
+        f"💶 ~{a_price_night}€/nuit · ~{a_total}€ total",
+    ]
+    if a_notes:
+        lines.append(f"<i>{a_notes}</i>")
+
+    lines += [
+        "",
+        f"💰 <b>Estimation totale: ~{total_eur}€</b>",
+        "",
+        "<b>Liens de réservation:</b>",
+    ]
+    for link in booking_links:
+        label = link.get("label", "Réserver")
+        url = link.get("url", "#")
+        lines.append(f'<a href="{url}">{label}</a>')
+
+    text = "\n".join(lines)
+
+    # Telegram max message length is 4096 chars
+    if len(text) > 4000:
+        text = text[:3990] + "\n..."
+
+    try:
+        send_telegram(text)
+        log("telegram", f"Holiday proposal {index} sent")
+        return True
+    except Exception as e:
+        log("telegram", f"Warning: could not send holiday proposal {index}: {e}")
+        return False
+
+
 def main():
     parser = argparse.ArgumentParser(description="Send Telegram pipeline report")
     parser.add_argument("--message", default=None, help="Custom message to send")

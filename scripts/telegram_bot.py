@@ -38,6 +38,19 @@ CHAT_ID = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID", "")
 
 SEEDS_ALL = ["marketing", "freelancing", "writing", "coding"]
 
+# ── Holiday planner ────────────────────────────────────────────────────────────
+
+HOLIDAY_QUESTIONS = [
+    ("dates",         "✈️ <b>Quand voulez-vous partir?</b>\n\nDates précises ou période approximative? Vous êtes flexible?"),
+    ("budget",        "💰 <b>Quel est votre budget total?</b>\n\nTransport + hébergement, pour les 3 (2 adultes + enfant)."),
+    ("destination",   "🌍 <b>Avez-vous une destination en tête?</b>\n\nQuelque chose de précis, ou ouvert aux suggestions? Des pays à éviter?"),
+    ("trip_type",     "🏖️ <b>Quel type de voyage?</b>\n\nBord de mer, ville, nature, montagne, repos, culture — ou un mix?"),
+    ("journey_time",  "⏱️ <b>Combien de temps max pour le trajet?</b>\n\nEx: 3h en train, 2h de vol, pas plus de 5h porte-à-porte. On évite la voiture sauf si moins d'1h."),
+    ("accommodation", "🏨 <b>Hôtel ou Airbnb?</b>\n\nDes exigences particulières? (piscine, vue mer, accès poussette, lit bébé, ascenseur...)"),
+    ("nights",        "🌙 <b>Combien de nuits environ?</b>"),
+    ("extras",        "✅ <b>Autre chose à savoir?</b>\n\nContraintes, envies particulières, choses à absolument éviter.\n\nTapez <b>go</b> quand vous êtes prêt pour que je lance la recherche."),
+]
+
 KNOWN_CATEGORIES = {
     "prompt-packs":       ("Prompt Pack",        "20–30 ready-to-use prompts"),
     "checklist":          ("Checklist",           "structured decision/action list"),
@@ -256,6 +269,8 @@ def cmd_help() -> str:
         "🏭 <b>mini-on-ai factory</b>\n\n"
         "/run — Generate a new product  (e.g. /run marketing)\n"
         "/reddit — Scan Reddit, propose up to 10 products  (e.g. /reddit n8n)\n"
+        "/holidays — Plan a family trip (interactive questionnaire)\n"
+        "/holidays cancel — Cancel current planning session\n"
         "/karma — Scout 5 posts to comment on for Reddit karma\n"
         "/karma {url} — Draft a comment for a specific Reddit post URL\n"
         "/draft r/Sub | Title | Body — Draft a comment from pasted post text\n"
@@ -422,9 +437,136 @@ def run_pipeline_bg(seed: str = "", category: str = "") -> None:
     )
 
 
+def _holiday_state() -> dict:
+    try:
+        return read_json("data/holiday-state.json")
+    except Exception:
+        return {"status": "idle", "step": 0, "constraints": {}, "proposals": []}
+
+
+def _save_holiday_state(state: dict) -> None:
+    write_json("data/holiday-state.json", state)
+
+
+def cmd_holidays(text: str) -> str:
+    lower = text.lower().strip()
+
+    if "cancel" in lower or "annule" in lower:
+        state = _holiday_state()
+        state["status"] = "idle"
+        state["step"] = 0
+        state["constraints"] = {}
+        _save_holiday_state(state)
+        return "✅ Planification annulée. Tapez /holidays pour recommencer."
+
+    state = _holiday_state()
+    current_status = state.get("status", "idle")
+
+    if current_status == "gathering":
+        step = state.get("step", 0)
+        _, question = HOLIDAY_QUESTIONS[step]
+        return (
+            f"Une planification est déjà en cours (question {step + 1}/{len(HOLIDAY_QUESTIONS)}).\n\n"
+            f"Question actuelle:\n{question}\n\n"
+            f"Tapez /holidays cancel pour recommencer."
+        )
+
+    if current_status == "researching":
+        return "🔍 Recherche en cours… Les propositions arrivent bientôt!"
+
+    # Start fresh session
+    state = {
+        "status": "gathering",
+        "step": 0,
+        "constraints": {},
+        "proposals": [],
+        "started_at": timestamp(),
+    }
+    _save_holiday_state(state)
+
+    _, first_question = HOLIDAY_QUESTIONS[0]
+    return (
+        f"🏝️ <b>Planification de voyage</b>\n\n"
+        f"Je vais vous poser {len(HOLIDAY_QUESTIONS)} questions pour trouver le voyage parfait.\n\n"
+        f"Question 1/{len(HOLIDAY_QUESTIONS)}:\n\n{first_question}"
+    )
+
+
+def handle_holiday_answer(text: str) -> str:
+    """Process a free-text answer during the holiday gathering phase."""
+    state = _holiday_state()
+    step = state.get("step", 0)
+    constraints = state.get("constraints", {})
+
+    key, _ = HOLIDAY_QUESTIONS[step]
+
+    # Check if user wants to launch research early
+    if text.lower().strip() in ("go", "go!", "recherche", "lance", "ok go", "let's go"):
+        if not constraints:
+            return "Répondez d'abord à quelques questions pour que je puisse chercher! 😊"
+        return _launch_holiday_research(state)
+
+    # Store the answer as-is for this constraint
+    constraints[key] = text.strip()
+    state["constraints"] = constraints
+
+    next_step = step + 1
+
+    if next_step >= len(HOLIDAY_QUESTIONS):
+        # All questions answered — launch research
+        state["step"] = next_step
+        _save_holiday_state(state)
+        return _launch_holiday_research(state)
+
+    # Advance to next question
+    state["step"] = next_step
+    _save_holiday_state(state)
+
+    _, next_question = HOLIDAY_QUESTIONS[next_step]
+    return f"Question {next_step + 1}/{len(HOLIDAY_QUESTIONS)}:\n\n{next_question}"
+
+
+def _launch_holiday_research(state: dict) -> str:
+    """Transition to researching state and spawn research subprocess."""
+    state["status"] = "researching"
+    _save_holiday_state(state)
+
+    subprocess.Popen(
+        [sys.executable, str(ROOT / "scripts/holiday_planner.py")],
+        cwd=str(ROOT),
+        stdout=open(ROOT / "logs/pipeline.log", "a"),
+        stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+    )
+
+    constraints = state.get("constraints", {})
+    summary_lines = []
+    labels = {
+        "dates": "Dates", "budget": "Budget", "destination": "Destination",
+        "trip_type": "Type", "journey_time": "Durée max trajet",
+        "accommodation": "Hébergement", "nights": "Nuits", "extras": "Extras",
+    }
+    for k, label in labels.items():
+        if constraints.get(k):
+            summary_lines.append(f"• {label}: {constraints[k]}")
+
+    summary = "\n".join(summary_lines)
+    return (
+        f"🔍 <b>Recherche lancée!</b>\n\n"
+        f"Je cherche 3 voyages basés sur:\n{summary}\n\n"
+        f"Les propositions arrivent dans 1-2 minutes…"
+    )
+
+
 def handle_command(text: str) -> str:
     text = text.strip()
     lower = text.lower()
+
+    # Free-text intercept: route to holiday planner if session is active
+    if not text.startswith("/"):
+        holiday_st = _holiday_state()
+        if holiday_st.get("status") == "gathering":
+            return handle_holiday_answer(text)
+        return None  # Ignore non-commands outside sessions
 
     if lower == "/help" or lower.startswith("/start"):
         return cmd_help()
@@ -449,6 +591,9 @@ def handle_command(text: str) -> str:
 
     if lower == "/skip" or lower == "/nogo" or lower == "/no":
         return handle_approval("rejected")
+
+    if lower == "/holidays" or lower.startswith("/holidays "):
+        return cmd_holidays(text)
 
     if lower == "/karma":
         return cmd_karma()
