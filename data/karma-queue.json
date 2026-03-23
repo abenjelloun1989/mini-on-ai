@@ -449,6 +449,56 @@
       "comment_draft": "Your best bet is probably reaching out through their contact form on the Anthropic website rather than trying to find individual team members. They're pretty responsive to legitimate projects, especially ones that are genuinely trying to work within their guidelines. Make sure your GitHub readme clearly explains the ToS compliance angle—that's what they'll care about most when they're evaluating it.",
       "score": 72,
       "status": "pending"
+    },
+    {
+      "post_id": "1s1bj9h",
+      "subreddit": "ClaudeAI",
+      "title": "Claude helped me get root access to my robot vacuum. Then it made a server to let anyone use their unrooted devices on their local network.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s1bj9h/claude_helped_me_get_root_access_to_my_robot/",
+      "found_at": "2026-03-23T11:12:53.395507+00:00",
+      "comment_draft": "This is genuinely impressive that you got it working again. Did you end up documenting the root access process anywhere, or is it all in the GitHub? I'm guessing the hardest part was reverse engineering the authentication, so other people with the same vacuum could potentially follow your steps.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s1cvsd",
+      "subreddit": "ClaudeAI",
+      "title": "I built a Claude Code skill for ebook + audiobook self-publishing (11 platforms, HTML→PDF, AI audiobooks) — here's what I learned about writing skills that don't break",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s1cvsd/i_built_a_claude_code_skill_for_ebook_audiobook/",
+      "found_at": "2026-03-23T11:12:56.302345+00:00",
+      "comment_draft": "This is exactly the kind of integrated workflow problem that skills should solve. Did you run into any friction points with the HTML→PDF conversion when dealing with complex layouts or images, or did that part end up being more straightforward than expected?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s1bc5c",
+      "subreddit": "ClaudeAI",
+      "title": "Built a small approval boundary for Claude Code repo work",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s1bc5c/built_a_small_approval_boundary_for_claude_code/",
+      "found_at": "2026-03-23T11:13:00.417161+00:00",
+      "comment_draft": "This is a really practical approach to the trust/safety tradeoff. Have you thought about logging what Claude proposes vs what actually gets executed? That gap could be useful feedback for refining the approval process over time, or catching when things drift from the plan.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s1bw2p",
+      "subreddit": "ChatGPT",
+      "title": "WHEN DID CHAT LIMITS RETURN?",
+      "url": "https://reddit.com/r/ChatGPT/comments/1s1bw2p/when_did_chat_limits_return/",
+      "found_at": "2026-03-23T11:13:04.742968+00:00",
+      "comment_draft": "Chat limits have been around for a while, but they're based on context length rather than conversation duration. Once a conversation gets really long (usually 50-100+ messages depending on message size), ChatGPT starts warning you because the model struggles to keep track of everything. Starting a fresh chat usually fixes it immediately if you need to keep going.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s1ctts",
+      "subreddit": "ClaudeAI",
+      "title": "Why is Claude keep making obvious mistakes?",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s1ctts/why_is_claude_keep_making_obvious_mistakes/",
+      "found_at": "2026-03-23T11:13:08.534345+00:00",
+      "comment_draft": "The RAM issue with the Mac mini is a known one that trips people up—Intel 2018 models do have soldered RAM, so Claude might be mixing up specs with later models or M-series. For the Claude Code vs MCP thing, Sonnet does seem to confuse these concepts sometimes while Opus handles the nuance better. If accuracy matters for what you're doing, it might be worth testing both on your specific questions first before relying on one model.",
+      "score": 72,
+      "status": "pending"
     }
   ]
 }
