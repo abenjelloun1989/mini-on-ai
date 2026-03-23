@@ -278,29 +278,34 @@ def send_holiday_question(question: str, step: int, total: int) -> bool:
         return False
 
 
+def _he(text: str) -> str:
+    """Escape HTML special characters for Telegram HTML parse mode."""
+    return str(text).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
-    """Send one trip proposal to Telegram."""
+    """Send one trip proposal with navigation buttons."""
     emoji = proposal.get("emoji", "🌍")
-    title = proposal.get("title", "Proposition")
-    destination = proposal.get("destination", "")
-    why = proposal.get("why", "")
-    weather = proposal.get("weather_note", "")
-    stroller = proposal.get("stroller_note", "")
-    journey_time = proposal.get("journey_time_note", "")
+    title = _he(proposal.get("title", "Proposition"))
+    destination = _he(proposal.get("destination", ""))
+    why = _he(proposal.get("why", ""))
+    weather = _he(proposal.get("weather_note", ""))
+    stroller = _he(proposal.get("stroller_note", ""))
+    journey_time = _he(proposal.get("journey_time_note", ""))
     nights = proposal.get("nights", "?")
     total_eur = proposal.get("total_estimate_eur", "?")
 
     transport = proposal.get("transport", {})
-    t_desc = transport.get("description", "")
+    t_desc = _he(transport.get("description", ""))
     t_price = transport.get("total_transport_eur", "?")
-    t_duration = transport.get("duration", "")
-    t_notes = transport.get("notes", "")
+    t_duration = _he(transport.get("duration", ""))
+    t_notes = _he(transport.get("notes", ""))
 
     accom = proposal.get("accommodation", {})
-    a_desc = accom.get("description", "")
+    a_desc = _he(accom.get("description", ""))
     a_price_night = accom.get("price_per_night_eur", "?")
     a_total = accom.get("total_accommodation_eur", "?")
-    a_notes = accom.get("notes", "")
+    a_notes = _he(accom.get("notes", ""))
 
     booking_links = proposal.get("booking_links", [])
 
@@ -308,7 +313,7 @@ def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
         f"{emoji} <b>Option {index}/{total} — {title}</b>",
         f"📍 {destination} · {nights} nuits",
         "",
-        f"<b>Pourquoi cette option?</b>",
+        "<b>Pourquoi cette option?</b>",
         why,
         "",
     ]
@@ -322,9 +327,7 @@ def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
     if journey_time or weather or stroller:
         lines.append("")
 
-    lines += [
-        f"<b>Transport:</b> {t_desc}",
-    ]
+    lines.append(f"<b>Transport:</b> {t_desc}")
     if t_duration:
         lines.append(f"⏱ {t_duration}")
     lines.append(f"💶 ~{t_price}€ (transport total)")
@@ -342,23 +345,29 @@ def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
     lines += [
         "",
         f"💰 <b>Estimation totale: ~{total_eur}€</b>",
+        "<i>Prix estimés — cliquez les liens pour les prix en temps réel</i>",
         "",
-        "<b>Liens de réservation:</b>",
+        "<b>Réserver:</b>",
     ]
     for link in booking_links:
-        label = link.get("label", "Réserver")
+        label = _he(link.get("label", "Réserver"))
         url = link.get("url", "#")
         lines.append(f'<a href="{url}">{label}</a>')
 
     text = "\n".join(lines)
-
-    # Telegram max message length is 4096 chars
     if len(text) > 4000:
         text = text[:3990] + "\n..."
 
+    # Navigation buttons
+    buttons = []
+    if index < total:
+        buttons.append({"text": f"➡️ Option suivante ({index + 1}/{total})", "callback_data": f"holiday:next:{index}"})
+    buttons.append({"text": "🔁 Relancer (mêmes critères)", "callback_data": "holiday:relaunch"})
+    buttons.append({"text": "✏️ Modifier critères", "callback_data": "holiday:modify"})
+
     try:
-        send_telegram(text)
-        log("telegram", f"Holiday proposal {index} sent")
+        _send_with_buttons(text, buttons)
+        log("telegram", f"Holiday proposal {index}/{total} sent")
         return True
     except Exception as e:
         log("telegram", f"Warning: could not send holiday proposal {index}: {e}")

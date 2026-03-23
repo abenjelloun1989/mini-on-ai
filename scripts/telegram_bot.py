@@ -474,6 +474,27 @@ def cmd_holidays(text: str) -> str:
     if current_status == "researching":
         return "🔍 Recherche en cours… Les propositions arrivent bientôt!"
 
+    # Check for previous constraints to offer reuse
+    previous_constraints = state.get("constraints", {})
+    if previous_constraints and current_status in ("done", "idle"):
+        labels = {
+            "dates": "Dates", "budget": "Budget", "destination": "Destination",
+            "trip_type": "Type", "journey_time": "Durée max trajet",
+            "accommodation": "Hébergement", "nights": "Nuits", "extras": "Extras",
+        }
+        summary = "\n".join(
+            f"• {labels.get(k, k)}: {v}"
+            for k, v in previous_constraints.items() if v
+        )
+        return (
+            f"🏝️ <b>Voyage précédent retrouvé</b>\n\n"
+            f"{summary}\n\n"
+            f"Que voulez-vous faire?\n"
+            f"• Tapez <b>go</b> pour relancer avec ces critères\n"
+            f"• Tapez <b>modifier</b> pour les ajuster question par question\n"
+            f"• Tapez <b>nouveau</b> pour repartir de zéro"
+        )
+
     # Start fresh session
     state = {
         "status": "gathering",
@@ -506,24 +527,31 @@ def handle_holiday_answer(text: str) -> str:
             return "Répondez d'abord à quelques questions pour que je puisse chercher! 😊"
         return _launch_holiday_research(state)
 
-    # Store the answer as-is for this constraint
-    constraints[key] = text.strip()
-    state["constraints"] = constraints
+    # "ok" or "skip" keeps the existing value
+    if text.lower().strip() in ("ok", "skip", "pareil", "idem", "même", "garder"):
+        if constraints.get(key):
+            # Keep existing, advance to next step
+            pass
+        else:
+            constraints[key] = ""
+    else:
+        constraints[key] = text.strip()
 
+    state["constraints"] = constraints
     next_step = step + 1
 
     if next_step >= len(HOLIDAY_QUESTIONS):
-        # All questions answered — launch research
         state["step"] = next_step
         _save_holiday_state(state)
         return _launch_holiday_research(state)
 
-    # Advance to next question
     state["step"] = next_step
     _save_holiday_state(state)
 
-    _, next_question = HOLIDAY_QUESTIONS[next_step]
-    return f"Question {next_step + 1}/{len(HOLIDAY_QUESTIONS)}:\n\n{next_question}"
+    next_key, next_question = HOLIDAY_QUESTIONS[next_step]
+    existing = constraints.get(next_key, "")
+    hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
+    return f"Question {next_step + 1}/{len(HOLIDAY_QUESTIONS)}:\n\n{next_question}{hint}"
 
 
 def _launch_holiday_research(state: dict) -> str:
@@ -561,11 +589,29 @@ def handle_command(text: str) -> str:
     text = text.strip()
     lower = text.lower()
 
-    # Free-text intercept: route to holiday planner if session is active
+    # Free-text intercept for holiday planner
     if not text.startswith("/"):
         holiday_st = _holiday_state()
         if holiday_st.get("status") == "gathering":
             return handle_holiday_answer(text)
+        # Handle reuse/modify/new responses after /holidays summary
+        if holiday_st.get("constraints") and holiday_st.get("status") in ("done", "idle"):
+            cmd = text.lower().strip()
+            if cmd in ("go", "relancer", "oui", "yes"):
+                return _launch_holiday_research(holiday_st)
+            if cmd in ("modifier", "modify", "changer"):
+                holiday_st["status"] = "gathering"
+                holiday_st["step"] = 0
+                holiday_st["proposals"] = []
+                _save_holiday_state(holiday_st)
+                key, question = HOLIDAY_QUESTIONS[0]
+                existing = holiday_st["constraints"].get(key, "")
+                hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
+                return f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}"
+            if cmd in ("nouveau", "new", "recommencer", "reset"):
+                _save_holiday_state({"status": "gathering", "step": 0, "constraints": {}, "proposals": [], "started_at": timestamp()})
+                _, first_question = HOLIDAY_QUESTIONS[0]
+                return f"🏝️ <b>Nouveau voyage</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{first_question}"
         return None  # Ignore non-commands outside sessions
 
     if lower == "/help" or lower.startswith("/start"):
@@ -781,6 +827,53 @@ def main():
                         pass
                     _skip_karma_post(post_id)
                     send("⏭ Skipped.", cq_chat_id)
+                elif cq_data.startswith("holiday:next:"):
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    shown_index = int(cq_data.split(":", 2)[2])  # index already shown (0-based)
+                    state = _holiday_state()
+                    proposals = state.get("proposals", [])
+                    next_index = shown_index + 1  # next to show (0-based)
+                    if next_index < len(proposals):
+                        from telegram_notify import send_holiday_proposal
+                        state["current_proposal_index"] = next_index
+                        _save_holiday_state(state)
+                        send_holiday_proposal(proposals[next_index], next_index + 1, len(proposals))
+                    else:
+                        send("✅ Vous avez vu toutes les options! Tapez /holidays pour relancer.", cq_chat_id)
+                elif cq_data == "holiday:relaunch":
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    state = _holiday_state()
+                    constraints = state.get("constraints", {})
+                    if not constraints:
+                        send("Aucun critère sauvegardé. Tapez /holidays pour commencer.", cq_chat_id)
+                    else:
+                        reply = _launch_holiday_research(state)
+                        send(reply, cq_chat_id)
+                elif cq_data == "holiday:modify":
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    state = _holiday_state()
+                    constraints = state.get("constraints", {})
+                    if not constraints:
+                        send("Aucun critère sauvegardé. Tapez /holidays pour commencer.", cq_chat_id)
+                    else:
+                        # Restart gathering with pre-filled constraints
+                        state["status"] = "gathering"
+                        state["step"] = 0
+                        state["proposals"] = []
+                        _save_holiday_state(state)
+                        key, question = HOLIDAY_QUESTIONS[0]
+                        existing = constraints.get(key, "")
+                        hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
+                        send(f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}", cq_chat_id)
                 else:
                     log("bot", f"Callback ignored: unknown data={cq_data}")
                 continue

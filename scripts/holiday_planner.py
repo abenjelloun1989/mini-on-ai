@@ -209,24 +209,21 @@ def _research_knowledge_based(client, prompt: str) -> list:
     return extract_json(text, array=True)
 
 
-def send_proposals(proposals: list) -> None:
-    """Send each proposal to Telegram."""
+def send_first_proposal(proposals: list) -> None:
+    """Send only the first proposal — user navigates to others via buttons."""
     from telegram_notify import send_holiday_proposal, send_telegram
 
-    send_telegram("🔍 <b>Recherche terminée!</b> Voici 3 propositions de voyage:\n\n(Arrive dans quelques secondes...)")
+    total = len(proposals)
+    send_telegram(
+        f"✅ <b>Recherche terminée — {total} option{'s' if total > 1 else ''} trouvée{'s' if total > 1 else ''}!</b>\n\n"
+        f"Voici la première proposition:"
+    )
     time.sleep(1)
 
-    for i, proposal in enumerate(proposals, 1):
-        try:
-            send_holiday_proposal(proposal, i, len(proposals))
-            time.sleep(1)
-        except Exception as e:
-            log("holiday", f"Failed to send proposal {i}: {e}")
-
-    send_telegram(
-        "💡 <i>Les prix sont des estimations — cliquez les liens pour voir les prix en temps réel.</i>\n\n"
-        "Une option vous intéresse? Tapez /holidays pour recommencer avec de nouveaux critères."
-    )
+    try:
+        send_holiday_proposal(proposals[0], 1, total)
+    except Exception as e:
+        log("holiday", f"Failed to send first proposal: {e}")
 
 
 def main():
@@ -262,10 +259,11 @@ def main():
 
     state["proposals"] = proposals
     state["status"] = "done"
+    state["current_proposal_index"] = 0
     state["completed_at"] = timestamp()
     write_json("data/holiday-state.json", state)
 
-    send_proposals(proposals)
+    send_first_proposal(proposals)
     log("holiday", "Done — proposals sent to Telegram")
 
 
