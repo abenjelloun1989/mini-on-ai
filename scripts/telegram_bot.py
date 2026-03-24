@@ -525,6 +525,9 @@ def handle_holiday_answer(text: str) -> str:
     if text.lower().strip() in ("go", "go!", "recherche", "lance", "ok go", "let's go"):
         if not constraints:
             return "Répondez d'abord à quelques questions pour que je puisse chercher! 😊"
+        warning = _school_holiday_warning(state)
+        if warning:
+            return warning
         return _launch_holiday_research(state)
 
     # "ok" or "skip" keeps the existing value
@@ -543,6 +546,9 @@ def handle_holiday_answer(text: str) -> str:
     if next_step >= len(HOLIDAY_QUESTIONS):
         state["step"] = next_step
         _save_holiday_state(state)
+        warning = _school_holiday_warning(state)
+        if warning:
+            return warning
         return _launch_holiday_research(state)
 
     state["step"] = next_step
@@ -552,6 +558,27 @@ def handle_holiday_answer(text: str) -> str:
     existing = constraints.get(next_key, "")
     hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
     return f"Question {next_step + 1}/{len(HOLIDAY_QUESTIONS)}:\n\n{next_question}{hint}"
+
+
+def _school_holiday_warning(state: dict) -> str:
+    """Check for school holiday overlap and return warning message, or None if clear."""
+    from holiday_planner import check_school_holidays
+    dates_str = state.get("constraints", {}).get("dates", "")
+    if not dates_str:
+        return None
+    matches = check_school_holidays(dates_str)
+    if not matches:
+        return None
+    details = "\n".join(f"  • {label} ({zones})" for label, zones in matches)
+    state["status"] = "school_holiday_warning"
+    _save_holiday_state(state)
+    return (
+        f"⚠️ <b>Attention — Vacances scolaires détectées!</b>\n\n"
+        f"Vos dates semblent coïncider avec:\n{details}\n\n"
+        f"Les prix peuvent être <b>+30-40% plus élevés</b> pendant ces périodes.\n\n"
+        f"• Tapez <b>continuer</b> pour chercher quand même\n"
+        f"• Tapez <b>modifier</b> pour changer les dates"
+    )
 
 
 def _launch_holiday_research(state: dict) -> str:
@@ -592,12 +619,44 @@ def handle_command(text: str) -> str:
     # Free-text intercept for holiday planner
     if not text.startswith("/"):
         holiday_st = _holiday_state()
-        if holiday_st.get("status") == "gathering":
+        status = holiday_st.get("status", "idle")
+        cmd = text.lower().strip()
+
+        if status == "gathering":
             return handle_holiday_answer(text)
+
+        # School holiday warning — waiting for user response
+        if status == "school_holiday_warning":
+            if cmd in ("modifier", "changer", "modifier dates"):
+                holiday_st["status"] = "gathering"
+                holiday_st["step"] = 0
+                holiday_st["proposals"] = []
+                _save_holiday_state(holiday_st)
+                key, question = HOLIDAY_QUESTIONS[0]
+                existing = holiday_st["constraints"].get(key, "")
+                hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
+                return f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}"
+            # Any other response (continuer, oui, ok, etc.) → proceed
+            return _launch_holiday_research(holiday_st)
+
+        # Jump to specific proposal by number (when status is done)
+        if status == "done" and cmd in ("1", "2", "3"):
+            proposals = holiday_st.get("proposals", [])
+            idx = int(cmd) - 1
+            if 0 <= idx < len(proposals):
+                from telegram_notify import send_holiday_proposal
+                holiday_st["current_proposal_index"] = idx
+                _save_holiday_state(holiday_st)
+                send_holiday_proposal(proposals[idx], idx + 1, len(proposals))
+                return None  # already sent via send_holiday_proposal
+            return f"Option {cmd} non disponible — il n'y a que {len(proposals)} proposition(s)."
+
         # Handle reuse/modify/new responses after /holidays summary
-        if holiday_st.get("constraints") and holiday_st.get("status") in ("done", "idle"):
-            cmd = text.lower().strip()
+        if holiday_st.get("constraints") and status in ("done", "idle"):
             if cmd in ("go", "relancer", "oui", "yes"):
+                warning = _school_holiday_warning(holiday_st)
+                if warning:
+                    return warning
                 return _launch_holiday_research(holiday_st)
             if cmd in ("modifier", "modify", "changer"):
                 holiday_st["status"] = "gathering"

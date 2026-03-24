@@ -267,6 +267,60 @@ def send_karma_draft(post: dict, comment: str, score: int) -> bool:
         return False
 
 
+def send_comparison_table(proposals: list) -> bool:
+    """Send a quick comparison table for all proposals before the first detailed one."""
+    if not proposals:
+        return False
+
+    transport_icons = {"train": "🚄", "vol": "✈️", "flight": "✈️", "voiture": "🚗", "bus": "🚌"}
+
+    # Find cheapest and best weather for badges
+    prices = [p.get("total_estimate_eur", 9999) for p in proposals]
+    min_price = min(prices)
+
+    # Parse temperatures for "best weather" badge
+    def extract_temp(weather_note: str) -> int:
+        import re
+        m = re.search(r"(\d+)", weather_note or "")
+        return int(m.group(1)) if m else 0
+
+    temps = [extract_temp(p.get("weather_note", "")) for p in proposals]
+    max_temp = max(temps) if temps else 0
+
+    number_emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
+    lines = ["📊 <b>Comparaison rapide:</b>\n"]
+
+    for i, p in enumerate(proposals):
+        num = number_emojis[i] if i < len(number_emojis) else f"{i+1}."
+        dest = _he(p.get("destination", "?").split(",")[0])
+        transport = p.get("transport", {})
+        t_icon = transport_icons.get(transport.get("type", "").lower(), "🚌")
+        t_dur = _he(transport.get("duration", "?"))
+        weather = _he(p.get("weather_note", "—"))
+        price = p.get("total_estimate_eur", "?")
+
+        badges = []
+        if price == min_price:
+            badges.append("← Meilleur prix")
+        if temps[i] == max_temp and max_temp > 0 and price != min_price:
+            badges.append("← Meilleur temps")
+
+        badge_str = f"  <i>{' / '.join(badges)}</i>" if badges else ""
+        lines.append(f"{num}  {dest}   {t_icon} {t_dur}   🌡 {weather}   💰 ~{price}€{badge_str}")
+
+    lines.append("\nTapez <b>1</b>, <b>2</b> ou <b>3</b> pour sauter directement à une option.")
+    lines.append("Ou utilisez ➡️ pour parcourir dans l'ordre.")
+
+    text = "\n".join(lines)
+    try:
+        send_telegram(text)
+        log("telegram", "Comparison table sent")
+        return True
+    except Exception as e:
+        log("telegram", f"Warning: could not send comparison table: {e}")
+        return False
+
+
 def send_holiday_question(question: str, step: int, total: int) -> bool:
     """Send a holiday planning question with step indicator."""
     text = f"🏝️ <b>Planification voyage</b> ({step}/{total})\n\n{question}"
