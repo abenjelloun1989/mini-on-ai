@@ -66,7 +66,7 @@ def generate_reddit_post(subreddit: str) -> str:
     price = product.get("price", 0)
     gumroad_url = product.get("gumroad_url") or product_url
     is_free = product.get("is_free") or price == 0
-    price_label = "free" if is_free else f"${price // 100}"
+    price_label = "free" if is_free else (f"${price // 100}" if price else "$5")
 
     prompt = f"""Write a short Reddit post promoting this product. Write in first person, like someone who personally hit this problem, solved it, and is sharing what worked — not a marketer.
 
@@ -154,7 +154,7 @@ def fix_reddit_post(subreddit: str, rule: str, title: str = "", body: str = "") 
     price = product.get("price", 0)
     gumroad_url = product.get("gumroad_url") or product_url
     is_free = product.get("is_free") or price == 0
-    price_label = "free" if is_free else f"${price // 100}"
+    price_label = "free" if is_free else (f"${price // 100}" if price else "$5")
 
     if title and body:
         task = f"""Revise this Reddit post so it complies with the rule below. Keep the core message intact — only change what's needed.
