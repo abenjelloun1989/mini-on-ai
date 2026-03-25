@@ -264,28 +264,86 @@ def cmd_karma() -> str:
     return "🎯 Scouting Reddit for posts to comment on… 5 drafts coming shortly."
 
 
-def cmd_help() -> str:
+def cmd_help(group: str = "") -> str:
+    group = group.strip().lower()
+
+    if group == "factory":
+        return (
+            "🏭 <b>Factory — full detail</b>\n\n"
+            "<b>/run [seed] [category]</b>\n"
+            "  Generate a new product.\n"
+            "  <code>/run</code> — pick best idea from backlog\n"
+            "  <code>/run marketing</code> — seed the idea search\n"
+            "  <code>/run checklist</code> — force a specific category\n"
+            "  <code>/run freelancing checklist</code> — seed + category\n"
+            "  <code>/run all</code> — 4 runs (marketing, freelancing, writing, coding)\n"
+            "  Categories: prompt-packs · checklist · swipe-file · mini-guide · n8n-template\n\n"
+            "<b>/go · /skip</b> — approve or reject the pending idea\n"
+            "<b>/pause · /resume</b> — start/stop the daemon\n"
+            "<b>/status</b> — last run, product count, API costs\n"
+            "<b>/products</b> — all published products with links\n"
+            "<b>/ideas</b> — top 5 scored ideas in the backlog"
+        )
+
+    if group == "posts":
+        return (
+            "📣 <b>Reddit Posts — full detail</b>\n\n"
+            "<b>/post list</b> — subreddits grouped by product\n\n"
+            "<b>/post {sub}</b> — generate a post for that subreddit\n"
+            "  <code>/post resumes</code>  or  <code>/post r/resumes</code>\n\n"
+            "<b>/fix {sub} | {rule}</b>\n"
+            "  Regenerate from scratch, avoiding a specific rule violation\n"
+            "  <code>/fix resumes | no self-promotion</code>\n\n"
+            "<b>/fix {sub} | {rule} | {title} | {body}</b>\n"
+            "  Revise a specific post you already wrote\n"
+            "  <code>/fix resumes | no links | My title | My body text</code>"
+        )
+
+    if group == "karma":
+        return (
+            "💬 <b>Reddit Karma — full detail</b>\n\n"
+            "<b>/karma</b> — scout 5 posts to comment on (all target subreddits)\n\n"
+            "<b>/karma {sub}</b> — scan one subreddit, lower threshold\n"
+            "  <code>/karma resumes</code>  or  <code>/karma r/resumes</code>\n\n"
+            "<b>/karma {url}</b> — draft comment for a specific post URL\n"
+            "  <code>/karma https://reddit.com/r/ClaudeAI/...</code>\n\n"
+            "<b>/draft r/Sub | Title | Body</b> — draft comment from pasted post text\n"
+            "  <code>/draft r/resumes | Help with ATS | I'm applying for...</code>"
+        )
+
+    if group == "products":
+        return (
+            "📦 <b>Products — full detail</b>\n\n"
+            "<b>/seturl {id} {url}</b>\n"
+            "  Link a product to its Gumroad listing (fetches real price automatically)\n"
+            "  <code>/seturl prompts-my-pack-20260312 https://minionai.gumroad.com/l/abc</code>\n\n"
+            "<b>/setfree {id}</b> — mark product as free on the vitrine\n\n"
+            "<b>/list</b> — all subreddits and products at a glance\n\n"
+            "Use /products to see product IDs."
+        )
+
+    # Default — grouped overview
     return (
-        "🏭 <b>mini-on-ai factory</b>\n\n"
-        "/run — Generate a new product  (e.g. /run marketing)\n"
-        "/reddit — Scan Reddit, propose up to 10 products  (e.g. /reddit n8n)\n"
-        "/holidays — Plan a family trip (interactive questionnaire)\n"
-        "/holidays cancel — Cancel current planning session\n"
-        "/post list — Subreddits to post on per product\n"
-        "/post {subreddit} — Generate a Reddit post for that subreddit (e.g. /post resumes)\n"
-        "/fix {subreddit} | {rule} — Regenerate post to comply with a rule\n"
-        "/fix {subreddit} | {rule} | {title} | {body} — Revise a specific post\n"
-        "/karma — Scout 5 posts to comment on for Reddit karma\n"
-        "/karma list — Show subreddits to target per product\n"
-        "/karma {subreddit} — Scan a specific subreddit (e.g. /karma resumes)\n"
-        "/karma {url} — Draft a comment for a specific Reddit post URL\n"
-        "/draft r/Sub | Title | Body — Draft a comment from pasted post text\n"
-        "/go — Approve pending idea → build it\n"
-        "/skip — Skip pending idea\n"
-        "/pause — Pause the factory\n"
-        "/resume — Resume the factory\n"
-        "/status — Last run, products count, API costs\n"
-        "/products — All published products with links"
+        "🏭 <b>Factory</b>\n"
+        "  /run [seed] [category] — Generate a product\n"
+        "  /go · /skip — Approve or reject pending idea\n"
+        "  /pause · /resume — Start/stop the daemon\n"
+        "  /status · /products · /ideas — Info\n\n"
+        "📣 <b>Reddit Posts</b>\n"
+        "  /post list — Subreddits per product\n"
+        "  /post {sub} — Draft a post  (e.g. /post resumes)\n"
+        "  /fix {sub} | {rule} — Revise a rejected post\n\n"
+        "💬 <b>Reddit Karma</b>\n"
+        "  /karma — Scout 5 posts to comment on\n"
+        "  /karma {sub} — Scan one subreddit  (e.g. /karma resumes)\n"
+        "  /karma {url} — Draft comment for a post URL\n"
+        "  /draft r/Sub | Title | Body — Draft from pasted text\n\n"
+        "📦 <b>Products</b>\n"
+        "  /seturl {id} {url} — Link product to Gumroad\n"
+        "  /setfree {id} — Mark product as free\n"
+        "  /list — All subreddits and products at a glance\n\n"
+        "Type /help {group} for more detail:\n"
+        "<code>factory · posts · karma · products</code>"
     )
 
 
@@ -679,9 +737,12 @@ def handle_command(text: str) -> str:
                 return f"🏝️ <b>Nouveau voyage</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{first_question}"
         return None  # Ignore non-commands outside sessions
 
+    # ── HELP ──────────────────────────────────────────────────────────────────
     if lower == "/help" or lower.startswith("/start"):
-        return cmd_help()
+        group = text[len("/help"):].strip() if lower.startswith("/help") else ""
+        return cmd_help(group)
 
+    # ── FACTORY ───────────────────────────────────────────────────────────────
     if lower == "/status":
         return cmd_status()
 
@@ -705,6 +766,22 @@ def handle_command(text: str) -> str:
 
     if lower == "/holidays" or lower.startswith("/holidays "):
         return cmd_holidays(text)
+
+    # ── REDDIT POSTS ──────────────────────────────────────────────────────────
+
+    if lower == "/reddit" or lower.startswith("/reddit "):
+        sub_arg = text[len("/reddit"):].strip()
+        cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-mode"]
+        if sub_arg:
+            cmd += ["--reddit-subreddit", sub_arg]
+        subprocess.Popen(
+            cmd,
+            cwd=str(ROOT),
+            stdout=open(ROOT / "logs/pipeline.log", "a"),
+            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+        )
+        note = f" (r/{sub_arg})" if sub_arg else ""
+        return f"🔍 Scanning Reddit{note} for needs… candidates will arrive shortly."
 
     if lower == "/post list":
         from karma_scout import SUBREDDIT_TO_PRODUCT
@@ -735,9 +812,10 @@ def handle_command(text: str) -> str:
         body = parts[3] if len(parts) > 3 else ""
         return fix_reddit_post(sub, rule, title, body)
 
-    if lower == "/karma list":
+    # ── REDDIT KARMA ──────────────────────────────────────────────────────────
+
+    if lower in ("/karma list", "/karma list"):
         from karma_scout import SUBREDDIT_TO_PRODUCT
-        # Group subreddits by product name
         by_product: dict = {}
         for sub, (name, url) in SUBREDDIT_TO_PRODUCT.items():
             by_product.setdefault(name, []).append(sub)
@@ -778,19 +856,22 @@ def handle_command(text: str) -> str:
         body = parts[2] if len(parts) > 2 else ""
         return draft_from_text(subreddit, title, body)
 
-    if lower == "/reddit" or lower.startswith("/reddit "):
-        sub_arg = text[len("/reddit"):].strip()
-        cmd = [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--reddit-mode"]
-        if sub_arg:
-            cmd += ["--reddit-subreddit", sub_arg]
-        subprocess.Popen(
-            cmd,
-            cwd=str(ROOT),
-            stdout=open(ROOT / "logs/pipeline.log", "a"),
-            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
-        )
-        note = f" (r/{sub_arg})" if sub_arg else ""
-        return f"🔍 Scanning Reddit{note} for needs… candidates will arrive shortly."
+    # ── PRODUCTS ──────────────────────────────────────────────────────────────
+
+    if lower == "/list":
+        from karma_scout import SUBREDDIT_TO_PRODUCT
+        by_product: dict = {}
+        for sub, (name, url) in SUBREDDIT_TO_PRODUCT.items():
+            by_product.setdefault(name, []).append(sub)
+        lines = ["<b>📋 Products &amp; Subreddits</b>\n"]
+        for product, subs in by_product.items():
+            post_cmds = "  ".join(f"<code>/post {s}</code>" for s in subs)
+            karma_cmds = "  ".join(f"<code>/karma {s}</code>" for s in subs)
+            lines.append(f"<b>{product}</b>")
+            lines.append(f"  📣 Post: {post_cmds}")
+            lines.append(f"  💬 Karma: {karma_cmds}")
+            lines.append("")
+        return "\n".join(lines).strip()
 
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()
