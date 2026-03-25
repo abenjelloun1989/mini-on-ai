@@ -110,9 +110,9 @@ Respond ONLY with valid JSON: {{"title": "...", "body": "..."}}"""
         post_title = data.get("title", "")
         post_body = data.get("body", "")
         return (
-            f"r/{sub} — {product_name} ({price_label})\n\n"
-            f"TITLE:\n{post_title}\n\n"
-            f"BODY:\n{post_body}"
+            f"📣 r/{sub} — {product_name} ({price_label})\n\n"
+            f"<b>Title</b> (tap to copy):\n<code>{post_title}</code>\n\n"
+            f"<b>Body</b> (tap to copy):\n<code>{post_body}</code>"
         )
     except Exception as e:
         log("karma-scout", f"Warning: post generation failed: {e}")
@@ -199,9 +199,9 @@ Respond ONLY with valid JSON: {{"title": "...", "body": "...", "change_summary":
         post_body = data.get("body", "")
         summary = data.get("change_summary", "")
         return (
-            f"r/{sub} — fixed for: {rule}\n\n"
-            f"TITLE:\n{post_title}\n\n"
-            f"BODY:\n{post_body}\n\n"
+            f"🔧 r/{sub} — fixed for: {rule}\n\n"
+            f"<b>Title</b> (tap to copy):\n<code>{post_title}</code>\n\n"
+            f"<b>Body</b> (tap to copy):\n<code>{post_body}</code>\n\n"
             f"ℹ️ {summary}"
         )
     except Exception as e:
