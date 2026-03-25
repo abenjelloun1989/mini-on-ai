@@ -90,6 +90,7 @@ Hard rules:
 - No "I'm excited", "hope this helps", "game-changer", "curated", "comprehensive"
 - No "As someone who"
 - The insight is the point, not the product
+- IMPORTANT: the price is {price_label} — never say "free" or "no signup required" if it has a price
 
 Respond ONLY with valid JSON: {{"title": "...", "body": "..."}}"""
 

@@ -1662,5 +1662,133 @@
     "model": "claude-sonnet-4-6",
     "input_tokens": 251,
     "output_tokens": 199
+  },
+  {
+    "ts": "2026-03-23T21:36:48.565627+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 41454,
+    "output_tokens": 4164
+  },
+  {
+    "ts": "2026-03-23T21:46:12.456370+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 96003,
+    "output_tokens": 4290
+  },
+  {
+    "ts": "2026-03-23T21:52:09.288909+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 38006,
+    "output_tokens": 4162
+  },
+  {
+    "ts": "2026-03-23T21:56:33.101458+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 38006,
+    "output_tokens": 4162
+  },
+  {
+    "ts": "2026-03-23T22:29:01.747323+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 39214,
+    "output_tokens": 4165
+  },
+  {
+    "ts": "2026-03-24T08:02:42.308687+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 118913,
+    "output_tokens": 3971
+  },
+  {
+    "ts": "2026-03-24T08:05:40.612332+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 29229,
+    "output_tokens": 4043
+  },
+  {
+    "ts": "2026-03-24T20:35:48.312638+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-research",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 98987,
+    "output_tokens": 3820
+  },
+  {
+    "ts": "2026-03-24T21:00:19.593316+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 422,
+    "output_tokens": 550
+  },
+  {
+    "ts": "2026-03-24T21:01:02.830676+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1056,
+    "output_tokens": 3364
+  },
+  {
+    "ts": "2026-03-24T21:02:09.724579+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 422,
+    "output_tokens": 559
+  },
+  {
+    "ts": "2026-03-24T21:02:49.158094+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1056,
+    "output_tokens": 3078
+  },
+  {
+    "ts": "2026-03-24T21:05:52.983610+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 435,
+    "output_tokens": 560
+  },
+  {
+    "ts": "2026-03-24T21:06:36.008688+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1069,
+    "output_tokens": 3179
+  },
+  {
+    "ts": "2026-03-25T16:17:02.393097+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 407,
+    "output_tokens": 636
+  },
+  {
+    "ts": "2026-03-25T16:17:41.528560+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1042,
+    "output_tokens": 2854
   }
 ]

@@ -759,6 +759,7 @@ def rebuild_all() -> None:
             "site_path": f"site/products/{pid}.html",
             "gumroad_url": meta.get("gumroad_url"),
             "thumbnail": meta.get("thumbnail"),
+            "price": meta.get("price"),
             "is_free": meta.get("is_free"),
         })
 
