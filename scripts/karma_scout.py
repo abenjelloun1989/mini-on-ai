@@ -43,14 +43,44 @@ def _reddit_new(subreddit: str, limit: int = 25) -> list:
     return [c["data"] for c in children if c.get("kind") == "t3"]
 
 KARMA_SUBREDDITS = [
+    # Claude Code skills packs ($5 each)
     "ClaudeAI",
-    "ChatGPT",
+    "cursor",
+    "ExperiencedDevs",
+    "learnprogramming",
+    # ATS Resume Rewriter
+    "resumes",
+    "jobs",
+    "cscareerquestions",
+    # n8n templates
     "n8n",
-    "productivity",
+    "nocode",
+    "zapier",
+    # Freelance products
     "freelance",
+    "consulting",
+    # General AI / productivity
+    "ChatGPT",
+    "productivity",
     "Entrepreneur",
-    "chatgptpromptengineering",
 ]
+
+_SITE = "https://mini-on-ai.com"
+
+SUBREDDIT_TO_PRODUCT = {
+    "ClaudeAI":         ("Claude Code Skills Packs", _SITE),
+    "cursor":           ("Claude Code Skills Packs", _SITE),
+    "ExperiencedDevs":  ("Claude Code Skills Packs", _SITE),
+    "learnprogramming": ("Claude Code Skills Packs", _SITE),
+    "resumes":          ("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
+    "jobs":             ("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
+    "cscareerquestions":("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
+    "n8n":              ("n8n Workflow Templates", _SITE),
+    "nocode":           ("n8n Workflow Templates", _SITE),
+    "zapier":           ("n8n Workflow Templates", _SITE),
+    "freelance":        ("Freelance Proposal & Pricing Swipe Files", _SITE),
+    "consulting":       ("Freelance Proposal & Pricing Swipe Files", _SITE),
+}
 
 
 def _assess_and_draft(post: dict) -> Optional[dict]:
@@ -287,7 +317,8 @@ def karma_scout(max_results: int = 5, dry_run: bool = False) -> list:
             # Send to Telegram
             try:
                 from telegram_notify import send_karma_draft
-                send_karma_draft(post, comment, score)
+                hint = SUBREDDIT_TO_PRODUCT.get(post["subreddit"])
+                send_karma_draft(post, comment, score, product_hint=hint)
                 time.sleep(0.4)  # avoid Telegram rate limit
             except Exception as e:
                 log("karma-scout", f"Warning: Telegram send failed: {e}")

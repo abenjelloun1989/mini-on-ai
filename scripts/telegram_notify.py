@@ -237,10 +237,11 @@ def send_reddit_built(post: dict, meta: dict, product_url: str, reply_text: str)
         return False
 
 
-def send_karma_draft(post: dict, comment: str, score: int) -> bool:
+def send_karma_draft(post: dict, comment: str, score: int, product_hint=None) -> bool:
     """
     Send a karma scout result to Telegram.
     Includes the post title, link, and a copy-paste comment draft with a Skip button.
+    product_hint: optional (name, url) tuple shown as a footer line.
     """
     post_id = post.get("post_id", "")
     sub = post.get("subreddit", "?")
@@ -255,6 +256,9 @@ def send_karma_draft(post: dict, comment: str, score: int) -> bool:
         f"💬 <b>Draft comment</b> (tap to copy):\n"
         f"<code>{comment}</code>"
     )
+    if product_hint:
+        name, hint_url = product_hint
+        text += f"\n\n💡 <b>Your product:</b> <a href=\"{hint_url}\">{name}</a>"
     buttons = [
         {"text": "⏭ Skip", "callback_data": f"karma:skip:{post_id}"},
     ]
