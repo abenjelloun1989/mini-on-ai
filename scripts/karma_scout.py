@@ -220,27 +220,13 @@ def _reddit_new(subreddit: str, limit: int = 25) -> list:
     return [c["data"] for c in children if c.get("kind") == "t3"]
 
 KARMA_SUBREDDITS = [
-    # Claude Code skills — karma only (no paid promo allowed)
+    # Audience = your buyers, comment mentions tolerated
     "ClaudeAI",
     "cursor",
-    "ExperiencedDevs",
-    "learnprogramming",
     "ChatGPTCoding",
-    # ATS Resume Rewriter — karma only (all job subs ban self-promo)
-    "resumes",
-    "jobs",
-    "cscareerquestions",
-    "jobsearchhacks",
-    "recruitinghell",
-    # n8n — karma only (explicitly bans Gumroad links)
+    # n8n bans Gumroad links but "DM me for the template" works in comments
     "n8n",
-    "zapier",
-    # Freelance — karma only
-    "freelance",
-    "consulting",
-    # General
-    "ChatGPT",
-    "productivity",
+    # These have weekly promo threads — karma needed to participate
     "Entrepreneur",
     "passive_income",
 ]
