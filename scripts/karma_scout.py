@@ -68,32 +68,30 @@ def generate_reddit_post(subreddit: str) -> str:
     is_free = product.get("is_free") or price == 0
     price_label = "free" if is_free else f"${price // 100}"
 
-    prompt = f"""You write Reddit posts that feel human and get genuine engagement. No AI writing patterns.
+    prompt = f"""Write a short Reddit post promoting this product. Write in first person, like someone who personally hit this problem, solved it, and is sharing what worked — not a marketer.
 
-Product to promote:
-- Name: {title}
-- Description: {description}
-- Price: {price_label}
-- Link: {gumroad_url}
+Product: {title}
+What it is: {description}
+Price: {price_label}
+Link: {gumroad_url}
+Subreddit: r/{sub}
 
-Target subreddit: r/{sub}
+Style:
+- First person throughout ("I", "my", "me") — never "someone built" or "there's a tool"
+- Short: title under 10 words, body under 120 words (3 short paragraphs max)
+- First paragraph = the specific pain you felt, in plain language
+- Second paragraph = what actually worked / what changed
+- Last line = mention the product casually with the link, no hype
+- Tone: direct, slightly tired of bad advice, genuinely useful
 
-Write a Reddit post that:
-1. Leads with a concrete insight, tip, or observation — NOT "I made X"
-2. Gives real value in the body (2-3 short paragraphs, 150-200 words total)
-3. Mentions the product naturally at the end as a resource, with the link
-4. Feels like a real person sharing something useful, not a product launch
-5. Title is curiosity-driving or problem-focused (not "check out my product")
-
-Rules:
+Hard rules:
 - No em-dashes
-- No bullet lists in the body
-- No "As someone who..." or "I'm excited to share"
-- No "hope this helps" or similar filler endings
-- Match the tone of r/{sub} (practical, direct, peer-to-peer)
+- No bullet lists
+- No "I'm excited", "hope this helps", "game-changer", "curated", "comprehensive"
+- No "As someone who"
+- The insight is the point, not the product
 
-Respond ONLY with valid JSON:
-{{"title": "...", "body": "..."}}"""
+Respond ONLY with valid JSON: {{"title": "...", "body": "..."}}"""
 
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     try:
@@ -158,36 +156,30 @@ def fix_reddit_post(subreddit: str, rule: str, title: str = "", body: str = "") 
     price_label = "free" if is_free else f"${price // 100}"
 
     if title and body:
-        task = f"""Revise this Reddit post so it complies with the rule below. Keep the core message and value intact — only change what's necessary to pass the rule.
+        task = f"""Revise this Reddit post so it complies with the rule below. Keep the core message intact — only change what's needed.
 
 Original post:
 TITLE: {title}
 BODY: {body}
 
-Rule violation to fix: {rule}"""
-    else:
-        task = f"""Write a new Reddit post for r/{sub} promoting this product, specifically designed to comply with the rule below.
+Rule violation to fix: {rule}
 
+Keep it first-person throughout. Under 120 words. No em-dashes, no bullet lists."""
+    else:
+        task = f"""Write a Reddit post for r/{sub} that complies with this rule: {rule}
+
+Write in first person, like someone who personally hit this problem and solved it.
 Product: {prod_title}
-Description: {description}
+What it is: {description}
 Price: {price_label}
 Link: {gumroad_url}
 
-Rule to comply with: {rule}"""
+First paragraph = the specific pain you felt. Second = what worked. Last line = mention the product casually with the link.
+Under 120 words. No em-dashes, no bullet lists, no "I'm excited", no "someone built"."""
 
     prompt = f"""{task}
 
-Subreddit: r/{sub}
-
-Requirements for the post:
-- Value-first: lead with insight or useful information, not the product
-- The product is mentioned naturally, not as the main point
-- Human tone, peer-to-peer, no AI-sounding phrases
-- No em-dashes, no bullet lists in body, no "hope this helps"
-- 150-200 words in the body
-
-Respond ONLY with valid JSON:
-{{"title": "...", "body": "...", "change_summary": "what was changed and why it now complies"}}"""
+Respond ONLY with valid JSON: {{"title": "...", "body": "...", "change_summary": "what was changed and why it now complies"}}"""
 
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     try:
