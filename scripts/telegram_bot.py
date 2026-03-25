@@ -700,6 +700,20 @@ def handle_command(text: str) -> str:
     if lower == "/holidays" or lower.startswith("/holidays "):
         return cmd_holidays(text)
 
+    if lower == "/karma list":
+        from karma_scout import SUBREDDIT_TO_PRODUCT
+        # Group subreddits by product name
+        by_product: dict = {}
+        for sub, (name, url) in SUBREDDIT_TO_PRODUCT.items():
+            by_product.setdefault(name, []).append(sub)
+        lines = ["<b>Subreddits to build karma on:</b>\n"]
+        for product, subs in by_product.items():
+            lines.append(f"<b>{product}</b>")
+            for s in subs:
+                lines.append(f"  → r/{s}   <code>/karma {s}</code>")
+            lines.append("")
+        return "\n".join(lines).strip()
+
     if lower == "/karma":
         return cmd_karma()
 
