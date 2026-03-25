@@ -225,10 +225,13 @@ KARMA_SUBREDDITS = [
     "cursor",
     "ExperiencedDevs",
     "learnprogramming",
-    # ATS Resume Rewriter
+    # ATS Resume Rewriter — karma only (resumes/jobs/cscareerquestions ban self-promo)
     "resumes",
     "jobs",
     "cscareerquestions",
+    # ATS Resume Rewriter — post-friendly subreddits
+    "jobsearchhacks",
+    "recruitinghell",
     # n8n templates
     "n8n",
     "nocode",
@@ -243,18 +246,25 @@ KARMA_SUBREDDITS = [
 ]
 
 _SITE = "https://mini-on-ai.com"
+_ATS_URL = f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"
 
+# Only subreddits that allow self-promotion / product links belong here.
+# Subreddits that ban advertising (resumes, jobs, cscareerquestions) are in
+# KARMA_SUBREDDITS only — use /karma to build presence there, not /post.
 SUBREDDIT_TO_PRODUCT = {
+    # Claude Code skills packs
     "ClaudeAI":         ("Claude Code Skills Packs", _SITE),
     "cursor":           ("Claude Code Skills Packs", _SITE),
     "ExperiencedDevs":  ("Claude Code Skills Packs", _SITE),
     "learnprogramming": ("Claude Code Skills Packs", _SITE),
-    "resumes":          ("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
-    "jobs":             ("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
-    "cscareerquestions":("ATS Resume Bullet Rewriter", f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"),
+    # ATS Resume Rewriter — post-friendly only
+    "jobsearchhacks":   ("ATS Resume Bullet Rewriter", _ATS_URL),
+    "recruitinghell":   ("ATS Resume Bullet Rewriter", _ATS_URL),
+    # n8n templates
     "n8n":              ("n8n Workflow Templates", _SITE),
     "nocode":           ("n8n Workflow Templates", _SITE),
     "zapier":           ("n8n Workflow Templates", _SITE),
+    # Freelance products
     "freelance":        ("Freelance Proposal & Pricing Swipe Files", _SITE),
     "consulting":       ("Freelance Proposal & Pricing Swipe Files", _SITE),
 }
