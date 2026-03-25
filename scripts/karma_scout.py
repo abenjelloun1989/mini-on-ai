@@ -220,53 +220,57 @@ def _reddit_new(subreddit: str, limit: int = 25) -> list:
     return [c["data"] for c in children if c.get("kind") == "t3"]
 
 KARMA_SUBREDDITS = [
-    # Claude Code skills packs ($5 each)
+    # Claude Code skills — karma only (no paid promo allowed)
     "ClaudeAI",
     "cursor",
     "ExperiencedDevs",
     "learnprogramming",
-    # ATS Resume Rewriter — karma only (resumes/jobs/cscareerquestions ban self-promo)
+    "ChatGPTCoding",
+    # ATS Resume Rewriter — karma only (all job subs ban self-promo)
     "resumes",
     "jobs",
     "cscareerquestions",
-    # ATS Resume Rewriter — post-friendly subreddits
     "jobsearchhacks",
     "recruitinghell",
-    # n8n templates
+    # n8n — karma only (explicitly bans Gumroad links)
     "n8n",
-    "nocode",
     "zapier",
-    # Freelance products
+    # Freelance — karma only
     "freelance",
     "consulting",
-    # General AI / productivity
+    # General
     "ChatGPT",
     "productivity",
     "Entrepreneur",
+    "passive_income",
 ]
 
 _SITE = "https://mini-on-ai.com"
 _ATS_URL = f"{_SITE}/products/prompts-ats-optimized-resume-bullet-rewriter-by--2.html"
 
-# Only subreddits that allow self-promotion / product links belong here.
-# Subreddits that ban advertising (resumes, jobs, cscareerquestions) are in
-# KARMA_SUBREDDITS only — use /karma to build presence there, not /post.
+# VERIFIED post-friendly subreddits (rules checked 2026-03-26):
+#
+# ✅ SideProject    — 503K members, paid products explicitly OK, "I built" framing
+# ✅ indiehackers   — 115K members, paid products OK, milestone/founder posts
+# ✅ buildinpublic  — 27K members, transparent founder updates, paid products OK
+# ✅ nocode         — paid products OK, value-first post + disclose affiliation
+# ✅ SaaS           — weekly feedback thread, tolerant of product posts
+# ✅ somethingimade — 2M+ members, paid products allowed
+# ✅ shamelessplug  — 52K members, explicitly for self-promo (low engagement but zero friction)
+#
+# ❌ KARMA-ONLY — see KARMA_SUBREDDITS above
 SUBREDDIT_TO_PRODUCT = {
-    # Claude Code skills packs
-    "ClaudeAI":         ("Claude Code Skills Packs", _SITE),
-    "cursor":           ("Claude Code Skills Packs", _SITE),
-    "ExperiencedDevs":  ("Claude Code Skills Packs", _SITE),
-    "learnprogramming": ("Claude Code Skills Packs", _SITE),
-    # ATS Resume Rewriter — post-friendly only
-    "jobsearchhacks":   ("ATS Resume Bullet Rewriter", _ATS_URL),
-    "recruitinghell":   ("ATS Resume Bullet Rewriter", _ATS_URL),
-    # n8n templates
-    "n8n":              ("n8n Workflow Templates", _SITE),
-    "nocode":           ("n8n Workflow Templates", _SITE),
-    "zapier":           ("n8n Workflow Templates", _SITE),
-    # Freelance products
-    "freelance":        ("Freelance Proposal & Pricing Swipe Files", _SITE),
-    "consulting":       ("Freelance Proposal & Pricing Swipe Files", _SITE),
+    # Claude Code Skills — developer/founder audience
+    "SideProject":   ("Claude Code Skills Packs", _SITE),
+    "indiehackers":  ("Claude Code Skills Packs", _SITE),
+    "buildinpublic": ("Claude Code Skills Packs", _SITE),
+    "ChatGPTCoding": ("Claude Code Skills Packs", _SITE),
+    # ATS Resume Rewriter — maker/general audience
+    "somethingimade": ("ATS Resume Bullet Rewriter", _ATS_URL),
+    "shamelessplug":  ("ATS Resume Bullet Rewriter", _ATS_URL),
+    # n8n / automation — nocode is the only verified-safe automation sub
+    "nocode":        ("n8n Workflow Templates", _SITE),
+    "SaaS":          ("n8n Workflow Templates", _SITE),
 }
 
 

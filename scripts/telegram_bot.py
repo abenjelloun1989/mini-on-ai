@@ -290,14 +290,14 @@ def cmd_help(group: str = "") -> str:
             "📣 <b>Reddit Posts — full detail</b>\n\n"
             "<b>/post list</b> — subreddits grouped by product\n\n"
             "<b>/post {sub}</b> — generate a post with product link\n"
-            "  <code>/post jobsearchhacks</code>  or  <code>/post ClaudeAI</code>\n"
-            "  ⚠️ r/resumes, r/jobs, r/cscareerquestions ban self-promo — use /karma there\n\n"
+            "  Verified post-friendly: SideProject · indiehackers · buildinpublic\n"
+            "  Also: nocode · SaaS · somethingimade · shamelessplug · ChatGPTCoding\n\n"
             "<b>/fix {sub} | {rule}</b>\n"
             "  Regenerate from scratch, avoiding a specific rule violation\n"
-            "  <code>/fix jobsearchhacks | no self-promotion</code>\n\n"
+            "  <code>/fix SideProject | no self-promotion</code>\n\n"
             "<b>/fix {sub} | {rule} | {title} | {body}</b>\n"
             "  Revise a specific post you already wrote\n"
-            "  <code>/fix ClaudeAI | no links | My title | My body text</code>"
+            "  <code>/fix indiehackers | too salesy | My title | My body text</code>"
         )
 
     if group == "karma":
@@ -332,7 +332,7 @@ def cmd_help(group: str = "") -> str:
         "  /status · /products · /ideas — Info\n\n"
         "📣 <b>Reddit Posts</b>\n"
         "  /post list — Subreddits per product\n"
-        "  /post {sub} — Draft a post  (e.g. /post jobsearchhacks)\n"
+        "  /post {sub} — Draft a post  (e.g. /post SideProject)\n"
         "  /fix {sub} | {rule} — Revise a rejected post\n\n"
         "💬 <b>Reddit Karma</b>\n"
         "  /karma — Scout 5 posts to comment on\n"
