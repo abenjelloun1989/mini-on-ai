@@ -64,16 +64,18 @@ def generate_reddit_post(subreddit: str) -> str:
     title = product.get("title", product_name)
     description = product.get("description", "")
     price = product.get("price", 0)
-    gumroad_url = product.get("gumroad_url") or product_url
     is_free = product.get("is_free") or price == 0
     price_label = "free" if is_free else (f"${price // 100}" if price else "$5")
+    pid = product.get("id", "")
+    vitrine_url = f"{_SITE}/products/{pid}.html" if pid else _SITE
 
     prompt = f"""Write a short Reddit post promoting this product. Write in first person, like someone who personally hit this problem, solved it, and is sharing what worked — not a marketer.
 
 Product: {title}
 What it is: {description}
 Price: {price_label}
-Link: {gumroad_url}
+Product page: {vitrine_url}
+My site (other products): {_SITE}
 Subreddit: r/{sub}
 
 Style:
@@ -81,7 +83,8 @@ Style:
 - Short: title under 10 words, body under 120 words (3 short paragraphs max)
 - First paragraph = the specific pain you felt, in plain language
 - Second paragraph = what actually worked / what changed
-- Last line = mention the product casually with the link, no hype
+- Second to last line = mention the product casually with the direct product page link, no hype
+- Last line = one casual sentence like "If you're into this kind of thing, I've been building more tools at [site]" — natural, not pushy
 - Tone: direct, slightly tired of bad advice, genuinely useful
 
 Hard rules:
