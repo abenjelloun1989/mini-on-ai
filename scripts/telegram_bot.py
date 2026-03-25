@@ -289,14 +289,15 @@ def cmd_help(group: str = "") -> str:
         return (
             "📣 <b>Reddit Posts — full detail</b>\n\n"
             "<b>/post list</b> — subreddits grouped by product\n\n"
-            "<b>/post {sub}</b> — generate a post for that subreddit\n"
-            "  <code>/post resumes</code>  or  <code>/post r/resumes</code>\n\n"
+            "<b>/post {sub}</b> — generate a post with product link\n"
+            "  <code>/post jobsearchhacks</code>  or  <code>/post ClaudeAI</code>\n"
+            "  ⚠️ r/resumes, r/jobs, r/cscareerquestions ban self-promo — use /karma there\n\n"
             "<b>/fix {sub} | {rule}</b>\n"
             "  Regenerate from scratch, avoiding a specific rule violation\n"
-            "  <code>/fix resumes | no self-promotion</code>\n\n"
+            "  <code>/fix jobsearchhacks | no self-promotion</code>\n\n"
             "<b>/fix {sub} | {rule} | {title} | {body}</b>\n"
             "  Revise a specific post you already wrote\n"
-            "  <code>/fix resumes | no links | My title | My body text</code>"
+            "  <code>/fix ClaudeAI | no links | My title | My body text</code>"
         )
 
     if group == "karma":
@@ -304,7 +305,7 @@ def cmd_help(group: str = "") -> str:
             "💬 <b>Reddit Karma — full detail</b>\n\n"
             "<b>/karma</b> — scout 5 posts to comment on (all target subreddits)\n\n"
             "<b>/karma {sub}</b> — scan one subreddit, lower threshold\n"
-            "  <code>/karma resumes</code>  or  <code>/karma r/resumes</code>\n\n"
+            "  <code>/karma resumes</code> — good for karma, no product links allowed there\n\n"
             "<b>/karma {url}</b> — draft comment for a specific post URL\n"
             "  <code>/karma https://reddit.com/r/ClaudeAI/...</code>\n\n"
             "<b>/draft r/Sub | Title | Body</b> — draft comment from pasted post text\n"
@@ -331,7 +332,7 @@ def cmd_help(group: str = "") -> str:
         "  /status · /products · /ideas — Info\n\n"
         "📣 <b>Reddit Posts</b>\n"
         "  /post list — Subreddits per product\n"
-        "  /post {sub} — Draft a post  (e.g. /post resumes)\n"
+        "  /post {sub} — Draft a post  (e.g. /post jobsearchhacks)\n"
         "  /fix {sub} | {rule} — Revise a rejected post\n\n"
         "💬 <b>Reddit Karma</b>\n"
         "  /karma — Scout 5 posts to comment on\n"
