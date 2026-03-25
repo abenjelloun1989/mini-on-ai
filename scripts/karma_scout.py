@@ -77,7 +77,7 @@ Link: {gumroad_url}
 Subreddit: r/{sub}
 
 Style:
-- First person throughout ("I", "my", "me") — never "someone built" or "there's a tool"
+- First person throughout ("I", "my", "me") — you BUILT this product, so say "I built" not "I found" or "someone built"
 - Short: title under 10 words, body under 120 words (3 short paragraphs max)
 - First paragraph = the specific pain you felt, in plain language
 - Second paragraph = what actually worked / what changed
