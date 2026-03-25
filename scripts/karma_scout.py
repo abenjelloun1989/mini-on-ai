@@ -229,23 +229,34 @@ def draft_from_text(subreddit: str, title: str, body: str = "") -> str:
     )
 
 
-def karma_scout(max_results: int = 5, dry_run: bool = False) -> list:
+def karma_scout(max_results: int = 5, dry_run: bool = False, subreddit: str = "") -> list:
     """
     Scan subreddits, assess posts, draft comments, send to Telegram.
+    subreddit: if set, scan only that one subreddit (lower score threshold: 55).
     Returns list of (post, assessment) tuples for results sent.
     """
     # Load already-seen post IDs from karma queue
     queue = read_json("data/karma-queue.json")
     seen_ids = {p["post_id"] for p in queue.get("posts", [])}
 
+    # Targeted mode: single subreddit, fetch more posts, lower threshold
+    if subreddit:
+        subs_to_scan = [subreddit[2:] if subreddit.startswith("r/") else subreddit]
+        fetch_limit = 50
+        score_threshold = 55
+    else:
+        subs_to_scan = KARMA_SUBREDDITS
+        fetch_limit = 25
+        score_threshold = 65
+
     candidates = []
     seen_in_run = set()
 
-    for sub in KARMA_SUBREDDITS:
+    for sub in subs_to_scan:
         if len(candidates) >= max_results * 6:
             break
         try:
-            posts = _reddit_new(sub, limit=25)
+            posts = _reddit_new(sub, limit=fetch_limit)
         except Exception as e:
             log("karma-scout", f"Warning: Reddit fetch failed r/{sub}: {e}")
             time.sleep(2)
@@ -273,7 +284,8 @@ def karma_scout(max_results: int = 5, dry_run: bool = False) -> list:
         time.sleep(0.5)
 
     random.shuffle(candidates)
-    log("karma-scout", f"Collected {len(candidates)} unique candidates across {len(KARMA_SUBREDDITS)} subreddits")
+    scope = f"r/{subs_to_scan[0]}" if subreddit else f"{len(subs_to_scan)} subreddits"
+    log("karma-scout", f"Collected {len(candidates)} unique candidates from {scope}")
 
     results = []
     for post in candidates:
@@ -288,7 +300,7 @@ def karma_scout(max_results: int = 5, dry_run: bool = False) -> list:
         score = assessment.get("score", 0)
         comment = assessment.get("comment", "").strip()
 
-        if score < 65 or not comment:
+        if score < score_threshold or not comment:
             log("karma-scout", f"  Score {score} — skipping")
             continue
 
@@ -346,9 +358,10 @@ def main():
     parser = argparse.ArgumentParser(description="Scout Reddit posts to comment on for karma")
     parser.add_argument("--dry-run", action="store_true", help="Print results without saving/sending")
     parser.add_argument("--max", type=int, default=5, help="Max comments to generate (default 5)")
+    parser.add_argument("--subreddit", default="", help="Target a single subreddit (e.g. resumes)")
     args = parser.parse_args()
 
-    karma_scout(max_results=args.max, dry_run=args.dry_run)
+    karma_scout(max_results=args.max, dry_run=args.dry_run, subreddit=args.subreddit)
 
 
 if __name__ == "__main__":

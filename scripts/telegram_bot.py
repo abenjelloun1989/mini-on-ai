@@ -708,7 +708,15 @@ def handle_command(text: str) -> str:
         if url_arg.startswith("http"):
             from karma_scout import comment_for_url
             return comment_for_url(url_arg)
-        return "Usage: /karma https://reddit.com/r/..."
+        # Subreddit targeting: /karma resumes  or  /karma r/resumes
+        sub = url_arg[2:] if url_arg.startswith("r/") else url_arg
+        subprocess.Popen(
+            [sys.executable, str(ROOT / "scripts/karma_scout.py"), "--max", "5", "--subreddit", sub],
+            cwd=str(ROOT),
+            stdout=open(ROOT / "logs/pipeline.log", "a"),
+            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+        )
+        return f"🎯 Scanning r/{sub} for karma opportunities (threshold: 55)…"
 
     if lower.startswith("/draft "):
         from karma_scout import draft_from_text
