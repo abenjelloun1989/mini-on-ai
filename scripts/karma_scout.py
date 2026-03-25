@@ -33,6 +33,94 @@ from lib.utils import read_json, write_json, timestamp, log, ROOT
 REDDIT_USER_AGENT = "script:mini-on-ai-karma-scout:v1.0 (by /u/minionai)"
 
 
+def generate_reddit_post(subreddit: str) -> str:
+    """
+    Generate a copy-paste Reddit post (title + body) to advertise the matching
+    product on the given subreddit. Returns a formatted string or an error message.
+    """
+    sub = subreddit[2:] if subreddit.startswith("r/") else subreddit
+
+    hint = SUBREDDIT_TO_PRODUCT.get(sub)
+    if not hint:
+        return f"No product mapped to r/{sub}. Check /post list for available subreddits."
+
+    product_name, product_url = hint
+
+    # Find the best matching product in the catalog
+    catalog = read_json("data/product-catalog.json")
+    product = None
+    search_words = set(product_name.lower().split())
+    best_score = 0
+    for p in catalog.get("products", []):
+        title_words = set(p.get("title", "").lower().split())
+        score = len(search_words & title_words)
+        if score > best_score:
+            best_score = score
+            product = p
+
+    if not product:
+        return f"Could not find product details for '{product_name}' in catalog."
+
+    title = product.get("title", product_name)
+    description = product.get("description", "")
+    price = product.get("price", 0)
+    gumroad_url = product.get("gumroad_url") or product_url
+    is_free = product.get("is_free") or price == 0
+    price_label = "free" if is_free else f"${price // 100}"
+
+    prompt = f"""You write Reddit posts that feel human and get genuine engagement. No AI writing patterns.
+
+Product to promote:
+- Name: {title}
+- Description: {description}
+- Price: {price_label}
+- Link: {gumroad_url}
+
+Target subreddit: r/{sub}
+
+Write a Reddit post that:
+1. Leads with a concrete insight, tip, or observation — NOT "I made X"
+2. Gives real value in the body (2-3 short paragraphs, 150-200 words total)
+3. Mentions the product naturally at the end as a resource, with the link
+4. Feels like a real person sharing something useful, not a product launch
+5. Title is curiosity-driving or problem-focused (not "check out my product")
+
+Rules:
+- No em-dashes
+- No bullet lists in the body
+- No "As someone who..." or "I'm excited to share"
+- No "hope this helps" or similar filler endings
+- Match the tone of r/{sub} (practical, direct, peer-to-peer)
+
+Respond ONLY with valid JSON:
+{{"title": "...", "body": "..."}}"""
+
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    try:
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=600,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = response.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```", 2)[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.strip()
+        data = json.loads(raw)
+        post_title = data.get("title", "")
+        post_body = data.get("body", "")
+        return (
+            f"r/{sub} — {product_name} ({price_label})\n\n"
+            f"TITLE:\n{post_title}\n\n"
+            f"BODY:\n{post_body}"
+        )
+    except Exception as e:
+        log("karma-scout", f"Warning: post generation failed: {e}")
+        return f"Could not generate post: {e}"
+
+
 def _reddit_new(subreddit: str, limit: int = 25) -> list:
     """Fetch newest posts from a subreddit via api.reddit.com (no auth required)."""
     params = urllib.parse.urlencode({"limit": limit})
