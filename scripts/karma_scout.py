@@ -121,6 +121,102 @@ Respond ONLY with valid JSON:
         return f"Could not generate post: {e}"
 
 
+def fix_reddit_post(subreddit: str, rule: str, title: str = "", body: str = "") -> str:
+    """
+    Revise or regenerate a Reddit post to comply with a specific rule.
+    If title/body provided: revises that post.
+    If not: regenerates from scratch with the rule as a constraint.
+    """
+    sub = subreddit[2:] if subreddit.startswith("r/") else subreddit
+
+    hint = SUBREDDIT_TO_PRODUCT.get(sub)
+    if not hint:
+        return f"No product mapped to r/{sub}. Check /post list for available subreddits."
+
+    product_name, product_url = hint
+
+    # Find product in catalog
+    catalog = read_json("data/product-catalog.json")
+    product = None
+    search_words = set(product_name.lower().split())
+    best_score = 0
+    for p in catalog.get("products", []):
+        title_words = set(p.get("title", "").lower().split())
+        score = len(search_words & title_words)
+        if score > best_score:
+            best_score = score
+            product = p
+
+    if not product:
+        return f"Could not find product details for '{product_name}' in catalog."
+
+    prod_title = product.get("title", product_name)
+    description = product.get("description", "")
+    price = product.get("price", 0)
+    gumroad_url = product.get("gumroad_url") or product_url
+    is_free = product.get("is_free") or price == 0
+    price_label = "free" if is_free else f"${price // 100}"
+
+    if title and body:
+        task = f"""Revise this Reddit post so it complies with the rule below. Keep the core message and value intact — only change what's necessary to pass the rule.
+
+Original post:
+TITLE: {title}
+BODY: {body}
+
+Rule violation to fix: {rule}"""
+    else:
+        task = f"""Write a new Reddit post for r/{sub} promoting this product, specifically designed to comply with the rule below.
+
+Product: {prod_title}
+Description: {description}
+Price: {price_label}
+Link: {gumroad_url}
+
+Rule to comply with: {rule}"""
+
+    prompt = f"""{task}
+
+Subreddit: r/{sub}
+
+Requirements for the post:
+- Value-first: lead with insight or useful information, not the product
+- The product is mentioned naturally, not as the main point
+- Human tone, peer-to-peer, no AI-sounding phrases
+- No em-dashes, no bullet lists in body, no "hope this helps"
+- 150-200 words in the body
+
+Respond ONLY with valid JSON:
+{{"title": "...", "body": "...", "change_summary": "what was changed and why it now complies"}}"""
+
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    try:
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=700,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = response.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```", 2)[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.strip()
+        data = json.loads(raw)
+        post_title = data.get("title", "")
+        post_body = data.get("body", "")
+        summary = data.get("change_summary", "")
+        return (
+            f"r/{sub} — fixed for: {rule}\n\n"
+            f"TITLE:\n{post_title}\n\n"
+            f"BODY:\n{post_body}\n\n"
+            f"ℹ️ {summary}"
+        )
+    except Exception as e:
+        log("karma-scout", f"Warning: post fix failed: {e}")
+        return f"Could not fix post: {e}"
+
+
 def _reddit_new(subreddit: str, limit: int = 25) -> list:
     """Fetch newest posts from a subreddit via api.reddit.com (no auth required)."""
     params = urllib.parse.urlencode({"limit": limit})

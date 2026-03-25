@@ -273,6 +273,8 @@ def cmd_help() -> str:
         "/holidays cancel — Cancel current planning session\n"
         "/post list — Subreddits to post on per product\n"
         "/post {subreddit} — Generate a Reddit post for that subreddit (e.g. /post resumes)\n"
+        "/fix {subreddit} | {rule} — Regenerate post to comply with a rule\n"
+        "/fix {subreddit} | {rule} | {title} | {body} — Revise a specific post\n"
         "/karma — Scout 5 posts to comment on for Reddit karma\n"
         "/karma list — Show subreddits to target per product\n"
         "/karma {subreddit} — Scan a specific subreddit (e.g. /karma resumes)\n"
@@ -721,6 +723,17 @@ def handle_command(text: str) -> str:
         sub_arg = text[len("/post "):].strip()
         from karma_scout import generate_reddit_post
         return generate_reddit_post(sub_arg)
+
+    if lower.startswith("/fix "):
+        from karma_scout import fix_reddit_post
+        parts = [p.strip() for p in text[len("/fix "):].split("|")]
+        if len(parts) < 2:
+            return "Usage:\n/fix {subreddit} | {rule}\n/fix {subreddit} | {rule} | {title} | {body}"
+        sub = parts[0]
+        rule = parts[1]
+        title = parts[2] if len(parts) > 2 else ""
+        body = parts[3] if len(parts) > 3 else ""
+        return fix_reddit_post(sub, rule, title, body)
 
     if lower == "/karma list":
         from karma_scout import SUBREDDIT_TO_PRODUCT
