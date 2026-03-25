@@ -232,6 +232,14 @@ KARMA_SUBREDDITS = [
     # These have weekly promo threads — karma needed to participate
     "Entrepreneur",
     "passive_income",
+    # Post-friendly subs — also worth commenting on for visibility
+    "SideProject",
+    "indiehackers",
+    "buildinpublic",
+    "nocode",
+    "SaaS",
+    "somethingimade",
+    "ChatGPT",
 ]
 
 _SITE = "https://mini-on-ai.com"
@@ -425,7 +433,8 @@ def karma_scout(max_results: int = 5, dry_run: bool = False, subreddit: str = ""
         fetch_limit = 50
         score_threshold = 55
     else:
-        subs_to_scan = KARMA_SUBREDDITS
+        subs_to_scan = KARMA_SUBREDDITS[:]
+        random.shuffle(subs_to_scan)
         fetch_limit = 25
         score_threshold = 65
 
