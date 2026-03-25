@@ -272,6 +272,8 @@ def cmd_help() -> str:
         "/holidays — Plan a family trip (interactive questionnaire)\n"
         "/holidays cancel — Cancel current planning session\n"
         "/karma — Scout 5 posts to comment on for Reddit karma\n"
+        "/karma list — Show subreddits to target per product\n"
+        "/karma {subreddit} — Scan a specific subreddit (e.g. /karma resumes)\n"
         "/karma {url} — Draft a comment for a specific Reddit post URL\n"
         "/draft r/Sub | Title | Body — Draft a comment from pasted post text\n"
         "/go — Approve pending idea → build it\n"
