@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-sprint-planning--20260314",
-  "title": "Claude Code Skills Pack: Sprint Planning \u2014 5 Skills for Agile Ceremony Preparation and Execution",
+  "title": "Claude Code Skills Pack: Sprint Planning — 5 Skills for Agile Ceremony Preparation and Execution",
   "description": "For agile team leads and scrum masters, this pack automates backlog grooming, sprint goal writing, capacity planning, story point estimation, and sprint review summaries so they can run tighter ceremonies in half the prep time",
   "category": "claude-code-skill",
   "tags": [
@@ -15,8 +15,9 @@
   "package_path": "products/skills-claude-code-skills-pack-sprint-planning--20260314/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-sprint-planning--20260314.html",
   "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-sprint-planning--20260314.png",
-  "price": 5.0,
+  "price": 500,
   "gumroad_product_id": "rpjsa",
   "gumroad_url": "https://minionai.gumroad.com/l/rpjsa",
-  "gumroad_description": "Sprint ceremonies shouldn't eat more time than the sprint itself.\n\nWho this is for:\n\u2014 Scrum masters running four or more ceremonies per sprint with minimal prep time\n\u2014 Agile team leads who hand-write sprint goals, estimations, and retrospective notes\n\u2014 Engineering managers whose grooming sessions drift and never finish on time\n\nWhat's inside:\n\u2014 Skill 1: Backlog grooming summarizer\n\u2014 Skill 2: Sprint goal writer from ticket clusters\n\u2014 Skill 3: Capacity planner with PTO and context-switching adjustments\n\u2014 Skill 4: Story point estimation assistant\n\u2014 Skill 5: Sprint review summary generator\n\u2014 Installation guide + quick-reference trigger table\n\nTighter ceremonies, half the prep time. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Sprint ceremonies shouldn't eat more time than the sprint itself.\n\nWho this is for:\n— Scrum masters running four or more ceremonies per sprint with minimal prep time\n— Agile team leads who hand-write sprint goals, estimations, and retrospective notes\n— Engineering managers whose grooming sessions drift and never finish on time\n\nWhat's inside:\n— Skill 1: Backlog grooming summarizer\n— Skill 2: Sprint goal writer from ticket clusters\n— Skill 3: Capacity planner with PTO and context-switching adjustments\n— Skill 4: Story point estimation assistant\n— Skill 5: Sprint review summary generator\n— Installation guide + quick-reference trigger table\n\nTighter ceremonies, half the prep time. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }

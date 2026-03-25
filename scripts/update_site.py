@@ -208,17 +208,33 @@ def _thumbnail_html_detail(meta: dict) -> str:
 def _gumroad_cta_page(meta: dict) -> str:
     """Gumroad CTA button for the product detail page."""
     url = meta.get("gumroad_url")
-    if url:
-        return f'    <a href="{escape_html(url)}" class="btn-cta btn-large" target="_blank" rel="noopener">Get it on Gumroad →</a>'
-    return '    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>'
+    if not url:
+        return '    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>'
+    price = meta.get("price")
+    is_free = meta.get("is_free")
+    if is_free or price == 0:
+        label = "Get it free →"
+    elif price:
+        label = f"Get it — ${price // 100} →"
+    else:
+        label = "Get it on Gumroad →"
+    return f'    <a href="{escape_html(url)}" class="btn-cta btn-large" target="_blank" rel="noopener">{label}</a>'
 
 
 def _gumroad_cta_card(meta: dict) -> str:
     """Gumroad CTA button for catalog cards."""
     url = meta.get("gumroad_url")
-    if url:
-        return f'<a href="{escape_html(url)}" class="btn-cta" target="_blank" rel="noopener">Get it on Gumroad →</a>'
-    return '<span class="btn-cta btn-coming-soon">Coming soon</span>'
+    if not url:
+        return '<span class="btn-cta btn-coming-soon">Coming soon</span>'
+    price = meta.get("price")
+    is_free = meta.get("is_free")
+    if is_free or price == 0:
+        label = "Get it free →"
+    elif price:
+        label = f"Get it — ${price // 100} →"
+    else:
+        label = "Get it on Gumroad →"
+    return f'<a href="{escape_html(url)}" class="btn-cta" target="_blank" rel="noopener">{label}</a>'
 
 
 def _rich_description_html(meta: dict) -> str:

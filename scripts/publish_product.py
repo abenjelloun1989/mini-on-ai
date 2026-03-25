@@ -51,6 +51,21 @@ def _token() -> str:
     return t
 
 
+def fetch_gumroad_price(gumroad_id: str) -> "int | None":
+    """Fetch current price in cents from Gumroad API."""
+    try:
+        resp = requests.get(
+            f"{GUMROAD_API}/products/{gumroad_id}",
+            headers={"Authorization": f"Bearer {_token()}"},
+            timeout=10,
+        )
+        if resp.status_code == 200:
+            return resp.json().get("product", {}).get("price")
+    except Exception as e:
+        log("publish", f"Warning: could not fetch price for {gumroad_id}: {e}")
+    return None
+
+
 def _build_description(meta: dict) -> str:
     category = meta.get("category", "prompt-packs")
     item_count = meta.get("item_count") or meta.get("prompt_count", 0)
@@ -293,6 +308,13 @@ def set_gumroad_url(pid: str, gumroad_url: str) -> dict:
     if gumroad_id:
         meta["gumroad_product_id"] = gumroad_id
 
+    # Fetch real price from Gumroad
+    price = fetch_gumroad_price(gumroad_id) if gumroad_id else None
+    if price is not None:
+        meta["price"] = price
+        meta["is_free"] = (price == 0)
+        log("publish", f"Fetched price: {price} cents ({'free' if price == 0 else f'${price/100:.2f}'})")
+
     write_file(
         f"products/{pid}/meta.json",
         json.dumps(meta, indent=2, ensure_ascii=False) + "\n",
@@ -304,6 +326,9 @@ def set_gumroad_url(pid: str, gumroad_url: str) -> dict:
     for entry in catalog.get("products", []):
         if entry["id"] == pid:
             entry["gumroad_url"] = gumroad_url
+            if price is not None:
+                entry["price"] = price
+                entry["is_free"] = (price == 0)
             break
     write_json("data/product-catalog.json", catalog)
     log("publish", "Catalog updated")
@@ -320,12 +345,44 @@ def main():
         metavar=("PRODUCT_ID", "GUMROAD_URL"),
         help="Save a Gumroad URL back to a product (after manual creation)",
     )
+    parser.add_argument(
+        "--sync-prices",
+        action="store_true",
+        help="Fetch real prices from Gumroad for all products that have a gumroad_url",
+    )
     args = parser.parse_args()
 
     if args.seturl:
         pid, url = args.seturl
         set_gumroad_url(pid, url)
         print(f"✅ Saved: {pid} → {url}")
+    elif args.sync_prices:
+        catalog = read_json("data/product-catalog.json")
+        updated = 0
+        for entry in catalog.get("products", []):
+            gurl = entry.get("gumroad_url")
+            if not gurl or "/l/" not in gurl:
+                continue
+            gumroad_id = gurl.rstrip("/").split("/l/")[-1].split("?")[0]
+            price = fetch_gumroad_price(gumroad_id)
+            if price is None:
+                print(f"  ⚠️  {entry['id'][:50]} — could not fetch price")
+                continue
+            label = "free" if price == 0 else f"${price/100:.0f}"
+            print(f"  ✓  {entry['id'][:50]} — {label}")
+            entry["price"] = price
+            entry["is_free"] = (price == 0)
+            # Update meta.json too
+            meta_path = ROOT / f"products/{entry['id']}/meta.json"
+            if meta_path.exists():
+                import json as _json
+                m = _json.loads(meta_path.read_text())
+                m["price"] = price
+                m["is_free"] = (price == 0)
+                meta_path.write_text(_json.dumps(m, indent=2, ensure_ascii=False) + "\n")
+            updated += 1
+        write_json("data/product-catalog.json", catalog)
+        print(f"\n✅ Synced prices for {updated} products")
     else:
         publish_product(args.id)
 

@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-user-story-writi-20260314",
-  "title": "Claude Code Skills Pack: User Story Writing \u2014 5 Skills for Turning Requirements Into Actionable Tickets",
+  "title": "Claude Code Skills Pack: User Story Writing — 5 Skills for Turning Requirements Into Actionable Tickets",
   "description": "For product managers and business analysts, this pack converts raw feature requests into well-structured user stories, acceptance criteria, edge case lists, definition-of-done checklists, and Jira-ready ticket descriptions so they can eliminate ambiguity before development starts",
   "category": "claude-code-skill",
   "tags": [
@@ -15,8 +15,9 @@
   "package_path": "products/skills-claude-code-skills-pack-user-story-writi-20260314/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-user-story-writi-20260314.html",
   "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-user-story-writi-20260314.png",
-  "price": 5.0,
+  "price": 500,
   "gumroad_product_id": "mcdnfk",
   "gumroad_url": "https://minionai.gumroad.com/l/mcdnfk",
-  "gumroad_description": "Vague tickets are where sprint velocity goes to die.\n\nWho this is for:\n\u2014 Product managers writing stories faster than they can be properly defined\n\u2014 Business analysts translating stakeholder requests that change meaning every meeting\n\u2014 Delivery leads who've watched engineers build the wrong thing from an ambiguous ticket\n\nWhat's inside:\n\u2014 Skill 1: User story generator from raw feature requests\n\u2014 Skill 2: Acceptance criteria writer\n\u2014 Skill 3: Edge case and error state identifier\n\u2014 Skill 4: Definition-of-done checklist builder\n\u2014 Skill 5: Jira-ready ticket description formatter\n\u2014 Installation guide + quick-reference trigger table\n\nZero ambiguity before development starts. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Vague tickets are where sprint velocity goes to die.\n\nWho this is for:\n— Product managers writing stories faster than they can be properly defined\n— Business analysts translating stakeholder requests that change meaning every meeting\n— Delivery leads who've watched engineers build the wrong thing from an ambiguous ticket\n\nWhat's inside:\n— Skill 1: User story generator from raw feature requests\n— Skill 2: Acceptance criteria writer\n— Skill 3: Edge case and error state identifier\n— Skill 4: Definition-of-done checklist builder\n— Skill 5: Jira-ready ticket description formatter\n— Installation guide + quick-reference trigger table\n\nZero ambiguity before development starts. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }

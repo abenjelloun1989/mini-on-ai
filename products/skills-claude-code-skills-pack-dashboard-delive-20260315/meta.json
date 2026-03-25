@@ -1,6 +1,6 @@
 {
   "id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
-  "title": "Claude Code Skills Pack: Dashboard Delivery \u2014 5 Skills for Translating Data Into Executive Insights",
+  "title": "Claude Code Skills Pack: Dashboard Delivery — 5 Skills for Translating Data Into Executive Insights",
   "description": "For analytics engineers and data product managers, this pack handles KPI narrative generation, chart annotation writing, dashboard layout recommendations, metric interpretation summaries, and executive briefing drafts so they can turn raw dashboard outputs into clear business communication without manual write-ups.",
   "category": "claude-code-skill",
   "tags": [
@@ -15,8 +15,9 @@
   "package_path": "products/skills-claude-code-skills-pack-dashboard-delive-20260315/package.zip",
   "site_path": "site/products/skills-claude-code-skills-pack-dashboard-delive-20260315.html",
   "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-dashboard-delive-20260315.png",
-  "price": 5.0,
+  "price": 500,
   "gumroad_product_id": "avmkcf",
   "gumroad_url": "https://minionai.gumroad.com/l/avmkcf",
-  "gumroad_description": "Building a dashboard is the easy part. Making executives actually understand it isn't.\n\nWho this is for:\n\u2014 Analytics engineers who spend Fridays translating dashboards into executive summaries\n\u2014 Data product managers presenting KPIs to non-technical stakeholders\n\u2014 BI developers asked to \"add some context\" to every chart they ship\n\nWhat's inside:\n\u2014 Skill 1: KPI narrative generator (what the number means, not just what it is)\n\u2014 Skill 2: Chart annotation writer\n\u2014 Skill 3: Dashboard layout recommender based on audience type\n\u2014 Skill 4: Metric interpretation summarizer\n\u2014 Skill 5: Executive briefing draft builder\n\u2014 Installation guide + quick-reference trigger table\n\nData that communicates itself. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Building a dashboard is the easy part. Making executives actually understand it isn't.\n\nWho this is for:\n— Analytics engineers who spend Fridays translating dashboards into executive summaries\n— Data product managers presenting KPIs to non-technical stakeholders\n— BI developers asked to \"add some context\" to every chart they ship\n\nWhat's inside:\n— Skill 1: KPI narrative generator (what the number means, not just what it is)\n— Skill 2: Chart annotation writer\n— Skill 3: Dashboard layout recommender based on audience type\n— Skill 4: Metric interpretation summarizer\n— Skill 5: Executive briefing draft builder\n— Installation guide + quick-reference trigger table\n\nData that communicates itself. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }

@@ -19,7 +19,7 @@
       "site_path": "site/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html",
       "gumroad_url": "https://minionai.gumroad.com/l/kbwfrq",
       "thumbnail": "images/thumbnails/n8n-n8n-social-media-auth-posting-workflow-20260322.png",
-      "is_free": null
+      "is_free": true
     },
     {
       "id": "n8n-n8n-customer-dashboard-roi-template-20260322",
@@ -40,7 +40,7 @@
       "site_path": "site/products/n8n-n8n-customer-dashboard-roi-template-20260322.html",
       "gumroad_url": "https://minionai.gumroad.com/l/snujpg",
       "thumbnail": "images/thumbnails/n8n-n8n-customer-dashboard-roi-template-20260322.png",
-      "is_free": null
+      "is_free": true
     },
     {
       "id": "guide-ai-usage-service-pricing-strategy-guide-20260318",
@@ -366,7 +366,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-release-and-chan-20260315.html",
       "gumroad_url": "https://minionai.gumroad.com/l/yfiywi",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-release-and-chan-20260315.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-codebase-onboard-20260315",
@@ -406,7 +406,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-database-migrati-20260315.html",
       "gumroad_url": "https://minionai.gumroad.com/l/lfpqrq",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-database-migrati-20260315.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
@@ -426,7 +426,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-dashboard-delive-20260315.html",
       "gumroad_url": "https://minionai.gumroad.com/l/avmkcf",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-dashboard-delive-20260315.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
@@ -446,7 +446,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-data-quality-5-s-20260315.html",
       "gumroad_url": "https://minionai.gumroad.com/l/jhlfcl",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-data-quality-5-s-20260315.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-sprint-planning--20260314",
@@ -466,7 +466,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-sprint-planning--20260314.html",
       "gumroad_url": "https://minionai.gumroad.com/l/rpjsa",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-sprint-planning--20260314.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-roadmap-planning-20260314",
@@ -486,7 +486,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-roadmap-planning-20260314.html",
       "gumroad_url": "https://minionai.gumroad.com/l/xilgrw",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-roadmap-planning-20260314.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-project-status-r-20260314",
@@ -506,7 +506,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-project-status-r-20260314.html",
       "gumroad_url": "https://minionai.gumroad.com/l/qtqzvu",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-project-status-r-20260314.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-user-story-writi-20260314",
@@ -526,7 +526,7 @@
       "site_path": "site/products/skills-claude-code-skills-pack-user-story-writi-20260314.html",
       "gumroad_url": "https://minionai.gumroad.com/l/mcdnfk",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-user-story-writi-20260314.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "prompts-n8n-api-authentication-troubleshooting-p-20260314",
@@ -917,7 +917,7 @@
       "site_path": "site/products/swipe-landing-page-conversion-audit-swipe-file-20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/tmguv",
       "thumbnail": "images/thumbnails/swipe-landing-page-conversion-audit-swipe-file-20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "guide-inbox-zero-triage-rules-for-high-volume--20260313",
@@ -937,7 +937,7 @@
       "site_path": "site/products/guide-inbox-zero-triage-rules-for-high-volume--20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/atjzc",
       "thumbnail": "images/thumbnails/guide-inbox-zero-triage-rules-for-high-volume--20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "checklist-crm-data-hygiene-audit-checklist-for-sal-20260313",
@@ -956,7 +956,7 @@
       "site_path": "site/products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/utowwv",
       "thumbnail": "images/thumbnails/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "checklist-lead-source-attribution-audit-checklist--20260313",
@@ -975,7 +975,7 @@
       "site_path": "site/products/checklist-lead-source-attribution-audit-checklist--20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/srmajl",
       "thumbnail": "images/thumbnails/checklist-lead-source-attribution-audit-checklist--20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "swipe-freelance-service-tier-pricing-architect-20260313",
@@ -994,7 +994,7 @@
       "site_path": "site/products/swipe-freelance-service-tier-pricing-architect-20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/jssco",
       "thumbnail": "images/thumbnails/swipe-freelance-service-tier-pricing-architect-20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "swipe-freelance-proposal-structure-swipe-file--20260313",
@@ -1013,7 +1013,7 @@
       "site_path": "site/products/swipe-freelance-proposal-structure-swipe-file--20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/zbnmat",
       "thumbnail": "images/thumbnails/swipe-freelance-proposal-structure-swipe-file--20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "prompts-late-invoice-follow-up-sequence-for-free-20260313",
@@ -1032,7 +1032,7 @@
       "site_path": "site/products/prompts-late-invoice-follow-up-sequence-for-free-20260313.html",
       "gumroad_url": "https://minionai.gumroad.com/l/qghpoi",
       "thumbnail": "images/thumbnails/prompts-late-invoice-follow-up-sequence-for-free-20260313.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
@@ -1051,7 +1051,7 @@
       "site_path": "site/products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.html",
       "gumroad_url": "https://minionai.gumroad.com/l/hromk",
       "thumbnail": "images/thumbnails/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.png",
-      "is_free": true
+      "is_free": false
     },
     {
       "id": "prompts-shopify-product-description-packs-for-e--20260312",
@@ -1070,7 +1070,7 @@
       "site_path": "site/products/prompts-shopify-product-description-packs-for-e--20260312.html",
       "gumroad_url": "https://minionai.gumroad.com/l/eqiso",
       "thumbnail": "images/thumbnails/prompts-shopify-product-description-packs-for-e--20260312.png",
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "prompts-meeting-notes-to-action-items-fast-20260312",
@@ -1089,7 +1089,7 @@
       "site_path": "site/products/prompts-meeting-notes-to-action-items-fast-20260312.html",
       "gumroad_url": "https://minionai.gumroad.com/l/jvogn",
       "thumbnail": "images/thumbnails/prompts-meeting-notes-to-action-items-fast-20260312.png",
-      "is_free": null
+      "is_free": false
     }
   ]
 }
