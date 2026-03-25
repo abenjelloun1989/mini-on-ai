@@ -21,6 +21,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import anthropic
 from lib.utils import read_json, write_json, log, timestamp, extract_json, log_token_usage, ROOT
+from lib.claude_cli import claude_call
 
 RESEARCH_MODEL = "claude-sonnet-4-6"
 HAIKU_MODEL = "claude-haiku-4-5-20251001"
@@ -282,40 +283,56 @@ Rules:
 
 
 def _run_web_search_loop(client, prompt: str, max_uses: int = 12) -> str:
-    """Run agentic Claude loop with web_search. Returns final text."""
-    tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max_uses}]
-    messages = [{"role": "user", "content": prompt}]
-
-    for iteration in range(15):
-        response = client.messages.create(
-            model=RESEARCH_MODEL,
-            max_tokens=5000,
-            tools=tools,
-            messages=messages,
-            betas=["web-search-2025-03-05"],
+    """
+    Run agentic web search via claude CLI (uses Pro subscription, not API credits).
+    The CLI handles the tool-call loop internally — no need to manage iterations.
+    `client` is kept as a parameter for API fallback compatibility but is not used here.
+    """
+    try:
+        text, usage = claude_call(
+            prompt,
+            tools=["WebSearch"],
+            timeout=300,  # 5 minutes max for web research
         )
+        if usage:
+            log("holiday", f"CLI web search usage: {usage}")
+        return text
+    except Exception as e:
+        log("holiday", f"CLI web search failed: {e} — falling back to direct API")
+        # Fallback: direct API without web search (knowledge-based)
+        tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max_uses}]
+        messages = [{"role": "user", "content": prompt}]
 
-        final_text = ""
-        tool_uses = []
-        for block in response.content:
-            if hasattr(block, "text"):
-                final_text += block.text
-            elif getattr(block, "type", "") == "tool_use":
-                tool_uses.append(block)
+        for iteration in range(15):
+            response = client.messages.create(
+                model=RESEARCH_MODEL,
+                max_tokens=5000,
+                tools=tools,
+                messages=messages,
+                betas=["web-search-2025-03-05"],
+            )
 
-        if response.stop_reason == "end_turn" or not tool_uses:
-            log_token_usage("holiday-research", response.usage, RESEARCH_MODEL)
-            return final_text.strip()
+            final_text = ""
+            tool_uses = []
+            for block in response.content:
+                if hasattr(block, "text"):
+                    final_text += block.text
+                elif getattr(block, "type", "") == "tool_use":
+                    tool_uses.append(block)
 
-        messages.append({"role": "assistant", "content": response.content})
-        tool_results = [
-            {"type": "tool_result", "tool_use_id": tu.id, "content": ""}
-            for tu in tool_uses
-        ]
-        messages.append({"role": "user", "content": tool_results})
-        time.sleep(0.5)
+            if response.stop_reason == "end_turn" or not tool_uses:
+                log_token_usage("holiday-research", response.usage, RESEARCH_MODEL)
+                return final_text.strip()
 
-    return ""
+            messages.append({"role": "assistant", "content": response.content})
+            tool_results = [
+                {"type": "tool_result", "tool_use_id": tu.id, "content": ""}
+                for tu in tool_uses
+            ]
+            messages.append({"role": "user", "content": tool_results})
+            time.sleep(0.5)
+
+        return ""
 
 
 def _phase2_price_search(client, candidates: list, constraints: dict) -> list:
@@ -412,20 +429,31 @@ Generate exactly 3 distinct trip proposals. Return ONLY a valid JSON array:
 Make prices realistic for the given period. All 3 proposals must be different destinations."""
 
     try:
-        response = client.messages.create(
-            model=RESEARCH_MODEL,
-            max_tokens=4000,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        log_token_usage("holiday-fallback", response.usage, RESEARCH_MODEL)
-        text = "".join(b.text for b in response.content if hasattr(b, "text"))
+        # Use CLI (Pro subscription) for Sonnet call
+        text, usage = claude_call(prompt, timeout=120)
+        if usage:
+            log("holiday", f"CLI fallback usage: {usage}")
         proposals = extract_json(text, array=True)
         if proposals:
             log("holiday", f"Fallback: {len(proposals)} proposals via knowledge")
         return proposals or []
     except Exception as e:
-        log("holiday", f"Fallback research failed: {e}")
-        return []
+        log("holiday", f"CLI fallback failed: {e} — trying direct API")
+        try:
+            response = client.messages.create(
+                model=RESEARCH_MODEL,
+                max_tokens=4000,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            log_token_usage("holiday-fallback", response.usage, RESEARCH_MODEL)
+            text = "".join(b.text for b in response.content if hasattr(b, "text"))
+            proposals = extract_json(text, array=True)
+            if proposals:
+                log("holiday", f"Fallback: {len(proposals)} proposals via knowledge (API)")
+            return proposals or []
+        except Exception as e2:
+            log("holiday", f"Fallback research failed entirely: {e2}")
+            return []
 
 
 # ---------------------------------------------------------------------------
