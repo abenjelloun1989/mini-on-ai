@@ -33,6 +33,13 @@ from lib.utils import read_json, write_json, timestamp, log, ROOT
 REDDIT_USER_AGENT = "script:mini-on-ai-karma-scout:v1.0 (by /u/minionai)"
 
 
+def _clean(text: str) -> str:
+    """Strip AI-sounding punctuation and phrases from generated text."""
+    # Replace em-dash variants with a simple comma or space
+    text = text.replace("\u2014", ",").replace("\u2013", "-").replace(" -- ", ", ")
+    return text
+
+
 def generate_reddit_post(subreddit: str) -> str:
     """
     Generate a copy-paste Reddit post (title + body) to advertise the matching
@@ -111,8 +118,8 @@ Respond ONLY with valid JSON: {{"title": "...", "body": "..."}}"""
                 raw = raw[4:]
             raw = raw.strip()
         data = json.loads(raw)
-        post_title = data.get("title", "")
-        post_body = data.get("body", "")
+        post_title = _clean(data.get("title", ""))
+        post_body = _clean(data.get("body", ""))
         return (
             f"📣 r/{sub} — {product_name} ({price_label})\n\n"
             f"<b>Title</b> (tap to copy):\n<code>{post_title}</code>\n\n"
@@ -199,8 +206,8 @@ Respond ONLY with valid JSON: {{"title": "...", "body": "...", "change_summary":
                 raw = raw[4:]
             raw = raw.strip()
         data = json.loads(raw)
-        post_title = data.get("title", "")
-        post_body = data.get("body", "")
+        post_title = _clean(data.get("title", ""))
+        post_body = _clean(data.get("body", ""))
         summary = data.get("change_summary", "")
         return (
             f"🔧 r/{sub} — fixed for: {rule}\n\n"
@@ -487,7 +494,7 @@ def karma_scout(max_results: int = 5, dry_run: bool = False, subreddit: str = ""
             continue
 
         score = assessment.get("score", 0)
-        comment = assessment.get("comment", "").strip()
+        comment = _clean(assessment.get("comment", "").strip())
 
         if score < score_threshold or not comment:
             log("karma-scout", f"  Score {score} — skipping")
