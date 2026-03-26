@@ -259,7 +259,41 @@ def run() -> None:
     catalog_data = read_json("data/product-catalog.json")
     catalog = catalog_data.get("products", [])
 
-    actionable_prices = [s for s in pricing if s.get("current_price") != s.get("suggested_price")]
+    # Cross-check pricing suggestions against live Gumroad data
+    # Skip suggestions where the product doesn't exist on Gumroad or price is already correct
+    try:
+        live_products = _get_gumroad_products()
+        live_by_slug = {}
+        for gp in live_products:
+            slug = gp.get("short_url", "").rstrip("/").split("/")[-1]
+            live_by_slug[slug] = gp
+    except Exception:
+        live_products = []
+        live_by_slug = {}
+
+    validated_prices = []
+    skipped_prices = []
+    for s in pricing:
+        if s.get("current_price") == s.get("suggested_price"):
+            skipped_prices.append((s["product"], "price already correct"))
+            continue
+        gumroad_id = _find_gumroad_id(s["product"], catalog)
+        if not gumroad_id:
+            skipped_prices.append((s["product"], "not found on Gumroad — may not be published yet"))
+            continue
+        # Check live price
+        live_price_cents = None
+        for gp in live_products:
+            if gp.get("id") == gumroad_id:
+                live_price_cents = gp.get("price", 0)
+                break
+        suggested_cents = int(float(s.get("suggested_price", "$0").replace("$", "")) * 100)
+        if live_price_cents is not None and live_price_cents == suggested_cents:
+            skipped_prices.append((s["product"], f"already at {s['suggested_price']} on Gumroad"))
+            continue
+        validated_prices.append(s)
+
+    actionable_prices = validated_prices
     price_results = []
     if actionable_prices:
         log("counsel-go", f"Applying {len(actionable_prices)} price changes…")
@@ -289,12 +323,25 @@ def run() -> None:
 
         lines = price_lines if price_lines else ["No automatic updates applied."]
         msg = "💰 <b>Price updates</b>\n\n" + "\n".join(lines)
+        if skipped_prices:
+            skipped_lines = "\n".join(
+                f"⏭ {name[:45].replace('&','&amp;').replace('<','&lt;')} — {reason}"
+                for name, reason in skipped_prices
+            )
+            msg += f"\n\n<i>Skipped:</i>\n{skipped_lines}"
         if manual_price:
             msg += "\n\n📋 <b>Do manually:</b>\n" + "\n".join(f"• {s}" for s in manual_price)
         _send(msg)
         time.sleep(0.5)
     else:
-        _send("💰 <b>Price updates</b>\n\nNo price changes needed.")
+        msg = "💰 <b>Price updates</b>\n\nNo changes needed."
+        if skipped_prices:
+            skipped_lines = "\n".join(
+                f"⏭ {name[:45].replace('&','&amp;').replace('<','&lt;')} — {reason}"
+                for name, reason in skipped_prices
+            )
+            msg += f"\n\n<i>Skipped:</i>\n{skipped_lines}"
+        _send(msg)
         time.sleep(0.5)
 
     # ── 2. Reddit post drafts ─────────────────────────────────────────────────
