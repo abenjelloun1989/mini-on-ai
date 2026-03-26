@@ -173,10 +173,22 @@ def generate_post_from_angle(subreddit: str, angle: str, product_name: str) -> "
         is_free = product.get("is_free") or price == 0
         price_label = "free" if is_free else (f"${price // 100}" if price else "$5")
 
+    subreddit_rules = {
+        "ClaudeAI": "Rule 7: Lead with a concrete technique or workflow the reader can apply. Do NOT open with 'I built' or 'I made'. Open with the technique or lesson. The product is a resource at the end.",
+        "cursor": "Lead with a workflow or technique. Product is a resource, not the focus.",
+        "ChatGPTCoding": "Lead with a specific coding problem. Be technical and concrete. Product mention is secondary.",
+        "SideProject": "Share the story — the problem, struggle, and what you learned. Product link at the end.",
+        "indiehackers": "Share numbers, process, or lessons learned. Be transparent. Product is secondary.",
+        "buildinpublic": "Share what you built and what you learned. Be honest about struggles. No hype.",
+    }
+    sub_rule = subreddit_rules.get(subreddit, "")
+    sub_rule_block = f"\nSubreddit-specific rule:\n{sub_rule}\n" if sub_rule else ""
+
     prompt = f"""Write a Reddit post for r/{subreddit}.
 
 Angle (use this as the core of your title and first paragraph):
 {angle}
+{sub_rule_block}
 
 Product to mention (casually, near the end):
 {product_name}

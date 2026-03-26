@@ -33,6 +33,17 @@ from lib.utils import read_json, write_json, timestamp, log, ROOT
 REDDIT_USER_AGENT = "script:mini-on-ai-karma-scout:v1.0 (by /u/minionai)"
 
 
+# Subreddit-specific posting rules (injected into the prompt)
+SUBREDDIT_RULES = {
+    "ClaudeAI": "Rule 7: Showcase your project in a way that helps educate and inspire others. The post must lead with a concrete technique, workflow, or insight the reader can apply themselves — the product is a resource at the end, not the point of the post. Do not open with 'I built' or 'I made'. Open with the technique or lesson.",
+    "cursor": "Lead with a workflow or technique. The product is mentioned as a resource, not the focus.",
+    "ChatGPTCoding": "Lead with a specific coding problem or technique. Be concrete and technical. Product mention is secondary.",
+    "SideProject": "Share the story of building it — the problem, the struggle, what you learned. Product link at the end.",
+    "indiehackers": "Share numbers, process, or lessons learned. Be transparent. Product link is secondary.",
+    "buildinpublic": "Share what you built and what you learned. Be honest about struggles. No hype.",
+}
+
+
 def _clean(text: str) -> str:
     """Strip AI-sounding punctuation and phrases from generated text."""
     # Replace em-dash variants with a simple comma or space
@@ -76,6 +87,9 @@ def generate_reddit_post(subreddit: str) -> str:
     pid = product.get("id", "")
     vitrine_url = f"{_SITE}/products/{pid}.html" if pid else _SITE
 
+    sub_rule = SUBREDDIT_RULES.get(sub, "")
+    sub_rule_block = f"\nSubreddit-specific rule:\n{sub_rule}\n" if sub_rule else ""
+
     prompt = f"""Write a short Reddit post promoting this product. Write in first person, like someone who personally hit this problem, solved it, and is sharing what worked — not a marketer.
 
 Product: {title}
@@ -84,6 +98,7 @@ Price: {price_label}
 Product page: {vitrine_url}
 My site (other products): {_SITE}
 Subreddit: r/{sub}
+{sub_rule_block}
 
 Style:
 - First person throughout ("I", "my", "me") — you BUILT this product, so say "I built" not "I found" or "someone built"
