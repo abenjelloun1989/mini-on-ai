@@ -346,7 +346,8 @@ def cmd_help(group: str = "") -> str:
         "  /list — All subreddits and products at a glance\n\n"
         "📊 <b>Sales</b>\n"
         "  /counsel — Sales + Reddit performance report\n"
-        "  /counsel refresh — Force fresh data fetch\n\n"
+        "  /counsel refresh — Force fresh data fetch\n"
+        "  /counsel go — Auto-apply prices + generate post drafts + checklist\n\n"
         "Type /help {group} for more detail:\n"
         "<code>factory · posts · karma · products</code>"
     )
@@ -910,6 +911,15 @@ def handle_command(text: str) -> str:
         return cmd_categories()
 
     # ── SALES COUNSEL ─────────────────────────────────────────────────────────
+
+    if lower == "/counsel go":
+        subprocess.Popen(
+            [sys.executable, str(ROOT / "scripts/counsel_go.py")],
+            cwd=str(ROOT),
+            stdout=open(ROOT / "logs/pipeline.log", "a"),
+            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+        )
+        return "⚙️ Running counsel actions… prices, posts, and checklist coming shortly."
 
     if lower in ("/counsel", "/counsel refresh"):
         force = "refresh" in lower
