@@ -404,8 +404,8 @@
       "site_path": "site/products/skills-claude-code-skills-pack-codebase-onboard-20260315.html",
       "gumroad_url": "https://minionai.gumroad.com/l/vpqbfs",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-codebase-onboard-20260315.png",
-      "price": 0,
-      "is_free": true
+      "price": 500,
+      "is_free": false
     },
     {
       "id": "skills-claude-code-skills-pack-database-migrati-20260315",

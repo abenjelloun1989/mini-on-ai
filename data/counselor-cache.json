@@ -1,74 +1,74 @@
 {
-  "fetched_at": "2026-03-26T20:43:53.848425+00:00",
+  "fetched_at": "2026-03-26T21:26:36.073145+00:00",
   "sections": {
     "whats_working": [
-      "Codebase Onboarding Docs Skills Pack has 17 total downloads, the only product with real traction.",
-      "ClaudeAI post on Codebase Onboarding got 6 comments, the most engagement of any Reddit post.",
-      "Free pricing is lowering the barrier to download, which works for building an early audience.",
-      "Reddit activity is sparse overall. Only 6 posts, all scoring 0-1. No clear pattern to build on yet."
+      "Codebase Onboarding Docs pack has 17 all-time sales at $5, the only product with any paid traction.",
+      "The r/ClaudeAI post on onboarding skills got 6 comments, the highest engagement of any post.",
+      "Reddit activity is sparse (all posts scored 0-1), so no further patterns can be confirmed from current data.",
+      "Free Claude Code skills exist as a discovery funnel, but conversion to paid has stalled in the last 30 days."
     ],
     "what_to_fix": [
-      "35+ products have zero downloads. Stop adding new products until existing ones get traffic.",
-      "Most Reddit posts lead with the solution, not the problem. Reframe titles around the reader's pain.",
-      "r/buildinpublic post scored 0. The angle was too vague. Specific numbers and outcomes drive clicks.",
-      "8 paid Claude Code packs at $5 have zero sales. No one knows they exist. Promote free ones first to build trust."
+      "Zero sales in 30 days across all products. Posting cadence and subreddit targeting need an immediate reset.",
+      "Most posts scored 0-1 with no comments. Titles like 'I automated my team's weekly reports' bury the problem. Lead with pain.",
+      "35+ free products have zero downloads. Free alone does not drive traffic. Each needs at least one Reddit post.",
+      "All posts go to r/ClaudeAI or low-traffic subreddits. High-volume subs like r/SideProject and r/ChatGPTCoding are underused."
     ],
     "next_reddit_posts": [
       {
         "subreddit": "ChatGPTCoding",
-        "angle": "Onboarding a new dev to a large codebase takes weeks. Here is how I use Claude Code to cut that down.",
+        "angle": "Onboarding a new engineer takes weeks. Here are 5 Claude Code skills I use to generate onboarding docs in minutes.",
         "product": "Claude Code Skills Pack: Codebase Onboarding Docs",
-        "why": "This subreddit has active devs who feel this pain daily. Free product lowers friction to click."
+        "why": "High-intent dev audience actively using Claude Code. Problem is universal and post invites direct comparison."
       },
       {
         "subreddit": "SideProject",
-        "angle": "I kept forgetting to update the README every release. So I built a Claude Code skill that does it automatically.",
-        "product": "Claude Code Skill: DocSync",
-        "why": "Relatable solo dev problem. Free product. Concrete before/after makes it easy to upvote."
+        "angle": "I kept writing the same status update every Friday. I built a Claude Code skill that does it for me now.",
+        "product": "Claude Code Skills Pack: Project Status Reporting",
+        "why": "Solo builders hate admin tasks. Relatable problem with a concrete before/after drives comments and clicks."
       },
       {
         "subreddit": "nocode",
-        "angle": "My n8n workflow kept failing on API auth. I wrote prompts to debug every auth type faster.",
-        "product": "n8n API Authentication Troubleshooting Prompts by Auth Type",
-        "why": "Auth errors are a top n8n frustration. Problem-first angle fits nocode community well."
-      },
-      {
-        "subreddit": "Entrepreneur",
-        "angle": "I was spending 3 hours a week on client reports. Here is the n8n workflow that automated all of it.",
-        "product": "Claude Code Skills Pack: Automated Report Generation",
-        "why": "Entrepreneurs care about time savings. Specific hours saved makes the post credible and shareable."
+        "angle": "Tired of n8n workflows breaking silently with no error log? Here are prompts I use to add error handling fast.",
+        "product": "n8n Workflow Error Handling Prompts for Automation Builders",
+        "why": "Error handling is a top pain point in n8n communities. Free product lowers friction and builds list trust."
       },
       {
         "subreddit": "indiehackers",
-        "angle": "I built 30+ free digital products and only one got downloads. Here is what I learned about distribution.",
-        "product": null,
-        "why": "Buildinpublic honesty post drives profile visits and trust. Links to catalog naturally in comments."
+        "angle": "Switching from Zapier to n8n saved me $80/month. Here is the starter guide I wish I had on day one.",
+        "product": "n8n Starter Guide for Zapier Users",
+        "why": "Cost savings angle performs well on IH. Zapier vs n8n is an active ongoing debate with search volume."
+      },
+      {
+        "subreddit": "buildinpublic",
+        "angle": "My Gumroad catalog hit 30+ products and made $85 total. Here is what I am changing this month.",
+        "product": "All products (build-in-public transparency post)",
+        "why": "Honest numbers post builds audience trust and drives curiosity clicks to the full catalog."
       }
     ],
     "pricing_suggestions": [
       {
-        "product": "Claude Code Skills Pack: Codebase Onboarding Docs",
-        "current_price": "$0",
-        "suggested_price": "$5",
-        "reason": "17 downloads proves demand. Test a $5 price or add a paid upgrade tier to monetize existing interest."
-      },
-      {
         "product": "Claude Code Skills Pack: Automated Report Generation",
         "current_price": "$0",
-        "suggested_price": "$0 for now",
-        "reason": "Zero downloads. Keep free until a Reddit post drives at least 10 downloads, then revisit pricing."
-      },
-      {
-        "product": "Claude Code Skills Pack: Database Migration",
-        "current_price": "$5",
         "suggested_price": "$5",
-        "reason": "Price is fair but visibility is zero. Promote it in r/ChatGPTCoding before changing price."
+        "reason": "Report automation is a high-value use case. Matches the paid Onboarding pack format. Free devalues the bundle signal."
       },
       {
-        "product": "n8n API Authentication Troubleshooting Prompts by Auth Type",
+        "product": "Claude Code Skills Pack: Team Standards Bootstrapping",
         "current_price": "$0",
         "suggested_price": "$5",
-        "reason": "High utility for a specific pain point. Free now but strong candidate for $5 after first 20 downloads."
+        "reason": "Engineering onboarding is proven to convert at $5. Team standards is a natural upsell in the same buyer journey."
+      },
+      {
+        "product": "n8n Workflow Error Handling Prompts for Automation Builders",
+        "current_price": "$0",
+        "suggested_price": "$5",
+        "reason": "Prompt packs for specific pain points (error handling) have clear ROI for builders. Zero downloads now, so test paid with a Reddit push."
+      },
+      {
+        "product": "AI Automation Agency Launch Playbook",
+        "current_price": "$0",
+        "suggested_price": "$9",
+        "reason": "Agency launch content commands higher perceived value. $9 filters serious buyers and increases average order value."
       }
     ]
   },
