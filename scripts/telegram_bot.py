@@ -342,6 +342,7 @@ def cmd_help(group: str = "") -> str:
         "📦 <b>Products</b>\n"
         "  /seturl {id} {url} — Link product to Gumroad\n"
         "  /setfree {id} — Mark product as free\n"
+        "  /syncprices — Pull latest prices from Gumroad + rebuild vitrine\n"
         "  /list — All subreddits and products at a glance\n\n"
         "📊 <b>Sales</b>\n"
         "  /counsel — Sales + Reddit performance report\n"
@@ -884,6 +885,26 @@ def handle_command(text: str) -> str:
     if lower.startswith("/setfree"):
         args = text[len("/setfree"):].strip()
         return cmd_setfree(args)
+
+    if lower == "/syncprices":
+        def _sync():
+            import subprocess as sp
+            r1 = sp.run(
+                [sys.executable, str(ROOT / "scripts/publish_product.py"), "--sync-prices"],
+                capture_output=True, text=True, cwd=str(ROOT),
+            )
+            r2 = sp.run(
+                [sys.executable, str(ROOT / "scripts/update_site.py"), "--rebuild-all"],
+                capture_output=True, text=True, cwd=str(ROOT),
+            )
+            lines = [l for l in (r1.stdout + r1.stderr).splitlines() if l.strip()]
+            updated = sum(1 for l in lines if "Updated" in l or "✅" in l)
+            errors = sum(1 for l in lines if "⚠️" in l or "Error" in l)
+            send(f"✅ Prices synced — {updated} updated, {errors} warnings.\nVitrine rebuilt.")
+        import threading
+        send("🔄 Syncing prices from Gumroad…")
+        threading.Thread(target=_sync, daemon=True).start()
+        return None
 
     if lower == "/categories":
         return cmd_categories()
