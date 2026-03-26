@@ -245,15 +245,17 @@ def _reddit_new(subreddit: str, limit: int = 25) -> list:
     return [c["data"] for c in children if c.get("kind") == "t3"]
 
 KARMA_SUBREDDITS = [
+    # Easy karma — large, help-friendly, beginner questions get answered + upvoted fast
+    "learnprogramming",     # 4M members, constant "how do I" questions
+    "ChatGPT",              # 7M+ members, AI tips get upvoted quickly
+    "ArtificialIntelligence",  # large, discussion-friendly
+    "productivity",         # practical tips get upvoted, big audience
     # Audience = your buyers, comment mentions tolerated
     "ClaudeAI",
     "cursor",
     "ChatGPTCoding",
     # n8n bans Gumroad links but "DM me for the template" works in comments
     "n8n",
-    # These have weekly promo threads — karma needed to participate
-    "Entrepreneur",
-    "passive_income",
     # Post-friendly subs — also worth commenting on for visibility
     "SideProject",
     "indiehackers",
@@ -261,7 +263,9 @@ KARMA_SUBREDDITS = [
     "nocode",
     "SaaS",
     "somethingimade",
-    "ChatGPT",
+    # Weekly promo threads — karma needed to participate
+    "Entrepreneur",
+    "passive_income",
 ]
 
 _SITE = "https://mini-on-ai.com"
