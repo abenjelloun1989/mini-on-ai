@@ -128,7 +128,10 @@ def apply_price_changes(suggestions: list, catalog: list) -> list:
 
         gumroad_id = _find_gumroad_id(s["product"], catalog)
         if not gumroad_id:
-            results.append({"product": s["product"], "status": "manual", "reason": "could not find Gumroad ID — update manually"})
+            results.append({
+                "product": s["product"], "status": "manual",
+                "manual_step": f"Go to gumroad.com/products → find \"{s['product'][:40]}\" → set price to {suggested}",
+            })
             continue
 
         try:
@@ -141,9 +144,15 @@ def apply_price_changes(suggestions: list, catalog: list) -> list:
             if resp.status_code == 200:
                 results.append({"product": s["product"], "status": "updated", "price": suggested, "gumroad_id": gumroad_id})
             else:
-                results.append({"product": s["product"], "status": "error", "reason": f"HTTP {resp.status_code}: {resp.text[:100]}"})
+                results.append({
+                    "product": s["product"], "status": "manual",
+                    "manual_step": f"API returned {resp.status_code}. Go to gumroad.com/products → find \"{s['product'][:40]}\" → set price to {suggested} manually",
+                })
         except Exception as e:
-            results.append({"product": s["product"], "status": "error", "reason": str(e)})
+            results.append({
+                "product": s["product"], "status": "manual",
+                "manual_step": f"API error ({str(e)[:40]}). Go to gumroad.com/products → find \"{s['product'][:40]}\" → set price to {suggested} manually",
+            })
 
     return results
 
@@ -270,17 +279,18 @@ def run() -> None:
         manual_price = []
         for r in price_results:
             name = r["product"][:50].replace("&", "&amp;").replace("<", "&lt;")
-            reason = str(r.get("reason", ""))[:80].replace("&", "&amp;").replace("<", "&lt;")
             if r["status"] == "updated":
                 price_lines.append(f"✅ {name} → {r['price']}")
             elif r["status"] == "skipped":
-                price_lines.append(f"⏭ {name} — {reason}")
+                price_lines.append(f"⏭ {name} — already correct")
             else:
-                manual_price.append(f"• {name}: {reason}")
+                step = r.get("manual_step", f"Update price for {name} manually on gumroad.com")
+                manual_price.append(step.replace("&", "&amp;").replace("<", "&lt;"))
 
-        msg = "💰 <b>Price updates</b>\n\n" + "\n".join(price_lines)
+        lines = price_lines if price_lines else ["No automatic updates applied."]
+        msg = "💰 <b>Price updates</b>\n\n" + "\n".join(lines)
         if manual_price:
-            msg += "\n\n⚠️ Do manually:\n" + "\n".join(manual_price)
+            msg += "\n\n📋 <b>Do manually:</b>\n" + "\n".join(f"• {s}" for s in manual_price)
         _send(msg)
         time.sleep(0.5)
     else:
@@ -300,29 +310,47 @@ def run() -> None:
             title = post.get("title", "")
             body = post.get("body", "")
             _send(
-                f"📣 <b>Post {i}/{ len(post_suggestions)} — r/{sub}</b>\n"
+                f"📣 <b>Post {i}/{len(post_suggestions)} — r/{sub}</b>\n"
                 f"<i>Why: {why}</i>\n\n"
                 f"<b>Title:</b>\n<code>{title}</code>\n\n"
                 f"<b>Body:</b>\n<code>{body}</code>"
             )
-            post_lines.append(f"✅ r/{sub}")
+            post_lines.append(("ok", sub, None))
         except Exception as e:
-            _send(f"❌ r/{sub} post failed: {e}")
-            post_lines.append(f"❌ r/{sub}")
+            angle_short = angle[:80].replace("&", "&amp;").replace("<", "&lt;")
+            _send(
+                f"❌ <b>Post {i}/{len(post_suggestions)} — r/{sub} failed</b>\n\n"
+                f"Generate it manually with:\n<code>/post {sub}</code>\n\n"
+                f"Or write a post with this angle:\n<i>{angle_short}</i>"
+            )
+            post_lines.append(("fail", sub, angle))
         time.sleep(1)
 
     # ── 3. Manual checklist ───────────────────────────────────────────────────
     manual_items = []
 
-    # From what_to_fix
+    # Posts that were successfully generated — user needs to actually post them
+    ok_posts = [sub for status, sub, _ in post_lines if status == "ok"]
+    if ok_posts:
+        subs_str = ", ".join(f"r/{s}" for s in ok_posts)
+        manual_items.append(f"Post the {len(ok_posts)} drafts above on Reddit — one per day: {subs_str}")
+
+    # Posts that failed generation — tell user to use /post manually
+    failed_posts = [(sub, angle) for status, sub, angle in post_lines if status == "fail"]
+    for sub, angle in failed_posts:
+        manual_items.append(f"Generate post for r/{sub} manually: /post {sub}")
+
+    # Prices that couldn't be automated
+    for r in price_results:
+        if r.get("status") == "manual" and r.get("manual_step"):
+            manual_items.append(r["manual_step"])
+
+    # From what_to_fix — structural advice
     for item in what_to_fix:
         if "free" in item.lower() and "paid" in item.lower():
-            manual_items.append(f"Split a product into free preview + paid tier (see pricing advice above)")
+            manual_items.append("Split a product into free preview + paid tier: keep 2 skills free, gate rest behind $5 on Gumroad")
         elif "rewrite" in item.lower() or "title" in item.lower():
-            manual_items.append(f"Rewrite underperforming post titles to lead with specific pain — use /fix to revise")
-
-    # Always: post on Reddit
-    manual_items.append(f"Post the {len(post_suggestions)} drafts above on Reddit (copy-paste, one per day)")
+            manual_items.append("Rewrite weak post titles to lead with the specific pain: use /fix {sub} | title too vague")
 
     # Deduplicate
     seen = set()
@@ -332,8 +360,11 @@ def run() -> None:
             seen.add(item)
             deduped.append(item)
 
-    checklist = "\n".join(f"{i}. {item}" for i, item in enumerate(deduped, 1))
-    _send(f"📋 <b>Your manual checklist</b>\n\n{checklist}")
+    if deduped:
+        checklist = "\n".join(f"{i}. {item}" for i, item in enumerate(deduped, 1))
+        _send(f"📋 <b>Your manual checklist</b>\n\n{checklist}")
+    else:
+        _send("✅ <b>All actions completed automatically.</b>")
 
     log("counsel-go", "Done.")
 
