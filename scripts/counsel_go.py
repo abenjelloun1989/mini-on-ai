@@ -287,8 +287,11 @@ def run() -> None:
             if gp.get("id") == gumroad_id:
                 live_price_cents = gp.get("price", 0)
                 break
+        if live_price_cents is None:
+            skipped_prices.append((s["product"], "not published on Gumroad yet — skip or publish it first"))
+            continue
         suggested_cents = int(float(s.get("suggested_price", "$0").replace("$", "")) * 100)
-        if live_price_cents is not None and live_price_cents == suggested_cents:
+        if live_price_cents == suggested_cents:
             skipped_prices.append((s["product"], f"already at {s['suggested_price']} on Gumroad"))
             continue
         validated_prices.append(s)
