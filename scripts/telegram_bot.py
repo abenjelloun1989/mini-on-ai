@@ -343,6 +343,9 @@ def cmd_help(group: str = "") -> str:
         "  /seturl {id} {url} — Link product to Gumroad\n"
         "  /setfree {id} — Mark product as free\n"
         "  /list — All subreddits and products at a glance\n\n"
+        "📊 <b>Sales</b>\n"
+        "  /counsel — Sales + Reddit performance report\n"
+        "  /counsel refresh — Force fresh data fetch\n\n"
         "Type /help {group} for more detail:\n"
         "<code>factory · posts · karma · products</code>"
     )
@@ -884,6 +887,21 @@ def handle_command(text: str) -> str:
 
     if lower == "/categories":
         return cmd_categories()
+
+    # ── SALES COUNSEL ─────────────────────────────────────────────────────────
+
+    if lower in ("/counsel", "/counsel refresh"):
+        force = "refresh" in lower
+        subprocess.Popen(
+            [sys.executable, str(ROOT / "scripts/sales_counselor.py")]
+            + (["--refresh"] if force else []),
+            cwd=str(ROOT),
+            stdout=open(ROOT / "logs/pipeline.log", "a"),
+            stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+        )
+        if force:
+            return "🔍 Refreshing sales data… report arriving in ~30s."
+        return "📊 Fetching sales data… report arriving in ~30s."
 
     if lower == "/run all":
         send("🚀 Starting 4 pipeline runs (marketing, freelancing, writing, coding).\nYou'll get a Telegram message after each one.")
