@@ -32,7 +32,7 @@
         </svg>
       </a>
       <div style="display: flex; gap: 16px; align-items: center;">
-        <span class="product-count">55 products</span>
+        <span class="product-count">56 products</span>
         <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
       </div>
     </div>
@@ -48,24 +48,34 @@
 
   <main class="catalog">
     <div class="catalog-header">
-      <p class="catalog-subtitle" id="catalogCount">55 products available</p>
+      <p class="catalog-subtitle" id="catalogCount">56 products available</p>
       <div class="search-wrap">
         <input type="search" id="productSearch" class="search-input" placeholder="Search products…" autocomplete="off">
         <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
       </div>
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All <span class="filter-count">55</span></button>
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">56</span></button>
     <button class="filter-btn" data-filter="cat:prompt-packs">Prompt Packs <span class="filter-count">7</span></button>
     <button class="filter-btn" data-filter="cat:checklist">Checklists <span class="filter-count">5</span></button>
     <button class="filter-btn" data-filter="cat:swipe-file">Swipe Files <span class="filter-count">6</span></button>
     <button class="filter-btn" data-filter="cat:mini-guide">Mini Guides <span class="filter-count">14</span></button>
     <button class="filter-btn" data-filter="cat:n8n-template">n8n Templates <span class="filter-count">8</span></button>
-    <button class="filter-btn" data-filter="cat:claude-code-skill">CC Skills <span class="filter-count">15</span></button>
-    <button class="filter-btn" data-filter="free">Free <span class="filter-count">15</span></button>
+    <button class="filter-btn" data-filter="cat:claude-code-skill">CC Skills <span class="filter-count">16</span></button>
+    <button class="filter-btn" data-filter="free">Free <span class="filter-count">16</span></button>
   </div>
     </div>
 
     <div class="product-grid">
+      <article class="product-card" data-category="claude-code-skill" data-tags="claude-code,architecture,documentation,onboarding,free" data-free="true">
+        <img src="images/placeholder-claude-code-skill.svg" alt="" class="product-thumbnail" aria-hidden="true">
+        <div class="product-card-body">
+          <div class="product-tags"><span class="category-badge category-claude-code-skill">CC Skills Pack</span><span class="badge-free">Free</span><span class="badge-new">New</span><span class="tag" data-tag="claude-code">claude-code</span> <span class="tag" data-tag="architecture">architecture</span> <span class="tag" data-tag="documentation">documentation</span> <span class="tag" data-tag="onboarding">onboarding</span> <span class="tag" data-tag="free">free</span></div>
+          <h2 class="product-title"><a href="products/skills-claude-code-skill-architecture-overview-free-20260326.html">Claude Code Skill: Architecture Overview Generator (Free)</a></h2>
+          <p class="product-desc">One Claude Code skill that analyzes your codebase and generates a clear architecture overview — system components, data flow, service boundaries, and tech stack decisions. Trigger: /gen-architecture. Built for engineering leads onboarding new hires.</p>
+          <div class="product-meta">1 skills</div>
+          <a href="https://minionai.gumroad.com/l/vmkqra" class="btn-cta" target="_blank" rel="noopener">Get it free →</a>
+        </div>
+      </article>
       <article class="product-card" data-category="n8n-template" data-tags="n8n,social-media,oauth,automation,api-integration" data-free="true">
         <img src="images/thumbnails/n8n-n8n-social-media-auth-posting-workflow-20260322.png" alt="n8n Social Media Auth &amp; Posting Workflow" class="product-thumbnail">
         <div class="product-card-body">
@@ -389,7 +399,7 @@
       <article class="product-card" data-category="prompt-packs" data-tags="e-commerce,SEO,copywriting">
         <img src="images/thumbnails/prompts-shopify-product-description-packs-for-e--20260312.png" alt="Shopify Product Description Packs for E-Commerce" class="product-thumbnail">
         <div class="product-card-body">
-          <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="badge-new">New</span><span class="tag" data-tag="e-commerce">e-commerce</span> <span class="tag" data-tag="SEO">SEO</span> <span class="tag" data-tag="copywriting">copywriting</span></div>
+          <div class="product-tags"><span class="category-badge category-prompt-packs">Prompt Pack</span><span class="tag" data-tag="e-commerce">e-commerce</span> <span class="tag" data-tag="SEO">SEO</span> <span class="tag" data-tag="copywriting">copywriting</span></div>
           <h2 class="product-title"><a href="products/prompts-shopify-product-description-packs-for-e--20260312.html">Shopify Product Description Packs for E-Commerce</a></h2>
           <p class="product-desc">30 prompts for e-commerce store owners to write SEO-optimized, benefit-focused product descriptions that convert browsers into buyers.</p>
           <div class="product-meta">25 prompts</div>
