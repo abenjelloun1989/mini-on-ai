@@ -1,73 +1,74 @@
 {
-  "fetched_at": "2026-03-26T20:34:06.312315+00:00",
+  "fetched_at": "2026-03-26T20:43:53.848425+00:00",
   "sections": {
     "whats_working": [
-      "Claude Code Skills Pack: Codebase Onboarding Docs has 17 total downloads — only product with real traction.",
-      "Free positioning has removed purchase friction, which is the right move early on to validate demand.",
-      "Onboarding and engineering workflow topics show the most natural product-market fit based on download data."
+      "Codebase Onboarding Docs Skills Pack has 17 total downloads, the only product with real traction.",
+      "ClaudeAI post on Codebase Onboarding got 6 comments, the most engagement of any Reddit post.",
+      "Free pricing is lowering the barrier to download, which works for building an early audience.",
+      "Reddit activity is sparse overall. Only 6 posts, all scoring 0-1. No clear pattern to build on yet."
     ],
     "what_to_fix": [
-      "No Reddit activity at all — zero posts, zero comments. Without traffic sources, nothing else matters right now.",
-      "37 products live but only 1 has any downloads. Catalog breadth is hurting focus — pick 3 to push hard.",
-      "8 paid products at $5 have zero sales. Paid listings with no free version and no audience will not convert.",
-      "Product titles are descriptive but not problem-led. Rewrite them to lead with the pain, not the deliverable."
+      "35+ products have zero downloads. Stop adding new products until existing ones get traffic.",
+      "Most Reddit posts lead with the solution, not the problem. Reframe titles around the reader's pain.",
+      "r/buildinpublic post scored 0. The angle was too vague. Specific numbers and outcomes drive clicks.",
+      "8 paid Claude Code packs at $5 have zero sales. No one knows they exist. Promote free ones first to build trust."
     ],
     "next_reddit_posts": [
       {
         "subreddit": "ChatGPTCoding",
-        "angle": "Onboarding a new dev to a messy codebase? Here are 5 Claude Code skills I use to get them up to speed fast.",
+        "angle": "Onboarding a new dev to a large codebase takes weeks. Here is how I use Claude Code to cut that down.",
         "product": "Claude Code Skills Pack: Codebase Onboarding Docs",
-        "why": "Direct match between audience pain and your only proven product. Share the skills, link the pack."
+        "why": "This subreddit has active devs who feel this pain daily. Free product lowers friction to click."
       },
       {
         "subreddit": "SideProject",
-        "angle": "I built 37 free digital products in the last few months. Here is what I learned about what actually gets downloaded.",
-        "product": "General catalog",
-        "why": "Build-in-public angle drives profile visits and catalog discovery. Honest framing earns upvotes."
+        "angle": "I kept forgetting to update the README every release. So I built a Claude Code skill that does it automatically.",
+        "product": "Claude Code Skill: DocSync",
+        "why": "Relatable solo dev problem. Free product. Concrete before/after makes it easy to upvote."
       },
       {
         "subreddit": "nocode",
-        "angle": "Switching from Zapier to n8n and hitting auth errors constantly? I put together a prompt pack for every auth type.",
+        "angle": "My n8n workflow kept failing on API auth. I wrote prompts to debug every auth type faster.",
         "product": "n8n API Authentication Troubleshooting Prompts by Auth Type",
-        "why": "Zapier-to-n8n migration is a hot pain point. Leads with frustration, offers a free useful resource."
+        "why": "Auth errors are a top n8n frustration. Problem-first angle fits nocode community well."
+      },
+      {
+        "subreddit": "Entrepreneur",
+        "angle": "I was spending 3 hours a week on client reports. Here is the n8n workflow that automated all of it.",
+        "product": "Claude Code Skills Pack: Automated Report Generation",
+        "why": "Entrepreneurs care about time savings. Specific hours saved makes the post credible and shareable."
       },
       {
         "subreddit": "indiehackers",
-        "angle": "Nobody downloaded my n8n templates. Here is what I am changing about how I describe and distribute them.",
-        "product": "n8n templates general",
-        "why": "Failure post with a plan drives engagement and positions you as a learner, not a spammer."
-      },
-      {
-        "subreddit": "ChatGPT",
-        "angle": "How I use Claude Code to auto-generate README files so I never write docs manually again.",
-        "product": "Claude Code Skill: DocSync",
-        "why": "Concrete time-saving use case with broad appeal. Free product removes all barriers to clicks."
+        "angle": "I built 30+ free digital products and only one got downloads. Here is what I learned about distribution.",
+        "product": null,
+        "why": "Buildinpublic honesty post drives profile visits and trust. Links to catalog naturally in comments."
       }
     ],
     "pricing_suggestions": [
       {
         "product": "Claude Code Skills Pack: Codebase Onboarding Docs",
         "current_price": "$0",
-        "suggested_price": "$7",
-        "reason": "17 downloads proves demand. Add a paid tier with a bonus skill or template to capture willingness to pay."
+        "suggested_price": "$5",
+        "reason": "17 downloads proves demand. Test a $5 price or add a paid upgrade tier to monetize existing interest."
       },
       {
-        "product": "Claude Code Skills Pack: Release and Changelog Documentation",
-        "current_price": "$5",
-        "suggested_price": "$0 (lead magnet)",
-        "reason": "Zero sales at $5 with no audience. Go free to build downloads, then upsell the bundle."
+        "product": "Claude Code Skills Pack: Automated Report Generation",
+        "current_price": "$0",
+        "suggested_price": "$0 for now",
+        "reason": "Zero downloads. Keep free until a Reddit post drives at least 10 downloads, then revisit pricing."
       },
       {
         "product": "Claude Code Skills Pack: Database Migration",
         "current_price": "$5",
-        "suggested_price": "$0 (lead magnet)",
-        "reason": "High-anxiety topic with zero sales. Free download builds trust and Reddit shareability before charging."
+        "suggested_price": "$5",
+        "reason": "Price is fair but visibility is zero. Promote it in r/ChatGPTCoding before changing price."
       },
       {
-        "product": "n8n Workflow Error Handling Prompts for Automation Builders",
+        "product": "n8n API Authentication Troubleshooting Prompts by Auth Type",
         "current_price": "$0",
         "suggested_price": "$5",
-        "reason": "Error handling is a chronic pain point. Once you have 20+ downloads via Reddit, test a paid upgrade."
+        "reason": "High utility for a specific pain point. Free now but strong candidate for $5 after first 20 downloads."
       }
     ]
   },
@@ -75,7 +76,7 @@
     "products_count": 56,
     "gumroad_products_count": 35,
     "sales_30d_count": 0,
-    "reddit_posts_count": 0,
-    "reddit_comments_count": 0
+    "reddit_posts_count": 6,
+    "reddit_comments_count": 6
   }
 }

@@ -61,13 +61,20 @@ def _telegram_send(text: str) -> None:
         resp.read()
 
 
-def _reddit_get(path: str, limit: int = 25) -> list:
-    params = urllib.parse.urlencode({"limit": limit})
-    url = f"https://api.reddit.com{path}?{params}"
-    req = urllib.request.Request(url, headers={"User-Agent": REDDIT_USER_AGENT})
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        data = json.loads(resp.read().decode("utf-8"))
-    children = data.get("data", {}).get("children", [])
+def _reddit_search(query: str, limit: int = 25, type_filter: str = "") -> list:
+    """Search Reddit via public API using requests (avoids LibreSSL 403)."""
+    import requests
+    params = {"q": query, "sort": "new", "limit": limit}
+    if type_filter:
+        params["type"] = type_filter
+    resp = requests.get(
+        "https://api.reddit.com/search.json",
+        params=params,
+        headers={"User-Agent": REDDIT_USER_AGENT},
+        timeout=15,
+    )
+    resp.raise_for_status()
+    children = resp.json().get("data", {}).get("children", [])
     return [c["data"] for c in children]
 
 
@@ -149,7 +156,7 @@ def fetch_gumroad_sales_30d() -> list:
 def fetch_reddit_posts(limit: int = 25) -> list:
     """Fetch user's submitted posts."""
     try:
-        items = _reddit_get(f"/user/{REDDIT_USER}/submitted.json", limit=limit)
+        items = _reddit_search(f"author:{REDDIT_USER}", limit=limit, type_filter="link")
         return [
             {
                 "title": p.get("title", ""),
@@ -169,7 +176,7 @@ def fetch_reddit_posts(limit: int = 25) -> list:
 def fetch_reddit_comments(limit: int = 25) -> list:
     """Fetch user's recent comments."""
     try:
-        items = _reddit_get(f"/user/{REDDIT_USER}/comments.json", limit=limit)
+        items = _reddit_search(f"author:{REDDIT_USER}", limit=limit, type_filter="comment")
         return [
             {
                 "subreddit": c.get("subreddit", ""),
