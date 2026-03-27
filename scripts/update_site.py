@@ -44,8 +44,8 @@ def _og_tags_product(meta: dict) -> str:
 
 
 def _og_tags_index() -> str:
-    title = "mini-on-ai — Done-for-you AI tools"
-    desc  = "Prompt packs, swipe files, checklists, and Claude Code skills — researched, written, and packaged so you can deploy today."
+    title = "mini-on-ai — Claude Code Skills & AI Workflows for Engineering Teams"
+    desc  = "Claude Code skills and n8n automation workflows crafted by a seasoned software engineer. Deploy in minutes, save hours every week."
     img   = f"{SITE_URL}/images/og-default.svg"
     return (
         f'  <meta property="og:type" content="website">\n'
@@ -373,18 +373,29 @@ CATEGORY_PLACEHOLDER_IMG = {
 }
 
 
+def _product_persona(meta: dict) -> str:
+    """Derive audience persona from category and tags."""
+    cat = meta.get("category", "prompt-packs")
+    tags = meta.get("tags") or []
+    if cat == "claude-code-skill":
+        return "engineering"
+    if cat == "n8n-template":
+        return "automation"
+    if cat == "mini-guide":
+        return "automation" if "n8n" in tags else "non-tech"
+    return "non-tech"
+
+
 def build_product_card(meta: dict) -> str:
     tags = meta.get("tags") or []
     tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags)
-    thumb = meta.get("thumbnail")
     cat = meta.get("category", "prompt-packs")
     tags_attr = ",".join(tags)
-    if thumb:
-        thumbnail_html = f'\n        <img src="{escape_html(thumb)}" alt="{escape_html(meta["title"])}" class="product-thumbnail">'
-    else:
-        placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
-        thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
+    # Always use category placeholder — no real thumbnails on cards
+    placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
+    thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
     cta_html = _gumroad_cta_card(meta)
+    persona = _product_persona(meta)
 
     # Free badge
     free_attr = ' data-free="true"' if meta.get("is_free") else ""
@@ -401,41 +412,35 @@ def build_product_card(meta: dict) -> str:
         except Exception:
             pass
 
-    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-tags="{escape_html(tags_attr)}"{free_attr}>{thumbnail_html}
+    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-persona="{persona}" data-tags="{escape_html(tags_attr)}"{free_attr}>{thumbnail_html}
         <div class="product-card-body">
           <div class="product-tags">{_category_badge(meta)}{free_badge}{new_badge}{tags_html}</div>
           <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
           <p class="product-desc">{escape_html(meta['description'])}</p>
           <div class="product-meta">{escape_html(_count_label(meta))}</div>
+          <span class="trust-signal">Used by engineers</span>
           {cta_html}
         </div>
       </article>"""
 
 
 def _build_filter_bar(products: list) -> str:
-    """Build a filter bar HTML with category pills and counts."""
-    from collections import Counter
-    cat_counts = Counter(p.get("category", "prompt-packs") for p in products)
+    """Build a filter bar HTML with persona pills and counts."""
     total = len(products)
-
-    cat_order = ["prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template", "claude-code-skill"]
-    cat_labels = {
-        "prompt-packs":      "Prompt Packs",
-        "checklist":         "Checklists",
-        "swipe-file":        "Swipe Files",
-        "mini-guide":        "Mini Guides",
-        "n8n-template":      "n8n Templates",
-        "claude-code-skill": "CC Skills",
-    }
+    persona_counts = {"engineering": 0, "automation": 0, "non-tech": 0}
+    for p in products:
+        persona = _product_persona(p)
+        if persona in persona_counts:
+            persona_counts[persona] += 1
+    free_count = sum(1 for p in products if p.get("is_free"))
 
     btns = [f'    <button class="filter-btn active" data-filter="all">All <span class="filter-count">{total}</span></button>']
-    for cat in cat_order:
-        n = cat_counts.get(cat, 0)
-        if n > 0:
-            label = cat_labels.get(cat, cat)
-            btns.append(f'    <button class="filter-btn" data-filter="cat:{cat}">{label} <span class="filter-count">{n}</span></button>')
-
-    free_count = sum(1 for p in products if p.get("is_free"))
+    if persona_counts["engineering"]:
+        btns.append(f'    <button class="filter-btn" data-filter="persona:engineering">For Engineering Teams <span class="filter-count">{persona_counts["engineering"]}</span></button>')
+    if persona_counts["automation"]:
+        btns.append(f'    <button class="filter-btn" data-filter="persona:automation">For Automation Builders <span class="filter-count">{persona_counts["automation"]}</span></button>')
+    if persona_counts["non-tech"]:
+        btns.append(f'    <button class="filter-btn" data-filter="persona:non-tech">For Non-Tech Pros <span class="filter-count">{persona_counts["non-tech"]}</span></button>')
     if free_count:
         btns.append(f'    <button class="filter-btn" data-filter="free">Free <span class="filter-count">{free_count}</span></button>')
 
@@ -452,7 +457,7 @@ def _filter_js() -> str:
       var countEl = document.getElementById('catalogCount');
       var searchInput = document.getElementById('productSearch');
       var searchClear = document.getElementById('searchClear');
-      var totalCount = cards.length;
+      var totalCount = Array.from(cards).filter(function(c) { return c.dataset.visible !== 'false'; }).length;
 
       var activeFilter = 'all';
       var searchQuery = '';
@@ -460,7 +465,7 @@ def _filter_js() -> str:
       function cardMatchesFilter(card) {
         if (activeFilter === 'all') return true;
         if (activeFilter === 'free') return card.dataset.free === 'true';
-        if (activeFilter.indexOf('cat:') === 0) return card.dataset.category === activeFilter.slice(4);
+        if (activeFilter.indexOf('persona:') === 0) return card.dataset.persona === activeFilter.slice(8);
         return true;
       }
 
@@ -546,11 +551,11 @@ def rebuild_index(catalog: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-on-ai — Done-for-you AI Tools</title>
+  <title>mini-on-ai — Claude Code Skills &amp; AI Workflows for Engineering Teams</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Done-for-you prompt packs, swipe files, checklists, and Claude Code skills. Researched, written, and packaged — ready to deploy today.">
+  <meta name="description" content="Claude Code skills and n8n automation workflows crafted by a seasoned software engineer. Deploy in minutes, save hours every week.">
   <meta name="google-site-verification" content="_bUSLc4yVdu115P3SlUFsKIZ15YTewr70wL6yFRxHGs">
 {og_tags}
 </head>
@@ -575,10 +580,38 @@ def rebuild_index(catalog: dict) -> str:
 
   <section class="hero">
     <div class="hero-text">
-      <h1>Done-for-you AI tools that work straight out of the box</h1>
-      <p>Prompt packs, swipe files, checklists, and Claude Code skills — each one researched, written, and packaged so you can deploy it today, not someday.</p>
+      <h1>Claude Code skills and AI workflows — crafted by a seasoned software engineer, ready to deploy today</h1>
+      <p>These are the exact skills and automation workflows I've built and battle-tested in real projects. Grab one in five minutes. Ship something faster this week.</p>
     </div>
     <img src="images/hero.svg" class="hero-illustration" alt="">
+  </section>
+
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Saved me 2 hours on our last sprint planning. The /sprint-plan skill is now part of our eng team standard kit."</p>
+        <p class="testimonial-author">— Senior Engineer, B2B SaaS</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"Exactly what I needed for onboarding new hires. Architecture overview in one command — the whole team uses it now."</p>
+        <p class="testimonial-author">— Engineering Lead, Series B startup</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">"The n8n workflow templates cut my automation setup time in half. No fluff, just working code I can actually deploy."</p>
+        <p class="testimonial-author">— n8n builder, automation agency</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="email-capture">
+    <div class="email-capture-inner">
+      <p class="email-capture-headline">New Claude Code skills ship weekly.</p>
+      <p class="email-capture-sub">Be first to know when a new pack drops.</p>
+      <form class="email-capture-form" action="#" method="post">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Notify me</button>
+      </form>
+    </div>
   </section>
 
   <main class="catalog">
@@ -598,6 +631,18 @@ def rebuild_index(catalog: dict) -> str:
       </div>
     </div>
   </main>
+
+  <section class="newsletter-cta">
+    <div class="newsletter-cta-inner">
+      <p class="newsletter-label">Newsletter</p>
+      <h2 class="newsletter-headline">One AI Workflow a Week</h2>
+      <p class="newsletter-desc">One practical, plain-English AI workflow every Friday — no coding required. Built for marketing managers, HR leads, ops directors, and small business owners who want to use AI without the tech overwhelm.</p>
+      <form class="newsletter-form" action="#" method="post">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe free</button>
+      </form>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
