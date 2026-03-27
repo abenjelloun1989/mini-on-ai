@@ -388,7 +388,6 @@ def _product_persona(meta: dict) -> str:
 
 def build_product_card(meta: dict) -> str:
     tags = meta.get("tags") or []
-    tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags)
     cat = meta.get("category", "prompt-packs")
     tags_attr = ",".join(tags)
     # Always use category placeholder — no real thumbnails on cards
@@ -414,11 +413,9 @@ def build_product_card(meta: dict) -> str:
 
     return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-persona="{persona}" data-tags="{escape_html(tags_attr)}"{free_attr}>{thumbnail_html}
         <div class="product-card-body">
-          <div class="product-tags">{_category_badge(meta)}{free_badge}{new_badge}{tags_html}</div>
+          <div class="product-tags">{_category_badge(meta)}{free_badge}{new_badge}</div>
           <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
           <p class="product-desc">{escape_html(meta['description'])}</p>
-          <div class="product-meta">{escape_html(_count_label(meta))}</div>
-          <span class="trust-signal">Used by engineers</span>
           {cta_html}
         </div>
       </article>"""
