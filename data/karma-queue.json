@@ -1249,6 +1249,156 @@
       "comment_draft": "During those long coding sprints, the rate limits on free tiers can be brutal—you'll hit them right when you need help most. Consider keeping Cursor for sprint weeks and using Copilot the rest of the time, or budget for Claude's paid plan just for those sessions since deep reasoning is where you'll actually need the firepower.",
       "score": 72,
       "status": "pending"
+    },
+    {
+      "post_id": "1s26fiu",
+      "subreddit": "ChatGPTCoding",
+      "title": "Those of you using Claude Code or Cursor on real projects with actual file system or database access, what happens if it does something you didn't expect? Do you have any way to stop it mid execution or roll back what it did? Or do you just hope for the best?",
+      "url": "https://reddit.com/r/ChatGPTCoding/comments/1s26fiu/those_of_you_using_claude_code_or_cursor_on_real/",
+      "found_at": "2026-03-27T07:36:39.447537+00:00",
+      "comment_draft": "I always use git for version control and keep my database in a local dev environment separate from production. That way if Claude does something weird, I can just `git reset` or restore from a backup. For database operations specifically, I'll have Claude write the query first for me to review before it executes anything, or wrap risky operations in transactions so they can be rolled back. The key is treating it like you would any junior dev,don't give it production access and always have your safety nets in place.",
+      "score": 82,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rvkkwt",
+      "subreddit": "ChatGPTCoding",
+      "title": "Fastest way to go from website to app?",
+      "url": "https://reddit.com/r/ChatGPTCoding/comments/1rvkkwt/fastest_way_to_go_from_website_to_app/",
+      "found_at": "2026-03-27T07:36:42.262356+00:00",
+      "comment_draft": "Apple's rule is specifically about in-app purchases,they take a 30% cut on those. Stripe works fine for web payments linked from your app, so you don't need to switch payment providers. The fastest route is usually a React Native or Flutter app that wraps your existing web SaaS, which gets you to both stores in weeks instead of months rebuilding native.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rw0at2",
+      "subreddit": "ChatGPTCoding",
+      "title": "Anyone else losing track of ChatGPT conversations while coding?",
+      "url": "https://reddit.com/r/ChatGPTCoding/comments/1rw0at2/anyone_else_losing_track_of_chatgpt_conversations/",
+      "found_at": "2026-03-27T07:36:45.165631+00:00",
+      "comment_draft": "I started naming my chats really specifically like 'API Auth - JWT Issue' or 'Refactor ListComponent - performance' instead of leaving them generic. Makes scanning the sidebar way faster when you need to jump back. Also helps me remember *why* I opened that conversation in the first place instead of just seeing 'ChatGPT-4' ten times over.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s4ck6p",
+      "subreddit": "cursor",
+      "title": "Why Doesn't cursor know what year it is?",
+      "url": "https://reddit.com/r/cursor/comments/1s4ck6p/why_doesnt_cursor_know_what_year_it_is/",
+      "found_at": "2026-03-27T07:36:47.840188+00:00",
+      "comment_draft": "This usually happens when your system date/time is wrong or Cursor's environment variables aren't picking it up. Check your computer's date and time settings first, then try restarting Cursor completely. If that doesn't work, you might need to clear Cursor's cache folder and let it reinitialize.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s4ci4d",
+      "subreddit": "cursor",
+      "title": "Why Doesn't cursor know what year it is?",
+      "url": "https://reddit.com/r/cursor/comments/1s4ci4d/why_doesnt_cursor_know_what_year_it_is/",
+      "found_at": "2026-03-27T07:36:52.796316+00:00",
+      "comment_draft": "You can add the current date to your system prompt in Cursor's settings, which will get passed to Claude with every request. Just go to Settings > General and add something like 'Today's date is [date]' to your custom instructions. This is way more reliable than hoping it figures it out, and it'll help with context-dependent tasks.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s4mpbv",
+      "subreddit": "cursor",
+      "title": "Setting Claude Code in Cursor",
+      "url": "https://reddit.com/r/cursor/comments/1s4mpbv/setting_claude_code_in_cursor/",
+      "found_at": "2026-03-27T13:58:05.384675+00:00",
+      "comment_draft": "Try clearing your Cursor cache and reinstalling - sometimes the extension gets stuck mid-install. Go to your Cursor config folder (usually ~/.cursor on Mac/Linux or %APPDATA%\\Cursor on Windows), delete the extensions folder, then restart Cursor and reinstall Claude Code. If that doesn't work, check your internet connection since a bad connection during install can cause this loop.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s53rjx",
+      "subreddit": "somethingimade",
+      "title": "I don't like my hearing aids so I made my own",
+      "url": "https://reddit.com/r/somethingimade/comments/1s53rjx/i_dont_like_my_hearing_aids_so_i_made_my_own/",
+      "found_at": "2026-03-27T13:58:11.424032+00:00",
+      "comment_draft": "This is such a cool concept. Have you tested how they perform in noisy environments like restaurants or crowded spaces? That's usually where people struggle most with hearing aids, so if you've solved for that it could be a real game-changer.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s54bik",
+      "subreddit": "somethingimade",
+      "title": "The beads bouquet I made for my mother 💐",
+      "url": "https://reddit.com/r/somethingimade/comments/1s54bik/the_beads_bouquet_i_made_for_my_mother/",
+      "found_at": "2026-03-27T13:58:15.506646+00:00",
+      "comment_draft": "This is such a thoughtful gift! Since you mentioned the beads look amazing in sunlight, you might want to consider displaying it near a window where she'll actually see that effect during her morning routine. If you make more beaded projects, clear or translucent beads tend to catch light even better than opaque ones, in case you want to lean into that feature for future pieces.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s4dbeb",
+      "subreddit": "somethingimade",
+      "title": "I tried making a faux stained glass piece of the Rainbow Fish",
+      "url": "https://reddit.com/r/somethingimade/comments/1s4dbeb/i_tried_making_a_faux_stained_glass_piece_of_the/",
+      "found_at": "2026-03-27T13:58:20.653257+00:00",
+      "comment_draft": "This looks really cool! One tip with gallery glass that made mine way better,make sure you're letting each color fully cure before adding adjacent colors, otherwise they can bleed into each other. Also if you haven't already, experiment with layering transparent colors over each other to get more depth and richer shades. Your color choices on the fish scales are already great though!",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s4iqlh",
+      "subreddit": "somethingimade",
+      "title": "Body Bong - Masyns Creations",
+      "url": "https://reddit.com/r/somethingimade/comments/1s4iqlh/body_bong_masyns_creations/",
+      "found_at": "2026-03-27T13:58:24.521971+00:00",
+      "comment_draft": "This is such a cool way to bridge 3D printing with functional art! Did you run into any durability issues with the sleeve material, or did you land on a resin type that holds up well with regular use and cleaning? Would love to know if you're planning to offer these since the execution looks really clean.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s3dabv",
+      "subreddit": "indiehackers",
+      "title": "Pre-seed founders almost killed their brand in 24 hours",
+      "url": "https://reddit.com/r/indiehackers/comments/1s3dabv/preseed_founders_almost_killed_their_brand_in_24/",
+      "found_at": "2026-03-27T15:19:25.743022+00:00",
+      "comment_draft": "This is such a common trap,one bad meeting feels like rejection of your entire positioning when really it's just one person's reaction. Before pivoting everything, I'd push back and ask: did they reject the product/market fit or just your messaging? Sometimes founders mistake \"investor didn't get it\" for \"our brand is wrong\" when it's actually just that investor wasn't a fit. What happened in that meeting that made you both want to nuke everything?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s2etuu",
+      "subreddit": "indiehackers",
+      "title": "anyone up for a quick speed networking call this week? (builders/founders only)",
+      "url": "https://reddit.com/r/indiehackers/comments/1s2etuu/anyone_up_for_a_quick_speed_networking_call_this/",
+      "found_at": "2026-03-27T15:19:29.402465+00:00",
+      "comment_draft": "This is a solid idea,the isolation part is real when you're early stage. One thing that helped me in similar situations was going in with one specific thing I'm stuck on rather than just vague updates, makes the conversation way more useful for both sides. Also curious if you're thinking async or live calls, since timezone stuff can be rough with indie hackers spread everywhere.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s55yu4",
+      "subreddit": "ClaudeAI",
+      "title": "Phone Verification Problem",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s55yu4/phone_verification_problem/",
+      "found_at": "2026-03-27T15:19:32.144008+00:00",
+      "comment_draft": "Glad you got it sorted! For anyone else hitting this, try using a different phone number format,I had success removing any spaces or dashes and just using the raw digits. If you're still stuck, definitely reach out through that Google Form since the team seems to be actively tracking it there.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s55h51",
+      "subreddit": "ClaudeAI",
+      "title": "I built a terminal that persists sessions on native Windows PowerShell — no WSL, no tmux, just ConPTY. Built entirely with Claude Code.",
+      "url": "https://reddit.com/r/ClaudeAI/comments/1s55h51/i_built_a_terminal_that_persists_sessions_on/",
+      "found_at": "2026-03-27T15:19:36.159770+00:00",
+      "comment_draft": "This is actually really solid. The fact that you built a real solution to a genuine pain point without a CS background is exactly what Claude Code is enabling right now. Did you run into any weird ConPTY edge cases with escape sequences or process management, or did that layer mostly just work once you understood the API?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rvmqvv",
+      "subreddit": "indiehackers",
+      "title": "Validating before building: AI that makes marketing as easy as vibe coding",
+      "url": "https://reddit.com/r/indiehackers/comments/1rvmqvv/validating_before_building_ai_that_makes/",
+      "found_at": "2026-03-27T15:19:39.706550+00:00",
+      "comment_draft": "The real test is whether solo founders will actually *use* a generated campaign or just feel paralyzed by how generic it is. I'd validate by asking them specifically: after you get the output, do you launch it as-is or spend 3 hours customizing it? If it's the latter, you've just added friction to their workflow instead of removing it. Maybe focus your MVP on the part that actually saves them time,like social copy templates or email sequences,rather than trying to do the whole campaign at once.",
+      "score": 72,
+      "status": "pending"
     }
   ]
 }
