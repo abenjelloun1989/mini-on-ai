@@ -19,11 +19,44 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 CF_TOKEN = os.getenv("CF_ANALYTICS_TOKEN", "97d7df5dc9454ccab192e901157799b6")
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
+BREVO_LIST_ID = os.getenv("BREVO_LIST_ID", "2")
 
 def _cf_analytics() -> str:
     if not CF_TOKEN:
         return ""
     return f"<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{\"token\": \"{CF_TOKEN}\"}}'></script><!-- End Cloudflare Web Analytics -->"
+
+def _brevo_form_js() -> str:
+    if not BREVO_API_KEY:
+        return ""
+    return f"""<script>
+(function() {{
+  function wireForm(sel) {{
+    var form = document.querySelector(sel);
+    if (!form) return;
+    form.addEventListener('submit', function(e) {{
+      e.preventDefault();
+      var email = form.querySelector('input[type=email]').value;
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = '...';
+      fetch('https://api.brevo.com/v3/contacts', {{
+        method: 'POST',
+        headers: {{'api-key': '{BREVO_API_KEY}', 'Content-Type': 'application/json'}},
+        body: JSON.stringify({{email: email, listIds: [{BREVO_LIST_ID}], updateEnabled: true}})
+      }}).then(function(r) {{
+        if (r.ok || r.status === 204) {{
+          form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
+        }} else {{
+          btn.disabled = false; btn.textContent = 'Try again';
+        }}
+      }}).catch(function() {{ btn.disabled = false; btn.textContent = 'Try again'; }});
+    }});
+  }}
+  wireForm('.email-capture-form');
+  wireForm('.newsletter-form');
+}})();
+</script>"""
 
 from lib.utils import read_json, write_json, write_file, ROOT, log
 
@@ -408,6 +441,7 @@ def build_product_page(meta: dict) -> str:
       initDarkMode();
     }})();
   </script>
+{_brevo_form_js()}
 {_cf_analytics()}
 </body>
 </html>
@@ -737,6 +771,7 @@ def rebuild_index(catalog: dict) -> str:
     }})();
   </script>
 {_filter_js()}
+{_brevo_form_js()}
 {_cf_analytics()}
 </body>
 </html>
