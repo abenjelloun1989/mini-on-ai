@@ -194,14 +194,9 @@ def escape_html(s: str) -> str:
 
 
 def _thumbnail_html_detail(meta: dict) -> str:
-    thumb = meta.get("thumbnail")
     cat = meta.get("category", "prompt-packs")
-    if thumb:
-        src = f"../{escape_html(thumb)}"
-    else:
-        # Use category-specific placeholder on detail pages too
-        cat_key = cat if cat in ("prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template") else "prompt-packs"
-        src = f"../images/placeholder-{cat_key}.svg"
+    cat_key = cat if cat in ("prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template") else "prompt-packs"
+    src = f"../images/placeholder-{cat_key}.svg"
     return f'  <img src="{src}" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">\n'
 
 
