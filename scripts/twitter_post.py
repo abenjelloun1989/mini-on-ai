@@ -159,9 +159,9 @@ def draft_for_product(meta: dict) -> str:
     site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
     title    = meta.get("title", "New product")
     desc     = meta.get("description", "")
-    price    = meta.get("price_usd") or meta.get("price")
-    pid      = meta.get("id", "")
-    tags     = meta.get("tags") or []
+    price_cents = meta.get("price_usd") or meta.get("price") or 0
+    pid         = meta.get("id", "")
+    tags        = meta.get("tags") or []
 
     product_url = f"{site_url}/products/{pid}.html" if pid else site_url
 
@@ -173,7 +173,11 @@ def draft_for_product(meta: dict) -> str:
         hashtags = _CATEGORY_HASHTAGS.get(cat, ["#AI", "#productivity"])
     hashtag_str = " ".join(hashtags)
 
-    price_str = f"${price}" if price else "free"
+    # price stored in cents (500 = $5)
+    if meta.get("is_free") or price_cents == 0:
+        price_str = "free"
+    else:
+        price_str = f"${price_cents // 100}"
 
     tweet = (
         f"Just published: {title} ({price_str})\n\n"
