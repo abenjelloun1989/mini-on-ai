@@ -47,6 +47,25 @@ def send_telegram(text: str) -> bool:
     return True
 
 
+def send_gumroad_description(meta: dict) -> bool:
+    """Send the Gumroad copy-paste description for a newly published product."""
+    desc = meta.get("gumroad_description")
+    if not desc:
+        return False
+    title = meta.get("title", "New product")
+    text = (
+        f"📋 <b>Gumroad description — {title}</b>\n\n"
+        f"<code>{desc}</code>"
+    )
+    try:
+        send_telegram(text)
+        log("telegram", f"Gumroad description sent for {meta.get('id', '?')}")
+        return True
+    except Exception as e:
+        log("telegram", f"Warning: could not send Gumroad description: {e}")
+        return False
+
+
 def telegram_report(override_message: str = None) -> bool:
     if override_message:
         return send_telegram(override_message)
@@ -87,7 +106,15 @@ def telegram_report(override_message: str = None) -> bool:
             f"🕐 {latest.get('started_at', '?')}",
         ])
 
-    return send_telegram(text)
+    result = send_telegram(text)
+
+    # Send Gumroad description as a follow-up message if available
+    if latest.get("status") == "success":
+        product = latest.get("product") or {}
+        if product.get("gumroad_description"):
+            send_gumroad_description(product)
+
+    return result
 
 
 def send_approval_request(idea: dict) -> bool:

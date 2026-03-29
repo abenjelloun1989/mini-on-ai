@@ -242,16 +242,7 @@ def _rich_description_html(meta: dict) -> str:
 
 
 def _gumroad_copy_block(meta: dict) -> str:
-    """Collapsible block with the raw Gumroad description HTML for easy copy-paste."""
-    desc = meta.get("gumroad_description")
-    if not desc:
-        return ""
-    escaped = desc.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-    return f"""    <details class="gumroad-copy-block">
-      <summary>📋 Copy description for Gumroad</summary>
-      <textarea readonly onclick="this.select()">{escaped}</textarea>
-    </details>
-"""
+    return ""  # Moved to Telegram notification
 
 
 def build_product_page(meta: dict) -> str:

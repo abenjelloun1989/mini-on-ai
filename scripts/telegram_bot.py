@@ -804,6 +804,50 @@ def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
         send(f"❌ Regeneration failed: {e}", chat_id)
 
 
+def cmd_gumroad_desc(args: str) -> str:
+    """Handle /gumroad [number | product_id] — send Gumroad description for a product."""
+    catalog = read_json("data/product-catalog.json")
+    products = catalog.get("products", [])
+
+    if not args:
+        # Show numbered list for picking
+        lines = ["📋 <b>Pick a product to get its Gumroad description:</b>\n"]
+        for i, p in enumerate(products, 1):
+            lines.append(f"{i}. {p.get('title', '?')[:60]}")
+        lines.append("\nUse <code>/gumroad 3</code> to get description for product #3.")
+        return "\n".join(lines)
+
+    # Resolve by number or id
+    if args.isdigit():
+        idx = int(args) - 1
+        if idx < 0 or idx >= len(products):
+            return f"❌ Number {args} out of range."
+        meta_catalog = products[idx]
+    else:
+        meta_catalog = next((p for p in products if p.get("id") == args), None)
+        if not meta_catalog:
+            return f"❌ Product not found: <code>{args}</code>"
+
+    pid = meta_catalog.get("id", "")
+    meta_path = ROOT / f"products/{pid}/meta.json"
+    if meta_path.exists():
+        try:
+            import json as _json
+            meta = _json.loads(meta_path.read_text())
+        except Exception:
+            meta = meta_catalog
+    else:
+        meta = meta_catalog
+
+    desc = meta.get("gumroad_description")
+    if not desc:
+        return f"❌ No Gumroad description found for <b>{meta_catalog.get('title', pid)}</b>."
+
+    from telegram_notify import send_gumroad_description
+    send_gumroad_description(meta)
+    return None  # already sent
+
+
 def _tweet_priority(p: dict) -> int:
     """Score a product for tweet priority — higher = tweet sooner."""
     score = 0
@@ -1096,6 +1140,10 @@ def handle_command(text: str) -> str:
         send("🔄 Syncing prices from Gumroad…")
         threading.Thread(target=_sync, daemon=True).start()
         return None
+
+    if lower == "/gumroad" or lower.startswith("/gumroad "):
+        args = text[len("/gumroad"):].strip()
+        return cmd_gumroad_desc(args)
 
     if lower == "/tweet" or lower.startswith("/tweet "):
         args = text[len("/tweet"):].strip()
