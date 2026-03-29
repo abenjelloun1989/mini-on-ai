@@ -16,7 +16,8 @@
   "site_path": "site/products/prompts-claude-code-skill-integration-test-write-20260314.html",
   "thumbnail": "images/thumbnails/prompts-claude-code-skill-integration-test-write-20260314.png",
   "price": 1900,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
-  "gumroad_description": "Writing integration test boilerplate from scratch is the most skippable thing on every sprint.\n\nWho this is for:\n— QA engineers who write tests after the fact because setup takes too long\n— Full-stack developers who know they need API coverage but keep pushing it back\n— Leads whose integration test suite has gaps because no one had time to fill them\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Reads endpoint definitions, schemas, and example payloads to generate test suites\n— Structured output: happy path, error cases, and edge conditions included\n— Usage guide + real slash-command examples\n\nConsistent API coverage, zero boilerplate. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_product_id": "lwyhii",
+  "gumroad_url": "https://minionai.gumroad.com/l/lwyhii",
+  "gumroad_description": "Writing integration test boilerplate from scratch is the most skippable thing on every sprint.\n\nWho this is for:\n— QA engineers who write tests after the fact because setup takes too long\n— Full-stack developers who know they need API coverage but keep pushing it back\n— Leads whose integration test suite has gaps because no one had time to fill them\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Reads endpoint definitions, schemas, and example payloads to generate test suites\n— Structured output: happy path, error cases, and edge conditions included\n— Usage guide + real slash-command examples\n\nConsistent API coverage, zero boilerplate. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }

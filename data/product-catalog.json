@@ -676,10 +676,10 @@
       "status": "published",
       "created_at": "2026-03-14T06:29:43.700348+00:00",
       "site_path": "site/products/prompts-claude-code-skill-integration-test-write-20260314.html",
-      "gumroad_url": null,
+      "gumroad_url": "https://minionai.gumroad.com/l/lwyhii",
       "thumbnail": "images/thumbnails/prompts-claude-code-skill-integration-test-write-20260314.png",
       "price": 1900,
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "prompts-claude-code-skill-mock-server-scaffolder-20260313",
