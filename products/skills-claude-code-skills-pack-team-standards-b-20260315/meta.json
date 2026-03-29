@@ -16,7 +16,8 @@
   "site_path": "site/products/skills-claude-code-skills-pack-team-standards-b-20260315.html",
   "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-team-standards-b-20260315.png",
   "price": 1900,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
-  "gumroad_description": "New hires shouldn't have to guess your team's unwritten rules.\n\nWho this is for:\n— Engineering leads onboarding more than one new hire per quarter\n— DevEx teams building internal tooling and contributor documentation\n— Staff engineers whose \"how we do things here\" lives in their head, not in a file\n\nWhat's inside:\n— Skill 1: Convention inference from existing code (CONTRIBUTING.md drafted automatically)\n— Skill 2: Naming pattern and folder structure documentation\n— Skill 3: Linting and tooling setup guide generator\n— Skill 4: Architectural decision log template (captures the \"why\", not just the \"what\")\n— Skill 5: Onboarding checklist builder tailored to your stack\n— Installation guide + quick-reference trigger table\n\nYour standards, documented. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_product_id": "wwalxm",
+  "gumroad_url": "https://minionai.gumroad.com/l/wwalxm",
+  "gumroad_description": "New hires shouldn't have to guess your team's unwritten rules.\n\nWho this is for:\n— Engineering leads onboarding more than one new hire per quarter\n— DevEx teams building internal tooling and contributor documentation\n— Staff engineers whose \"how we do things here\" lives in their head, not in a file\n\nWhat's inside:\n— Skill 1: Convention inference from existing code (CONTRIBUTING.md drafted automatically)\n— Skill 2: Naming pattern and folder structure documentation\n— Skill 3: Linting and tooling setup guide generator\n— Skill 4: Architectural decision log template (captures the \"why\", not just the \"what\")\n— Skill 5: Onboarding checklist builder tailored to your stack\n— Installation guide + quick-reference trigger table\n\nYour standards, documented. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }
