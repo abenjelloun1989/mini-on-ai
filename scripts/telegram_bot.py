@@ -314,6 +314,19 @@ def cmd_help(group: str = "") -> str:
             "  <code>/draft r/resumes | Help with ATS | I'm applying for...</code>"
         )
 
+    if group == "twitter":
+        return (
+            "🐦 <b>Twitter — full detail</b>\n\n"
+            "<b>/tweet</b> — Draft a tweet for the latest un-tweeted product\n\n"
+            "<b>/tweet list</b> — Show all products not yet tweeted (numbered)\n\n"
+            "<b>/tweet 3</b> — Draft tweet for product #3 from the list\n\n"
+            "Each draft is sent with two buttons:\n"
+            "  ✅ <b>Post</b> — post the draft as-is to your Twitter account\n"
+            "  🔄 <b>Regenerate</b> — Claude writes a fresh angle (different hook)\n\n"
+            "Tweets always link to mini-on-ai.com, never Gumroad.\n"
+            "Hashtags are community-targeted by product category."
+        )
+
     if group == "products":
         return (
             "📦 <b>Products — full detail</b>\n\n"
@@ -346,8 +359,12 @@ def cmd_help(group: str = "") -> str:
         "  /setfree {id} — Mark product as free\n"
         "  /syncprices — Pull latest prices from Gumroad + rebuild vitrine\n"
         "  /list — All subreddits and products at a glance\n\n"
+        "🐦 <b>Twitter</b>\n"
+        "  /tweet — Draft tweet for latest un-tweeted product\n"
+        "  /tweet list — Products not yet tweeted (numbered)\n"
+        "  /tweet 3 — Draft tweet for product #3 from the list\n\n"
         "Type /help {group} for more detail:\n"
-        "<code>factory · posts · karma · products</code>"
+        "<code>factory · posts · karma · products · twitter</code>"
     )
 
 
