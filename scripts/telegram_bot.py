@@ -804,12 +804,36 @@ def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
         send(f"❌ Regeneration failed: {e}", chat_id)
 
 
+def _tweet_priority(p: dict) -> int:
+    """Score a product for tweet priority — higher = tweet sooner."""
+    score = 0
+    # Purchasable (has Gumroad link)
+    if p.get("gumroad_url"):
+        score += 30
+    # Price value
+    price = p.get("price") or 0
+    if price >= 1900:
+        score += 20
+    elif price >= 500:
+        score += 10
+    elif p.get("is_free"):
+        score += 5
+    # Category — Twitter audience fit
+    cat = p.get("category", "")
+    score += {"claude-code-skill": 15, "n8n-template": 10,
+              "prompt-packs": 5, "mini-guide": 5, "swipe-file": 3, "checklist": 3}.get(cat, 0)
+    return score
+
+
 def cmd_tweet(args: str) -> str:
     """Handle /tweet [list | number]"""
     catalog = read_json("data/product-catalog.json")
     products = catalog.get("products", [])
     tweeted = _tweeted_ids()
-    untweeted = [p for p in products if p.get("id") not in tweeted]
+    untweeted = sorted(
+        [p for p in products if p.get("id") not in tweeted],
+        key=_tweet_priority, reverse=True
+    )
 
     if args == "list":
         if not untweeted:
@@ -817,8 +841,11 @@ def cmd_tweet(args: str) -> str:
         lines = [f"📋 <b>Products not yet tweeted ({len(untweeted)}):</b>\n"]
         for i, p in enumerate(untweeted, 1):
             title = p.get("title", "?")
-            lines.append(f"{i}. {title}")
-        lines.append(f"\nUse <code>/tweet 3</code> to draft tweet for product #3.")
+            price = p.get("price") or 0
+            price_str = "free" if p.get("is_free") or price == 0 else f"${price // 100}"
+            gum = "🛒" if p.get("gumroad_url") else "⚠️"
+            lines.append(f"{i}. {gum} {title} ({price_str})")
+        lines.append(f"\nUse <code>/tweet 1</code> to draft tweet for the top product.")
         return "\n".join(lines)
 
     # Resolve product by number or full id
@@ -833,11 +860,9 @@ def cmd_tweet(args: str) -> str:
             if not meta:
                 return f"❌ Product not found: <code>{args}</code>\nUse /tweet list to see options."
     else:
-        # Pick latest un-tweeted
-        untweeted = [p for p in products if p.get("id") not in tweeted]
         if not untweeted:
-            return "✅ All products have been tweeted! Use /tweet {product_id} to re-tweet one."
-        meta = untweeted[-1]
+            return "✅ All products have been tweeted!"
+        meta = untweeted[0]  # highest priority first
 
     from twitter_post import draft_for_product
     from telegram_notify import send_tweet_draft
