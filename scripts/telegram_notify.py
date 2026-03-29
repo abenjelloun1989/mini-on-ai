@@ -242,10 +242,10 @@ def send_tweet_draft(product_id: str, tweet_text: str) -> bool:
     char_count = len(tweet_text)
     text = (
         f"🐦 <b>Tweet draft</b> ({char_count}/280 chars)\n\n"
-        f"<code>{tweet_text}</code>"
+        f"<code>{tweet_text}</code>\n\n"
+        f"<i>Tap the text above to copy, then paste into X.</i>"
     )
     buttons = [
-        {"text": "✅ Post",        "callback_data": f"tweet:post:{product_id}"},
         {"text": "🔄 Regenerate",  "callback_data": f"tweet:regen:{product_id}"},
     ]
     try:

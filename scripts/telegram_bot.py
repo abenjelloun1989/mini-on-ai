@@ -320,8 +320,7 @@ def cmd_help(group: str = "") -> str:
             "<b>/tweet</b> — Draft a tweet for the latest un-tweeted product\n\n"
             "<b>/tweet list</b> — Show all products not yet tweeted (numbered)\n\n"
             "<b>/tweet 3</b> — Draft tweet for product #3 from the list\n\n"
-            "Each draft is sent with two buttons:\n"
-            "  ✅ <b>Post</b> — post the draft as-is to your Twitter account\n"
+            "Draft is sent as tap-to-copy text — paste it into X manually.\n"
             "  🔄 <b>Regenerate</b> — Claude writes a fresh angle (different hook)\n\n"
             "Tweets always link to mini-on-ai.com, never Gumroad.\n"
             "Hashtags are community-targeted by product category."
@@ -747,29 +746,6 @@ def _log_tweet(product_id: str, tweet_id: str, tweet_text: str) -> None:
     })
     TWEET_LOG.parent.mkdir(parents=True, exist_ok=True)
     TWEET_LOG.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n")
-
-
-def _handle_tweet_post(product_id: str, cq_id: str, chat_id: str) -> None:
-    try:
-        api("answerCallbackQuery", {"callback_query_id": cq_id})
-    except Exception:
-        pass
-
-    state = _load_tweet_state()
-    tweet_text = state.get("tweet_text", "")
-    if not tweet_text:
-        send("❌ No pending tweet draft found. Send /tweet again.", chat_id)
-        return
-
-    try:
-        from twitter_post import post_tweet
-        resp = post_tweet(tweet_text)
-        tid = resp.get("data", {}).get("id", "")
-        _log_tweet(product_id, tid, tweet_text)
-        url = f"https://twitter.com/i/web/status/{tid}" if tid else "(no ID)"
-        send(f"✅ <b>Tweeted!</b>\n\n{url}", chat_id)
-    except Exception as e:
-        send(f"❌ Tweet failed: {e}", chat_id)
 
 
 def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
@@ -1290,10 +1266,6 @@ def main():
                         existing = constraints.get(key, "")
                         hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
                         send(f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}", cq_chat_id)
-                elif cq_data.startswith("tweet:post:"):
-                    product_id = cq_data.split(":", 2)[2]
-                    log("bot", f"Tweet post requested: {product_id}")
-                    _handle_tweet_post(product_id, cq_id, cq_chat_id)
                 elif cq_data.startswith("tweet:regen:"):
                     product_id = cq_data.split(":", 2)[2]
                     log("bot", f"Tweet regen requested: {product_id}")
