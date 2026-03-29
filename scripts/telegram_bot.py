@@ -127,31 +127,68 @@ def set_daemon_paused(paused: bool) -> str:
         return f"❌ Error updating daemon state: {e}"
 
 
-def cmd_missing() -> str:
-    """List all products without a Gumroad URL, numbered for easy /seturl."""
+def _missing_products() -> list:
     catalog = read_json("data/product-catalog.json")
     products = catalog.get("products", [])
-    missing = [p for p in products if not p.get("gumroad_url") and not p.get("is_free")]
-    free_no_url = [p for p in products if not p.get("gumroad_url") and p.get("is_free")]
+    return [p for p in products if not p.get("gumroad_url") and not p.get("is_free")]
 
-    if not missing and not free_no_url:
-        return "✅ All products have a Gumroad URL!"
 
-    lines = [f"⚠️ <b>{len(missing)} paid products missing Gumroad URL:</b>\n"]
-    for i, p in enumerate(missing, 1):
-        pid = p.get("id", "")
-        title = p.get("title", "?")[:55]
-        price = p.get("price") or 0
-        price_str = f"${price // 100}" if price else "?"
-        lines.append(f"{i}. ({price_str}) {title}\n   <code>/seturl {pid} URL</code>")
+def cmd_missing(args: str = "") -> str:
+    """
+    /missing list  — numbered list of products without Gumroad URL
+    /missing 3     — full Gumroad listing instructions for product #3
+    """
+    missing = _missing_products()
 
-    if free_no_url:
-        lines.append(f"\n🆓 <b>{len(free_no_url)} free products missing URL:</b>")
-        for p in free_no_url:
-            lines.append(f"   • {p.get('title','?')[:55]}")
+    if not missing:
+        return "✅ All paid products have a Gumroad URL!"
 
-    lines.append("\nPaste each Gumroad product URL after <code>/seturl {id}</code>.")
-    return "\n".join(lines)
+    # /missing list (or bare /missing)
+    if not args or args == "list":
+        lines = [f"⚠️ <b>{len(missing)} paid products need a Gumroad listing:</b>\n"]
+        for i, p in enumerate(missing, 1):
+            title = p.get("title", "?")[:55]
+            price = p.get("price") or 0
+            price_str = f"${price // 100}" if price else "?"
+            lines.append(f"{i}. ({price_str}) {title}")
+        lines.append("\nUse <code>/missing 3</code> to get full Gumroad instructions for product #3.")
+        return "\n".join(lines)
+
+    # /missing {number}
+    if not args.isdigit():
+        return "Usage: <code>/missing list</code> or <code>/missing 3</code>"
+
+    idx = int(args) - 1
+    if idx < 0 or idx >= len(missing):
+        return f"❌ Number {args} out of range. Use /missing list to see options."
+
+    p = missing[idx]
+    pid = p.get("id", "")
+
+    # Load full meta from products/{id}/meta.json for gumroad_description + package_path
+    import json as _json
+    meta_path = ROOT / f"products/{pid}/meta.json"
+    meta = _json.loads(meta_path.read_text()) if meta_path.exists() else p
+
+    title       = meta.get("title", "?")
+    price_cents = meta.get("price") or 0
+    price_str   = f"${price_cents // 100}" if price_cents else "free"
+    package     = meta.get("package_path", f"products/{pid}/package.zip")
+    site_url    = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+    product_url = f"{site_url}/products/{pid}.html"
+    gumroad_desc = meta.get("gumroad_description", "")
+
+    desc_block = f"\n\n<code>{gumroad_desc}</code>" if gumroad_desc else " <i>(not available)</i>"
+
+    return (
+        f"📦 <b>Gumroad listing instructions</b>\n\n"
+        f"<b>Title:</b>\n<code>{title}</code>\n\n"
+        f"<b>Price:</b> {price_str}\n\n"
+        f"<b>Summary URL</b> (custom permalink field):\n<code>{product_url}</code>\n\n"
+        f"<b>File to attach:</b>\n<code>{package}</code>\n\n"
+        f"<b>Description (tap to copy):</b>{desc_block}\n\n"
+        f"Once published, send:\n<code>/seturl {pid} GUMROAD_URL</code>"
+    )
 
 
 def cmd_seturl(args: str) -> str:
@@ -356,7 +393,8 @@ def cmd_help(group: str = "") -> str:
     if group == "products":
         return (
             "📦 <b>Products — full detail</b>\n\n"
-            "<b>/missing</b> — List all paid products without a Gumroad URL\n\n"
+            "<b>/missing list</b> — Paid products without a Gumroad URL\n"
+            "<b>/missing 3</b> — Full Gumroad instructions for product #3 (title, price, description, file)\n\n"
             "<b>/seturl {id} {url}</b>\n"
             "  Link a product to its Gumroad listing (fetches real price automatically)\n"
             "  <code>/seturl prompts-my-pack-20260312 https://minionai.gumroad.com/l/abc</code>\n\n"
@@ -1142,8 +1180,8 @@ def handle_command(text: str) -> str:
             lines.append("")
         return "\n".join(lines).strip()
 
-    if lower == "/missing":
-        return cmd_missing()
+    if lower == "/missing" or lower.startswith("/missing "):
+        return cmd_missing(text[len("/missing"):].strip())
 
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()
