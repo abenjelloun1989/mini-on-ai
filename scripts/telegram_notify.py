@@ -246,6 +246,7 @@ def send_tweet_draft(product_id: str, tweet_text: str) -> bool:
         f"<i>Tap the text above to copy, then paste into X.</i>"
     )
     buttons = [
+        {"text": "✅ Done",        "callback_data": f"tweet:done:{product_id}"},
         {"text": "🔄 Regenerate",  "callback_data": f"tweet:regen:{product_id}"},
     ]
     try:
