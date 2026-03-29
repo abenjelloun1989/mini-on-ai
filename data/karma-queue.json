@@ -1399,6 +1399,56 @@
       "comment_draft": "The real test is whether solo founders will actually *use* a generated campaign or just feel paralyzed by how generic it is. I'd validate by asking them specifically: after you get the output, do you launch it as-is or spend 3 hours customizing it? If it's the latter, you've just added friction to their workflow instead of removing it. Maybe focus your MVP on the part that actually saves them time,like social copy templates or email sequences,rather than trying to do the whole campaign at once.",
       "score": 72,
       "status": "pending"
+    },
+    {
+      "post_id": "1s650e8",
+      "subreddit": "SideProject",
+      "title": "I built a site to stop losing music recommendations in group chats",
+      "url": "https://reddit.com/r/SideProject/comments/1s650e8/i_built_a_site_to_stop_losing_music/",
+      "found_at": "2026-03-28T17:19:59.781570+00:00",
+      "comment_draft": "This is a solid little tool. One thing that might help adoption with your friend group is adding a Spotify/Apple Music share button so people can add recommendations directly from their phone without having to copy-paste links. Right now the friction of manually entering recs might be why the Google Sheet won out initially.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s64n63",
+      "subreddit": "SideProject",
+      "title": "I paid USD 3,500 for an MVP nobody wanted. Here's what I did next.",
+      "url": "https://reddit.com/r/SideProject/comments/1s64n63/i_paid_usd_3500_for_an_mvp_nobody_wanted_heres/",
+      "found_at": "2026-03-28T17:20:03.708599+00:00",
+      "comment_draft": "The $3,500 spend itself isn't the lesson here,it's that you validated the problem before scaling the solution. A lot of people either skip the MVP entirely or get so attached to their first build they can't pivot. Did you end up talking to potential users *before* handing money to the dev, or was that the gap you discovered after?",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1rzlp3d",
+      "subreddit": "indiehackers",
+      "title": "18, no funding, we shipped. Contral is live.",
+      "url": "https://reddit.com/r/indiehackers/comments/1rzlp3d/18_no_funding_we_shipped_contral_is_live/",
+      "found_at": "2026-03-28T17:20:07.002537+00:00",
+      "comment_draft": "This is genuinely impressive for two 18-year-olds with zero funding. One thing I'd suggest early: start tracking which features actually move the needle for learning outcomes versus which ones feel cool but don't stick. A lot of AI coding tools pile on features that users love at first but abandon. Maybe pick 3-5 core user behaviors you want to measure and check them monthly.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s65fmt",
+      "subreddit": "SideProject",
+      "title": "I built a window manager without knowing competitors existed",
+      "url": "https://reddit.com/r/SideProject/comments/1s65fmt/i_built_a_window_manager_without_knowing/",
+      "found_at": "2026-03-28T17:20:11.879030+00:00",
+      "comment_draft": "This is a classic example of building what you need rather than researching first,honestly it often leads to better products because you deeply understand the problem. Since you've already put in the work, have you thought about what makes your version different enough to justify existing alongside Rectangle? Even if it's just smoother animations or better workspace persistence, leaning into that angle could be your differentiator.",
+      "score": 72,
+      "status": "pending"
+    },
+    {
+      "post_id": "1s64q0i",
+      "subreddit": "SideProject",
+      "title": "Afterward - See Both Futures Before You Choose",
+      "url": "https://reddit.com/r/SideProject/comments/1s64q0i/afterward_see_both_futures_before_you_choose/",
+      "found_at": "2026-03-28T17:20:14.779129+00:00",
+      "comment_draft": "This is a really clever approach to decision paralysis. Have you thought about adding a way for people to revisit their choice a few weeks later and see how it actually played out versus what they predicted? I think that feedback loop would be the most valuable part,understanding where your predictions went wrong teaches you way more than the initial decision ever could.",
+      "score": 72,
+      "status": "pending"
     }
   ]
 }
