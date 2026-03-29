@@ -245,9 +245,11 @@ def send_tweet_draft(product_id: str, tweet_text: str) -> bool:
         f"<code>{tweet_text}</code>\n\n"
         f"<i>Tap the text above to copy, then paste into X.</i>"
     )
+    # Telegram callback_data max = 64 bytes; truncate product_id to fit
+    pid_short = product_id[:50]
     buttons = [
-        {"text": "✅ Done",        "callback_data": f"tweet:done:{product_id}"},
-        {"text": "🔄 Regenerate",  "callback_data": f"tweet:regen:{product_id}"},
+        {"text": "✅ Done",        "callback_data": f"tweet:done:{pid_short}"},
+        {"text": "🔄 Regenerate",  "callback_data": f"tweet:regen:{pid_short}"},
     ]
     try:
         _send_with_buttons(text, buttons)

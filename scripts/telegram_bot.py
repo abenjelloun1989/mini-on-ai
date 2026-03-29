@@ -1267,7 +1267,9 @@ def main():
                         hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
                         send(f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}", cq_chat_id)
                 elif cq_data.startswith("tweet:done:"):
-                    product_id = cq_data.split(":", 2)[2]
+                    pid_short = cq_data.split(":", 2)[2]
+                    catalog = read_json("data/product-catalog.json")
+                    product_id = next((p["id"] for p in catalog.get("products", []) if p["id"].startswith(pid_short)), pid_short)
                     log("bot", f"Tweet done: {product_id}")
                     try:
                         api("answerCallbackQuery", {"callback_query_id": cq_id})
@@ -1276,7 +1278,9 @@ def main():
                     _log_tweet(product_id, "", "")
                     send("✅ Marked as tweeted. Send /tweet for the next product.", cq_chat_id)
                 elif cq_data.startswith("tweet:regen:"):
-                    product_id = cq_data.split(":", 2)[2]
+                    pid_short = cq_data.split(":", 2)[2]
+                    catalog = read_json("data/product-catalog.json")
+                    product_id = next((p["id"] for p in catalog.get("products", []) if p["id"].startswith(pid_short)), pid_short)
                     log("bot", f"Tweet regen requested: {product_id}")
                     _handle_tweet_regen(product_id, cq_id, cq_chat_id)
                 else:
