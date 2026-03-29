@@ -127,6 +127,33 @@ def set_daemon_paused(paused: bool) -> str:
         return f"❌ Error updating daemon state: {e}"
 
 
+def cmd_missing() -> str:
+    """List all products without a Gumroad URL, numbered for easy /seturl."""
+    catalog = read_json("data/product-catalog.json")
+    products = catalog.get("products", [])
+    missing = [p for p in products if not p.get("gumroad_url") and not p.get("is_free")]
+    free_no_url = [p for p in products if not p.get("gumroad_url") and p.get("is_free")]
+
+    if not missing and not free_no_url:
+        return "✅ All products have a Gumroad URL!"
+
+    lines = [f"⚠️ <b>{len(missing)} paid products missing Gumroad URL:</b>\n"]
+    for i, p in enumerate(missing, 1):
+        pid = p.get("id", "")
+        title = p.get("title", "?")[:55]
+        price = p.get("price") or 0
+        price_str = f"${price // 100}" if price else "?"
+        lines.append(f"{i}. ({price_str}) {title}\n   <code>/seturl {pid} URL</code>")
+
+    if free_no_url:
+        lines.append(f"\n🆓 <b>{len(free_no_url)} free products missing URL:</b>")
+        for p in free_no_url:
+            lines.append(f"   • {p.get('title','?')[:55]}")
+
+    lines.append("\nPaste each Gumroad product URL after <code>/seturl {id}</code>.")
+    return "\n".join(lines)
+
+
 def cmd_seturl(args: str) -> str:
     """Handle /seturl {product_id} {gumroad_url}"""
     import subprocess
@@ -329,6 +356,7 @@ def cmd_help(group: str = "") -> str:
     if group == "products":
         return (
             "📦 <b>Products — full detail</b>\n\n"
+            "<b>/missing</b> — List all paid products without a Gumroad URL\n\n"
             "<b>/seturl {id} {url}</b>\n"
             "  Link a product to its Gumroad listing (fetches real price automatically)\n"
             "  <code>/seturl prompts-my-pack-20260312 https://minionai.gumroad.com/l/abc</code>\n\n"
@@ -357,6 +385,7 @@ def cmd_help(group: str = "") -> str:
         "  /seturl {id} {url} — Link product to Gumroad\n"
         "  /setfree {id} — Mark product as free\n"
         "  /syncprices — Pull latest prices from Gumroad + rebuild vitrine\n"
+        "  /missing — Products without a Gumroad URL\n"
         "  /list — All subreddits and products at a glance\n\n"
         "🐦 <b>Twitter</b>\n"
         "  /tweet — Draft tweet for latest un-tweeted product\n"
@@ -1112,6 +1141,9 @@ def handle_command(text: str) -> str:
             lines.append(f"  💬 Karma: {karma_cmds}")
             lines.append("")
         return "\n".join(lines).strip()
+
+    if lower == "/missing":
+        return cmd_missing()
 
     if lower.startswith("/seturl"):
         args = text[len("/seturl"):].strip()
