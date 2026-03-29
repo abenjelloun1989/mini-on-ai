@@ -18,6 +18,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
+CF_TOKEN = os.getenv("CF_ANALYTICS_TOKEN", "97d7df5dc9454ccab192e901157799b6")
+
+def _cf_analytics() -> str:
+    if not CF_TOKEN:
+        return ""
+    return f"<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{\"token\": \"{CF_TOKEN}\"}}'></script><!-- End Cloudflare Web Analytics -->"
+
 from lib.utils import read_json, write_json, write_file, ROOT, log
 
 CONTACT_EMAIL = "hello@mini-on-ai.com"
@@ -401,6 +408,7 @@ def build_product_page(meta: dict) -> str:
       initDarkMode();
     }})();
   </script>
+{_cf_analytics()}
 </body>
 </html>
 """
@@ -729,6 +737,7 @@ def rebuild_index(catalog: dict) -> str:
     }})();
   </script>
 {_filter_js()}
+{_cf_analytics()}
 </body>
 </html>
 """
