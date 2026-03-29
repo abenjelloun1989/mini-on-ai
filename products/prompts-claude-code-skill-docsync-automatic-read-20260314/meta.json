@@ -16,7 +16,8 @@
   "site_path": "site/products/prompts-claude-code-skill-docsync-automatic-read-20260314.html",
   "thumbnail": "images/thumbnails/prompts-claude-code-skill-docsync-automatic-read-20260314.png",
   "price": 1900,
-  "gumroad_product_id": null,
-  "gumroad_url": null,
-  "gumroad_description": "Shipping undocumented code is a gift to no one, especially your future self.\n\nWho this is for:\n— Backend developers who finish features and skip docs because there's never time\n— Open source maintainers whose README hasn't matched the code in six months\n— Engineering leads inheriting codebases with no documentation whatsoever\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Auto-generates structured README and API reference from functions, routes, and comments\n— Works with any codebase; no annotations required\n— Usage guide + real slash-command examples\n\nOne command. Complete documentation. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_product_id": "qxufl",
+  "gumroad_url": "https://minionai.gumroad.com/l/qxufl",
+  "gumroad_description": "Shipping undocumented code is a gift to no one, especially your future self.\n\nWho this is for:\n— Backend developers who finish features and skip docs because there's never time\n— Open source maintainers whose README hasn't matched the code in six months\n— Engineering leads inheriting codebases with no documentation whatsoever\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Auto-generates structured README and API reference from functions, routes, and comments\n— Works with any codebase; no annotations required\n— Usage guide + real slash-command examples\n\nOne command. Complete documentation. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com",
+  "is_free": false
 }
