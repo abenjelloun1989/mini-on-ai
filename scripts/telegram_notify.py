@@ -237,6 +237,26 @@ def send_reddit_built(post: dict, meta: dict, product_url: str, reply_text: str)
         return False
 
 
+def send_tweet_draft(product_id: str, tweet_text: str) -> bool:
+    """Send a tweet draft to Telegram with Post / Regenerate buttons."""
+    char_count = len(tweet_text)
+    text = (
+        f"🐦 <b>Tweet draft</b> ({char_count}/280 chars)\n\n"
+        f"<code>{tweet_text}</code>"
+    )
+    buttons = [
+        {"text": "✅ Post",        "callback_data": f"tweet:post:{product_id}"},
+        {"text": "🔄 Regenerate",  "callback_data": f"tweet:regen:{product_id}"},
+    ]
+    try:
+        _send_with_buttons(text, buttons)
+        log("twitter", f"Tweet draft sent for product {product_id}")
+        return True
+    except Exception as e:
+        log("twitter", f"Warning: could not send tweet draft: {e}")
+        return False
+
+
 def send_karma_draft(post: dict, comment: str, score: int, product_hint=None) -> bool:
     """
     Send a karma scout result to Telegram.

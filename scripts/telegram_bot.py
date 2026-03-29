@@ -14,6 +14,8 @@ Commands:
   /resume   — resume the factory daemon
   /status   — last run, product count, API costs
   /products — all published products with links
+  /tweet    — draft a tweet for the latest un-tweeted product
+  /tweet list — show all products not yet tweeted
 """
 
 import json
@@ -678,6 +680,175 @@ def _launch_holiday_research(state: dict) -> str:
     )
 
 
+# ── Twitter helpers ───────────────────────────────────────────────────────────
+
+TWEET_LOG   = ROOT / "data/tweet-log.json"
+TWEET_STATE = ROOT / "data/tweet-state.json"
+
+
+def _tweeted_ids() -> set:
+    """Return set of product IDs already tweeted."""
+    if not TWEET_LOG.exists():
+        return set()
+    try:
+        entries = json.loads(TWEET_LOG.read_text())
+        return {e["product_id"] for e in entries if "product_id" in e}
+    except Exception:
+        return set()
+
+
+def _save_tweet_state(product_id: str, tweet_text: str) -> None:
+    TWEET_STATE.parent.mkdir(parents=True, exist_ok=True)
+    TWEET_STATE.write_text(json.dumps({
+        "product_id": tweet_text and product_id,
+        "tweet_text": tweet_text,
+        "generated_at": timestamp(),
+    }, ensure_ascii=False) + "\n")
+
+
+def _load_tweet_state() -> dict:
+    if not TWEET_STATE.exists():
+        return {}
+    try:
+        return json.loads(TWEET_STATE.read_text())
+    except Exception:
+        return {}
+
+
+def _log_tweet(product_id: str, tweet_id: str, tweet_text: str) -> None:
+    entries = []
+    if TWEET_LOG.exists():
+        try:
+            entries = json.loads(TWEET_LOG.read_text())
+        except Exception:
+            entries = []
+    entries.append({
+        "product_id": product_id,
+        "tweet_id":   tweet_id,
+        "tweet_text": tweet_text,
+        "tweeted_at": timestamp(),
+    })
+    TWEET_LOG.parent.mkdir(parents=True, exist_ok=True)
+    TWEET_LOG.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n")
+
+
+def _handle_tweet_post(product_id: str, cq_id: str, chat_id: str) -> None:
+    try:
+        api("answerCallbackQuery", {"callback_query_id": cq_id})
+    except Exception:
+        pass
+
+    state = _load_tweet_state()
+    tweet_text = state.get("tweet_text", "")
+    if not tweet_text:
+        send("❌ No pending tweet draft found. Send /tweet again.", chat_id)
+        return
+
+    try:
+        from twitter_post import post_tweet
+        resp = post_tweet(tweet_text)
+        tid = resp.get("data", {}).get("id", "")
+        _log_tweet(product_id, tid, tweet_text)
+        url = f"https://twitter.com/i/web/status/{tid}" if tid else "(no ID)"
+        send(f"✅ <b>Tweeted!</b>\n\n{url}", chat_id)
+    except Exception as e:
+        send(f"❌ Tweet failed: {e}", chat_id)
+
+
+def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
+    try:
+        api("answerCallbackQuery", {"callback_query_id": cq_id})
+    except Exception:
+        pass
+
+    catalog = read_json("data/product-catalog.json")
+    products = catalog.get("products", [])
+    meta = next((p for p in products if p.get("id") == product_id), None)
+    if not meta:
+        send(f"❌ Product not found: {product_id}", chat_id)
+        return
+
+    send("🔄 Regenerating tweet…", chat_id)
+    try:
+        import anthropic as _anthropic
+        client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+        pid = meta.get("id", "")
+        product_url = f"{site_url}/products/{pid}.html" if pid else site_url
+        cat = meta.get("category", "")
+        cat_hashtags = {
+            "claude-code-skill": "#ClaudeCode #AI #developer",
+            "n8n-template":      "#n8n #automation #nocode",
+            "prompt-packs":      "#AI #productivity #prompts",
+            "mini-guide":        "#AI #productivity",
+            "checklist":         "#productivity #tools",
+            "swipe-file":        "#copywriting #marketing",
+        }.get(cat, "#AI #productivity")
+        prompt = (
+            f"Write a single tweet (max 270 chars) to promote this digital product.\n"
+            f"Title: {meta.get('title', '')}\n"
+            f"Description: {meta.get('description', '')}\n"
+            f"URL: {product_url}\n\n"
+            f"Rules:\n"
+            f"- Use a fresh hook: a question, a benefit, or a concrete use-case.\n"
+            f"- Do NOT start with 'Just published'.\n"
+            f"- Always end with the URL above (vitrine site, not Gumroad).\n"
+            f"- Add 2-3 hashtags from this set: {cat_hashtags}\n"
+            f"- Return only the tweet text, no quotes, no explanation."
+        )
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        new_text = msg.content[0].text.strip().strip('"').strip("'")
+        if len(new_text) > 280:
+            new_text = new_text[:277] + "…"
+        _save_tweet_state(product_id, new_text)
+        from telegram_notify import send_tweet_draft
+        send_tweet_draft(product_id, new_text)
+    except Exception as e:
+        send(f"❌ Regeneration failed: {e}", chat_id)
+
+
+def cmd_tweet(args: str) -> str:
+    """Handle /tweet [list | product_id]"""
+    catalog = read_json("data/product-catalog.json")
+    products = catalog.get("products", [])
+    tweeted = _tweeted_ids()
+
+    if args == "list":
+        untweeted = [p for p in products if p.get("id") not in tweeted]
+        if not untweeted:
+            return "✅ All products have been tweeted!"
+        lines = [f"📋 <b>Products not yet tweeted ({len(untweeted)}):</b>\n"]
+        for i, p in enumerate(untweeted, 1):
+            pid   = p.get("id", "")
+            title = p.get("title", "?")
+            lines.append(f"{i}. <code>{pid}</code>\n   {title}")
+        lines.append(f"\nUse <code>/tweet {'{product_id}'}</code> to draft a tweet for a specific product.")
+        return "\n".join(lines)
+
+    # Resolve product
+    if args:
+        meta = next((p for p in products if p.get("id") == args), None)
+        if not meta:
+            return f"❌ Product not found: <code>{args}</code>\nUse /tweet list to see available IDs."
+    else:
+        # Pick latest un-tweeted
+        untweeted = [p for p in products if p.get("id") not in tweeted]
+        if not untweeted:
+            return "✅ All products have been tweeted! Use /tweet {product_id} to re-tweet one."
+        meta = untweeted[-1]
+
+    from twitter_post import draft_for_product
+    from telegram_notify import send_tweet_draft
+    tweet_text = draft_for_product(meta)
+    _save_tweet_state(meta["id"], tweet_text)
+    send_tweet_draft(meta["id"], tweet_text)
+    return None  # response already sent via send_tweet_draft
+
+
 def handle_command(text: str) -> str:
     text = text.strip()
     lower = text.lower()
@@ -903,6 +1074,10 @@ def handle_command(text: str) -> str:
         threading.Thread(target=_sync, daemon=True).start()
         return None
 
+    if lower == "/tweet" or lower.startswith("/tweet "):
+        args = text[len("/tweet"):].strip()
+        return cmd_tweet(args)
+
     if lower == "/categories":
         return cmd_categories()
 
@@ -1093,6 +1268,14 @@ def main():
                         existing = constraints.get(key, "")
                         hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
                         send(f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}", cq_chat_id)
+                elif cq_data.startswith("tweet:post:"):
+                    product_id = cq_data.split(":", 2)[2]
+                    log("bot", f"Tweet post requested: {product_id}")
+                    _handle_tweet_post(product_id, cq_id, cq_chat_id)
+                elif cq_data.startswith("tweet:regen:"):
+                    product_id = cq_data.split(":", 2)[2]
+                    log("bot", f"Tweet regen requested: {product_id}")
+                    _handle_tweet_regen(product_id, cq_id, cq_chat_id)
                 else:
                     log("bot", f"Callback ignored: unknown data={cq_data}")
                 continue

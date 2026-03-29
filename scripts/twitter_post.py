@@ -114,7 +114,83 @@ def post_tweet(text: str) -> dict:
     return response
 
 
-# ── Auto-draft from latest product ───────────────────────────────────────────
+# ── Draft helpers ─────────────────────────────────────────────────────────────
+
+_TAG_MAP = {
+    # Claude / AI dev community
+    "claude":           "#ClaudeCode",
+    "claude-code":      "#ClaudeCode",
+    "ai":               "#AI",
+    "llm":              "#LLM",
+    "chatgpt":          "#ChatGPT",
+    # Automation community
+    "n8n":              "#n8n",
+    "automation":       "#automation",
+    "nocode":           "#nocode",
+    "zapier":           "#zapier",
+    "make":             "#make",
+    # Developer community
+    "coding":           "#coding",
+    "developer":        "#developer",
+    "engineering":      "#softwareengineering",
+    "documentation":    "#devdocs",
+    # Productivity / business
+    "productivity":     "#productivity",
+    "freelance":        "#freelance",
+    "marketing":        "#marketing",
+    "writing":          "#writing",
+    "solopreneur":      "#solopreneur",
+    "entrepreneur":     "#entrepreneur",
+}
+
+# Fallback hashtags per product category
+_CATEGORY_HASHTAGS = {
+    "claude-code-skill": ["#ClaudeCode", "#AI", "#developer"],
+    "n8n-template":      ["#n8n", "#automation", "#nocode"],
+    "prompt-packs":      ["#AI", "#productivity", "#prompts"],
+    "mini-guide":        ["#AI", "#productivity"],
+    "checklist":         ["#productivity", "#tools"],
+    "swipe-file":        ["#copywriting", "#marketing"],
+}
+
+
+def draft_for_product(meta: dict) -> str:
+    """Generate a deterministic tweet draft for a given product meta dict."""
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+    title    = meta.get("title", "New product")
+    desc     = meta.get("description", "")
+    price    = meta.get("price_usd") or meta.get("price")
+    pid      = meta.get("id", "")
+    tags     = meta.get("tags") or []
+
+    product_url = f"{site_url}/products/{pid}.html" if pid else site_url
+
+    cat = meta.get("category", "")
+    hashtags = list(dict.fromkeys(
+        _TAG_MAP[t] for t in tags if t in _TAG_MAP
+    ))[:3]
+    if not hashtags:
+        hashtags = _CATEGORY_HASHTAGS.get(cat, ["#AI", "#productivity"])
+    hashtag_str = " ".join(hashtags)
+
+    price_str = f"${price}" if price else "free"
+
+    tweet = (
+        f"Just published: {title} ({price_str})\n\n"
+        f"{desc[:120].rstrip()}{'…' if len(desc) > 120 else ''}\n\n"
+        f"{product_url}\n\n"
+        f"{hashtag_str}"
+    )
+    if len(tweet) > 280:
+        available = 280 - len(tweet) + len(desc[:120])
+        tweet = (
+            f"Just published: {title} ({price_str})\n\n"
+            f"{desc[:max(0, available - 1)].rstrip()}…\n\n"
+            f"{product_url}\n\n"
+            f"{hashtag_str}"
+        )
+    return tweet
+
 
 def _draft_from_latest_product() -> str:
     site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
@@ -131,51 +207,7 @@ def _draft_from_latest_product() -> str:
             f"check them out at {site_url} 🧰 #ClaudeCode #AI #automation"
         )
 
-    latest = products[-1]
-    title  = latest.get("title", "New product")
-    desc   = latest.get("description", "")
-    price  = latest.get("price_usd")
-    pid    = latest.get("id", "")
-    tags   = latest.get("tags") or []
-
-    product_url = f"{site_url}/products/{pid}.html" if pid else site_url
-
-    # Pick hashtags based on tags
-    tag_map = {
-        "n8n":           "#n8n",
-        "automation":    "#automation",
-        "claude":        "#ClaudeCode",
-        "claude-code":   "#ClaudeCode",
-        "productivity":  "#productivity",
-        "nocode":        "#nocode",
-        "ai":            "#AI",
-    }
-    hashtags = list(dict.fromkeys(
-        tag_map[t] for t in tags if t in tag_map
-    ))[:3]
-    if not hashtags:
-        hashtags = ["#AI", "#productivity"]
-    hashtag_str = " ".join(hashtags)
-
-    price_str = f"${price}" if price else "free"
-
-    # Keep tweet under 280 chars
-    tweet = (
-        f"Just published: {title} ({price_str})\n\n"
-        f"{desc[:120].rstrip()}{'…' if len(desc) > 120 else ''}\n\n"
-        f"{product_url}\n\n"
-        f"{hashtag_str}"
-    )
-    if len(tweet) > 280:
-        # Trim description further
-        available = 280 - len(tweet) + len(desc[:120])
-        tweet = (
-            f"Just published: {title} ({price_str})\n\n"
-            f"{desc[:max(0, available - 1)].rstrip()}…\n\n"
-            f"{product_url}\n\n"
-            f"{hashtag_str}"
-        )
-    return tweet
+    return draft_for_product(products[-1])
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
