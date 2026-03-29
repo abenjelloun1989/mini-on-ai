@@ -47,16 +47,49 @@ def send_telegram(text: str) -> bool:
     return True
 
 
+def _format_gumroad_html(desc: str) -> str:
+    """Convert plain gumroad description to Telegram HTML with formatting."""
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+    lines = desc.splitlines()
+    out = []
+    for line in lines:
+        # Bold section headers (lines ending with ":")
+        if line.endswith(":") and not line.startswith("—"):
+            out.append(f"<b>{_he(line)}</b>")
+        # Bullet points
+        elif line.startswith("—"):
+            out.append(f"• {_he(line[1:].lstrip())}")
+        # Footer link
+        elif "mini-on-ai.com" in line:
+            linked = line.replace(
+                "mini-on-ai.com",
+                f'<a href="{site_url}">mini-on-ai.com</a>'
+            )
+            out.append(f"<i>{linked}</i>")
+        else:
+            out.append(_he(line))
+    return "\n".join(out)
+
+
 def send_gumroad_description(meta: dict) -> bool:
     """Send the Gumroad copy-paste description for a newly published product."""
     desc = meta.get("gumroad_description")
     if not desc:
         return False
     title = meta.get("title", "New product")
+
+    formatted = _format_gumroad_html(desc)
+    raw_escaped = desc.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
     text = (
-        f"📋 <b>Gumroad description — {title}</b>\n\n"
-        f"<code>{desc}</code>"
+        f"📋 <b>Gumroad description — {_he(title)}</b>\n\n"
+        f"{formatted}\n\n"
+        f"─────────────────\n"
+        f"<code>{raw_escaped}</code>"
     )
+    # Telegram max 4096 chars — trim raw block if needed
+    if len(text) > 4096:
+        text = text[:4090] + "\n…"
     try:
         send_telegram(text)
         log("telegram", f"Gumroad description sent for {meta.get('id', '?')}")
