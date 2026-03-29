@@ -629,6 +629,50 @@ body {
   color: var(--text);
 }
 
+.product-description-body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.product-description-body p {
+  margin: 0 0 12px;
+}
+.product-description-body h3.desc-section-header {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 24px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.product-description-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.product-description-body ul li {
+  padding: 4px 0 4px 20px;
+  position: relative;
+}
+.product-description-body ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+.product-description-body p.desc-footer {
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.product-description-body p.desc-footer a {
+  color: var(--accent);
+}
+
 /* Dark mode support - respects system preference unless user has manually toggled to light */
 @media (prefers-color-scheme: dark) {
   :root:not(.light-mode-manual) {

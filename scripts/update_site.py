@@ -150,7 +150,7 @@ CATEGORY_INCLUDES = {
         "Customizable — adapt to your own tools",
     ],
     "claude-code-skill": [
-        "5 ready-to-use SKILL.md files (drop into `skills/`, no setup required)",
+        "{n} ready-to-use SKILL.md file(s) (drop into `skills/`, no setup required)",
         "Each skill covers a distinct sub-task in the workflow domain",
         "Installation guide with quick-reference table of all triggers",
         "Works immediately with Claude Code — just run `claude`",
@@ -232,11 +232,68 @@ def _gumroad_cta_card(meta: dict) -> str:
     return f'<a href="{escape_html(url)}" class="btn-cta" target="_blank" rel="noopener">{label}</a>'
 
 
+def _render_gumroad_description(text: str) -> str:
+    """Convert plain gumroad description to readable HTML for the product page."""
+    from urllib.parse import urlparse
+    lines = text.splitlines()
+    html_parts = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+
+        if not stripped:
+            html_parts.append("")
+            i += 1
+            continue
+
+        # Section header (ends with ":" and not a bullet)
+        if stripped.endswith(":") and not stripped.startswith("—"):
+            html_parts.append(f'<h3 class="desc-section-header">{escape_html(stripped)}</h3>')
+            i += 1
+            # Collect following bullet lines into a <ul>
+            bullets = []
+            while i < len(lines) and lines[i].strip().startswith("—"):
+                bullets.append(lines[i].strip()[1:].strip())
+                i += 1
+            if bullets:
+                items = "\n".join(f"<li>{escape_html(b)}</li>" for b in bullets)
+                html_parts.append(f"<ul>\n{items}\n</ul>")
+            continue
+
+        # Standalone bullet
+        if stripped.startswith("—"):
+            bullets = []
+            while i < len(lines) and lines[i].strip().startswith("—"):
+                bullets.append(lines[i].strip()[1:].strip())
+                i += 1
+            items = "\n".join(f"<li>{escape_html(b)}</li>" for b in bullets)
+            html_parts.append(f"<ul>\n{items}\n</ul>")
+            continue
+
+        # Footer link line
+        if "mini-on-ai.com" in stripped:
+            linked = escape_html(stripped).replace(
+                "mini-on-ai.com",
+                '<a href="https://mini-on-ai.com">mini-on-ai.com</a>'
+            )
+            html_parts.append(f'<p class="desc-footer">{linked}</p>')
+            i += 1
+            continue
+
+        # Regular paragraph
+        html_parts.append(f"<p>{escape_html(stripped)}</p>")
+        i += 1
+
+    return "\n".join(p for p in html_parts if p != "")
+
+
 def _rich_description_html(meta: dict) -> str:
     """Render the plain-text Gumroad description as HTML, or fall back to static includes."""
     rich = meta.get("gumroad_description")
     if rich:
-        return f'      <div class="product-plaintext">{escape_html(rich)}</div>'
+        rendered = _render_gumroad_description(rich)
+        return f'      <div class="product-description-body">\n{rendered}\n      </div>'
     # Fallback: static "What's included" list
     return f"      <h2>What's included</h2>\n{_includes_html(meta)}"
 
