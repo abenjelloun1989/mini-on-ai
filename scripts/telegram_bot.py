@@ -812,28 +812,33 @@ def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
 
 
 def cmd_tweet(args: str) -> str:
-    """Handle /tweet [list | product_id]"""
+    """Handle /tweet [list | number]"""
     catalog = read_json("data/product-catalog.json")
     products = catalog.get("products", [])
     tweeted = _tweeted_ids()
+    untweeted = [p for p in products if p.get("id") not in tweeted]
 
     if args == "list":
-        untweeted = [p for p in products if p.get("id") not in tweeted]
         if not untweeted:
             return "✅ All products have been tweeted!"
         lines = [f"📋 <b>Products not yet tweeted ({len(untweeted)}):</b>\n"]
         for i, p in enumerate(untweeted, 1):
-            pid   = p.get("id", "")
             title = p.get("title", "?")
-            lines.append(f"{i}. <code>{pid}</code>\n   {title}")
-        lines.append(f"\nUse <code>/tweet {'{product_id}'}</code> to draft a tweet for a specific product.")
+            lines.append(f"{i}. {title}")
+        lines.append(f"\nUse <code>/tweet 3</code> to draft tweet for product #3.")
         return "\n".join(lines)
 
-    # Resolve product
+    # Resolve product by number or full id
     if args:
-        meta = next((p for p in products if p.get("id") == args), None)
-        if not meta:
-            return f"❌ Product not found: <code>{args}</code>\nUse /tweet list to see available IDs."
+        if args.isdigit():
+            idx = int(args) - 1
+            if idx < 0 or idx >= len(untweeted):
+                return f"❌ Number {args} out of range. Use /tweet list to see options."
+            meta = untweeted[idx]
+        else:
+            meta = next((p for p in products if p.get("id") == args), None)
+            if not meta:
+                return f"❌ Product not found: <code>{args}</code>\nUse /tweet list to see options."
     else:
         # Pick latest un-tweeted
         untweeted = [p for p in products if p.get("id") not in tweeted]
