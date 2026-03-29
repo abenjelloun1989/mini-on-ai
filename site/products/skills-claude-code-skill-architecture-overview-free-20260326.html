@@ -106,33 +106,7 @@
       initDarkMode();
     })();
   </script>
-<script>
-(function() {
-  function wireForm(sel) {
-    var form = document.querySelector(sel);
-    if (!form) return;
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = form.querySelector('input[type=email]').value;
-      var btn = form.querySelector('button[type=submit]');
-      btn.disabled = true; btn.textContent = '...';
-      fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: {'api-key': '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', 'Content-Type': 'application/json'},
-        body: JSON.stringify({email: email, listIds: [2], updateEnabled: true})
-      }).then(function(r) {
-        if (r.ok || r.status === 204) {
-          form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\'re on the list!</p>';
-        } else {
-          btn.disabled = false; btn.textContent = 'Try again';
-        }
-      }).catch(function() { btn.disabled = false; btn.textContent = 'Try again'; });
-    });
-  }
-  wireForm('.email-capture-form');
-  wireForm('.newsletter-form');
-})();
-</script>
+
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

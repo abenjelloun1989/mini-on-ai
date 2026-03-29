@@ -19,8 +19,9 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 CF_TOKEN = os.getenv("CF_ANALYTICS_TOKEN", "97d7df5dc9454ccab192e901157799b6")
-BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
-BREVO_LIST_ID = os.getenv("BREVO_LIST_ID", "2")
+# Brevo subscribe endpoint — set this to a proxy URL (e.g. Cloudflare Worker) that holds
+# the API key server-side. Never embed the Brevo API key directly in static HTML.
+BREVO_SUBSCRIBE_URL = os.getenv("BREVO_SUBSCRIBE_URL", "")
 
 def _cf_analytics() -> str:
     if not CF_TOKEN:
@@ -28,7 +29,9 @@ def _cf_analytics() -> str:
     return f"<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{\"token\": \"{CF_TOKEN}\"}}'></script><!-- End Cloudflare Web Analytics -->"
 
 def _brevo_form_js() -> str:
-    if not BREVO_API_KEY:
+    """Wire email forms to a server-side proxy endpoint.
+    The proxy (e.g. a Cloudflare Worker) holds the Brevo API key — never embed it in HTML."""
+    if not BREVO_SUBSCRIBE_URL:
         return ""
     return f"""<script>
 (function() {{
@@ -40,12 +43,12 @@ def _brevo_form_js() -> str:
       var email = form.querySelector('input[type=email]').value;
       var btn = form.querySelector('button[type=submit]');
       btn.disabled = true; btn.textContent = '...';
-      fetch('https://api.brevo.com/v3/contacts', {{
+      fetch('{BREVO_SUBSCRIBE_URL}', {{
         method: 'POST',
-        headers: {{'api-key': '{BREVO_API_KEY}', 'Content-Type': 'application/json'}},
-        body: JSON.stringify({{email: email, listIds: [{BREVO_LIST_ID}], updateEnabled: true}})
+        headers: {{'Content-Type': 'application/json'}},
+        body: JSON.stringify({{email: email}})
       }}).then(function(r) {{
-        if (r.ok || r.status === 204) {{
+        if (r.ok) {{
           form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
         }} else {{
           btn.disabled = false; btn.textContent = 'Try again';
