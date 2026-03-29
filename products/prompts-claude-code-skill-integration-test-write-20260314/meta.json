@@ -1,6 +1,6 @@
 {
   "id": "prompts-claude-code-skill-integration-test-write-20260314",
-  "title": "Claude Code Skill: Integration Test Writer \u2014 Auto-Generate API Integration Tests from Endpoint Definitions",
+  "title": "Claude Code Skill: Integration Test Writer — Auto-Generate API Integration Tests from Endpoint Definitions",
   "description": "For QA engineers and full-stack developers, this skill reads endpoint definitions, request/response schemas, and example payloads to generate structured integration test suites so they can achieve consistent API coverage without writing boilerplate test code from scratch.",
   "category": "claude-code-skill",
   "tags": [
@@ -15,8 +15,8 @@
   "package_path": "products/prompts-claude-code-skill-integration-test-write-20260314/package.zip",
   "site_path": "site/products/prompts-claude-code-skill-integration-test-write-20260314.html",
   "thumbnail": "images/thumbnails/prompts-claude-code-skill-integration-test-write-20260314.png",
-  "price": null,
+  "price": 1900,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "Writing integration test boilerplate from scratch is the most skippable thing on every sprint.\n\nWho this is for:\n\u2014 QA engineers who write tests after the fact because setup takes too long\n\u2014 Full-stack developers who know they need API coverage but keep pushing it back\n\u2014 Leads whose integration test suite has gaps because no one had time to fill them\n\nWhat's inside:\n\u2014 1 ready-to-use SKILL.md file \u2014 drop into your project's skills/ folder\n\u2014 Reads endpoint definitions, schemas, and example payloads to generate test suites\n\u2014 Structured output: happy path, error cases, and edge conditions included\n\u2014 Usage guide + real slash-command examples\n\nConsistent API coverage, zero boilerplate. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "Writing integration test boilerplate from scratch is the most skippable thing on every sprint.\n\nWho this is for:\n— QA engineers who write tests after the fact because setup takes too long\n— Full-stack developers who know they need API coverage but keep pushing it back\n— Leads whose integration test suite has gaps because no one had time to fill them\n\nWhat's inside:\n— 1 ready-to-use SKILL.md file — drop into your project's skills/ folder\n— Reads endpoint definitions, schemas, and example payloads to generate test suites\n— Structured output: happy path, error cases, and edge conditions included\n— Usage guide + real slash-command examples\n\nConsistent API coverage, zero boilerplate. Download and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
