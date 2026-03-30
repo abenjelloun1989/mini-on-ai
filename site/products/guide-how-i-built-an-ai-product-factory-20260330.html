@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Built an AI Product Factory on a Mac mini</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="How I Built an AI Product Factory on a Mac mini">
+  <meta property="og:description" content="A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.">
+  <meta property="og:url" content="https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html">
+  <meta property="og:image" content="https://mini-on-ai.com/images/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How I Built an AI Product Factory on a Mac mini">
+  <meta name="twitter:description" content="A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.">
+  <link rel="canonical" href="https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org/", "@type": "Product", "name": "How I Built an AI Product Factory on a Mac mini", "description": "A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.", "url": "https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html", "brand": {"@type": "Brand", "name": "mini-on-ai"}, "offers": {"@type": "Offer", "priceCurrency": "USD", "price": "4900", "availability": "https://schema.org/InStock", "url": "https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+    </div>
+  </header>
+
+  <main class="product-detail">
+  <img src="../images/placeholder-mini-guide.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
+    <div class="product-tags"><span class="category-badge category-mini-guide">Mini Guide</span><span class="tag">ai</span> <span class="tag">automation</span> <span class="tag">indie-maker</span> <span class="tag">claude</span> <span class="tag">python</span> <span class="tag">build-in-public</span> <span class="tag">passive-income</span> <span class="tag">side-project</span></div>
+    <h1>How I Built an AI Product Factory on a Mac mini</h1>
+    <p class="product-desc-large">A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.</p>
+
+    <div class="product-stats">
+      <span>focused guide</span>
+    </div>
+
+    <span class="btn-cta btn-large btn-coming-soon">Coming soon</span>
+
+    <section class="product-details">
+      <div class="product-description-body">
+<p>I built a pipeline that runs on a Mac mini and automatically generates, packages, and publishes digital products using Claude AI. This guide is the full honest breakdown.</p>
+<h3 class="desc-section-header">What's inside:</h3>
+<ul>
+<li>Full pipeline architecture (trend scan → idea rank → approval → generate → package → publish)</li>
+<li>Which Claude models to use for which tasks and why</li>
+<li>The Telegram bot as a zero-UI control panel</li>
+<li>Static site generation without frameworks</li>
+<li>Gumroad + Cloudflare Pages publishing</li>
+<li>What failed: Reddit bans, Twitter API limits, thumbnail generation</li>
+<li>The complete code structure</li>
+<li>How to replicate it yourself</li>
+</ul>
+<h3 class="desc-section-header">Who this is for:</h3>
+<p>Indie makers and developers comfortable with Python who want to automate digital product creation.</p>
+<p>Stack: Python, Claude API, Telegram, Gumroad, Cloudflare Pages, GitHub.</p>
+<p>Setup time: 4–6 hours.</p>
+<p>Running cost: ~$2–5/month in Claude API usage.</p>
+<p class="desc-footer">more at <a href="https://mini-on-ai.com">mini-on-ai.com</a></p>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+          toggle.textContent = 'Dark';
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+          toggle.textContent = 'Light';
+        }
+      }
+
+      function toggleDarkMode() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        if (isDark) {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.classList.remove('light-mode-manual');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          document.documentElement.classList.add('light-mode-manual');
+        }
+        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', toggleDarkMode);
+      }
+
+      initDarkMode();
+    })();
+  </script>
+<script>
+function wireBrevoForm(sel) {
+  var form = document.querySelector(sel);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('input[type=email]').value;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = '...';
+    fetch('https://mini-on-ai-subscribe.kirozdormu.workers.dev', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email: email})
+    }).then(function(r) {
+      if (r.ok) {
+        form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\'re on the list!</p>';
+      } else {
+        btn.disabled = false; btn.textContent = 'Try again';
+      }
+    }).catch(function() { btn.disabled = false; btn.textContent = 'Try again'; });
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  wireBrevoForm('.email-capture-form');
+  wireBrevoForm('.newsletter-form');
+});
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
