@@ -872,11 +872,15 @@ def cmd_blast(args: str = "") -> None:
         f"<b>Subject:</b> {subject}\n\n"
         f"{body}"
     )
-    keyboard = {"inline_keyboard": [[
-        {"text": "✅ Send", "callback_data": "blast:send"},
-        {"text": "🔄 Regenerate", "callback_data": "blast:regen"},
-    ]]}
-    _send_keyboard(text, keyboard)
+    api("sendMessage", {
+        "chat_id": CHAT_ID,
+        "text": text,
+        "parse_mode": "HTML",
+        "reply_markup": {"inline_keyboard": [[
+            {"text": "✅ Send", "callback_data": "blast:send"},
+            {"text": "🔄 Regenerate", "callback_data": "blast:regen"},
+        ]]},
+    })
 
 
 def _handle_blast_callback(data: str) -> str:
