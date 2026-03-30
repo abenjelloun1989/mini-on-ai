@@ -739,10 +739,10 @@
       "status": "published",
       "created_at": "2026-03-13T19:33:20.084926+00:00",
       "site_path": "site/products/guide-how-to-build-a-notion-crm-that-actually--20260313.html",
-      "gumroad_url": null,
+      "gumroad_url": "https://minionai.gumroad.com/l/astgy",
       "thumbnail": "images/thumbnails/guide-how-to-build-a-notion-crm-that-actually--20260313.png",
       "price": 1900,
-      "is_free": null
+      "is_free": false
     },
     {
       "id": "swipe-notion-template-sales-page-copy-swipe-fi-20260313",
