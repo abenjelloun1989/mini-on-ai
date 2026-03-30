@@ -34,31 +34,31 @@ def _brevo_form_js() -> str:
     if not BREVO_SUBSCRIBE_URL:
         return ""
     return f"""<script>
-(function() {{
-  function wireForm(sel) {{
-    var form = document.querySelector(sel);
-    if (!form) return;
-    form.addEventListener('submit', function(e) {{
-      e.preventDefault();
-      var email = form.querySelector('input[type=email]').value;
-      var btn = form.querySelector('button[type=submit]');
-      btn.disabled = true; btn.textContent = '...';
-      fetch('{BREVO_SUBSCRIBE_URL}', {{
-        method: 'POST',
-        headers: {{'Content-Type': 'application/json'}},
-        body: JSON.stringify({{email: email}})
-      }}).then(function(r) {{
-        if (r.ok) {{
-          form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
-        }} else {{
-          btn.disabled = false; btn.textContent = 'Try again';
-        }}
-      }}).catch(function() {{ btn.disabled = false; btn.textContent = 'Try again'; }});
-    }});
-  }}
-  wireForm('.email-capture-form');
-  wireForm('.newsletter-form');
-}})();
+function wireBrevoForm(sel) {{
+  var form = document.querySelector(sel);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {{
+    e.preventDefault();
+    var email = form.querySelector('input[type=email]').value;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = '...';
+    fetch('{BREVO_SUBSCRIBE_URL}', {{
+      method: 'POST',
+      headers: {{'Content-Type': 'application/json'}},
+      body: JSON.stringify({{email: email}})
+    }}).then(function(r) {{
+      if (r.ok) {{
+        form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
+      }} else {{
+        btn.disabled = false; btn.textContent = 'Try again';
+      }}
+    }}).catch(function() {{ btn.disabled = false; btn.textContent = 'Try again'; }});
+  }});
+}}
+document.addEventListener('DOMContentLoaded', function() {{
+  wireBrevoForm('.email-capture-form');
+  wireBrevoForm('.newsletter-form');
+}});
 </script>"""
 
 from lib.utils import read_json, write_json, write_file, ROOT, log
@@ -692,7 +692,7 @@ def rebuild_index(catalog: dict) -> str:
     <div class="email-capture-inner">
       <p class="email-capture-headline">New Claude Code skills ship weekly.</p>
       <p class="email-capture-sub">Be first to know when a new pack drops.</p>
-      <form class="email-capture-form" action="#" method="post">
+      <form class="email-capture-form" action="#" method="get">
         <input type="email" name="email" placeholder="your@email.com" required>
         <button type="submit">Notify me</button>
       </form>
@@ -722,7 +722,7 @@ def rebuild_index(catalog: dict) -> str:
       <p class="newsletter-label">Newsletter</p>
       <h2 class="newsletter-headline">One AI Workflow a Week</h2>
       <p class="newsletter-desc">One practical, plain-English AI workflow every Friday — no coding required. Built for marketing managers, HR leads, ops directors, and small business owners who want to use AI without the tech overwhelm.</p>
-      <form class="newsletter-form" action="#" method="post">
+      <form class="newsletter-form" action="#" method="get">
         <input type="email" name="email" placeholder="your@email.com" required>
         <button type="submit">Subscribe free</button>
       </form>
