@@ -429,6 +429,8 @@ def cmd_help(group: str = "") -> str:
         "  /tweet — Draft tweet for latest un-tweeted product\n"
         "  /tweet list — Products not yet tweeted (numbered)\n"
         "  /tweet 3 — Draft tweet for product #3 from the list\n\n"
+        "📧 <b>Email</b>\n"
+        "  /blast — Draft + send an email to your subscriber list\n\n"
         "✍️ <b>Blog</b>\n"
         "  /blog — Auto-generate + publish an SEO blog post\n"
         "  /blog \"topic\" — Blog post on a specific keyword\n\n"
@@ -764,6 +766,147 @@ def _launch_holiday_research(state: dict) -> str:
         f"Je cherche 3 voyages basés sur:\n{summary}\n\n"
         f"Les propositions arrivent dans 1-2 minutes…"
     )
+
+
+# ── Email blast helpers ───────────────────────────────────────────────────────
+
+BLAST_STATE = ROOT / "data/blast-state.json"
+
+
+def _save_blast_state(draft: dict) -> None:
+    BLAST_STATE.write_text(json.dumps(draft, indent=2, ensure_ascii=False) + "\n")
+
+
+def _load_blast_state() -> dict:
+    if not BLAST_STATE.exists():
+        return {}
+    try:
+        return json.loads(BLAST_STATE.read_text())
+    except Exception:
+        return {}
+
+
+def _generate_blast_draft() -> dict:
+    """Use Claude Haiku to draft a short email based on latest products + blog posts."""
+    import anthropic as _anthropic
+    client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+    catalog = read_json("data/product-catalog.json")
+    products = [p for p in catalog.get("products", []) if p.get("gumroad_url")][:3]
+
+    blog_data_path = ROOT / "data/blog-posts.json"
+    blog_posts = []
+    if blog_data_path.exists():
+        try:
+            blog_posts = json.loads(blog_data_path.read_text()).get("posts", [])[:2]
+        except Exception:
+            pass
+
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
+
+    product_lines = "\n".join(
+        f'- {p["title"]} ({site_url}/products/{p["id"]}.html)'
+        for p in products
+    )
+    blog_lines = "\n".join(
+        f'- {p["title"]} ({site_url}/blog/{p["slug"]}.html)'
+        for p in blog_posts
+    )
+
+    prompt = f"""Write a short, personal email to send to a small list (~20 people) who downloaded free digital products from mini-on-ai.com.
+
+Recent products:
+{product_lines}
+
+Recent blog posts:
+{blog_lines}
+
+Requirements:
+- Subject line: punchy, not clickbait, max 60 chars
+- Body: 3-4 sentences, personal tone, no "Dear subscriber" openers, no exclamation marks spam
+- Reference one product or blog post naturally
+- End with a soft CTA linking to {site_url}
+- Plain text only (no markdown, no bullet points)
+
+Return ONLY valid JSON:
+{{"subject": "...", "body": "..."}}"""
+
+    msg = client.messages.create(
+        model="claude-haiku-4-5",
+        max_tokens=400,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    raw = msg.content[0].text.strip()
+    import re as _re
+    raw = _re.sub(r"^```[a-z]*\n?", "", raw)
+    raw = _re.sub(r"\n?```$", "", raw)
+    return json.loads(raw)
+
+
+def cmd_blast(args: str = "") -> None:
+    """Handle /blast — generate draft + send with inline keyboard."""
+    send("✍️ Drafting email…")
+    try:
+        draft = _generate_blast_draft()
+    except Exception as e:
+        send(f"❌ Draft failed: {e}")
+        return
+
+    _save_blast_state(draft)
+
+    count = 0
+    try:
+        import subprocess as _sp
+        r = _sp.run(
+            [sys.executable, str(ROOT / "scripts/email_blast.py"), "--count"],
+            capture_output=True, text=True, cwd=str(ROOT), timeout=15
+        )
+        count = int(r.stdout.strip()) if r.stdout.strip().isdigit() else 0
+    except Exception:
+        pass
+
+    subject = draft.get("subject", "")
+    body    = draft.get("body", "")
+    text = (
+        f"📧 <b>Draft email</b> → {count} subscriber{'s' if count != 1 else ''}\n\n"
+        f"<b>Subject:</b> {subject}\n\n"
+        f"{body}"
+    )
+    keyboard = {"inline_keyboard": [[
+        {"text": "✅ Send", "callback_data": "blast:send"},
+        {"text": "🔄 Regenerate", "callback_data": "blast:regen"},
+    ]]}
+    _send_keyboard(text, keyboard)
+
+
+def _handle_blast_callback(data: str) -> str:
+    if data == "blast:regen":
+        cmd_blast()
+        return ""
+
+    if data == "blast:send":
+        draft = _load_blast_state()
+        if not draft:
+            return "❌ No draft found. Run /blast again."
+        subject = draft.get("subject", "")
+        body    = draft.get("body", "")
+        try:
+            import subprocess as _sp
+            r = _sp.run(
+                [sys.executable, str(ROOT / "scripts/email_blast.py"),
+                 "--subject", subject, "--body", body],
+                capture_output=True, text=True, cwd=str(ROOT), timeout=60
+            )
+            if r.returncode == 0:
+                result = json.loads(r.stdout.strip())
+                n = result.get("recipients", "?")
+                return f"✅ <b>Email sent</b> to {n} subscriber{'s' if n != 1 else ''}!"
+            else:
+                return f"❌ Send failed:\n<code>{r.stderr[-300:]}</code>"
+        except Exception as e:
+            return f"❌ Send error: {e}"
+
+    return ""
 
 
 # ── Twitter helpers ───────────────────────────────────────────────────────────
@@ -1264,6 +1407,10 @@ def handle_command(text: str) -> str:
         run_pipeline_bg(seed=seed, category=category)
         return f"🚀 Pipeline started{note_str}.\nI'll send an approval request when an idea is ready."
 
+    if lower == "/blast" or lower.startswith("/blast "):
+        cmd_blast()
+        return None
+
     if lower == "/blog" or lower.startswith("/blog "):
         topic = text[len("/blog"):].strip().strip('"').strip("'")
         flag = ["--auto"] if not topic else ["--topic", topic]
@@ -1441,6 +1588,14 @@ def main():
                         existing = constraints.get(key, "")
                         hint = f"\n\n<i>Valeur actuelle: {existing}</i>\nTapez une nouvelle valeur ou <b>ok</b> pour garder." if existing else ""
                         send(f"✏️ <b>Modification des critères</b>\n\nQuestion 1/{len(HOLIDAY_QUESTIONS)}:\n\n{question}{hint}", cq_chat_id)
+                elif cq_data in ("blast:send", "blast:regen"):
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    reply = _handle_blast_callback(cq_data)
+                    if reply:
+                        send(reply, cq_chat_id)
                 elif cq_data.startswith("tweet:done:"):
                     pid_short = cq_data.split(":", 2)[2]
                     catalog = read_json("data/product-catalog.json")
