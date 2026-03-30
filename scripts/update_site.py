@@ -132,24 +132,40 @@ def _json_ld_product(meta: dict) -> str:
 
 
 def write_sitemap(catalog: dict) -> None:
-    """Generate site/sitemap.xml from the product catalog."""
+    """Generate site/sitemap.xml from products + blog posts."""
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         f'  <url><loc>{SITE_URL}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>',
+        f'  <url><loc>{SITE_URL}/blog/index.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>',
     ]
     for p in catalog.get("products", []):
         pid     = p.get("id", "")
-        lastmod = (p.get("created_at") or "")[:10]  # YYYY-MM-DD
+        lastmod = (p.get("created_at") or "")[:10]
         loc     = f"{SITE_URL}/products/{pid}.html"
         lines.append(
             f'  <url><loc>{loc}</loc>'
             + (f'<lastmod>{lastmod}</lastmod>' if lastmod else "")
             + '<priority>0.8</priority></url>'
         )
+    # Include blog posts
+    try:
+        blog_data = read_json("data/blog-posts.json")
+        for post in blog_data.get("posts", []):
+            slug    = post.get("slug", "")
+            lastmod = (post.get("created_at") or "")[:10]
+            loc     = f"{SITE_URL}/blog/{slug}.html"
+            lines.append(
+                f'  <url><loc>{loc}</loc>'
+                + (f'<lastmod>{lastmod}</lastmod>' if lastmod else "")
+                + '<priority>0.6</priority></url>'
+            )
+    except Exception:
+        pass
     lines.append("</urlset>")
+    total = len(catalog.get("products", [])) + 1
     write_file("site/sitemap.xml", "\n".join(lines) + "\n")
-    log("update-site", f"Wrote site/sitemap.xml ({len(catalog.get('products', []))+1} URLs)")
+    log("update-site", f"Wrote site/sitemap.xml ({total} URLs)")
     write_file("site/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     log("update-site", "Wrote site/robots.txt")
 
@@ -378,7 +394,11 @@ def build_product_page(meta: dict) -> str:
           <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
         </svg>
       </a>
-      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="../index.html" class="nav-link">← Products</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      </div>
     </div>
   </header>
 
@@ -657,6 +677,7 @@ def rebuild_index(catalog: dict) -> str:
         </svg>
       </a>
       <div style="display: flex; gap: 16px; align-items: center;">
+        <a href="blog/index.html" class="nav-link">Blog</a>
         <span class="product-count">{count} product{'s' if count != 1 else ''}</span>
         <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
       </div>
@@ -779,6 +800,295 @@ def rebuild_index(catalog: dict) -> str:
 </body>
 </html>
 """
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# BLOG
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _markdown_to_html(md: str) -> str:
+    """Convert a limited subset of Markdown to HTML for blog posts."""
+    import re as _re
+    lines = md.split("\n")
+    html_lines = []
+    in_ul = False
+
+    for line in lines:
+        # H2 / H3
+        if line.startswith("### "):
+            if in_ul: html_lines.append("</ul>"); in_ul = False
+            html_lines.append(f"<h3>{escape_html(line[4:])}</h3>")
+            continue
+        if line.startswith("## "):
+            if in_ul: html_lines.append("</ul>"); in_ul = False
+            html_lines.append(f"<h2>{escape_html(line[3:])}</h2>")
+            continue
+        # Bullet list
+        if line.startswith("- ") or line.startswith("* "):
+            if not in_ul: html_lines.append("<ul>"); in_ul = True
+            html_lines.append(f"<li>{escape_html(line[2:])}</li>")
+            continue
+        # End list on blank line
+        if not line.strip():
+            if in_ul: html_lines.append("</ul>"); in_ul = False
+            html_lines.append("")
+            continue
+        # Regular paragraph
+        if in_ul: html_lines.append("</ul>"); in_ul = False
+        html_lines.append(line)
+
+    if in_ul:
+        html_lines.append("</ul>")
+
+    body = "\n".join(html_lines)
+
+    # Inline: **bold**
+    body = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", body)
+    # Inline: *italic*
+    body = _re.sub(r"\*(.+?)\*", r"<em>\1</em>", body)
+    # Inline: [text](url)
+    body = _re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', body)
+    # Inline: `code`
+    body = _re.sub(r"`([^`]+)`", r"<code>\1</code>", body)
+
+    # Wrap orphan text lines in <p> (lines that don't start with < and aren't empty)
+    result = []
+    for line in body.split("\n"):
+        stripped = line.strip()
+        if stripped and not stripped.startswith("<"):
+            result.append(f"<p>{stripped}</p>")
+        else:
+            result.append(line)
+
+    return "\n".join(result)
+
+
+def build_blog_post_page(post: dict) -> str:
+    title   = escape_html(post.get("title", ""))
+    excerpt = escape_html(post.get("excerpt", ""))
+    slug    = post.get("slug", "")
+    url     = f"{SITE_URL}/blog/{slug}.html"
+    date    = (post.get("created_at") or "")[:10]
+    body_html = _markdown_to_html(post.get("body_markdown", ""))
+    year    = datetime.now().year
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} — mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="{excerpt}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{excerpt}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{SITE_URL}/images/og-default.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="{url}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="index.html" class="nav-link">← All posts</a>
+        <a href="../index.html" class="nav-link">Products</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="blog-post-page">
+    <article class="blog-post">
+      <header class="blog-post-header">
+        <p class="blog-post-date">{date}</p>
+        <h1>{title}</h1>
+        <p class="blog-post-excerpt">{excerpt}</p>
+      </header>
+      <div class="blog-post-content">
+{body_html}
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+  </footer>
+
+  <script>
+    (function() {{
+      const toggle = document.getElementById('darkModeToggle');
+      function initDarkMode() {{
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+        if (isDark) {{ document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }}
+        else {{ document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }}
+      }}
+      if (toggle) toggle.addEventListener('click', function() {{
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        document.documentElement.classList.toggle('light-mode-manual', !isDark);
+        localStorage.setItem('darkMode', isDark);
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }});
+      initDarkMode();
+    }})();
+  </script>
+{_cf_analytics()}
+</body>
+</html>"""
+
+
+def rebuild_blog_index(posts: list) -> str:
+    """Build site/blog/index.html listing all blog posts."""
+    year = datetime.now().year
+    cards = ""
+    for post in sorted(posts, key=lambda p: p.get("created_at", ""), reverse=True):
+        title   = escape_html(post.get("title", ""))
+        excerpt = escape_html(post.get("excerpt", ""))
+        slug    = post.get("slug", "")
+        date    = (post.get("created_at") or "")[:10]
+        cards += f"""    <a href="{slug}.html" class="blog-card">
+      <p class="blog-card-date">{date}</p>
+      <h2 class="blog-card-title">{title}</h2>
+      <p class="blog-card-excerpt">{excerpt}</p>
+    </a>
+"""
+    if not cards:
+        cards = '    <p class="catalog-empty-msg">No posts yet.</p>\n'
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Practical guides on Claude Code, n8n automation, and AI workflows for developers and makers.">
+  <meta property="og:title" content="Blog — mini-on-ai">
+  <meta property="og:url" content="{SITE_URL}/blog/index.html">
+  <link rel="canonical" href="{SITE_URL}/blog/index.html">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="../index.html" class="nav-link">← Products</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="blog-listing-page">
+    <div class="blog-listing-header">
+      <h1>Blog</h1>
+      <p>Practical guides on Claude Code, n8n, and AI automation.</p>
+    </div>
+    <div class="blog-grid">
+{cards}    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+  </footer>
+
+  <script>
+    (function() {{
+      const toggle = document.getElementById('darkModeToggle');
+      function initDarkMode() {{
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+        if (isDark) {{ document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }}
+        else {{ document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }}
+      }}
+      if (toggle) toggle.addEventListener('click', function() {{
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        document.documentElement.classList.toggle('light-mode-manual', !isDark);
+        localStorage.setItem('darkMode', isDark);
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      }});
+      initDarkMode();
+    }})();
+  </script>
+{_cf_analytics()}
+</body>
+</html>"""
+
+
+def update_blog(post: dict) -> str:
+    """Save a blog post page, update blog-posts.json, rebuild index. Returns post URL."""
+    import json as _json
+
+    Path(ROOT / "site/blog").mkdir(parents=True, exist_ok=True)
+
+    slug = post["slug"]
+    page_html = build_blog_post_page(post)
+    write_file(f"site/blog/{slug}.html", page_html)
+    log("update-site", f"Created site/blog/{slug}.html")
+
+    # Update blog-posts.json
+    blog_data_path = ROOT / "data/blog-posts.json"
+    if blog_data_path.exists():
+        with open(blog_data_path) as f:
+            blog_data = _json.load(f)
+    else:
+        blog_data = {"posts": []}
+
+    existing_idx = next((i for i, p in enumerate(blog_data["posts"]) if p["id"] == post["id"]), None)
+    entry = {
+        "id":         post["id"],
+        "title":      post["title"],
+        "slug":       slug,
+        "excerpt":    post["excerpt"],
+        "topic":      post.get("topic", ""),
+        "created_at": post["created_at"],
+    }
+    if existing_idx is not None:
+        blog_data["posts"][existing_idx] = entry
+    else:
+        blog_data["posts"].insert(0, entry)
+
+    with open(blog_data_path, "w") as f:
+        _json.dump(blog_data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+    # Rebuild blog index
+    index_html = rebuild_blog_index(blog_data["posts"])
+    write_file("site/blog/index.html", index_html)
+    log("update-site", f"Rebuilt site/blog/index.html ({len(blog_data['posts'])} posts)")
+
+    # Extend sitemap
+    catalog = read_json("data/product-catalog.json")
+    write_sitemap(catalog)
+
+    url = f"{SITE_URL}/blog/{slug}.html"
+    return url
 
 
 def update_site(product_id_arg: str = None) -> dict:

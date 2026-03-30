@@ -17,11 +17,11 @@
       ],
       "item_count": 1,
       "prompt_count": 1,
+      "status": "published",
       "created_at": "2026-03-30T00:00:00",
-      "package_path": "products/guide-how-i-built-an-ai-product-factory-20260330/package.zip",
       "site_path": "site/products/guide-how-i-built-an-ai-product-factory-20260330.html",
-      "thumbnail": "placeholder-mini-guide.svg",
       "gumroad_url": null,
+      "thumbnail": "placeholder-mini-guide.svg",
       "price": 4900,
       "is_free": false
     },

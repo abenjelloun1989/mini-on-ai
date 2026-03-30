@@ -429,6 +429,9 @@ def cmd_help(group: str = "") -> str:
         "  /tweet — Draft tweet for latest un-tweeted product\n"
         "  /tweet list — Products not yet tweeted (numbered)\n"
         "  /tweet 3 — Draft tweet for product #3 from the list\n\n"
+        "✍️ <b>Blog</b>\n"
+        "  /blog — Auto-generate + publish an SEO blog post\n"
+        "  /blog \"topic\" — Blog post on a specific keyword\n\n"
         "Type /help {group} for more detail:\n"
         "<code>factory · posts · karma · products · twitter</code>"
     )
@@ -1260,6 +1263,35 @@ def handle_command(text: str) -> str:
 
         run_pipeline_bg(seed=seed, category=category)
         return f"🚀 Pipeline started{note_str}.\nI'll send an approval request when an idea is ready."
+
+    if lower == "/blog" or lower.startswith("/blog "):
+        topic = text[len("/blog"):].strip().strip('"').strip("'")
+        flag = ["--auto"] if not topic else ["--topic", topic]
+        note = f" on <i>{topic}</i>" if topic else " (auto-topic)"
+        send(f"✍️ Generating blog post{note}…")
+        try:
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "scripts/generate_blog_post.py")] + flag,
+                cwd=str(ROOT), capture_output=True, text=True, timeout=120
+            )
+            url = result.stdout.strip().splitlines()[-1] if result.stdout.strip() else ""
+            if result.returncode == 0 and url.startswith("http"):
+                # git commit + push
+                subprocess.run(
+                    ["git", "add", "site/blog/", "data/blog-posts.json", "site/sitemap.xml"],
+                    cwd=str(ROOT), capture_output=True
+                )
+                subprocess.run(
+                    ["git", "commit", "-m", f"blog: {topic or 'auto-topic'}"],
+                    cwd=str(ROOT), capture_output=True
+                )
+                subprocess.run(["git", "push"], cwd=str(ROOT), capture_output=True)
+                return f"📝 <b>Blog post published!</b>\n\n{url}\n\nLive in ~1 min after Cloudflare deploys."
+            else:
+                err = (result.stderr or "")[-300:]
+                return f"❌ Blog post failed:\n<code>{err}</code>"
+        except Exception as e:
+            return f"❌ Blog error: {e}"
 
     return f"Unknown command: <code>{text}</code>\n\nType /help for available commands."
 

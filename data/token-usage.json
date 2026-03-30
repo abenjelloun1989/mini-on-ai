@@ -1838,5 +1838,45 @@
     "model": "claude-sonnet-4-6",
     "input_tokens": 3759,
     "output_tokens": 1113
+  },
+  {
+    "ts": "2026-03-30T21:18:20.486134+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 418,
+    "output_tokens": 1287
+  },
+  {
+    "ts": "2026-03-30T21:18:51.754960+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 379,
+    "output_tokens": 1432
+  },
+  {
+    "ts": "2026-03-30T21:19:07.333022+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 380,
+    "output_tokens": 1474
+  },
+  {
+    "ts": "2026-03-30T21:19:22.977881+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 420,
+    "output_tokens": 1352
+  },
+  {
+    "ts": "2026-03-30T21:19:36.735076+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 371,
+    "output_tokens": 1215
   }
 ]

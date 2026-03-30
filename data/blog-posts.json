@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": "blog-automation-tools-for-small-business-a-developer-s-pract-20260330",
+      "title": "Automation Tools for Small Business: A Developer's Practical Guide",
+      "slug": "automation-tools-for-small-business-a-developer-s-pract-20260330",
+      "excerpt": "Cut repetitive work and scale faster with the right automation tools for small business operations.",
+      "topic": "automation tools for small business",
+      "created_at": "2026-03-30T23:19:36.737203"
+    },
+    {
+      "id": "blog-ai-prompts-for-writing-and-content-creation-a-developer-20260330",
+      "title": "AI Prompts for Writing and Content Creation: A Developer's Practical Guide",
+      "slug": "ai-prompts-for-writing-and-content-creation-a-developer-20260330",
+      "excerpt": "Master AI prompts for writing to automate content workflows, documentation, and reports with proven techniques.",
+      "topic": "ai prompts for writing and content creation",
+      "created_at": "2026-03-30T23:19:22.979815"
+    },
+    {
+      "id": "blog-freelance-client-onboarding-checklist-7-steps-to-start--20260330",
+      "title": "Freelance Client Onboarding Checklist: 7 Steps to Start Projects Right",
+      "slug": "freelance-client-onboarding-checklist-7-steps-to-start--20260330",
+      "excerpt": "A practical freelance client onboarding checklist that saves time, prevents scope creep, and sets clear expectations from day one.",
+      "topic": "freelance client onboarding checklist",
+      "created_at": "2026-03-30T23:19:07.335085"
+    },
+    {
+      "id": "blog-n8n-workflow-automation-prompts-a-developer-s-guide-to--20260330",
+      "title": "n8n Workflow Automation Prompts: A Developer's Guide to Smarter Automation",
+      "slug": "n8n-workflow-automation-prompts-a-developer-s-guide-to--20260330",
+      "excerpt": "Master n8n workflow automation prompts to build faster, smarter automations that scale with your business needs.",
+      "topic": "n8n workflow automation prompts",
+      "created_at": "2026-03-30T23:18:51.756949"
+    },
+    {
+      "id": "blog-claude-code-skills-for-backend-developers-practical-aut-20260330",
+      "title": "Claude Code Skills for Backend Developers: Practical Automation Techniques",
+      "slug": "claude-code-skills-for-backend-developers-practical-aut-20260330",
+      "excerpt": "Master Claude code skills for backend developers to automate documentation, streamline team onboarding, and reduce manual coding overhead.",
+      "topic": "claude code skills for backend developers",
+      "created_at": "2026-03-30T23:18:20.488396"
+    }
+  ]
+}

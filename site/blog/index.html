@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="Practical guides on Claude Code, n8n automation, and AI workflows for developers and makers.">
+  <meta property="og:title" content="Blog — mini-on-ai">
+  <meta property="og:url" content="https://mini-on-ai.com/blog/index.html">
+  <link rel="canonical" href="https://mini-on-ai.com/blog/index.html">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="../index.html" class="nav-link">← Products</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="blog-listing-page">
+    <div class="blog-listing-header">
+      <h1>Blog</h1>
+      <p>Practical guides on Claude Code, n8n, and AI automation.</p>
+    </div>
+    <div class="blog-grid">
+    <a href="automation-tools-for-small-business-a-developer-s-pract-20260330.html" class="blog-card">
+      <p class="blog-card-date">2026-03-30</p>
+      <h2 class="blog-card-title">Automation Tools for Small Business: A Developer's Practical Guide</h2>
+      <p class="blog-card-excerpt">Cut repetitive work and scale faster with the right automation tools for small business operations.</p>
+    </a>
+    <a href="ai-prompts-for-writing-and-content-creation-a-developer-20260330.html" class="blog-card">
+      <p class="blog-card-date">2026-03-30</p>
+      <h2 class="blog-card-title">AI Prompts for Writing and Content Creation: A Developer's Practical Guide</h2>
+      <p class="blog-card-excerpt">Master AI prompts for writing to automate content workflows, documentation, and reports with proven techniques.</p>
+    </a>
+    <a href="freelance-client-onboarding-checklist-7-steps-to-start--20260330.html" class="blog-card">
+      <p class="blog-card-date">2026-03-30</p>
+      <h2 class="blog-card-title">Freelance Client Onboarding Checklist: 7 Steps to Start Projects Right</h2>
+      <p class="blog-card-excerpt">A practical freelance client onboarding checklist that saves time, prevents scope creep, and sets clear expectations from day one.</p>
+    </a>
+    <a href="n8n-workflow-automation-prompts-a-developer-s-guide-to--20260330.html" class="blog-card">
+      <p class="blog-card-date">2026-03-30</p>
+      <h2 class="blog-card-title">n8n Workflow Automation Prompts: A Developer's Guide to Smarter Automation</h2>
+      <p class="blog-card-excerpt">Master n8n workflow automation prompts to build faster, smarter automations that scale with your business needs.</p>
+    </a>
+    <a href="claude-code-skills-for-backend-developers-practical-aut-20260330.html" class="blog-card">
+      <p class="blog-card-date">2026-03-30</p>
+      <h2 class="blog-card-title">Claude Code Skills for Backend Developers: Practical Automation Techniques</h2>
+      <p class="blog-card-excerpt">Master Claude code skills for backend developers to automate documentation, streamline team onboarding, and reduce manual coding overhead.</p>
+    </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('darkModeToggle');
+      function initDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved !== null ? saved === 'true' : prefersDark;
+        if (isDark) { document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }
+        else { document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }
+      }
+      if (toggle) toggle.addEventListener('click', function() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        document.documentElement.classList.toggle('light-mode-manual', !isDark);
+        localStorage.setItem('darkMode', isDark);
+        toggle.textContent = isDark ? 'Dark' : 'Light';
+      });
+      initDarkMode();
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
