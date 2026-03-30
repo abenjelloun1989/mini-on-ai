@@ -26,8 +26,8 @@ from lib.utils import log
 BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
 BREVO_LIST_ID = int(os.getenv("BREVO_LIST_ID", "2"))
 SITE_URL      = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
-SENDER_NAME   = "mini-on-ai"
-SENDER_EMAIL  = "hello@mini-on-ai.com"
+SENDER_NAME   = os.getenv("BREVO_SENDER_NAME", "mini-on-ai")
+SENDER_EMAIL  = os.getenv("BREVO_SENDER_EMAIL", "kirozdormu@gmail.com")
 
 
 def _brevo(method: str, path: str, body: dict = None) -> dict:
@@ -44,7 +44,7 @@ def _brevo(method: str, path: str, body: dict = None) -> dict:
             return json.loads(content) if content else {}
     except urllib.error.HTTPError as e:
         err = e.read().decode()
-        raise RuntimeError(f"Brevo {method} {path} → {e.code}: {err}")
+        raise RuntimeError(f"Brevo {method} {path} → {e.code}: {err}") from None
 
 
 def get_contact_count() -> int:
@@ -152,9 +152,10 @@ def create_and_send(subject: str, body: str) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--count",   action="store_true", help="Show contact count and exit")
-    parser.add_argument("--subject", type=str, default="")
-    parser.add_argument("--body",    type=str, default="")
+    parser.add_argument("--count",    action="store_true", help="Show contact count and exit")
+    parser.add_argument("--dry-run",  action="store_true", help="Preview without sending")
+    parser.add_argument("--subject",  type=str, default="")
+    parser.add_argument("--body",     type=str, default="")
     args = parser.parse_args()
 
     if args.count:
@@ -165,6 +166,14 @@ def main():
     if not args.subject or not args.body:
         print("Usage: email_blast.py --subject 'Subject' --body 'Body text'", file=sys.stderr)
         sys.exit(1)
+
+    if args.dry_run:
+        n = get_contact_count()
+        log("email-blast", f"[DRY RUN] Would send to {n} subscribers")
+        log("email-blast", f"[DRY RUN] Subject: {args.subject}")
+        log("email-blast", f"[DRY RUN] Body: {args.body[:100]}...")
+        print(json.dumps({"dry_run": True, "recipients": n}))
+        return
 
     result = create_and_send(args.subject, args.body)
     print(json.dumps(result))
