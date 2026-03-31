@@ -1085,3 +1085,173 @@ body {
 .blog-post-content a:hover { opacity: 0.8; }
 .blog-post-content code { background: var(--surface); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
 .blog-post-content strong { font-weight: 700; }
+
+/* ── Dark hero ──────────────────────────────────────────────────────────── */
+.hero-dark {
+  background: #0F172A;
+  color: #fff;
+  padding: 0 24px;
+}
+
+.hero-dark-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 72px 0 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero-dark-text h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.12;
+  margin: 0 0 16px;
+  color: #fff;
+  max-width: 700px;
+}
+
+.hero-dark-text p {
+  font-size: 18px;
+  color: #94A3B8;
+  margin: 0 0 32px;
+  max-width: 560px;
+  line-height: 1.65;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  display: inline-block;
+  padding: 13px 24px;
+  background: #6366F1;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.15s;
+}
+.hero-cta-primary:hover { background: #4F46E5; }
+
+.hero-cta-secondary {
+  display: inline-block;
+  padding: 13px 24px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.15s;
+}
+.hero-cta-secondary:hover { background: rgba(255,255,255,0.14); }
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.hero-stat-label {
+  font-size: 13px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .hero-dark-text h1 { font-size: 32px; }
+  .hero-dark-text p  { font-size: 16px; }
+  .hero-dark-inner   { padding: 48px 0 40px; }
+  .hero-stats        { gap: 20px; }
+  .hero-stat-num     { font-size: 22px; }
+}
+
+/* ── "Build your own" nav link ─────────────────────────────────────────── */
+.nav-link-cta {
+  background: var(--brand-light);
+  color: var(--brand);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-link-cta:hover {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* ── "Build your own" full-width banner ────────────────────────────────── */
+.build-banner {
+  background: #6366F1;
+  padding: 0 24px;
+  margin: 40px 0 0;
+}
+
+.build-banner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.build-banner-text h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.build-banner-text p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
+.build-banner-cta {
+  display: inline-block;
+  padding: 13px 24px;
+  background: #fff;
+  color: #6366F1;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+.build-banner-cta:hover { opacity: 0.9; }
+
+@media (max-width: 640px) {
+  .build-banner-inner { flex-direction: column; align-items: flex-start; }
+  .build-banner-cta   { width: 100%; text-align: center; }
+}

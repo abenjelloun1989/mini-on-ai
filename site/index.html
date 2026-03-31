@@ -33,34 +33,39 @@
       </a>
       <div style="display: flex; gap: 16px; align-items: center;">
         <a href="blog/index.html" class="nav-link">Blog</a>
+        <a href="build.html" class="nav-link nav-link-cta">✦ Build your own</a>
         <span class="product-count">57 products</span>
         <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
       </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Claude Code skills and AI workflows — crafted by a seasoned software engineer, ready to deploy today</h1>
-      <p>These are the exact skills and automation workflows I've built and battle-tested in real projects. Grab one in five minutes. Ship something faster this week.</p>
+  <section class="hero-dark">
+    <div class="hero-dark-inner">
+      <div class="hero-dark-text">
+        <h1>AI-powered digital products, ready to use — or build your own</h1>
+        <p>57 prompt packs, checklists, guides and templates. Can't find what you need? Describe your problem and get a custom product generated in 30 seconds.</p>
+        <div class="hero-cta-group">
+          <a href="#catalog" class="hero-cta-primary">Browse catalog ↓</a>
+          <a href="build.html" class="hero-cta-secondary">✦ Build your own — $5</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-num">57</span><span class="hero-stat-label">products</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-label">categories</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">$0</span><span class="hero-stat-label">to start</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">30s</span><span class="hero-stat-label">custom build</span></div>
+      </div>
     </div>
-    <img src="images/hero.svg" class="hero-illustration" alt="">
   </section>
 
-  <section class="testimonials">
-    <div class="testimonials-inner">
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"Saved me 2 hours on our last sprint planning. The /sprint-plan skill is now part of our eng team standard kit."</p>
-        <p class="testimonial-author">— Senior Engineer, B2B SaaS</p>
+  <section class="build-banner">
+    <div class="build-banner-inner">
+      <div class="build-banner-text">
+        <h2>Didn't find what you need?</h2>
+        <p>Describe your problem — we'll generate a custom prompt pack, checklist or guide in 30 seconds.</p>
       </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"Exactly what I needed for onboarding new hires. Architecture overview in one command — the whole team uses it now."</p>
-        <p class="testimonial-author">— Engineering Lead, Series B startup</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"The n8n workflow templates cut my automation setup time in half. No fluff, just working code I can actually deploy."</p>
-        <p class="testimonial-author">— n8n builder, automation agency</p>
-      </div>
+      <a href="build.html" class="build-banner-cta">Build your own — $5 →</a>
     </div>
   </section>
 
@@ -75,7 +80,7 @@
     </div>
   </section>
 
-  <main class="catalog">
+  <main class="catalog" id="catalog">
     <div class="catalog-header">
       <p class="catalog-subtitle" id="catalogCount">57 products available</p>
       <div class="search-wrap">

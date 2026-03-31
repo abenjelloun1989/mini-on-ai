@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Own AI Product — mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Describe your problem and we'll generate a custom AI prompt pack, checklist, or guide in 30 seconds. Download for $5.">
+  <meta name="robots" content="noindex">
+  <style>
+    /* ── Build page specific styles ── */
+    .build-page { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .build-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--text-muted); text-decoration: none;
+      margin-bottom: 32px; transition: color 0.15s;
+    }
+    .build-back:hover { color: var(--brand); }
+
+    .build-hero { margin-bottom: 40px; }
+    .build-hero h1 {
+      font-size: 36px; font-weight: 800; letter-spacing: -0.8px;
+      color: var(--text); margin: 0 0 12px; line-height: 1.2;
+    }
+    .build-hero p { font-size: 17px; color: var(--text-muted); margin: 0; }
+
+    /* Form */
+    .build-form-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; margin-bottom: 24px;
+    }
+
+    .build-label {
+      display: block; font-size: 14px; font-weight: 600;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .build-label span { font-weight: 400; color: var(--text-muted); }
+
+    .build-textarea {
+      width: 100%; box-sizing: border-box;
+      padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: var(--font); font-size: 15px; color: var(--text);
+      background: var(--bg); resize: vertical; min-height: 100px;
+      transition: border-color 0.15s; line-height: 1.5;
+    }
+    .build-textarea:focus { outline: none; border-color: var(--brand); }
+    .build-textarea::placeholder { color: var(--text-muted); }
+
+    .category-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;
+    }
+    .category-option { display: none; }
+    .category-label {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+      font-size: 14px; font-weight: 500; color: var(--text);
+    }
+    .category-label:hover { border-color: var(--brand); background: var(--brand-light); }
+    .category-option:checked + .category-label {
+      border-color: var(--brand); background: var(--brand-light); color: var(--brand);
+    }
+    .category-icon { font-size: 20px; flex-shrink: 0; }
+    .category-text { display: flex; flex-direction: column; gap: 2px; }
+    .category-name { font-weight: 600; }
+    .category-sub { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+    .category-option:checked + .category-label .category-sub { color: var(--brand); opacity: 0.8; }
+
+    .build-submit {
+      width: 100%; margin-top: 20px; padding: 14px 24px;
+      background: var(--brand); color: #fff; border: none; border-radius: 10px;
+      font-family: var(--font); font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .build-submit:hover { background: var(--brand-hover); }
+    .build-submit:active { transform: scale(0.99); }
+    .build-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* States */
+    .build-loading, .build-preview, .build-error, .build-success { display: none; }
+    .build-loading.visible, .build-preview.visible,
+    .build-error.visible, .build-success.visible { display: block; }
+
+    .build-loading {
+      text-align: center; padding: 40px 20px;
+      color: var(--text-muted); font-size: 15px;
+    }
+    .build-spinner {
+      width: 36px; height: 36px; border: 3px solid var(--border);
+      border-top-color: var(--brand); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Preview card */
+    .build-preview-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px;
+    }
+    .preview-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+    .preview-badge {
+      display: inline-block; padding: 4px 10px; border-radius: 6px;
+      font-size: 12px; font-weight: 700; background: var(--brand-light);
+      color: var(--brand); white-space: nowrap; margin-top: 3px;
+    }
+    .preview-title { font-size: 20px; font-weight: 800; color: var(--text); margin: 0; }
+    .preview-items { list-style: none; padding: 0; margin: 0 0 20px; }
+    .preview-items li {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px; color: var(--text); line-height: 1.5;
+    }
+    .preview-items li:last-child { border-bottom: none; }
+    .preview-items li::before {
+      content: counter(item) ".";
+      counter-increment: item;
+      font-weight: 700; color: var(--brand); margin-right: 8px;
+    }
+    .preview-items { counter-reset: item; }
+
+    .preview-more {
+      font-size: 13px; color: var(--text-muted); margin: 0 0 20px;
+      padding: 10px; background: var(--tag-bg); border-radius: 8px; text-align: center;
+    }
+    .preview-cta {
+      width: 100%; padding: 14px 24px; background: var(--brand); color: #fff;
+      border: none; border-radius: 10px; font-family: var(--font);
+      font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: background 0.15s; display: block; text-align: center;
+    }
+    .preview-cta:hover { background: var(--brand-hover); }
+    .preview-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .preview-regen {
+      width: 100%; margin-top: 10px; padding: 10px;
+      background: transparent; color: var(--text-muted); border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: var(--font); font-size: 14px;
+      cursor: pointer; transition: border-color 0.15s, color 0.15s;
+    }
+    .preview-regen:hover { border-color: var(--brand); color: var(--brand); }
+
+    .build-error-msg {
+      background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px;
+      padding: 16px 18px; color: #B91C1C; font-size: 14px; margin-bottom: 16px;
+    }
+    .build-success-msg {
+      text-align: center; padding: 40px 20px;
+    }
+    .build-success-msg h2 { font-size: 24px; margin: 0 0 8px; }
+    .build-success-msg p { color: var(--text-muted); margin: 0; }
+
+    @media (max-width: 480px) {
+      .category-grid { grid-template-columns: 1fr; }
+      .build-hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <a href="blog/index.html" class="nav-link">Blog</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="build-page">
+    <a href="index.html" class="build-back">← Back to catalog</a>
+
+    <div class="build-hero">
+      <h1>Build your own AI product</h1>
+      <p>Describe your use case — we'll generate a custom product in 30 seconds. Preview it for free, download for $5.</p>
+    </div>
+
+    <!-- Form -->
+    <div class="build-form-card" id="buildForm">
+      <label class="build-label" for="buildDescription">
+        What do you need? <span>(be specific — the more detail, the better the output)</span>
+      </label>
+      <textarea
+        id="buildDescription"
+        class="build-textarea"
+        rows="4"
+        placeholder="e.g. I'm an HR manager and I need prompts to write better job descriptions that attract senior engineers"
+        maxlength="500"
+      ></textarea>
+
+      <label class="build-label" style="margin-top: 20px;">Product type</label>
+      <div class="category-grid">
+        <input type="radio" name="category" id="cat-prompts" value="prompt-packs" class="category-option" checked>
+        <label for="cat-prompts" class="category-label">
+          <span class="category-icon">💬</span>
+          <span class="category-text">
+            <span class="category-name">Prompt Pack</span>
+            <span class="category-sub">20 ready-to-use prompts</span>
+          </span>
+        </label>
+
+        <input type="radio" name="category" id="cat-checklist" value="checklist" class="category-option">
+        <label for="cat-checklist" class="category-label">
+          <span class="category-icon">✅</span>
+          <span class="category-text">
+            <span class="category-name">Checklist</span>
+            <span class="category-sub">20 actionable steps</span>
+          </span>
+        </label>
+
+        <input type="radio" name="category" id="cat-guide" value="mini-guide" class="category-option">
+        <label for="cat-guide" class="category-label">
+          <span class="category-icon">📖</span>
+          <span class="category-text">
+            <span class="category-name">Mini Guide</span>
+            <span class="category-sub">Structured how-to guide</span>
+          </span>
+        </label>
+
+        <input type="radio" name="category" id="cat-swipe" value="swipe-file" class="category-option">
+        <label for="cat-swipe" class="category-label">
+          <span class="category-icon">📋</span>
+          <span class="category-text">
+            <span class="category-name">Swipe File</span>
+            <span class="category-sub">20 copy-ready examples</span>
+          </span>
+        </label>
+      </div>
+
+      <button class="build-submit" id="buildSubmit" onclick="generate()">
+        Generate my product →
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div class="build-loading" id="buildLoading">
+      <div class="build-spinner"></div>
+      <p>Generating your product…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="build-error" id="buildError">
+      <div class="build-error-msg" id="buildErrorMsg"></div>
+      <button class="build-submit" onclick="resetForm()">Try again</button>
+    </div>
+
+    <!-- Preview -->
+    <div class="build-preview" id="buildPreview">
+      <div class="build-preview-card">
+        <div class="preview-header">
+          <div>
+            <p class="preview-badge" id="previewBadge">Prompt Pack</p>
+          </div>
+          <h2 class="preview-title" id="previewTitle"></h2>
+        </div>
+        <ol class="preview-items" id="previewItems"></ol>
+        <p class="preview-more" id="previewMore"></p>
+        <button class="preview-cta" id="previewCta" onclick="checkout()">
+          Download full version — $5
+        </button>
+        <button class="preview-regen" onclick="generate()">
+          🔄 Regenerate (different angle)
+        </button>
+      </div>
+    </div>
+
+    <!-- Success / download -->
+    <div class="build-success" id="buildSuccess">
+      <div class="build-success-msg">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <h2>Your download is starting…</h2>
+        <p>If it doesn't start automatically, <a href="#" id="downloadFallback" style="color:var(--brand)">click here</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ── Config ──
+    var WORKER_URL = "https://generate.mini-on-ai.workers.dev";
+    // Update WORKER_URL above after deploying worker/generate.js
+
+    var currentProductId = null;
+
+    // ── On page load: check for Stripe redirect ──
+    document.addEventListener("DOMContentLoaded", function () {
+      wireBrevoForm && wireBrevoForm('.newsletter-form');
+
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get("session_id");
+      if (sessionId) {
+        showOnly("buildSuccess");
+        triggerDownload(sessionId);
+      }
+    });
+
+    // ── Generate ──
+    function generate() {
+      var desc = document.getElementById("buildDescription").value.trim();
+      if (desc.length < 10) {
+        alert("Please describe your use case in at least a few words.");
+        return;
+      }
+      var category = document.querySelector('input[name="category"]:checked').value;
+
+      showOnly("buildLoading");
+      document.getElementById("buildSubmit").disabled = true;
+
+      fetch(WORKER_URL + "/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ description: desc, category: category }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.error) throw new Error(data.error);
+          renderPreview(data);
+        })
+        .catch(function (e) {
+          showError(e.message || "Something went wrong. Please try again.");
+        })
+        .finally(function () {
+          document.getElementById("buildSubmit").disabled = false;
+        });
+    }
+
+    // ── Checkout ──
+    function checkout() {
+      if (!currentProductId) return;
+      var btn = document.getElementById("previewCta");
+      btn.disabled = true;
+      btn.textContent = "Redirecting to payment…";
+
+      fetch(WORKER_URL + "/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product_id: currentProductId }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.error) throw new Error(data.error);
+          window.location.href = data.checkout_url;
+        })
+        .catch(function (e) {
+          btn.disabled = false;
+          btn.textContent = "Download full version — $5";
+          showError(e.message || "Payment setup failed. Please try again.");
+        });
+    }
+
+    // ── Download after payment ──
+    function triggerDownload(sessionId) {
+      var downloadUrl = WORKER_URL + "/download?session_id=" + encodeURIComponent(sessionId);
+      document.getElementById("downloadFallback").href = downloadUrl;
+
+      // Create a hidden link and click it to trigger the download
+      var a = document.createElement("a");
+      a.href = downloadUrl;
+      a.download = "";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Clean up URL
+      window.history.replaceState({}, "", "/build.html");
+    }
+
+    // ── UI helpers ──
+    function renderPreview(data) {
+      currentProductId = data.id;
+      document.getElementById("previewBadge").textContent = data.category_label;
+      document.getElementById("previewTitle").textContent  = data.title;
+
+      var list = document.getElementById("previewItems");
+      list.innerHTML = "";
+      (data.preview || []).forEach(function (item) {
+        var li = document.createElement("li");
+        li.textContent = item.replace(/^##\s+/, "");
+        list.appendChild(li);
+      });
+
+      var more = document.getElementById("previewMore");
+      if (data.total_count > 5) {
+        more.textContent = "…and " + (data.total_count - 5) + " more items in the full version";
+        more.style.display = "block";
+      } else {
+        more.style.display = "none";
+      }
+
+      showOnly("buildPreview");
+    }
+
+    function showError(msg) {
+      document.getElementById("buildErrorMsg").textContent = msg;
+      showOnly("buildError");
+    }
+
+    function resetForm() {
+      currentProductId = null;
+      showOnly("buildForm");
+    }
+
+    function showOnly(id) {
+      ["buildForm", "buildLoading", "buildError", "buildPreview", "buildSuccess"].forEach(function (s) {
+        document.getElementById(s).classList.toggle("visible", s === id);
+      });
+    }
+  </script>
+
+  <!-- Dark mode (same as rest of site) -->
+  <script>
+    (function () {
+      var toggle = document.getElementById("darkModeToggle");
+      var stored = localStorage.getItem("colorMode");
+      if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "Dark";
+      }
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var dark = document.body.classList.toggle("dark-mode");
+          localStorage.setItem("colorMode", dark ? "dark" : "light");
+          toggle.textContent = dark ? "Dark" : "Light";
+        });
+      }
+    })();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script>
+</body>
+</html>
