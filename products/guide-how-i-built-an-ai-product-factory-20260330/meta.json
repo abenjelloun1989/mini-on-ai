@@ -21,5 +21,7 @@
   "thumbnail": "placeholder-mini-guide.svg",
   "gumroad_description": "I built a pipeline that runs on a Mac mini and automatically generates, packages, and publishes digital products using Claude AI. This guide is the full honest breakdown.\n\nWhat's inside:\n— Full pipeline architecture (trend scan → idea rank → approval → generate → package → publish)\n— Which Claude models to use for which tasks and why\n— The Telegram bot as a zero-UI control panel\n— Static site generation without frameworks\n— Gumroad + Cloudflare Pages publishing\n— What failed: Reddit bans, Twitter API limits, thumbnail generation\n— The complete code structure\n— How to replicate it yourself\n\nWho this is for:\nIndie makers and developers comfortable with Python who want to automate digital product creation.\n\nStack: Python, Claude API, Telegram, Gumroad, Cloudflare Pages, GitHub.\nSetup time: 4–6 hours.\nRunning cost: ~$2–5/month in Claude API usage.\n\nmore at mini-on-ai.com",
   "package_path": "products/guide-how-i-built-an-ai-product-factory-20260330/package.zip",
-  "site_path": "site/products/guide-how-i-built-an-ai-product-factory-20260330.html"
+  "site_path": "site/products/guide-how-i-built-an-ai-product-factory-20260330.html",
+  "gumroad_url": "https://minionai.gumroad.com/l/qrxwla",
+  "gumroad_product_id": "qrxwla"
 }
