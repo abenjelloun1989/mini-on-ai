@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": "blog-claude-code-a-practical-guide-to-building-automation-sk-20260331",
+      "title": "Claude Code: A Practical Guide to Building Automation Skills",
+      "slug": "claude-code-a-practical-guide-to-building-automation-sk-20260331",
+      "excerpt": "Learn how to leverage claude-code to create reusable automation skills that boost developer productivity and streamline workflows.",
+      "topic": "claude-code",
+      "created_at": "2026-03-31T21:38:00.726065"
+    },
+    {
       "id": "blog-automation-tools-for-small-business-a-developer-s-pract-20260330",
       "title": "Automation Tools for Small Business: A Developer's Practical Guide",
       "slug": "automation-tools-for-small-business-a-developer-s-pract-20260330",
