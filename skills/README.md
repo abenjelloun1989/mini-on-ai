@@ -1,31 +1,12 @@
 # Skills
 
-This directory contains **skill specifications** — markdown documents that describe how each pipeline stage works. They are documentation for Claude, not executable files.
+This directory contains two types of skill files — both are markdown documents for Claude, not executable files.
 
-## What these are
+---
 
-Each `.md` file defines:
-- Purpose of the stage
-- Inputs and outputs
-- Claude prompt templates
-- Success criteria
+## Type 1: Pipeline Documentation
 
-Claude reads these to understand how to implement or debug each stage.
-
-## What these are NOT
-
-These are NOT Claude Code custom skills (the type defined in `.claude/` config).
-They are project documentation only.
-
-## Registering as Claude Code Skills (optional)
-
-If you want to run these stages as `/skill-name` commands in Claude Code,
-you would need to register them in your Claude Code settings.
-
-See the Claude Code documentation on custom skills/commands.
-The files in this directory can serve as the basis for those commands.
-
-## Files
+Reference docs for each pipeline stage. Claude reads these to implement or debug a specific stage.
 
 | File | Stage | Script |
 |------|-------|--------|
@@ -35,3 +16,14 @@ The files in this directory can serve as the basis for those commands.
 | product-package.md | Package assets | scripts/package_product.py |
 | website-update.md | Update showcase site | scripts/update_site.py |
 | telegram-report.md | Send Telegram notification | scripts/telegram_notify.py |
+
+---
+
+## Type 2: Active Workflow Skills
+
+Behaviors Claude should apply proactively at the start of certain tasks — not tied to a single script.
+
+| File | Trigger | What it does |
+|------|---------|--------------|
+| sales-counsel.md | User asks about sales / "counsel me" | Fetches live Gumroad + Reddit data, analyzes performance, proposes concrete next actions |
+| pattern-detect.md | New planning session starts (plan mode) | Scans git log + command coverage for repeated patterns; proposes up to 2 new skills |
