@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-from lib.utils import read_json, write_json, timestamp, log, ROOT, get_run_token_summary
+from lib.utils import read_json, write_json, timestamp, log, ROOT, get_run_token_summary, get_lifetime_token_summary
 
 DAEMON_STATE = ROOT / "data/daemon-state.json"
 
@@ -330,6 +330,61 @@ def cmd_karma() -> str:
     return "🎯 Scouting Reddit for posts to comment on… 5 drafts coming shortly."
 
 
+def cmd_tokens() -> str:
+    """Show lifetime token usage and cost breakdown by model and stage."""
+    log_file = ROOT / "data/token-usage.json"
+    if not log_file.exists():
+        return "📊 No token usage data yet."
+    try:
+        entries = read_json("data/token-usage.json")
+    except Exception:
+        return "📊 Could not read token-usage.json."
+
+    from collections import defaultdict
+    _COST = {
+        "claude-sonnet-4-6":         (3.00, 15.00),
+        "claude-haiku-4-5-20251001": (0.80,  4.00),
+        "claude-haiku-4-5":          (0.80,  4.00),
+        "claude-opus-4-6":           (15.0, 75.00),
+    }
+    by_model = defaultdict(lambda: {"in": 0, "out": 0})
+    by_stage = defaultdict(lambda: {"in": 0, "out": 0})
+    total_cost = 0.0
+
+    for e in entries:
+        m = e.get("model", "unknown")
+        s = e.get("stage", "unknown")
+        i = e.get("input_tokens", 0)
+        o = e.get("output_tokens", 0)
+        by_model[m]["in"] += i
+        by_model[m]["out"] += o
+        by_stage[s]["in"] += i
+        by_stage[s]["out"] += o
+        r = _COST.get(m, (3.00, 15.00))
+        total_cost += (i * r[0] + o * r[1]) / 1_000_000
+
+    lines = [f"📊 <b>Token Usage — ${total_cost:.3f} total</b>\n"]
+
+    lines.append("<b>By model:</b>")
+    for m, v in sorted(by_model.items()):
+        r = _COST.get(m, (3.00, 15.00))
+        cost = (v["in"] * r[0] + v["out"] * r[1]) / 1_000_000
+        short = m.replace("claude-", "").replace("-20251001", "")
+        lines.append(f"  {short}: ${cost:.3f}  ({v['in']//1000}k in / {v['out']//1000}k out)")
+
+    lines.append("\n<b>By stage:</b>")
+    stage_costs = []
+    for s, v in by_stage.items():
+        # estimate cost using average rate
+        c = (v["in"] * 3.0 + v["out"] * 15.0) / 1_000_000  # conservative
+        stage_costs.append((c, s, v))
+    for c, s, v in sorted(stage_costs, reverse=True):
+        lines.append(f"  {s}: {v['in']//1000}k in / {v['out']//1000}k out")
+
+    lines.append(f"\n<i>{len(entries)} API calls logged</i>")
+    return "\n".join(lines)
+
+
 def cmd_help(group: str = "") -> str:
     group = group.strip().lower()
 
@@ -409,7 +464,8 @@ def cmd_help(group: str = "") -> str:
         "  /run [seed] [category] — Generate a product\n"
         "  /go · /skip — Approve or reject pending idea\n"
         "  /pause · /resume — Start/stop the daemon\n"
-        "  /status · /products · /ideas — Info\n\n"
+        "  /status · /products · /ideas — Info\n"
+        "  /tokens — API cost breakdown by model + stage\n\n"
         "📣 <b>Reddit Posts</b>\n"
         "  /post list — Subreddits per product\n"
         "  /post {sub} — Draft a post  (e.g. /post SideProject)\n"
@@ -1200,6 +1256,9 @@ def handle_command(text: str) -> str:
         return cmd_help(group)
 
     # ── FACTORY ───────────────────────────────────────────────────────────────
+    if lower == "/tokens":
+        return cmd_tokens()
+
     if lower == "/status":
         return cmd_status()
 

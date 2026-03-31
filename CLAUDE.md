@@ -73,11 +73,16 @@ run-pipeline.js
 - Never commit `.env` file
 - Never explain the factory on the public website — products only
 
-## After Every Session
+## Active Workflow Skills
 
-Update these two files before ending:
-- `docs/current-state.md`
-- `docs/next-steps.md`
+Read these at the start of the relevant task — they define proactive behaviors:
+
+- `skills/pattern-detect.md` — at the start of any new planning session: scan git log + command coverage for repeated patterns, propose up to 2 new skills
+- `skills/sales-counsel.md` — when the user asks about sales, distribution, or "counsel me": fetch live Gumroad + Reddit data and give concrete next actions
+
+## Context Recovery
+
+The memory system at `~/.claude/projects/-Users-minion-Dev-mini-on-factory/memory/` is the authoritative state source — prefer it over `docs/current-state.md` (which may be stale).
 
 ## Environment Variables Required
 
