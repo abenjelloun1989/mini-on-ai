@@ -362,19 +362,33 @@ def _gumroad_copy_block(meta: dict) -> str:
 
 
 def build_product_page(meta: dict) -> str:
-    tags_html = " ".join(f'<span class="tag">{escape_html(t)}</span>' for t in (meta.get("tags") or []))
-    thumbnail_html = _thumbnail_html_detail(meta)
-    cta_html = _gumroad_cta_page(meta)
+    cat = meta.get("category", "prompt-packs")
+    cat_color = CATEGORY_COLORS.get(cat, "#6366F1")
+    cat_label = cat.replace("-", " ")
+    tags = meta.get("tags") or []
+    tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags)
     year = datetime.now().year
     og_tags = _og_tags_product(meta)
     json_ld = _json_ld_product(meta)
+
+    price = meta.get("price")
+    price_badge = f'<span class="product-detail-price">${price}</span>' if price else ""
+
+    gumroad_url = meta.get("gumroad_url", "")
+    if gumroad_url:
+        cta_html = f'<a href="{escape_html(gumroad_url)}" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>'
+    else:
+        cta_html = '<span class="product-detail-cta" style="opacity:0.5;cursor:default">Coming soon</span>'
+
+    count_label = escape_html(_count_label(meta))
+    header = _site_header(back_href="../index.html", back_label="← Products", prefix="../")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{escape_html(meta['title'])}</title>
+  <title>{escape_html(meta['title'])} — mini-on-ai</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
@@ -383,87 +397,28 @@ def build_product_page(meta: dict) -> str:
 {json_ld}
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
-          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
-          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
-          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
-          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
-          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
-        </svg>
-      </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="../blog/index.html" class="nav-link">Blog</a>
-        <a href="../index.html" class="nav-link">← Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
-    </div>
-  </header>
+{header}
 
-  <main class="product-detail">
-{thumbnail_html}    <div class="product-tags">{_category_badge(meta)}{tags_html}</div>
-    <h1>{escape_html(meta['title'])}</h1>
-    <p class="product-desc-large">{escape_html(meta['description'])}</p>
+  <main class="product-detail-page">
+    <p class="product-breadcrumb"><a href="../index.html">mini-on-ai</a> / <a href="../index.html">Products</a></p>
+    <span class="product-detail-cat" style="color:{cat_color}">{escape_html(cat_label)}</span>
+    <h1 class="product-detail-title">{escape_html(meta['title'])}</h1>
+    {price_badge}
+    <div class="product-detail-tags">{tags_html}</div>
+    <p class="product-detail-desc">{escape_html(meta['description'])}</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">{count_label}</p>
+    {cta_html}
 
-    <div class="product-stats">
-      <span>{escape_html(_count_label(meta))}</span>
-    </div>
-
-{cta_html}
-
-    <section class="product-details">
+    <div class="product-gumroad-desc">
 {_rich_description_html(meta)}
-    </section>
-
-{_gumroad_copy_block(meta)}
+    </div>
   </main>
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 
-  <script>
-    (function() {{
-      const toggle = document.getElementById('darkModeToggle');
-
-      function initDarkMode() {{
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-
-        if (isDark) {{
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = 'Dark';
-        }} else {{
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = 'Light';
-        }}
-      }}
-
-      function toggleDarkMode() {{
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        if (isDark) {{
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-        }} else {{
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-        }}
-        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }}
-
-      if (toggle) {{
-        toggle.addEventListener('click', toggleDarkMode);
-      }}
-
-      initDarkMode();
-    }})();
-  </script>
+{_dark_mode_js()}
 {_brevo_form_js()}
 {_cf_analytics()}
 </body>
@@ -494,37 +449,117 @@ def _product_persona(meta: dict) -> str:
     return "non-tech"
 
 
+CATEGORY_COLORS = {
+    "prompt-packs":      "#6366F1",
+    "checklist":         "#10B981",
+    "mini-guide":        "#8B5CF6",
+    "swipe-file":        "#F59E0B",
+    "n8n-template":      "#EF4444",
+    "claude-code-skill": "#06B6D4",
+}
+
+SVG_LOGO = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>"""
+
+
+def _dark_mode_js() -> str:
+    """Dark-default theme toggle JS. Adds/removes light-mode class on body."""
+    return """  <script>
+    (function() {
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '☀ Light';
+      } else {
+        if (toggle) toggle.textContent = '☾ Dark';
+      }
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
+      }
+    })();
+  </script>"""
+
+
+def _site_header(back_href: str = None, back_label: str = "← Products", prefix: str = "") -> str:
+    """Frosted glass header. prefix is '' for index, '../' for product pages, '../' for blog posts."""
+    nav_items = ""
+    if back_href:
+        nav_items += f'        <a href="{back_href}" class="nav-link">{back_label}</a>\n'
+    else:
+        nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
+        nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
+    nav_items += '        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>'
+    return f"""  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="{prefix}index.html" class="site-logo" aria-label="mini-on-ai home">
+        {SVG_LOGO}
+      </a>
+      <nav style="display:flex;gap:16px;align-items:center;">
+{nav_items}
+      </nav>
+    </div>
+  </header>"""
+
+
 def build_product_card(meta: dict) -> str:
     tags = meta.get("tags") or []
     cat = meta.get("category", "prompt-packs")
     tags_attr = ",".join(tags)
-    # Always use category placeholder — no real thumbnails on cards
-    placeholder_src = CATEGORY_PLACEHOLDER_IMG.get(cat, "images/placeholder-prompt-packs.svg")
-    thumbnail_html = f'\n        <img src="{placeholder_src}" alt="" class="product-thumbnail" aria-hidden="true">'
-    cta_html = _gumroad_cta_card(meta)
     persona = _product_persona(meta)
+    cat_color = CATEGORY_COLORS.get(cat, "#6366F1")
 
-    # Free badge
+    # Badges
     free_attr = ' data-free="true"' if meta.get("is_free") else ""
-    free_badge = '<span class="badge-free">Free</span>' if meta.get("is_free") else ""
-
-    # New badge — auto for products created in last 14 days
-    new_badge = ""
+    badges = ""
+    if meta.get("is_free"):
+        badges += '<span class="badge-free">Free</span>'
     created = meta.get("created_at", "")
     if created:
         try:
             dt = datetime.fromisoformat(created.replace("Z", "+00:00"))
             if (datetime.now(timezone.utc) - dt) < timedelta(days=14):
-                new_badge = '<span class="badge-new">New</span>'
+                badges += '<span class="badge-new">New</span>'
         except Exception:
             pass
 
-    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-persona="{persona}" data-tags="{escape_html(tags_attr)}"{free_attr}>{thumbnail_html}
-        <div class="product-card-body">
-          <div class="product-tags">{_category_badge(meta)}{free_badge}{new_badge}</div>
-          <h2 class="product-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
-          <p class="product-desc">{escape_html(meta['description'])}</p>
-          {cta_html}
+    # Price
+    price = meta.get("price")
+    price_html = f'<span class="card-price">${price}</span>' if price else ""
+
+    # Tags row
+    tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags[:4])
+
+    # CTA
+    gumroad_url = meta.get("gumroad_url", "")
+    if gumroad_url:
+        cta = f'<a href="{escape_html(gumroad_url)}" class="card-cta" target="_blank" rel="noopener">Get it →</a>'
+    else:
+        cta = '<span class="card-cta" style="opacity:0.4;cursor:default">Coming soon</span>'
+
+    cat_label = cat.replace("-", " ")
+
+    return f"""      <article class="product-card" data-category="{escape_html(cat)}" data-persona="{persona}" data-tags="{escape_html(tags_attr)}"{free_attr} style="--cat-color:{cat_color}">
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="card-category">{escape_html(cat_label)}</span>
+            {price_html}
+          </div>
+          <h2 class="card-title"><a href="products/{meta['id']}.html">{escape_html(meta['title'])}</a></h2>
+          <p class="card-desc">{escape_html(meta['description'])}</p>
+          <div class="card-bottom">
+            <div class="card-tags">{badges}{tags_html}</div>
+            {cta}
+          </div>
         </div>
       </article>"""
 
@@ -641,7 +676,7 @@ def _filter_js() -> str:
 
 
 def rebuild_index(catalog: dict) -> str:
-    # Live products (gumroad_url set) first, coming-soon last; preserve insertion order within each group
+    # Live products first, coming-soon last
     _live = [p for p in catalog["products"] if p.get("gumroad_url")]
     _soon = [p for p in catalog["products"] if not p.get("gumroad_url")]
     products = _live + _soon
@@ -650,6 +685,7 @@ def rebuild_index(catalog: dict) -> str:
     filter_bar = _build_filter_bar(products)
     year = datetime.now().year
     og_tags = _og_tags_index()
+    header = _site_header()
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -665,62 +701,34 @@ def rebuild_index(catalog: dict) -> str:
 {og_tags}
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="index.html" class="site-logo" aria-label="mini-on-ai home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
-          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
-          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
-          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
-          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
-          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
-        </svg>
-      </a>
-      <div style="display: flex; gap: 16px; align-items: center;">
-        <a href="blog/index.html" class="nav-link">Blog</a>
-        <span class="product-count">{count} product{'s' if count != 1 else ''}</span>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
-    </div>
-  </header>
+{header}
 
   <section class="hero">
-    <div class="hero-text">
-      <h1>Claude Code skills and AI workflows — crafted by a seasoned software engineer, ready to deploy today</h1>
-      <p>These are the exact skills and automation workflows I've built and battle-tested in real projects. Grab one in five minutes. Ship something faster this week.</p>
-    </div>
-    <img src="images/hero.svg" class="hero-illustration" alt="">
-  </section>
-
-  <section class="testimonials">
-    <div class="testimonials-inner">
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"Saved me 2 hours on our last sprint planning. The /sprint-plan skill is now part of our eng team standard kit."</p>
-        <p class="testimonial-author">— Senior Engineer, B2B SaaS</p>
+    <div class="hero-inner">
+      <h1 class="hero-headline">Claude Code skills &amp;<br>AI workflows — ship faster</h1>
+      <p class="hero-sub">Ready-to-deploy skills and automation templates built by a working software engineer. Drop one in, save hours this week.</p>
+      <div class="hero-cta-group">
+        <a href="#catalog" class="hero-cta-primary">Browse {count} products</a>
+        <a href="build.html" class="hero-cta-secondary">✦ Build your own</a>
       </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"Exactly what I needed for onboarding new hires. Architecture overview in one command — the whole team uses it now."</p>
-        <p class="testimonial-author">— Engineering Lead, Series B startup</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">{count}</div>
+          <div class="hero-stat-label">Products</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5 min</div>
+          <div class="hero-stat-label">To deploy</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Weekly</div>
+          <div class="hero-stat-label">New drops</div>
+        </div>
       </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">"The n8n workflow templates cut my automation setup time in half. No fluff, just working code I can actually deploy."</p>
-        <p class="testimonial-author">— n8n builder, automation agency</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="email-capture">
-    <div class="email-capture-inner">
-      <p class="email-capture-headline">New Claude Code skills ship weekly.</p>
-      <p class="email-capture-sub">Be first to know when a new pack drops.</p>
-      <form class="email-capture-form" action="#" method="get">
-        <input type="email" name="email" placeholder="your@email.com" required>
-        <button type="submit">Notify me</button>
-      </form>
     </div>
   </section>
 
-  <main class="catalog">
+  <main class="catalog" id="catalog">
     <div class="catalog-header">
       <p class="catalog-subtitle" id="catalogCount">{count} product{'s' if count != 1 else ''} available</p>
       <div class="search-wrap">
@@ -733,16 +741,24 @@ def rebuild_index(catalog: dict) -> str:
     <div class="product-grid">
 {cards}
       <div class="catalog-empty" id="catalogEmpty">
-        <p>No products in this category yet.</p>
+        <p>No products match your search.</p>
       </div>
     </div>
   </main>
+
+  <div class="build-banner">
+    <div class="build-banner-text">
+      <h2>Didn't find what you need?</h2>
+      <p>Describe your use case and get a custom product generated in 30 seconds.</p>
+    </div>
+    <a href="build.html" class="build-banner-cta">✦ Build your own →</a>
+  </div>
 
   <section class="newsletter-cta">
     <div class="newsletter-cta-inner">
       <p class="newsletter-label">Newsletter</p>
       <h2 class="newsletter-headline">One AI Workflow a Week</h2>
-      <p class="newsletter-desc">One practical, plain-English AI workflow every Friday — no coding required. Built for marketing managers, HR leads, ops directors, and small business owners who want to use AI without the tech overwhelm.</p>
+      <p class="newsletter-desc">One practical AI workflow every Friday — no coding required.</p>
       <form class="newsletter-form" action="#" method="get">
         <input type="email" name="email" placeholder="your@email.com" required>
         <button type="submit">Subscribe free</button>
@@ -754,46 +770,7 @@ def rebuild_index(catalog: dict) -> str:
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 
-  <script>
-    (function() {{
-      const toggle = document.getElementById('darkModeToggle');
-
-      function initDarkMode() {{
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-
-        if (isDark) {{
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = 'Dark';
-        }} else {{
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = 'Light';
-        }}
-      }}
-
-      function toggleDarkMode() {{
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        if (isDark) {{
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-        }} else {{
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-        }}
-        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }}
-
-      if (toggle) {{
-        toggle.addEventListener('click', toggleDarkMode);
-      }}
-
-      initDarkMode();
-    }})();
-  </script>
+{_dark_mode_js()}
 {_filter_js()}
 {_brevo_form_js()}
 {_cf_analytics()}
@@ -871,6 +848,7 @@ def build_blog_post_page(post: dict) -> str:
     date    = (post.get("created_at") or "")[:10]
     body_html = _markdown_to_html(post.get("body_markdown", ""))
     year    = datetime.now().year
+    header  = _site_header(back_href="index.html", back_label="← All posts", prefix="../")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -891,24 +869,7 @@ def build_blog_post_page(post: dict) -> str:
   <link rel="canonical" href="{url}">
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
-          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
-          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
-          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
-          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
-          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
-        </svg>
-      </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="index.html" class="nav-link">← All posts</a>
-        <a href="../index.html" class="nav-link">Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
-    </div>
-  </header>
+{header}
 
   <main class="blog-post-page">
     <article class="blog-post">
@@ -927,26 +888,7 @@ def build_blog_post_page(post: dict) -> str:
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 
-  <script>
-    (function() {{
-      const toggle = document.getElementById('darkModeToggle');
-      function initDarkMode() {{
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-        if (isDark) {{ document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }}
-        else {{ document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }}
-      }}
-      if (toggle) toggle.addEventListener('click', function() {{
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        document.documentElement.classList.toggle('dark-mode', isDark);
-        document.documentElement.classList.toggle('light-mode-manual', !isDark);
-        localStorage.setItem('darkMode', isDark);
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }});
-      initDarkMode();
-    }})();
-  </script>
+{_dark_mode_js()}
 {_cf_analytics()}
 </body>
 </html>"""
@@ -955,6 +897,7 @@ def build_blog_post_page(post: dict) -> str:
 def rebuild_blog_index(posts: list) -> str:
     """Build site/blog/index.html listing all blog posts."""
     year = datetime.now().year
+    header = _site_header(back_href="../index.html", back_label="← Products", prefix="../")
     cards = ""
     for post in sorted(posts, key=lambda p: p.get("created_at", ""), reverse=True):
         title   = escape_html(post.get("title", ""))
@@ -985,23 +928,7 @@ def rebuild_blog_index(posts: list) -> str:
   <link rel="canonical" href="{SITE_URL}/blog/index.html">
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="../index.html" class="site-logo" aria-label="mini-on-ai home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
-          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
-          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
-          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
-          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
-          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
-        </svg>
-      </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="../index.html" class="nav-link">← Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
-    </div>
-  </header>
+{header}
 
   <main class="blog-listing-page">
     <div class="blog-listing-header">
@@ -1016,26 +943,7 @@ def rebuild_blog_index(posts: list) -> str:
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
   </footer>
 
-  <script>
-    (function() {{
-      const toggle = document.getElementById('darkModeToggle');
-      function initDarkMode() {{
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-        if (isDark) {{ document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }}
-        else {{ document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }}
-      }}
-      if (toggle) toggle.addEventListener('click', function() {{
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        document.documentElement.classList.toggle('dark-mode', isDark);
-        document.documentElement.classList.toggle('light-mode-manual', !isDark);
-        localStorage.setItem('darkMode', isDark);
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }});
-      initDarkMode();
-    }})();
-  </script>
+{_dark_mode_js()}
 {_cf_analytics()}
 </body>
 </html>"""

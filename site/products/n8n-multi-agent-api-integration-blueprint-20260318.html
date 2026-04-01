@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Agent API Integration Blueprint</title>
+  <title>Multi-Agent API Integration Blueprint — mini-on-ai</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
@@ -33,27 +33,24 @@
           <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
         </svg>
       </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="../blog/index.html" class="nav-link">Blog</a>
+      <nav style="display:flex;gap:16px;align-items:center;">
         <a href="../index.html" class="nav-link">← Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>
+      </nav>
     </div>
   </header>
 
-  <main class="product-detail">
-  <img src="../images/placeholder-n8n-template.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
-    <div class="product-tags"><span class="category-badge category-n8n-template">n8n Template</span><span class="tag">multi-agent</span> <span class="tag">api-integration</span> <span class="tag">automation</span> <span class="tag">workflow-templates</span></div>
-    <h1>Multi-Agent API Integration Blueprint</h1>
-    <p class="product-desc-large">Pre-built n8n workflows that eliminate API plumbing work by providing ready-to-use connections, auth handling, and glue code for common multi-agent tool integrations.</p>
+  <main class="product-detail-page">
+    <p class="product-breadcrumb"><a href="../index.html">mini-on-ai</a> / <a href="../index.html">Products</a></p>
+    <span class="product-detail-cat" style="color:#EF4444">n8n template</span>
+    <h1 class="product-detail-title">Multi-Agent API Integration Blueprint</h1>
+    
+    <div class="product-detail-tags"><span class="tag" data-tag="multi-agent">multi-agent</span> <span class="tag" data-tag="api-integration">api-integration</span> <span class="tag" data-tag="automation">automation</span> <span class="tag" data-tag="workflow-templates">workflow-templates</span></div>
+    <p class="product-detail-desc">Pre-built n8n workflows that eliminate API plumbing work by providing ready-to-use connections, auth handling, and glue code for common multi-agent tool integrations.</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">10-node workflow</p>
+    <a href="https://minionai.gumroad.com/l/qohecb" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>
 
-    <div class="product-stats">
-      <span>10-node workflow</span>
-    </div>
-
-    <a href="https://minionai.gumroad.com/l/qohecb" class="btn-cta btn-large" target="_blank" rel="noopener">Get it free →</a>
-
-    <section class="product-details">
+    <div class="product-gumroad-desc">
       <div class="product-description-body">
 <p>You've built the agent logic. Now you're losing days to auth errors, rate limit handling, and glue code that has nothing to do with your actual product.</p>
 <h3 class="desc-section-header">Who this is for:</h3>
@@ -73,9 +70,7 @@
 <p>Download and use it today.</p>
 <p class="desc-footer">Discover more tools like this at <a href="https://mini-on-ai.com">mini-on-ai.com</a></p>
       </div>
-    </section>
-
-
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -84,42 +79,21 @@
 
   <script>
     (function() {
-      const toggle = document.getElementById('darkModeToggle');
-
-      function initDarkMode() {
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = 'Dark';
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = 'Light';
-        }
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '☀ Light';
+      } else {
+        if (toggle) toggle.textContent = '☾ Dark';
       }
-
-      function toggleDarkMode() {
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-        }
-        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }
-
       if (toggle) {
-        toggle.addEventListener('click', toggleDarkMode);
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
       }
-
-      initDarkMode();
     })();
   </script>
 <script>

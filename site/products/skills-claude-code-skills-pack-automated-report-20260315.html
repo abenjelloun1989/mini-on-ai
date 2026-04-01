@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports</title>
+  <title>Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports — mini-on-ai</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
@@ -33,27 +33,24 @@
           <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
         </svg>
       </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="../blog/index.html" class="nav-link">Blog</a>
+      <nav style="display:flex;gap:16px;align-items:center;">
         <a href="../index.html" class="nav-link">← Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>
+      </nav>
     </div>
   </header>
 
-  <main class="product-detail">
-  <img src="../images/placeholder-prompt-packs.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
-    <div class="product-tags"><span class="category-badge category-claude-code-skill">CC Skills Pack</span><span class="tag">claude-code</span> <span class="tag">skills</span> <span class="tag">report-automation</span> <span class="tag">data-distribution</span> <span class="tag">analytics</span></div>
-    <h1>Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports</h1>
-    <p class="product-desc-large">For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely</p>
+  <main class="product-detail-page">
+    <p class="product-breadcrumb"><a href="../index.html">mini-on-ai</a> / <a href="../index.html">Products</a></p>
+    <span class="product-detail-cat" style="color:#06B6D4">claude code skill</span>
+    <h1 class="product-detail-title">Claude Code Skills Pack: Automated Report Generation — 5 Skills for Scheduling and Distributing Recurring Reports</h1>
+    <span class="product-detail-price">$1900</span>
+    <div class="product-detail-tags"><span class="tag" data-tag="claude-code">claude-code</span> <span class="tag" data-tag="skills">skills</span> <span class="tag" data-tag="report-automation">report-automation</span> <span class="tag" data-tag="data-distribution">data-distribution</span> <span class="tag" data-tag="analytics">analytics</span></div>
+    <p class="product-detail-desc">For analytics leads and operations analysts, this pack covers parameterized report templating, scheduling logic, multi-format export (PDF, CSV, Slack), recipient segmentation, and delivery audit logging across 5 skills so they can eliminate manual report-running from their weekly workflow entirely</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">5 skills</p>
+    <a href="https://minionai.gumroad.com/l/wivxio" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>
 
-    <div class="product-stats">
-      <span>5 skills</span>
-    </div>
-
-    <a href="https://minionai.gumroad.com/l/wivxio" class="btn-cta btn-large" target="_blank" rel="noopener">Get it — $19 →</a>
-
-    <section class="product-details">
+    <div class="product-gumroad-desc">
       <div class="product-description-body">
 <p>Manual report-running is a time tax. This pack ends it.</p>
 <h3 class="desc-section-header">Who this is for:</h3>
@@ -74,9 +71,7 @@
 <p>Five skills, zero manual re-running. Download and use it today.</p>
 <p class="desc-footer">Discover more tools like this at <a href="https://mini-on-ai.com">mini-on-ai.com</a></p>
       </div>
-    </section>
-
-
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -85,42 +80,21 @@
 
   <script>
     (function() {
-      const toggle = document.getElementById('darkModeToggle');
-
-      function initDarkMode() {
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = 'Dark';
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = 'Light';
-        }
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '☀ Light';
+      } else {
+        if (toggle) toggle.textContent = '☾ Dark';
       }
-
-      function toggleDarkMode() {
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-        }
-        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }
-
       if (toggle) {
-        toggle.addEventListener('click', toggleDarkMode);
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
       }
-
-      initDarkMode();
     })();
   </script>
 <script>

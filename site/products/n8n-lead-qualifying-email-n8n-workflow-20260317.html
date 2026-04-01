@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lead Qualifying &amp; Email n8n Workflow</title>
+  <title>Lead Qualifying &amp; Email n8n Workflow — mini-on-ai</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
@@ -33,27 +33,24 @@
           <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
         </svg>
       </a>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <a href="../blog/index.html" class="nav-link">Blog</a>
+      <nav style="display:flex;gap:16px;align-items:center;">
         <a href="../index.html" class="nav-link">← Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
-      </div>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>
+      </nav>
     </div>
   </header>
 
-  <main class="product-detail">
-  <img src="../images/placeholder-n8n-template.svg" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">
-    <div class="product-tags"><span class="category-badge category-n8n-template">n8n Template</span><span class="tag">lead-qualification</span> <span class="tag">email-automation</span> <span class="tag">sales-automation</span> <span class="tag">n8n</span></div>
-    <h1>Lead Qualifying &amp; Email n8n Workflow</h1>
-    <p class="product-desc-large">A ready-to-use n8n workflow template that automates lead qualification and sends personalized follow-up emails, helping sales teams save time on manual lead scoring and outreach.</p>
+  <main class="product-detail-page">
+    <p class="product-breadcrumb"><a href="../index.html">mini-on-ai</a> / <a href="../index.html">Products</a></p>
+    <span class="product-detail-cat" style="color:#EF4444">n8n template</span>
+    <h1 class="product-detail-title">Lead Qualifying &amp; Email n8n Workflow</h1>
+    
+    <div class="product-detail-tags"><span class="tag" data-tag="lead-qualification">lead-qualification</span> <span class="tag" data-tag="email-automation">email-automation</span> <span class="tag" data-tag="sales-automation">sales-automation</span> <span class="tag" data-tag="n8n">n8n</span></div>
+    <p class="product-detail-desc">A ready-to-use n8n workflow template that automates lead qualification and sends personalized follow-up emails, helping sales teams save time on manual lead scoring and outreach.</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">9-node workflow</p>
+    <a href="https://minionai.gumroad.com/l/ijhcgb" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>
 
-    <div class="product-stats">
-      <span>9-node workflow</span>
-    </div>
-
-    <a href="https://minionai.gumroad.com/l/ijhcgb" class="btn-cta btn-large" target="_blank" rel="noopener">Get it free →</a>
-
-    <section class="product-details">
+    <div class="product-gumroad-desc">
       <div class="product-description-body">
 <p>You're losing deals because you're still manually scoring leads and writing follow-up emails one by one.</p>
 <p>---</p>
@@ -77,9 +74,7 @@
 <p>Download and use it today.</p>
 <p class="desc-footer">Discover more tools like this at <a href="https://mini-on-ai.com">mini-on-ai.com</a></p>
       </div>
-    </section>
-
-
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -88,42 +83,21 @@
 
   <script>
     (function() {
-      const toggle = document.getElementById('darkModeToggle');
-
-      function initDarkMode() {
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-          toggle.textContent = 'Dark';
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-          toggle.textContent = 'Light';
-        }
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '☀ Light';
+      } else {
+        if (toggle) toggle.textContent = '☾ Dark';
       }
-
-      function toggleDarkMode() {
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        if (isDark) {
-          document.documentElement.classList.add('dark-mode');
-          document.documentElement.classList.remove('light-mode-manual');
-        } else {
-          document.documentElement.classList.remove('dark-mode');
-          document.documentElement.classList.add('light-mode-manual');
-        }
-        localStorage.setItem('darkMode', isDark ? 'true' : 'false');
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      }
-
       if (toggle) {
-        toggle.addEventListener('click', toggleDarkMode);
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
       }
-
-      initDarkMode();
     })();
   </script>
 <script>

@@ -31,7 +31,7 @@
       <div style="display:flex;gap:16px;align-items:center;">
         <a href="index.html" class="nav-link">← All posts</a>
         <a href="../index.html" class="nav-link">Products</a>
-        <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Light</button>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>
       </div>
     </div>
   </header>
@@ -128,22 +128,21 @@
 
   <script>
     (function() {
-      const toggle = document.getElementById('darkModeToggle');
-      function initDarkMode() {
-        const saved = localStorage.getItem('darkMode');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = saved !== null ? saved === 'true' : prefersDark;
-        if (isDark) { document.documentElement.classList.add('dark-mode'); toggle.textContent = 'Dark'; }
-        else { document.documentElement.classList.add('light-mode-manual'); toggle.textContent = 'Light'; }
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '☀ Light';
+      } else {
+        if (toggle) toggle.textContent = '☾ Dark';
       }
-      if (toggle) toggle.addEventListener('click', function() {
-        const isDark = !document.documentElement.classList.contains('dark-mode');
-        document.documentElement.classList.toggle('dark-mode', isDark);
-        document.documentElement.classList.toggle('light-mode-manual', !isDark);
-        localStorage.setItem('darkMode', isDark);
-        toggle.textContent = isDark ? 'Dark' : 'Light';
-      });
-      initDarkMode();
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '☀ Light' : '☾ Dark';
+        });
+      }
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script><!-- End Cloudflare Web Analytics -->
