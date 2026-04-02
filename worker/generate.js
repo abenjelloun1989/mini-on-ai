@@ -155,7 +155,7 @@ async function handleCheckout(request, env) {
     body: new URLSearchParams({
       "payment_method_types[]":                          "card",
       "line_items[0][price_data][currency]":             "usd",
-      "line_items[0][price_data][unit_amount]":          "500",
+      "line_items[0][price_data][unit_amount]":          "900",
       "line_items[0][price_data][product_data][name]":   product.title,
       "line_items[0][price_data][product_data][description]": product.description || "",
       "line_items[0][quantity]":                         "1",
