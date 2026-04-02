@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": "blog-essential-skills-for-modern-developers-build-your-techn-20260402",
+      "title": "Essential Skills for Modern Developers: Build Your Technical Toolkit",
+      "slug": "essential-skills-for-modern-developers-build-your-techn-20260402",
+      "excerpt": "Master the core skills developers need today: coding, automation, documentation, and team communication for career growth.",
+      "topic": "skills",
+      "created_at": "2026-04-02T07:38:03.620436"
+    },
+    {
       "id": "blog-claude-code-a-practical-guide-to-building-automation-sk-20260331",
       "title": "Claude Code: A Practical Guide to Building Automation Skills",
       "slug": "claude-code-a-practical-guide-to-building-automation-sk-20260331",
