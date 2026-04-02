@@ -20,7 +20,7 @@ Since you signed up, the factory has shipped **57 digital products** — Claude 
 
 **The thing most worth your time** is the full technical breakdown I wrote as a guide:
 
-**[How I Built an AI Product Factory on a Mac mini — $49](https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html)**
+**[How I Built an AI Product Factory on a Mac mini — $49](https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html?utm_source=email&utm_medium=blast&utm_campaign=april_launch)**
 
 It covers:
 - The full pipeline architecture (all 7 scripts, how they connect)
@@ -38,15 +38,15 @@ If you've ever thought about automating digital product creation, this is the pr
 
 If $49 isn't right for you right now, these are completely free:
 
-- [n8n Starter Guide for Zapier Users](https://minionai.gumroad.com/l/appuyt) — great if you're switching from Zapier
-- [Claude Code Skill: Architecture Overview Generator](https://minionai.gumroad.com/l/vmkqra) — drop in and document any codebase
-- [WhatsApp AI Agent Setup Guide](https://minionai.gumroad.com/l/pwurv) — if you're building on WhatsApp Business API
+- [n8n Starter Guide for Zapier Users](https://minionai.gumroad.com/l/appuyt?utm_source=email&utm_medium=blast&utm_campaign=april_launch) — great if you're switching from Zapier
+- [Claude Code Skill: Architecture Overview Generator](https://minionai.gumroad.com/l/vmkqra?utm_source=email&utm_medium=blast&utm_campaign=april_launch) — drop in and document any codebase
+- [WhatsApp AI Agent Setup Guide](https://minionai.gumroad.com/l/pwurv?utm_source=email&utm_medium=blast&utm_campaign=april_launch) — if you're building on WhatsApp Business API
 
 ---
 
 **Build Your Own** — one more thing worth trying:
 
-Go to [mini-on-ai.com/build.html](https://mini-on-ai.com/build.html), describe your use case (anything: "email templates for SaaS onboarding", "checklist for deploying to production"), pick a product type, and get a generated preview in 30 seconds. Preview is free. Download the full version for $9.
+Go to [mini-on-ai.com/build.html](https://mini-on-ai.com/build.html?utm_source=email&utm_medium=blast&utm_campaign=april_launch), describe your use case (anything: "email templates for SaaS onboarding", "checklist for deploying to production"), pick a product type, and get a generated preview in 30 seconds. Preview is free. Download the full version for $9.
 
 ---
 

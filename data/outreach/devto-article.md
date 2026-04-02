@@ -75,16 +75,16 @@ The whole run takes ~5 minutes. I get a Telegram message, paste the copy into Gu
 
 I wrote a full breakdown of everything above — architecture, all the prompts, the Cloudflare Worker code, lessons learned — as a product on the site itself. It's the most meta thing I've ever built: the factory's own documentation as its first flagship product.
 
-→ **[How I Built an AI Product Factory on a Mac mini](https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html)** — $49
+→ **[How I Built an AI Product Factory on a Mac mini](https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html?utm_source=devto&utm_medium=article&utm_campaign=factory_launch)** — $49
 
 ## Free stuff
 
 If you just want to see the output:
-- **[n8n Starter Guide for Zapier Users](https://minionai.gumroad.com/l/appuyt)** — free
-- **[Claude Code Skill: Architecture Overview Generator](https://minionai.gumroad.com/l/vmkqra)** — free
-- **[n8n Social Media Auth & Posting Workflow](https://minionai.gumroad.com/l/kbwfrq)** — free
+- **[n8n Starter Guide for Zapier Users](https://minionai.gumroad.com/l/appuyt?utm_source=devto&utm_medium=article&utm_campaign=factory_launch)** — free
+- **[Claude Code Skill: Architecture Overview Generator](https://minionai.gumroad.com/l/vmkqra?utm_source=devto&utm_medium=article&utm_campaign=factory_launch)** — free
+- **[n8n Social Media Auth & Posting Workflow](https://minionai.gumroad.com/l/kbwfrq?utm_source=devto&utm_medium=article&utm_campaign=factory_launch)** — free
 
-Or try the [Build Your Own](https://mini-on-ai.com/build.html) — describe your use case, get a custom prompt pack or checklist in 30 seconds, preview free, download for $9.
+Or try the [Build Your Own](https://mini-on-ai.com/build.html?utm_source=devto&utm_medium=article&utm_campaign=factory_launch) — describe your use case, get a custom prompt pack or checklist in 30 seconds, preview free, download for $9.
 
 ---
 

@@ -402,6 +402,7 @@ def cmd_help(group: str = "") -> str:
             "<b>/go · /skip</b> — approve or reject the pending idea\n"
             "<b>/pause · /resume</b> — start/stop the daemon\n"
             "<b>/status</b> — last run, product count, API costs\n"
+            "<b>/stats [days]</b> — Gumroad revenue, sales, top products, referrers\n"
             "<b>/products</b> — all published products with links\n"
             "<b>/ideas</b> — top 5 scored ideas in the backlog"
         )
@@ -465,6 +466,7 @@ def cmd_help(group: str = "") -> str:
         "  /go · /skip — Approve or reject pending idea\n"
         "  /pause · /resume — Start/stop the daemon\n"
         "  /status · /products · /ideas — Info\n"
+        "  /stats [days] — Gumroad sales, revenue & referrers\n"
         "  /tokens — API cost breakdown by model + stage\n\n"
         "📣 <b>Reddit Posts</b>\n"
         "  /post list — Subreddits per product\n"
@@ -550,6 +552,20 @@ def cmd_status() -> str:
         return msg
     except Exception as e:
         return f"❌ Error reading status: {e}"
+
+
+def cmd_stats(days: int = 30) -> str:
+    """Fetch live sales data from Gumroad and return a formatted summary."""
+    import subprocess
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "gumroad_stats.py"), "--days", str(days)],
+        capture_output=True, text=True, cwd=str(ROOT),
+    )
+    output = result.stdout.strip()
+    if result.returncode != 0 or not output:
+        err = result.stderr.strip() or "No output from gumroad_stats.py"
+        return f"❌ Stats error: {err[:300]}"
+    return output
 
 
 def cmd_products() -> str:
@@ -1261,6 +1277,14 @@ def handle_command(text: str) -> str:
 
     if lower == "/status":
         return cmd_status()
+
+    if lower == "/stats" or lower.startswith("/stats "):
+        days = 30
+        try:
+            days = int(text.strip().split()[1])
+        except (IndexError, ValueError):
+            pass
+        return cmd_stats(days)
 
     if lower == "/products":
         return cmd_products()

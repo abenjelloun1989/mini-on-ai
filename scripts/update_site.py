@@ -259,6 +259,12 @@ def _thumbnail_html_detail(meta: dict) -> str:
     return f'  <img src="{src}" alt="" class="product-thumbnail-detail" aria-hidden="true" style="width:100%;border-radius:14px;margin-bottom:32px;aspect-ratio:16/9;object-fit:cover;">\n'
 
 
+def _utm_url(base_url: str, medium: str, campaign: str) -> str:
+    """Append UTM parameters to a Gumroad URL for attribution tracking."""
+    sep = "&" if "?" in base_url else "?"
+    return f"{base_url}{sep}utm_source=site&utm_medium={medium}&utm_campaign={campaign}"
+
+
 def _gumroad_cta_page(meta: dict) -> str:
     """Gumroad CTA button for the product detail page."""
     url = meta.get("gumroad_url")
@@ -272,7 +278,8 @@ def _gumroad_cta_page(meta: dict) -> str:
         label = f"Get it — ${price // 100} →"
     else:
         label = "Get it on Gumroad →"
-    return f'    <a href="{escape_html(url)}" class="btn-cta btn-large" target="_blank" rel="noopener">{label}</a>'
+    tracked_url = _utm_url(url, "product_page", meta.get("id", "unknown"))
+    return f'    <a href="{escape_html(tracked_url)}" class="btn-cta btn-large" target="_blank" rel="noopener">{label}</a>'
 
 
 def _gumroad_cta_card(meta: dict) -> str:
@@ -288,7 +295,8 @@ def _gumroad_cta_card(meta: dict) -> str:
         label = f"Get it — ${price // 100} →"
     else:
         label = "Get it on Gumroad →"
-    return f'<a href="{escape_html(url)}" class="btn-cta" target="_blank" rel="noopener">{label}</a>'
+    tracked_url = _utm_url(url, "product_card", meta.get("id", "unknown"))
+    return f'<a href="{escape_html(tracked_url)}" class="btn-cta" target="_blank" rel="noopener">{label}</a>'
 
 
 def _render_gumroad_description(text: str) -> str:
@@ -376,7 +384,8 @@ def build_product_page(meta: dict) -> str:
 
     gumroad_url = meta.get("gumroad_url", "")
     if gumroad_url:
-        cta_html = f'<a href="{escape_html(gumroad_url)}" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>'
+        tracked_gumroad = _utm_url(gumroad_url, "product_page", meta.get("id", "unknown"))
+        cta_html = f'<a href="{escape_html(tracked_gumroad)}" class="product-detail-cta" target="_blank" rel="noopener">Get it now →</a>'
     else:
         cta_html = '<span class="product-detail-cta" style="opacity:0.5;cursor:default">Coming soon</span>'
 
@@ -543,7 +552,8 @@ def build_product_card(meta: dict) -> str:
     # CTA
     gumroad_url = meta.get("gumroad_url", "")
     if gumroad_url:
-        cta = f'<a href="{escape_html(gumroad_url)}" class="card-cta" target="_blank" rel="noopener">Get it →</a>'
+        tracked_gumroad = _utm_url(gumroad_url, "product_card", meta.get("id", "unknown"))
+        cta = f'<a href="{escape_html(tracked_gumroad)}" class="card-cta" target="_blank" rel="noopener">Get it →</a>'
     else:
         cta = '<span class="card-cta" style="opacity:0.4;cursor:default">Coming soon</span>'
 
