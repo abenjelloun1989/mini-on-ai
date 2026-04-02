@@ -120,7 +120,7 @@ def _json_ld_product(meta: dict) -> str:
     # Always emit offers when product has a Gumroad URL or an explicit price.
     # Free (PWYW) products use price "0". This satisfies Google's Product schema requirement.
     if gurl or price is not None:
-        offer_price = "0" if (meta.get("is_free") or price is None) else str(price)
+        offer_price = "0" if (meta.get("is_free") or price is None) else str(price // 100)
         data["offers"] = {
             "@type": "Offer",
             "priceCurrency": "USD",
@@ -372,7 +372,7 @@ def build_product_page(meta: dict) -> str:
     json_ld = _json_ld_product(meta)
 
     price = meta.get("price")
-    price_badge = f'<span class="product-detail-price">${price}</span>' if price else ""
+    price_badge = f'<span class="product-detail-price">${price // 100}</span>' if price else ""
 
     gumroad_url = meta.get("gumroad_url", "")
     if gumroad_url:
@@ -535,7 +535,7 @@ def build_product_card(meta: dict) -> str:
 
     # Price
     price = meta.get("price")
-    price_html = f'<span class="card-price">${price}</span>' if price else ""
+    price_html = f'<span class="card-price">${price // 100}</span>' if price else ""
 
     # Tags row
     tags_html = " ".join(f'<span class="tag" data-tag="{escape_html(t)}">{escape_html(t)}</span>' for t in tags[:4])
@@ -688,6 +688,26 @@ def rebuild_index(catalog: dict) -> str:
     og_tags = _og_tags_index()
     header = _site_header()
 
+    # Featured flagship: highest-priced product with a Gumroad URL
+    _flagship = max((p for p in _live if p.get("price")), key=lambda p: p["price"], default=None)
+    if _flagship:
+        _fp_title = escape_html(_flagship["title"])
+        _fp_desc = escape_html(_flagship.get("description", ""))
+        _fp_price = _flagship["price"] // 100
+        _fp_url = escape_html(f'products/{_flagship["id"]}.html')
+        featured_section = f"""
+  <section class="featured-product">
+    <div class="featured-inner">
+      <span class="featured-label">Featured</span>
+      <h2 class="featured-title">{_fp_title}</h2>
+      <p class="featured-desc">{_fp_desc}</p>
+      <a href="{_fp_url}" class="btn-cta btn-featured">Read more — ${_fp_price} →</a>
+    </div>
+  </section>
+"""
+    else:
+        featured_section = ""
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -704,13 +724,17 @@ def rebuild_index(catalog: dict) -> str:
 <body>
 {header}
 
+  <div class="launch-bar">
+    April 2026 launch — {count} products live. <a href="build.html">Try a free preview →</a>
+  </div>
+
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-headline">Claude Code skills &amp;<br>AI workflows — ship faster</h1>
       <p class="hero-sub">Ready-to-deploy skills and automation templates built by a working software engineer. Drop one in, save hours this week.</p>
       <div class="hero-cta-group">
-        <a href="#catalog" class="hero-cta-primary">Browse {count} products</a>
-        <a href="build.html" class="hero-cta-secondary">✦ Build your own</a>
+        <a href="build.html" class="hero-cta-primary">✦ Try a free preview</a>
+        <a href="#catalog" class="hero-cta-secondary">Browse {count} products</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -728,7 +752,7 @@ def rebuild_index(catalog: dict) -> str:
       </div>
     </div>
   </section>
-
+{featured_section}
   <main class="catalog" id="catalog">
     <div class="catalog-header">
       <p class="catalog-subtitle" id="catalogCount">{count} product{'s' if count != 1 else ''} available</p>

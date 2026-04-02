@@ -161,6 +161,62 @@ body.light-mode .site-header {
   color: var(--brand);
 }
 
+/* Launch bar
+   ========================================================================== */
+.launch-bar {
+  background: rgba(99,102,241,0.08);
+  border-bottom: 1px solid rgba(99,102,241,0.2);
+  padding: 10px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.launch-bar a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 500;
+}
+.launch-bar a:hover { text-decoration: underline; }
+
+/* Featured flagship product
+   ========================================================================== */
+.featured-product {
+  padding: 40px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.featured-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.featured-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.featured-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.featured-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+.btn-featured {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
 /* Hero — gradient orb, gradient headline
    ========================================================================== */
 .hero {
