@@ -140,6 +140,7 @@
     (function() {
       var toggle = document.getElementById('darkModeToggle');
       var stored = localStorage.getItem('theme');
+      if (stored !== 'light' && stored !== 'dark') { stored = null; }
       if (stored === 'light') {
         document.body.classList.add('light-mode');
         if (toggle) toggle.textContent = '☀ Light';

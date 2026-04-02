@@ -62,4 +62,6 @@ Requirements:
 
 write_json("data/product-catalog.json", catalog)
 print("\nDone. Now rebuilding site pages...")
-os.system("python3 scripts/update_site.py --rebuild-all")
+import subprocess as _sp
+import sys as _sys
+_sp.run([_sys.executable, str(ROOT / "scripts/update_site.py"), "--rebuild-all"], cwd=str(ROOT))

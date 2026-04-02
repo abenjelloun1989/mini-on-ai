@@ -48,7 +48,7 @@ function wireBrevoForm(sel) {{
       body: JSON.stringify({{email: email}})
     }}).then(function(r) {{
       if (r.ok) {{
-        form.innerHTML = '<p style="color:var(--accent);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
+        form.innerHTML = '<p style="color:var(--brand);font-weight:600;margin:0">✅ You\\'re on the list!</p>';
       }} else {{
         btn.disabled = false; btn.textContent = 'Try again';
       }}
@@ -473,6 +473,7 @@ def _dark_mode_js() -> str:
     (function() {
       var toggle = document.getElementById('darkModeToggle');
       var stored = localStorage.getItem('theme');
+      if (stored !== 'light' && stored !== 'dark') { stored = null; }
       if (stored === 'light') {
         document.body.classList.add('light-mode');
         if (toggle) toggle.textContent = '☀ Light';

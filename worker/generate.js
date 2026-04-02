@@ -82,6 +82,9 @@ async function handleGenerate(request, env) {
   if (!description || description.length < 10) {
     return corsJson({ error: "Please describe your use case (at least 10 characters)." }, 400);
   }
+  if (description.length > 1000) {
+    return corsJson({ error: "Description too long (max 1000 characters)." }, 400);
+  }
   if (!CATEGORY_LABELS[category]) {
     return corsJson({ error: "Invalid category." }, 400);
   }
@@ -181,6 +184,17 @@ async function handleDownload(url, env) {
   const sessionId = url.searchParams.get("session_id");
   if (!sessionId) return corsJson({ error: "Missing session_id." }, 400);
 
+  // Replay protection — each paid session can only download once
+  const downloadedKey = `downloaded:${sessionId}`;
+  const alreadyServed = await env.PRODUCTS_KV.get(downloadedKey);
+  if (alreadyServed) {
+    return new Response(
+      "This download link has already been used. Each purchase allows one download. " +
+      "Please contact hello@mini-on-ai.com with your Stripe receipt if you need another copy.",
+      { status: 410, headers: { "Access-Control-Allow-Origin": ALLOWED_ORIGIN } }
+    );
+  }
+
   // Retrieve and verify Stripe session
   const stripeRes = await fetch(
     `https://api.stripe.com/v1/checkout/sessions/${sessionId}`,
@@ -210,6 +224,9 @@ async function handleDownload(url, env) {
   const product = JSON.parse(productJson);
   const zip     = buildZip(product);
   const name    = sanitizeFilename(product.title);
+
+  // Mark this session as downloaded (24h TTL matches product TTL)
+  await env.PRODUCTS_KV.put(downloadedKey, "1", { expirationTtl: 86400 });
 
   return new Response(zip, {
     headers: {
