@@ -4,6 +4,8 @@
 
 An AI-powered digital product factory running on a Mac mini. It scans Reddit for unmet needs, generates matching products, publishes them to Gumroad, and manages Reddit karma — all controlled from Telegram.
 
+Visitors can also generate a **custom product on-demand** via the [Build Your Own](https://mini-on-ai.com/build.html) page: describe a use case, preview the output for free, download for $9.
+
 **Live site:** [mini-on-ai.com](https://mini-on-ai.com)
 
 ---
@@ -167,21 +169,30 @@ flowchart LR
 
 ## Telegram Commands
 
-| Command | Pipeline | Description |
-|---|---|---|
-| `/run [seed]` | Product factory | Generate a product (optionally seeded by keyword) |
-| `/reddit` | Reddit demand | Scan Reddit, propose up to 10 products |
-| `/go` | Product factory | Approve pending idea → build it |
-| `/skip` | Product factory | Skip pending idea |
-| `/karma [n]` | Karma scout | Find posts to comment on (default 5) |
-| `/karma <url>` | Karma scout | Draft comment for a specific Reddit post |
-| `/draft r/Sub \| Title \| Body` | Karma scout | Draft comment from pasted text (no API) |
-| `/holidays` | Holiday planner | Start interactive trip planning session |
-| `/holidays cancel` | Holiday planner | Cancel active session |
-| `/pause` | Daemon | Pause the background factory daemon |
-| `/resume` | Daemon | Resume the factory daemon |
-| `/status` | Monitor | Last run, product count, API costs |
-| `/products` | Monitor | All published products with links |
+| Command | Description |
+|---|---|
+| `/run [seed] [category]` | Generate a product (optional keyword + category) |
+| `/run all` | Run 4 pipelines (marketing, freelancing, writing, coding) |
+| `/go` | Approve pending idea → build it |
+| `/skip` | Skip pending idea |
+| `/blog [topic]` | Generate + publish SEO blog post (auto-picks topic if omitted) |
+| `/blast` | Draft email campaign → inline Send / Regenerate buttons |
+| `/tweet [list\|pid]` | Draft tweet for latest un-tweeted product |
+| `/missing [list\|N]` | List products without Gumroad URLs; get listing copy for product N |
+| `/seturl {pid} {url}` | Save Gumroad URL for a product, rebuild + push |
+| `/setfree {pid}` | Mark a product as free, rebuild + push |
+| `/gumroad [pid]` | Get Gumroad listing copy for any product |
+| `/syncprices` | Sync prices from Gumroad API to local catalog |
+| `/reddit` | Scan Reddit, propose up to 10 products |
+| `/karma [n\|url]` | Find posts to comment on for karma building |
+| `/draft r/Sub \| Title \| Body` | Draft Reddit comment from pasted text (no API) |
+| `/status` | Last run, product count, API costs |
+| `/products` | All published products with links |
+| `/tokens` | Lifetime API cost breakdown by model and stage |
+| `/ideas` | Top scored ideas in the backlog |
+| `/categories` | Show all product categories |
+| `/pause` / `/resume` | Pause / resume the background daemon |
+| `/holidays` | Interactive trip planner (personal feature) |
 
 ---
 
@@ -198,19 +209,25 @@ mini-on-factory/
 │   ├── telegram_notify.py     — message formatting + send helpers
 │   ├── trend_scan.py          — idea generation from trending topics
 │   ├── idea_rank.py           — score and select best idea (Claude Haiku)
-│   ├── generate_product.py    — generate product content (Claude Sonnet)
+│   ├── generate_product.py    — generate product content (Claude Haiku)
 │   ├── package_product.py     — zip product assets
-│   ├── update_site.py         — add product to showcase site
+│   ├── update_site.py         — rebuild all site HTML + sitemap + blog index
 │   ├── generate_thumbnails.py — Pillow-rendered 1280×720 thumbnails
-│   ├── publish_product.py     — publish to Gumroad
+│   ├── generate_blog_post.py  — SEO blog post via Claude Haiku
+│   ├── email_blast.py         — Brevo email campaign sender
+│   ├── publish_product.py     — Gumroad API: create/update listings
 │   ├── reddit_scan.py         — scan subreddits for pain-point posts
 │   └── lib/
 │       ├── claude_cli.py      — wrapper for claude CLI (Pro subscription)
 │       ├── utils.py           — shared helpers (JSON, logging, paths)
 │       └── trend_sources.py   — subreddit + keyword lists
+├── worker/
+│   ├── generate.js            — CF Worker: Build Your Own (Anthropic + Stripe + ZIP)
+│   └── subscribe.js           — CF Worker: Brevo email subscribe proxy
 ├── data/
 │   ├── product-catalog.json   — published products
 │   ├── idea-backlog.json      — idea candidates
+│   ├── blog-posts.json        — published blog posts
 │   ├── reddit-queue.json      — Reddit posts + build status
 │   ├── karma-queue.json       — comment drafts + skip status
 │   ├── holiday-state.json     — active holiday planning session
@@ -222,13 +239,13 @@ mini-on-factory/
 │       ├── meta.json
 │       ├── package.zip
 │       └── assets/
-│           ├── prompts.md
-│           ├── prompts.json
-│           └── README.md
-└── site/                      — static showcase (GitHub Pages)
-    ├── index.html
-    ├── style.css
-    └── images/thumbnails/
+└── site/                      — static showcase (Cloudflare Pages)
+    ├── index.html             — rebuilt by update_site.py
+    ├── style.css              — Dark Premium design system
+    ├── build.html             — Build Your Own interactive page
+    ├── _headers               — Cloudflare Pages security headers
+    ├── blog/
+    └── products/{id}.html
 ```
 
 ---
@@ -243,7 +260,9 @@ mini-on-factory/
 | Weather | [wttr.in](https://wttr.in) — free, no API key |
 | Publishing | Gumroad API |
 | Notifications | Telegram Bot API (polling, inline buttons) |
-| Site hosting | GitHub Pages (static HTML) |
+| Site hosting | Cloudflare Pages (static HTML, Dark Premium design) |
+| Build Your Own | Cloudflare Workers + Stripe + Anthropic Haiku |
+| Email | Brevo API via Cloudflare Worker proxy |
 | Thumbnails | Pillow (Python image library) |
 | Scheduling | launchd plist on Mac mini |
 
