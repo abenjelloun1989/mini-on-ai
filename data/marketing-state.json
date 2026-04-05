@@ -1,15 +1,12 @@
 {
   "last_blog_post_date": "2026-04-06",
   "blog_posts_this_week": 1,
-  "last_tweet_date": "2026-03-31",
+  "last_tweet_date": "2026-04-05",
   "tweeted_product_ids": [
-    "guide-how-i-built-an-ai-product-factory-20260330"
+    "guide-how-i-built-an-ai-product-factory-20260330",
+    "skills-claude-code-skill-architecture-overview-free-20260326"
   ],
-  "pending_tweet": {
-    "product_id": "skills-claude-code-skill-architecture-overview-free-20260326",
-    "tweet_text": "Just published: Claude Code Skill: Architecture Overview Generator (Free) (free)\n\nOne Claude Code skill that analyzes your codebase and generates a clear arch\u2026\n\nhttps://mini-on-ai.com/products/skills-claude-code-skill-architecture-overview-free-20260326.html\n\n#ClaudeCode #devdocs",
-    "created_at": "2026-04-05T22:09:15.933964+00:00"
-  },
+  "pending_tweet": null,
   "directories_submitted": [],
   "appsumo_submitted": true,
   "last_run": "2026-04-05T22:08:59.114840+00:00",

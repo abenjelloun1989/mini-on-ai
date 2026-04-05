@@ -230,57 +230,42 @@ def _tweet_due(state: dict, force: bool) -> bool:
 
 
 def run_product_tweet(state: dict, product: dict) -> None:
-    """Draft a product tweet and send for Telegram approval."""
+    """Draft a product tweet and send as copy-paste text via Telegram."""
     sys.path.insert(0, str(ROOT / "scripts"))
     from twitter_post import draft_for_product  # noqa: E402
 
     tweet_text = draft_for_product(product)
     pid = product["id"]
-    pid_short = pid[:40]  # callback_data max 64 bytes total
 
-    state["pending_tweet"] = {
-        "product_id": pid,
-        "tweet_text": tweet_text,
-        "created_at": timestamp(),
-    }
+    # Mark as done immediately — no API posting, just copy-paste
+    tweeted = state.get("tweeted_product_ids", [])
+    if pid not in tweeted:
+        tweeted.append(pid)
+    state["tweeted_product_ids"] = tweeted
+    state["pending_tweet"] = None
+    state["last_tweet_date"] = date.today().isoformat()
     save_state(state)
 
     msg = (
-        f"🐦 <b>Tweet ready for approval</b>\n\n"
-        f"<i>{product.get('title', '')}</i>\n\n"
+        f"🐦 <b>Tweet copy</b> — <i>{product.get('title', '')}</i>\n\n"
         f"<code>{tweet_text}</code>\n\n"
-        f"({len(tweet_text)}/280 chars)"
+        f"({len(tweet_text)}/280 chars) — post manually if you want."
     )
-    tg_send_buttons(msg, [
-        {"text": "✅ Post it",  "callback_data": f"marketing:tweet:approve:{pid_short}"},
-        {"text": "⏭ Skip",     "callback_data": f"marketing:tweet:skip:{pid_short}"},
-    ])
-    log("marketing", f"Tweet approval sent for: {pid}")
+    tg_send(msg)
+    log("marketing", f"Tweet copy sent for: {pid}")
 
 
 def run_generic_tweet(state: dict) -> None:
-    """Post an autonomous generic tweet (no product, just value)."""
-    tweeted = set(state.get("tweeted_product_ids", []))
-    # pick least-recently-used generic tweet by index stored in state
+    """Send a generic tweet as copy-paste text via Telegram."""
     idx = state.get("generic_tweet_index", 0) % len(GENERIC_TWEETS)
     text = GENERIC_TWEETS[idx].format(site_url=SITE_URL)
-
-    result = subprocess.run(
-        [sys.executable, str(ROOT / "scripts/twitter_post.py"), "--message", text],
-        capture_output=True, text=True, cwd=str(ROOT),
-    )
 
     state["generic_tweet_index"] = idx + 1
     state["last_tweet_date"] = date.today().isoformat()
     save_state(state)
 
-    if result.returncode == 0:
-        log("marketing", f"Generic tweet posted (idx {idx})")
-        tg_send(f"🐦 <b>Auto-tweet posted</b>\n\n<code>{text}</code>")
-    else:
-        err = result.stderr.strip()[:200] or result.stdout.strip()[:200]
-        log("marketing", f"Generic tweet failed: {err}")
-        tg_send(f"⚠️ <b>Auto-tweet failed</b> — Twitter API error:\n<code>{err}</code>")
+    tg_send(f"🐦 <b>Tweet copy</b>\n\n<code>{text}</code>\n\nPost manually if you want.")
+    log("marketing", f"Generic tweet copy sent (idx {idx})")
 
 
 # ── Directory submission task ──────────────────────────────────────────────────
