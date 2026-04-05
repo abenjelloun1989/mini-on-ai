@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": "blog-automation-for-developers-build-workflows-that-scale-wi-20260406",
+      "title": "Automation for Developers: Build Workflows That Scale Without Code Bloat",
+      "slug": "automation-for-developers-build-workflows-that-scale-wi-20260406",
+      "excerpt": "Learn practical automation strategies to eliminate repetitive tasks and scale your workflows efficiently without writing unnecessary code.",
+      "topic": "automation",
+      "created_at": "2026-04-06T00:09:14.739388"
+    },
+    {
       "id": "blog-essential-skills-for-modern-developers-build-your-techn-20260402",
       "title": "Essential Skills for Modern Developers: Build Your Technical Toolkit",
       "slug": "essential-skills-for-modern-developers-build-your-techn-20260402",

@@ -554,6 +554,61 @@ def cmd_status() -> str:
         return f"❌ Error reading status: {e}"
 
 
+def _load_marketing_state() -> dict:
+    try:
+        return read_json("data/marketing-state.json")
+    except Exception:
+        return {}
+
+
+def _save_marketing_state(state: dict) -> None:
+    write_json("data/marketing-state.json", state)
+
+
+def _handle_marketing_tweet_approve(pid_short: str) -> str:
+    state = _load_marketing_state()
+    pending = state.get("pending_tweet")
+    if not pending:
+        return "⚠️ No pending tweet found."
+    if not pending.get("product_id", "").startswith(pid_short):
+        return "⚠️ Pending tweet doesn't match. Try /stats to check state."
+
+    tweet_text = pending["tweet_text"]
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts/twitter_post.py"), "--message", tweet_text],
+        capture_output=True, text=True, cwd=str(ROOT),
+    )
+
+    product_id = pending["product_id"]
+    tweeted = state.get("tweeted_product_ids", [])
+    if product_id not in tweeted:
+        tweeted.append(product_id)
+    state["tweeted_product_ids"] = tweeted
+    state["pending_tweet"] = None
+    state["last_tweet_date"] = timestamp()[:10]
+    _save_marketing_state(state)
+
+    if result.returncode == 0:
+        return f"✅ Tweeted:\n\n<code>{tweet_text[:200]}</code>"
+    else:
+        err = result.stderr.strip()[:200] or result.stdout.strip()[:200]
+        return f"⚠️ Tweet failed (marked as skipped):\n<code>{err}</code>"
+
+
+def _handle_marketing_tweet_skip(pid_short: str) -> str:
+    state = _load_marketing_state()
+    pending = state.get("pending_tweet")
+    if pending and pending.get("product_id", "").startswith(pid_short):
+        product_id = pending["product_id"]
+        tweeted = state.get("tweeted_product_ids", [])
+        if product_id not in tweeted:
+            tweeted.append(product_id)
+        state["tweeted_product_ids"] = tweeted
+        state["pending_tweet"] = None
+        _save_marketing_state(state)
+    return "⏭ Tweet skipped."
+
+
 def cmd_stats(days: int = 30) -> str:
     """Fetch live sales data from Gumroad and return a formatted summary."""
     import subprocess
@@ -1286,6 +1341,25 @@ def handle_command(text: str) -> str:
             pass
         return cmd_stats(days)
 
+    if lower == "/marketing-done-dir":
+        state = _load_marketing_state()
+        pending_dir = state.get("pending_directory")
+        dirs_submitted = state.get("directories_submitted", [])
+        if not pending_dir:
+            return "⚠️ No pending directory submission found."
+        if pending_dir not in dirs_submitted:
+            dirs_submitted.append(pending_dir)
+        state["directories_submitted"] = dirs_submitted
+        state["pending_directory"] = None
+        _save_marketing_state(state)
+        return f"✅ Marked <b>{pending_dir}</b> as submitted. {len(dirs_submitted)} done so far."
+
+    if lower == "/marketing-done-appsumo":
+        state = _load_marketing_state()
+        state["appsumo_submitted"] = True
+        _save_marketing_state(state)
+        return "✅ AppSumo marked as submitted."
+
     if lower == "/products":
         return cmd_products()
 
@@ -1700,6 +1774,24 @@ def main():
                     product_id = next((p["id"] for p in catalog.get("products", []) if p["id"].startswith(pid_short)), pid_short)
                     log("bot", f"Tweet regen requested: {product_id}")
                     _handle_tweet_regen(product_id, cq_id, cq_chat_id)
+                elif cq_data.startswith("marketing:tweet:approve:"):
+                    pid_short = cq_data.split(":", 3)[3]
+                    log("bot", f"Marketing tweet approve: {pid_short}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    reply = _handle_marketing_tweet_approve(pid_short)
+                    send(reply, cq_chat_id)
+                elif cq_data.startswith("marketing:tweet:skip:"):
+                    pid_short = cq_data.split(":", 3)[3]
+                    log("bot", f"Marketing tweet skip: {pid_short}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    reply = _handle_marketing_tweet_skip(pid_short)
+                    send(reply, cq_chat_id)
                 else:
                     log("bot", f"Callback ignored: unknown data={cq_data}")
                 continue

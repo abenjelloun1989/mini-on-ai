@@ -2,144 +2,144 @@
   "status": "done",
   "step": 8,
   "constraints": {
-    "dates": "27 au 30 avril 2026 non flexible",
-    "budget": "600€",
+    "dates": "27 avril au 1 mai",
+    "budget": "600€ pour 3 adultes et un bébé",
     "destination": "France",
     "trip_type": "Relax",
-    "journey_time": "4h",
+    "journey_time": "4h en train",
     "accommodation": "Hôtel",
     "nights": "3",
-    "extras": "On part en plus avec mamie"
+    "extras": "Nous partons avec mamie plus une poussette"
   },
   "proposals": [
     {
-      "title": "Douceur printanière en Baie de Somme 🌿",
-      "destination": "Le Crotoy, France",
-      "emoji": "🐦",
-      "why": "La Baie de Somme est un havre de paix idéal pour une escapade en famille détendue au printemps. Les plages et les promenades sur les chemins plats sont parfaitement adaptées aux poussettes. Mamie adorera les paysages sauvages et les petits restaurants de fruits de mer au bord de l'eau.",
+      "title": "Douceur de vivre en Provence 🌿",
+      "destination": "Avignon, France",
+      "emoji": "🌻",
+      "why": "Avignon est une ville à taille humaine, très piétonne dans son centre historique, idéale pour une escapade reposante en famille. Le Palais des Papes et les jardins du Rocher des Doms sont accessibles en poussette. Parfait pour mamie aussi, avec peu de dénivelé et beaucoup de terrasses ensoleillées.",
       "transport": {
-        "description": "TGV Paris-Gare du Nord → Amiens direct, puis taxi ou navette (~30min) vers Le Crotoy",
-        "type": "train + taxi",
-        "duration": "1h10 train + 30min taxi = ~2h30 porte-à-porte",
-        "price_per_person_eur": 35,
-        "total_transport_eur": 175,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Amiens&travelDate=2026-04-27",
-        "notes": "Train direct Paris Nord–Amiens très fréquent. Taxi Amiens–Le Crotoy ~30min, ~40€ pour le groupe. Accessible poussette, pas de marches à bord."
+        "description": "TGV Paris Gare de Lyon → Avignon TGV direct",
+        "type": "train",
+        "duration": "2h40",
+        "price_per_person_eur": 45,
+        "total_transport_eur": 180,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Avignon&travelDate=2025-04-27",
+        "notes": "TGV direct sans correspondance. Navette ou taxi depuis la gare TGV vers le centre (~15 min). Poussette pliable dans les espaces bagages du TGV."
       },
       "accommodation": {
-        "description": "Hôtel Les Tourelles Le Crotoy 3★",
+        "description": "Hôtel Mercure Avignon Centre Palais des Papes 4★",
         "type": "hotel",
         "price_per_night_eur": 110,
         "total_accommodation_eur": 330,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Le+Crotoy&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2",
-        "notes": "Hôtel face à la baie, ascenseur disponible, accueil famille, rangement poussette au rez-de-chaussée. Chambre familiale disponible pour adultes + enfant + mamie."
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Avignon&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
+        "notes": "Ascenseur disponible, accès poussette facilité, idéalement situé à 5 min à pied du Palais des Papes. Chambres familiales disponibles."
       },
-      "total_estimate_eur": 505,
+      "total_estimate_eur": 510,
       "nights": 3,
-      "journey_time_note": "~2h30 porte-à-porte depuis Paris",
-      "weather_note": "~6°C, Light rain shower",
-      "stroller_note": "Chemins côtiers et front de mer globalement plats et goudronnés. Quelques pavés dans le bourg, mais contournables. La plage à marée basse est ferme et praticable en poussette.",
+      "journey_time_note": "~3h30 porte-à-porte depuis Paris (train + navette gare TGV → centre)",
+      "weather_note": "~9°C, Sunny",
+      "stroller_note": "Le centre historique d'Avignon est majoritairement plat et pavé mais accessible. Les Jardins du Rocher des Doms disposent de rampes. Éviter les ruelles étroites de la vieille ville pour les passages en poussette.",
       "booking_links": [
         {
           "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Amiens&travelDate=2026-04-27"
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Avignon&travelDate=2025-04-27"
         },
         {
           "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Le+Crotoy&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2"
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Avignon&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
         },
         {
           "label": "🏠 Chercher Airbnb",
-          "url": "https://www.airbnb.fr/s/Le-Crotoy/homes?checkin=2026-04-27&checkout=2026-04-30&adults=2&children=1"
+          "url": "https://www.airbnb.fr/s/Avignon/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
         }
       ]
     },
     {
-      "title": "Soleil et sérénité sur la Côte d'Azur ☀️",
-      "destination": "Nice, France",
-      "emoji": "🌊",
-      "why": "Nice en fin avril offre un temps ensoleillé et doux, parfait pour une escapade relaxante en famille avec mamie. La Promenade des Anglais est entièrement plate et idéale pour les poussettes. Les hôtels du centre sont bien équipés et facilement accessibles depuis la gare.",
+      "title": "Escapade bord de mer en Normandie 🌊",
+      "destination": "Deauville, France",
+      "emoji": "🏖️",
+      "why": "Deauville est une station balnéaire élégante et reposante, à seulement 2h15 de Paris en train. Ses grandes plages de sable plat sont parfaites pour promener la poussette, et la promenade des Planches est entièrement accessible. Mamie adorera l'atmosphère chic et détendue de la ville.",
       "transport": {
-        "description": "TGV Paris-Gare de Lyon → Nice-Ville direct",
+        "description": "Intercités Paris Saint-Lazare → Deauville-Trouville direct",
         "type": "train",
-        "duration": "5h30 direct (ou avion ~2h + 1h aéroport = ~4h30)",
-        "price_per_person_eur": 65,
-        "total_transport_eur": 260,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Nice&travelDate=2026-04-27",
-        "notes": "TGV direct Paris–Nice, réservez tôt pour tarifs Prem's. Alternative : vol direct Paris CDG–Nice NCE ~1h25, vérifiez Skyscanner. Poussette en soute ou au bout de voiture selon compagnie."
+        "duration": "2h15",
+        "price_per_person_eur": 38,
+        "total_transport_eur": 152,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Deauville&travelDate=2025-04-27",
+        "notes": "Train direct depuis Paris Saint-Lazare. La gare de Deauville est à 10 min à pied des hôtels du centre. Poussette facile à embarquer dans les trains Intercités."
       },
       "accommodation": {
-        "description": "Hôtel Ibis Styles Nice Centre Gare 3★",
+        "description": "Hôtel Ibis Styles Deauville Centre 3★",
+        "type": "hotel",
+        "price_per_night_eur": 115,
+        "total_accommodation_eur": 345,
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Deauville&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
+        "notes": "Ascenseur, chambres familiales disponibles, à 5 min à pied de la plage et de la promenade des Planches. Parking poussette possible à la réception."
+      },
+      "total_estimate_eur": 497,
+      "nights": 3,
+      "journey_time_note": "~3h porte-à-porte depuis Paris (train direct + courte marche ou taxi)",
+      "weather_note": "~9°C, Patchy rain nearby",
+      "stroller_note": "La plage de Deauville est en sable fin et plat, facilement accessible en poussette. La promenade des Planches est entièrement plane et accessible. Le centre-ville est également très praticable avec un landau.",
+      "booking_links": [
+        {
+          "label": "🚄 Réserver le train",
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Deauville&travelDate=2025-04-27"
+        },
+        {
+          "label": "🏨 Chercher hôtels",
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Deauville&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
+        },
+        {
+          "label": "🏠 Chercher Airbnb",
+          "url": "https://www.airbnb.fr/s/Deauville/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
+        }
+      ]
+    },
+    {
+      "title": "Charme et sérénité au bord de la Loire 🏰",
+      "destination": "Tours, France",
+      "emoji": "🌸",
+      "why": "Tours est une ville douce et verdoyante, idéale pour un séjour reposant en famille. Ses parcs, ses bords de Loire praticables en poussette et son centre-ville animé plairont à toute la famille. À 55 min seulement de Paris en TGV, c'est une destination sans stress parfaite pour mamie et le bébé.",
+      "transport": {
+        "description": "TGV Paris Montparnasse → Tours direct",
+        "type": "train",
+        "duration": "55min",
+        "price_per_person_eur": 35,
+        "total_transport_eur": 140,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2025-04-27",
+        "notes": "TGV ultra-rapide et direct. La gare de Tours est en plein centre-ville. Poussette très facile à gérer, pas de correspondance ni navette nécessaire."
+      },
+      "accommodation": {
+        "description": "Hôtel Best Western Plus de Bordeaux Tours Centre 4★",
         "type": "hotel",
         "price_per_night_eur": 105,
         "total_accommodation_eur": 315,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Nice&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2",
-        "notes": "À 2 minutes à pied de la gare de Nice, ascenseur, rangement poussette. Chambre familiale ou deux chambres communicantes disponibles. Idéal pour être proche de tout sans voiture."
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
+        "notes": "Ascenseur, situation centrale à 5 min à pied de la gare et du Vieux-Tours. Chambres communicantes disponibles pour famille + mamie. Accueil poussette facilité."
       },
-      "total_estimate_eur": 575,
+      "total_estimate_eur": 455,
       "nights": 3,
-      "journey_time_note": "~6h30 porte-à-porte en TGV / ~4h30 en avion depuis Paris",
-      "weather_note": "~11°C, Sunny",
-      "stroller_note": "La Promenade des Anglais est un rêve pour les poussettes : large, plate et asphaltée sur des kilomètres. Le Vieux-Nice a des ruelles pavées, mais facilement contournables par les grands axes. Tramway T1 et T2 entièrement accessibles PMR/poussette.",
+      "journey_time_note": "~2h porte-à-porte depuis Paris (TGV ultra-rapide + marche jusqu'à l'hôtel)",
+      "weather_note": "~9°C, Patchy rain nearby",
+      "stroller_note": "Les quais de Loire et les parcs de Tours sont entièrement plats et accessibles en poussette. Le Vieux-Tours a quelques pavés mais reste globalement praticable. Le jardin botanique tout proche est parfait pour une pause avec bébé.",
       "booking_links": [
         {
           "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Nice&travelDate=2026-04-27"
-        },
-        {
-          "label": "✈️ Chercher un vol",
-          "url": "https://www.skyscanner.fr/transport/vols/cdg/nce/260427/260430/?adults=2&children=1"
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2025-04-27"
         },
         {
           "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Nice&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2"
-        }
-      ]
-    },
-    {
-      "title": "Escapade reposante au bord de la Loire 🏰",
-      "destination": "Tours, France",
-      "emoji": "🌸",
-      "why": "Tours au printemps est magnifique : floraison des jardins, châteaux accessibles et rythme de vie paisible, parfait pour se ressourcer en famille avec mamie. La ville est compacte, très plate et entièrement praticable en poussette. À 55 minutes de Paris en TGV, c'est un choix pratique et économique.",
-      "transport": {
-        "description": "TGV Paris-Montparnasse → Tours direct",
-        "type": "train",
-        "duration": "55min direct",
-        "price_per_person_eur": 30,
-        "total_transport_eur": 120,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2026-04-27",
-        "notes": "TGV direct Paris Montparnasse–Tours, très fréquent. Tarif Prem's dès 10€/pers si réservé à l'avance. Poussette dans l'espace bagages en bout de voiture. Porte-à-porte ~1h45."
-      },
-      "accommodation": {
-        "description": "Hôtel Mercure Tours Centre Gare 4★",
-        "type": "hotel",
-        "price_per_night_eur": 120,
-        "total_accommodation_eur": 360,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2",
-        "notes": "Directement à côté de la gare de Tours, ascenseur, accueil famille, local poussette. Chambre familiale disponible. Petit-déjeuner buffet idéal avec un enfant et mamie."
-      },
-      "total_estimate_eur": 480,
-      "nights": 3,
-      "journey_time_note": "~1h45 porte-à-porte depuis Paris",
-      "weather_note": "~6°C, Patchy rain nearby",
-      "stroller_note": "Tours est exceptionnellement flat et accessible : bords de Loire aménagés avec pistes larges, centre-ville piétonnier praticable en poussette. Le tramway est entièrement accessible PMR. Les jardins du château de Tours et les parcs municipaux sont sans escaliers.",
-      "booking_links": [
-        {
-          "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2026-04-27"
-        },
-        {
-          "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2026-04-27&checkout=2026-04-30&group_adults=2&group_children=1&age=2"
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
         },
         {
           "label": "🏠 Chercher Airbnb",
-          "url": "https://www.airbnb.fr/s/Tours/homes?checkin=2026-04-27&checkout=2026-04-30&adults=2&children=1"
+          "url": "https://www.airbnb.fr/s/Tours/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
         }
       ]
     }
   ],
-  "started_at": "2026-03-25T16:15:58.633839+00:00",
+  "started_at": "2026-04-01T07:36:42.409428+00:00",
   "current_proposal_index": 0,
-  "completed_at": "2026-03-25T16:17:42.237927+00:00"
+  "completed_at": "2026-04-01T09:17:02.194238+00:00"
 }
