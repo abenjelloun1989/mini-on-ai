@@ -9,7 +9,13 @@
   "pending_tweet": null,
   "directories_submitted": [],
   "appsumo_submitted": true,
-  "last_run": "2026-04-05T22:08:59.114840+00:00",
+  "last_run": "2026-04-06T07:00:02.647357+00:00",
   "_week_start": "2026-04-06",
-  "pending_directory": "There's An AI For That"
+  "pending_directory": "There's An AI For That",
+  "devto_published_post_ids": [],
+  "last_email_blast_date": null,
+  "last_reddit_reply_date": null,
+  "reddit_replied_post_ids": [],
+  "producthunt_submitted": false,
+  "generic_tweet_index": 0
 }
