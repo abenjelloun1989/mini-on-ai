@@ -2,9 +2,12 @@
  * Cloudflare Worker — "Build Your Own" product generator
  *
  * Routes:
- *   POST /generate  — generate a custom product, store in KV, return preview
- *   POST /checkout  — create Stripe Checkout session ($5)
- *   GET  /download  — verify Stripe payment, serve ZIP
+ *   POST /generate      — generate a custom product, store in KV, return preview
+ *   POST /checkout      — create Stripe Checkout session ($9)
+ *   GET  /download      — verify Stripe payment, serve ZIP
+ *   POST /ats-analyze   — ATS resume analysis, store in KV, return preview
+ *   POST /ats-checkout  — create Stripe Checkout session ($5) for full ATS analysis
+ *   GET  /ats-download  — verify Stripe payment, return full ATS analysis JSON
  *
  * CF Environment variables (Settings → Variables):
  *   ANTHROPIC_API_KEY   (Secret) — Anthropic API key
@@ -51,6 +54,15 @@ export default {
     }
     if (path === "/download" && request.method === "GET") {
       return handleDownload(url, env);
+    }
+    if (path === "/ats-analyze" && request.method === "POST") {
+      return handleAtsAnalyze(request, env);
+    }
+    if (path === "/ats-checkout" && request.method === "POST") {
+      return handleAtsCheckout(request, env);
+    }
+    if (path === "/ats-download" && request.method === "GET") {
+      return handleAtsDownload(url, env);
     }
 
     return corsJson({ error: "Not found" }, 404);
@@ -236,6 +248,223 @@ async function handleDownload(url, env) {
       "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
     },
   });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// /ats-analyze — ATS resume analysis, store in KV, return preview
+// ─────────────────────────────────────────────────────────────────────────────
+
+const ATS_PROMPT = (resumeText, jobDescription, jobTitle) => `Analyze this resume against the job description for ATS (Applicant Tracking System) compatibility. Return ONLY valid JSON, no markdown fences:
+
+{
+  "ats_score": <integer 0-100>,
+  "keyword_analysis": {
+    "matched": ["keyword1", "keyword2"],
+    "missing": ["keyword1", "keyword2"],
+    "match_rate": <float 0.0-1.0>
+  },
+  "section_feedback": [
+    {"section": "summary", "status": "strong|weak|missing", "suggestion": "specific actionable suggestion"},
+    {"section": "experience", "status": "strong|weak|missing", "suggestion": "specific actionable suggestion"},
+    {"section": "skills", "status": "strong|weak|missing", "suggestion": "specific actionable suggestion"},
+    {"section": "education", "status": "strong|weak|missing", "suggestion": "specific actionable suggestion"}
+  ],
+  "improved_bullets": [
+    {"original": "original bullet from resume", "improved": "rewritten version with keywords and metrics", "reason": "why this is better for ATS"}
+  ],
+  "formatting_tips": ["tip1", "tip2"],
+  "overall": "one paragraph recommendation"
+}
+
+Rules:
+- ats_score: base on keyword match rate, section completeness, and formatting quality
+- matched/missing: extract actual skills, technologies, and requirements from the job description
+- improved_bullets: pick up to 5 weakest bullets from the resume and rewrite them to include relevant keywords and quantifiable metrics
+- Be specific and actionable in all suggestions
+
+Resume:
+${resumeText}
+
+Job Description:
+${jobDescription}
+${jobTitle ? `\nJob Title: ${jobTitle}` : ""}`;
+
+async function handleAtsAnalyze(request, env) {
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+
+  if (!(await checkRateLimit(env, ip))) {
+    return corsJson({ error: "Rate limit reached (3 per hour). Try again later." }, 429);
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return corsJson({ error: "Invalid JSON" }, 400);
+  }
+
+  const resumeText      = (body.resume_text || "").trim();
+  const jobDescription  = (body.job_description || "").trim();
+  const jobTitle        = (body.job_title || "").trim();
+
+  if (!resumeText || resumeText.length < 50) {
+    return corsJson({ error: "Please paste your full resume (at least 50 characters)." }, 400);
+  }
+  if (resumeText.length > 10000) {
+    return corsJson({ error: "Resume too long (max 10,000 characters)." }, 400);
+  }
+  if (!jobDescription || jobDescription.length < 30) {
+    return corsJson({ error: "Please paste the job description (at least 30 characters)." }, 400);
+  }
+  if (jobDescription.length > 5000) {
+    return corsJson({ error: "Job description too long (max 5,000 characters)." }, 400);
+  }
+
+  // Generate ATS analysis with Claude Haiku
+  let analysis;
+  try {
+    const prompt = ATS_PROMPT(resumeText, jobDescription, jobTitle);
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key":         env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type":      "application/json",
+      },
+      body: JSON.stringify({
+        model:      "claude-haiku-4-5-20251001",
+        max_tokens: 2048,
+        messages:   [{ role: "user", content: prompt }],
+      }),
+    });
+
+    if (!resp.ok) throw new Error(`Anthropic ${resp.status}`);
+
+    const data = await resp.json();
+    const text = data.content[0].text.trim();
+    const clean = text.replace(/^```[a-z]*\n?/m, "").replace(/\n?```$/m, "").trim();
+    const match = clean.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("No JSON in response");
+    analysis = JSON.parse(match[0]);
+  } catch (e) {
+    console.error("ATS analysis error:", e.message);
+    return corsJson({ error: "Analysis failed. Please try again." }, 500);
+  }
+
+  // Store full analysis in KV (24h TTL)
+  const id = crypto.randomUUID();
+  await env.PRODUCTS_KV.put(
+    `ats:${id}`,
+    JSON.stringify(analysis),
+    { expirationTtl: 86400 }
+  );
+
+  // Return preview only (free tier)
+  const matched = analysis.keyword_analysis?.matched || [];
+  const missing = analysis.keyword_analysis?.missing || [];
+  const tips    = analysis.formatting_tips || [];
+  const bullets = analysis.improved_bullets || [];
+
+  return corsJson({
+    id,
+    ats_score:               analysis.ats_score || 0,
+    matched_keywords:        matched.slice(0, 3),
+    missing_count:           missing.length,
+    formatting_tips_preview: tips.slice(0, 2),
+    total_improvements:      bullets.length,
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// /ats-checkout — Stripe Checkout for full ATS analysis ($5)
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function handleAtsCheckout(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return corsJson({ error: "Invalid JSON" }, 400);
+  }
+
+  const { analysis_id } = body;
+  if (!analysis_id) return corsJson({ error: "Missing analysis_id." }, 400);
+
+  const stored = await env.PRODUCTS_KV.get(`ats:${analysis_id}`);
+  if (!stored) {
+    return corsJson({ error: "Analysis not found or expired. Please run a new check." }, 404);
+  }
+
+  const stripeRes = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+    method: "POST",
+    headers: {
+      "Authorization":  `Bearer ${env.STRIPE_SECRET_KEY}`,
+      "Content-Type":   "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      "payment_method_types[]":                          "card",
+      "line_items[0][price_data][currency]":             "usd",
+      "line_items[0][price_data][unit_amount]":          "500",
+      "line_items[0][price_data][product_data][name]":   "Full ATS Resume Analysis",
+      "line_items[0][price_data][product_data][description]": "Complete keyword analysis, rewritten bullet points, section feedback, and optimization tips",
+      "line_items[0][quantity]":                         "1",
+      "mode":                                            "payment",
+      "metadata[analysis_id]":                           analysis_id,
+      "success_url": `${SITE_URL}/ats.html?session_id={CHECKOUT_SESSION_ID}`,
+      "cancel_url":  `${SITE_URL}/ats.html`,
+    }),
+  });
+
+  if (!stripeRes.ok) {
+    console.error("Stripe error:", await stripeRes.text());
+    return corsJson({ error: "Payment setup failed. Please try again." }, 500);
+  }
+
+  const session = await stripeRes.json();
+  return corsJson({ checkout_url: session.url });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// /ats-download — verify payment, return full ATS analysis
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function handleAtsDownload(url, env) {
+  const sessionId = url.searchParams.get("session_id");
+  if (!sessionId) return corsJson({ error: "Missing session_id." }, 400);
+
+  // Replay protection
+  const downloadedKey = `ats-downloaded:${sessionId}`;
+  const alreadyServed = await env.PRODUCTS_KV.get(downloadedKey);
+  if (alreadyServed) {
+    return corsJson({ error: "This analysis has already been retrieved. Contact hello@mini-on-ai.com if you need it again." }, 410);
+  }
+
+  // Verify Stripe payment
+  const stripeRes = await fetch(
+    `https://api.stripe.com/v1/checkout/sessions/${sessionId}`,
+    { headers: { "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}` } }
+  );
+
+  if (!stripeRes.ok) return corsJson({ error: "Invalid session." }, 400);
+
+  const session = await stripeRes.json();
+  if (session.payment_status !== "paid") {
+    return corsJson({ error: "Payment not completed." }, 402);
+  }
+
+  const analysisId = session.metadata?.analysis_id;
+  if (!analysisId) return corsJson({ error: "No analysis linked to this payment." }, 400);
+
+  const stored = await env.PRODUCTS_KV.get(`ats:${analysisId}`);
+  if (!stored) {
+    return corsJson({ error: "Analysis expired (24h). Please run a new check and contact hello@mini-on-ai.com with your receipt." }, 410);
+  }
+
+  // Mark as downloaded
+  await env.PRODUCTS_KV.put(downloadedKey, "1", { expirationTtl: 86400 });
+
+  const analysis = JSON.parse(stored);
+  return corsJson(analysis);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

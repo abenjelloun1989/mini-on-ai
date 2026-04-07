@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free ATS Resume Score Checker | mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Check your resume's ATS score for free. Paste your resume and job description — get an instant score, keyword gaps, and optimization tips.">
+  <link rel="canonical" href="https://mini-on-ai.com/ats.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an ATS score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An ATS (Applicant Tracking System) score measures how well your resume matches a job description. Most companies use ATS software to filter resumes before a human reads them. A score above 75 means your resume is likely to pass the automated filter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the ATS resume checker work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Paste your resume text and the job description. Our AI analyzes keyword matches, section structure, and formatting to produce an ATS compatibility score (0-100), identifies missing keywords, and suggests specific improvements to your bullet points."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the ATS score check free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The ATS score, matched keywords, and formatting tips are completely free. The full analysis with all missing keywords, rewritten bullet points, and detailed section feedback is available for a one-time $5 payment."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <nav style="display:flex;gap:16px;align-items:center;">
+        <a href="index.html" class="nav-link">Products</a>
+        <a href="build.html" class="nav-link">Build Your Own</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">&#9790; Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="build-page">
+    <div class="build-page-header">
+      <h1>Check Your Resume's ATS Score &mdash; Free</h1>
+      <p>Paste your resume and the job description. Get an instant ATS compatibility score, keyword gaps, and optimization tips.</p>
+    </div>
+
+    <!-- Form state -->
+    <div id="atsForm" class="build-state active">
+      <form class="build-form" onsubmit="analyze(event)">
+        <div>
+          <label class="build-label" for="resumeText">
+            Resume text <span style="font-weight:400;color:var(--text-muted)">(paste the full text of your resume)</span>
+          </label>
+          <textarea
+            id="resumeText"
+            class="build-textarea"
+            rows="6"
+            placeholder="Paste your resume here..."
+            maxlength="10000"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="build-label" for="jobDescription">
+            Job description <span style="font-weight:400;color:var(--text-muted)">(paste the job posting you're applying to)</span>
+          </label>
+          <textarea
+            id="jobDescription"
+            class="build-textarea"
+            rows="5"
+            placeholder="Paste the job description here..."
+            maxlength="5000"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="build-label" for="jobTitle">
+            Job title <span style="font-weight:400;color:var(--text-muted)">(optional)</span>
+          </label>
+          <input
+            type="text"
+            id="jobTitle"
+            class="build-textarea"
+            style="min-height:auto;padding:10px 14px;"
+            placeholder="e.g. Senior Software Engineer"
+            maxlength="100"
+          >
+        </div>
+
+        <button type="submit" class="build-submit" id="atsSubmit">
+          Check my score &rarr;
+        </button>
+      </form>
+    </div>
+
+    <!-- Loading state -->
+    <div id="atsLoading" class="build-state">
+      <div class="build-loading">
+        <div class="build-spinner"></div>
+        <p>Analyzing your resume&hellip;</p>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div id="atsError" class="build-state">
+      <div class="build-preview" style="border-color:rgba(239,68,68,0.4)">
+        <p style="color:#EF4444;margin-bottom:16px" id="atsErrorMsg"></p>
+        <button class="build-checkout-btn" onclick="resetForm()">Try again</button>
+      </div>
+    </div>
+
+    <!-- Preview state (free result) -->
+    <div id="atsPreview" class="build-state">
+      <div class="build-preview">
+        <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px">ATS Analysis</p>
+
+        <div class="ats-score-display">
+          <div class="ats-score-circle" id="scoreCircle">
+            <span class="ats-score-number" id="scoreNumber">--</span>
+            <span class="ats-score-label">ATS Score</span>
+          </div>
+        </div>
+
+        <div class="ats-section">
+          <h4>Matched Keywords</h4>
+          <div id="matchedKeywords" class="ats-keywords"></div>
+        </div>
+
+        <div class="ats-section">
+          <h4>Missing Keywords</h4>
+          <p id="missingTeaser" class="ats-teaser"></p>
+        </div>
+
+        <div class="ats-section">
+          <h4>Formatting Tips</h4>
+          <ul id="tipsPreview" class="ats-tips-list"></ul>
+        </div>
+
+        <div class="ats-section" id="improvementsTeaser">
+          <p class="ats-teaser"></p>
+        </div>
+
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+          <div class="build-price">$5</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">Full analysis: all missing keywords, rewritten bullet points, section-by-section feedback</p>
+          <button class="build-checkout-btn" id="atsCta" onclick="atsCheckout()">
+            Get full analysis &mdash; $5
+          </button>
+          <button onclick="resetForm()" style="display:block;width:100%;margin-top:10px;padding:10px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text-muted);font-size:14px;cursor:pointer;transition:border-color 0.15s">
+            &#8592; Check another resume
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success state (paid full analysis) -->
+    <div id="atsSuccess" class="build-state">
+      <div class="build-preview">
+        <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px">Full ATS Analysis</p>
+
+        <div class="ats-score-display">
+          <div class="ats-score-circle" id="fullScoreCircle">
+            <span class="ats-score-number" id="fullScoreNumber">--</span>
+            <span class="ats-score-label">ATS Score</span>
+          </div>
+        </div>
+
+        <div id="fullAnalysis"></div>
+
+        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="build-checkout-btn" style="flex:1" onclick="downloadAnalysis()">Download as Markdown</button>
+          <a href="index.html" style="flex:1;display:inline-flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--border);border-radius:10px;color:var(--text-muted);font-size:14px;text-decoration:none">Browse products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ section for SEO -->
+    <section class="ats-faq" style="margin-top:48px">
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px">Frequently Asked Questions</h2>
+
+      <details style="margin-bottom:12px">
+        <summary style="cursor:pointer;font-weight:600;font-size:15px;padding:8px 0">What is an ATS?</summary>
+        <p style="font-size:14px;color:var(--text-muted);padding:8px 0 4px;line-height:1.6">An Applicant Tracking System (ATS) is software used by employers to filter job applications. It scans resumes for keywords, skills, and formatting to rank candidates before a human recruiter reviews them. Over 90% of large companies use an ATS.</p>
+      </details>
+
+      <details style="margin-bottom:12px">
+        <summary style="cursor:pointer;font-weight:600;font-size:15px;padding:8px 0">What is a good ATS score?</summary>
+        <p style="font-size:14px;color:var(--text-muted);padding:8px 0 4px;line-height:1.6">A score above 75 is generally considered good and means your resume is likely to pass automated screening. Below 50 means significant keyword gaps that could cause your application to be filtered out. The goal is to match as many relevant keywords from the job description as possible without keyword stuffing.</p>
+      </details>
+
+      <details style="margin-bottom:12px">
+        <summary style="cursor:pointer;font-weight:600;font-size:15px;padding:8px 0">How does this checker work?</summary>
+        <p style="font-size:14px;color:var(--text-muted);padding:8px 0 4px;line-height:1.6">Our AI analyzes your resume text against the job description to identify keyword matches, missing skills, section structure issues, and formatting problems. The free check gives you your score, matched keywords, and basic tips. The paid analysis ($5) includes all missing keywords, rewritten bullet points optimized for ATS, and detailed section-by-section feedback.</p>
+      </details>
+
+      <details style="margin-bottom:12px">
+        <summary style="cursor:pointer;font-weight:600;font-size:15px;padding:8px 0">Is my resume data stored?</summary>
+        <p style="font-size:14px;color:var(--text-muted);padding:8px 0 4px;line-height:1.6">Your analysis is temporarily stored for 24 hours to enable the download feature, then automatically deleted. We do not store, share, or sell your resume data.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 mini-on-ai &nbsp;&middot;&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </footer>
+
+  <script>
+    var WORKER_URL = "https://mini-on-ai-generate.kirozdormu.workers.dev";
+    var currentAnalysisId = null;
+    var fullData = null;
+
+    // States
+    var STATES = ["atsForm","atsLoading","atsError","atsPreview","atsSuccess"];
+
+    function showOnly(id) {
+      STATES.forEach(function(s) {
+        document.getElementById(s).classList.toggle("active", s === id);
+      });
+    }
+
+    // On load: check for Stripe redirect
+    document.addEventListener("DOMContentLoaded", function() {
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get("session_id");
+      if (sessionId) {
+        showOnly("atsLoading");
+        fetchFullAnalysis(sessionId);
+      }
+    });
+
+    function analyze(e) {
+      if (e) e.preventDefault();
+      var resume = document.getElementById("resumeText").value.trim();
+      var jd = document.getElementById("jobDescription").value.trim();
+      var title = document.getElementById("jobTitle").value.trim();
+
+      if (resume.length < 50) {
+        alert("Please paste your full resume (at least 50 characters).");
+        return;
+      }
+      if (jd.length < 30) {
+        alert("Please paste the job description (at least 30 characters).");
+        return;
+      }
+
+      var btn = document.getElementById("atsSubmit");
+      btn.disabled = true;
+      showOnly("atsLoading");
+
+      var body = { resume_text: resume, job_description: jd };
+      if (title) body.job_title = title;
+
+      fetch(WORKER_URL + "/ats-analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.error) throw new Error(data.error);
+          renderPreview(data);
+        })
+        .catch(function(e) {
+          showError(e.message || "Something went wrong. Please try again.");
+        })
+        .finally(function() {
+          btn.disabled = false;
+        });
+    }
+
+    function renderPreview(data) {
+      currentAnalysisId = data.id;
+
+      // Score
+      var score = data.ats_score || 0;
+      document.getElementById("scoreNumber").textContent = score;
+      var circle = document.getElementById("scoreCircle");
+      circle.className = "ats-score-circle";
+      if (score >= 75) circle.classList.add("ats-score-good");
+      else if (score >= 50) circle.classList.add("ats-score-ok");
+      else circle.classList.add("ats-score-low");
+
+      // Matched keywords
+      var kwContainer = document.getElementById("matchedKeywords");
+      kwContainer.innerHTML = "";
+      (data.matched_keywords || []).forEach(function(kw) {
+        var span = document.createElement("span");
+        span.className = "ats-keyword-tag";
+        span.textContent = kw;
+        kwContainer.appendChild(span);
+      });
+
+      // Missing teaser
+      var missing = data.missing_count || 0;
+      document.getElementById("missingTeaser").textContent =
+        missing > 0
+          ? "Your resume is missing " + missing + " critical keyword" + (missing > 1 ? "s" : "") + " from the job description. Unlock the full analysis to see them all."
+          : "Great keyword coverage! The full analysis includes detailed section feedback and rewritten bullet points.";
+
+      // Formatting tips preview
+      var tipsList = document.getElementById("tipsPreview");
+      tipsList.innerHTML = "";
+      (data.formatting_tips_preview || []).forEach(function(tip) {
+        var li = document.createElement("li");
+        li.textContent = tip;
+        tipsList.appendChild(li);
+      });
+
+      // Improvements teaser
+      var impTeaser = document.getElementById("improvementsTeaser");
+      var total = data.total_improvements || 0;
+      if (total > 0) {
+        impTeaser.querySelector(".ats-teaser").textContent =
+          total + " bullet point improvement" + (total > 1 ? "s" : "") + " available in the full analysis.";
+        impTeaser.style.display = "block";
+      } else {
+        impTeaser.style.display = "none";
+      }
+
+      showOnly("atsPreview");
+    }
+
+    function atsCheckout() {
+      if (!currentAnalysisId) return;
+      var btn = document.getElementById("atsCta");
+      btn.disabled = true;
+      btn.textContent = "Redirecting to payment\u2026";
+
+      fetch(WORKER_URL + "/ats-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ analysis_id: currentAnalysisId }),
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.error) throw new Error(data.error);
+          window.location.href = data.checkout_url;
+        })
+        .catch(function(e) {
+          btn.disabled = false;
+          btn.textContent = "Get full analysis \u2014 $5";
+          showError(e.message || "Payment setup failed. Please try again.");
+        });
+    }
+
+    function fetchFullAnalysis(sessionId) {
+      fetch(WORKER_URL + "/ats-download?session_id=" + encodeURIComponent(sessionId))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.error) throw new Error(data.error);
+          fullData = data;
+          renderFullAnalysis(data);
+          window.history.replaceState({}, "", "/ats.html");
+        })
+        .catch(function(e) {
+          showError(e.message || "Could not load your analysis. Please contact support.");
+        });
+    }
+
+    function renderFullAnalysis(data) {
+      // Score
+      var score = data.ats_score || 0;
+      document.getElementById("fullScoreNumber").textContent = score;
+      var circle = document.getElementById("fullScoreCircle");
+      circle.className = "ats-score-circle";
+      if (score >= 75) circle.classList.add("ats-score-good");
+      else if (score >= 50) circle.classList.add("ats-score-ok");
+      else circle.classList.add("ats-score-low");
+
+      var container = document.getElementById("fullAnalysis");
+      var html = "";
+
+      // Keyword analysis
+      var kw = data.keyword_analysis || {};
+      html += '<div class="ats-section"><h4>Keyword Analysis <span style="font-weight:400;color:var(--text-muted)">(' + Math.round((kw.match_rate || 0) * 100) + '% match)</span></h4>';
+      html += '<p style="font-size:13px;margin-bottom:8px"><strong>Matched:</strong></p><div class="ats-keywords">';
+      (kw.matched || []).forEach(function(k) { html += '<span class="ats-keyword-tag">' + escHtml(k) + '</span>'; });
+      html += '</div>';
+      html += '<p style="font-size:13px;margin:12px 0 8px"><strong>Missing:</strong></p><div class="ats-keywords">';
+      (kw.missing || []).forEach(function(k) { html += '<span class="ats-keyword-tag ats-keyword-missing">' + escHtml(k) + '</span>'; });
+      html += '</div></div>';
+
+      // Section feedback
+      var sections = data.section_feedback || [];
+      if (sections.length) {
+        html += '<div class="ats-section"><h4>Section Feedback</h4>';
+        sections.forEach(function(s) {
+          var icon = s.status === "strong" ? "\u2705" : s.status === "missing" ? "\u274c" : "\u26a0\ufe0f";
+          html += '<div class="ats-feedback-item"><span class="ats-feedback-icon">' + icon + '</span>';
+          html += '<div><strong>' + escHtml(s.section) + '</strong>';
+          html += '<p style="font-size:13px;color:var(--text-muted);margin-top:2px">' + escHtml(s.suggestion) + '</p></div></div>';
+        });
+        html += '</div>';
+      }
+
+      // Improved bullets
+      var bullets = data.improved_bullets || [];
+      if (bullets.length) {
+        html += '<div class="ats-section"><h4>Improved Bullet Points</h4>';
+        bullets.forEach(function(b) {
+          html += '<div class="ats-bullet-improvement">';
+          html += '<div class="ats-bullet-original"><span style="color:var(--text-muted);font-size:12px">Original:</span><br>' + escHtml(b.original) + '</div>';
+          html += '<div class="ats-bullet-arrow">&darr;</div>';
+          html += '<div class="ats-bullet-improved"><span style="color:var(--brand);font-size:12px">Improved:</span><br>' + escHtml(b.improved) + '</div>';
+          html += '<p style="font-size:12px;color:var(--text-muted);margin-top:4px"><em>' + escHtml(b.reason) + '</em></p>';
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
+      // Formatting tips
+      var tips = data.formatting_tips || [];
+      if (tips.length) {
+        html += '<div class="ats-section"><h4>Formatting Tips</h4><ul class="ats-tips-list">';
+        tips.forEach(function(t) { html += '<li>' + escHtml(t) + '</li>'; });
+        html += '</ul></div>';
+      }
+
+      // Overall
+      if (data.overall) {
+        html += '<div class="ats-section"><h4>Overall Recommendation</h4>';
+        html += '<p style="font-size:14px;line-height:1.6">' + escHtml(data.overall) + '</p></div>';
+      }
+
+      container.innerHTML = html;
+      showOnly("atsSuccess");
+    }
+
+    function downloadAnalysis() {
+      if (!fullData) return;
+      var md = "# ATS Resume Analysis\n\n";
+      md += "**ATS Score: " + fullData.ats_score + "/100**\n\n";
+
+      var kw = fullData.keyword_analysis || {};
+      md += "## Keyword Analysis (" + Math.round((kw.match_rate || 0) * 100) + "% match)\n\n";
+      md += "**Matched:** " + (kw.matched || []).join(", ") + "\n\n";
+      md += "**Missing:** " + (kw.missing || []).join(", ") + "\n\n";
+
+      var sections = fullData.section_feedback || [];
+      if (sections.length) {
+        md += "## Section Feedback\n\n";
+        sections.forEach(function(s) {
+          var icon = s.status === "strong" ? "OK" : s.status === "missing" ? "MISSING" : "WEAK";
+          md += "- **" + s.section + "** [" + icon + "]: " + s.suggestion + "\n";
+        });
+        md += "\n";
+      }
+
+      var bullets = fullData.improved_bullets || [];
+      if (bullets.length) {
+        md += "## Improved Bullet Points\n\n";
+        bullets.forEach(function(b, i) {
+          md += "### Bullet " + (i + 1) + "\n";
+          md += "**Original:** " + b.original + "\n\n";
+          md += "**Improved:** " + b.improved + "\n\n";
+          md += "*" + b.reason + "*\n\n";
+        });
+      }
+
+      var tips = fullData.formatting_tips || [];
+      if (tips.length) {
+        md += "## Formatting Tips\n\n";
+        tips.forEach(function(t) { md += "- " + t + "\n"; });
+        md += "\n";
+      }
+
+      if (fullData.overall) {
+        md += "## Overall Recommendation\n\n" + fullData.overall + "\n";
+      }
+
+      var blob = new Blob([md], { type: "text/markdown" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "ats-analysis.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function showError(msg) {
+      document.getElementById("atsErrorMsg").textContent = msg;
+      showOnly("atsError");
+    }
+
+    function resetForm() {
+      currentAnalysisId = null;
+      fullData = null;
+      showOnly("atsForm");
+    }
+
+    function escHtml(s) {
+      var d = document.createElement("div");
+      d.textContent = s || "";
+      return d.innerHTML;
+    }
+  </script>
+
+  <script>
+    (function() {
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored !== 'light' && stored !== 'dark') { stored = null; }
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '\u2600 Light';
+      } else {
+        if (toggle) toggle.textContent = '\u263e Dark';
+      }
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '\u2600 Light' : '\u263e Dark';
+        });
+      }
+    })();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "97d7df5dc9454ccab192e901157799b6"}'></script>
+</body>
+</html>
