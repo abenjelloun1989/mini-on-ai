@@ -507,6 +507,7 @@ def _site_header(back_href: str = None, back_label: str = "← Products", prefix
         nav_items += f'        <a href="{back_href}" class="nav-link">{back_label}</a>\n'
     else:
         nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
+        nav_items += f'        <a href="{prefix}ats.html" class="nav-link">ATS Checker</a>\n'
         nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
     nav_items += '        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>'
     return f"""  <header class="site-header">
@@ -744,6 +745,7 @@ def rebuild_index(catalog: dict) -> str:
       <p class="hero-sub">Ready-to-deploy skills and automation templates built by a working software engineer. Drop one in, save hours this week.</p>
       <div class="hero-cta-group">
         <a href="build.html" class="hero-cta-primary">✦ Try a free preview</a>
+        <a href="ats.html" class="hero-cta-free">◈ Check your ATS score — free</a>
         <a href="#catalog" class="hero-cta-secondary">Browse {count} products</a>
       </div>
       <div class="hero-stats">
