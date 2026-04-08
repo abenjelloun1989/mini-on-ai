@@ -1649,6 +1649,281 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1sdsf48",
+      "subreddit": "n8n",
+      "title": "Can someone help with Google Calendar - Update an Event node?",
+      "body": "https://preview.redd.it/7sa2rqg4zitg1.png?width=1888&amp;format=png&amp;auto=webp&amp;s=707f7775d7022f91ef2ce2def67399c1d31c9385\n\nIt is just showing EMPTY without any fields to enter  \n  \nAs you guys see here, I connected my API here and tested the connection few times and it is working great.\n\nI refreshed my browser and tried again, but it didn't worked.\n\n  \nAll the fields are visible while I was editing the fields and other things, once I ran, it got invisible and looking like in this image.\n\nCan anyone help?",
+      "url": "https://reddit.com/r/n8n/comments/1sdsf48/can_someone_help_with_google_calendar_update_an/",
+      "author": "Longjumping-Club1474",
+      "found_at": "2026-04-07T07:01:01.562192+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Google Calendar Update Event Node Setup",
+        "category": "n8n-template",
+        "description": "A complete n8n workflow template that demonstrates proper configuration of the Google Calendar Update Event node with all required fields populated, helping users troubleshoot empty field errors and connect their Google Calendar API correctly.",
+        "tags": [
+          "n8n",
+          "google-calendar",
+          "workflow-template",
+          "troubleshooting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s9sc7l",
+      "subreddit": "n8n",
+      "title": "What’s one small automation you’ve built that saves you way more time than it should?",
+      "body": "New to n8n here, I am so fascinated by this new platform and its abilities, especially for someone like me who has had no experience with coding and primarily work with no-code tools like Bubble and Retool to build little projects.\n\nI know this may sound a bit silly, but what kind of automations have people built that save a lot of time but is not that complicated? I'm trying to come up with some ideas for automations to kind of get my feet wet with n8n but my mind has blanked out right now.\n\nAny help would be appreciated :)",
+      "url": "https://reddit.com/r/n8n/comments/1s9sc7l/whats_one_small_automation_youve_built_that_saves/",
+      "author": "Flimsy-Leg6978",
+      "found_at": "2026-04-07T07:01:10.203556+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Simple n8n Automations for No-Code Builders",
+        "category": "n8n-template",
+        "description": "A curated collection of 5-10 beginner-friendly n8n workflow templates that solve common time-consuming tasks, specifically designed for no-code users transitioning from tools like Bubble and Retool.",
+        "tags": [
+          "n8n",
+          "automation",
+          "no-code",
+          "beginner-friendly",
+          "time-saving"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sa2w82",
+      "subreddit": "n8n",
+      "title": "Buffer API + Google Business Profile: Scheduled posts ALWAYS fail on first attempt…anyone else?",
+      "body": "I have built an n8n workflow that generates daily Google Business Profile posts using GPT-4o, runs them through a QA check, picks an image from Google Drive, and publishes via the Buffer API. Everything works perfectly up until the final step.\n\nThe problem\n\nPosts sent to Buffer using the createPost mutation with mode: customScheduled are accepted by Buffer and show up correctly in the dashboard. But when the scheduled time arrives, every single post fails with:\n\n\"Failed to broadcast update to Googlebusiness: Internal error encountered.\"\n\nThe weird part\n\nIf I open the failed post in Buffer's dashboard and either reschedule it to a different time or click Publish Now, it publishes to Google Business Profile instantly. Every time. No errors.\n\nSo the content is valid, the Google connection is",
+      "url": "https://reddit.com/r/n8n/comments/1sa2w82/buffer_api_google_business_profile_scheduled/",
+      "author": "FirstPlaceSEO",
+      "found_at": "2026-04-07T07:01:13.021601+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Buffer API Google Business Profile n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-made n8n workflow that reliably publishes AI-generated Google Business Profile posts via Buffer API with built-in error handling, scheduling fixes, and QA checks to eliminate failed first-attempt posts.",
+        "tags": [
+          "buffer-api",
+          "google-business-profile",
+          "n8n-automation",
+          "social-media",
+          "scheduling-issues"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s8karr",
+      "subreddit": "n8n",
+      "title": "Issue with my Ai Receptionist",
+      "body": "I’m building an AI receptionist using n8n and Retell AI, and I want to automatically send call summaries to Google Sheets after each call.\n\nI’m struggling with setting up the webhook and properly mapping the summary data into Sheets.\n\nHas anyone done this successfully or can share a simple working setup?! \n\nThankyou!",
+      "url": "https://reddit.com/r/n8n/comments/1s8karr/issue_with_my_ai_receptionist/",
+      "author": "Leather_Suggestion67",
+      "found_at": "2026-04-07T07:01:15.251875+00:00",
+      "status": "reply_sent",
+      "brief": {
+        "score": 82,
+        "title": "AI Receptionist to Google Sheets n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that connects Retell AI call summaries to Google Sheets via webhooks, eliminating manual setup and data mapping for AI receptionist users.",
+        "tags": [
+          "n8n",
+          "retell-ai",
+          "google-sheets",
+          "webhook",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": "This is definitely doable and a pretty common workflow! The key is making sure your Retell AI webhook is pointing to your n8n webhook URL, and then in n8n you'll want to use a \"Set\" node to map the call summary fields to match your Google Sheets column headers before hitting the Sheets append row node. A lot of people trip up on the JSON structure—make sure you're testing the webhook payload first with a tool like Postman or by checking n8n's execution logs to see exactly what data Retell is sending you. Once you've got that mapped correctly, the Sheets integration is pretty straightforward. Happy to help troubleshoot further if you share what errors you're running into!",
+      "replied_at": "2026-04-07T07:01:47.130050+00:00"
+    },
+    {
+      "post_id": "1s8lovw",
+      "subreddit": "n8n",
+      "title": "Struggling with the scraping layer for an n8n automation assignment (Instagram &amp; X) — Any advice?",
+      "body": "Hey everyone,\n\nI’m currently working on a selection assignment for an AI Automation Intern role, and I’m hitting a major roadblock with the initial data scraping phase.\n\n\n\nThe goal is to build a full prospecting and engagement pipeline in n8n that finds potential leads for an AI agency on Instagram and X/Twitter. The requirements are pretty specific: I need to scrape users based on niche, location, hashtags, and bio keywords.\n\n\n\nThe assignment strictly requires using **only free APIs/tools** (n8n, Apify free tier, Groq, etc.).\n\n\n\nHere is where I’m stuck: I’ve been trying to use Apify to handle the profile searching, but I can’t seem to find the right \"actor\" that allows for a targeted search using a combination of keywords and geo-filters specifically for finding AI agency prospects. Most",
+      "url": "https://reddit.com/r/n8n/comments/1s8lovw/struggling_with_the_scraping_layer_for_an_n8n/",
+      "author": "Mission-Dentist-5971",
+      "found_at": "2026-04-07T07:01:28.341526+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Instagram & X Lead Scraping n8n Workflow",
+        "category": "n8n-template",
+        "description": "A pre-built n8n workflow template that scrapes Instagram and X/Twitter users by niche and location to identify prospecting leads for agencies.",
+        "tags": [
+          "lead-generation",
+          "social-media-scraping",
+          "instagram",
+          "twitter",
+          "prospecting"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sdt5nf",
+      "subreddit": "n8n",
+      "title": "Need help urgent !!!!!!!",
+      "body": "so hey everyone, can anyone help me how to make youtube automation channel using n8n and tell me the mistakes i should avoid , and if there is smth better than this \n\ni have a lil bit of experience in content creation i created a instagram page got 18 million views in 1 month 3.3 million interactions but i can't trust insta algorithm they keep flagging my reels that i create myself and in frustration i deleted all reels cuz if the same amount of effort if i had put in YouTube i would be making a lil amount of money :)",
+      "url": "https://reddit.com/r/n8n/comments/1sdt5nf/need_help_urgent/",
+      "author": "Even-Builder-2885",
+      "found_at": "2026-04-07T07:01:32.903685+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "YouTube Automation Channel Blueprint with n8n",
+        "category": "n8n-template",
+        "description": "A complete n8n workflow template + guide that automates YouTube channel operations (uploading, scheduling, metadata optimization) while avoiding common pitfalls, designed for creators migrating from Instagram with existing content creation skills.",
+        "tags": [
+          "youtube-automation",
+          "n8n-workflow",
+          "content-creation",
+          "channel-growth"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s8euk4",
+      "subreddit": "automation",
+      "title": "Our AI step was burning 4x more tokens than it needed to and the workflow looked completely fine from the outside",
+      "body": "Set up an automated sequence a few months ago. one of the steps calls an AI model to generate a personalized line based on prospect data. hooked it up, tested the output, looked good, left it running.\n\nTwo months later someone actually opened the API usage dashboard.\n\nThe prompt was pulling in the prospect's full linkedin bio, company about page, last three posts, and recent news mentions. then asking the model to write one sentence.\n\nOne sentence. from about eight hundred words of input.\n\nSeventy percent of the tokens were context the model didn't need. cut it down to the two or three most relevant signals. output quality didn't change. token cost dropped by about seventy percent. same workflow, same results, significantly cheaper.\n\nThe thing about AI steps inside automated workflows is t",
+      "url": "https://reddit.com/r/automation/comments/1s8euk4/our_ai_step_was_burning_4x_more_tokens_than_it/",
+      "author": "Ill-Independence6422",
+      "found_at": "2026-04-07T07:01:35.062518+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Prompt Optimization Audit Checklist",
+        "category": "checklist",
+        "description": "A step-by-step checklist to audit AI prompts in automation workflows for token waste, data bloat, and unnecessary context that inflates API costs without improving output quality.",
+        "tags": [
+          "ai-optimization",
+          "cost-reduction",
+          "workflow-audit",
+          "token-efficiency"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sc63fx",
+      "subreddit": "n8n",
+      "title": "I need help",
+      "body": "Hi! I’m currently learning n8n by following tutorials and building workflows step by step. However, I’ve noticed that sometimes I’m just following along without fully understanding all the details of the nodes and their internal configurations.\n\nFor example, when I use the Telegram node, I don’t always understand what each field does or the purpose behind certain options. Because of that, when I try to rebuild the same workflow (or something similar) on my own, I often find myself going back to the video to double-check the configuration instead of confidently recreating it from memory.\n\nI really want to move beyond just copying steps and start actually understanding how everything works so I can build workflows independently and troubleshoot issues on my own.\n\nSo I wanted to ask:  \nWhat w",
+      "url": "https://reddit.com/r/n8n/comments/1sc63fx/i_need_help/",
+      "author": "Less-Knowledge-5061",
+      "found_at": "2026-04-07T07:01:37.393316+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Node Configuration Field Reference Guide",
+        "category": "mini-guide",
+        "description": "A comprehensive mini-guide that explains what each field does in commonly-used n8n nodes (like Telegram, HTTP, etc.), helping learners understand node configurations instead of blindly following tutorials.",
+        "tags": [
+          "n8n",
+          "node-configuration",
+          "learning-resource",
+          "telegram-node"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s8kfhq",
+      "subreddit": "n8n",
+      "title": "Specs beat random workflows",
+      "body": "Been building a few automations lately and one thing keeps showing up.\n\nThe tool is not really the problem.  \nThe workflow is.\n\nWhat I kept doing wrong\n\n* starting with the node setup first\n* skipping the spec part\n* not writing down edge cases\n* hoping the flow would stay clean on its own\n* trusting the first working version too much\n\nWhat started working better\n\n* write the goal first\n* split the automation into small steps\n* keep the context short\n* test each piece before moving on\n\nI tried tools like n8n , Zapier , Make, and Pipedream .\n\nFor the planning side, Traycer  started making a lot more sense to me.\n\nNot because it replaces those tools.  \nMore because it helps me think through the automation before I start wiring everything together.\n\nThat part matters a lot once the workflow g",
+      "url": "https://reddit.com/r/n8n/comments/1s8kfhq/specs_beat_random_workflows/",
+      "author": "nikunjverma11",
+      "found_at": "2026-04-07T07:01:39.735371+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "n8n Workflow Specification Blueprint",
+        "category": "n8n-template",
+        "description": "A structured workflow planning template that guides n8n users through specification-first automation design, including goal definition, edge case documentation, and validation checkpoints before building nodes.",
+        "tags": [
+          "n8n",
+          "workflow-design",
+          "automation-planning",
+          "specification-driven"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1s8lq21",
+      "subreddit": "automation",
+      "title": "Struggling with the scraping layer for an n8n automation assignment (Instagram &amp; X) — Any advice?",
+      "body": "",
+      "url": "https://reddit.com/r/automation/comments/1s8lq21/struggling_with_the_scraping_layer_for_an_n8n/",
+      "author": "Mission-Dentist-5971",
+      "found_at": "2026-04-07T07:01:41.827229+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Instagram & X Web Scraping n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that handles Instagram and X data scraping with pre-built nodes and error handling, saving automation builders from writing scraping logic from scratch.",
+        "tags": [
+          "n8n",
+          "web-scraping",
+          "instagram",
+          "twitter",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }
