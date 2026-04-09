@@ -483,6 +483,26 @@ def send_holiday_proposal(proposal: dict, index: int, total: int) -> bool:
     if a_notes:
         lines.append(f"<i>{a_notes}</i>")
 
+    restaurants = proposal.get("restaurants", [])
+    if restaurants:
+        lines += ["", "🍽️ <b>Bonnes tables (Guide Michelin):</b>"]
+        for r in restaurants:
+            name = _he(r.get("name", ""))
+            distinction = _he(r.get("distinction", ""))
+            price = _he(r.get("price_range", ""))
+            specialty = _he(r.get("specialty", ""))
+            url = r.get("michelin_url", "")
+            rest_line = f"• <b>{name}</b>"
+            if distinction:
+                rest_line += f" — {distinction}"
+            if price:
+                rest_line += f" · {price}"
+            if specialty:
+                rest_line += f"\n  <i>{specialty}</i>"
+            if url and url.startswith("http"):
+                rest_line += f'\n  <a href="{url}">→ Guide Michelin</a>'
+            lines.append(rest_line)
+
     lines += [
         "",
         f"💰 <b>Estimation totale: ~{total_eur}€</b>",

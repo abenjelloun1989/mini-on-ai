@@ -113,6 +113,9 @@ PROPOSAL_JSON_SCHEMA = """
     "journey_time_note": "~2h45 door-to-door from Paris",
     "weather_note": "will be updated",
     "stroller_note": "Specific info about stroller accessibility in this destination",
+    "restaurants": [
+      {"name": "Restaurant name", "distinction": "Bib Gourmand / Étoile / Assiette Michelin / Recommandé", "price_range": "~35€/pers", "specialty": "Cuisine type or signature dish", "michelin_url": "https://guide.michelin.com/fr/..."}
+    ],
     "booking_links": [
       {"label": "🚄 Réserver le train", "url": "https://..."},
       {"label": "🏨 Chercher hôtels", "url": "https://..."},
@@ -283,11 +286,23 @@ def _build_price_search_prompt(candidates: list, constraints: dict) -> str:
     accommodation = constraints.get("accommodation", "hôtel ou Airbnb")
     attendees = constraints.get("attendees", "2 adultes + 1 enfant")
     journey_time = constraints.get("journey_time", "non précisé")
+    gastronomy = constraints.get("gastronomy", "").strip()
     n_adults, n_children = _parse_attendees(attendees)
     n_total = n_adults + n_children
 
     family_profile = build_family_profile(attendees, constraints.get("departure", ""))
     url_formats = build_url_formats(n_adults, n_children)
+
+    gastronomy_block = ""
+    if gastronomy:
+        gastronomy_block = f"""
+GASTRONOMY:
+The traveler is a food enthusiast who consults the Michelin Guide. Budget per meal: {gastronomy}.
+- Search: "guide michelin [destination] bib gourmand" or "meilleures tables [destination] michelin"
+- Include 2-3 real restaurant picks in the `restaurants` field: Bib Gourmand, Assiette Michelin, or highly recommended non-starred tables
+- Destinations with a strong gastronomic scene should be preferred when equal on other criteria
+- michelin_url should point to guide.michelin.com if the restaurant is listed there
+"""
 
     candidates_list = "\n".join(
         f"{i+1}. {c.get('destination')} — {c.get('transport')} — {c.get('duration_note')} — {c.get('why_short')}"
@@ -296,7 +311,7 @@ def _build_price_search_prompt(candidates: list, constraints: dict) -> str:
 
     return f"""You are a family travel price researcher.
 {family_profile}
-{TRIP_TYPE_RULES}
+{TRIP_TYPE_RULES}{gastronomy_block}
 
 I have these {len(candidates)} candidate destinations.
 Dates: {dates}
@@ -313,9 +328,10 @@ Your job:
 1. For each candidate, search for REAL prices:
    - "[transport mode] Paris [destination] [dates] prix" (SNCF for trains, Skyscanner for flights)
    - "hôtel [destination] [dates] famille booking.com prix"
+   {"- 'guide michelin [destination] bib gourmand' for restaurant picks" if gastronomy else ""}
    Use the EXACT dates in your searches.
 
-2. After searching, select the 3 BEST proposals (budget fit + weather + accessibility + trip_type match).
+2. After searching, select the 3 BEST proposals (budget fit + weather + accessibility + trip_type match{" + gastronomic quality" if gastronomy else ""}).
 
 3. Return ONLY a valid JSON array of exactly 3 proposals:
 {PROPOSAL_JSON_SCHEMA}
@@ -336,7 +352,8 @@ JOURNEY TIME RULES (critical):
 Other rules:
 - Note if prices are higher due to school holidays or peak season
 - Stroller note must be specific to the destination
-- All booking URLs must have dates pre-filled"""
+- All booking URLs must have dates pre-filled
+- If no gastronomy was requested, leave `restaurants` as an empty array []"""
 
 
 def _run_web_search_loop(client, prompt: str, max_uses: int = 12) -> str:
@@ -419,10 +436,12 @@ def _serendipity_research(client, constraints: dict) -> list:
     trip_type = constraints.get("trip_type", "")
     attendees = constraints.get("attendees", "2 adultes + 1 enfant")
     journey_time = constraints.get("journey_time", "non précisé")
+    gastronomy = constraints.get("gastronomy", "").strip()
     n_adults, n_children = _parse_attendees(attendees)
 
     family_profile = build_family_profile(attendees, constraints.get("departure", ""))
     url_formats = build_url_formats(n_adults, n_children)
+    gastronomy_line = f"\n- Gastronomie: {gastronomy} — chercher tables Michelin Bib Gourmand ou recommandées" if gastronomy else ""
 
     prompt = f"""You are a family travel deal hunter. SERENDIPITY MODE — no destination specified!
 {family_profile}
@@ -436,13 +455,14 @@ Trip details:
 - Nights: {nights}
 - Trip type: {trip_type or "open to anything"}
 - Max journey time: {journey_time}
-- Group: {attendees}
+- Group: {attendees}{gastronomy_line}
 
 Use web_search to discover deals:
 1. Search: "week-end famille pas cher depuis Paris {dates} train"
 2. Search: "destination originale famille France {dates} pas cher"
 3. Search: "vol pas cher Paris famille {dates} Skyscanner"
 4. Search for hotel prices once you have candidates
+{"5. Search: 'guide michelin [destination] bib gourmand' for each candidate" if gastronomy else ""}
 
 Find 3-5 unexpected places the traveler never would have thought of — hidden gems, unusual destinations, great deals.
 Then build 3 full proposals with real prices for the best ones.
@@ -453,7 +473,8 @@ Return ONLY a valid JSON array of exactly 3 proposals:
 {url_formats}
 
 PRICING RULES: total_transport_eur and total_accommodation_eur must cover ALL {n_adults + n_children} people.
-JOURNEY TIME RULES: journey_time_note must be door-to-door. Drop any destination exceeding {journey_time}."""
+JOURNEY TIME RULES: journey_time_note must be door-to-door. Drop any destination exceeding {journey_time}.
+{"GASTRONOMY: include 2-3 Michelin-listed or recommended restaurants in the `restaurants` field." if gastronomy else "If no gastronomy requested, leave `restaurants` as []."}"""
 
     try:
         text = _run_web_search_loop(client, prompt, max_uses=10)

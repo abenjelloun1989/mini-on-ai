@@ -52,6 +52,7 @@ HOLIDAY_QUESTIONS = [
     ("journey_time",  "⏱️ <b>Durée max porte-à-porte?</b>\n\nEx: 4h, 6h. (départ → destination, tout compris)"),
     ("accommodation", "🏨 <b>Hôtel ou Airbnb?</b>\n\nExigences? (piscine, lit bébé, ascenseur...)"),
     ("nights",        "🌙 <b>Combien de nuits?</b>"),
+    ("gastronomy",    "🍽️ <b>Gastronomie?</b>\n\nOn peut chercher les meilleures tables du Guide Michelin (Bib Gourmand, tables recommandées). Quel budget par repas? Ex: ~40€/pers, ou tapez <b>skip</b>."),
     ("extras",        "✅ <b>Autre chose?</b>\n\nContraintes ou choses à éviter.\n\nTapez <b>go</b> pour lancer."),
 ]
 
@@ -766,7 +767,8 @@ def cmd_holidays(text: str) -> str:
             "dates": "Dates", "budget": "Budget", "attendees": "Voyageurs",
             "departure": "Départ", "destination": "Destination",
             "trip_type": "Ambiance", "journey_time": "Durée max",
-            "accommodation": "Hébergement", "nights": "Nuits", "extras": "Extras",
+            "accommodation": "Hébergement", "nights": "Nuits",
+            "gastronomy": "Gastronomie", "extras": "Extras",
         }
         summary = "\n".join(
             f"• {labels.get(k, k)}: {v}"
