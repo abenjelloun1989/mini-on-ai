@@ -7,6 +7,7 @@ Features: serendipity mode, real weather via wttr.in, comparison table.
 
 import json
 import os
+import re
 import sys
 import time
 import urllib.request
@@ -39,16 +40,48 @@ FRENCH_SCHOOL_HOLIDAYS_2026 = [
     ("Grandes vacances 2026",   date(2026,  7,  4), date(2026,  8, 31), "Zones A, B, C"),
 ]
 
-FAMILY_PROFILE = """
-Family profile (always apply):
-- 2 adults + 1 young child with a stroller
+DEFAULT_DEPARTURE = "25 rue Henri Chapron, Asnières-sur-Seine (92600)"
+
+
+def _parse_attendees(attendees_str: str) -> tuple:
+    """Returns (n_adults, n_children). Falls back to (2, 1) if unparseable."""
+    s = (attendees_str or "").lower()
+    adult_match = re.search(r'(\d+)\s*adulte', s)
+    child_match = re.search(r'(\d+)\s*enfant', s)
+    extra_adults = len(re.findall(r'grand-m[eè]re|mamie|papy|grand-p[eè]re|belle-m[eè]re|beau-p[eè]re', s))
+    n_adults = int(adult_match.group(1)) if adult_match else 2
+    n_adults += extra_adults
+    n_children = int(child_match.group(1)) if child_match else 1
+    return n_adults, n_children
+
+
+def build_family_profile(attendees: str, departure: str) -> str:
+    group = (attendees or "").strip() or "2 adults + 1 young child with a stroller"
+    origin = (departure or "").strip() or DEFAULT_DEPARTURE
+    has_stroller = any(w in group.lower() for w in ("stroller", "poussette", "enfant", "bébé", "bebe"))
+    stroller_lines = (
+        "- Need stroller-friendly accommodation (lift, ground floor, or stroller storage)\n"
+        "- Prefer direct train; stroller must fit in the car/aisle without forced folding"
+    ) if has_stroller else ""
+    return f"""Family profile (always apply):
+- Travelers: {group}
+- Departure address: {origin}
 - NO CAR — only public transport, walkable areas, or taxis
 - Car acceptable ONLY if <1h driving (e.g. airport to hotel by taxi)
-- Traveling from Paris, France
-- Need stroller-friendly accommodation (lift, ground floor, or stroller storage)
+{stroller_lines}
 - Prefer direct train or short flight; no connections when possible
-- Door-to-door journey time = home→station/airport + travel + transfers + destination arrival
-- A 2h flight = roughly 4-5h door-to-door
+- Door-to-door = home → RER/Metro to station/airport + travel + transfer at destination + walk/taxi to accommodation
+- From Asnières: ~20min to Saint-Lazare, ~35min to Gare du Nord/Est, ~45min to CDG by RER B
+- A 2h TGV = ~3h–3h30 door-to-door. A 1h flight = ~4h–4h30 door-to-door. A 2h flight = ~5h–5h30 door-to-door.
+- REJECT any proposal whose realistic door-to-door time exceeds the journey_time constraint."""
+
+
+TRIP_TYPE_RULES = """
+TRIP TYPE RULES (mandatory):
+- If trip_type contains "repos", "relax", "détente", "farniente", "calme", "repose", "se reposer", "lazy": propose ZERO hiking, randonnée, or trekking. Think beach/pool lounging, spa, slow village strolls, seaside promenade.
+- Do NOT propose randonnée, hiking, or trekking unless the user explicitly asks for it.
+- "Nature" alone ≠ randonnée. A lakeside village, a beach park, a château garden all count as nature without hiking.
+- If trip_type says "zéro marche" or "zéro randonnée": treat as full relax, avoid any walking-heavy activities.
 """
 
 PROPOSAL_JSON_SCHEMA = """
@@ -89,13 +122,14 @@ PROPOSAL_JSON_SCHEMA = """
 ]
 """
 
-URL_FORMATS = """
-URL formats to pre-fill (use exact dates and destinations):
-- SNCF Connect: https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel={DEST}&travelDate={YYYY-MM-DD}
-- Skyscanner FR: https://www.skyscanner.fr/transport/vols/{FROM_IATA}/{TO_IATA}/{YYMMDD}/{YYMMDD}/?adults=2&children=1
-- Booking.com FR: https://www.booking.com/searchresults.fr.html?ss={DEST_ENCODED}&checkin={YYYY-MM-DD}&checkout={YYYY-MM-DD}&group_adults=2&group_children=1&age=2
-- Airbnb FR: https://www.airbnb.fr/s/{DEST_SLUG}/homes?checkin={YYYY-MM-DD}&checkout={YYYY-MM-DD}&adults=2&children=1
-- Kayak FR: https://www.kayak.fr/vols/{FROM_IATA}-{TO_IATA}/{YYYY-MM-DD}/{YYYY-MM-DD}/2adultes/enfants-2
+def build_url_formats(n_adults: int, n_children: int) -> str:
+    child_age = 2
+    return f"""URL formats to pre-fill (use exact dates and destinations):
+- SNCF Connect: https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel={{DEST}}&travelDate={{YYYY-MM-DD}}
+- Skyscanner FR: https://www.skyscanner.fr/transport/vols/{{FROM_IATA}}/{{TO_IATA}}/{{YYMMDD}}/{{YYMMDD}}/?adults={n_adults}&children={n_children}
+- Booking.com FR: https://www.booking.com/searchresults.fr.html?ss={{DEST_ENCODED}}&checkin={{YYYY-MM-DD}}&checkout={{YYYY-MM-DD}}&group_adults={n_adults}&group_children={n_children}&age={child_age}
+- Airbnb FR: https://www.airbnb.fr/s/{{DEST_SLUG}}/homes?checkin={{YYYY-MM-DD}}&checkout={{YYYY-MM-DD}}&adults={n_adults}&children={n_children}
+- Kayak FR: https://www.kayak.fr/vols/{{FROM_IATA}}-{{TO_IATA}}/{{YYYY-MM-DD}}/{{YYYY-MM-DD}}/{n_adults}adultes/enfants-{child_age}
 """
 
 
@@ -187,15 +221,17 @@ def _phase1_ideation(client, constraints: dict) -> list:
     Ask Claude Haiku to brainstorm 5 candidate destinations.
     Returns list of dicts: {destination, city_en, transport, duration_note, why_short}
     """
+    family_profile = build_family_profile(constraints.get("attendees", ""), constraints.get("departure", ""))
     lines = []
-    for key in ("dates", "budget", "destination", "trip_type", "journey_time", "accommodation", "nights", "extras"):
+    for key in ("dates", "budget", "attendees", "destination", "trip_type", "journey_time", "accommodation", "nights", "extras"):
         val = constraints.get(key, "").strip()
         if val:
             lines.append(f"- {key}: {val}")
     constraints_block = "\n".join(lines) or "Pas de contraintes spécifiques."
 
     prompt = f"""You are a family travel expert for French families.
-{FAMILY_PROFILE}
+{family_profile}
+{TRIP_TYPE_RULES}
 
 Given these travel constraints, brainstorm 5 distinct candidate destinations.
 Return ONLY a valid JSON array, no text before or after:
@@ -205,15 +241,16 @@ Return ONLY a valid JSON array, no text before or after:
     "destination": "City, Country",
     "city_en": "CityInEnglish",
     "transport": "train OR flight",
-    "duration_note": "e.g. 2h30 direct TGV from Paris",
+    "duration_note": "DOOR-TO-DOOR time (include home→station + travel + arrival transfer). e.g. ~3h30 door-to-door (2h TGV + 1h30 transfers)",
     "why_short": "one sentence why it fits the constraints"
   }}
 ]
 
 Rules:
 - All 5 must be genuinely different (different countries or regions, mix of transport modes)
-- Respect the journey time constraint strictly (door-to-door)
-- All must be accessible by stroller without a car
+- duration_note MUST be door-to-door, not just travel time — add ~20min for home→station and ~15-30min at destination
+- Respect the journey_time constraint strictly using door-to-door time
+- All must be accessible without a car
 
 Constraints:
 {constraints_block}"""
@@ -244,6 +281,13 @@ def _build_price_search_prompt(candidates: list, constraints: dict) -> str:
     budget = constraints.get("budget", "non précisé")
     nights = constraints.get("nights", "?")
     accommodation = constraints.get("accommodation", "hôtel ou Airbnb")
+    attendees = constraints.get("attendees", "2 adultes + 1 enfant")
+    journey_time = constraints.get("journey_time", "non précisé")
+    n_adults, n_children = _parse_attendees(attendees)
+    n_total = n_adults + n_children
+
+    family_profile = build_family_profile(attendees, constraints.get("departure", ""))
+    url_formats = build_url_formats(n_adults, n_children)
 
     candidates_list = "\n".join(
         f"{i+1}. {c.get('destination')} — {c.get('transport')} — {c.get('duration_note')} — {c.get('why_short')}"
@@ -251,33 +295,46 @@ def _build_price_search_prompt(candidates: list, constraints: dict) -> str:
     )
 
     return f"""You are a family travel price researcher.
-{FAMILY_PROFILE}
+{family_profile}
+{TRIP_TYPE_RULES}
 
-I have these {len(candidates)} candidate destinations for a trip from Paris.
+I have these {len(candidates)} candidate destinations.
 Dates: {dates}
 Budget total: {budget}
 Nights: {nights}
+Group: {attendees} ({n_total} people total)
 Accommodation preference: {accommodation}
+Max journey time: {journey_time}
 
 Candidates:
 {candidates_list}
 
 Your job:
-1. For each candidate, search for REAL prices with these specific queries:
-   - "[transport mode] Paris [destination] [dates] prix" (use SNCF for trains, Skyscanner for flights)
+1. For each candidate, search for REAL prices:
+   - "[transport mode] Paris [destination] [dates] prix" (SNCF for trains, Skyscanner for flights)
    - "hôtel [destination] [dates] famille booking.com prix"
-   Use the EXACT dates from the constraints in your searches.
+   Use the EXACT dates in your searches.
 
-2. After searching, select the 3 BEST proposals for this family (budget fit + weather + accessibility).
+2. After searching, select the 3 BEST proposals (budget fit + weather + accessibility + trip_type match).
 
 3. Return ONLY a valid JSON array of exactly 3 proposals:
 {PROPOSAL_JSON_SCHEMA}
 
-{URL_FORMATS}
+{url_formats}
 
-Rules:
-- Prices must be realistic for the given dates (use prices you found in searches, not estimates)
-- Always note if prices are higher due to school holidays or peak season
+PRICING RULES (critical):
+- total_transport_eur = price per person × {n_total} people (or sum of actual per-seat prices found)
+- total_accommodation_eur must fit ALL {n_total} people — check room capacity, price may be higher than standard
+- price_per_person_eur × {n_total} must equal total_transport_eur
+- total_estimate_eur = total_transport_eur + total_accommodation_eur (+ any mandatory taxi/transfer)
+
+JOURNEY TIME RULES (critical):
+- journey_time_note MUST show door-to-door breakdown: e.g. "~3h15 door-to-door (20min home→Gare du Nord + 2h TGV + 15min taxi)"
+- If realistic door-to-door exceeds the max journey time constraint ({journey_time}), DROP that destination
+- Do not confuse travel time with door-to-door time
+
+Other rules:
+- Note if prices are higher due to school holidays or peak season
 - Stroller note must be specific to the destination
 - All booking URLs must have dates pre-filled"""
 
@@ -360,9 +417,16 @@ def _serendipity_research(client, constraints: dict) -> list:
     budget = constraints.get("budget", "budget raisonnable")
     nights = constraints.get("nights", "quelques nuits")
     trip_type = constraints.get("trip_type", "")
+    attendees = constraints.get("attendees", "2 adultes + 1 enfant")
+    journey_time = constraints.get("journey_time", "non précisé")
+    n_adults, n_children = _parse_attendees(attendees)
+
+    family_profile = build_family_profile(attendees, constraints.get("departure", ""))
+    url_formats = build_url_formats(n_adults, n_children)
 
     prompt = f"""You are a family travel deal hunter. SERENDIPITY MODE — no destination specified!
-{FAMILY_PROFILE}
+{family_profile}
+{TRIP_TYPE_RULES}
 
 The traveler wants to be surprised. Find them unexpected, great-value destinations!
 
@@ -371,6 +435,8 @@ Trip details:
 - Budget: {budget}
 - Nights: {nights}
 - Trip type: {trip_type or "open to anything"}
+- Max journey time: {journey_time}
+- Group: {attendees}
 
 Use web_search to discover deals:
 1. Search: "week-end famille pas cher depuis Paris {dates} train"
@@ -384,7 +450,10 @@ Then build 3 full proposals with real prices for the best ones.
 Return ONLY a valid JSON array of exactly 3 proposals:
 {PROPOSAL_JSON_SCHEMA}
 
-{URL_FORMATS}"""
+{url_formats}
+
+PRICING RULES: total_transport_eur and total_accommodation_eur must cover ALL {n_adults + n_children} people.
+JOURNEY TIME RULES: journey_time_note must be door-to-door. Drop any destination exceeding {journey_time}."""
 
     try:
         text = _run_web_search_loop(client, prompt, max_uses=10)
@@ -404,10 +473,16 @@ Return ONLY a valid JSON array of exactly 3 proposals:
 
 def _fallback_research(client, constraints: dict) -> list:
     """Knowledge-based research without web search — last resort."""
+    attendees = constraints.get("attendees", "2 adultes + 1 enfant")
+    n_adults, n_children = _parse_attendees(attendees)
+    family_profile = build_family_profile(attendees, constraints.get("departure", ""))
+    url_formats = build_url_formats(n_adults, n_children)
+
     lines = []
     labels = {
-        "dates": "Dates", "budget": "Budget", "destination": "Destination",
-        "trip_type": "Type", "journey_time": "Durée max", "accommodation": "Hébergement",
+        "dates": "Dates", "budget": "Budget", "attendees": "Voyageurs",
+        "destination": "Destination", "trip_type": "Ambiance",
+        "journey_time": "Durée max", "accommodation": "Hébergement",
         "nights": "Nuits", "extras": "Extras",
     }
     for key, label in labels.items():
@@ -417,8 +492,9 @@ def _fallback_research(client, constraints: dict) -> list:
     block = "\n".join(lines) or "Pas de contraintes spécifiques."
 
     prompt = f"""You are an expert family travel planner for French families.
-{FAMILY_PROFILE}
-{URL_FORMATS}
+{family_profile}
+{TRIP_TYPE_RULES}
+{url_formats}
 
 Travel constraints:
 {block}
@@ -426,6 +502,8 @@ Travel constraints:
 Generate exactly 3 distinct trip proposals. Return ONLY a valid JSON array:
 {PROPOSAL_JSON_SCHEMA}
 
+PRICING RULES: total_transport_eur and total_accommodation_eur must cover ALL {n_adults + n_children} people.
+JOURNEY TIME RULES: journey_time_note must be door-to-door (include home→station + travel + arrival transfer).
 Make prices realistic for the given period. All 3 proposals must be different destinations."""
 
     try:

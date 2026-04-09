@@ -43,14 +43,16 @@ SEEDS_ALL = ["marketing", "freelancing", "writing", "coding"]
 # ── Holiday planner ────────────────────────────────────────────────────────────
 
 HOLIDAY_QUESTIONS = [
-    ("dates",         "✈️ <b>Quand voulez-vous partir?</b>\n\nDates précises ou période approximative? Vous êtes flexible?"),
-    ("budget",        "💰 <b>Quel est votre budget total?</b>\n\nTransport + hébergement, pour les 3 (2 adultes + enfant)."),
-    ("destination",   "🌍 <b>Avez-vous une destination en tête?</b>\n\nQuelque chose de précis, ou ouvert aux suggestions? Des pays à éviter?"),
-    ("trip_type",     "🏖️ <b>Quel type de voyage?</b>\n\nBord de mer, ville, nature, montagne, repos, culture — ou un mix?"),
-    ("journey_time",  "⏱️ <b>Combien de temps max pour le trajet?</b>\n\nEx: 3h en train, 2h de vol, pas plus de 5h porte-à-porte. On évite la voiture sauf si moins d'1h."),
-    ("accommodation", "🏨 <b>Hôtel ou Airbnb?</b>\n\nDes exigences particulières? (piscine, vue mer, accès poussette, lit bébé, ascenseur...)"),
-    ("nights",        "🌙 <b>Combien de nuits environ?</b>"),
-    ("extras",        "✅ <b>Autre chose à savoir?</b>\n\nContraintes, envies particulières, choses à absolument éviter.\n\nTapez <b>go</b> quand vous êtes prêt pour que je lance la recherche."),
+    ("dates",         "✈️ <b>Quand partir?</b>\n\nDates précises ou période. Flexible?"),
+    ("budget",        "💰 <b>Budget total?</b>\n\nTransport + hébergement, tout compris."),
+    ("attendees",     "👥 <b>Qui voyage?</b>\n\nEx: 2 adultes + 1 enfant 18 mois + 1 grand-mère."),
+    ("departure",     "📍 <b>Adresse de départ?</b>\n\nTapez <b>ok</b> pour garder: 25 rue Henri Chapron, Asnières-sur-Seine."),
+    ("destination",   "🌍 <b>Destination?</b>\n\nUne idée précise, ou tapez <b>surprise</b>."),
+    ("trip_type",     "🏖️ <b>Ambiance?</b>\n\nEx: plage, repos, ville, culture, montagne.\nSi vous voulez zéro randonnée, précisez-le."),
+    ("journey_time",  "⏱️ <b>Durée max porte-à-porte?</b>\n\nEx: 4h, 6h. (départ → destination, tout compris)"),
+    ("accommodation", "🏨 <b>Hôtel ou Airbnb?</b>\n\nExigences? (piscine, lit bébé, ascenseur...)"),
+    ("nights",        "🌙 <b>Combien de nuits?</b>"),
+    ("extras",        "✅ <b>Autre chose?</b>\n\nContraintes ou choses à éviter.\n\nTapez <b>go</b> pour lancer."),
 ]
 
 KNOWN_CATEGORIES = {
@@ -761,8 +763,9 @@ def cmd_holidays(text: str) -> str:
     previous_constraints = state.get("constraints", {})
     if previous_constraints and current_status in ("done", "idle"):
         labels = {
-            "dates": "Dates", "budget": "Budget", "destination": "Destination",
-            "trip_type": "Type", "journey_time": "Durée max trajet",
+            "dates": "Dates", "budget": "Budget", "attendees": "Voyageurs",
+            "departure": "Départ", "destination": "Destination",
+            "trip_type": "Ambiance", "journey_time": "Durée max",
             "accommodation": "Hébergement", "nights": "Nuits", "extras": "Extras",
         }
         summary = "\n".join(
@@ -782,7 +785,9 @@ def cmd_holidays(text: str) -> str:
     state = {
         "status": "gathering",
         "step": 0,
-        "constraints": {},
+        "constraints": {
+            "departure": "25 rue Henri Chapron, Asnières-sur-Seine (92600)",
+        },
         "proposals": [],
         "started_at": timestamp(),
     }
