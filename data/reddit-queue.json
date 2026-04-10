@@ -1924,6 +1924,88 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1se2v3z",
+      "subreddit": "nocode",
+      "title": "feature creep on local business builds is going to kill me",
+      "body": "I swear every single time I do a bubble or flutterflow build for a local service company it goes exactly the same way  \n  \nScope docs: \"we just need a simple dashboard that emails us when a lead fills the form\"  \n  \ntwo weeks before launch: \"hey so we realized our guys don't check email on the road. can we make it text them instead? oh and can we do mass broadcasts to old clients from the same number?\"  \n  \nusually I just use the twilio api and call it a day, but this client is super non-technical and I knew if I gave them twilio access they'd break something or get confused by the billing console. ended up chaining it through make.com into the drop cowboy platform just so they could have a dummy-proof separate dashboard for the voice and text stuff.  \n  \ngetting the webhooks to play nice",
+      "url": "https://reddit.com/r/nocode/comments/1se2v3z/feature_creep_on_local_business_builds_is_going/",
+      "author": "aral10",
+      "found_at": "2026-04-09T07:01:44.861728+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Local Service Business Scope Creep Checklist",
+        "category": "checklist",
+        "description": "A pre-project checklist that helps no-code builders identify and lock down scope with local service clients before development starts, preventing mid-project feature requests.",
+        "tags": [
+          "no-code",
+          "scope-management",
+          "client-projects",
+          "local-business"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sbgkn1",
+      "subreddit": "automation",
+      "title": "Do you automate everything or only critical tasks",
+      "body": "At first I tried to automate everything.\n\nNow I feel like it creates more complexity than value.\n\nThinking of focusing only on high-impact tasks.\n\nHow do you decide what to automate?",
+      "url": "https://reddit.com/r/automation/comments/1sbgkn1/do_you_automate_everything_or_only_critical_tasks/",
+      "author": "Solid_Play416",
+      "found_at": "2026-04-09T07:01:51.602098+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Automation ROI Decision Framework",
+        "category": "checklist",
+        "description": "A decision-making checklist that helps teams evaluate which tasks to automate based on impact, complexity, and maintenance cost to avoid over-automation.",
+        "tags": [
+          "automation",
+          "decision-making",
+          "workflow-optimization",
+          "ROI"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sd156f",
+      "subreddit": "automation",
+      "title": "Want to automate my textile manufacturing E-commerce. Looking for advice. Especially Instagram.",
+      "body": "I have a small textile/fabric manufacturing setup. Mostly B2B clientale. However, recently I have been looking up boutiques, designers in different cities on google maps, and pasting an introduction on whatsapp. If I message like 20-30 leads within the hour, whatsapp Business Account suspends me for a day.   \nRecently came across Instagram, a lot more folks are on there, simply because anyone on Google Maps/Google listed needs a mandatory physical location verification, including company registration details.\n\nI have noticed that a lot more designers are on IG, as they work out of their home. I keep scrolling reels, and whoever seems like I could supply them, I message them. Its been a tough, time-consuming, boring process. I wanted to understand if there is anyway to leverage technology t",
+      "url": "https://reddit.com/r/automation/comments/1sd156f/want_to_automate_my_textile_manufacturing/",
+      "author": "Various_Payment_7956",
+      "found_at": "2026-04-09T07:02:01.160542+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Instagram B2B Textile Lead Generation System",
+        "category": "n8n-template",
+        "description": "An n8n workflow that automates targeted outreach to boutiques and designers on Instagram while respecting rate limits, solving the WhatsApp suspension problem for textile manufacturers doing B2B prospecting.",
+        "tags": [
+          "b2b-sales",
+          "instagram-automation",
+          "textile-manufacturing",
+          "lead-generation",
+          "rate-limiting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }

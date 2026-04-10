@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": "blog-notion-workspace-setup-a-practical-guide-for-teams-buil-20260410",
+      "title": "Notion Workspace Setup: A Practical Guide for Teams Building Systems That Scale",
+      "slug": "notion-workspace-setup-a-practical-guide-for-teams-buil-20260410",
+      "excerpt": "Master Notion workspace structure, avoid common debt pitfalls, and build CRM systems that your team actually uses.",
+      "topic": "notion",
+      "created_at": "2026-04-10T09:00:15.630715"
+    },
+    {
       "id": "blog-documentation-best-practices-for-developers-save-time-r-20260408",
       "title": "Documentation Best Practices for Developers: Save Time, Reduce Support Burden",
       "slug": "documentation-best-practices-for-developers-save-time-r-20260408",

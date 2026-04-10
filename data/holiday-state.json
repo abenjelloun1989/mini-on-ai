@@ -2,144 +2,192 @@
   "status": "done",
   "step": 8,
   "constraints": {
-    "dates": "27 avril au 1 mai",
-    "budget": "600€ pour 3 adultes et un bébé",
+    "dates": "27 avril au 30 avril",
+    "budget": "700€ pour 3 adultes et un bébé",
     "destination": "France",
-    "trip_type": "Relax",
-    "journey_time": "4h en train",
-    "accommodation": "Hôtel",
+    "trip_type": "Repos nature",
+    "journey_time": "1h30 maximum en train ou 1h en voiture",
+    "accommodation": "Accès poussette lit bébé oui",
     "nights": "3",
-    "extras": "Nous partons avec mamie plus une poussette"
+    "extras": "Évite les villes où il faut une navette en bus ou taxi je veux que les destinations avec des trajets directs"
   },
   "proposals": [
     {
-      "title": "Douceur de vivre en Provence 🌿",
-      "destination": "Avignon, France",
-      "emoji": "🌻",
-      "why": "Avignon est une ville à taille humaine, très piétonne dans son centre historique, idéale pour une escapade reposante en famille. Le Palais des Papes et les jardins du Rocher des Doms sont accessibles en poussette. Parfait pour mamie aussi, avec peu de dénivelé et beaucoup de terrasses ensoleillées.",
-      "transport": {
-        "description": "TGV Paris Gare de Lyon → Avignon TGV direct",
-        "type": "train",
-        "duration": "2h40",
-        "price_per_person_eur": 45,
-        "total_transport_eur": 180,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Avignon&travelDate=2025-04-27",
-        "notes": "TGV direct sans correspondance. Navette ou taxi depuis la gare TGV vers le centre (~15 min). Poussette pliable dans les espaces bagages du TGV."
-      },
-      "accommodation": {
-        "description": "Hôtel Mercure Avignon Centre Palais des Papes 4★",
-        "type": "hotel",
-        "price_per_night_eur": 110,
-        "total_accommodation_eur": 330,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Avignon&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
-        "notes": "Ascenseur disponible, accès poussette facilité, idéalement situé à 5 min à pied du Palais des Papes. Chambres familiales disponibles."
-      },
-      "total_estimate_eur": 510,
-      "nights": 3,
-      "journey_time_note": "~3h30 porte-à-porte depuis Paris (train + navette gare TGV → centre)",
-      "weather_note": "~9°C, Sunny",
-      "stroller_note": "Le centre historique d'Avignon est majoritairement plat et pavé mais accessible. Les Jardins du Rocher des Doms disposent de rampes. Éviter les ruelles étroites de la vieille ville pour les passages en poussette.",
-      "booking_links": [
-        {
-          "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Avignon&travelDate=2025-04-27"
-        },
-        {
-          "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Avignon&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
-        },
-        {
-          "label": "🏠 Chercher Airbnb",
-          "url": "https://www.airbnb.fr/s/Avignon/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
-        }
-      ]
-    },
-    {
-      "title": "Escapade bord de mer en Normandie 🌊",
-      "destination": "Deauville, France",
-      "emoji": "🏖️",
-      "why": "Deauville est une station balnéaire élégante et reposante, à seulement 2h15 de Paris en train. Ses grandes plages de sable plat sont parfaites pour promener la poussette, et la promenade des Planches est entièrement accessible. Mamie adorera l'atmosphère chic et détendue de la ville.",
-      "transport": {
-        "description": "Intercités Paris Saint-Lazare → Deauville-Trouville direct",
-        "type": "train",
-        "duration": "2h15",
-        "price_per_person_eur": 38,
-        "total_transport_eur": 152,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Deauville&travelDate=2025-04-27",
-        "notes": "Train direct depuis Paris Saint-Lazare. La gare de Deauville est à 10 min à pied des hôtels du centre. Poussette facile à embarquer dans les trains Intercités."
-      },
-      "accommodation": {
-        "description": "Hôtel Ibis Styles Deauville Centre 3★",
-        "type": "hotel",
-        "price_per_night_eur": 115,
-        "total_accommodation_eur": 345,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Deauville&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
-        "notes": "Ascenseur, chambres familiales disponibles, à 5 min à pied de la plage et de la promenade des Planches. Parking poussette possible à la réception."
-      },
-      "total_estimate_eur": 497,
-      "nights": 3,
-      "journey_time_note": "~3h porte-à-porte depuis Paris (train direct + courte marche ou taxi)",
-      "weather_note": "~9°C, Patchy rain nearby",
-      "stroller_note": "La plage de Deauville est en sable fin et plat, facilement accessible en poussette. La promenade des Planches est entièrement plane et accessible. Le centre-ville est également très praticable avec un landau.",
-      "booking_links": [
-        {
-          "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Deauville&travelDate=2025-04-27"
-        },
-        {
-          "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Deauville&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
-        },
-        {
-          "label": "🏠 Chercher Airbnb",
-          "url": "https://www.airbnb.fr/s/Deauville/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
-        }
-      ]
-    },
-    {
-      "title": "Charme et sérénité au bord de la Loire 🏰",
-      "destination": "Tours, France",
+      "title": "Douceur normande au bord de l'eau 🌿",
+      "destination": "Vernon, Normandie, France",
       "emoji": "🌸",
-      "why": "Tours est une ville douce et verdoyante, idéale pour un séjour reposant en famille. Ses parcs, ses bords de Loire praticables en poussette et son centre-ville animé plairont à toute la famille. À 55 min seulement de Paris en TGV, c'est une destination sans stress parfaite pour mamie et le bébé.",
+      "why": "Vernon est accessible en train direct depuis Paris Saint-Lazare en 1h15, sans correspondance. Le bord de Seine offre des promenades poussette ultra-plates, des jardins fleuris et une ambiance calme de petite ville normande. Parfait pour un week-end repos-nature avec bébé, à deux pas des jardins de Giverny.",
       "transport": {
-        "description": "TGV Paris Montparnasse → Tours direct",
+        "description": "Transilien Paris Saint-Lazare → Vernon-Giverny direct",
         "type": "train",
-        "duration": "55min",
-        "price_per_person_eur": 35,
-        "total_transport_eur": 140,
-        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2025-04-27",
-        "notes": "TGV ultra-rapide et direct. La gare de Tours est en plein centre-ville. Poussette très facile à gérer, pas de correspondance ni navette nécessaire."
+        "duration": "1h15",
+        "price_per_person_eur": 18,
+        "total_transport_eur": 72,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Saint-Lazare&wishDestinationLabel=Vernon&travelDate=2025-04-27",
+        "notes": "Train direct ligne J depuis Saint-Lazare (~20 min depuis Asnières). Aller-retour ~36€/adulte, ~18€/enfant. Poussette accessible sans pliage forcé dans la rame Transilien J."
       },
       "accommodation": {
-        "description": "Hôtel Best Western Plus de Bordeaux Tours Centre 4★",
+        "description": "Hôtel Le Normandy Vernon ou Airbnb en centre-ville",
         "type": "hotel",
-        "price_per_night_eur": 105,
-        "total_accommodation_eur": 315,
-        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2",
-        "notes": "Ascenseur, situation centrale à 5 min à pied de la gare et du Vieux-Tours. Chambres communicantes disponibles pour famille + mamie. Accueil poussette facilité."
+        "price_per_night_eur": 85,
+        "total_accommodation_eur": 255,
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Vernon%2C+Normandie&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2",
+        "notes": "Plusieurs hôtels et gîtes en centre-ville proposent lit bébé sur demande et accès sans escalier. Vérifier ascenseur ou chambre rez-de-chaussée à la réservation."
       },
-      "total_estimate_eur": 455,
+      "total_estimate_eur": 327,
       "nights": 3,
-      "journey_time_note": "~2h porte-à-porte depuis Paris (TGV ultra-rapide + marche jusqu'à l'hôtel)",
-      "weather_note": "~9°C, Patchy rain nearby",
-      "stroller_note": "Les quais de Loire et les parcs de Tours sont entièrement plats et accessibles en poussette. Le Vieux-Tours a quelques pavés mais reste globalement praticable. Le jardin botanique tout proche est parfait pour une pause avec bébé.",
+      "journey_time_note": "~1h50 porte-à-porte : 20 min Asnières → Saint-Lazare + 1h15 train + 15 min marche/taxi vers l'hôtel",
+      "weather_note": "~11°C, Sunny",
+      "stroller_note": "Vernon est très praticable en poussette : centre-ville plat le long de la Seine, rues pavées en faible proportion. Les jardins de Giverny ont des allées larges et accessibles (entrée ~7€/adulte, gratuit -7 ans). Gare de Vernon de plain-pied.",
+      "restaurants": [
+        {
+          "name": "Les Fleurs",
+          "distinction": "Recommandé",
+          "price_range": "~25–35€/pers",
+          "specialty": "Cuisine normande, produits locaux, menus midi",
+          "michelin_url": "https://guide.michelin.com/fr/fr/normandie/vernon/restaurants"
+        },
+        {
+          "name": "La Guinguette de l'Île",
+          "distinction": "Recommandé local",
+          "price_range": "~20–28€/pers",
+          "specialty": "Grillades et salades en bord de Seine, terrasse familiale",
+          "michelin_url": "https://guide.michelin.com/fr/fr/normandie/vernon/restaurants"
+        }
+      ],
       "booking_links": [
         {
           "label": "🚄 Réserver le train",
-          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris&wishDestinationLabel=Tours&travelDate=2025-04-27"
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Saint-Lazare&wishDestinationLabel=Vernon&travelDate=2025-04-27"
         },
         {
           "label": "🏨 Chercher hôtels",
-          "url": "https://www.booking.com/searchresults.fr.html?ss=Tours&checkin=2025-04-27&checkout=2025-04-30&group_adults=3&group_children=1&age=2"
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Vernon%2C+Normandie&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2"
         },
         {
           "label": "🏠 Chercher Airbnb",
-          "url": "https://www.airbnb.fr/s/Tours/homes?checkin=2025-04-27&checkout=2025-04-30&adults=3&children=1"
+          "url": "https://www.airbnb.fr/s/Vernon--Normandie/homes?checkin=2025-04-27&checkout=2025-04-30&adults=2&children=1"
+        }
+      ]
+    },
+    {
+      "title": "Bulle verte en forêt de Fontainebleau 🌲",
+      "destination": "Fontainebleau, Île-de-France, France",
+      "emoji": "🌲",
+      "why": "Fontainebleau est accessible en train direct depuis Gare de Lyon en 40 minutes — un trajet ultra-simple avec poussette. La forêt domaniale offre des clairières et sentiers carrossables idéaux pour flâner sans effort, et le château et ses jardins à la française constituent une parenthèse nature-culture apaisante. Budget très accessible pour 3 nuits.",
+      "transport": {
+        "description": "Transilien R Paris Gare de Lyon → Fontainebleau-Avon direct",
+        "type": "train",
+        "duration": "40min",
+        "price_per_person_eur": 9,
+        "total_transport_eur": 36,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Gare%20de%20Lyon&wishDestinationLabel=Fontainebleau&travelDate=2025-04-27",
+        "notes": "Aller-retour ~18€/adulte, ~9€/enfant. Train toutes les 30 min. Rames Transilien accessibles poussette. Depuis Asnières : RER C ou Métro 13 → Gare de Lyon (~35 min)."
+      },
+      "accommodation": {
+        "description": "Hôtel Ibis Fontainebleau ou Aigle Noir Boutique Hotel",
+        "type": "hotel",
+        "price_per_night_eur": 95,
+        "total_accommodation_eur": 285,
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Fontainebleau%2C+Île-de-France&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2",
+        "notes": "L'Ibis Fontainebleau propose ascenseur, lit bébé disponible sur demande, à 10 min à pied du château. Vérifier disponibilité lit bébé au moment de la réservation."
+      },
+      "total_estimate_eur": 321,
+      "nights": 3,
+      "journey_time_note": "~1h30 porte-à-porte : 35 min Asnières → Gare de Lyon + 40 min train + 15 min à pied ou taxi jusqu'à l'hôtel",
+      "weather_note": "~10°C, Partly Cloudy ",
+      "stroller_note": "Les jardins du château de Fontainebleau sont entièrement plats et accessibles en poussette (allées gravillonnées larges). Certaines allées forestières carrossables sont praticables. Centre-ville plat autour du château. Gare Fontainebleau-Avon accessible de plain-pied.",
+      "restaurants": [
+        {
+          "name": "L'Axel",
+          "distinction": "Étoile Michelin",
+          "price_range": "~55–75€/pers (menu déjeuner ~45€)",
+          "specialty": "Cuisine franco-japonaise créative, produits de saison",
+          "michelin_url": "https://guide.michelin.com/fr/fr/ile-de-france/fontainebleau/restaurant/l-axel"
+        },
+        {
+          "name": "La Table des Maréchaux",
+          "distinction": "Recommandé",
+          "price_range": "~30–40€/pers",
+          "specialty": "Cuisine française classique, cadre élégant près du château",
+          "michelin_url": "https://guide.michelin.com/fr/fr/ile-de-france/fontainebleau/restaurants"
+        }
+      ],
+      "booking_links": [
+        {
+          "label": "🚄 Réserver le train",
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Gare%20de%20Lyon&wishDestinationLabel=Fontainebleau&travelDate=2025-04-27"
+        },
+        {
+          "label": "🏨 Chercher hôtels",
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Fontainebleau%2C+%C3%8Ele-de-France&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2"
+        },
+        {
+          "label": "🏠 Chercher Airbnb",
+          "url": "https://www.airbnb.fr/s/Fontainebleau--Île-de-France/homes?checkin=2025-04-27&checkout=2025-04-30&adults=2&children=1"
+        }
+      ]
+    },
+    {
+      "title": "Escapade champêtre en Vallée de la Loire 🏰",
+      "destination": "Vendôme, Centre-Val de Loire, France",
+      "emoji": "🌾",
+      "why": "Vendôme est desservie par TGV direct depuis Paris Montparnasse en seulement 45 minutes — l'une des destinations les plus rapides en TGV de Paris. La ville traversée par le Loir offre des berges verdoyantes ultra-plates, idéales pour flâner en poussette dans un cadre de nature apaisante. Petite ville à taille humaine, sans stress ni foule touristique, budget très contenu.",
+      "transport": {
+        "description": "TGV Paris Montparnasse → Vendôme-Villiers-sur-Loir direct",
+        "type": "train",
+        "duration": "45min",
+        "price_per_person_eur": 25,
+        "total_transport_eur": 100,
+        "search_url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Montparnasse&wishDestinationLabel=Vendôme&travelDate=2025-04-27",
+        "notes": "Aller-retour ~50€/adulte en TGV Inouï (tarifs Prem's disponibles). Enfant -4 ans gratuit ou réduit. TGV accessible poussette, espaces bagages larges. Depuis Asnières : Métro 13 → Montparnasse (~30 min)."
+      },
+      "accommodation": {
+        "description": "Hôtel Le Saint-Georges Vendôme ou gîte de charme en centre-ville",
+        "type": "hotel",
+        "price_per_night_eur": 80,
+        "total_accommodation_eur": 240,
+        "search_url": "https://www.booking.com/searchresults.fr.html?ss=Vendôme%2C+Centre-Val+de+Loire&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2",
+        "notes": "Hôtels en centre-ville à partir de 75–90€/nuit, lit bébé disponible sur demande. Vérifier ascenseur ou chambre accessible. Plusieurs Airbnb avec rez-de-chaussée disponibles dans le centre."
+      },
+      "total_estimate_eur": 340,
+      "nights": 3,
+      "journey_time_note": "~1h45 porte-à-porte : 30 min Asnières → Montparnasse + 45 min TGV + 10–15 min à pied ou taxi vers l'hôtel",
+      "weather_note": "~10°C, Sunny",
+      "stroller_note": "Vendôme est une ville très praticable en poussette : berges du Loir aménagées et plates, centre-ville piéton accessible, jardins publics de l'Abbaye de plein-pied. Gare TGV Vendôme équipée ascenseurs et accès PMR.",
+      "restaurants": [
+        {
+          "name": "Le Moulin du Loir",
+          "distinction": "Recommandé",
+          "price_range": "~25–35€/pers",
+          "specialty": "Cuisine du terroir ligérien, poissons de rivière, terrasse au bord du Loir",
+          "michelin_url": "https://guide.michelin.com/fr/fr/centre-val-de-loire/vendome/restaurants"
+        },
+        {
+          "name": "La Marmite Vendômoise",
+          "distinction": "Recommandé local",
+          "price_range": "~20–30€/pers",
+          "specialty": "Cuisine française traditionnelle, menus familiaux, cadre chaleureux",
+          "michelin_url": "https://guide.michelin.com/fr/fr/centre-val-de-loire/vendome/restaurants"
+        }
+      ],
+      "booking_links": [
+        {
+          "label": "🚄 Réserver le train",
+          "url": "https://www.sncf-connect.com/app/trips/search?wishOriginLabel=Paris%20Montparnasse&wishDestinationLabel=Vend%C3%B4me&travelDate=2025-04-27"
+        },
+        {
+          "label": "🏨 Chercher hôtels",
+          "url": "https://www.booking.com/searchresults.fr.html?ss=Vend%C3%B4me%2C+Centre-Val+de+Loire&checkin=2025-04-27&checkout=2025-04-30&group_adults=2&group_children=1&age=2"
+        },
+        {
+          "label": "🏠 Chercher Airbnb",
+          "url": "https://www.airbnb.fr/s/Vendôme--Centre-Val-de-Loire/homes?checkin=2025-04-27&checkout=2025-04-30&adults=2&children=1"
         }
       ]
     }
   ],
-  "started_at": "2026-04-01T07:36:42.409428+00:00",
+  "started_at": "2026-04-10T05:29:00.869748+00:00",
   "current_proposal_index": 0,
-  "completed_at": "2026-04-01T09:17:02.194238+00:00"
+  "completed_at": "2026-04-10T06:38:18.978828+00:00"
 }
