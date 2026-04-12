@@ -506,6 +506,7 @@ def _site_header(back_href: str = None, back_label: str = "← Products", prefix
     if back_href:
         nav_items += f'        <a href="{back_href}" class="nav-link">{back_label}</a>\n'
     else:
+        nav_items += f'        <a href="{prefix}services.html" class="nav-link">Services</a>\n'
         nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
         nav_items += f'        <a href="{prefix}ats.html" class="nav-link">ATS Checker</a>\n'
         nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
