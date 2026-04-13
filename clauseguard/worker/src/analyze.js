@@ -6,6 +6,8 @@ const CONTRACT_TYPES = [
 
 const MAX_CONTRACT_LENGTH = 15000;
 const FREE_MONTHLY_LIMIT = 3;
+const PRO_MONTHLY_LIMIT = 500;   // hard cap — costs $3.50 max vs $7 revenue
+const RATE_LIMIT_PER_MINUTE = 5; // per user, blocks batch scripts
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Claude prompt for contract analysis
@@ -100,19 +102,40 @@ export async function handleAnalyze(request, env) {
     return corsJson(env, { error: `Invalid contract_type. Must be one of: ${CONTRACT_TYPES.join(", ")}` }, 400);
   }
 
-  // Check free tier usage limit
+  // ── Rate limit: max 5 analyses per minute per user (blocks batch scripts) ──
+  const minuteKey = `ratelimit:${user.id}:${Math.floor(Date.now() / 60000)}`;
+  const rlRaw = await env.KV.get(minuteKey);
+  const rlCount = rlRaw ? parseInt(rlRaw) : 0;
+  if (rlCount >= RATE_LIMIT_PER_MINUTE) {
+    return corsJson(env, {
+      error: "Too many requests. Please wait a moment before analyzing another contract.",
+    }, 429);
+  }
+  await env.KV.put(minuteKey, String(rlCount + 1), { expirationTtl: 120 });
+
+  // ── Monthly usage limits ──
   const month = currentMonth();
+  const usage = await env.DB.prepare(
+    "SELECT analysis_count FROM usage_tracking WHERE user_id = ? AND month = ?"
+  ).bind(user.id, month).first();
+  const count = usage ? usage.analysis_count : 0;
+
   if (user.tier !== "pro") {
-    const usage = await env.DB.prepare(
-      "SELECT analysis_count FROM usage_tracking WHERE user_id = ? AND month = ?"
-    ).bind(user.id, month).first();
-    const count = usage ? usage.analysis_count : 0;
     if (count >= FREE_MONTHLY_LIMIT) {
       return corsJson(env, {
         error: "Monthly limit reached",
         limit: FREE_MONTHLY_LIMIT,
         usage: count,
         upgrade_required: true,
+      }, 429);
+    }
+  } else {
+    // Pro hard cap — prevents abuse from batch scripts
+    if (count >= PRO_MONTHLY_LIMIT) {
+      return corsJson(env, {
+        error: `You've reached the monthly analysis limit (${PRO_MONTHLY_LIMIT}). Contact support if you need more.`,
+        limit: PRO_MONTHLY_LIMIT,
+        usage: count,
       }, 429);
     }
   }
