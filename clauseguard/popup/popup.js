@@ -590,20 +590,9 @@ async function loadLibrary() {
 
 // ─── Upgrade ──────────────────────────────────────────────────────────────────
 
-async function openUpgrade() {
-  try {
-    const data = await apiFetch("/api/subscribe", "POST", { user_id: userId });
-    if (data.checkout_url) {
-      chrome.tabs.create({ url: data.checkout_url });
-    } else {
-      // Fallback: open options page
-      chrome.tabs.create({ url: chrome.runtime.getURL("options/options.html") });
-    }
-  } catch (e) {
-    console.error("Upgrade error:", e);
-    // Fallback: open options page
-    chrome.tabs.create({ url: chrome.runtime.getURL("options/options.html") });
-  }
+function openUpgrade() {
+  // Open the options page — the Stripe checkout button lives there
+  chrome.tabs.create({ url: chrome.runtime.getURL("options/options.html") });
 }
 
 // ─── API helper ───────────────────────────────────────────────────────────────
