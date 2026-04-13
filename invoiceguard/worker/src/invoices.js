@@ -13,7 +13,11 @@ export async function handleCreateInvoice(request, env) {
 
   const { user_id, client_name, client_email, amount_cents, currency, invoice_date, due_date, email_subject, email_snippet, notes } = body;
 
-  const user = await requireUser(env, user_id);
+  let user = await requireUser(env, user_id);
+  if (!user) {
+    await env.DB.prepare("INSERT OR IGNORE INTO users (id, tier) VALUES (?, 'free')").bind(user_id).run();
+    user = await requireUser(env, user_id);
+  }
   if (!user) return corsJson(env, { error: "User not found" }, 404);
 
   // Rate limiting

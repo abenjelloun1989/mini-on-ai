@@ -19,6 +19,16 @@ async function init() {
   userId = response?.userId;
   if (!userId) return;
 
+  // Ensure user is registered (handles case where service worker registration failed)
+  try {
+    await fetch(`${API_BASE}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: userId }),
+    });
+  } catch (_) { /* silent — will retry on next load */ }
+
+
   // Watch URL changes (Gmail is a SPA)
   new MutationObserver(() => {
     if (location.href !== lastUrl) {

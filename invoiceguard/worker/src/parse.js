@@ -15,7 +15,12 @@ export async function handleParse(request, env) {
 
   const { user_id, email_text, email_subject, sender_email } = body;
 
-  const user = await requireUser(env, user_id);
+  let user = await requireUser(env, user_id);
+  if (!user) {
+    // Auto-register (handles silent registration failures)
+    await env.DB.prepare("INSERT OR IGNORE INTO users (id, tier) VALUES (?, 'free')").bind(user_id).run();
+    user = await requireUser(env, user_id);
+  }
   if (!user) return corsJson(env, { error: "User not found" }, 404);
 
   if (!email_text || email_text.length < 10) {
