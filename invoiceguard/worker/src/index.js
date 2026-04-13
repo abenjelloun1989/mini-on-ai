@@ -37,6 +37,9 @@ import {
 
 export default {
   async fetch(request, env) {
+    // Set origin for this request (used by all corsJson/corsOk calls)
+    setRequestOrigin(request, env);
+
     // CORS preflight
     if (request.method === "OPTIONS") return corsOk(env);
 
@@ -100,12 +103,24 @@ export default {
 // Shared helpers (exported for use in other modules)
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Per-request origin — set at the start of each fetch, used by all helpers
+let _currentOrigin = "*";
+
+export function setRequestOrigin(request, env) {
+  const origin = request.headers.get("Origin") || "";
+  const ext = env.ALLOWED_ORIGIN || "";
+  if (origin === "https://mail.google.com") { _currentOrigin = origin; return; }
+  if (origin.startsWith("chrome-extension://")) { _currentOrigin = origin; return; }
+  _currentOrigin = ext || "*";
+}
+
 export function corsJson(env, obj, status = 200) {
   return new Response(JSON.stringify(obj), {
     status,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": env.ALLOWED_ORIGIN || "*",
+      "Access-Control-Allow-Origin": _currentOrigin,
+      "Vary": "Origin",
     },
   });
 }
@@ -114,9 +129,10 @@ export function corsOk(env) {
   return new Response(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": env.ALLOWED_ORIGIN || "*",
+      "Access-Control-Allow-Origin": _currentOrigin,
       "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, X-User-ID",
+      "Vary": "Origin",
     },
   });
 }
