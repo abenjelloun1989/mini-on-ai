@@ -506,10 +506,9 @@ def _site_header(back_href: str = None, back_label: str = "← Products", prefix
     if back_href:
         nav_items += f'        <a href="{back_href}" class="nav-link">{back_label}</a>\n'
     else:
-        nav_items += f'        <a href="{prefix}services.html" class="nav-link">Services</a>\n'
+        nav_items += f'        <a href="{prefix}index.html" class="nav-link">Products</a>\n'
         nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
-        nav_items += f'        <a href="{prefix}ats.html" class="nav-link">ATS Checker</a>\n'
-        nav_items += f'        <a href="{prefix}clauseguard.html" class="nav-link">🛡 ClauseGuard</a>\n'
+        nav_items += f'        <a href="{prefix}services.html" class="nav-link">Services</a>\n'
         nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
     nav_items += '        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>'
     return f"""  <header class="site-header">
@@ -726,11 +725,11 @@ def rebuild_index(catalog: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-on-ai — Claude Code Skills &amp; AI Workflows for Engineering Teams</title>
+  <title>mini-on-ai — AI Tools, Prompt Packs &amp; Automation Workflows</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Claude Code skills and n8n automation workflows crafted by a seasoned software engineer. Deploy in minutes, save hours every week.">
+  <meta name="description" content="Prompt packs, Claude Code skills, n8n templates, and AI-powered tools for freelancers and professionals. Deploy in minutes, save hours every week.">
   <meta name="google-site-verification" content="_bUSLc4yVdu115P3SlUFsKIZ15YTewr70wL6yFRxHGs">
 {og_tags}
 </head>
@@ -743,11 +742,10 @@ def rebuild_index(catalog: dict) -> str:
 
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="hero-headline">Claude Code skills &amp;<br>AI workflows — ship faster</h1>
-      <p class="hero-sub">Ready-to-deploy skills and automation templates built by a working software engineer. Drop one in, save hours this week.</p>
+      <h1 class="hero-headline">AI tools &amp; workflows —<br>built for professionals who ship</h1>
+      <p class="hero-sub">Prompt packs, Claude Code skills, n8n templates, and AI-powered tools. Drop one in, save hours this week.</p>
       <div class="hero-cta-group">
-        <a href="build.html" class="hero-cta-primary">✦ Try a free preview</a>
-        <a href="ats.html" class="hero-cta-free">◈ Check your ATS score — free</a>
+        <a href="build.html" class="hero-cta-primary">✦ Build your own — free</a>
         <a href="#catalog" class="hero-cta-secondary">Browse {count} products</a>
       </div>
       <div class="hero-stats">
@@ -766,6 +764,36 @@ def rebuild_index(catalog: dict) -> str:
       </div>
     </div>
   </section>
+
+  <section class="tools-strip">
+    <div class="tools-strip-inner">
+      <a href="build.html" class="tool-card">
+        <span class="tool-card-icon">✦</span>
+        <div class="tool-card-body">
+          <strong class="tool-card-title">Build Your Own</strong>
+          <p class="tool-card-desc">Describe a use case, get a custom AI product in 30 seconds.</p>
+        </div>
+        <span class="tool-card-cta">Try free →</span>
+      </a>
+      <a href="ats.html" class="tool-card">
+        <span class="tool-card-icon">◈</span>
+        <div class="tool-card-body">
+          <strong class="tool-card-title">ATS Resume Checker</strong>
+          <p class="tool-card-desc">Instant ATS score, keyword gaps, and optimization tips — free.</p>
+        </div>
+        <span class="tool-card-cta">Check score →</span>
+      </a>
+      <a href="clauseguard.html" class="tool-card">
+        <span class="tool-card-icon">🛡</span>
+        <div class="tool-card-body">
+          <strong class="tool-card-title">ClauseGuard</strong>
+          <p class="tool-card-desc">Analyze contracts for red flags in seconds. Free Chrome extension.</p>
+        </div>
+        <span class="tool-card-cta">Add to Chrome →</span>
+      </a>
+    </div>
+  </section>
+
 {featured_section}
   <main class="catalog" id="catalog">
     <div class="catalog-header">
@@ -807,6 +835,7 @@ def rebuild_index(catalog: dict) -> str:
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+    <p class="site-footer-tools"><a href="build.html">Build Your Own</a> &nbsp;·&nbsp; <a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a></p>
   </footer>
 
 {_dark_mode_js()}
