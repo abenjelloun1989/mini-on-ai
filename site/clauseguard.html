@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClauseGuard — AI Contract & NDA Analyzer | mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Analyze any contract for risks, red flags and unfair clauses in seconds. AI-powered plain English explanations for freelancers and small business owners. Free Chrome extension.">
+  <link rel="canonical" href="https://mini-on-ai.com/clauseguard.html">
+  <style>
+    /* ── Page-specific overrides ── */
+    .cg-hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cg-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cg-hero > * { position: relative; z-index: 1; }
+
+    .cg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border: 1px solid var(--border-brand);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand);
+      background: var(--brand-glow);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cg-headline {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cg-headline span {
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cg-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .cg-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-cg-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-cg-primary:hover { background: var(--brand-hover); transform: translateY(-1px); }
+
+    .btn-cg-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-cg-secondary:hover { border-color: var(--brand); color: var(--text); }
+
+    .cg-proof {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .cg-proof strong { color: var(--text); }
+
+    /* ── How it works ── */
+    .cg-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .cg-section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+    .cg-section-title {
+      text-align: center;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    .cg-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .cg-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .cg-step:hover { border-color: var(--border-brand); }
+    .cg-step-num {
+      width: 32px; height: 32px;
+      background: var(--brand-glow);
+      border: 1px solid var(--border-brand);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; color: var(--brand);
+      margin-bottom: 14px;
+    }
+    .cg-step h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .cg-step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Features ── */
+    .cg-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .cg-feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .cg-feature:hover { border-color: var(--border-brand); }
+    .cg-feature-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cg-feature h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .cg-feature p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Pricing ── */
+    .cg-pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cg-plan {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .cg-plan.featured {
+      border-color: var(--border-brand);
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(167,139,250,0.05));
+      position: relative;
+    }
+    .cg-plan-badge {
+      position: absolute;
+      top: -11px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .cg-plan-name { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .cg-plan-price { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+    .cg-plan-price span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+    .cg-plan-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .cg-plan-features { list-style: none; margin-bottom: 24px; }
+    .cg-plan-features li {
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cg-plan-features li:last-child { border-bottom: none; }
+    .cg-plan-features li::before { content: "✓"; color: var(--brand); font-weight: 700; flex-shrink: 0; }
+    .cg-plan-features li.no::before { content: "–"; color: var(--text-muted); }
+
+    /* ── Success banner ── */
+    .cg-success {
+      display: none;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      text-align: center;
+      margin: 0 auto 32px;
+      max-width: 500px;
+      font-size: 14px;
+    }
+    .cg-success.visible { display: block; }
+
+    /* ── Divider ── */
+    .cg-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── Discover more ── */
+    .cg-discover {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .cg-discover h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .cg-discover p { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="site-logo" aria-label="mini-on-ai home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none">
+          <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+          <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+          <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+          <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+          <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+        </svg>
+      </a>
+      <nav style="display:flex;gap:16px;align-items:center;">
+        <a href="index.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog/index.html" class="nav-link">Blog</a>
+        <a href="https://chromewebstore.google.com" class="nav-link-cta" target="_blank" rel="noopener">Add to Chrome — Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Success banner (shown after Stripe redirect) -->
+  <div style="padding: 0 24px;">
+    <div class="cg-success" id="successBanner">
+      🎉 <strong>You're now on Pro!</strong> Reload the ClauseGuard extension to activate unlimited analyses.
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="cg-hero">
+    <div class="cg-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="#6366f1"><path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"/></svg>
+      Chrome Extension · Free to install
+    </div>
+    <h1 class="cg-headline">
+      Know exactly what you're<br><span>signing before you sign</span>
+    </h1>
+    <p class="cg-sub">
+      ClauseGuard analyzes any contract for risks, red flags and unfair clauses in seconds.
+      Plain English explanations, suggested changes, and negotiation tips — built for freelancers and small business owners.
+    </p>
+    <div class="cg-cta-row">
+      <a href="https://chromewebstore.google.com" class="btn-cg-primary" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"/></svg>
+        Add to Chrome — it's free
+      </a>
+      <a href="#how-it-works" class="btn-cg-secondary">See how it works ↓</a>
+    </div>
+    <p class="cg-proof">
+      <strong>3 free analyses</strong> per month · No account needed · Works on any contract or NDA
+    </p>
+  </section>
+
+  <hr class="cg-divider">
+
+  <!-- How it works -->
+  <section class="cg-section" id="how-it-works">
+    <p class="cg-section-label">How it works</p>
+    <h2 class="cg-section-title">Analyze any contract in 3 steps</h2>
+    <div class="cg-steps">
+      <div class="cg-step">
+        <div class="cg-step-num">1</div>
+        <h3>Open any contract</h3>
+        <p>Visit a contract page, open a Google Doc, or paste text directly. ClauseGuard works on any webpage or document.</p>
+      </div>
+      <div class="cg-step">
+        <div class="cg-step-num">2</div>
+        <h3>Click "Analyze"</h3>
+        <p>Hit the extension icon and click Analyze current page — or paste the text. Results in under 15 seconds.</p>
+      </div>
+      <div class="cg-step">
+        <div class="cg-step-num">3</div>
+        <h3>Negotiate with confidence</h3>
+        <p>Review the risk score, red flags, and suggested clause changes. Copy fairer alternatives with one click.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cg-divider">
+
+  <!-- Features -->
+  <section class="cg-section">
+    <p class="cg-section-label">What you get</p>
+    <h2 class="cg-section-title">Everything you need to review a contract</h2>
+    <div class="cg-features">
+      <div class="cg-feature">
+        <div class="cg-feature-icon">🎯</div>
+        <div>
+          <h3>Risk Score (1–10)</h3>
+          <p>Instant color-coded risk assessment. Know at a glance if this contract is fair or predatory.</p>
+        </div>
+      </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">🚩</div>
+        <div>
+          <h3>Red Flags</h3>
+          <p>Dangerous clauses flagged with concrete "what could go wrong" scenarios in plain English.</p>
+        </div>
+      </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">✍️</div>
+        <div>
+          <h3>Suggested Changes</h3>
+          <p>Ready-to-use rewordings for every risky clause. Copy and paste into your negotiation.</p>
+        </div>
+      </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">🔍</div>
+        <div>
+          <h3>Missing Protections</h3>
+          <p>Spots important clauses that aren't in the contract — late payment penalties, liability caps, and more.</p>
+        </div>
+      </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">💡</div>
+        <div>
+          <h3>Negotiation Tips</h3>
+          <p>2–4 actionable tips tailored to this specific contract and your position as a freelancer or SMB.</p>
+        </div>
+      </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">📄</div>
+        <div>
+          <h3>Works Everywhere</h3>
+          <p>Any webpage, Google Doc, or PDF. Detects NDA, freelance, employment, lease, and SaaS contracts automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cg-divider">
+
+  <!-- Pricing -->
+  <section class="cg-section">
+    <p class="cg-section-label">Pricing</p>
+    <h2 class="cg-section-title">Simple, honest pricing</h2>
+    <div class="cg-pricing">
+
+      <div class="cg-plan">
+        <div class="cg-plan-name">Free</div>
+        <div class="cg-plan-price">$0 <span>/ month</span></div>
+        <div class="cg-plan-desc">No account needed. Install and go.</div>
+        <ul class="cg-plan-features">
+          <li>3 contract analyses / month</li>
+          <li>Full risk score & red flags</li>
+          <li>Suggested clause changes</li>
+          <li>Missing protections check</li>
+          <li class="no">Contract comparison</li>
+          <li class="no">PDF export</li>
+          <li class="no">Clause library</li>
+        </ul>
+        <a href="https://chromewebstore.google.com" class="btn-cg-secondary" style="width:100%;justify-content:center;text-decoration:none;" target="_blank" rel="noopener">Add to Chrome — Free</a>
+      </div>
+
+      <div class="cg-plan featured">
+        <div class="cg-plan-badge">Most popular</div>
+        <div class="cg-plan-name">Pro</div>
+        <div class="cg-plan-price">$7 <span>/ month</span></div>
+        <div class="cg-plan-desc">For active freelancers and business owners.</div>
+        <ul class="cg-plan-features">
+          <li>Unlimited analyses</li>
+          <li>Full risk score & red flags</li>
+          <li>Suggested clause changes</li>
+          <li>Missing protections check</li>
+          <li>Contract comparison (diff)</li>
+          <li>PDF export</li>
+          <li>Clause library</li>
+        </ul>
+        <a href="https://chromewebstore.google.com" class="btn-cg-primary" style="width:100%;justify-content:center;text-decoration:none;" target="_blank" id="proUpgradeBtn" rel="noopener">Get Pro — $7/month</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:20px;">
+      Cancel anytime · No hidden fees · Stripe-secured payments
+    </p>
+  </section>
+
+  <hr class="cg-divider">
+
+  <!-- Disclaimer -->
+  <section style="max-width:640px;margin:0 auto;padding:40px 24px;text-align:center;">
+    <p style="font-size:12px;color:var(--text-muted);line-height:1.7;">
+      ⚠️ ClauseGuard is an AI-powered tool for informational purposes only. It does not constitute legal advice.
+      Always consult a qualified attorney before signing any contract.
+    </p>
+  </section>
+
+  <hr class="cg-divider">
+
+  <!-- Discover more -->
+  <section class="cg-discover">
+    <h2>Made by mini-on-ai</h2>
+    <p>ClauseGuard is one of 57+ AI-powered tools built by mini-on-ai.<br>Browse the full catalog — prompts, guides, templates and automations.</p>
+    <a href="index.html" class="btn-cg-primary">Browse all products →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:24px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);">
+    © 2026 mini-on-ai · <a href="mailto:hello@mini-on-ai.com" style="color:var(--text-muted);">hello@mini-on-ai.com</a>
+  </footer>
+
+  <script>
+    // Show success banner after Stripe redirect
+    if (window.location.search.includes("clauseguard=upgraded")) {
+      document.getElementById("successBanner").classList.add("visible");
+      // Clean URL
+      history.replaceState({}, "", window.location.pathname);
+    }
+
+    // Dark mode toggle (reuse site pattern)
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") document.body.classList.add("light-mode");
+  </script>
+
+</body>
+</html>

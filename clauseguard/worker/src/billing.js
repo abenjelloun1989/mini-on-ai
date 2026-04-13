@@ -25,8 +25,8 @@ export async function handleSubscribe(request, env) {
     "line_items[0][quantity]": "1",
     "metadata[user_id]": user_id,
     "subscription_data[metadata][user_id]": user_id,
-    "success_url": `${SITE_URL}?clauseguard=upgraded`,
-    "cancel_url": `${SITE_URL}`,
+    "success_url": `${SITE_URL}/clauseguard.html?clauseguard=upgraded`,
+    "cancel_url": `${SITE_URL}/clauseguard.html`,
   });
 
   if (user.email) {
@@ -146,7 +146,7 @@ export async function handlePortal(request, env) {
     },
     body: new URLSearchParams({
       "customer": user.stripe_customer_id,
-      "return_url": `${SITE_URL}/clauseguard`,
+      "return_url": `${SITE_URL}/clauseguard.html`,
     }),
   });
 

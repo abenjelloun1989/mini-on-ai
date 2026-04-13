@@ -509,6 +509,7 @@ def _site_header(back_href: str = None, back_label: str = "← Products", prefix
         nav_items += f'        <a href="{prefix}services.html" class="nav-link">Services</a>\n'
         nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
         nav_items += f'        <a href="{prefix}ats.html" class="nav-link">ATS Checker</a>\n'
+        nav_items += f'        <a href="{prefix}clauseguard.html" class="nav-link">🛡 ClauseGuard</a>\n'
         nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
     nav_items += '        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>'
     return f"""  <header class="site-header">
