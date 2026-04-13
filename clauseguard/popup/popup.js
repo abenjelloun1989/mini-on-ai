@@ -50,10 +50,13 @@ async function refreshUsage() {
       usageText.innerHTML = `<span style="color: #6366f1;">✓ Pro — unlimited analyses</span>`;
     } else {
       const remaining = Math.max(0, data.limit - data.usage_this_month);
-      usageText.innerHTML = `${data.usage_this_month} of ${data.limit} free analyses used this month`;
       if (remaining === 0) {
+        usageText.innerHTML = `<span style="color:var(--red);">No free analyses left this month</span>`;
         document.getElementById("upgradeBanner").classList.remove("hidden");
         document.getElementById("analyzeBtn").disabled = true;
+        document.getElementById("analyzeCurrentPage").disabled = true;
+      } else {
+        usageText.innerHTML = `<span style="color:var(--text-muted);">${remaining} free ${remaining === 1 ? "analysis" : "analyses"} remaining this month</span>`;
       }
     }
 
