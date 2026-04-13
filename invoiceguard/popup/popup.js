@@ -4,7 +4,7 @@
  * Shows invoice list, summary, detail view, and reminder generation.
  */
 
-const API_BASE = "https://invoiceguard-api.mini-on-ai.workers.dev";
+const API_BASE = "https://invoiceguard-api.kirozdormu.workers.dev";
 
 let userId = null;
 let allInvoices = [];

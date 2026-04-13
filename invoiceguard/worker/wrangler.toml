@@ -5,14 +5,14 @@ compatibility_date = "2024-09-25"
 [[d1_databases]]
 binding = "DB"
 database_name = "invoiceguard"
-database_id = "PLACEHOLDER"
+database_id = "f484dcfb-0eb2-4510-8031-adf94b5a2dbc"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "PLACEHOLDER"
+id = "8605c7597de8470a85f0fda3d7b9caa6"
 
 [vars]
-ALLOWED_ORIGIN = "chrome-extension://placeholder"
+ALLOWED_ORIGIN = "chrome-extension://dfjfokgifcmdmghofbnlpgihkhhaplmh"
 
 # Secrets (add via `wrangler secret put`):
 # ANTHROPIC_API_KEY

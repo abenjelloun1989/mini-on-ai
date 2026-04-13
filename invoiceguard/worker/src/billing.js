@@ -20,7 +20,7 @@ export async function handleSubscribe(request, env) {
 
   const params = new URLSearchParams({
     "mode": "subscription",
-    "line_items[0][price]": env.STRIPE_PRICE_ID || "PLACEHOLDER",
+    "line_items[0][price]": "price_1TLrr1CHYMwZNPVbMRNI4v8T",
     "line_items[0][quantity]": "1",
     "metadata[user_id]": user_id,
     "subscription_data[metadata][user_id]": user_id,

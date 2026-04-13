@@ -8,7 +8,7 @@
  * 4. Badge icon with overdue count
  */
 
-const API_BASE = "https://invoiceguard-api.mini-on-ai.workers.dev";
+const API_BASE = "https://invoiceguard-api.kirozdormu.workers.dev";
 
 // ─── Install / Startup ───────────────────────────────────────────────────────
 
