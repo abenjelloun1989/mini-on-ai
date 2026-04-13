@@ -3,7 +3,7 @@
   "name": "ClauseGuard - AI Contract & NDA Analyzer",
   "version": "1.0.0",
   "description": "Analyze contracts for risks, red flags & unfair clauses. AI-powered plain English explanations for freelancers & small business owners.",
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {

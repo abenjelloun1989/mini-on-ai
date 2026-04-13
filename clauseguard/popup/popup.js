@@ -108,6 +108,9 @@ function setupAnalyzeTab() {
   document.getElementById("upgradeFromBanner").addEventListener("click", openUpgrade);
   document.getElementById("exportBtn").addEventListener("click", exportReport);
 
+  // Analyze current page
+  document.getElementById("analyzeCurrentPage").addEventListener("click", analyzeCurrentPage);
+
   // PDF upload
   document.getElementById("pdfUpload").addEventListener("change", handlePdfUpload);
 
@@ -125,6 +128,88 @@ function setupAnalyzeTab() {
       alert("Could not connect to Google Doc. Make sure a Google Doc is open.");
     }
   });
+}
+
+async function analyzeCurrentPage() {
+  const btn = document.getElementById("analyzeCurrentPage");
+  btn.disabled = true;
+  btn.textContent = "Extracting page text…";
+
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+    if (!tab || tab.url?.startsWith("chrome://") || tab.url?.startsWith("chrome-extension://")) {
+      alert("Cannot analyze this type of page. Navigate to a contract or document page first.");
+      return;
+    }
+
+    // Inject extraction function into the active tab
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: () => {
+        // Remove noise elements
+        const noise = ["script", "style", "nav", "header", "footer", "aside",
+                       ".nav", ".header", ".footer", ".sidebar", ".menu",
+                       ".cookie", ".banner", ".ad", ".popup"];
+        const clone = document.body.cloneNode(true);
+        noise.forEach(sel => {
+          try { clone.querySelectorAll(sel).forEach(el => el.remove()); } catch {}
+        });
+
+        // Try semantic containers first
+        const candidates = [
+          clone.querySelector("article"),
+          clone.querySelector("main"),
+          clone.querySelector('[role="main"]'),
+          clone.querySelector(".contract"),
+          clone.querySelector(".document"),
+          clone.querySelector(".content"),
+        ].filter(Boolean);
+
+        let text = "";
+        if (candidates.length > 0) {
+          text = candidates[0].innerText || candidates[0].textContent;
+        } else {
+          text = clone.innerText || clone.textContent;
+        }
+
+        return text.replace(/\n{3,}/g, "\n\n").trim().slice(0, 15000);
+      },
+    });
+
+    const text = results?.[0]?.result?.trim();
+    if (!text || text.length < 50) {
+      alert("Could not extract enough text from this page. Try copying and pasting the contract text manually.");
+      return;
+    }
+
+    const textarea = document.getElementById("contractText");
+    textarea.value = text;
+    textarea.dispatchEvent(new Event("input"));
+
+    // Auto-detect contract type from page URL/title
+    const urlLower = tab.url?.toLowerCase() || "";
+    const titleLower = tab.title?.toLowerCase() || "";
+    const typeSelect = document.getElementById("contractType");
+    if (urlLower.includes("nda") || titleLower.includes("non-disclosure") || titleLower.includes("nda")) {
+      typeSelect.value = "nda";
+    } else if (titleLower.includes("employment") || titleLower.includes("offer letter")) {
+      typeSelect.value = "employment";
+    } else if (titleLower.includes("freelance") || titleLower.includes("service agreement")) {
+      typeSelect.value = "freelance";
+    } else if (titleLower.includes("lease") || titleLower.includes("rental")) {
+      typeSelect.value = "lease";
+    }
+
+    // Auto-run analysis
+    runAnalysis();
+  } catch (e) {
+    console.error("Page extraction failed:", e);
+    alert("Could not access this page. Try pasting the contract text manually.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Analyze current page`;
+  }
 }
 
 async function handlePdfUpload(event) {
