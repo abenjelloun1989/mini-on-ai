@@ -1,0 +1,20 @@
+name = "invoiceguard-api"
+main = "src/index.js"
+compatibility_date = "2024-09-25"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "invoiceguard"
+database_id = "PLACEHOLDER"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "PLACEHOLDER"
+
+[vars]
+ALLOWED_ORIGIN = "chrome-extension://placeholder"
+
+# Secrets (add via `wrangler secret put`):
+# ANTHROPIC_API_KEY
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET

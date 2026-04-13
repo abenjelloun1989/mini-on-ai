@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InvoiceGuard — Settings</title>
+  <style>
+    :root {
+      --bg: #0f0f1a;
+      --surface: #1a1a2e;
+      --border: #2a2a4a;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --brand: #6366F1;
+      --danger: #EF4444;
+      --success: #10B981;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px 20px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 22px; margin-bottom: 24px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .row:last-child { margin-bottom: 0; }
+    .row-label { font-size: 13px; color: var(--text-muted); }
+    .row-value { font-size: 13px; font-weight: 600; }
+    .row-value--pro { color: var(--brand); }
+    .row-value--free { color: var(--text-muted); }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: #4F46E5; }
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+    .btn-danger:hover { background: var(--danger); color: #fff; }
+    .btn-muted { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+    .btn-muted:hover { color: var(--text); border-color: var(--text-muted); }
+    .support-id {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .support-id:hover { color: var(--text); }
+    .export-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 InvoiceGuard Settings</h1>
+
+  <div class="card">
+    <div class="card-title">Account</div>
+    <div class="row">
+      <span class="row-label">Plan</span>
+      <span class="row-value" id="tierDisplay">—</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Email</span>
+      <span class="row-value" id="emailDisplay">—</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Active invoices</span>
+      <span class="row-value" id="activeDisplay">—</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Support ID</span>
+      <span class="support-id" id="supportId" title="Click to copy">—</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Subscription</div>
+    <div id="subFree">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Free plan: track up to 5 active invoices. Upgrade for unlimited tracking and AI-powered reminders.</p>
+      <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro — $7/mo</button>
+    </div>
+    <div id="subPro" style="display:none">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Pro plan active. Unlimited invoice tracking and AI reminders.</p>
+      <button class="btn btn-danger" id="cancelBtn">Manage subscription</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Export</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Download all your tracked invoices as a CSV file.</p>
+    <button class="btn btn-muted" id="exportBtn">Export CSV</button>
+    <p class="export-note">Includes: client, amount, status, dates, reminders sent.</p>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>InvoiceGuard</title>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <h1>📋 InvoiceGuard</h1>
+    </div>
+    <div class="header-right">
+      <span class="tier-badge" id="tierBadge">Free</span>
+      <button class="btn-icon" id="settingsBtn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- Summary cards -->
+  <div class="summary" id="summary">
+    <div class="summary-card">
+      <div class="summary-num" id="totalOutstanding">—</div>
+      <div class="summary-label">Outstanding</div>
+    </div>
+    <div class="summary-card summary-card--danger">
+      <div class="summary-num" id="overdueCount">—</div>
+      <div class="summary-label">Overdue</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-num" id="activeCount">—</div>
+      <div class="summary-label">Active</div>
+    </div>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="overdue">Overdue</button>
+    <button class="filter-tab" data-filter="sent">Sent</button>
+    <button class="filter-tab" data-filter="paid">Paid</button>
+  </div>
+
+  <!-- Invoice list -->
+  <div class="invoice-list" id="invoiceList">
+    <div class="loading" id="loading">Loading invoices...</div>
+    <div class="empty" id="emptyState" style="display:none">
+      <p>No invoices yet.</p>
+      <p class="empty-hint">Open an invoice email in Gmail and click "📋 Track Invoice" to get started.</p>
+    </div>
+  </div>
+
+  <!-- Upgrade banner (shown for free tier at limit) -->
+  <div class="upgrade-banner" id="upgradeBanner" style="display:none">
+    <p>Tracking <strong>5/5</strong> invoices on Free plan</p>
+    <button class="btn-upgrade" id="upgradeBtn">Upgrade to Pro — $7/mo</button>
+  </div>
+
+  <!-- Invoice detail panel (shown on click) -->
+  <div class="detail-panel" id="detailPanel" style="display:none">
+    <div class="detail-header">
+      <button class="btn-back" id="detailBack">← Back</button>
+      <div class="detail-actions">
+        <button class="btn-action" id="markPaidBtn" title="Mark as paid">✓ Paid</button>
+        <button class="btn-action btn-action--danger" id="deleteBtn" title="Delete">🗑</button>
+      </div>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
+    <div class="detail-remind">
+      <p class="remind-label">Send a follow-up reminder:</p>
+      <div class="remind-tones">
+        <button class="btn-tone" data-tone="friendly">😊 Friendly</button>
+        <button class="btn-tone" data-tone="professional">💼 Professional</button>
+        <button class="btn-tone" data-tone="firm">⚡ Firm</button>
+      </div>
+      <div class="remind-result" id="remindResult" style="display:none"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

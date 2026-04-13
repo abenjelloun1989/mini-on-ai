@@ -1,0 +1,161 @@
+/* InvoiceGuard — Gmail injection styles */
+
+.ig-track-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  background: #4F46E5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.ig-track-btn:hover {
+  background: #4338CA;
+}
+.ig-track-btn--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.ig-track-btn--done {
+  background: #059669;
+  pointer-events: none;
+}
+
+/* Extraction overlay */
+.ig-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100vh;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+  z-index: 99999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: ig-slide-in 0.2s ease-out;
+}
+@keyframes ig-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.ig-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #2a2a4a;
+}
+.ig-overlay-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.ig-overlay-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+.ig-overlay-close:hover {
+  color: #fff;
+}
+
+.ig-overlay-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.ig-field {
+  margin-bottom: 16px;
+}
+.ig-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  margin-bottom: 6px;
+}
+.ig-field input, .ig-field select {
+  width: 100%;
+  padding: 8px 12px;
+  background: #16162a;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.ig-field input:focus, .ig-field select:focus {
+  outline: none;
+  border-color: #4F46E5;
+}
+
+.ig-confidence {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.ig-confidence--high { background: #065f46; color: #6ee7b7; }
+.ig-confidence--medium { background: #78350f; color: #fbbf24; }
+.ig-confidence--low { background: #7f1d1d; color: #fca5a5; }
+
+.ig-overlay-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #2a2a4a;
+  display: flex;
+  gap: 10px;
+}
+.ig-btn-save {
+  flex: 1;
+  padding: 10px;
+  background: #4F46E5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ig-btn-save:hover { background: #4338CA; }
+.ig-btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+.ig-btn-cancel {
+  padding: 10px 16px;
+  background: transparent;
+  color: #888;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ig-btn-cancel:hover { color: #fff; border-color: #555; }
+
+.ig-status {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.ig-status--success { background: #065f46; color: #6ee7b7; }
+.ig-status--error { background: #7f1d1d; color: #fca5a5; }
