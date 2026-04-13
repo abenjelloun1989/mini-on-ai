@@ -1,5 +1,7 @@
 import { corsJson, parseJson, requireUser, currentMonth } from "./index.js";
 
+const FREE_MONTHLY_LIMIT = 50; // TODO: set back to 3 before launch
+
 /**
  * POST /api/auth/register
  * Register an anonymous user with a client-generated UUID.
@@ -22,7 +24,7 @@ export async function handleRegister(request, env) {
       user_id: existing.id,
       tier: existing.tier,
       usage_this_month: usage.analysis_count,
-      limit: existing.tier === "pro" ? null : 3,
+      limit: existing.tier === "pro" ? null : FREE_MONTHLY_LIMIT,
     });
   }
 
@@ -35,7 +37,7 @@ export async function handleRegister(request, env) {
     user_id,
     tier: "free",
     usage_this_month: 0,
-    limit: 3,
+    limit: FREE_MONTHLY_LIMIT,
   });
 }
 
