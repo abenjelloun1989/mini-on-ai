@@ -1,6 +1,6 @@
 import { corsJson, parseJson, requireUser, currentMonth } from "./index.js";
 
-const FREE_MONTHLY_LIMIT = 50; // TODO: set back to 3 before launch
+const FREE_MONTHLY_LIMIT = 3;
 
 /**
  * POST /api/auth/register

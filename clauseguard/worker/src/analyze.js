@@ -5,7 +5,7 @@ const CONTRACT_TYPES = [
 ];
 
 const MAX_CONTRACT_LENGTH = 15000;
-const FREE_MONTHLY_LIMIT = 50; // TODO: set back to 3 before launch
+const FREE_MONTHLY_LIMIT = 3;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Claude prompt for contract analysis
