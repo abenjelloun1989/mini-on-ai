@@ -464,9 +464,36 @@
     <a href="index.html" class="btn-cg-primary">Browse all products →</a>
   </section>
 
+  <!-- Privacy Policy -->
+  <section id="privacy" style="max-width:760px;margin:0 auto;padding:64px 24px;">
+    <h2 style="font-size:1.4rem;margin-bottom:24px;">Privacy Policy</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Last updated: April 2026</p>
+
+    <h3 style="font-size:1rem;margin:24px 0 8px;">What we collect</h3>
+    <p>ClauseGuard assigns each installation a randomly generated anonymous ID stored locally on your device. We do not collect your name, email address, or any personally identifiable information unless you choose to upgrade to Pro (in which case Stripe collects your payment details directly).</p>
+    <p>Contract text you submit for analysis is sent to our API to generate the analysis. We store a short metadata record (contract type, risk score, timestamp) linked to your anonymous ID. The full contract text is cached temporarily for performance and deleted after 30 days. We never sell, share, or train models on your contract text.</p>
+
+    <h3 style="font-size:1rem;margin:24px 0 8px;">Third-party services</h3>
+    <ul style="padding-left:20px;line-height:1.8;">
+      <li><strong>Anthropic Claude API</strong> — processes contract text to generate analysis. Subject to <a href="https://www.anthropic.com/privacy" target="_blank" style="color:var(--accent);">Anthropic's privacy policy</a>.</li>
+      <li><strong>Stripe</strong> — handles Pro subscription payments. We never see your card details. Subject to <a href="https://stripe.com/privacy" target="_blank" style="color:var(--accent);">Stripe's privacy policy</a>.</li>
+      <li><strong>Cloudflare</strong> — hosts the API and stores anonymous usage data in a D1 database.</li>
+    </ul>
+
+    <h3 style="font-size:1rem;margin:24px 0 8px;">Your rights</h3>
+    <p>To delete all data associated with your anonymous ID, email <a href="mailto:hello@mini-on-ai.com" style="color:var(--accent);">hello@mini-on-ai.com</a> with your ID (found in the extension's Account tab). We will delete it within 30 days.</p>
+
+    <h3 style="font-size:1rem;margin:24px 0 8px;">Changes</h3>
+    <p>If we make material changes to this policy, we will update the date above. Continued use of ClauseGuard after changes constitutes acceptance.</p>
+
+    <h3 style="font-size:1rem;margin:24px 0 8px;">Contact</h3>
+    <p><a href="mailto:hello@mini-on-ai.com" style="color:var(--accent);">hello@mini-on-ai.com</a></p>
+  </section>
+
   <!-- Footer -->
   <footer style="text-align:center;padding:24px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);">
     © 2026 mini-on-ai · <a href="mailto:hello@mini-on-ai.com" style="color:var(--text-muted);">hello@mini-on-ai.com</a>
+    · <a href="#privacy" style="color:var(--text-muted);">Privacy Policy</a>
   </footer>
 
   <script>
