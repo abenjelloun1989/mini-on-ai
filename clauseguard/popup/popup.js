@@ -245,29 +245,34 @@ async function handlePdfUpload(event) {
 }
 
 async function extractPdfText(file) {
-  // Use pdf.js if available, otherwise read as text
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       try {
-        // Check if we have pdf.js loaded
-        if (typeof pdfjsLib !== "undefined") {
-          const pdf = await pdfjsLib.getDocument({ data: e.target.result }).promise;
-          const pages = Math.min(pdf.numPages, 100);
-          let fullText = "";
-          for (let i = 1; i <= pages; i++) {
-            const page = await pdf.getPage(i);
-            const content = await page.getTextContent();
-            fullText += content.items.map(item => item.str).join(" ") + "\n";
-          }
-          resolve(fullText);
-        } else {
-          // Fallback: try reading as text (works for text-based PDFs in some cases)
-          const text = new TextDecoder().decode(new Uint8Array(e.target.result));
-          // Extract readable text chunks from PDF binary
-          const readable = text.match(/[\x20-\x7E\n]{4,}/g) || [];
-          resolve(readable.join(" "));
+        if (typeof pdfjsLib === "undefined") {
+          throw new Error("pdf.js not loaded");
         }
+        // Point worker to bundled file inside the extension
+        pdfjsLib.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL("lib/pdf.worker.min.js");
+
+        const typedArray = new Uint8Array(e.target.result);
+        const pdf = await pdfjsLib.getDocument({ data: typedArray }).promise;
+        const pages = Math.min(pdf.numPages, 100);
+        let fullText = "";
+        for (let i = 1; i <= pages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          // Join items, preserving line breaks via transform y-position changes
+          let lastY = null;
+          for (const item of content.items) {
+            const y = item.transform?.[5];
+            if (lastY !== null && Math.abs(y - lastY) > 5) fullText += "\n";
+            fullText += item.str;
+            lastY = y;
+          }
+          fullText += "\n\n";
+        }
+        resolve(fullText.trim());
       } catch (err) {
         reject(err);
       }
