@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClauseGuard — Account</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f0f1a; --bg-card: #1a1a2e; --border: #2a2a45;
+      --text: #e2e2f0; --text-muted: #8888aa; --accent: #6366f1;
+      --green: #22c55e; --red: #ef4444; --radius: 8px;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; padding: 40px 20px; }
+    .container { max-width: 480px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .logo h1 { font-size: 20px; font-weight: 700; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+    .card h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 14px; }
+    .stat { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .stat:last-child { border-bottom: none; }
+    .stat-value { font-weight: 600; }
+    .pro-value { color: var(--accent); }
+    .btn { display: block; width: 100%; padding: 10px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; border: none; margin-top: 10px; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #4f52d6; }
+    .btn-secondary { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
+    .tier-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .tier-free { background: var(--border); color: var(--text-muted); }
+    .tier-pro { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+    .feature-list { list-style: none; margin-top: 12px; }
+    .feature-list li { padding: 5px 0; font-size: 12px; color: var(--text-muted); }
+    .feature-list li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+    .disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.5; padding: 10px; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); border-radius: var(--radius); margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1"/>
+        <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>ClauseGuard</h1>
+    </div>
+
+    <div class="card">
+      <h2>Your Account</h2>
+      <div class="stat">
+        <span>Plan</span>
+        <span class="stat-value" id="planBadge"><span class="tier-badge tier-free">Free</span></span>
+      </div>
+      <div class="stat">
+        <span>Analyses this month</span>
+        <span class="stat-value" id="usageStat">—</span>
+      </div>
+      <div class="stat">
+        <span>Monthly limit</span>
+        <span class="stat-value" id="limitStat">3</span>
+      </div>
+      <div id="manageSection" style="display:none">
+        <button class="btn btn-secondary" id="manageBtn">Manage Subscription →</button>
+      </div>
+    </div>
+
+    <div class="card" id="upgradeCard">
+      <h2>Upgrade to Pro — $7/month</h2>
+      <ul class="feature-list">
+        <li>Unlimited contract analyses</li>
+        <li>Contract comparison (diff two versions)</li>
+        <li>Clause library (save & reuse)</li>
+        <li>Export PDF reports</li>
+        <li>Industry-specific analysis</li>
+      </ul>
+      <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
+    </div>
+
+    <div class="disclaimer">
+      ClauseGuard is an AI-powered tool for informational purposes only.
+      It does not provide legal advice. Always consult a qualified attorney before signing any contract.
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

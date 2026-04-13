@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "ClauseGuard - AI Contract & NDA Analyzer",
+  "version": "1.0.0",
+  "description": "Analyze contracts for risks, red flags & unfair clauses. AI-powered plain English explanations for freelancers & small business owners.",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://docs.google.com/document/*"],
+      "js": ["content/extract.js"]
+    }
+  ],
+  "options_page": "options/options.html",
+  "host_permissions": [
+    "https://clauseguard-api.kirozdormu.workers.dev/*"
+  ]
+}

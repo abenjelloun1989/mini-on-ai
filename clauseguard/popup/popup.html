@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClauseGuard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1" stroke="#6366f1" stroke-width="1"/>
+        <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="header-title">ClauseGuard</span>
+    </div>
+    <div class="header-badge" id="tierBadge">Free</div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="analyze">Analyze</button>
+    <button class="tab" data-tab="compare">
+      Compare
+      <span class="pro-chip">Pro</span>
+    </button>
+    <button class="tab" data-tab="library">
+      Library
+      <span class="pro-chip">Pro</span>
+    </button>
+  </nav>
+
+  <!-- ── Tab: Analyze ── -->
+  <div class="tab-content active" id="tab-analyze">
+
+    <!-- Input state -->
+    <div id="inputState">
+      <div class="contract-type-row">
+        <label for="contractType">Contract type</label>
+        <select id="contractType">
+          <option value="general">General</option>
+          <option value="freelance">Freelance Agreement</option>
+          <option value="nda">NDA</option>
+          <option value="employment">Employment</option>
+          <option value="saas">SaaS / Service Agreement</option>
+          <option value="lease">Lease</option>
+          <option value="investment">Investment / Equity</option>
+        </select>
+      </div>
+
+      <textarea id="contractText" placeholder="Paste your contract text here...&#10;&#10;Or use the buttons below to import from a PDF or Google Doc." rows="8"></textarea>
+
+      <div class="import-row">
+        <label class="btn-import" for="pdfUpload">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Upload PDF
+        </label>
+        <input type="file" id="pdfUpload" accept=".pdf" style="display:none">
+        <button class="btn-import" id="importGoogleDoc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Import Google Doc
+        </button>
+      </div>
+
+      <div class="usage-row" id="usageRow">
+        <span id="usageText">Loading...</span>
+      </div>
+
+      <button class="btn-primary" id="analyzeBtn" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"/></svg>
+        Analyze Contract
+      </button>
+
+      <div class="upgrade-banner hidden" id="upgradeBanner">
+        <span>You've used all 3 free analyses this month.</span>
+        <button class="btn-upgrade" id="upgradeFromBanner">Upgrade to Pro →</button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="loadingState" class="hidden">
+      <div class="loading-wrap">
+        <div class="shield-loader">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1" opacity="0.2"/>
+            <path class="shield-fill" d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1"/>
+          </svg>
+        </div>
+        <p class="loading-text">Analyzing your contract...</p>
+        <p class="loading-sub">Claude is reviewing every clause</p>
+      </div>
+    </div>
+
+    <!-- Results state -->
+    <div id="resultsState" class="hidden">
+      <div class="results-header">
+        <div class="risk-badge" id="riskBadge">
+          <span class="risk-score" id="riskScore">0</span>
+          <span class="risk-label" id="riskLabel">Low Risk</span>
+        </div>
+        <div class="results-actions">
+          <button class="btn-text" id="newAnalysisBtn">← New analysis</button>
+          <button class="btn-text pro-only" id="exportBtn">Export PDF</button>
+        </div>
+      </div>
+
+      <div class="summary-box" id="summaryBox"></div>
+
+      <div class="disclaimer-box" id="disclaimerBox"></div>
+
+      <!-- Red flags -->
+      <div class="section" id="redFlagsSection">
+        <h3 class="section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Red Flags
+        </h3>
+        <div id="redFlagsList"></div>
+      </div>
+
+      <!-- Clauses -->
+      <div class="section">
+        <h3 class="section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          All Clauses
+        </h3>
+        <div id="clausesList"></div>
+      </div>
+
+      <!-- Missing protections -->
+      <div class="section" id="missingSection">
+        <h3 class="section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Missing Protections
+        </h3>
+        <div id="missingList"></div>
+      </div>
+
+      <!-- Negotiation tips -->
+      <div class="section" id="tipsSection">
+        <h3 class="section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          Negotiation Tips
+        </h3>
+        <ol id="tipsList" class="tips-list"></ol>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Tab: Compare ── -->
+  <div class="tab-content hidden" id="tab-compare">
+    <div class="pro-gate" id="compareGate">
+      <div class="pro-gate-icon">⚖️</div>
+      <h3>Contract Comparison</h3>
+      <p>Paste two versions of a contract to see exactly what changed and whether it's better or worse for you.</p>
+      <button class="btn-primary" id="upgradeFromCompare">Upgrade to Pro — $7/month</button>
+    </div>
+    <div class="hidden" id="compareForm">
+      <div class="compare-col">
+        <label>Original version</label>
+        <textarea id="compareOld" rows="6" placeholder="Paste original contract..."></textarea>
+      </div>
+      <div class="compare-col">
+        <label>New version</label>
+        <textarea id="compareNew" rows="6" placeholder="Paste new contract version..."></textarea>
+      </div>
+      <button class="btn-primary" id="compareBtn">Compare Versions</button>
+      <div id="compareResults"></div>
+    </div>
+  </div>
+
+  <!-- ── Tab: Library ── -->
+  <div class="tab-content hidden" id="tab-library">
+    <div class="pro-gate" id="libraryGate">
+      <div class="pro-gate-icon">📚</div>
+      <h3>Clause Library</h3>
+      <p>Save fair clauses from analyzed contracts and reuse them when negotiating your own agreements.</p>
+      <button class="btn-primary" id="upgradeFromLibrary">Upgrade to Pro — $7/month</button>
+    </div>
+    <div class="hidden" id="libraryContent">
+      <div id="clauseLibraryList"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
