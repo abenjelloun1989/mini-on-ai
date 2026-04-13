@@ -25,8 +25,8 @@ export async function handleSubscribe(request, env) {
     "line_items[0][quantity]": "1",
     "metadata[user_id]": user_id,
     "subscription_data[metadata][user_id]": user_id,
-    "success_url": `${SITE_URL}/clauseguard/success?session_id={CHECKOUT_SESSION_ID}`,
-    "cancel_url": `${SITE_URL}/clauseguard`,
+    "success_url": `${SITE_URL}?clauseguard=upgraded`,
+    "cancel_url": `${SITE_URL}`,
   });
 
   if (user.email) {

@@ -461,7 +461,6 @@ function showResults(analysis, usage) {
 }
 
 function exportReport() {
-  if (userTier !== "pro") { openUpgrade(); return; }
   if (!currentAnalysis) return;
 
   const html = buildReportHtml(currentAnalysis);
@@ -593,9 +592,14 @@ async function openUpgrade() {
     const data = await apiFetch("/api/subscribe", "POST", { user_id: userId });
     if (data.checkout_url) {
       chrome.tabs.create({ url: data.checkout_url });
+    } else {
+      // Fallback: open options page
+      chrome.runtime.openOptionsPage();
     }
   } catch (e) {
-    alert("Could not open upgrade page. Please try again.");
+    console.error("Upgrade error:", e);
+    // Fallback: open options page
+    chrome.runtime.openOptionsPage();
   }
 }
 
