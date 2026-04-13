@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadUser() {
-  const data = await chrome.storage.local.get("userId");
+  const data = await chrome.storage.local.get(["userId", "seenOnboarding"]);
   userId = data.userId;
+  const isFirstTime = !userId;
 
   if (!userId) {
     // First time — generate UUID and register
@@ -28,6 +29,41 @@ async function loadUser() {
   }
 
   await refreshUsage();
+
+  // Show onboarding tooltip on first launch
+  if (isFirstTime && !data.seenOnboarding) {
+    showOnboarding();
+    await chrome.storage.local.set({ seenOnboarding: true });
+  }
+}
+
+function showOnboarding() {
+  const toast = document.createElement("div");
+  toast.style.cssText = `
+    position:fixed;bottom:14px;left:14px;right:14px;
+    background:linear-gradient(135deg,#1e1b4b,#312e81);
+    border:1px solid rgba(99,102,241,0.5);border-radius:10px;
+    padding:12px 14px;z-index:999;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    animation:slideUp 0.3s ease;
+  `;
+  toast.innerHTML = `
+    <style>@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}</style>
+    <div style="font-weight:700;font-size:13px;color:#e2e2f0;margin-bottom:5px;">👋 Welcome to ClauseGuard!</div>
+    <div style="font-size:11px;color:#a5b4fc;line-height:1.6;margin-bottom:10px;">
+      Paste a contract below, upload a PDF, or click <strong style="color:#e2e2f0;">"Analyze current page"</strong> on any contract page. You get <strong style="color:#e2e2f0;">3 free analyses</strong> per month.
+    </div>
+    <button id="onboardingClose" style="background:#6366f1;border:none;color:white;padding:5px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Got it →</button>
+  `;
+  document.body.appendChild(toast);
+  document.getElementById("onboardingClose").addEventListener("click", () => {
+    toast.style.animation = "none";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.2s";
+    setTimeout(() => toast.remove(), 200);
+  });
+  // Auto-dismiss after 8 seconds
+  setTimeout(() => { if (toast.parentNode) toast.remove(); }, 8000);
 }
 
 async function refreshUsage() {
@@ -309,7 +345,16 @@ async function runAnalysis() {
     showResults(data.analysis, data.usage);
   } catch (e) {
     showInputState();
-    alert("Analysis failed. Please check your connection and try again.");
+    const msg = e.message || "";
+    if (msg.includes("429") || msg.toLowerCase().includes("rate")) {
+      alert("Too many requests. Please wait a moment and try again.");
+    } else if (msg.includes("Failed to fetch") || msg.includes("NetworkError")) {
+      alert("Could not connect to ClauseGuard. Check your internet connection and try again.");
+    } else if (msg.includes("413") || msg.toLowerCase().includes("too large")) {
+      alert("Contract text is too long. Please trim it to under 15,000 characters.");
+    } else {
+      alert("Analysis failed. Please try again in a moment.");
+    }
   }
 }
 

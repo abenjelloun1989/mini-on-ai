@@ -6,77 +6,201 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0f0f1a; --bg-card: #1a1a2e; --border: #2a2a45;
-      --text: #e2e2f0; --text-muted: #8888aa; --accent: #6366f1;
-      --green: #22c55e; --red: #ef4444; --radius: 8px;
+      --bg: #0f0f1a; --bg-card: #1a1a2e; --bg-input: #12121f;
+      --border: #2a2a45; --text: #e2e2f0; --text-muted: #8888aa;
+      --accent: #6366f1; --green: #22c55e; --red: #ef4444;
+      --yellow: #f59e0b; --radius: 8px;
     }
-    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; padding: 40px 20px; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh; padding: 40px 20px;
+    }
     .container { max-width: 480px; margin: 0 auto; }
+
+    /* Header */
     .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .logo img { width: 32px; height: 32px; border-radius: 7px; }
     .logo h1 { font-size: 20px; font-weight: 700; }
-    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
-    .card h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 14px; }
-    .stat { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-    .stat:last-child { border-bottom: none; }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; color: var(--text-muted); margin-bottom: 14px;
+    }
+
+    /* Stats */
+    .stat {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    }
+    .stat:last-of-type { border-bottom: none; }
+    .stat-label { color: var(--text-muted); }
     .stat-value { font-weight: 600; }
-    .pro-value { color: var(--accent); }
-    .btn { display: block; width: 100%; padding: 10px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; border: none; margin-top: 10px; }
-    .btn-primary { background: var(--accent); color: white; }
-    .btn-primary:hover { background: #4f52d6; }
-    .btn-secondary { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
-    .tier-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+
+    /* Tier badge */
+    .tier-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;
+    }
     .tier-free { background: var(--border); color: var(--text-muted); }
     .tier-pro { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
-    .feature-list { list-style: none; margin-top: 12px; }
-    .feature-list li { padding: 5px 0; font-size: 12px; color: var(--text-muted); }
-    .feature-list li::before { content: "✓ "; color: var(--green); font-weight: 700; }
-    .disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.5; padding: 10px; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); border-radius: var(--radius); margin-top: 12px; }
+
+    /* Usage bar */
+    .usage-bar-wrap { margin-top: 12px; }
+    .usage-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: var(--text-muted); margin-bottom: 5px;
+    }
+    .usage-bar-bg {
+      height: 5px; background: var(--border); border-radius: 3px; overflow: hidden;
+    }
+    .usage-bar-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+      transition: width 0.4s ease;
+    }
+    .usage-bar-fill.warn { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+
+    /* Pro card */
+    .pro-card {
+      background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.08));
+      border: 1px solid rgba(99,102,241,0.3);
+    }
+    .pro-perks { list-style: none; margin: 12px 0; }
+    .pro-perks li {
+      padding: 5px 0; font-size: 12px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pro-perks li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* Buttons */
+    .btn {
+      display: block; width: 100%; padding: 10px 16px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 600; cursor: pointer; text-align: center;
+      border: none; margin-top: 10px; transition: all 0.15s;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover:not(:disabled) { background: #4f52d6; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary {
+      background: var(--bg-input); border: 1px solid var(--border); color: var(--text-muted);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
+    .btn-danger {
+      background: none; border: 1px solid rgba(239,68,68,0.3); color: var(--red);
+      font-size: 12px; margin-top: 6px;
+    }
+    .btn-danger:hover { background: rgba(239,68,68,0.07); }
+
+    /* Status indicators */
+    .status-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px;
+    }
+    .status-dot.active { background: var(--green); box-shadow: 0 0 4px rgba(34,197,94,0.5); }
+    .status-dot.inactive { background: var(--text-muted); }
+
+    /* User ID */
+    .user-id-box {
+      margin-top: 10px; padding: 8px 10px;
+      background: var(--bg-input); border-radius: var(--radius);
+      font-size: 10px; color: var(--text-muted); word-break: break-all;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .copy-id-btn {
+      background: none; border: 1px solid var(--border); border-radius: 4px;
+      color: var(--text-muted); font-size: 10px; padding: 2px 7px; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .copy-id-btn:hover { border-color: var(--accent); color: var(--text); }
+
+    /* Disclaimer */
+    .disclaimer {
+      font-size: 11px; color: var(--text-muted); line-height: 1.6;
+      padding: 10px 12px; background: rgba(245,158,11,0.05);
+      border: 1px solid rgba(245,158,11,0.15); border-radius: var(--radius); margin-top: 4px;
+    }
+
+    /* Loading skeleton */
+    .skeleton {
+      display: inline-block; background: var(--border); border-radius: 4px;
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1"/>
-        <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <img id="logoImg" src="../icons/icon-128.png" alt="ClauseGuard">
       <h1>ClauseGuard</h1>
     </div>
 
+    <!-- Account card -->
     <div class="card">
-      <h2>Your Account</h2>
+      <div class="card-title">Your Account</div>
       <div class="stat">
-        <span>Plan</span>
-        <span class="stat-value" id="planBadge"><span class="tier-badge tier-free">Free</span></span>
+        <span class="stat-label">Plan</span>
+        <span class="stat-value" id="planBadge"><span class="skeleton" style="width:48px;height:18px;"></span></span>
+      </div>
+      <div class="stat" id="emailStat" style="display:none">
+        <span class="stat-label">Email</span>
+        <span class="stat-value" id="emailValue" style="font-size:12px;color:var(--text-muted);">—</span>
       </div>
       <div class="stat">
-        <span>Analyses this month</span>
+        <span class="stat-label">Subscription</span>
+        <span class="stat-value" id="subStatus"><span class="skeleton" style="width:60px;height:14px;"></span></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Analyses this month</span>
         <span class="stat-value" id="usageStat">—</span>
       </div>
-      <div class="stat">
-        <span>Monthly limit</span>
-        <span class="stat-value" id="limitStat">3</span>
+
+      <!-- Usage bar (free only) -->
+      <div class="usage-bar-wrap" id="usageBar">
+        <div class="usage-bar-label">
+          <span id="usageBarLabel">0 / 3 used</span>
+          <span id="usageBarReset" style="font-size:10px;">Resets monthly</span>
+        </div>
+        <div class="usage-bar-bg">
+          <div class="usage-bar-fill" id="usageBarFill" style="width:0%"></div>
+        </div>
       </div>
-      <div id="manageSection" style="display:none">
-        <button class="btn btn-secondary" id="manageBtn">Manage Subscription →</button>
+
+      <!-- Manage subscription (Pro) -->
+      <div id="manageSection" class="hidden">
+        <button class="btn btn-secondary" id="manageBtn">⚙ Manage subscription →</button>
+        <button class="btn btn-danger" id="cancelBtn">Cancel subscription</button>
+      </div>
+
+      <!-- Support ID -->
+      <div class="user-id-box" id="userIdBox">
+        <span>Support ID: <span id="userIdDisplay">—</span></span>
+        <button class="copy-id-btn" id="copyIdBtn">Copy</button>
       </div>
     </div>
 
-    <div class="card" id="upgradeCard">
-      <h2>Upgrade to Pro — $7/month</h2>
-      <ul class="feature-list">
+    <!-- Upgrade card (free only) -->
+    <div class="card pro-card" id="upgradeCard">
+      <div class="card-title">Upgrade to Pro — $7/month</div>
+      <ul class="pro-perks">
         <li>Unlimited contract analyses</li>
-        <li>Contract comparison (diff two versions)</li>
-        <li>Clause library (save & reuse)</li>
-        <li>Export PDF reports</li>
-        <li>Industry-specific analysis</li>
+        <li>Contract comparison — spot what changed between versions</li>
+        <li>Clause library — save & reuse your best language</li>
+        <li>Priority support</li>
       </ul>
-      <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro</button>
+      <button class="btn btn-primary" id="upgradeBtn">Upgrade to Pro →</button>
     </div>
 
+    <!-- Disclaimer -->
     <div class="disclaimer">
-      ClauseGuard is an AI-powered tool for informational purposes only.
+      ⚠ ClauseGuard is an AI-powered tool for informational purposes only.
       It does not provide legal advice. Always consult a qualified attorney before signing any contract.
     </div>
   </div>
