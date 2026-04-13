@@ -791,6 +791,14 @@ def rebuild_index(catalog: dict) -> str:
         </div>
         <span class="tool-card-cta">Add to Chrome →</span>
       </a>
+      <a href="invoiceguard.html" class="tool-card">
+        <span class="tool-card-icon">📋</span>
+        <div class="tool-card-body">
+          <strong class="tool-card-title">InvoiceGuard</strong>
+          <p class="tool-card-desc">Track invoices from Gmail, get overdue alerts &amp; AI reminders. Free.</p>
+        </div>
+        <span class="tool-card-cta">Add to Chrome →</span>
+      </a>
     </div>
   </section>
 
@@ -835,7 +843,7 @@ def rebuild_index(catalog: dict) -> str:
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
-    <p class="site-footer-tools"><a href="build.html">Build Your Own</a> &nbsp;·&nbsp; <a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a></p>
+    <p class="site-footer-tools"><a href="build.html">Build Your Own</a> &nbsp;·&nbsp; <a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a></p>
   </footer>
 
 {_dark_mode_js()}
