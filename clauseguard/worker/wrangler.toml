@@ -1,0 +1,20 @@
+name = "clauseguard-api"
+main = "src/index.js"
+compatibility_date = "2024-09-25"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "clauseguard"
+database_id = "854efa89-07c5-4d46-9154-c2f844d82f18"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "03b110266e8d45a59c8eae40efd43fe7"
+
+[vars]
+ALLOWED_ORIGIN = "chrome-extension://placeholder"
+
+# Secrets (add via `wrangler secret put`):
+# ANTHROPIC_API_KEY
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET
