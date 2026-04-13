@@ -597,12 +597,12 @@ async function openUpgrade() {
       chrome.tabs.create({ url: data.checkout_url });
     } else {
       // Fallback: open options page
-      chrome.runtime.openOptionsPage();
+      chrome.tabs.create({ url: chrome.runtime.getURL("options/options.html") });
     }
   } catch (e) {
     console.error("Upgrade error:", e);
     // Fallback: open options page
-    chrome.runtime.openOptionsPage();
+    chrome.tabs.create({ url: chrome.runtime.getURL("options/options.html") });
   }
 }
 
