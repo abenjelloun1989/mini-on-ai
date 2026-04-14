@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Reminder tone buttons
   document.querySelectorAll(".btn-tone").forEach(btn => {
-    btn.addEventListener("click", (e) => generateReminder(e.target.dataset.tone));
+    btn.addEventListener("click", (e) => generateReminder(e.currentTarget.dataset.tone));
   });
 
   // Upgrade
@@ -273,13 +273,20 @@ async function generateReminder(tone) {
       }),
     });
 
+    const rawText = await res.text();
+
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
+      let err = {};
+      try { err = JSON.parse(rawText); } catch {}
       resultEl.innerHTML = `<div style="color:var(--danger)">${escHtml(err.error || "Failed to generate reminder.")}</div>`;
       return;
     }
 
-    const data = await res.json();
+    let data;
+    try { data = JSON.parse(rawText); } catch {
+      resultEl.innerHTML = `<div style="color:var(--danger)">Bad response from server.</div>`;
+      return;
+    }
 
     resultEl.innerHTML = `
       <div class="remind-subject">${escHtml(data.subject)}</div>
@@ -290,6 +297,7 @@ async function generateReminder(tone) {
       </div>
       ${data.is_template ? '<div style="font-size:10px;color:var(--text-muted);margin-top:8px">Basic template — upgrade to Pro for AI-personalized reminders</div>' : ''}
     `;
+    resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
     // Open in Gmail compose
     document.getElementById("sendReminderBtn").addEventListener("click", () => {

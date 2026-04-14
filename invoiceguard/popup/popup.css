@@ -219,11 +219,12 @@ body {
 
 /* Detail panel */
 .detail-panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 380px;
   background: var(--bg);
   z-index: 20;
   overflow-y: auto;
