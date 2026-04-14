@@ -1641,8 +1641,23 @@ body.light-mode .site-header {
   .product-grid { grid-template-columns: 1fr; }
   .build-banner { padding: 28px 24px; flex-direction: column; text-align: center; }
   .hero-stats { gap: 24px; }
-  .site-header-inner { padding: 0 16px; }
+  .site-header-inner { padding: 0 16px; gap: 12px; }
   .catalog { padding: 32px 16px 48px; }
   .build-categories { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: 1fr 1fr; }
+  .tools-section { padding: 0 16px 48px; }
+  /* Hide secondary nav links — logo covers home, CTA stays visible */
+  .nav-link { display: none; }
+  /* Scale down logo so CTA + toggle fit */
+  .site-logo svg { width: 140px; height: 28px; }
+  /* Compact CTA button */
+  .nav-link-cta { font-size: 12px; padding: 5px 10px; }
+  /* Dark mode toggle */
+  .dark-mode-toggle { font-size: 12px; padding: 5px 8px; }
+}
+
+@media (max-width: 420px) {
+  /* Single column tools on very narrow phones */
+  .tools-grid { grid-template-columns: 1fr; }
+  .hero h1, .hero-headline { font-size: 24px; }
 }
