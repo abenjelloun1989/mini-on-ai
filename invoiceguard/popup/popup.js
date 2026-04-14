@@ -173,29 +173,28 @@ function showDetail(inv) {
   body.innerHTML = `
     <div class="detail-field">
       <div class="detail-field-value detail-field-value--large ${inv.status === 'overdue' ? 'detail-field-value--danger' : ''}">${formatAmount(inv.amount_cents, inv.currency)}</div>
+      <div class="detail-field-value" style="margin-top:2px">${escHtml(inv.client_name)}${inv.client_email ? ` <span style="color:var(--text-muted);font-size:11px">${escHtml(inv.client_email)}</span>` : ""}</div>
     </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Client</div>
-      <div class="detail-field-value">${escHtml(inv.client_name)}${inv.client_email ? ` <span style="color:var(--text-muted)">(${escHtml(inv.client_email)})</span>` : ""}</div>
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Status</div>
-      <div class="detail-field-value ${inv.status === 'overdue' ? 'detail-field-value--danger' : inv.status === 'paid' ? 'detail-field-value--success' : ''}">${inv.status.toUpperCase()}${daysOverdue > 0 ? ` (${daysOverdue} days overdue)` : ""}</div>
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Invoice date</div>
-      <div class="detail-field-value">${inv.invoice_date || "—"}</div>
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Due date</div>
-      <div class="detail-field-value">${inv.due_date || "—"}</div>
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Reminders sent</div>
-      <div class="detail-field-value">${inv.reminders_sent || 0}${inv.last_reminder_at ? ` (last: ${inv.last_reminder_at.slice(0, 10)})` : ""}</div>
+    <div class="detail-fields-grid">
+      <div class="detail-field">
+        <div class="detail-field-label">Status</div>
+        <div class="detail-field-value ${inv.status === 'overdue' ? 'detail-field-value--danger' : inv.status === 'paid' ? 'detail-field-value--success' : ''}">${inv.status.toUpperCase()}${daysOverdue > 0 ? ` · ${daysOverdue}d` : ""}</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">Reminders</div>
+        <div class="detail-field-value">${inv.reminders_sent || 0} sent</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">Invoice date</div>
+        <div class="detail-field-value">${inv.invoice_date || "—"}</div>
+      </div>
+      <div class="detail-field">
+        <div class="detail-field-label">Due date</div>
+        <div class="detail-field-value">${inv.due_date || "—"}</div>
+      </div>
     </div>
     ${inv.notes ? `<div class="detail-field"><div class="detail-field-label">Notes</div><div class="detail-field-value">${escHtml(inv.notes)}</div></div>` : ""}
-    ${inv.email_subject ? `<div class="detail-field"><div class="detail-field-label">Original email</div><div class="detail-field-value" style="color:var(--text-muted)">${escHtml(inv.email_subject)}</div></div>` : ""}
+    ${inv.email_subject ? `<div class="detail-field" style="color:var(--text-muted);font-size:11px">${escHtml(inv.email_subject)}</div>` : ""}
   `;
 
   // Reset reminder result
@@ -205,6 +204,7 @@ function showDetail(inv) {
   document.getElementById("markPaidBtn").style.display = (inv.status === "paid" || inv.status === "cancelled") ? "none" : "inline-flex";
 
   panel.style.display = "block";
+  panel.scrollTop = 0;
 }
 
 function hideDetail() {
