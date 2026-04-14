@@ -785,7 +785,7 @@ def rebuild_index(catalog: dict) -> str:
         <span class="tool-card-cta">Check my resume →</span>
       </a>
       <a href="clauseguard.html" class="tool-card">
-        <span class="tool-card-icon">🛡</span>
+        <span class="tool-card-icon">◉</span>
         <div>
           <strong class="tool-card-title">ClauseGuard</strong>
           <p class="tool-card-desc">Analyze contracts for red flags in seconds. Free Chrome extension.</p>
@@ -793,7 +793,7 @@ def rebuild_index(catalog: dict) -> str:
         <span class="tool-card-cta">Add to Chrome →</span>
       </a>
       <a href="invoiceguard.html" class="tool-card">
-        <span class="tool-card-icon">📋</span>
+        <span class="tool-card-icon">◫</span>
         <div>
           <strong class="tool-card-title">InvoiceGuard</strong>
           <p class="tool-card-desc">Track invoices from Gmail, get overdue alerts &amp; AI reminders. Free.</p>
