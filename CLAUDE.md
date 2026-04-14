@@ -31,6 +31,10 @@ mini-on-factory/
 ├── worker/
 │   ├── generate.js              ← CF Worker: Build Your Own (generate/checkout/download)
 │   └── subscribe.js             ← CF Worker: Brevo email subscribe proxy
+├── clauseguard/                 ← Chrome extension: AI contract analyzer
+│   └── worker/                  ← Cloudflare Worker backend
+├── invoiceguard/                ← Chrome extension: Gmail invoice tracker
+│   └── worker/                  ← Cloudflare Worker backend
 ├── skills/                      ← skill specifications
 ├── products/                    ← one folder per product
 │   └── {id}/
@@ -77,7 +81,7 @@ After any change to product data or templates:
 ```bash
 python3 scripts/update_site.py --rebuild-all
 ```
-This regenerates all 57+ product pages, index, and blog index. Then `git push` deploys to Cloudflare Pages.
+This regenerates all product pages, index, and blog index. Then `git push` deploys to Cloudflare Pages.
 
 ## Cloudflare Workers
 
@@ -86,6 +90,17 @@ Two workers deployed (not in this repo, managed in Cloudflare dashboard):
 - `worker/subscribe.js` — Brevo subscribe proxy. Deployed as `mini-on-ai-subscribe`.
 
 Both use `ALLOWED_ORIGIN = "https://mini-on-ai.com"` CORS. Secrets in CF environment.
+
+## Chrome Extensions
+
+Two free Chrome extensions, separate from the pipeline-generated product catalog:
+
+- **ClauseGuard** (`clauseguard/`) — AI contract analyzer. Live on CWS:
+  https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl
+- **InvoiceGuard** (`invoiceguard/`) — Gmail invoice tracker. CWS submission pending review.
+  Worker: https://invoiceguard-api.kirozdormu.workers.dev
+
+Both have dedicated pages (`clauseguard.html`, `invoiceguard.html`) and appear in the Tools & Services section on the homepage.
 
 ## Conventions
 

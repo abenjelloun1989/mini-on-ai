@@ -1,3 +1,7 @@
+> **DEPRECATED** — last updated 2026-03-13. Use memory files instead:
+> `memory/factory_state.md` · `memory/distribution_state.md`
+---
+
 # Current State
 
 Last updated: 2026-03-13 (category filter nav + Claude Code Skills + Telegram category commands)

@@ -765,27 +765,28 @@ def rebuild_index(catalog: dict) -> str:
     </div>
   </section>
 
-  <section class="tools-strip">
-    <div class="tools-strip-inner">
+  <section class="tools-section">
+    <p class="tools-section-heading">Tools &amp; Services</p>
+    <div class="tools-grid">
       <a href="build.html" class="tool-card">
         <span class="tool-card-icon">✦</span>
-        <div class="tool-card-body">
+        <div>
           <strong class="tool-card-title">Build Your Own</strong>
           <p class="tool-card-desc">Describe a use case, get a custom AI product in 30 seconds.</p>
         </div>
-        <span class="tool-card-cta">Try free →</span>
+        <span class="tool-card-cta">Build for free →</span>
       </a>
       <a href="ats.html" class="tool-card">
         <span class="tool-card-icon">◈</span>
-        <div class="tool-card-body">
+        <div>
           <strong class="tool-card-title">ATS Resume Checker</strong>
           <p class="tool-card-desc">Instant ATS score, keyword gaps, and optimization tips — free.</p>
         </div>
-        <span class="tool-card-cta">Check score →</span>
+        <span class="tool-card-cta">Check my resume →</span>
       </a>
       <a href="clauseguard.html" class="tool-card">
         <span class="tool-card-icon">🛡</span>
-        <div class="tool-card-body">
+        <div>
           <strong class="tool-card-title">ClauseGuard</strong>
           <p class="tool-card-desc">Analyze contracts for red flags in seconds. Free Chrome extension.</p>
         </div>
@@ -793,17 +794,26 @@ def rebuild_index(catalog: dict) -> str:
       </a>
       <a href="invoiceguard.html" class="tool-card">
         <span class="tool-card-icon">📋</span>
-        <div class="tool-card-body">
+        <div>
           <strong class="tool-card-title">InvoiceGuard</strong>
           <p class="tool-card-desc">Track invoices from Gmail, get overdue alerts &amp; AI reminders. Free.</p>
         </div>
         <span class="tool-card-cta">Add to Chrome →</span>
+      </a>
+      <a href="services.html" class="tool-card">
+        <span class="tool-card-icon">⚙</span>
+        <div>
+          <strong class="tool-card-title">Services</strong>
+          <p class="tool-card-desc">Custom AI pipelines, automations, and Claude Code integrations.</p>
+        </div>
+        <span class="tool-card-cta">View services →</span>
       </a>
     </div>
   </section>
 
 {featured_section}
   <main class="catalog" id="catalog">
+    <p class="tools-section-heading" style="margin-bottom:8px;">Prompt Packs &amp; Templates</p>
     <div class="catalog-header">
       <p class="catalog-subtitle" id="catalogCount">{count} product{'s' if count != 1 else ''} available</p>
       <div class="search-wrap">
