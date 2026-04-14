@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "id": "blog-how-to-track-invoices-in-gmail-automatically-a-develope-20260414",
+      "title": "How to Track Invoices in Gmail Automatically: A Developer's Guide",
+      "slug": "how-to-track-invoices-in-gmail-automatically-a-develope-20260414",
+      "excerpt": "Learn to track invoices in Gmail automatically using Gmail filters, labels, and no-code automation tools to streamline your billing workflow.",
+      "topic": "how to track invoices in gmail automatically",
+      "created_at": "2026-04-14T10:17:14.601971"
+    },
+    {
+      "id": "blog-freelance-contract-red-flags-ai-review-tips-for-develop-20260414",
+      "title": "Freelance Contract Red Flags: AI Review Tips for Developers",
+      "slug": "freelance-contract-red-flags-ai-review-tips-for-develop-20260414",
+      "excerpt": "Spot dangerous contract terms before signing. Learn how to use AI tools to review agreements and protect your freelance business.",
+      "topic": "freelance contract red flags ai review",
+      "created_at": "2026-04-14T10:17:12.922093"
+    },
+    {
       "id": "blog-notion-workspace-setup-a-practical-guide-for-teams-buil-20260410",
       "title": "Notion Workspace Setup: A Practical Guide for Teams Building Systems That Scale",
       "slug": "notion-workspace-setup-a-practical-guide-for-teams-buil-20260410",
