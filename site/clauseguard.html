@@ -3,12 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClauseGuard — AI Contract & NDA Analyzer | mini-on-ai</title>
+  <title>ClauseGuard — AI Contract Review Chrome Extension | Free Red Flag Detector</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Analyze any contract for risks, red flags and unfair clauses in seconds. AI-powered plain English explanations for freelancers and small business owners. Free Chrome extension.">
+  <meta name="description" content="AI contract review Chrome extension — spots red flags, risky clauses, and missing protections in seconds. Free to install. No lawyer needed for first-pass contract review.">
   <link rel="canonical" href="https://mini-on-ai.com/clauseguard.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ClauseGuard",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome",
+    "description": "AI-powered Chrome extension that analyzes any contract for red flags, risks, and unfair clauses in seconds. Plain English explanations and suggested changes for freelancers and small businesses.",
+    "url": "https://mini-on-ai.com/clauseguard.html",
+    "offers": [
+      {"@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free — 3 analyses/month"},
+      {"@type": "Offer", "price": "7", "priceCurrency": "USD", "name": "Pro — unlimited analyses/month"}
+    ],
+    "publisher": {"@type": "Organization", "name": "mini-on-ai", "url": "https://mini-on-ai.com"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "What types of contracts can ClauseGuard review?", "acceptedAnswer": {"@type": "Answer", "text": "ClauseGuard works on freelance contracts, NDAs, employment agreements, SaaS terms, service agreements, lease contracts, and any other legal document. It automatically detects the contract type and tailors its analysis accordingly."}},
+      {"@type": "Question", "name": "Is ClauseGuard a replacement for a lawyer?", "acceptedAnswer": {"@type": "Answer", "text": "No. ClauseGuard is an AI-powered first-pass review tool that helps you understand what you're signing and spot potential issues before consulting a lawyer. It does not constitute legal advice. For high-stakes contracts, always consult a qualified attorney."}},
+      {"@type": "Question", "name": "Is my contract data safe and private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ClauseGuard assigns you an anonymous random ID — no name or email collected. Contract text is sent to the API for analysis and cached temporarily for performance, then deleted after 30 days. We never sell or share your contract data."}},
+      {"@type": "Question", "name": "How fast does the contract analysis take?", "acceptedAnswer": {"@type": "Answer", "text": "Most contracts are analyzed in under 15 seconds. You get a full risk score, list of red flags with explanations, suggested clause rewrites, and negotiation tips."}},
+      {"@type": "Question", "name": "Does ClauseGuard work on Google Docs and PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "ClauseGuard works on any webpage or Google Doc. For PDFs, you can paste the text directly into the extension. Full native PDF analysis is on the roadmap."}},
+      {"@type": "Question", "name": "What is the difference between Free and Pro?", "acceptedAnswer": {"@type": "Answer", "text": "The Free plan gives you 3 contract analyses per month with full red flag detection and suggested changes. Pro ($7/month) gives unlimited analyses plus contract comparison (diff), PDF export, and a saved clause library."}}
+    ]
+  }
+  </script>
   <style>
     /* ── Page-specific overrides ── */
     .cg-hero {
@@ -285,6 +315,7 @@
         <a href="blog/index.html" class="nav-link">Blog</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="build.html" class="nav-link-cta">✦ Build your own</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">&#9790; Dark</button>
       </nav>
     </div>
   </header>
@@ -300,14 +331,13 @@
   <section class="cg-hero">
     <div class="cg-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="#6366f1"><path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"/></svg>
-      Chrome Extension · Published on Chrome Web Store
+      AI Contract Review · Free Chrome Extension
     </div>
     <h1 class="cg-headline">
-      Know exactly what you're<br><span>signing before you sign</span>
+      Spot contract red flags<br><span>before you sign anything</span>
     </h1>
     <p class="cg-sub">
-      ClauseGuard analyzes any contract for risks, red flags and unfair clauses in seconds.
-      Plain English explanations, suggested changes, and negotiation tips — built for freelancers and small business owners.
+      ClauseGuard is a free AI contract review Chrome extension — paste any contract and get a risk score, red flags, suggested clause rewrites, and negotiation tips in under 15 seconds.
     </p>
     <div class="cg-cta-row">
       <a href="https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl" class="btn-cg-primary" target="_blank" rel="noopener">
@@ -447,6 +477,40 @@
 
   <hr class="cg-divider">
 
+  <!-- FAQ -->
+  <section class="cg-section" id="faq">
+    <p class="cg-section-label">FAQ</p>
+    <h2 class="cg-section-title">Frequently asked questions</h2>
+    <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">What types of contracts can ClauseGuard review? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">Freelance contracts, NDAs, employment agreements, SaaS terms of service, service agreements, lease contracts, and any other legal document. ClauseGuard automatically detects the contract type and tailors its analysis accordingly.</p>
+      </details>
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">Is ClauseGuard a replacement for a lawyer? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">No — ClauseGuard is a first-pass AI contract review tool. It helps you understand what you're signing, spot potential red flags, and prepare questions before you consult a lawyer. For high-stakes contracts, always involve a qualified attorney. ClauseGuard does not constitute legal advice.</p>
+      </details>
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">Is my contract data private and secure? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">Yes. ClauseGuard uses a randomly generated anonymous ID — no name or email collected. Contract text is sent to our API for analysis, cached temporarily for performance, then deleted after 30 days. We never sell, share, or train models on your contract data.</p>
+      </details>
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">How fast is the AI contract analysis? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">Most contracts are analyzed in under 15 seconds. You get a full risk score (1–10), list of red flags with plain-English explanations, suggested clause rewrites you can copy and paste, missing protections, and negotiation tips.</p>
+      </details>
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">Does ClauseGuard work on Google Docs and PDFs? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">Yes on Google Docs and any webpage. For PDFs, paste the contract text directly into the extension popup. Full native PDF analysis is on the roadmap.</p>
+      </details>
+      <details style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;cursor:pointer;">
+        <summary style="font-size:14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;">What's the difference between Free and Pro? <span style="color:var(--text-muted);font-weight:400;">+</span></summary>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);line-height:1.7;">Free gives you 3 full contract analyses per month — risk score, all red flags, and suggested rewrites. Pro ($7/month) unlocks unlimited analyses, contract comparison (diff two versions), PDF export, and a saved clause library. Cancel anytime.</p>
+      </details>
+    </div>
+  </section>
+
+  <hr class="cg-divider">
+
   <!-- Disclaimer -->
   <section style="max-width:640px;margin:0 auto;padding:40px 24px;text-align:center;">
     <p style="font-size:12px;color:var(--text-muted);line-height:1.7;">
@@ -497,16 +561,28 @@
   </footer>
 
   <script>
-    // Show success banner after Stripe redirect
     if (window.location.search.includes("clauseguard=upgraded")) {
       document.getElementById("successBanner").classList.add("visible");
-      // Clean URL
       history.replaceState({}, "", window.location.pathname);
     }
-
-    // Dark mode toggle (reuse site pattern)
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") document.body.classList.add("light-mode");
+    (function() {
+      var toggle = document.getElementById('darkModeToggle');
+      var stored = localStorage.getItem('theme');
+      if (stored !== 'light' && stored !== 'dark') { stored = null; }
+      if (stored === 'light') {
+        document.body.classList.add('light-mode');
+        if (toggle) toggle.textContent = '\u2600 Light';
+      } else {
+        if (toggle) toggle.textContent = '\u263e Dark';
+      }
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          var isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('theme', isLight ? 'light' : 'dark');
+          toggle.textContent = isLight ? '\u2600 Light' : '\u263e Dark';
+        });
+      }
+    })();
   </script>
 
 </body>
