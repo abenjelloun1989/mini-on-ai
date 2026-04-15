@@ -97,7 +97,8 @@ Two free Chrome extensions, separate from the pipeline-generated product catalog
 
 - **ClauseGuard** (`clauseguard/`) — AI contract analyzer. Live on CWS:
   https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl
-- **InvoiceGuard** (`invoiceguard/`) — Gmail invoice tracker. CWS submission pending review.
+- **InvoiceGuard** (`invoiceguard/`) — Gmail invoice tracker. Live on CWS:
+  https://chrome.google.com/webstore/detail/lppombokbcoafaahfhnjmckhnkbmhalp
   Worker: https://invoiceguard-api.kirozdormu.workers.dev
 
 Both have dedicated pages (`clauseguard.html`, `invoiceguard.html`) and appear in the Tools & Services section on the homepage.
