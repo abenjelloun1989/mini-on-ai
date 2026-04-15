@@ -155,18 +155,81 @@ function setupAnalyzeTab() {
   // PDF upload
   document.getElementById("pdfUpload").addEventListener("change", handlePdfUpload);
 
-  // Google Doc import
+  // Google Doc import — inject directly into the docs tab, no content script dependency
   document.getElementById("importGoogleDoc").addEventListener("click", async () => {
+    const btn = document.getElementById("importGoogleDoc");
+    btn.textContent = "Importing…";
+    btn.disabled = true;
     try {
-      const response = await chrome.runtime.sendMessage({ action: "extractGoogleDoc" });
-      if (response?.text) {
-        textarea.value = response.text;
+      // Find any open Google Docs tab (not just the active one)
+      const tabs = await chrome.tabs.query({ url: "*://docs.google.com/document/*" });
+      if (!tabs.length) {
+        alert("No Google Doc found. Open a Google Doc in another tab first.");
+        return;
+      }
+      const tab = tabs[0];
+
+      const results = await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () => {
+          function clean(t) { return t.replace(/\n{3,}/g, "\n\n").trim().slice(0, 15000); }
+
+          // Strategy 1: .kix-lineview
+          const lines = document.querySelectorAll(".kix-lineview");
+          if (lines.length) {
+            const t = Array.from(lines).map(el => el.textContent).join("\n");
+            if (t.trim().length > 50) return clean(t);
+          }
+          // Strategy 2: .kix-paragraphrenderer
+          const paras = document.querySelectorAll(".kix-paragraphrenderer");
+          if (paras.length) {
+            const t = Array.from(paras).map(el => el.textContent).join("\n");
+            if (t.trim().length > 50) return clean(t);
+          }
+          // Strategy 3: role="textbox"
+          const box = document.querySelector('[role="textbox"]');
+          if (box) {
+            const t = box.innerText || box.textContent || "";
+            if (t.trim().length > 50) return clean(t);
+          }
+          // Strategy 4: .kix-page-content-wrapper
+          const pages = document.querySelectorAll(".kix-page-content-wrapper");
+          if (pages.length) {
+            const t = Array.from(pages).map(el => el.innerText || el.textContent).join("\n");
+            if (t.trim().length > 50) return clean(t);
+          }
+          // Strategy 5: .docs-editor
+          const editor = document.querySelector(".docs-editor");
+          if (editor) {
+            const t = editor.innerText || editor.textContent || "";
+            if (t.trim().length > 50) return clean(t);
+          }
+          // Strategy 6: largest div
+          const biggest = Array.from(document.querySelectorAll("div"))
+            .map(el => ({ el, len: (el.innerText || "").length }))
+            .filter(x => x.len > 200)
+            .sort((a, b) => b.len - a.len)[0];
+          if (biggest) {
+            const t = biggest.el.innerText || "";
+            if (t.trim().length > 50) return clean(t);
+          }
+          return null;
+        },
+      });
+
+      const text = results?.[0]?.result;
+      if (text && text.length > 50) {
+        textarea.value = text;
         textarea.dispatchEvent(new Event("input"));
       } else {
-        alert(response?.error || "Could not extract text from the Google Doc. Make sure you have a Google Doc open in another tab.");
+        alert("Could not extract text from the Google Doc. Try pasting the contract text manually into the extension.");
       }
     } catch (e) {
-      alert("Could not connect to Google Doc. Make sure a Google Doc is open.");
+      console.error("Google Doc import failed:", e);
+      alert("Could not access the Google Doc. Make sure a Google Doc is open and try again.");
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Import Google Doc`;
     }
   });
 }
