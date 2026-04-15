@@ -31,6 +31,7 @@
       Library
       <span class="pro-chip">Pro</span>
     </button>
+    <button class="tab" data-tab="account">Account</button>
   </nav>
 
   <!-- ── Tab: Analyze ── -->
@@ -191,6 +192,42 @@
     <div class="hidden" id="libraryContent">
       <div id="clauseLibraryList"></div>
     </div>
+  </div>
+
+  <!-- ── Tab: Account ── -->
+  <div class="tab-content hidden" id="tab-account">
+
+    <!-- Current plan -->
+    <div id="accountPlanBox" style="margin:14px 14px 0;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);">
+      <div style="color:var(--text-muted);font-size:12px;text-align:center">Loading…</div>
+    </div>
+
+    <!-- LTD code redemption (hidden for Pro users) -->
+    <div id="ltdSection" style="margin:14px 14px 0;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);">
+      <div style="font-weight:600;font-size:13px;margin-bottom:6px;">🎟 Lifetime Deal Code</div>
+      <div style="color:var(--text-muted);font-size:12px;line-height:1.5;margin-bottom:10px;">
+        Have a code from PitchGround or another marketplace?<br>Enter it below to unlock Pro permanently.
+      </div>
+      <div style="display:flex;gap:8px;">
+        <input
+          id="ltdCodeInput"
+          type="text"
+          placeholder="CG-XXXX-XXXX"
+          maxlength="24"
+          autocomplete="off"
+          spellcheck="false"
+          style="flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:7px 10px;font-size:13px;font-family:monospace;letter-spacing:0.05em;outline:none;"
+        >
+        <button id="ltdRedeemBtn" class="btn-primary" style="padding:7px 14px;font-size:12px;white-space:nowrap;">Redeem</button>
+      </div>
+      <div id="ltdStatus" style="margin-top:8px;font-size:12px;min-height:18px;"></div>
+    </div>
+
+    <!-- Footer note -->
+    <div style="margin:12px 14px 14px;color:var(--text-muted);font-size:11px;line-height:1.5;">
+      For issues, email <a href="mailto:hello@mini-on-ai.com" style="color:var(--accent);">hello@mini-on-ai.com</a>
+    </div>
+
   </div>
 
   <script src="../lib/pdf.min.js"></script>

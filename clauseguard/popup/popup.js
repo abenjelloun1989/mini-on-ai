@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupAnalyzeTab();
   setupCompareTab();
   setupLibraryTab();
+  setupAccountTab();
 });
 
 async function loadUser() {
@@ -126,6 +127,7 @@ function setupTabs() {
       target.classList.add("active");
 
       if (tab.dataset.tab === "library" && userTier === "pro") loadLibrary();
+      if (tab.dataset.tab === "account") loadAccountTab();
     });
   });
 }
@@ -636,6 +638,159 @@ async function loadLibrary() {
   } catch (e) {
     container.innerHTML = '<p style="color:var(--red);font-size:12px;text-align:center;padding:20px">Failed to load library.</p>';
   }
+}
+
+// ─── Account tab ──────────────────────────────────────────────────────────────
+
+function setupAccountTab() {
+  const redeemBtn = document.getElementById("ltdRedeemBtn");
+  const codeInput = document.getElementById("ltdCodeInput");
+
+  redeemBtn.addEventListener("click", redeemLtdCode);
+  codeInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") redeemLtdCode();
+  });
+  // Auto-uppercase as user types
+  codeInput.addEventListener("input", () => {
+    const pos = codeInput.selectionStart;
+    codeInput.value = codeInput.value.toUpperCase();
+    codeInput.setSelectionRange(pos, pos);
+  });
+}
+
+async function loadAccountTab() {
+  const planBox = document.getElementById("accountPlanBox");
+  const ltdSection = document.getElementById("ltdSection");
+
+  planBox.innerHTML = '<div style="color:var(--text-muted);font-size:12px;text-align:center">Loading…</div>';
+
+  try {
+    const data = await apiFetch(`/api/subscription?user_id=${userId}`);
+    const isPro = data.tier === "pro";
+    const isLtd = data.pro_source === "ltd";
+    const hasStripe = !!data.has_subscription;
+
+    if (isPro && isLtd) {
+      planBox.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="font-size:22px;">⚡</span>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--text);">Pro Lifetime</div>
+            <div style="font-size:11px;color:var(--text-muted);">Paid once · unlimited analyses · forever</div>
+          </div>
+          <span style="margin-left:auto;background:#1e3a1e;color:var(--green);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;">Active</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);">✓ Unlimited contract analyses<br>✓ Contract comparison<br>✓ PDF export<br>✓ Clause library<br>✓ All future Pro features</div>
+      `;
+      // Hide LTD section — already redeemed
+      ltdSection.style.display = "none";
+    } else if (isPro && hasStripe) {
+      planBox.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="font-size:22px;">✦</span>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--text);">Pro Plan</div>
+            <div style="font-size:11px;color:var(--text-muted);">$7/month · unlimited analyses</div>
+          </div>
+          <span style="margin-left:auto;background:#1e3a1e;color:var(--green);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;">Active</span>
+        </div>
+        <button id="manageBillingBtn" class="btn-primary" style="width:100%;margin-top:8px;font-size:12px;">Manage subscription →</button>
+      `;
+      document.getElementById("manageBillingBtn").addEventListener("click", async () => {
+        const btn = document.getElementById("manageBillingBtn");
+        btn.textContent = "Opening…";
+        btn.disabled = true;
+        try {
+          const portal = await apiFetch("/api/portal", "POST", { user_id: userId });
+          if (portal.portal_url) chrome.tabs.create({ url: portal.portal_url });
+          else throw new Error("no url");
+        } catch {
+          btn.textContent = "Could not open portal — try again";
+          btn.disabled = false;
+        }
+      });
+      // Hide LTD section for active Stripe subscribers
+      ltdSection.style.display = "none";
+    } else {
+      // Free user
+      planBox.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="font-size:22px;">🛡</span>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--text);">Free Plan</div>
+            <div style="font-size:11px;color:var(--text-muted);">3 analyses per month</div>
+          </div>
+        </div>
+        <button id="upgradeFromAccount" class="btn-primary" style="width:100%;font-size:12px;">Upgrade to Pro — $7/month</button>
+      `;
+      document.getElementById("upgradeFromAccount").addEventListener("click", openUpgrade);
+      ltdSection.style.display = "";
+    }
+  } catch (e) {
+    planBox.innerHTML = '<div style="color:var(--text-muted);font-size:12px;text-align:center">Could not load plan info.</div>';
+  }
+}
+
+async function redeemLtdCode() {
+  const input = document.getElementById("ltdCodeInput");
+  const btn   = document.getElementById("ltdRedeemBtn");
+  const status = document.getElementById("ltdStatus");
+
+  const code = input.value.trim().toUpperCase();
+  if (!code) {
+    setLtdStatus("error", "Please enter a code.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Redeeming…";
+  status.textContent = "";
+
+  try {
+    const data = await apiFetch("/api/redeem-ltd", "POST", { user_id: userId, code });
+
+    if (data.success) {
+      // Update local tier immediately
+      userTier = "pro";
+
+      // Update the header badge
+      const badge = document.getElementById("tierBadge");
+      badge.textContent = "Pro";
+      badge.classList.add("pro");
+
+      setLtdStatus("success", "✓ Code redeemed! Your account is now Pro lifetime. Enjoy unlimited analyses.");
+      input.value = "";
+      input.disabled = true;
+      btn.style.display = "none";
+
+      // Refresh usage display
+      await refreshUsage();
+
+      // Refresh the plan box to show lifetime state
+      await loadAccountTab();
+    } else {
+      setLtdStatus("error", data.error || "Redemption failed. Please try again.");
+      btn.disabled = false;
+      btn.textContent = "Redeem";
+    }
+  } catch (e) {
+    const msg = e.message || "";
+    if (msg.includes("already been redeemed")) {
+      setLtdStatus("error", "This code has already been redeemed by another account.");
+    } else if (msg.includes("Invalid code")) {
+      setLtdStatus("error", "Code not found. Check for typos and try again.");
+    } else {
+      setLtdStatus("error", "Could not connect. Check your internet and try again.");
+    }
+    btn.disabled = false;
+    btn.textContent = "Redeem";
+  }
+}
+
+function setLtdStatus(type, message) {
+  const el = document.getElementById("ltdStatus");
+  el.textContent = message;
+  el.style.color = type === "success" ? "var(--green)" : "var(--red)";
 }
 
 // ─── Upgrade ──────────────────────────────────────────────────────────────────

@@ -118,6 +118,7 @@ export async function getSubscription(request, env) {
 
   return corsJson(env, {
     tier: user.tier,
+    pro_source: user.pro_source || null,   // 'ltd' | null (null = Stripe)
     has_subscription: !!user.stripe_subscription_id,
     email: user.email || null,
   });

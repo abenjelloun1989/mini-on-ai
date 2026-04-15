@@ -32,6 +32,7 @@ import {
   getSubscription,
   handlePortal,
 } from "./billing.js";
+import { handleRedeemLtd } from "./ltd.js";
 
 export default {
   async fetch(request, env) {
@@ -59,6 +60,11 @@ export default {
       }
       if (path === "/api/history" && request.method === "GET") {
         return getHistory(request, env);
+      }
+
+      // LTD code redemption
+      if (path === "/api/redeem-ltd" && request.method === "POST") {
+        return handleRedeemLtd(request, env);
       }
 
       // Billing
@@ -181,7 +187,7 @@ export async function parseJson(request) {
 export async function requireUser(env, userId) {
   if (!userId) return null;
   const user = await env.DB.prepare(
-    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id FROM users WHERE id = ?"
+    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id, pro_source FROM users WHERE id = ?"
   ).bind(userId).first();
   return user || null;
 }
