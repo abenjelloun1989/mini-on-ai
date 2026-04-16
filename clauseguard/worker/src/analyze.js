@@ -113,25 +113,33 @@ export async function handleAnalyze(request, env) {
   }
   await env.KV.put(minuteKey, String(rlCount + 1), { expirationTtl: 120 });
 
-  // ── Monthly usage limits ──
+  // ── Monthly usage limits (atomic check-and-increment to prevent race conditions) ──
   const month = currentMonth();
-  const usage = await env.DB.prepare(
-    "SELECT analysis_count FROM usage_tracking WHERE user_id = ? AND month = ?"
-  ).bind(user.id, month).first();
-  const count = usage ? usage.analysis_count : 0;
+  const limit = user.tier === "pro" ? PRO_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
 
-  if (user.tier !== "pro") {
-    if (count >= FREE_MONTHLY_LIMIT) {
+  // Try atomic increment — only succeeds if count is currently under the limit
+  const incrementResult = await env.DB.prepare(
+    `INSERT INTO usage_tracking (user_id, month, analysis_count) VALUES (?, ?, 1)
+     ON CONFLICT(user_id, month) DO UPDATE
+     SET analysis_count = analysis_count + 1
+     WHERE analysis_count < ?`
+  ).bind(user.id, month, limit).run();
+
+  // If no rows changed, the user is at or over the limit
+  if (incrementResult.meta.changes === 0) {
+    const current = await env.DB.prepare(
+      "SELECT analysis_count FROM usage_tracking WHERE user_id = ? AND month = ?"
+    ).bind(user.id, month).first();
+    const count = current ? current.analysis_count : 0;
+
+    if (user.tier !== "pro") {
       return corsJson(env, {
         error: "Monthly limit reached",
         limit: FREE_MONTHLY_LIMIT,
         usage: count,
         upgrade_required: true,
       }, 429);
-    }
-  } else {
-    // Pro hard cap — prevents abuse from batch scripts
-    if (count >= PRO_MONTHLY_LIMIT) {
+    } else {
       return corsJson(env, {
         error: `You've reached the monthly analysis limit (${PRO_MONTHLY_LIMIT}). Contact support if you need more.`,
         limit: PRO_MONTHLY_LIMIT,
@@ -144,19 +152,27 @@ export async function handleAnalyze(request, env) {
   let analysis;
   try {
     const prompt = buildAnalysisPrompt(trimmed, contract_type);
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5",
-        max_tokens: 8192,
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
+    const claudeCtrl = new AbortController();
+    const claudeTimeout = setTimeout(() => claudeCtrl.abort(), 25000);
+    let resp;
+    try {
+      resp = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "claude-haiku-4-5",
+          max_tokens: 8192,
+          messages: [{ role: "user", content: prompt }],
+        }),
+        signal: claudeCtrl.signal,
+      });
+    } finally {
+      clearTimeout(claudeTimeout);
+    }
 
     if (!resp.ok) {
       const errText = await resp.text();
@@ -165,6 +181,7 @@ export async function handleAnalyze(request, env) {
     }
 
     const data = await resp.json();
+    if (!data.content?.[0]?.text) throw new Error("Empty response from Anthropic");
     const text = data.content[0].text.trim();
 
     // Strip markdown fences and extract JSON
@@ -172,18 +189,20 @@ export async function handleAnalyze(request, env) {
     const match = clean.match(/\{[\s\S]*\}/);
     if (!match) throw new Error("No JSON in response");
     analysis = JSON.parse(match[0]);
+
+    // Validate required fields are present
+    if (typeof analysis.risk_score !== "number" || !Array.isArray(analysis.clauses)) {
+      throw new Error("Incomplete analysis response from AI");
+    }
   } catch (e) {
     console.error("Analysis error:", e.message, e.stack);
-    return corsJson(env, { error: "Analysis failed. Please try again.", _debug: e.message }, 500);
+    return corsJson(env, { error: "Analysis failed. Please try again." }, 500);
   }
 
   // Store analysis
   const analysisId = crypto.randomUUID();
 
-  // Increment usage count (upsert)
-  await env.DB.prepare(
-    "INSERT INTO usage_tracking (user_id, month, analysis_count) VALUES (?, ?, 1) ON CONFLICT(user_id, month) DO UPDATE SET analysis_count = analysis_count + 1"
-  ).bind(user.id, month).run();
+  // Usage was already atomically incremented above — just store metadata
 
   // Store metadata in D1
   await env.DB.prepare(
@@ -205,7 +224,7 @@ export async function handleAnalyze(request, env) {
     { expirationTtl: 30 * 86400 }
   );
 
-  // Get updated usage
+  // Fetch current usage count for the response (the atomic increment already ran)
   const updatedUsage = await env.DB.prepare(
     "SELECT analysis_count FROM usage_tracking WHERE user_id = ? AND month = ?"
   ).bind(user.id, month).first();
@@ -214,7 +233,7 @@ export async function handleAnalyze(request, env) {
     analysis_id: analysisId,
     analysis,
     usage: {
-      count: updatedUsage.analysis_count,
+      count: updatedUsage?.analysis_count ?? 1,
       limit: user.tier === "pro" ? null : FREE_MONTHLY_LIMIT,
       tier: user.tier,
     },
@@ -237,6 +256,9 @@ export async function handleCompare(request, env) {
 
   if (!contract_text_old || !contract_text_new) {
     return corsJson(env, { error: "Both contract_text_old and contract_text_new are required" }, 400);
+  }
+  if (contract_text_old.length > MAX_CONTRACT_LENGTH || contract_text_new.length > MAX_CONTRACT_LENGTH) {
+    return corsJson(env, { error: `Contract texts must be under ${MAX_CONTRACT_LENGTH} characters each.` }, 400);
   }
 
   const prompt = `Compare these two versions of a contract (type: ${contract_type}). Return ONLY valid JSON (no markdown fences).
@@ -265,23 +287,32 @@ NEW VERSION:
 ${contract_text_new.slice(0, MAX_CONTRACT_LENGTH)}`;
 
   try {
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5",
-        max_tokens: 8192,
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
+    const cmpCtrl = new AbortController();
+    const cmpTimeout = setTimeout(() => cmpCtrl.abort(), 25000);
+    let resp;
+    try {
+      resp = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "claude-haiku-4-5",
+          max_tokens: 8192,
+          messages: [{ role: "user", content: prompt }],
+        }),
+        signal: cmpCtrl.signal,
+      });
+    } finally {
+      clearTimeout(cmpTimeout);
+    }
 
     if (!resp.ok) throw new Error(`Anthropic ${resp.status}`);
 
     const data = await resp.json();
+    if (!data.content?.[0]?.text) throw new Error("Empty response from Anthropic");
     const text = data.content[0].text.trim();
     const clean = text.replace(/^```[a-z]*\n?/m, "").replace(/\n?```$/m, "").trim();
     const match = clean.match(/\{[\s\S]*\}/);

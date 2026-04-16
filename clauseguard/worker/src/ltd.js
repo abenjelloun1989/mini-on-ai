@@ -42,8 +42,11 @@ export async function handleRedeemLtd(request, env) {
     "SELECT code, redeemed_by, redeemed_at FROM ltd_codes WHERE code = ?"
   ).bind(normalizedCode).first();
 
+  // Unified error for invalid OR already-redeemed codes — prevents enumeration attacks
+  const INVALID_CODE_MSG = "This code is not valid or has already been used.";
+
   if (!ltdCode) {
-    return corsJson(env, { error: "Invalid code. Double-check and try again." }, 400);
+    return corsJson(env, { error: INVALID_CODE_MSG }, 400);
   }
 
   if (ltdCode.redeemed_by) {
@@ -51,7 +54,7 @@ export async function handleRedeemLtd(request, env) {
     if (ltdCode.redeemed_by === user_id) {
       return corsJson(env, { success: true, tier: "pro", pro_source: "ltd" });
     }
-    return corsJson(env, { error: "This code has already been redeemed by another account." }, 400);
+    return corsJson(env, { error: INVALID_CODE_MSG }, 400);
   }
 
   // Mark code as redeemed

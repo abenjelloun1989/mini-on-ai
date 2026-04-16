@@ -107,7 +107,7 @@ export default {
       return corsJson(env, { error: "Not found" }, 404);
     } catch (e) {
       console.error("Unhandled error:", e.message, e.stack);
-      return corsJson(env, { error: "Internal server error", detail: e.message }, 500);
+      return corsJson(env, { error: "Internal server error" }, 500);
     }
   },
 };

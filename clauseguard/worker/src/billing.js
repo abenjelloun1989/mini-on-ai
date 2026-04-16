@@ -33,14 +33,25 @@ export async function handleSubscribe(request, env) {
     params.set("customer_email", user.email);
   }
 
-  const stripeRes = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params,
-  });
+  const stripeCtrl = new AbortController();
+  const stripeTimeout = setTimeout(() => stripeCtrl.abort(), 10000);
+  let stripeRes;
+  try {
+    stripeRes = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params,
+      signal: stripeCtrl.signal,
+    });
+  } catch (e) {
+    clearTimeout(stripeTimeout);
+    console.error("Stripe Checkout timeout/error:", e.message);
+    return corsJson(env, { error: "Payment setup failed. Please try again." }, 500);
+  }
+  clearTimeout(stripeTimeout);
 
   if (!stripeRes.ok) {
     const err = await stripeRes.text();
@@ -60,12 +71,18 @@ export async function handleStripeWebhook(request, env) {
   const payload = await request.text();
   const signature = request.headers.get("stripe-signature");
 
-  if (env.STRIPE_WEBHOOK_SECRET && signature) {
-    const isValid = await verifyStripeSignature(payload, signature, env.STRIPE_WEBHOOK_SECRET);
-    if (!isValid) {
-      console.error("Invalid Stripe webhook signature");
-      return new Response("Invalid signature", { status: 400 });
-    }
+  if (!env.STRIPE_WEBHOOK_SECRET) {
+    console.error("STRIPE_WEBHOOK_SECRET not configured — rejecting all webhooks");
+    return new Response("Webhook secret not configured", { status: 500 });
+  }
+  if (!signature) {
+    console.error("Missing stripe-signature header");
+    return new Response("Missing stripe-signature", { status: 400 });
+  }
+  const isValid = await verifyStripeSignature(payload, signature, env.STRIPE_WEBHOOK_SECRET);
+  if (!isValid) {
+    console.error("Invalid Stripe webhook signature");
+    return new Response("Invalid signature", { status: 400 });
   }
 
   let event;
@@ -94,8 +111,9 @@ export async function handleStripeWebhook(request, env) {
 
   if (type === "customer.subscription.deleted") {
     const subId = obj.id;
+    // Do NOT downgrade LTD users — they have a lifetime deal, not a recurring subscription
     await env.DB.prepare(
-      "UPDATE users SET tier = 'free', stripe_subscription_id = NULL, updated_at = datetime('now') WHERE stripe_subscription_id = ?"
+      "UPDATE users SET tier = 'free', stripe_subscription_id = NULL, updated_at = datetime('now') WHERE stripe_subscription_id = ? AND (pro_source IS NULL OR pro_source != 'ltd')"
     ).bind(subId).run();
   }
 
@@ -151,17 +169,28 @@ export async function handlePortal(request, env) {
     return corsJson(env, { error: "No active subscription" }, 400);
   }
 
-  const stripeRes = await fetch("https://api.stripe.com/v1/billing_portal/sessions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      "customer": user.stripe_customer_id,
-      "return_url": `${SITE_URL}/clauseguard.html`,
-    }),
-  });
+  const portalCtrl = new AbortController();
+  const portalTimeout = setTimeout(() => portalCtrl.abort(), 10000);
+  let stripeRes;
+  try {
+    stripeRes = await fetch("https://api.stripe.com/v1/billing_portal/sessions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.STRIPE_SECRET_KEY}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        "customer": user.stripe_customer_id,
+        "return_url": `${SITE_URL}/clauseguard.html`,
+      }),
+      signal: portalCtrl.signal,
+    });
+  } catch (e) {
+    clearTimeout(portalTimeout);
+    console.error("Stripe Portal timeout/error:", e.message);
+    return corsJson(env, { error: "Could not open billing portal." }, 500);
+  }
+  clearTimeout(portalTimeout);
 
   if (!stripeRes.ok) {
     const err = await stripeRes.text();
