@@ -199,15 +199,15 @@
   <div class="tab-content hidden" id="tab-account">
 
     <!-- Current plan -->
-    <div id="accountPlanBox" style="margin:14px 14px 0;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);">
+    <div id="accountPlanBox" class="account-card">
       <div style="color:var(--text-muted);font-size:12px;text-align:center">Loading…</div>
     </div>
 
     <!-- LTD code redemption (hidden for Pro users) -->
-    <div id="ltdSection" style="margin:14px 14px 0;padding:14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);">
-      <div style="font-weight:600;font-size:13px;margin-bottom:6px;">🎟 Lifetime Deal Code</div>
-      <div style="color:var(--text-muted);font-size:12px;line-height:1.5;margin-bottom:10px;">
-        Have a lifetime deal code?<br>Enter it below to unlock Pro permanently.
+    <div id="ltdSection" class="account-card">
+      <div class="account-card-title">🎟 Lifetime Deal Code</div>
+      <div class="account-card-desc">
+        Have a lifetime deal code? Enter it below to unlock Pro permanently.
       </div>
       <div style="display:flex;gap:8px;">
         <input
@@ -217,15 +217,15 @@
           maxlength="24"
           autocomplete="off"
           spellcheck="false"
-          style="flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:7px 10px;font-size:13px;font-family:monospace;letter-spacing:0.05em;outline:none;"
+          class="ltd-code-input"
         >
-        <button id="ltdRedeemBtn" class="btn-primary" style="padding:7px 14px;font-size:12px;white-space:nowrap;">Redeem</button>
+        <button id="ltdRedeemBtn" class="btn-primary btn-redeem">Redeem</button>
       </div>
-      <div id="ltdStatus" style="margin-top:8px;font-size:12px;min-height:18px;"></div>
+      <div id="ltdStatus" class="ltd-status"></div>
     </div>
 
     <!-- Footer note -->
-    <div style="margin:12px 14px 14px;color:var(--text-muted);font-size:11px;line-height:1.5;">
+    <div class="account-footer-note">
       For issues, email <a href="mailto:hello@mini-on-ai.com" style="color:var(--accent);">hello@mini-on-ai.com</a>
     </div>
 

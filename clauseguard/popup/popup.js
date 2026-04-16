@@ -366,19 +366,13 @@ function showInputState() {
 }
 
 function showLoadingState() {
-  // In full-page mode keep input visible as left column
-  if (!isFullPage()) {
-    document.getElementById("inputState").classList.add("hidden");
-  }
+  document.getElementById("inputState").classList.add("hidden");
   document.getElementById("loadingState").classList.remove("hidden");
   document.getElementById("resultsState").classList.add("hidden");
 }
 
 function showResults(analysis, usage) {
-  // In full-page mode keep input visible as left column
-  if (!isFullPage()) {
-    document.getElementById("inputState").classList.add("hidden");
-  }
+  document.getElementById("inputState").classList.add("hidden");
   document.getElementById("loadingState").classList.add("hidden");
   document.getElementById("resultsState").classList.remove("hidden");
 

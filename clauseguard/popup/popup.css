@@ -37,86 +37,368 @@ body.full-page {
   max-height: none;
   min-height: 100vh;
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
+/* ── Header & Nav ── */
 body.full-page .header {
-  padding: 12px 32px;
-  font-size: 15px;
+  padding: 16px 52px;
+}
+
+body.full-page .header-logo {
+  font-size: 17px;
+  gap: 10px;
+}
+
+body.full-page .header-logo svg {
+  width: 24px;
+  height: 24px;
 }
 
 body.full-page .tabs {
-  padding: 0 32px;
+  padding: 0 52px;
 }
 
 body.full-page .tab {
-  font-size: 13px;
-  padding: 11px 18px;
+  font-size: 14px;
+  padding: 13px 28px;
   flex: none;
 }
 
+body.full-page .pro-chip {
+  font-size: 11px;
+}
+
+/* ── Centered content column ── */
 body.full-page .tab-content {
-  padding: 24px 32px;
-  max-width: 1200px;
+  padding: 44px 52px;
+  max-width: 860px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Two-column layout for Analyze tab in full-page */
+/* Analyze tab: single column, no grid */
 body.full-page #tab-analyze {
-  display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 24px;
-  align-items: start;
+  display: block;
 }
 
+/* ── Input: centered card ── */
 body.full-page #inputState {
-  position: sticky;
-  top: 60px;
+  position: static;
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px 24px;
+}
+
+body.full-page .contract-type-row {
+  margin-bottom: 16px;
+}
+
+body.full-page .contract-type-row label {
+  font-size: 14px;
+}
+
+body.full-page select {
+  font-size: 14px;
+  padding: 9px 12px;
+}
+
+body.full-page textarea {
+  font-size: 15px;
+  padding: 14px;
+  line-height: 1.65;
 }
 
 body.full-page #inputState textarea {
-  height: 340px;
-  font-size: 13px;
+  height: 280px;
   resize: vertical;
 }
 
-body.full-page #loadingState,
-body.full-page #resultsState {
-  grid-column: 2;
+body.full-page .btn-current-page {
+  font-size: 14px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
-/* When input is hidden (loading/results), collapse left column */
-body.full-page #inputState.hidden {
-  display: none;
+body.full-page .import-row {
+  margin-top: 10px;
 }
-body.full-page #inputState.hidden ~ #loadingState,
-body.full-page #inputState.hidden ~ #resultsState {
-  grid-column: 1 / -1;
-  max-width: 800px;
+
+body.full-page .btn-import {
+  font-size: 13px;
+  padding: 9px 14px;
+}
+
+body.full-page .usage-row {
+  font-size: 13px;
+  margin: 14px 0 10px;
+}
+
+body.full-page .btn-primary {
+  font-size: 15px;
+  padding: 13px 22px;
+}
+
+body.full-page .upgrade-banner {
+  font-size: 13px;
+  padding: 14px 16px;
+}
+
+/* ── Loading ── */
+body.full-page #loadingState {
+  max-width: 680px;
   margin: 0 auto;
-  width: 100%;
 }
 
-body.full-page .risk-score { font-size: 40px; }
-body.full-page .risk-label { font-size: 13px; }
-body.full-page .summary-box { font-size: 14px; }
-body.full-page .red-flag-title { font-size: 13px; }
-body.full-page .red-flag-text { font-size: 12px; }
-body.full-page .clause-title { font-size: 13px; }
-body.full-page .clause-explanation { font-size: 13px; }
-body.full-page .clause-quote { font-size: 12px; }
-body.full-page .missing-why { font-size: 12px; }
-body.full-page .tips-list li { font-size: 13px; }
-body.full-page .section-title { font-size: 12px; }
+body.full-page .loading-wrap {
+  padding: 80px 20px;
+}
 
+body.full-page .loading-wrap svg {
+  width: 64px;
+  height: 64px;
+}
+
+body.full-page .loading-text {
+  font-size: 20px;
+}
+
+body.full-page .loading-sub {
+  font-size: 15px;
+}
+
+/* ── Results: risk banner + single column content ── */
+body.full-page .results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 24px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* In full-page, risk badge loses its own card styling — the header provides it */
+body.full-page .risk-badge {
+  border: none !important;
+  background: none !important;
+  padding: 0;
+  gap: 22px;
+  align-items: center;
+}
+
+body.full-page .risk-score {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+body.full-page .risk-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Color the risk label in full-page to match the score */
+body.full-page .risk-badge.low    .risk-label { color: var(--green); }
+body.full-page .risk-badge.medium .risk-label { color: var(--yellow); }
+body.full-page .risk-badge.high   .risk-label { color: var(--red); }
+body.full-page .risk-badge.critical .risk-label { color: var(--red); }
+
+body.full-page .results-actions {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+body.full-page .btn-text {
+  font-size: 13px;
+  padding: 8px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+body.full-page .btn-text:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+body.full-page .summary-box {
+  font-size: 15px;
+  line-height: 1.75;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+body.full-page .disclaimer-box {
+  font-size: 12px;
+  padding: 10px 16px;
+  margin-bottom: 32px;
+}
+
+body.full-page .section {
+  margin-bottom: 32px;
+}
+
+body.full-page .section-title {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+body.full-page .red-flag {
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-radius: var(--radius);
+}
+
+body.full-page .red-flag-title {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+body.full-page .red-flag-text {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body.full-page .clause-card {
+  margin-bottom: 8px;
+  border-radius: var(--radius);
+}
+
+body.full-page .clause-header {
+  padding: 13px 16px;
+}
+
+body.full-page .clause-title {
+  font-size: 14px;
+}
+
+body.full-page .clause-body {
+  padding: 16px 18px;
+}
+
+body.full-page .clause-quote {
+  font-size: 13px;
+  padding: 9px 14px;
+  margin-bottom: 12px;
+}
+
+body.full-page .clause-explanation {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+body.full-page .clause-concern {
+  font-size: 13px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+body.full-page .clause-suggestion {
+  font-size: 13px;
+  padding: 12px 14px;
+}
+
+body.full-page .clause-suggestion-label {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+body.full-page .copy-btn,
+body.full-page .save-clause-btn {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+body.full-page .missing-item {
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-radius: var(--radius);
+}
+
+body.full-page .missing-title {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+body.full-page .missing-why {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+body.full-page .missing-clause {
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+body.full-page .tips-list {
+  padding-left: 22px;
+}
+
+body.full-page .tips-list li {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+/* ── Other tabs ── */
 body.full-page #tab-compare,
 body.full-page #tab-library,
 body.full-page #tab-account {
-  max-width: 700px;
+  max-width: 720px;
 }
 
-body.full-page .compare-col textarea { height: 220px; }
-body.full-page .btn-primary { font-size: 14px; padding: 12px 20px; }
+body.full-page .compare-col {
+  margin-bottom: 16px;
+}
+
+body.full-page .compare-col label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+body.full-page .compare-col textarea {
+  height: 280px;
+  font-size: 14px;
+}
+
+body.full-page .pro-gate {
+  padding: 60px 20px;
+}
+
+body.full-page .pro-gate-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+body.full-page .pro-gate h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+body.full-page .pro-gate p {
+  font-size: 15px;
+  max-width: 440px;
+  margin: 0 auto 20px;
+}
 
 /* ─── Header ────────────────────────────────────────────────────────────────── */
 .header {
@@ -696,6 +978,100 @@ textarea::placeholder { color: var(--text-muted); }
   border-radius: 3px;
 }
 .library-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ─── Account tab ───────────────────────────────────────────────────────────── */
+.account-card {
+  margin: 12px 14px 0;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.account-card-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.account-card-desc {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.ltd-code-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  letter-spacing: 0.05em;
+  outline: none;
+}
+
+.ltd-code-input:focus {
+  border-color: var(--accent);
+}
+
+.btn-redeem {
+  padding: 7px 14px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.ltd-status {
+  margin-top: 8px;
+  font-size: 12px;
+  min-height: 18px;
+}
+
+.account-footer-note {
+  margin: 10px 14px 14px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Full-page overrides for account tab */
+body.full-page .account-card {
+  margin: 0 0 20px;
+  padding: 20px 24px;
+  border-radius: 12px;
+}
+
+body.full-page .account-card-title {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+body.full-page .account-card-desc {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+body.full-page .ltd-code-input {
+  font-size: 15px;
+  padding: 10px 14px;
+}
+
+body.full-page .btn-redeem {
+  font-size: 14px;
+  padding: 10px 18px;
+}
+
+body.full-page .ltd-status {
+  font-size: 13px;
+}
+
+body.full-page .account-footer-note {
+  margin: 0;
+  font-size: 13px;
+}
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
