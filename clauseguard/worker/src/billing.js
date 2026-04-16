@@ -116,9 +116,21 @@ export async function getSubscription(request, env) {
   const user = await requireUser(env, userId);
   if (!user) return corsJson(env, { error: "User not found" }, 404);
 
+  // Fetch pro_source separately — migration 0002 column, may not exist on all envs.
+  // Falls back to null gracefully if the column doesn't exist yet.
+  let proSource = null;
+  try {
+    const row = await env.DB.prepare(
+      "SELECT pro_source FROM users WHERE id = ?"
+    ).bind(user.id).first();
+    proSource = row?.pro_source || null;
+  } catch (_) {
+    // Column doesn't exist yet (migration 0002 not applied) — treat as null
+  }
+
   return corsJson(env, {
     tier: user.tier,
-    pro_source: user.pro_source || null,   // 'ltd' | null (null = Stripe)
+    pro_source: proSource,
     has_subscription: !!user.stripe_subscription_id,
     email: user.email || null,
   });

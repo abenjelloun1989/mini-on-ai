@@ -186,8 +186,10 @@ export async function parseJson(request) {
 
 export async function requireUser(env, userId) {
   if (!userId) return null;
+  // Note: pro_source is selected separately in billing.js to stay resilient
+  // if migration 0002 hasn't been applied yet.
   const user = await env.DB.prepare(
-    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id, pro_source FROM users WHERE id = ?"
+    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id FROM users WHERE id = ?"
   ).bind(userId).first();
   return user || null;
 }
