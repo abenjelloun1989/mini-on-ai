@@ -13,7 +13,7 @@ Analyze any contract for red flags and risky clauses in seconds. Free AI contrac
 ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, and unfair clauses in under 15 seconds. Plain English explanations, suggested clause rewrites, and negotiation tips — no lawyer required for a first-pass review.
 
 **How it works:**
-1. Open any contract webpage, Google Doc, or paste contract text into the popup
+1. Open any contract webpage or paste contract text into the popup
 2. Click "Analyze" — results appear in under 15 seconds
 3. Review your risk score, red flags, and copy-ready clause rewrites
 
@@ -54,7 +54,7 @@ English
 ## Screenshot captions (for the 5 screenshots in store-assets/)
 
 screenshot-1-input-state.png:
-"Paste any contract or open a Google Doc — ClauseGuard reads it instantly"
+"Paste any contract or upload a PDF — ClauseGuard reads it instantly"
 
 screenshot-2-risk-score.png:
 "Color-coded risk score (1–10) so you know at a glance if a contract is fair"
