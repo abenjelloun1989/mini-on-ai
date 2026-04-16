@@ -176,9 +176,11 @@ function setupAnalyzeTab() {
 
           // Known UI noise: language selectors, menus, toolbars
           function isUiNoise(t) {
-            return t.includes("Afrikaans") || t.includes("Azerbaycan") ||
-                   t.includes("Bahasa") || t.includes("Català") ||
-                   t.includes("Normal text") || t.includes("Arial");
+            // Menu items contain keyboard shortcut symbols and language lists
+            const menuSignals = ["►", "⌘", "Afrikaans", "Bahasa", "Català",
+                                 "Normal text", "Arial", "⌥", "Ctrl+", "Maj+",
+                                 "Nombre de mots", "Grammaire", "Traduire"];
+            return menuSignals.some(s => t.includes(s));
           }
 
           function tryText(t) {
@@ -187,10 +189,26 @@ function setupAnalyzeTab() {
             return null;
           }
 
-          // Strategy 1: contenteditable (current Google Docs editor)
-          for (const el of document.querySelectorAll('[contenteditable="true"]')) {
-            const result = tryText(el.innerText || el.textContent || "");
+          // Strategy 1: .kix-page — the actual rendered document pages
+          const kixPages = document.querySelectorAll(".kix-page");
+          if (kixPages.length) {
+            const result = tryText(Array.from(kixPages).map(el => el.innerText || el.textContent).join("\n"));
             if (result) return result;
+          }
+
+          // Strategy 2: contenteditable INSIDE a known editor container only
+          const editorContainers = [
+            ".kix-appview-editor",
+            ".docs-editor",
+            "#docs-editor",
+          ];
+          for (const sel of editorContainers) {
+            const container = document.querySelector(sel);
+            if (!container) continue;
+            for (const el of container.querySelectorAll('[contenteditable="true"]')) {
+              const result = tryText(el.innerText || el.textContent || "");
+              if (result) return result;
+            }
           }
 
           // Strategy 2: .kix-lineview
