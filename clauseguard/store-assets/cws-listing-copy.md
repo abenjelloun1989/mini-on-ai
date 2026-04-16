@@ -1,4 +1,4 @@
-# ClauseGuard — CWS Listing Copy (v1.2.0)
+# ClauseGuard — CWS Listing Copy (v1.3.0)
 
 ## Extension Name (45 chars max)
 ClauseGuard — AI Contract & NDA Analyzer
@@ -10,19 +10,21 @@ Spot red flags in any contract before you sign. AI-powered risk score, clause re
 
 **AI contract review — spot red flags before you sign**
 
-ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, and unfair clauses in under 15 seconds. Plain English explanations, suggested clause rewrites, and negotiation tips — no lawyer required for a first-pass review.
+ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, and unfair clauses in under 30 seconds. Plain English explanations, suggested clause rewrites, and negotiation tips — no lawyer required for a first-pass review.
 
 **How it works:**
-1. Paste contract text or upload a PDF — or click "Analyze current page" on any contract webpage
-2. Click Analyze — results in under 15 seconds
+1. Paste contract text, drag-and-drop a PDF, or click "Analyze current page" on any contract webpage
+2. Click Analyze (or press Ctrl+Enter) — results in under 30 seconds
 3. Review your risk score, red flags, and copy-ready clause rewrites
+4. Your results stay saved — reopen the extension anytime without losing your analysis
 
 **What you get:**
 ✓ Risk Score (1–10) — instant color-coded assessment of contract fairness
 ✓ Red Flags — dangerous clauses flagged in plain English with "what could go wrong" explanations
 ✓ Suggested Changes — ready-to-use rewordings for every risky clause, copy with one click
-✓ Missing Protections — spots important clauses not in the contract (late payment penalties, liability caps, IP ownership, etc.)
+✓ Missing Protections — spots important clauses absent from the contract (late payment penalties, liability caps, IP ownership clauses, etc.)
 ✓ Negotiation Tips — actionable advice tailored to this specific contract
+✓ Context preserved — your contract and results survive closing and reopening the popup
 ✓ Expand to full page — open ClauseGuard in a full browser tab for a larger, more comfortable reading experience
 
 **Works on:**
@@ -31,15 +33,15 @@ ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, 
 – Employment offers & agreements
 – SaaS terms of service
 – Lease contracts
-– Any contract text you paste or upload as PDF
+– Any contract text you paste, drag-and-drop as PDF, or extract from a webpage
 
 **Free plan:** 3 full analyses per month — risk score, all red flags, and suggested rewrites included. No account needed.
 
-**Pro plan ($7/month):** Unlimited analyses + contract comparison (diff two versions side by side) + PDF export + saved clause library.
+**Pro plan ($7/month):** Unlimited analyses + contract comparison (diff two versions side by side) + PDF export + saved clause library (save, organize, delete, and export fair clauses for reuse).
 
 **Lifetime Deal:** Available for a limited time via selected partner platforms. Redeem a lifetime code in the Account tab for permanent Pro access.
 
-**Privacy:** ClauseGuard uses a randomly generated anonymous ID. We do not collect your name, email, or personal information. Contract text is processed for analysis and not stored beyond what is needed. We never sell or share your data.
+**Privacy:** ClauseGuard uses a randomly generated anonymous ID. We do not collect your name, email, or personal information. Contract text is processed for analysis and not stored beyond what is needed. You can delete all your data at any time from the Account tab. We never sell or share your data.
 
 ⚠️ ClauseGuard is an AI-powered tool for informational purposes only. It does not constitute legal advice. For high-stakes contracts, always consult a qualified attorney.
 
@@ -57,24 +59,27 @@ English
 
 ## Screenshots — what to capture (5 screenshots, 1280×800 recommended)
 
+Current screenshots in `store-assets/` were generated for v1.2.0 and are still valid.
+Regenerate if you want to show the character count indicator or the new library delete/export UI.
+
 ### screenshot-1-input.png
-**What to show:** The popup in its default state — textarea visible, "Analyze current page" button, PDF upload button, "3 analyses remaining" usage line, blue "Analyze Contract" button at the bottom.
-**Caption:** "Paste any contract, upload a PDF, or analyze the current page in one click"
+**What to show:** The popup in its default state — textarea with character counter below it, "Analyze current page" button, PDF upload button, "3 analyses remaining" usage line, blue "Analyze Contract" button.
+**Caption:** "Paste any contract, drag-and-drop a PDF, or analyze the current page in one click"
 
 ### screenshot-2-risk-score.png
-**What to show:** The results view after analyzing a real contract — the colored risk badge (e.g. 7/10 HIGH RISK in red), the plain-English summary below it, and at least 2 red flags visible.
+**What to show:** Results view — colored risk badge (e.g. 8/10 HIGH RISK), plain-English summary, 2–3 red flags visible.
 **Caption:** "Instant risk score (1–10) with plain-English explanations of every red flag"
 
 ### screenshot-3-clause-rewrite.png
-**What to show:** A clause card expanded to show the original quote, the explanation, the ⚠ concern box in red, and the "Suggested change" box in purple with the Copy button.
+**What to show:** A clause card expanded — original quote, explanation, ⚠ concern box, "Suggested change" box with Copy button.
 **Caption:** "Risky clauses explained — with copy-ready rewrites to negotiate a fairer deal"
 
 ### screenshot-4-missing-protections.png
-**What to show:** The "Missing Protections" section with 2–3 items expanded (yellow left border, title in yellow, why it matters text, and suggested clause text).
+**What to show:** "Missing Protections" section — 2–3 items with yellow left border, why-it-matters text, and copy-ready clause text.
 **Caption:** "Spots missing protections — IP ownership, liability caps, late payment clauses, and more"
 
-### screenshot-5-full-page.png  ← NEW (replaces old pricing screenshot)
-**What to show:** The full-page expanded view (click the ⤢ button in the popup header) showing the big risk score banner (72px number, risk label, New Analysis + Export buttons on right) and the content below.
+### screenshot-5-full-page.png
+**What to show:** Full-page expanded view (⤢ button in header) — large risk score banner, results content below.
 **Caption:** "Expand to full page for a comfortable desktop experience"
 
 ---
@@ -94,10 +99,35 @@ contract review, AI contract analyzer, NDA analyzer, contract red flag detector,
 
 ---
 
-## What changed in v1.2.0 (for your own notes — don't paste in store)
+## What changed in v1.3.0 (for your own notes — don't paste in store)
+
+### Frontend
+- **Character count** live counter below textarea — shows X / 15,000, turns green at ≥50 chars
+- **Ctrl+Enter / Cmd+Enter** submits analysis (keyboard shortcut)
+- **Drag-and-drop PDF** onto textarea — reuses existing PDF extractor
+- **Context persistence** — contract text and full results survive popup close/reopen within same browser session (chrome.storage.session)
+- **Clipboard fix** — shared copyText() helper; shows "Copy failed" instead of silent false positive
+- **Compare tab** — change count summary (X changes — Y favorable, Z unfavorable) + empty state message
+- **Library** — delete individual clauses (✕ button), export all clauses as .txt file, retry button on load failure
+- **Pro gates** — Compare/Library tab gates disappear immediately after LTD code redemption (no popup restart)
+- **Account tab** — shows this month's analysis count for Pro users
+- clipboardWrite permission added to manifest
+- prefers-reduced-motion: animations disabled for accessibility
+
+### Backend (security hardening)
+- Stripe webhook signature now **mandatory** — was bypassable if secret not configured
+- LTD users **protected** from accidental downgrade when Stripe subscription deleted
+- LTD code enumeration fixed — unified error message for invalid/used codes
+- Claude response null-guarded + validated (risk_score + clauses presence checked)
+- /api/compare length validation — prevents large payload abuse
+- Usage count is now an atomic check-and-increment (race condition fixed)
+- GDPR: DELETE /api/user endpoint added
+- Debug info removed from production 500 responses
+
+## What changed in v1.2.0 (for reference)
 - Removed Google Doc import (replaced by PDF upload + paste)
 - Added expand-to-full-page button (⤢ in header)
 - Full-page mode redesigned: single-column, 72px risk score banner, 15px base font
 - Account tab: LTD code redemption field
-- All fonts bumped up across the board for readability
-- Worker model fix (claude-3-5-haiku-20241022) — resolves intermittent 500 errors
+- Worker model updated to claude-haiku-4-5 (resolves 404 errors)
+- max_tokens bumped to 8192 (resolves JSON truncation on long contracts)
