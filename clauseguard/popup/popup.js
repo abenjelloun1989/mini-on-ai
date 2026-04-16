@@ -172,88 +172,48 @@ function setupAnalyzeTab() {
       const results = await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: () => {
-          function clean(t) { return t.replace(/\n{3,}/g, "\n\n").trim().slice(0, 15000); }
-
-          // Known UI noise: language selectors, menus, toolbars
-          function isUiNoise(t) {
-            // Menu items contain keyboard shortcut symbols and language lists
-            const menuSignals = ["►", "⌘", "Afrikaans", "Bahasa", "Català",
-                                 "Normal text", "Arial", "⌥", "Ctrl+", "Maj+",
-                                 "Nombre de mots", "Grammaire", "Traduire"];
-            return menuSignals.some(s => t.includes(s));
+          // Remove lines that are purely UI chrome (line numbers, sidebar labels)
+          function filterLines(text) {
+            return text.split("\n")
+              .filter(line => {
+                const t = line.trim();
+                if (!t) return false;
+                if (/^\d+$/.test(t)) return false;           // line numbers
+                if (t.startsWith("Onglet")) return false;    // tab panel
+                if (t.startsWith("Les titres")) return false;// outline sidebar
+                return true;
+              })
+              .join("\n")
+              .replace(/\n{3,}/g, "\n\n")
+              .trim()
+              .slice(0, 15000);
           }
 
-          function tryText(t) {
-            const trimmed = t.trim();
-            if (trimmed.length > 80 && !isUiNoise(trimmed)) return clean(trimmed);
-            return null;
+          function tryEls(els) {
+            const raw = Array.from(els)
+              .map(el => (el.innerText || el.textContent || "").trim())
+              .join("\n");
+            const filtered = filterLines(raw);
+            return filtered.length > 80 ? filtered : null;
           }
 
-          // Strategy 1: .kix-page — the actual rendered document pages
-          const kixPages = document.querySelectorAll(".kix-page");
-          if (kixPages.length) {
-            const result = tryText(Array.from(kixPages).map(el => el.innerText || el.textContent).join("\n"));
-            if (result) return result;
-          }
-
-          // Strategy 2: contenteditable INSIDE a known editor container only
-          const editorContainers = [
-            ".kix-appview-editor",
-            ".docs-editor",
-            "#docs-editor",
-          ];
-          for (const sel of editorContainers) {
-            const container = document.querySelector(sel);
-            if (!container) continue;
-            for (const el of container.querySelectorAll('[contenteditable="true"]')) {
-              const result = tryText(el.innerText || el.textContent || "");
-              if (result) return result;
-            }
-          }
-
-          // Strategy 2: .kix-lineview
-          const lines = document.querySelectorAll(".kix-lineview");
-          if (lines.length) {
-            const result = tryText(Array.from(lines).map(el => el.textContent).join("\n"));
-            if (result) return result;
-          }
-
-          // Strategy 3: .kix-paragraphrenderer
+          // 1. .kix-paragraphrenderer — paragraph-level elements, most reliable
           const paras = document.querySelectorAll(".kix-paragraphrenderer");
-          if (paras.length) {
-            const result = tryText(Array.from(paras).map(el => el.textContent).join("\n"));
-            if (result) return result;
-          }
+          if (paras.length) { const r = tryEls(paras); if (r) return r; }
 
-          // Strategy 4: role="textbox"
+          // 2. .kix-lineview — line-level elements
+          const lineviews = document.querySelectorAll(".kix-lineview");
+          if (lineviews.length) { const r = tryEls(lineviews); if (r) return r; }
+
+          // 3. .kix-page-content-wrapper — page containers
+          const pageContents = document.querySelectorAll(".kix-page-content-wrapper");
+          if (pageContents.length) { const r = tryEls(pageContents); if (r) return r; }
+
+          // 4. role="textbox"
           const box = document.querySelector('[role="textbox"]');
           if (box) {
-            const result = tryText(box.innerText || box.textContent || "");
-            if (result) return result;
-          }
-
-          // Strategy 5: .kix-page-content-wrapper
-          const pages = document.querySelectorAll(".kix-page-content-wrapper");
-          if (pages.length) {
-            const result = tryText(Array.from(pages).map(el => el.innerText || el.textContent).join("\n"));
-            if (result) return result;
-          }
-
-          // Strategy 6: .docs-editor container
-          const editor = document.querySelector(".docs-editor");
-          if (editor) {
-            const result = tryText(editor.innerText || editor.textContent || "");
-            if (result) return result;
-          }
-
-          // Strategy 7: largest div that is NOT UI noise
-          const candidate = Array.from(document.querySelectorAll("div"))
-            .map(el => ({ el, text: el.innerText || "" }))
-            .filter(x => x.text.length > 200 && !isUiNoise(x.text))
-            .sort((a, b) => b.text.length - a.text.length)[0];
-          if (candidate) {
-            const result = tryText(candidate.text);
-            if (result) return result;
+            const filtered = filterLines(box.innerText || box.textContent || "");
+            if (filtered.length > 80) return filtered;
           }
 
           return null;
