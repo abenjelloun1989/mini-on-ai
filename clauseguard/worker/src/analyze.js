@@ -152,27 +152,21 @@ export async function handleAnalyze(request, env) {
   let analysis;
   try {
     const prompt = buildAnalysisPrompt(trimmed, contract_type);
-    const claudeCtrl = new AbortController();
-    const claudeTimeout = setTimeout(() => claudeCtrl.abort(), 25000);
-    let resp;
-    try {
-      resp = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "x-api-key": env.ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-haiku-4-5",
-          max_tokens: 8192,
-          messages: [{ role: "user", content: prompt }],
-        }),
-        signal: claudeCtrl.signal,
-      });
-    } finally {
-      clearTimeout(claudeTimeout);
-    }
+    // No manual timeout — Cloudflare Workers enforce a 30s wall-clock limit.
+    // Adding our own AbortController at 25s cuts off legitimate long Claude responses.
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5",
+        max_tokens: 8192,
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
 
     if (!resp.ok) {
       const errText = await resp.text();
@@ -287,27 +281,19 @@ NEW VERSION:
 ${contract_text_new.slice(0, MAX_CONTRACT_LENGTH)}`;
 
   try {
-    const cmpCtrl = new AbortController();
-    const cmpTimeout = setTimeout(() => cmpCtrl.abort(), 25000);
-    let resp;
-    try {
-      resp = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "x-api-key": env.ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "claude-haiku-4-5",
-          max_tokens: 8192,
-          messages: [{ role: "user", content: prompt }],
-        }),
-        signal: cmpCtrl.signal,
-      });
-    } finally {
-      clearTimeout(cmpTimeout);
-    }
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5",
+        max_tokens: 8192,
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
 
     if (!resp.ok) throw new Error(`Anthropic ${resp.status}`);
 
