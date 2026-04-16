@@ -7,6 +7,16 @@ let currentAnalysis = null;
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Full-page mode when opened as a tab
+  if (window.outerWidth > 600) {
+    document.body.classList.add("full-page");
+    const expandBtn = document.getElementById("expandBtn");
+    if (expandBtn) expandBtn.style.display = "none";
+  }
+  document.getElementById("expandBtn")?.addEventListener("click", () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL("popup/popup.html") });
+  });
+
   await loadUser();
   setupTabs();
   setupAnalyzeTab();

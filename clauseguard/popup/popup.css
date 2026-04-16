@@ -30,6 +30,16 @@ body {
   line-height: 1.5;
 }
 
+/* Full-page mode — when opened as a tab via expandBtn */
+body.full-page {
+  width: 100%;
+  max-width: 780px;
+  max-height: none;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
 /* ─── Header ────────────────────────────────────────────────────────────────── */
 .header {
   display: flex;

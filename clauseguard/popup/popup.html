@@ -17,7 +17,12 @@
       </svg>
       <span class="header-title">ClauseGuard</span>
     </div>
-    <div class="header-badge" id="tierBadge">Free</div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="header-badge" id="tierBadge">Free</div>
+      <button id="expandBtn" title="Open full page" style="background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--text-muted);display:flex;align-items:center;opacity:0.7;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </div>
   </header>
 
   <!-- Tabs -->
