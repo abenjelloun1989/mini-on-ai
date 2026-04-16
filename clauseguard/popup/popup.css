@@ -30,15 +30,93 @@ body {
   line-height: 1.5;
 }
 
-/* Full-page mode — when opened as a tab via expandBtn */
+/* ─── Full-page mode ─────────────────────────────────────────────────────────── */
 body.full-page {
   width: 100%;
-  max-width: 780px;
+  max-width: 100%;
   max-height: none;
   min-height: 100vh;
-  margin: 0 auto;
-  padding-bottom: 40px;
+  margin: 0;
+  font-size: 14px;
 }
+
+body.full-page .header {
+  padding: 12px 32px;
+  font-size: 15px;
+}
+
+body.full-page .tabs {
+  padding: 0 32px;
+}
+
+body.full-page .tab {
+  font-size: 13px;
+  padding: 11px 18px;
+  flex: none;
+}
+
+body.full-page .tab-content {
+  padding: 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Two-column layout for Analyze tab in full-page */
+body.full-page #tab-analyze {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+body.full-page #inputState {
+  position: sticky;
+  top: 60px;
+}
+
+body.full-page #inputState textarea {
+  height: 340px;
+  font-size: 13px;
+  resize: vertical;
+}
+
+body.full-page #loadingState,
+body.full-page #resultsState {
+  grid-column: 2;
+}
+
+/* When input is hidden (loading/results), collapse left column */
+body.full-page #inputState.hidden {
+  display: none;
+}
+body.full-page #inputState.hidden ~ #loadingState,
+body.full-page #inputState.hidden ~ #resultsState {
+  grid-column: 1 / -1;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+body.full-page .risk-score { font-size: 40px; }
+body.full-page .risk-label { font-size: 13px; }
+body.full-page .summary-box { font-size: 14px; }
+body.full-page .red-flag-title { font-size: 13px; }
+body.full-page .red-flag-text { font-size: 12px; }
+body.full-page .clause-title { font-size: 13px; }
+body.full-page .clause-explanation { font-size: 13px; }
+body.full-page .clause-quote { font-size: 12px; }
+body.full-page .missing-why { font-size: 12px; }
+body.full-page .tips-list li { font-size: 13px; }
+body.full-page .section-title { font-size: 12px; }
+
+body.full-page #tab-compare,
+body.full-page #tab-library,
+body.full-page #tab-account {
+  max-width: 700px;
+}
+
+body.full-page .compare-col textarea { height: 220px; }
+body.full-page .btn-primary { font-size: 14px; padding: 12px 20px; }
 
 /* ─── Header ────────────────────────────────────────────────────────────────── */
 .header {

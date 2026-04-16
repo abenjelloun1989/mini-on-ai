@@ -355,6 +355,10 @@ async function runAnalysis() {
   }
 }
 
+function isFullPage() {
+  return document.body.classList.contains("full-page");
+}
+
 function showInputState() {
   document.getElementById("inputState").classList.remove("hidden");
   document.getElementById("loadingState").classList.add("hidden");
@@ -362,13 +366,19 @@ function showInputState() {
 }
 
 function showLoadingState() {
-  document.getElementById("inputState").classList.add("hidden");
+  // In full-page mode keep input visible as left column
+  if (!isFullPage()) {
+    document.getElementById("inputState").classList.add("hidden");
+  }
   document.getElementById("loadingState").classList.remove("hidden");
   document.getElementById("resultsState").classList.add("hidden");
 }
 
 function showResults(analysis, usage) {
-  document.getElementById("inputState").classList.add("hidden");
+  // In full-page mode keep input visible as left column
+  if (!isFullPage()) {
+    document.getElementById("inputState").classList.add("hidden");
+  }
   document.getElementById("loadingState").classList.add("hidden");
   document.getElementById("resultsState").classList.remove("hidden");
 
