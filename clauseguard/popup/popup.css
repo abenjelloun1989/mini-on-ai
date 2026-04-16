@@ -519,6 +519,19 @@ textarea {
   transition: border-color 0.15s;
 }
 textarea:focus { outline: none; border-color: var(--accent); }
+textarea.drag-over { border-color: var(--accent); background: rgba(99,102,241,0.06); }
+
+/* Character count */
+.char-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0.6;
+  transition: color 0.2s, opacity 0.2s;
+}
+.char-count.typing { opacity: 0.8; }
+.char-count.ready { color: var(--green); opacity: 1; font-weight: 600; }
 textarea::placeholder { color: var(--text-muted); }
 
 /* Analyze current page button */
@@ -1087,6 +1100,14 @@ body.full-page .ltd-status {
 body.full-page .account-footer-note {
   margin: 0;
   font-size: 13px;
+}
+
+/* ─── Accessibility ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .shield-loader,
+  .loading-dot {
+    animation: none !important;
+  }
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────── */

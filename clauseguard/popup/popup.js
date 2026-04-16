@@ -149,11 +149,25 @@ function setupAnalyzeTab() {
   const textarea = document.getElementById("contractText");
   const analyzeBtn = document.getElementById("analyzeBtn");
 
-  // Enable analyze button when text is present; also persist text changes
+  // Enable analyze button + update char count + persist on input
   textarea.addEventListener("input", () => {
-    const hasText = textarea.value.trim().length >= 50;
+    const len = textarea.value.trim().length;
+    const hasText = len >= 50;
     analyzeBtn.disabled = !hasText || (userTier !== "pro" && document.getElementById("upgradeBanner").classList.contains("hidden") === false);
+    const counter = document.getElementById("charCount");
+    if (counter) {
+      counter.textContent = `${len.toLocaleString()} / 15,000`;
+      counter.className = `char-count ${len >= 50 ? "ready" : len > 0 ? "typing" : ""}`;
+    }
     scheduleStateSave();
+  });
+
+  // Ctrl+Enter / Cmd+Enter to submit
+  textarea.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !analyzeBtn.disabled) {
+      e.preventDefault();
+      runAnalysis();
+    }
   });
 
   analyzeBtn.addEventListener("click", runAnalysis);
@@ -164,8 +178,28 @@ function setupAnalyzeTab() {
   // Analyze current page
   document.getElementById("analyzeCurrentPage").addEventListener("click", analyzeCurrentPage);
 
-  // PDF upload
+  // PDF upload (button)
   document.getElementById("pdfUpload").addEventListener("change", handlePdfUpload);
+
+  // Drag-and-drop PDF onto textarea
+  textarea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    textarea.classList.add("drag-over");
+  });
+  textarea.addEventListener("dragleave", () => {
+    textarea.classList.remove("drag-over");
+  });
+  textarea.addEventListener("drop", async (e) => {
+    e.preventDefault();
+    textarea.classList.remove("drag-over");
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    if (file.type === "application/pdf") {
+      await handlePdfUpload({ target: { files: [file] } });
+    } else {
+      alert("Only PDF files are supported via drag-and-drop. Paste text directly for other formats.");
+    }
+  });
 }
 
 async function analyzeCurrentPage() {
@@ -497,11 +531,7 @@ function showResults(analysis, usage) {
   clausesList.querySelectorAll(".copy-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      navigator.clipboard.writeText(btn.dataset.text).then(() => {
-        btn.textContent = "✓ Copied!";
-        btn.classList.add("copied");
-        setTimeout(() => { btn.textContent = "Copy suggestion"; btn.classList.remove("copied"); }, 2000);
-      });
+      copyText(btn, btn.dataset.text, "Copy suggestion");
     });
   });
 
@@ -542,12 +572,7 @@ function showResults(analysis, usage) {
     missingSection.classList.remove("hidden");
     // Copy buttons in missing
     missingList.querySelectorAll(".copy-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        navigator.clipboard.writeText(btn.dataset.text).then(() => {
-          btn.textContent = "✓ Copied!";
-          setTimeout(() => { btn.textContent = "Copy clause"; }, 2000);
-        });
-      });
+      btn.addEventListener("click", () => copyText(btn, btn.dataset.text, "Copy clause"));
     });
   } else {
     missingSection.classList.add("hidden");
@@ -628,21 +653,32 @@ async function runCompare() {
       contract_text_new: newV,
     });
 
+    const changes = data.changes || [];
+    const favorable = changes.filter(c => c.impact === "favorable").length;
+    const unfavorable = changes.filter(c => c.impact === "unfavorable").length;
+    const changeSummary = changes.length === 0
+      ? "No changes detected"
+      : `${changes.length} change${changes.length !== 1 ? "s" : ""} — ${favorable} favorable, ${unfavorable} unfavorable`;
+
     const resultsDiv = document.getElementById("compareResults");
     resultsDiv.innerHTML = `
       <div style="margin: 12px 0; padding: 10px 12px; background: var(--bg-card); border-radius: var(--radius); font-size: 12px;">
+        <div style="margin-bottom:6px;font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;">${escHtml(changeSummary)}</div>
         <strong>Overall:</strong> ${escHtml(data.overall_assessment)}
         <span style="margin-left: 8px; font-size: 11px; color: ${data.risk_change === 'improved' ? 'var(--green)' : data.risk_change === 'worsened' ? 'var(--red)' : 'var(--text-muted)'}">
           ${data.risk_change === 'improved' ? '↓ Risk improved' : data.risk_change === 'worsened' ? '↑ Risk worsened' : '→ Unchanged'}
         </span>
       </div>
-      ${(data.changes || []).map(c => `
-        <div class="change-item ${c.impact}">
-          <div class="change-type">${c.type} · ${c.category}</div>
-          <div class="change-title">${escHtml(c.title)}</div>
-          <div class="change-explanation">${escHtml(c.explanation)}</div>
-        </div>
-      `).join("")}
+      ${changes.length === 0
+        ? `<p style="color:var(--text-muted);font-size:12px;text-align:center;padding:16px 0;">No significant changes detected between the two versions.</p>`
+        : changes.map(c => `
+          <div class="change-item ${escHtml(c.impact)}">
+            <div class="change-type">${escHtml(c.type)} · ${escHtml(c.category)}</div>
+            <div class="change-title">${escHtml(c.title)}</div>
+            <div class="change-explanation">${escHtml(c.explanation)}</div>
+          </div>
+        `).join("")
+      }
     `;
   } catch (e) {
     alert("Comparison failed. Please try again.");
@@ -693,12 +729,7 @@ async function loadLibrary() {
     `).join("");
 
     container.querySelectorAll(".copy-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        navigator.clipboard.writeText(btn.dataset.text).then(() => {
-          btn.textContent = "✓ Copied!";
-          setTimeout(() => { btn.textContent = "Copy"; }, 2000);
-        });
-      });
+      btn.addEventListener("click", () => copyText(btn, btn.dataset.text, "Copy"));
     });
 
     container.querySelectorAll(".library-delete-btn").forEach(btn => {
@@ -721,7 +752,12 @@ async function loadLibrary() {
       });
     });
   } catch (e) {
-    container.innerHTML = '<p style="color:var(--red);font-size:12px;text-align:center;padding:20px">Failed to load library.</p>';
+    container.innerHTML = `
+      <div style="text-align:center;padding:20px;">
+        <p style="color:var(--red);font-size:12px;margin-bottom:8px;">Failed to load library.</p>
+        <button class="btn-text" id="retryLibraryBtn" style="font-size:12px;">Try again</button>
+      </div>`;
+    document.getElementById("retryLibraryBtn").addEventListener("click", loadLibrary);
   }
 }
 
@@ -773,6 +809,13 @@ async function loadAccountTab() {
     const isLtd = data.pro_source === "ltd";
     const hasStripe = !!data.has_subscription;
 
+    // Fetch usage count to show in Pro plan box
+    let usageThisMonth = 0;
+    try {
+      const usageData = await apiFetch(`/api/usage?user_id=${userId}`);
+      usageThisMonth = usageData.usage_this_month || 0;
+    } catch (_) {}
+
     if (isPro && isLtd) {
       planBox.innerHTML = `
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -784,6 +827,9 @@ async function loadAccountTab() {
           <span style="margin-left:auto;background:#1e3a1e;color:var(--green);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;">Active</span>
         </div>
         <div style="font-size:12px;color:var(--text-muted);">✓ Unlimited contract analyses<br>✓ Contract comparison<br>✓ PDF export<br>✓ Clause library<br>✓ All future Pro features</div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);">
+          This month: <strong style="color:var(--text);">${usageThisMonth} analys${usageThisMonth === 1 ? "is" : "es"}</strong>
+        </div>
       `;
       // Hide LTD section — already redeemed
       ltdSection.style.display = "none";
@@ -797,7 +843,10 @@ async function loadAccountTab() {
           </div>
           <span style="margin-left:auto;background:#1e3a1e;color:var(--green);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;">Active</span>
         </div>
-        <button id="manageBillingBtn" class="btn-primary" style="width:100%;margin-top:8px;font-size:12px;">Manage subscription →</button>
+        <div style="margin-bottom:8px;font-size:11px;color:var(--text-muted);">
+          This month: <strong style="color:var(--text);">${usageThisMonth} analys${usageThisMonth === 1 ? "is" : "es"}</strong>
+        </div>
+        <button id="manageBillingBtn" class="btn-primary" style="width:100%;font-size:12px;">Manage subscription →</button>
       `;
       document.getElementById("manageBillingBtn").addEventListener("click", async () => {
         const btn = document.getElementById("manageBillingBtn");
@@ -866,8 +915,9 @@ async function redeemLtdCode() {
       input.disabled = true;
       btn.style.display = "none";
 
-      // Refresh usage display
+      // Refresh usage display and pro gates immediately (no popup restart needed)
       await refreshUsage();
+      updateProGates(true);
 
       // Refresh the plan box to show lifetime state
       await loadAccountTab();
@@ -915,6 +965,19 @@ async function apiFetch(path, method = "GET", body = null) {
   const data = await res.json();
   if (!res.ok && !data.upgrade_required) throw new Error(data.error || `HTTP ${res.status}`);
   return data;
+}
+
+// ─── Clipboard helper ─────────────────────────────────────────────────────────
+
+function copyText(btn, text, resetLabel = "Copy") {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = "✓ Copied!";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = resetLabel; btn.classList.remove("copied"); }, 2000);
+  }).catch(() => {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { btn.textContent = resetLabel; }, 2000);
+  });
 }
 
 // ─── Utils ────────────────────────────────────────────────────────────────────

@@ -92,6 +92,11 @@ export default {
         return handleDeleteClause(request, env, path);
       }
 
+      // GDPR: delete all user data
+      if (path === "/api/user" && request.method === "DELETE") {
+        return handleDeleteUser(request, env);
+      }
+
       // Health check — safe to expose, returns binding status
       if (path === "/api/health" && request.method === "GET") {
         const checks = {};
@@ -111,6 +116,30 @@ export default {
     }
   },
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GDPR: delete all user data
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function handleDeleteUser(request, env) {
+  const body = await parseJson(request);
+  if (body.error) return corsJson(env, body, 400);
+
+  const user = await requireUser(env, body.user_id);
+  if (!user) return corsJson(env, { error: "User not found" }, 404);
+
+  // Batch delete all user data
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM saved_clauses WHERE user_id = ?").bind(user.id),
+    env.DB.prepare("DELETE FROM analyses WHERE user_id = ?").bind(user.id),
+    env.DB.prepare("DELETE FROM usage_tracking WHERE user_id = ?").bind(user.id),
+    env.DB.prepare("DELETE FROM users WHERE id = ?").bind(user.id),
+  ]);
+
+  // Also clear the user's storage key from client (best effort — client handles this)
+  console.log(`User deleted: ${user.id}`);
+  return corsJson(env, { deleted: true });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Clauses endpoints (Pro only)
