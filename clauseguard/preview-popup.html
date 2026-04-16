@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClauseGuard Preview</title>
+  <link rel="stylesheet" href="popup/popup.css">
+  <style>
+    /* Preview controls */
+    #preview-controls {
+      position: fixed; top: 8px; right: 8px; z-index: 9999;
+      display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end;
+    }
+    #preview-controls button {
+      background: #6366f1; color: white; border: none;
+      padding: 5px 10px; border-radius: 6px; font-size: 11px;
+      cursor: pointer; font-family: sans-serif;
+    }
+    #preview-controls button:hover { background: #4f52d6; }
+    body.full-page #preview-controls { display: none; }
+  </style>
+</head>
+<body>
+
+<div id="preview-controls">
+  <button onclick="showState('input')">① Input</button>
+  <button onclick="showState('results')">② Results</button>
+  <button onclick="showState('clause-open')">③ Clause</button>
+  <button onclick="showState('missing')">④ Missing</button>
+  <button onclick="showState('fullpage')">⑤ Full Page</button>
+</div>
+
+<!-- ─── POPUP SHELL ───────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1" stroke="#6366f1" stroke-width="1"/>
+      <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="header-title">ClauseGuard</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <div class="header-badge" id="tierBadge">Free</div>
+    <button id="expandBtn" title="Open full page" style="background:none;border:none;cursor:pointer;padding:2px 4px;color:var(--text-muted);display:flex;align-items:center;opacity:0.7;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="analyze">Analyze</button>
+  <button class="tab" data-tab="compare">Compare <span class="pro-chip">Pro</span></button>
+  <button class="tab" data-tab="library">Library <span class="pro-chip">Pro</span></button>
+  <button class="tab" data-tab="account">Account</button>
+</nav>
+
+<!-- ── Analyze Tab ── -->
+<div class="tab-content active" id="tab-analyze">
+
+  <!-- INPUT STATE -->
+  <div id="inputState">
+    <div class="contract-type-row">
+      <label for="contractType">Contract type</label>
+      <select id="contractType">
+        <option value="freelance" selected>Freelance Agreement</option>
+        <option value="nda">NDA</option>
+        <option value="employment">Employment</option>
+        <option value="saas">SaaS / Service Agreement</option>
+      </select>
+    </div>
+    <textarea id="contractText" rows="8" style="height:170px;">This Freelance Agreement ("Agreement") is entered into between Client Corp ("Client") and the Freelancer. Client may terminate this Agreement at any time, for any reason, with no notice required. All intellectual property created under this Agreement shall be owned exclusively by Client, including any pre-existing work incorporated into deliverables. Freelancer waives all moral rights. Client reserves the right to modify payment terms unilaterally. Freelancer shall not work for any competitor of Client for a period of 5 years following termination, globally...</textarea>
+    <button class="btn-current-page" id="analyzeCurrentPage">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Analyze current page
+    </button>
+    <div class="import-row">
+      <label class="btn-import">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Upload PDF
+      </label>
+    </div>
+    <div class="usage-row" id="usageRow">
+      <span style="color:var(--text-muted);">3 free analyses remaining this month</span>
+    </div>
+    <button class="btn-primary" id="analyzeBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"/></svg>
+      Analyze Contract
+    </button>
+  </div>
+
+  <!-- RESULTS STATE -->
+  <div id="resultsState" class="hidden">
+    <div class="results-header">
+      <div class="risk-badge high" id="riskBadge">
+        <span class="risk-score" id="riskScore">8</span>
+        <span class="risk-label" id="riskLabel">High Risk</span>
+      </div>
+      <div class="results-actions">
+        <button class="btn-text">← New analysis</button>
+        <button class="btn-text">Export PDF</button>
+      </div>
+    </div>
+
+    <div class="summary-box">This freelance agreement is heavily skewed in the client's favour. Immediate termination with no notice, a sweeping IP clause that captures pre-existing work, and a 5-year global non-compete are the most dangerous provisions. Negotiate these before signing.</div>
+
+    <div class="disclaimer-box">⚠ AI analysis for informational purposes only — not legal advice. Consult a qualified attorney before signing any contract.</div>
+
+    <!-- Red flags -->
+    <div class="section" id="redFlagsSection">
+      <h3 class="section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Red Flags
+      </h3>
+      <div class="red-flag danger">
+        <div class="red-flag-title">🔴 Instant termination, zero notice</div>
+        <div class="red-flag-text">The client can end the contract without warning or reason, leaving you immediately unpaid for work in progress and with no time to line up new income.</div>
+      </div>
+      <div class="red-flag danger">
+        <div class="red-flag-title">🔴 IP clause seizes pre-existing work</div>
+        <div class="red-flag-text">Any prior code, designs, or assets you bring to the project become the client's property. You could lose tools and templates you rely on for other clients.</div>
+      </div>
+      <div class="red-flag warning">
+        <div class="red-flag-title">🟡 5-year global non-compete</div>
+        <div class="red-flag-text">This clause would restrict you from working for any competitor — worldwide — for 5 years after leaving. Likely unenforceable, but costly to challenge.</div>
+      </div>
+    </div>
+
+    <!-- Clauses -->
+    <div class="section">
+      <h3 class="section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        All Clauses
+      </h3>
+      <div class="clause-card" id="clause1">
+        <div class="clause-header" onclick="document.getElementById('clause1').classList.toggle('open')">
+          <div class="clause-dot red"></div>
+          <span class="clause-category">Termination</span>
+          <span class="clause-title">Termination at will, no notice</span>
+          <span class="clause-chevron">▼</span>
+        </div>
+        <div class="clause-body">
+          <div class="clause-quote">"Client may terminate this Agreement at any time, for any reason, with no notice required."</div>
+          <div class="clause-explanation">The client can terminate instantly without giving you time to wrap up, deliver, or invoice. You bear all the risk.</div>
+          <div class="clause-concern">⚠ You could lose unpaid work and have zero runway to find your next client.</div>
+          <div class="clause-suggestion">
+            <div class="clause-suggestion-label">✦ Suggested change</div>
+            Either party may terminate this Agreement with 14 days written notice. Upon termination, Client shall pay for all work completed up to the termination date.
+            <br><button class="copy-btn">Copy suggestion</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clause-card open" id="clause2">
+        <div class="clause-header" onclick="document.getElementById('clause2').classList.toggle('open')">
+          <div class="clause-dot red"></div>
+          <span class="clause-category">Intellectual Property</span>
+          <span class="clause-title">IP assignment including pre-existing work</span>
+          <span class="clause-chevron">▼</span>
+        </div>
+        <div class="clause-body">
+          <div class="clause-quote">"All intellectual property created under this Agreement shall be owned exclusively by Client, including any pre-existing work incorporated into deliverables."</div>
+          <div class="clause-explanation">This transfers ownership of not only what you create for the client, but anything pre-existing that you incorporate — including your own libraries, frameworks, or templates.</div>
+          <div class="clause-concern">⚠ You risk losing proprietary tools you've built over years and rely on for multiple clients.</div>
+          <div class="clause-suggestion">
+            <div class="clause-suggestion-label">✦ Suggested change</div>
+            Client owns all deliverables created specifically for this project. Freelancer retains all rights to pre-existing tools, libraries, and methodologies, and grants Client a non-exclusive license to use them solely within the deliverables.
+            <br><button class="copy-btn">Copy suggestion</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clause-card" id="clause3">
+        <div class="clause-header" onclick="document.getElementById('clause3').classList.toggle('open')">
+          <div class="clause-dot yellow"></div>
+          <span class="clause-category">Non-Compete</span>
+          <span class="clause-title">5-year global non-compete</span>
+          <span class="clause-chevron">▼</span>
+        </div>
+        <div class="clause-body">
+          <div class="clause-quote">"Freelancer shall not work for any competitor of Client for a period of 5 years following termination, globally."</div>
+          <div class="clause-explanation">A global 5-year non-compete is almost certainly unenforceable, but disputing it requires legal costs. Ask to remove it or narrow the scope significantly.</div>
+          <div class="clause-suggestion">
+            <div class="clause-suggestion-label">✦ Suggested change</div>
+            Remove this clause entirely, or limit to: Freelancer shall not directly solicit Client's named customers for 6 months following termination.
+            <br><button class="copy-btn">Copy suggestion</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Missing protections -->
+    <div class="section" id="missingSection">
+      <h3 class="section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Missing Protections
+      </h3>
+      <div class="missing-item">
+        <div class="missing-title">+ Late Payment Penalty</div>
+        <div class="missing-why">No clause covers what happens if the client pays late. Without it, you have no leverage and may wait months for payment.</div>
+        <div class="missing-clause">Invoices unpaid after 14 days accrue interest at 1.5% per month. Client pays all reasonable collection costs.
+          <br><button class="copy-btn" style="margin-top:6px">Copy clause</button>
+        </div>
+      </div>
+      <div class="missing-item">
+        <div class="missing-title">+ Liability Cap</div>
+        <div class="missing-why">Without a liability cap, you could theoretically be sued for unlimited damages arising from your work.</div>
+        <div class="missing-clause">Freelancer's total liability under this Agreement shall not exceed the fees paid in the 3 months preceding the claim.
+          <br><button class="copy-btn" style="margin-top:6px">Copy clause</button>
+        </div>
+      </div>
+      <div class="missing-item">
+        <div class="missing-title">+ Revision Scope</div>
+        <div class="missing-why">No limit on revisions means the client can request unlimited changes without additional payment.</div>
+        <div class="missing-clause">Each project milestone includes up to 2 rounds of revisions. Additional revisions billed at the standard hourly rate.
+          <br><button class="copy-btn" style="margin-top:6px">Copy clause</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="section" id="tipsSection">
+      <h3 class="section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Negotiation Tips
+      </h3>
+      <ol class="tips-list">
+        <li>Strike the global non-compete entirely — most courts won't enforce it anyway, and it signals good faith.</li>
+        <li>Add a 14-day notice period before termination. Frame it as "enough time to hand over work cleanly."</li>
+        <li>Carve out pre-existing IP explicitly — list your key tools by name in a schedule attached to the contract.</li>
+        <li>Request a kill fee of 25–50% of remaining milestone value if the project is cancelled after work has begun.</li>
+      </ol>
+    </div>
+  </div>
+
+</div><!-- end tab-analyze -->
+
+<script>
+function showState(state) {
+  const input = document.getElementById('inputState');
+  const results = document.getElementById('resultsState');
+  const body = document.body;
+
+  // Reset
+  body.classList.remove('full-page');
+  input.classList.remove('hidden');
+  results.classList.add('hidden');
+  document.getElementById('clause2').classList.remove('open');
+  document.getElementById('tierBadge').textContent = 'Free';
+  document.getElementById('tierBadge').classList.remove('pro');
+
+  if (state === 'input') {
+    // Default: input visible
+  } else if (state === 'results') {
+    input.classList.add('hidden');
+    results.classList.remove('hidden');
+  } else if (state === 'clause-open') {
+    input.classList.add('hidden');
+    results.classList.remove('hidden');
+    document.getElementById('clause2').classList.add('open');
+    // Scroll to clause section
+    setTimeout(() => document.getElementById('clause2').scrollIntoView({behavior:'smooth', block:'center'}), 100);
+  } else if (state === 'missing') {
+    input.classList.add('hidden');
+    results.classList.remove('hidden');
+    setTimeout(() => document.getElementById('missingSection').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+  } else if (state === 'fullpage') {
+    body.classList.add('full-page');
+    input.classList.add('hidden');
+    results.classList.remove('hidden');
+    document.getElementById('tierBadge').textContent = 'Pro';
+    document.getElementById('tierBadge').classList.add('pro');
+  }
+}
+// Default: show input
+showState('input');
+</script>
+
+</body>
+</html>
