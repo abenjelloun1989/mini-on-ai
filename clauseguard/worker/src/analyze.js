@@ -173,8 +173,8 @@ export async function handleAnalyze(request, env) {
     if (!match) throw new Error("No JSON in response");
     analysis = JSON.parse(match[0]);
   } catch (e) {
-    console.error("Analysis error:", e.message);
-    return corsJson(env, { error: "Analysis failed. Please try again." }, 500);
+    console.error("Analysis error:", e.message, e.stack);
+    return corsJson(env, { error: "Analysis failed. Please try again.", _debug: e.message }, 500);
   }
 
   // Store analysis

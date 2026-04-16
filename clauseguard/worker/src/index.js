@@ -92,10 +92,22 @@ export default {
         return handleDeleteClause(request, env, path);
       }
 
+      // Health check — safe to expose, returns binding status
+      if (path === "/api/health" && request.method === "GET") {
+        const checks = {};
+        try { await env.DB.prepare("SELECT 1").first(); checks.db = "ok"; }
+        catch (e) { checks.db = "FAIL: " + e.message; }
+        try { await env.KV.get("__health__"); checks.kv = "ok"; }
+        catch (e) { checks.kv = "FAIL: " + e.message; }
+        checks.anthropic_key = env.ANTHROPIC_API_KEY ? "set" : "MISSING";
+        checks.stripe_key = env.STRIPE_SECRET_KEY ? "set" : "MISSING";
+        return corsJson(env, checks);
+      }
+
       return corsJson(env, { error: "Not found" }, 404);
     } catch (e) {
       console.error("Unhandled error:", e.message, e.stack);
-      return corsJson(env, { error: "Internal server error" }, 500);
+      return corsJson(env, { error: "Internal server error", detail: e.message }, 500);
     }
   },
 };
