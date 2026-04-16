@@ -153,7 +153,7 @@ export async function handleAnalyze(request, env) {
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5",
-        max_tokens: 4096,
+        max_tokens: 8192,
         messages: [{ role: "user", content: prompt }],
       }),
     });
@@ -274,7 +274,7 @@ ${contract_text_new.slice(0, MAX_CONTRACT_LENGTH)}`;
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5",
-        max_tokens: 4096,
+        max_tokens: 8192,
         messages: [{ role: "user", content: prompt }],
       }),
     });
