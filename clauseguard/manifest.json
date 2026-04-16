@@ -20,12 +20,6 @@
   "background": {
     "service_worker": "background/service-worker.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["*://docs.google.com/document/*"],
-      "js": ["content/extract.js"]
-    }
-  ],
   "web_accessible_resources": [
     {
       "resources": ["lib/pdf.worker.min.js"],
