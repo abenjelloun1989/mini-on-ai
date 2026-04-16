@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupCompareTab();
   setupLibraryTab();
   setupAccountTab();
+  await restoreState(); // restore contract text + results from previous popup session
 });
 
 async function loadUser() {
@@ -148,10 +149,11 @@ function setupAnalyzeTab() {
   const textarea = document.getElementById("contractText");
   const analyzeBtn = document.getElementById("analyzeBtn");
 
-  // Enable analyze button when text is present
+  // Enable analyze button when text is present; also persist text changes
   textarea.addEventListener("input", () => {
     const hasText = textarea.value.trim().length >= 50;
     analyzeBtn.disabled = !hasText || (userTier !== "pro" && document.getElementById("upgradeBanner").classList.contains("hidden") === false);
+    scheduleStateSave();
   });
 
   analyzeBtn.addEventListener("click", runAnalysis);
@@ -359,10 +361,58 @@ function isFullPage() {
   return document.body.classList.contains("full-page");
 }
 
+// ─── State persistence (survives popup close/reopen within session) ───────────
+
+let _saveTimer = null;
+
+function scheduleStateSave() {
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(persistState, 400);
+}
+
+async function persistState() {
+  try {
+    const textarea  = document.getElementById("contractText");
+    const typeSelect = document.getElementById("contractType");
+    const isResults  = !document.getElementById("resultsState").classList.contains("hidden");
+    await chrome.storage.session.set({
+      contractText:  textarea?.value  || "",
+      contractType:  typeSelect?.value || "general",
+      currentView:   isResults ? "results" : "input",
+      savedAnalysis: isResults ? currentAnalysis : null,
+    });
+  } catch (e) {
+    // Non-fatal — session storage may be unavailable
+  }
+}
+
+async function restoreState() {
+  try {
+    const saved = await chrome.storage.session.get([
+      "contractText", "contractType", "currentView", "savedAnalysis",
+    ]);
+    if (saved.contractText) {
+      const textarea = document.getElementById("contractText");
+      textarea.value = saved.contractText;
+      textarea.dispatchEvent(new Event("input")); // re-enable analyze button
+    }
+    if (saved.contractType) {
+      document.getElementById("contractType").value = saved.contractType;
+    }
+    if (saved.currentView === "results" && saved.savedAnalysis) {
+      currentAnalysis = saved.savedAnalysis;
+      showResults(saved.savedAnalysis);
+    }
+  } catch (e) {
+    console.warn("State restore failed:", e);
+  }
+}
+
 function showInputState() {
   document.getElementById("inputState").classList.remove("hidden");
   document.getElementById("loadingState").classList.add("hidden");
   document.getElementById("resultsState").classList.add("hidden");
+  persistState(); // save "input" view so reopen lands here
 }
 
 function showLoadingState() {
@@ -512,6 +562,9 @@ function showResults(analysis, usage) {
   } else {
     tipsSection.classList.add("hidden");
   }
+
+  // Persist so reopening the popup restores this result
+  persistState();
 }
 
 function exportReport() {
@@ -613,15 +666,28 @@ async function loadLibrary() {
     const data = await apiFetch(`/api/clauses?user_id=${userId}`);
     if (!data.clauses?.length) {
       container.innerHTML = '<p style="color:var(--text-muted);font-size:12px;text-align:center;padding:20px">No saved clauses yet. Analyze a contract and save fair clauses to your library.</p>';
+      // Hide export button when empty
+      const exportLibBtn = document.getElementById("exportLibraryBtn");
+      if (exportLibBtn) exportLibBtn.style.display = "none";
       return;
     }
+
+    // Show export button when there are clauses
+    const exportLibBtn = document.getElementById("exportLibraryBtn");
+    if (exportLibBtn) {
+      exportLibBtn.style.display = "";
+      exportLibBtn.onclick = () => exportLibrary(data.clauses);
+    }
+
     container.innerHTML = data.clauses.map(clause => `
-      <div class="library-item">
+      <div class="library-item" data-clause-id="${escAttr(clause.id)}">
         <div class="library-item-header">
           <span class="library-title">${escHtml(clause.title)}</span>
           <span class="library-category">${escHtml(clause.category)}</span>
+          <button class="library-delete-btn" data-id="${escAttr(clause.id)}" title="Delete clause">✕</button>
         </div>
         <div class="library-text">${escHtml(clause.clause_text)}</div>
+        ${clause.notes ? `<div class="library-notes">${escHtml(clause.notes)}</div>` : ""}
         <button class="copy-btn" style="margin-top:6px" data-text="${escAttr(clause.clause_text)}">Copy</button>
       </div>
     `).join("");
@@ -634,9 +700,47 @@ async function loadLibrary() {
         });
       });
     });
+
+    container.querySelectorAll(".library-delete-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const clauseId = btn.dataset.id;
+        btn.textContent = "…";
+        btn.disabled = true;
+        try {
+          await apiFetch(`/api/clauses/${clauseId}?user_id=${userId}`, "DELETE");
+          // Remove the card from the DOM
+          const card = container.querySelector(`[data-clause-id="${clauseId}"]`);
+          if (card) card.remove();
+          // If library is now empty, reload to show empty state
+          if (!container.querySelector(".library-item")) loadLibrary();
+        } catch (e) {
+          btn.textContent = "✕";
+          btn.disabled = false;
+          alert("Could not delete clause. Please try again.");
+        }
+      });
+    });
   } catch (e) {
     container.innerHTML = '<p style="color:var(--red);font-size:12px;text-align:center;padding:20px">Failed to load library.</p>';
   }
+}
+
+function exportLibrary(clauses) {
+  const lines = clauses.map((c, i) => [
+    `${i + 1}. ${c.title.toUpperCase()} [${c.category}]`,
+    c.clause_text,
+    c.notes ? `Note: ${c.notes}` : "",
+    "",
+  ].filter(Boolean).join("\n")).join("\n---\n\n");
+
+  const content = `CLAUSEGUARD — CLAUSE LIBRARY EXPORT\nExported ${new Date().toLocaleDateString()}\n${"=".repeat(50)}\n\n${lines}`;
+  const blob = new Blob([content], { type: "text/plain" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
+  a.download = `clauseguard-library-${new Date().toISOString().slice(0, 10)}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 // ─── Account tab ──────────────────────────────────────────────────────────────
