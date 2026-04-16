@@ -174,45 +174,70 @@ function setupAnalyzeTab() {
         func: () => {
           function clean(t) { return t.replace(/\n{3,}/g, "\n\n").trim().slice(0, 15000); }
 
-          // Strategy 1: .kix-lineview
+          // Known UI noise: language selectors, menus, toolbars
+          function isUiNoise(t) {
+            return t.includes("Afrikaans") || t.includes("Azerbaycan") ||
+                   t.includes("Bahasa") || t.includes("Català") ||
+                   t.includes("Normal text") || t.includes("Arial");
+          }
+
+          function tryText(t) {
+            const trimmed = t.trim();
+            if (trimmed.length > 80 && !isUiNoise(trimmed)) return clean(trimmed);
+            return null;
+          }
+
+          // Strategy 1: contenteditable (current Google Docs editor)
+          for (const el of document.querySelectorAll('[contenteditable="true"]')) {
+            const result = tryText(el.innerText || el.textContent || "");
+            if (result) return result;
+          }
+
+          // Strategy 2: .kix-lineview
           const lines = document.querySelectorAll(".kix-lineview");
           if (lines.length) {
-            const t = Array.from(lines).map(el => el.textContent).join("\n");
-            if (t.trim().length > 50) return clean(t);
+            const result = tryText(Array.from(lines).map(el => el.textContent).join("\n"));
+            if (result) return result;
           }
-          // Strategy 2: .kix-paragraphrenderer
+
+          // Strategy 3: .kix-paragraphrenderer
           const paras = document.querySelectorAll(".kix-paragraphrenderer");
           if (paras.length) {
-            const t = Array.from(paras).map(el => el.textContent).join("\n");
-            if (t.trim().length > 50) return clean(t);
+            const result = tryText(Array.from(paras).map(el => el.textContent).join("\n"));
+            if (result) return result;
           }
-          // Strategy 3: role="textbox"
+
+          // Strategy 4: role="textbox"
           const box = document.querySelector('[role="textbox"]');
           if (box) {
-            const t = box.innerText || box.textContent || "";
-            if (t.trim().length > 50) return clean(t);
+            const result = tryText(box.innerText || box.textContent || "");
+            if (result) return result;
           }
-          // Strategy 4: .kix-page-content-wrapper
+
+          // Strategy 5: .kix-page-content-wrapper
           const pages = document.querySelectorAll(".kix-page-content-wrapper");
           if (pages.length) {
-            const t = Array.from(pages).map(el => el.innerText || el.textContent).join("\n");
-            if (t.trim().length > 50) return clean(t);
+            const result = tryText(Array.from(pages).map(el => el.innerText || el.textContent).join("\n"));
+            if (result) return result;
           }
-          // Strategy 5: .docs-editor
+
+          // Strategy 6: .docs-editor container
           const editor = document.querySelector(".docs-editor");
           if (editor) {
-            const t = editor.innerText || editor.textContent || "";
-            if (t.trim().length > 50) return clean(t);
+            const result = tryText(editor.innerText || editor.textContent || "");
+            if (result) return result;
           }
-          // Strategy 6: largest div
-          const biggest = Array.from(document.querySelectorAll("div"))
-            .map(el => ({ el, len: (el.innerText || "").length }))
-            .filter(x => x.len > 200)
-            .sort((a, b) => b.len - a.len)[0];
-          if (biggest) {
-            const t = biggest.el.innerText || "";
-            if (t.trim().length > 50) return clean(t);
+
+          // Strategy 7: largest div that is NOT UI noise
+          const candidate = Array.from(document.querySelectorAll("div"))
+            .map(el => ({ el, text: el.innerText || "" }))
+            .filter(x => x.text.length > 200 && !isUiNoise(x.text))
+            .sort((a, b) => b.text.length - a.text.length)[0];
+          if (candidate) {
+            const result = tryText(candidate.text);
+            if (result) return result;
           }
+
           return null;
         },
       });
