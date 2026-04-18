@@ -14,6 +14,23 @@ let currentInvoice = null;
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Dark mode toggle — restore preference before rendering
+  (function() {
+    const toggle = document.getElementById("darkModeToggle");
+    const stored = localStorage.getItem("ig-theme");
+    if (stored === "light") {
+      document.body.classList.add("light-mode");
+      if (toggle) toggle.textContent = "☀";
+    }
+    if (toggle) {
+      toggle.addEventListener("click", function() {
+        const isLight = document.body.classList.toggle("light-mode");
+        localStorage.setItem("ig-theme", isLight ? "light" : "dark");
+        toggle.textContent = isLight ? "☀" : "☾";
+      });
+    }
+  })();
+
   const { userId: uid } = await chrome.storage.local.get("userId");
   userId = uid;
 
@@ -262,6 +279,15 @@ async function generateReminder(tone) {
   resultEl.style.display = "block";
   resultEl.innerHTML = '<div style="text-align:center;padding:12px;color:var(--text-muted)">Generating reminder...</div>';
 
+  function showError(message) {
+    resultEl.innerHTML = `
+      <div style="text-align:center;padding:12px;">
+        <p style="color:var(--danger);font-size:12px;margin-bottom:8px;">${escHtml(message)}</p>
+        <button class="btn-text" id="retryReminderBtn">Try again</button>
+      </div>`;
+    document.getElementById("retryReminderBtn")?.addEventListener("click", () => generateReminder(tone));
+  }
+
   try {
     const res = await fetch(`${API_BASE}/api/remind`, {
       method: "POST",
@@ -278,13 +304,13 @@ async function generateReminder(tone) {
     if (!res.ok) {
       let err = {};
       try { err = JSON.parse(rawText); } catch {}
-      resultEl.innerHTML = `<div style="color:var(--danger)">${escHtml(err.error || "Failed to generate reminder.")}</div>`;
+      showError(err.error || "Failed to generate reminder.");
       return;
     }
 
     let data;
     try { data = JSON.parse(rawText); } catch {
-      resultEl.innerHTML = `<div style="color:var(--danger)">Bad response from server.</div>`;
+      showError("Bad response from server.");
       return;
     }
 
@@ -305,14 +331,9 @@ async function generateReminder(tone) {
       chrome.tabs.create({ url: mailto });
     });
 
-    // Copy to clipboard
-    document.getElementById("copyReminderBtn").addEventListener("click", async () => {
-      await navigator.clipboard.writeText(`Subject: ${data.subject}\n\n${data.body}`);
-      document.getElementById("copyReminderBtn").textContent = "✓ Copied!";
-      setTimeout(() => {
-        const btn = document.getElementById("copyReminderBtn");
-        if (btn) btn.textContent = "📋 Copy";
-      }, 2000);
+    // Copy to clipboard — with error handling
+    document.getElementById("copyReminderBtn").addEventListener("click", (e) => {
+      copyText(e.currentTarget, `Subject: ${data.subject}\n\n${data.body}`);
     });
 
     // Update reminder count locally
@@ -321,7 +342,7 @@ async function generateReminder(tone) {
     }
   } catch (e) {
     console.error("Remind error:", e);
-    resultEl.innerHTML = '<div style="color:var(--danger)">Network error. Please try again.</div>';
+    showError("Network error. Please try again.");
   }
 }
 
@@ -344,6 +365,16 @@ async function upgrade() {
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function copyText(btn, text, resetLabel = "📋 Copy") {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = "✓ Copied!";
+    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
+  }).catch(() => {
+    btn.textContent = "Copy failed";
+    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
+  });
+}
 
 function formatAmount(cents, currency = "USD") {
   const symbols = { USD: "$", EUR: "€", GBP: "£", CAD: "CA$", AUD: "A$" };

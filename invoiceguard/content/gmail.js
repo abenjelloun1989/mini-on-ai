@@ -281,7 +281,20 @@ function showOverlay(parsed, emailData) {
 
   overlay.querySelector('#igClose').addEventListener('click', closeOverlay);
   overlay.querySelector('#igCancel').addEventListener('click', closeOverlay);
-  overlay.querySelector('#igSave').addEventListener('click', () => saveInvoice(emailData));
+  const saveBtn = overlay.querySelector('#igSave');
+  saveBtn.addEventListener('click', () => saveInvoice(emailData));
+
+  // Ctrl+Enter / Cmd+Enter to save without clicking
+  overlay.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !saveBtn.disabled) {
+      e.preventDefault();
+      saveInvoice(emailData);
+    }
+    if (e.key === 'Escape') closeOverlay();
+  });
+
+  // Focus first input for keyboard UX
+  overlay.querySelector('#igClientName')?.focus();
 }
 
 async function saveInvoice(emailData) {

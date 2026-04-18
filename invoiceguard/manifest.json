@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "InvoiceGuard — Freelance Payment Tracker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Track invoices from Gmail, get overdue alerts & AI follow-up reminders. Built for freelancers who hate chasing payments.",
-  "permissions": ["storage", "activeTab", "alarms"],
+  "permissions": ["storage", "activeTab", "alarms", "clipboardWrite"],
   "host_permissions": ["https://mail.google.com/*"],
   "background": {
     "service_worker": "background/service-worker.js"

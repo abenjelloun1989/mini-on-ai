@@ -8,13 +8,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!userId) return;
 
-  document.getElementById("supportId").textContent = userId.slice(0, 8);
-  document.getElementById("supportId").addEventListener("click", async () => {
-    await navigator.clipboard.writeText(userId);
-    document.getElementById("supportId").textContent = "Copied!";
-    setTimeout(() => {
-      document.getElementById("supportId").textContent = userId.slice(0, 8);
-    }, 2000);
+  const supportEl = document.getElementById("supportId");
+  supportEl.textContent = userId.slice(0, 8);
+  supportEl.addEventListener("click", () => {
+    navigator.clipboard.writeText(userId).then(() => {
+      supportEl.textContent = "Copied!";
+      setTimeout(() => { supportEl.textContent = userId.slice(0, 8); }, 2000);
+    }).catch(() => {
+      supportEl.textContent = "Copy failed";
+      setTimeout(() => { supportEl.textContent = userId.slice(0, 8); }, 2000);
+    });
   });
 
   // Load account data
@@ -75,6 +78,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (data.portal_url) window.open(data.portal_url);
     } catch (e) {
       alert("Error opening billing portal.");
+    }
+  });
+
+  // Delete account
+  document.getElementById("deleteAccountBtn").addEventListener("click", async () => {
+    const confirmed = confirm(
+      "Are you sure you want to permanently delete your account and all tracked invoices?\n\nThis cannot be undone."
+    );
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`${API_BASE}/api/user?user_id=${userId}`, { method: "DELETE" });
+      if (res.ok) {
+        await chrome.storage.local.clear();
+        alert("Your account and all data have been deleted.");
+        window.close();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete account. Please try again.");
+      }
+    } catch (e) {
+      alert("Network error. Please try again.");
     }
   });
 

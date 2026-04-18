@@ -361,3 +361,24 @@ body {
   font-family: inherit;
 }
 .btn-copy-reminder:hover { color: var(--text); border-color: var(--brand); }
+
+/* Dark mode toggle */
+.dark-mode-toggle {
+  font-size: 13px;
+  opacity: 0.7;
+}
+.dark-mode-toggle:hover { opacity: 1; }
+
+/* Light mode overrides */
+body.light-mode {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --border: #e0e0e0;
+  --text: #1a1a2e;
+  --text-muted: #666;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

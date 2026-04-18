@@ -74,20 +74,28 @@ Return ONLY valid JSON, no markdown fences.`;
   ].filter(Boolean).join("\n");
 
   try {
-    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 800,
-        system: systemPrompt,
-        messages: [{ role: "user", content: context }],
-      }),
-    });
+    const anthropicCtrl = new AbortController();
+    const anthropicTimeout = setTimeout(() => anthropicCtrl.abort(), 25000);
+    let anthropicRes;
+    try {
+      anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "x-api-key": env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "claude-haiku-4-5-20251001",
+          max_tokens: 800,
+          system: systemPrompt,
+          messages: [{ role: "user", content: context }],
+        }),
+        signal: anthropicCtrl.signal,
+      });
+    } finally {
+      clearTimeout(anthropicTimeout);
+    }
 
     if (!anthropicRes.ok) {
       const err = await anthropicRes.text();
@@ -102,8 +110,11 @@ Return ONLY valid JSON, no markdown fences.`;
     }
 
     const result = await anthropicRes.json();
-    const text = result.content?.[0]?.text || "";
-    const jsonStr = text.replace(/^```(?:json)?\s*/, "").replace(/\s*```$/, "").trim();
+    if (!result.content?.[0]?.text) {
+      throw new Error("Empty response from Anthropic");
+    }
+    const text = result.content[0].text.trim();
+    const jsonStr = text.replace(/^```(?:json)?\s*/, "").replace(/\s*```$/, "");
 
     let parsed;
     try {

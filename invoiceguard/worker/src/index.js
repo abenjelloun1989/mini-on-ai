@@ -34,6 +34,7 @@ import {
   getSubscription,
   handlePortal,
 } from "./billing.js";
+import { handleLtdRedeem } from "./ltd.js";
 
 export default {
   async fetch(request, env) {
@@ -89,6 +90,20 @@ export default {
       }
       if (path === "/api/portal" && request.method === "POST") {
         return handlePortal(request, env);
+      }
+
+      // LTD
+      if (path === "/api/ltd/redeem" && request.method === "POST") {
+        return handleLtdRedeem(request, env);
+      }
+
+      // GDPR: user data deletion
+      if (path === "/api/user" && request.method === "DELETE") {
+        const userId = new URL(request.url).searchParams.get("user_id");
+        if (!userId) return corsJson(env, { error: "Missing user_id" }, 400);
+        await env.DB.prepare("DELETE FROM invoices WHERE user_id = ?").bind(userId).run();
+        await env.DB.prepare("DELETE FROM users WHERE id = ?").bind(userId).run();
+        return corsJson(env, { success: true });
       }
 
       return corsJson(env, { error: "Not found" }, 404);
@@ -148,7 +163,7 @@ export async function parseJson(request) {
 export async function requireUser(env, userId) {
   if (!userId) return null;
   const user = await env.DB.prepare(
-    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id FROM users WHERE id = ?"
+    "SELECT id, email, tier, stripe_customer_id, stripe_subscription_id, pro_source FROM users WHERE id = ?"
   ).bind(userId).first();
   return user || null;
 }
