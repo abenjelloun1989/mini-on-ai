@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "JobGuard — AI Job Posting Analyzer",
+  "version": "1.0.0",
+  "description": "Spot scam signals, spec work traps, and lowball pay in any job posting before you apply. Free AI analyzer for freelancers.",
+  "permissions": ["storage", "activeTab", "scripting", "clipboardWrite"],
+  "host_permissions": ["https://jobguard-api.kirozdormu.workers.dev/*"],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
