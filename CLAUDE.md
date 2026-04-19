@@ -118,6 +118,7 @@ Read these at the start of the relevant task:
 
 - `skills/pattern-detect.md` — at the start of any new planning session: scan git log for repeated patterns, propose up to 2 new skills
 - `skills/sales-counsel.md` — when user asks about sales/distribution: fetch live data and give concrete next actions
+- `skills/chrome-extension-playbook.md` — when starting any new Chrome extension: full playbook for stack, security, monetization, UX, landing page, CWS listing, and distribution
 
 ## Environment Variables Required
 
