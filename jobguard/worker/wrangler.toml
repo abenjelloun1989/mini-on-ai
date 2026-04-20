@@ -4,9 +4,9 @@ compatibility_date = "2024-01-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "jobguard-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_name = "jobguard"
+database_id = "129c8930-313a-4573-a099-2ee877db8367"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "f49a7ea5e38d4ccca7d63fed1b37e070"
