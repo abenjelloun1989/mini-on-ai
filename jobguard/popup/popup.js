@@ -97,38 +97,82 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-      // Extraction function: try semantic content areas first, fall back to body
+      // Extraction function: JSON-LD first (works for SPAs like HelloWork),
+      // then semantic selectors, then body fallback
       const extractFn = () => {
-        const candidates = [
-          // Job-specific semantic selectors
-          document.querySelector('[class*="job-description"]'),
-          document.querySelector('[class*="jobDescription"]'),
-          document.querySelector('[class*="offer-description"]'),
-          document.querySelector('[class*="posting-description"]'),
-          document.querySelector('[class*="job-detail"]'),
-          document.querySelector('[class*="job_description"]'),
-          document.querySelector('[itemprop="description"]'),
-          document.querySelector('article'),
-          document.querySelector('main'),
-          // Generic fallback
-          document.body,
+        // ── Strategy 1: JSON-LD structured data ─────────────────────────────
+        const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+        for (const script of scripts) {
+          try {
+            const data = JSON.parse(script.textContent);
+            const isJobPosting = data['@type'] === 'JobPosting' || data.JobTitle || data.jobTitle;
+            if (!isJobPosting) continue;
+            const strip = html => (html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+            const parts = [];
+            const title = data.title || data.JobTitle || data.jobTitle;
+            const company = data.hiringOrganization?.name || data.Company || data.company;
+            const location = data.jobLocation?.address?.addressLocality
+              || data.jobLocation?.address?.addressRegion
+              || data.City || data.city;
+            const contract = data.employmentType || data.ContractType || data.contractType;
+            const salary = data.baseSalary?.value?.value
+              || data.Salary || data.salary;
+            const description = strip(data.description || data.Description || "");
+            const qualifications = strip(data.qualifications || data.Qualifications || "");
+            const responsibilities = strip(data.responsibilities || data.Responsibilities || "");
+            const skills = data.skills ? (Array.isArray(data.skills) ? data.skills.join(", ") : data.skills) : null;
+            const education = data.educationRequirements?.credentialCategory
+              || (Array.isArray(data.Education) ? data.Education.join(", ") : data.Education);
+            const experience = data.experienceRequirements?.monthsOfExperience
+              ? `${data.experienceRequirements.monthsOfExperience} months`
+              : data.Experience || data.experience;
+            const sector = Array.isArray(data.Sector) ? data.Sector.join(", ") : (data.Sector || data.sector);
+
+            if (title) parts.push(`Job Title: ${title}`);
+            if (company) parts.push(`Company: ${company}`);
+            if (location) parts.push(`Location: ${location}`);
+            if (contract) parts.push(`Contract type: ${contract}`);
+            if (salary) parts.push(`Salary: ${salary}`);
+            if (sector) parts.push(`Sector: ${sector}`);
+            if (education) parts.push(`Education required: ${education}`);
+            if (experience) parts.push(`Experience required: ${experience}`);
+            if (skills) parts.push(`Skills: ${skills}`);
+            if (description) parts.push(`\nJob Description:\n${description}`);
+            if (responsibilities) parts.push(`\nResponsibilities:\n${responsibilities}`);
+            if (qualifications) parts.push(`\nQualifications:\n${qualifications}`);
+
+            const result = parts.join("\n");
+            if (result.length > 150) return result;
+          } catch (e) { /* invalid JSON, skip */ }
+        }
+
+        // ── Strategy 2: semantic DOM selectors ──────────────────────────────
+        const selectors = [
+          '[itemprop="description"]',
+          '[class*="job-description"]', '[class*="jobDescription"]',
+          '[class*="offer-description"]', '[class*="job-detail"]',
+          '[class*="job_description"]', '[class*="posting-description"]',
+          'article', 'main',
         ];
-        for (const el of candidates) {
+        for (const sel of selectors) {
+          const el = document.querySelector(sel);
           if (el) {
             const t = el.innerText?.trim() || "";
             if (t.length > 300) return t;
           }
         }
+
+        // ── Strategy 3: body fallback ────────────────────────────────────────
         return document.body.innerText?.trim() || "";
       };
 
       let results = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extractFn });
       let text = results?.[0]?.result?.trim() || "";
 
-      // If content too short — page may still be loading (SPA). Wait 1.5s and retry once.
-      if (text.length < 300) {
+      // If too short — SPA may still be loading. Wait 2s and retry once.
+      if (text.length < 200) {
         btn.textContent = "📄 Waiting for page…";
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 2000));
         results = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extractFn });
         text = results?.[0]?.result?.trim() || "";
       }
@@ -139,9 +183,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      // For page extraction, cap at 6000 chars — the job description is always
-      // near the top; truncating avoids "similar jobs" sidebars confusing the AI
-      const clipped = text.slice(0, 6000);
+      // Cap at 8000 chars (JSON-LD extraction is already focused, no sidebar noise)
+      const clipped = text.slice(0, 8000);
       textarea.value = clipped;
       textarea.dispatchEvent(new Event("input"));
       btn.textContent = "📄 Analyze current page";
