@@ -12,6 +12,29 @@ let currentTier = "free";
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    await initPopup();
+  } catch (e) {
+    console.error("JobGuard popup init error:", e);
+    // Show recovery UI instead of blank tab
+    const analyzeTab = document.getElementById("tab-analyze");
+    if (analyzeTab) analyzeTab.innerHTML = `
+      <div style="text-align:center;padding:28px 16px;">
+        <p style="font-size:20px;margin-bottom:8px;">⚠️</p>
+        <p style="font-weight:600;margin-bottom:6px;">Something went wrong</p>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">
+          The extension encountered an error on startup.
+        </p>
+        <button class="btn-primary" id="resetStateBtn">Reset &amp; Recover</button>
+      </div>`;
+    document.getElementById("resetStateBtn")?.addEventListener("click", async () => {
+      await chrome.storage.local.remove(["jgLastAnalysis", "jgHistory", "jgFullPage"]);
+      window.location.reload();
+    });
+  }
+});
+
+async function initPopup() {
   // Dark mode — runs before render to avoid flash
   (function () {
     const toggle = document.getElementById("darkModeToggle");
@@ -39,11 +62,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Restore last analysis if available
+  // Restore last analysis if available — wrapped in its own try/catch so bad
+  // saved data never prevents the popup from opening
   const { jgLastAnalysis } = await chrome.storage.local.get("jgLastAnalysis");
   if (jgLastAnalysis?.analysis) {
-    document.getElementById("inputSection").style.display = "none";
-    renderResults(jgLastAnalysis.analysis, null, null, { restored: true, ts: jgLastAnalysis.ts });
+    try {
+      document.getElementById("inputSection").style.display = "none";
+      renderResults(jgLastAnalysis.analysis, null, null, { restored: true, ts: jgLastAnalysis.ts });
+    } catch (e) {
+      console.error("Failed to restore last analysis (clearing bad state):", e);
+      await chrome.storage.local.remove("jgLastAnalysis");
+      document.getElementById("inputSection").style.display = "flex";
+    }
   }
 
   // Wire up tabs
@@ -463,13 +493,14 @@ async function loadAccount() {
     if (data.tier === "pro") {
       document.getElementById("freeActions").style.display = "none";
       document.getElementById("proActions").style.display = "block";
-      document.getElementById("manageSubBtn").addEventListener("click", openPortal);
+      // Use .onclick to avoid stacking duplicate listeners on repeated tab visits
+      document.getElementById("manageSubBtn").onclick = openPortal;
     } else {
-      document.getElementById("upgradeBtn").addEventListener("click", startUpgrade);
-      document.getElementById("redeemBtn").addEventListener("click", redeemLtd);
-      document.getElementById("ltdCodeInput").addEventListener("keydown", (e) => {
+      document.getElementById("upgradeBtn").onclick = startUpgrade;
+      document.getElementById("redeemBtn").onclick = redeemLtd;
+      document.getElementById("ltdCodeInput").onkeydown = (e) => {
         if (e.key === "Enter") redeemLtd();
-      });
+      };
     }
   } catch (e) {
     console.error("Account load error:", e);
