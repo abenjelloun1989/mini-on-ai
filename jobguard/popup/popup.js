@@ -139,7 +139,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      const clipped = text.slice(0, MAX_LENGTH);
+      // For page extraction, cap at 6000 chars — the job description is always
+      // near the top; truncating avoids "similar jobs" sidebars confusing the AI
+      const clipped = text.slice(0, 6000);
       textarea.value = clipped;
       textarea.dispatchEvent(new Event("input"));
       btn.textContent = "📄 Analyze current page";

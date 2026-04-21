@@ -61,7 +61,7 @@ Rules:
 - market_rate_note: compare budget to typical freelance market rates for the specific skills mentioned.
 - negotiation_tips: 2-4 tips specific to THIS posting (e.g. "Ask for 50% upfront before starting")
 - If the posting is very short or low-quality, note this as a vague flag.
-- IMPORTANT: If the text appears to be a list of multiple job postings (a search results page, a job board listing page), do NOT analyze individual listings. Instead: set risk_score to 0, risk_label to "Not a job posting", summary to "This looks like a search results or listing page, not a single job posting. Please open a specific job and click Analyze again.", red_flags to [], green_signals to [], market_rate_note to null, negotiation_tips to [].
+- NOTE: Job pages often include navigation menus, sidebars, or "similar jobs" sections. Ignore those and focus analysis on the main job posting content. Only return risk_score=0 with risk_label="Not a job posting" if the text is ENTIRELY a paginated search results list with no single job description at all (e.g. dozens of job titles with no description, just company + location + salary snippets repeated in a grid).
 
 JOB POSTING TEXT:
 ${postingText}`;
