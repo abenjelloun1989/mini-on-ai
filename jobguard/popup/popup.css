@@ -230,7 +230,6 @@ body {
   gap: 12px;
 }
 .shield-anim {
-  font-size: 36px;
   animation: pulse 1.2s ease-in-out infinite;
 }
 @keyframes pulse {

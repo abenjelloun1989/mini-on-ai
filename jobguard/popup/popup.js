@@ -96,23 +96,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     btn.disabled = true;
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-      const results = await chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: () => document.body.innerText,
-      });
-      const text = results?.[0]?.result?.trim() || "";
-      if (text.length < 30) {
-        btn.textContent = "📄 Nothing found on page";
-        setTimeout(() => { btn.textContent = "📄 Analyze current page"; btn.disabled = false; }, 2000);
+
+      // Extraction function: try semantic content areas first, fall back to body
+      const extractFn = () => {
+        const candidates = [
+          // Job-specific semantic selectors
+          document.querySelector('[class*="job-description"]'),
+          document.querySelector('[class*="jobDescription"]'),
+          document.querySelector('[class*="offer-description"]'),
+          document.querySelector('[class*="posting-description"]'),
+          document.querySelector('[class*="job-detail"]'),
+          document.querySelector('[class*="job_description"]'),
+          document.querySelector('[itemprop="description"]'),
+          document.querySelector('article'),
+          document.querySelector('main'),
+          // Generic fallback
+          document.body,
+        ];
+        for (const el of candidates) {
+          if (el) {
+            const t = el.innerText?.trim() || "";
+            if (t.length > 300) return t;
+          }
+        }
+        return document.body.innerText?.trim() || "";
+      };
+
+      let results = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extractFn });
+      let text = results?.[0]?.result?.trim() || "";
+
+      // If content too short — page may still be loading (SPA). Wait 1.5s and retry once.
+      if (text.length < 300) {
+        btn.textContent = "📄 Waiting for page…";
+        await new Promise(r => setTimeout(r, 1500));
+        results = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extractFn });
+        text = results?.[0]?.result?.trim() || "";
+      }
+
+      if (text.length < 100) {
+        btn.textContent = "📄 Nothing found — try pasting";
+        setTimeout(() => { btn.textContent = "📄 Analyze current page"; btn.disabled = false; }, 2500);
         return;
       }
-      // Truncate if needed and fill textarea
+
       const clipped = text.slice(0, MAX_LENGTH);
       textarea.value = clipped;
       textarea.dispatchEvent(new Event("input"));
       btn.textContent = "📄 Analyze current page";
       btn.disabled = false;
-      // Auto-run analysis
       runAnalysis(clipped);
     } catch (e) {
       console.error("Page extract error:", e);
@@ -191,6 +222,27 @@ async function runAnalysis(text) {
         return;
       }
       renderError(data.error || "Analysis failed. Please try again.", text);
+      return;
+    }
+
+    // If AI detected a listing page (not a single job posting), show a friendly message
+    if (data.analysis?.risk_score === 0) {
+      loadingState.style.display = "none";
+      results.style.display = "block";
+      results.innerHTML = `
+        <div style="text-align:center;padding:24px;">
+          <p style="font-size:28px;margin-bottom:10px;">🔍</p>
+          <p style="font-weight:600;margin-bottom:6px;">This looks like a listing page</p>
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">
+            Open a single job posting and click Analyze again.
+          </p>
+          <button class="btn-secondary" id="backFromListBtn">← Go back</button>
+        </div>`;
+      document.getElementById("backFromListBtn").addEventListener("click", () => {
+        results.style.display = "none";
+        results.innerHTML = "";
+        inputSection.style.display = "flex";
+      });
       return;
     }
 
