@@ -232,7 +232,7 @@ async function initPopup() {
 
   // Load usage badge
   loadUsageBadge();
-});
+}
 
 // ─── Usage badge (header) ────────────────────────────────────────────────────
 
