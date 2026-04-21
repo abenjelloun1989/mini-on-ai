@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobGuard Report</title>
+  <style>
+    :root {
+      --accent: #F59E0B;
+      --green:  #10b981;
+      --danger: #ef4444;
+      --warn:   #f59e0b;
+      --orange: #f97316;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      background: #fff;
+      color: #111;
+      line-height: 1.55;
+    }
+    .page { max-width: 720px; margin: 0 auto; padding: 36px 24px 60px; }
+
+    /* ── Header ── */
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .report-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+    .report-logo span { color: var(--accent); }
+    .report-meta { font-size: 12px; color: #666; }
+    .btn-print {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-print:hover { opacity: 0.88; }
+
+    /* ── Risk banner ── */
+    .risk-banner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 20px;
+      border-radius: 10px;
+      border: 1.5px solid;
+      margin-bottom: 20px;
+    }
+    .risk-banner.green  { background: #ecfdf5; border-color: var(--green); }
+    .risk-banner.yellow { background: #fffbeb; border-color: var(--warn); }
+    .risk-banner.orange { background: #fff7ed; border-color: var(--orange); }
+    .risk-banner.red    { background: #fef2f2; border-color: var(--danger); }
+
+    .score-circle {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .green  .score-circle { background: var(--green);  color: #fff; }
+    .yellow .score-circle { background: var(--warn);   color: #000; }
+    .orange .score-circle { background: var(--orange); color: #fff; }
+    .red    .score-circle { background: var(--danger); color: #fff; }
+
+    .risk-label    { font-size: 17px; font-weight: 800; }
+    .risk-platform { font-size: 13px; color: #555; margin-top: 2px; }
+
+    /* ── Sections ── */
+    .summary {
+      background: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #888;
+      margin-bottom: 10px;
+      margin-top: 24px;
+    }
+    .flag-list { display: flex; flex-direction: column; gap: 10px; }
+    .flag-card {
+      border-radius: 8px;
+      padding: 12px 14px;
+      border: 1px solid #e5e5e5;
+    }
+    .flag-card.danger  { border-color: #fca5a5; background: #fef2f2; }
+    .flag-card.warning { border-color: #fcd34d; background: #fffbeb; }
+    .flag-card.green   { border-color: #6ee7b7; background: #ecfdf5; }
+    .flag-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+    .flag-icon   { font-size: 14px; flex-shrink: 0; }
+    .flag-title  { font-size: 13px; font-weight: 700; }
+    .flag-body   { font-size: 13px; color: #555; }
+    .flag-quote  {
+      font-size: 12px; color: #777; font-style: italic;
+      margin-top: 6px; padding-left: 10px;
+      border-left: 2px solid #d1d5db;
+    }
+    .market-rate {
+      background: #f9f9f9; border: 1px solid #e5e5e5;
+      border-radius: 8px; padding: 12px 14px;
+      font-size: 13px; color: #444;
+    }
+    .tips-list { display: flex; flex-direction: column; gap: 8px; }
+    .tip-item {
+      display: flex; gap: 10px;
+      font-size: 13px; color: #444;
+      background: #f9f9f9; border: 1px solid #e5e5e5;
+      border-radius: 8px; padding: 10px 12px;
+    }
+    .tip-num { font-weight: 800; color: var(--accent); min-width: 18px; }
+
+    /* ── Footer ── */
+    .report-footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e5e5;
+      font-size: 11px;
+      color: #aaa;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .btn-print { display: none; }
+      .page { padding: 20px; }
+      .risk-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .flag-card   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="report-header">
+      <div>
+        <div class="report-logo">🛡 Job<span>Guard</span> Report</div>
+        <div class="report-meta" id="reportMeta"></div>
+      </div>
+      <button class="btn-print" onclick="window.print()">🖨 Save as PDF</button>
+    </div>
+    <div id="report">Loading…</div>
+    <div class="report-footer">
+      <span>Generated by JobGuard — mini-on-ai.com/jobguard.html</span>
+      <span id="reportDate"></span>
+    </div>
+  </div>
+  <script src="fullpage.js"></script>
+</body>
+</html>

@@ -425,3 +425,58 @@ body {
   font-weight: 600;
   color: var(--accent);
 }
+
+/* ── Restored notice ───────────────────────────────────────────────────────── */
+.restored-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── History Tab ───────────────────────────────────────────────────────────── */
+.history-list { display: flex; flex-direction: column; gap: 8px; }
+
+.history-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 24px 0;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.history-score {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+  flex-shrink: 0;
+}
+.history-score--green  { background: var(--green);   color: #000; }
+.history-score--yellow { background: var(--warning); color: #000; }
+.history-score--orange { background: #f97316;        color: #fff; }
+.history-score--red    { background: var(--danger);  color: #fff; }
+
+.history-info { flex: 1; min-width: 0; }
+.history-label { font-size: 12px; font-weight: 600; }
+.history-meta  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.history-restore {
+  padding: 5px 10px;
+  font-size: 11px;
+  flex-shrink: 0;
+}

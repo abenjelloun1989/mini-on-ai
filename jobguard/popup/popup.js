@@ -39,6 +39,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  // Restore last analysis if available
+  const { jgLastAnalysis } = await chrome.storage.local.get("jgLastAnalysis");
+  if (jgLastAnalysis?.analysis) {
+    document.getElementById("inputSection").style.display = "none";
+    renderResults(jgLastAnalysis.analysis, null, null, { restored: true, ts: jgLastAnalysis.ts });
+  }
+
   // Wire up tabs
   document.querySelectorAll(".tab").forEach(tab => {
     tab.addEventListener("click", () => {
@@ -47,6 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       tab.classList.add("active");
       document.getElementById(`tab-${tab.dataset.tab}`).style.display = "block";
       if (tab.dataset.tab === "account") loadAccount();
+      if (tab.dataset.tab === "history") loadHistory();
     });
   });
 
@@ -187,6 +195,8 @@ async function runAnalysis(text) {
     }
 
     renderResults(data.analysis, data.usage, text);
+    saveLastAnalysis(data.analysis);
+    saveToHistory(data.analysis);
 
     // Update badge
     if (data.usage) {
@@ -206,7 +216,7 @@ async function runAnalysis(text) {
   }
 }
 
-function renderResults(analysis, usage, originalText) {
+function renderResults(analysis, usage, originalText, opts = {}) {
   const results = document.getElementById("results");
 
   // Risk banner colour
@@ -253,6 +263,12 @@ function renderResults(analysis, usage, originalText) {
     : "";
 
   results.innerHTML = `
+    ${opts.restored ? `
+      <div class="restored-notice">
+        <span>Last analysis · ${opts.ts ? new Date(opts.ts).toLocaleDateString() : ""}</span>
+        <button class="btn-text" id="clearRestoredBtn">Analyze new →</button>
+      </div>
+    ` : ""}
     <div class="risk-banner risk-banner--${bannerClass}">
       <div class="risk-score-circle">${score}</div>
       <div class="risk-info">
@@ -286,8 +302,9 @@ function renderResults(analysis, usage, originalText) {
     ` : ""}
 
     <div class="results-footer">
-      <button class="btn-secondary" id="newAnalysisBtn">← Analyze another</button>
+      <button class="btn-secondary" id="newAnalysisBtn">← New</button>
       <button class="btn-secondary" id="copyResultBtn">📋 Copy</button>
+      <button class="btn-secondary" id="expandBtn">⤢ Full page</button>
     </div>
     ${usageLine}
   `;
@@ -309,6 +326,14 @@ function renderResults(analysis, usage, originalText) {
   document.getElementById("copyResultBtn").addEventListener("click", (e) => {
     const text = buildCopyText(analysis);
     copyText(e.currentTarget, text);
+  });
+
+  document.getElementById("expandBtn").addEventListener("click", () => openFullPage(analysis));
+
+  document.getElementById("clearRestoredBtn")?.addEventListener("click", () => {
+    results.style.display = "none";
+    results.innerHTML = "";
+    document.getElementById("inputSection").style.display = "flex";
   });
 }
 
@@ -423,6 +448,63 @@ async function redeemLtd() {
     msgEl.textContent = "Network error. Please try again.";
     msgEl.className = "ltd-message ltd-message--err";
   }
+}
+
+// ─── Persistence & History ────────────────────────────────────────────────────
+
+async function saveLastAnalysis(analysis) {
+  await chrome.storage.local.set({ jgLastAnalysis: { analysis, ts: Date.now() } });
+}
+
+async function saveToHistory(analysis) {
+  const { jgHistory = [] } = await chrome.storage.local.get("jgHistory");
+  jgHistory.unshift({ analysis, ts: Date.now() });
+  await chrome.storage.local.set({ jgHistory: jgHistory.slice(0, 10) });
+}
+
+async function loadHistory() {
+  const { jgHistory = [] } = await chrome.storage.local.get("jgHistory");
+  const container = document.getElementById("historyList");
+  if (!jgHistory.length) {
+    container.innerHTML = `<p class="history-empty">No analyses yet — run your first analysis to see it here.</p>`;
+    return;
+  }
+  container.innerHTML = jgHistory.map((item, i) => {
+    const a = item.analysis;
+    const score = a.risk_score || 0;
+    const cls = score >= 9 ? "red" : score >= 7 ? "orange" : score >= 4 ? "yellow" : "green";
+    const date = new Date(item.ts).toLocaleDateString();
+    const platform = a.platform_detected && a.platform_detected !== "Unknown"
+      ? a.platform_detected : "Unknown platform";
+    return `
+      <div class="history-card">
+        <div class="history-score history-score--${cls}">${score}</div>
+        <div class="history-info">
+          <div class="history-label">${escHtml(a.risk_label || "Unknown")}</div>
+          <div class="history-meta">${escHtml(platform)} · ${date}</div>
+        </div>
+        <button class="btn-secondary history-restore" data-index="${i}">Restore</button>
+      </div>`;
+  }).join("");
+
+  container.querySelectorAll(".history-restore").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = jgHistory[parseInt(btn.dataset.index)];
+      // Switch to Analyze tab and show restored result
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
+      document.querySelector('[data-tab="analyze"]').classList.add("active");
+      document.getElementById("tab-analyze").style.display = "block";
+      document.getElementById("inputSection").style.display = "none";
+      document.getElementById("loadingState").style.display = "none";
+      renderResults(item.analysis, null, null, { restored: true, ts: item.ts });
+    });
+  });
+}
+
+async function openFullPage(analysis) {
+  await chrome.storage.local.set({ jgFullPage: { analysis, ts: Date.now() } });
+  chrome.tabs.create({ url: chrome.runtime.getURL("popup/fullpage.html") });
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
