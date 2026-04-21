@@ -68,6 +68,7 @@ async function initPopup() {
   if (jgLastAnalysis?.analysis) {
     try {
       document.getElementById("inputSection").style.display = "none";
+      document.getElementById("results").style.display = "block";
       renderResults(jgLastAnalysis.analysis, null, null, { restored: true, ts: jgLastAnalysis.ts });
     } catch (e) {
       console.error("Failed to restore last analysis (clearing bad state):", e);
@@ -625,6 +626,7 @@ async function loadHistory() {
       document.getElementById("tab-analyze").style.display = "block";
       document.getElementById("inputSection").style.display = "none";
       document.getElementById("loadingState").style.display = "none";
+      document.getElementById("results").style.display = "block";
       renderResults(item.analysis, null, null, { restored: true, ts: item.ts });
     });
   });
