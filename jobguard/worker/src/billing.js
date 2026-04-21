@@ -1,6 +1,6 @@
 import { corsJson, parseJson, requireUser } from "./index.js";
 
-const STRIPE_PRICE_ID = "REPLACE_WITH_STRIPE_PRICE_ID"; // $7/month
+const STRIPE_PRICE_ID = "price_1TOkTzCHYMwZNPVbn32clTIW"; // $7/month
 const SITE_URL = "https://mini-on-ai.com";
 
 // ─── POST /api/subscribe ──────────────────────────────────────────────────────
