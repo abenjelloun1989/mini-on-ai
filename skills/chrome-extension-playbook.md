@@ -8,6 +8,68 @@ User says anything like: "let's build a new chrome extension", "new extension", 
 
 ---
 
+## Shared Codebase (always start here — don't recode what already exists)
+
+A `_shared/` directory at the repo root contains canonical utilities shared across all extensions. **Always use these — never rewrite them per-extension.**
+
+### What's in `_shared/utils.js`
+
+Four functions, loaded via `<script src="shared.js">` in every popup.html (before popup.js):
+
+```js
+escHtml(str)                              // HTML-safe string (div.textContent trick)
+escAttr(str)                             // attribute-safe string
+copyText(btn, text, resetLabel = "Copy") // clipboard + "✓ Copied!" + isConnected guard
+initDarkMode(storageKey, toggleId)       // reads localStorage, applies body.light-mode, wires toggle
+```
+
+### What's in `_shared/base.css`
+
+Shared CSS loaded via `<link rel="stylesheet" href="shared.css">` (after popup.css in `<head>`):
+- Universal reset (`*` box-sizing)
+- `@media (prefers-reduced-motion)` global disable
+- `.flag-card` family (danger/warning/green variants + header/icon/title/body/quote)
+- `.section-title`, `.tips-list`, `.tip-item`, `.tip-num`
+
+### How to propagate shared code to the new extension
+
+```bash
+# After creating {name}/popup/ directory:
+python3 scripts/sync_shared.py      # copies shared.js + shared.css into every popup/
+python3 scripts/check_syntax.py     # syntax-checks all 13+ JS files
+```
+
+**Run `sync_shared.py` before every package.** Fixing a bug in `_shared/utils.js` and running sync updates all extensions at once.
+
+### popup.html wiring for every new extension
+
+```html
+<head>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="shared.css">   <!-- after popup.css so shared wins ties -->
+</head>
+<body>
+  ...
+  <script src="shared.js"></script>            <!-- before popup.js -->
+  <script src="popup.js"></script>
+</body>
+```
+
+### popup.js — what to call, what NOT to write
+
+```js
+// Call these (provided by shared.js — do NOT redefine them):
+initDarkMode("jg-theme", "darkModeToggle");   // use extension-specific storage key
+copyText(btn, text, resetLabel);
+escHtml(str);
+escAttr(str);
+
+// DO NOT define your own versions of these functions — if you redefine them,
+// the per-extension copy will shadow the shared one. Delete any duplicate.
+```
+
+---
+
 ## Stack (defaults — don't deviate without a reason)
 
 | Layer | Choice | Notes |
@@ -318,63 +380,51 @@ if (input.length > MAX_INPUT) return corsJson(env, { error: `Input must be under
 
 ### Dark mode toggle
 
+**Call `initDarkMode()` from `shared.js` — do not write the IIFE yourself.**
+
 ```js
-// In DOMContentLoaded — runs before render to avoid flash
-(function() {
-  const toggle = document.getElementById("darkModeToggle");
-  const stored = localStorage.getItem("ig-theme");
-  if (stored === "light") {
-    document.body.classList.add("light-mode");
-    if (toggle) toggle.textContent = "☀";
-  }
-  if (toggle) {
-    toggle.addEventListener("click", function() {
-      const isLight = document.body.classList.toggle("light-mode");
-      localStorage.setItem("ig-theme", isLight ? "light" : "dark");
-      toggle.textContent = isLight ? "☀" : "☾";
-    });
-  }
-})();
+// In initPopup() / DOMContentLoaded, FIRST LINE (before any render, avoids FOUC):
+initDarkMode("{name}-theme", "darkModeToggle");
+// e.g. "jg-theme" for JobGuard, "ig-theme" for InvoiceGuard
 ```
 
+Add the toggle button in popup.html header:
+```html
+<button class="btn-icon" id="darkModeToggle" title="Toggle theme">☾</button>
+```
+
+CSS design tokens (keep in each extension's own popup.css — accent differs per extension):
 ```css
-/* CSS variables for dark (default) */
 :root {
   --bg: #0f0f1a;
   --surface: #1a1a2e;
+  --surface-2: #242440;
   --border: #2a2a45;
   --text: #e2e2f0;
   --text-muted: #8b8bab;
-  --accent: #6366f1;  /* change per extension */
+  --accent: #F59E0B;        /* pick one per extension */
+  --accent-dim: rgba(245,158,11,0.15);
+  --green: #10b981;
+  --green-dim: rgba(16,185,129,0.12);
+  --danger: #ef4444;
+  --danger-dim: rgba(239,68,68,0.12);
+  --warning: #f59e0b;
+  --warning-dim: rgba(245,158,11,0.12);
+  --radius: 8px;
 }
-
-/* Light mode overrides */
 body.light-mode {
-  --bg: #ffffff;
-  --surface: #f5f5f7;
-  --border: #e5e5ea;
-  --text: #1d1d1f;
-  --text-muted: #6e6e73;
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  --bg: #ffffff; --surface: #f5f5f7; --surface-2: #ebebef;
+  --border: #e5e5ea; --text: #1d1d1f; --text-muted: #6e6e73;
 }
 ```
 
-### Copy buttons — shared helper (never silent)
+`@media (prefers-reduced-motion)` and `*` reset are provided by `shared.css` — do NOT add them to popup.css.
+
+### Copy buttons — use `copyText()` from shared.js (never silent)
 
 ```js
-function copyText(btn, text, resetLabel = "📋 Copy") {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = "✓ Copied!";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  }).catch(() => {
-    btn.textContent = "Copy failed";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  });
-}
+// Already available from shared.js — just call it:
+copyText(btn, text, "📋 Copy");   // resetLabel is optional
 ```
 
 ### Retry buttons on all error states (never dead-end)
@@ -407,20 +457,112 @@ overlay.addEventListener("keydown", (e) => {
 });
 ```
 
-### HTML escaping (always escape user-facing strings)
+### HTML escaping — use `escHtml()` / `escAttr()` from shared.js
 
 ```js
-function escHtml(str) {
-  if (!str) return "";
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
-}
+// Already available from shared.js — just call them:
+`<div>${escHtml(str)}</div>`          // for innerHTML content
+`<div data-id="${escAttr(id)}">`      // for attribute values
+// DO NOT redefine these — the shared version uses the correct div.textContent approach
 ```
 
 ---
 
-## 7. Landing Page Formula (`site/{name}.html`)
+## 7. Icon Generation (recolor the existing icon — never draw from scratch)
+
+All extensions share the same shield + checkmark shape. New icons are generated by **pixel-level luminance remapping** of the InvoiceGuard source icon. This keeps the family look consistent and takes ~2 minutes.
+
+### How it works
+
+Each source pixel has a luminance value 0–255:
+- **Dark pixels** (lum < 110): background — remap to the new extension's bg color
+- **Mid pixels** (lum 110–235): shield body — remap to the new accent color
+- **Light pixels** (lum > 235): white checkmark — keep white
+
+### Python script (run once, generates all three icon sizes)
+
+```python
+#!/usr/bin/env python3
+"""
+generate_icons.py — Recolor InvoiceGuard icons for a new extension.
+Requires: pip install Pillow numpy
+Usage: python3 generate_icons.py {new_extension_name}
+"""
+import numpy as np, sys
+from pathlib import Path
+from PIL import Image
+
+# ── Configure these per extension ─────────────────────────────────────────────
+# (R, G, B) tuples — tune to match extension accent color
+BG_DARK    = (22,  8,   0)    # darkest bg pixel  → jobguard amber example
+BG_LIGHT   = (50,  22,  0)    # lighter bg pixel
+SHIELD_DARK  = (180, 100, 10)  # darkest shield pixel
+SHIELD_LIGHT = (253, 224, 100) # lightest shield pixel (near accent)
+# ──────────────────────────────────────────────────────────────────────────────
+
+def remap(arr):
+    out = arr.copy()
+    lum = (0.299 * arr[:,:,0] + 0.587 * arr[:,:,1] + 0.114 * arr[:,:,2])
+
+    # Background zone: dark pixels
+    bg_mask = lum < 110
+    t_bg = np.clip((lum[bg_mask] - 0) / 110, 0, 1)[..., None]
+    out[bg_mask, :3] = (
+        np.array(BG_DARK) * (1 - t_bg) + np.array(BG_LIGHT) * t_bg
+    ).astype(np.uint8)
+
+    # Shield zone: mid-luminance pixels
+    sh_mask = (lum >= 110) & (lum <= 235)
+    t_sh = np.clip((lum[sh_mask] - 110) / 125, 0, 1)[..., None]
+    out[sh_mask, :3] = (
+        np.array(SHIELD_DARK) * (1 - t_sh) + np.array(SHIELD_LIGHT) * t_sh
+    ).astype(np.uint8)
+
+    # Checkmark zone: very light pixels — keep white, leave unchanged
+    return out
+
+ROOT = Path(__file__).parent
+SOURCE_DIR = ROOT / "invoiceguard" / "icons"   # source to recolor
+DEST_DIR   = ROOT / sys.argv[1] / "icons"
+DEST_DIR.mkdir(parents=True, exist_ok=True)
+
+for size in [16, 48, 128]:
+    src = SOURCE_DIR / f"icon-{size}.png"
+    img = np.array(Image.open(src).convert("RGBA"))
+    img = remap(img)
+    out_path = DEST_DIR / f"icon-{size}.png"
+    Image.fromarray(img).save(out_path)
+    print(f"  wrote {out_path.relative_to(ROOT)}")
+```
+
+### Calibrating the colors
+
+Run the script, then view the generated icon. Tune `BG_DARK/BG_LIGHT` and `SHIELD_DARK/SHIELD_LIGHT` until it matches the extension's accent:
+
+| Accent | BG_DARK | BG_LIGHT | SHIELD_DARK | SHIELD_LIGHT |
+|--------|---------|----------|-------------|--------------|
+| Amber `#F59E0B` | (22,8,0) | (50,22,0) | (180,100,10) | (253,224,100) |
+| Indigo `#6366F1` | (8,8,30) | (22,22,60) | (80,80,200) | (160,162,255) |
+| Rose `#F43F5E` | (30,5,10) | (60,10,20) | (180,40,70) | (255,130,150) |
+
+### Manifest icon entries (both dash and no-dash variants for Chrome compatibility)
+
+After generating, **copy each icon to both naming conventions** (Chrome can be finicky):
+
+```bash
+cp icons/icon-48.png icons/icon48.png
+cp icons/icon-128.png icons/icon128.png
+```
+
+Manifest.json must reference the exact filenames present:
+```json
+"icons": { "16": "icons/icon-16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+"action": { "default_icon": { "48": "icons/icon48.png", "128": "icons/icon128.png" } }
+```
+
+---
+
+## 8. Landing Page Formula (`site/{name}.html`)
 
 ### Head (required meta tags)
 
@@ -462,7 +604,7 @@ function escHtml(str) {
 
 ---
 
-## 8. CWS Listing Formula
+## 9. CWS Listing Formula
 
 **Name:** ≤45 chars — `[ProductName] — [Benefit Phrase]`
 Example: "ClauseGuard — AI Contract & NDA Analyzer"
@@ -514,12 +656,18 @@ Built by mini-on-ai.com
 
 ---
 
-## 9. Distribution Checklist (run in this exact order)
+## 10. Distribution Checklist (run in this exact order)
 
 ```
-[ ] 1. Deploy worker: cd {name}/worker && npx wrangler deploy
+[ ] 0. Sync shared code:     python3 scripts/sync_shared.py     (copies shared.js + shared.css, runs node --check)
+[ ] 0. Syntax check all:     python3 scripts/check_syntax.py    (catch syntax errors before packaging)
+[ ] 1. Deploy worker:        cd {name}/worker && npx wrangler deploy
 [ ] 2. Run D1 migrations (pro_source column + ltd_codes table)
-[ ] 3. Build CWS zip: cd {name} && zip -r ../store-assets/{name}-{version}.zip . --exclude "worker/*" --exclude "store-assets/*" --exclude ".DS_Store"
+[ ] 3. Build CWS zip:
+        cd {name} && zip -r store-assets/{name}-{version}.zip . \
+          --exclude "worker/*" --exclude "store-assets/*" \
+          --exclude ".DS_Store" --exclude "*/.DS_Store" --exclude "*.zip"
+[ ] 3b. Validate zip:        python3 scripts/validate_zip.py {name}
 [ ] 4. Upload zip to CWS dashboard + update listing copy + screenshots
 [ ] 5. Update site/{name}.html — change "pending review" to "Live on CWS", add real install URL
 [ ] 6. python3 scripts/update_site.py --rebuild-all && git push
@@ -529,6 +677,17 @@ Built by mini-on-ai.com
 [ ] 10. Email LTD marketplaces: DealFuel → RocketHub → DealMirror → PitchGround → SaaSMantra
 [ ] 11. Write 1 commercial-intent blog post: python3 scripts/generate_blog_post.py --topic "[keyword phrase]"
 [ ] 12. Update factory_state.md and distribution_state.md
+```
+
+**Smoke test before uploading to CWS (load unpacked in Chrome):**
+```
+[ ] Extension loads without console errors
+[ ] shared.js and shared.css appear in DevTools > Network
+[ ] Copy button: shows "✓ Copied!" → resets after 2s
+[ ] Dark mode toggle: persists after popup close/reopen (check localStorage key is {name}-theme)
+[ ] Full-page report (if applicable): content fills viewport, print button works
+[ ] Analyze/core flow: input → result renders → context restored on reopen
+[ ] Account tab: shows correct tier, LTD redemption field present
 ```
 
 **LTD outreach email template:**
@@ -552,7 +711,7 @@ Happy to provide demo access. Let me know if you need anything.
 
 ---
 
-## 10. Narrative Formula
+## 11. Narrative Formula
 
 **The pitch structure (use everywhere — popup store description, landing page hero, blog posts, LTD outreach):**
 
@@ -575,7 +734,7 @@ CTA:      Add to Chrome — Free
 
 ---
 
-## 11. Accent Color Selection
+## 12. Accent Color Selection
 
 Pick one color per extension. Apply to: hero gradient, badge, CTA button, status indicators.
 
@@ -593,13 +752,19 @@ Pick one color per extension. Apply to: hero gradient, badge, CTA button, status
 {name}/
 ├── manifest.json
 ├── icons/
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
+│   ├── icon-16.png          # generated by scripts/generate_icons.py
+│   ├── icon-48.png
+│   ├── icon48.png           # copy of icon-48.png (Chrome needs both naming conventions)
+│   ├── icon-128.png
+│   └── icon128.png          # copy of icon-128.png
 ├── popup/
-│   ├── popup.html
-│   ├── popup.js
-│   └── popup.css
+│   ├── popup.html           # loads shared.css before popup.css, shared.js before popup.js
+│   ├── popup.js             # calls initDarkMode(), escHtml(), copyText() from shared.js
+│   ├── popup.css            # extension-specific styles only; :root tokens here
+│   ├── shared.js            # AUTO-GENERATED by sync_shared.py — do not edit
+│   ├── shared.css           # AUTO-GENERATED by sync_shared.py — do not edit
+│   ├── fullpage.html        # printable report (if extension has a full-page view)
+│   └── fullpage.js          # reads from chrome.storage.local, calls escHtml() from shared.js
 ├── background/
 │   └── service-worker.js
 ├── options/
@@ -630,9 +795,20 @@ Pick one color per extension. Apply to: hero gradient, badge, CTA button, status
 
 ## Reference Implementations
 
-- `clauseguard/` — popup-only extension (no content script), contract analysis, clause library, compare feature
-- `invoiceguard/` — content script extension (Gmail DOM injection), invoice tracking, badge alerts, reminder generation
-- `clauseguard/worker/src/billing.js` — Stripe webhook pattern (copy the verifyStripeSignature function)
-- `clauseguard/worker/src/ltd.js` — LTD redemption module (copy and adapt for each new extension)
+- `clauseguard/` — popup-only (no content script), contract analysis, clause library, compare feature (v1.3.1+)
+- `invoiceguard/` — content script (Gmail DOM injection), invoice tracking, badge alerts, reminder generation (v1.1.1+)
+- `jobguard/` — popup + fullpage report, page text extraction (JSON-LD → semantic → body fallback), history tab (v1.0.1+)
+- `clauseguard/worker/src/billing.js` — Stripe webhook pattern (copy `verifyStripeSignature`)
+- `clauseguard/worker/src/ltd.js` — LTD redemption module (copy and adapt per extension)
 - `site/clauseguard.html` — landing page structure (indigo accent, legal domain)
-- `site/invoiceguard.html` — landing page structure (emerald accent, finance domain)
+- `site/invoiceguard.html` — landing page structure (indigo accent, finance domain)
+
+## Shared Infrastructure
+
+| File | Purpose |
+|------|---------|
+| `_shared/utils.js` | Canonical JS utilities — edit here, never in per-extension copies |
+| `_shared/base.css` | Canonical shared CSS — edit here, never in per-extension copies |
+| `scripts/sync_shared.py` | Copies shared files into all extensions + runs node --check |
+| `scripts/check_syntax.py` | Syntax-checks all 13+ JS files across all extensions |
+| `scripts/validate_zip.py` | Validates zip contents before CWS upload |
