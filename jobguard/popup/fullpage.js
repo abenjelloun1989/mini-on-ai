@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Wire up print button (inline onclick blocked by MV3 CSP)
+  document.getElementById("printBtn").addEventListener("click", () => window.print());
+
   const { jgFullPage } = await chrome.storage.local.get("jgFullPage");
   if (!jgFullPage) {
     document.getElementById("report").textContent = "No report data found. Run an analysis first.";
