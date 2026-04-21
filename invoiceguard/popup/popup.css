@@ -13,7 +13,7 @@
   --warning: #F59E0B;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* * reset — provided by shared.css */
 
 body {
   width: 380px;
@@ -378,7 +378,4 @@ body.light-mode {
   --text-muted: #666;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
+/* @media prefers-reduced-motion — provided by shared.css */

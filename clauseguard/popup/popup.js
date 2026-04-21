@@ -967,31 +967,4 @@ async function apiFetch(path, method = "GET", body = null) {
   return data;
 }
 
-// ─── Clipboard helper ─────────────────────────────────────────────────────────
-
-function copyText(btn, text, resetLabel = "Copy") {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = "✓ Copied!";
-    btn.classList.add("copied");
-    setTimeout(() => { btn.textContent = resetLabel; btn.classList.remove("copied"); }, 2000);
-  }).catch(() => {
-    btn.textContent = "Copy failed";
-    setTimeout(() => { btn.textContent = resetLabel; }, 2000);
-  });
-}
-
-// ─── Utils ────────────────────────────────────────────────────────────────────
-
-function escHtml(str) {
-  if (!str) return "";
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function escAttr(str) {
-  if (!str) return "";
-  return String(str).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
+// ─── Shared utils (copyText, escHtml, escAttr) provided by shared.js ─────────

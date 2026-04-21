@@ -35,22 +35,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function initPopup() {
-  // Dark mode — runs before render to avoid flash
-  (function () {
-    const toggle = document.getElementById("darkModeToggle");
-    const stored = localStorage.getItem("jg-theme");
-    if (stored === "light") {
-      document.body.classList.add("light-mode");
-      if (toggle) toggle.textContent = "☀";
-    }
-    if (toggle) {
-      toggle.addEventListener("click", () => {
-        const isLight = document.body.classList.toggle("light-mode");
-        localStorage.setItem("jg-theme", isLight ? "light" : "dark");
-        toggle.textContent = isLight ? "☀" : "☾";
-      });
-    }
-  })();
+  // Dark mode — provided by shared.js
+  initDarkMode("jg-theme", "darkModeToggle");
 
   // Load user
   const stored = await chrome.storage.local.get(["userId", "tier"]);
@@ -659,23 +645,8 @@ function buildCopyText(analysis) {
   return lines.join("\n");
 }
 
-function copyText(btn, text, resetLabel = "📋 Copy") {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = "✓ Copied!";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  }).catch(() => {
-    btn.textContent = "Copy failed";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  });
-}
+// copyText() and escHtml() are provided by shared.js
 
 function showError(msg) {
   document.body.innerHTML = `<div style="padding:20px;color:#ef4444;font-size:12px;">${escHtml(msg)}</div>`;
-}
-
-function escHtml(str) {
-  if (!str) return "";
-  const d = document.createElement("div");
-  d.textContent = str;
-  return d.innerHTML;
 }

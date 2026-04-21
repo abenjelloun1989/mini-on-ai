@@ -26,12 +26,9 @@ body.light-mode {
   --text-muted: #6e6e73;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
+/* @media prefers-reduced-motion and * reset — provided by shared.css */
 
-/* ── Reset & Base ──────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Base ──────────────────────────────────────────────────────────────────── */
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -57,6 +54,7 @@ body {
 .header-right { display: flex; align-items: center; gap: 6px; }
 .logo { font-weight: 700; font-size: 14px; }
 
+/* .tier-badge, .tier-badge--pro: JobGuard-specific styling (uses --surface-2, --accent-dim) */
 .tier-badge {
   font-size: 10px;
   font-weight: 600;
@@ -72,6 +70,7 @@ body {
   border-color: var(--accent);
 }
 
+/* .btn-icon: JobGuard-specific (hover shows surface-2 background) */
 .btn-icon {
   background: none;
   border: none;
@@ -283,46 +282,7 @@ body {
   border: 1px solid var(--border);
 }
 
-.section-title {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  margin-top: 14px;
-}
-.section-title:first-of-type { margin-top: 0; }
-
-.flag-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
-
-.flag-card {
-  border-radius: var(--radius);
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-}
-.flag-card--danger  { border-color: var(--danger);  background: var(--danger-dim); }
-.flag-card--warning { border-color: var(--warning); background: var(--warning-dim); }
-.flag-card--green   { border-color: var(--green);   background: var(--green-dim); }
-
-.flag-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.flag-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-.flag-title { font-size: 12px; font-weight: 600; }
-.flag-body  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-.flag-quote {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-top: 4px;
-  padding-left: 8px;
-  border-left: 2px solid var(--border);
-}
+/* .section-title, .flag-list, .flag-card family, .flag-header/icon/title/body/quote — provided by shared.css */
 
 .market-rate {
   background: var(--surface);
@@ -335,25 +295,7 @@ body {
   margin-top: 4px;
 }
 
-.tips-list { display: flex; flex-direction: column; gap: 6px; }
-.tip-item {
-  display: flex;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.45;
-  padding: 8px 10px;
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-}
-.tip-num {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--accent);
-  min-width: 16px;
-  padding-top: 1px;
-}
+/* .tips-list, .tip-item, .tip-num — provided by shared.css */
 
 .results-footer {
   margin-top: 14px;

@@ -1,5 +1,5 @@
-/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+/* * reset provided by shared.css */
 
 :root {
   --bg: #0f0f1a;

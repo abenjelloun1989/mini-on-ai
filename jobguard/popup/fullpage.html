@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobGuard Report</title>
+  <link rel="stylesheet" href="shared.css">
   <style>
     :root {
       --accent: #F59E0B;
@@ -16,11 +17,18 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
-      background: #fff;
+      background: #f0f0f0;
       color: #111;
       line-height: 1.55;
     }
-    .page { max-width: 720px; margin: 0 auto; padding: 36px 24px 60px; }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 48px 80px;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+    }
 
     /* ── Header ── */
     .report-header {
@@ -141,7 +149,8 @@
     /* ── Print ── */
     @media print {
       .btn-print { display: none; }
-      .page { padding: 20px; }
+      .page { padding: 20px; max-width: 100%; margin: 0; box-shadow: none; background: #fff; }
+      body { background: #fff; }
       .risk-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .flag-card   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
@@ -162,6 +171,7 @@
       <span id="reportDate"></span>
     </div>
   </div>
+  <script src="shared.js"></script>
   <script src="fullpage.js"></script>
 </body>
 </html>

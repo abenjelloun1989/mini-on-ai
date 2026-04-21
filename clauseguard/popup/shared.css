@@ -1,0 +1,102 @@
+/**
+ * mini-on-ai Shared Extension Base Styles
+ * ─────────────────────────────────────────
+ * Source of truth: _shared/base.css
+ * Copied into each extension by: scripts/sync_shared.py
+ *
+ * DO NOT edit per-extension copies (popup/shared.css).
+ * Edit this file and run `python3 scripts/sync_shared.py`.
+ *
+ * Strategy: only blocks that are IDENTICAL in intent across all three
+ * extensions. Per-extension tokens (--accent, --brand, --bg-card) and
+ * extension-specific components stay in each popup.css.
+ */
+
+/* ── Universal Reset ─────────────────────────────────────────────────────────
+   Identical across all three extensions. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Reduced Motion ──────────────────────────────────────────────────────────
+   Identical across all three extensions. */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ── Flag Cards ──────────────────────────────────────────────────────────────
+   Used by JobGuard popup + fullpage report. ClauseGuard/InvoiceGuard use
+   different class names — these classes are simply unused there (harmless).
+   CSS vars use fallbacks so the classes render correctly even if an extension
+   doesn't define --danger / --warning / --green. */
+.flag-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+
+.flag-card {
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #2a2a45);
+  background: var(--surface, #1a1a2e);
+}
+.flag-card--danger  {
+  border-color: var(--danger, #ef4444);
+  background: var(--danger-dim, rgba(239,68,68,0.12));
+}
+.flag-card--warning {
+  border-color: var(--warning, #f59e0b);
+  background: var(--warning-dim, rgba(245,158,11,0.12));
+}
+.flag-card--green   {
+  border-color: var(--green, #10b981);
+  background: var(--green-dim, rgba(16,185,129,0.12));
+}
+
+/* fullpage.html uses un-prefixed variants (legacy) — keep them in sync */
+.flag-card.danger  { border-color: var(--danger, #ef4444); background: #fef2f2; }
+.flag-card.warning { border-color: var(--warning, #f59e0b); background: #fffbeb; }
+.flag-card.green   { border-color: var(--green, #10b981);  background: #ecfdf5; }
+
+.flag-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+.flag-icon   { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.flag-title  { font-size: 12px; font-weight: 600; }
+.flag-body   { font-size: 12px; color: var(--text-muted, #8b8bab); line-height: 1.5; }
+.flag-quote  {
+  font-size: 11px;
+  color: var(--text-muted, #8b8bab);
+  font-style: italic;
+  margin-top: 4px;
+  padding-left: 8px;
+  border-left: 2px solid var(--border, #2a2a45);
+}
+
+/* ── Section Title ───────────────────────────────────────────────────────────
+   Used by JobGuard popup + fullpage. Harmless on others. */
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #8b8bab);
+  margin-bottom: 8px;
+  margin-top: 14px;
+}
+.section-title:first-of-type { margin-top: 0; }
+
+/* ── Tips List ───────────────────────────────────────────────────────────────
+   Used by JobGuard popup + fullpage. Harmless on others. */
+.tips-list { display: flex; flex-direction: column; gap: 6px; }
+.tip-item {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted, #8b8bab);
+  line-height: 1.45;
+  padding: 8px 10px;
+  background: var(--surface, #1a1a2e);
+  border-radius: 8px;
+  border: 1px solid var(--border, #2a2a45);
+}
+.tip-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent, #f59e0b);
+  min-width: 16px;
+  padding-top: 1px;
+}

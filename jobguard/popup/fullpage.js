@@ -28,10 +28,10 @@ function render(a, ts) {
     <div class="flag-card ${f.severity === "danger" ? "danger" : "warning"}">
       <div class="flag-header">
         <span class="flag-icon">${f.severity === "danger" ? "🔴" : "🟡"}</span>
-        <span class="flag-title">${esc(f.title)}</span>
+        <span class="flag-title">${escHtml(f.title)}</span>
       </div>
-      <div class="flag-body">${esc(f.explanation)}</div>
-      ${f.quote ? `<div class="flag-quote">"${esc(f.quote)}"</div>` : ""}
+      <div class="flag-body">${escHtml(f.explanation)}</div>
+      ${f.quote ? `<div class="flag-quote">"${escHtml(f.quote)}"</div>` : ""}
     </div>
   `).join("");
 
@@ -39,16 +39,16 @@ function render(a, ts) {
     <div class="flag-card green">
       <div class="flag-header">
         <span class="flag-icon">✅</span>
-        <span class="flag-title">${esc(g.title)}</span>
+        <span class="flag-title">${escHtml(g.title)}</span>
       </div>
-      <div class="flag-body">${esc(g.explanation)}</div>
+      <div class="flag-body">${escHtml(g.explanation)}</div>
     </div>
   `).join("");
 
   const tipsHtml = (a.negotiation_tips || []).map((tip, i) => `
     <div class="tip-item">
       <span class="tip-num">${i + 1}</span>
-      <span>${esc(tip)}</span>
+      <span>${escHtml(tip)}</span>
     </div>
   `).join("");
 
@@ -56,13 +56,13 @@ function render(a, ts) {
     <div class="risk-banner ${cls}">
       <div class="score-circle">${score}</div>
       <div>
-        <div class="risk-label">${esc(a.risk_label || "Unknown")}</div>
+        <div class="risk-label">${escHtml(a.risk_label || "Unknown")}</div>
         ${a.platform_detected && a.platform_detected !== "Unknown"
-          ? `<div class="risk-platform">${esc(a.platform_detected)}</div>` : ""}
+          ? `<div class="risk-platform">${escHtml(a.platform_detected)}</div>` : ""}
       </div>
     </div>
 
-    ${a.summary ? `<div class="summary">${esc(a.summary)}</div>` : ""}
+    ${a.summary ? `<div class="summary">${escHtml(a.summary)}</div>` : ""}
 
     ${(a.red_flags || []).length ? `
       <div class="section-title">🚩 Red flags (${a.red_flags.length})</div>
@@ -71,7 +71,7 @@ function render(a, ts) {
 
     ${a.market_rate_note ? `
       <div class="section-title">💰 Market rate</div>
-      <div class="market-rate">${esc(a.market_rate_note)}</div>
+      <div class="market-rate">${escHtml(a.market_rate_note)}</div>
     ` : ""}
 
     ${(a.green_signals || []).length ? `
@@ -86,9 +86,4 @@ function render(a, ts) {
   `;
 }
 
-function esc(str) {
-  if (!str) return "";
-  const d = document.createElement("div");
-  d.textContent = str;
-  return d.innerHTML;
-}
+// escHtml() is provided by shared.js

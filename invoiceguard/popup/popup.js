@@ -14,22 +14,8 @@ let currentInvoice = null;
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Dark mode toggle — restore preference before rendering
-  (function() {
-    const toggle = document.getElementById("darkModeToggle");
-    const stored = localStorage.getItem("ig-theme");
-    if (stored === "light") {
-      document.body.classList.add("light-mode");
-      if (toggle) toggle.textContent = "☀";
-    }
-    if (toggle) {
-      toggle.addEventListener("click", function() {
-        const isLight = document.body.classList.toggle("light-mode");
-        localStorage.setItem("ig-theme", isLight ? "light" : "dark");
-        toggle.textContent = isLight ? "☀" : "☾";
-      });
-    }
-  })();
+  // Dark mode — provided by shared.js
+  initDarkMode("ig-theme", "darkModeToggle");
 
   const { userId: uid } = await chrome.storage.local.get("userId");
   userId = uid;
@@ -366,15 +352,7 @@ async function upgrade() {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function copyText(btn, text, resetLabel = "📋 Copy") {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = "✓ Copied!";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  }).catch(() => {
-    btn.textContent = "Copy failed";
-    setTimeout(() => { if (btn.isConnected) btn.textContent = resetLabel; }, 2000);
-  });
-}
+// copyText() provided by shared.js
 
 function formatAmount(cents, currency = "USD") {
   const symbols = { USD: "$", EUR: "€", GBP: "£", CAD: "CA$", AUD: "A$" };
@@ -382,9 +360,4 @@ function formatAmount(cents, currency = "USD") {
   return `${symbol}${(cents / 100).toFixed(2)}`;
 }
 
-function escHtml(str) {
-  if (!str) return "";
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
-}
+// escHtml() provided by shared.js
