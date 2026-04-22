@@ -857,7 +857,7 @@ async function loadAccountTab() {
       // Free user
       planBox.innerHTML = `
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <span style="font-size:22px;">🛡</span>
+          <img src="../icons/icon48.png" width="24" height="24" style="border-radius:4px;flex-shrink:0;" alt="">
           <div>
             <div style="font-weight:700;font-size:14px;color:var(--text);">Free Plan</div>
             <div style="font-size:11px;color:var(--text-muted);">3 analyses per month</div>
