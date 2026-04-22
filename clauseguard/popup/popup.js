@@ -117,6 +117,10 @@ function updateProGates(isPro) {
   const forms  = ["compareForm", "libraryContent"];
   gates.forEach(id => document.getElementById(id).classList.toggle("hidden", isPro));
   forms.forEach(id => document.getElementById(id).classList.toggle("hidden", !isPro));
+  // Hide "Pro" chips on tab labels once the user already has Pro access
+  document.querySelectorAll(".tab .pro-chip").forEach(chip => {
+    chip.classList.toggle("hidden", isPro);
+  });
 }
 
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
