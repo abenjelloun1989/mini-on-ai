@@ -8,7 +8,8 @@ Run this before packaging any extension:
 The script:
   1. Copies _shared/utils.js  → {ext}/popup/shared.js
   2. Copies _shared/base.css  → {ext}/popup/shared.css
-  3. Skips files that haven't changed (hash comparison)
+  3. Copies _shared/icons.svg → {ext}/popup/icons.svg
+  4. Skips files that haven't changed (hash comparison)
   4. Runs `node --check {ext}/popup/popup.js` after each copy
   5. Exits with code 1 if any check fails
 """
@@ -25,8 +26,9 @@ EXTENSIONS = ["clauseguard", "invoiceguard", "jobguard"]
 
 # (source filename in _shared/, destination filename in {ext}/popup/)
 SYNC_MAP = [
-    ("utils.js", "shared.js"),
+    ("utils.js",  "shared.js"),
     ("base.css",  "shared.css"),
+    ("icons.svg", "icons.svg"),
 ]
 
 # JS files to syntax-check after syncing each extension

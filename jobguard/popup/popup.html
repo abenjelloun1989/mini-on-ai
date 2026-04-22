@@ -4,21 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobGuard</title>
-  <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+  <!-- SVG icon sprite — must be first in body for <use href="#..."> to resolve -->
+  <div style="display:none" aria-hidden="true">
+    <svg><!-- populated by icons.svg inlined below --></svg>
+  </div>
+  <script>
+    // Inline icons.svg sprite synchronously before any rendering
+    fetch(chrome && chrome.runtime ? chrome.runtime.getURL('popup/icons.svg') : 'icons.svg')
+      .then(r => r.text())
+      .then(svg => { document.body.insertAdjacentHTML('afterbegin', svg); })
+      .catch(() => {});
+  </script>
   <div class="popup">
 
     <!-- Header -->
     <header class="header">
       <div class="header-left">
-        <span class="logo"><img src="../icons/icon48.png" width="20" height="20" style="vertical-align:-4px;border-radius:4px;"> JobGuard</span>
-        <span class="tier-badge" id="tierBadge">Free</span>
+        <svg class="header-icon" width="20" height="20" aria-hidden="true">
+          <use href="#icon-jobguard"/>
+        </svg>
+        <span class="logo">JobGuard</span>
+        <span class="tier-badge tier-badge--free" id="tierBadge">Free</span>
       </div>
       <div class="header-right">
-        <button class="btn-icon dark-mode-toggle" id="darkModeToggle" title="Toggle theme">☾</button>
-        <button class="btn-icon" id="settingsBtn" title="Settings">⚙</button>
+        <button class="btn-icon" id="darkModeToggle" title="Toggle theme" aria-label="Toggle theme">
+          <svg class="icon-moon" width="15" height="15" aria-hidden="true"><use href="#icon-moon"/></svg>
+          <svg class="icon-sun"  width="15" height="15" aria-hidden="true"><use href="#icon-sun"/></svg>
+        </button>
+        <button class="btn-icon" id="expandBtn" title="Open full report" aria-label="Open full report">
+          <svg width="15" height="15" aria-hidden="true"><use href="#icon-expand"/></svg>
+        </button>
       </div>
     </header>
 

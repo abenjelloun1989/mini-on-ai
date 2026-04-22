@@ -1,20 +1,17 @@
 /* ─── Base ──────────────────────────────────────────────────────────────────── */
 /* * reset provided by shared.css */
 
+/* ── Extension accent override ──────────────────────────────────────────────
+   Base tokens live in shared.css. ClauseGuard accent = indigo.
+   --bg-card, --bg-input, --green, --yellow, --red resolve via shared.css
+   backward-compat aliases (--bg-card→--surface, --red→--danger, etc.).
+─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #0f0f1a;
-  --bg-card: #1a1a2e;
-  --bg-input: #12121f;
-  --border: #2a2a45;
-  --text: #e2e2f0;
-  --text-muted: #8888aa;
-  --accent: #6366f1;
-  --accent-hover: #4f52d6;
-  --green: #22c55e;
-  --yellow: #f59e0b;
-  --red: #ef4444;
-  --radius: 8px;
-  --radius-sm: 5px;
+  --accent:        #6366f1;   /* indigo */
+  --accent-hover:  #4f52d6;
+  --accent-dim:    rgba(99, 102, 241, 0.15);
+  --accent-border: rgba(99, 102, 241, 0.35);
+  --radius-sm:     5px;       /* ClauseGuard-specific radius */
 }
 
 body {

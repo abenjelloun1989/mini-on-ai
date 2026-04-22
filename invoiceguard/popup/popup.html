@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="popup.css">
   <title>InvoiceGuard</title>
 </head>
 <body>
+  <script>
+    fetch(chrome && chrome.runtime ? chrome.runtime.getURL('popup/icons.svg') : 'icons.svg')
+      .then(r => r.text())
+      .then(svg => { document.body.insertAdjacentHTML('afterbegin', svg); })
+      .catch(() => {});
+  </script>
   <header class="header">
     <div class="header-left">
-      <h1>📋 InvoiceGuard</h1>
+      <svg class="header-icon" width="20" height="20" aria-hidden="true">
+        <use href="#icon-invoiceguard"/>
+      </svg>
+      <span class="header-title">InvoiceGuard</span>
     </div>
     <div class="header-right">
-      <span class="tier-badge" id="tierBadge">Free</span>
-      <button class="btn-icon dark-mode-toggle" id="darkModeToggle" title="Toggle theme">☾</button>
-      <button class="btn-icon" id="settingsBtn" title="Settings">⚙</button>
+      <span class="tier-badge tier-badge--free" id="tierBadge">Free</span>
+      <button class="btn-icon" id="darkModeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg class="icon-moon" width="15" height="15" aria-hidden="true"><use href="#icon-moon"/></svg>
+        <svg class="icon-sun"  width="15" height="15" aria-hidden="true"><use href="#icon-sun"/></svg>
+      </button>
+      <button class="btn-icon" id="settingsBtn" title="Settings" aria-label="Settings">
+        <svg width="15" height="15" aria-hidden="true"><use href="#icon-settings"/></svg>
+      </button>
     </div>
   </header>
 

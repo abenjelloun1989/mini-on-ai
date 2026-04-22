@@ -4,17 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClauseGuard</title>
-  <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+  <script>
+    fetch(chrome && chrome.runtime ? chrome.runtime.getURL('popup/icons.svg') : 'icons.svg')
+      .then(r => r.text())
+      .then(svg => { document.body.insertAdjacentHTML('afterbegin', svg); })
+      .catch(() => {});
+  </script>
 
   <!-- Header -->
   <header class="header">
     <div class="header-logo">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z" fill="#6366f1" stroke="#6366f1" stroke-width="1"/>
-        <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg class="header-icon" width="20" height="20" aria-hidden="true">
+        <use href="#icon-clauseguard"/>
       </svg>
       <span class="header-title">ClauseGuard</span>
     </div>

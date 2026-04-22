@@ -1,16 +1,15 @@
 /* InvoiceGuard — Popup Dashboard */
 
+/* ── Extension accent override ──────────────────────────────────────────────
+   Base tokens live in shared.css. InvoiceGuard accent = emerald green.
+   --brand aliases --accent via shared.css backward-compat, so all existing
+   var(--brand) usages below resolve correctly to emerald.
+─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #0f0f1a;
-  --surface: #1a1a2e;
-  --border: #2a2a4a;
-  --text: #e0e0e0;
-  --text-muted: #888;
-  --brand: #6366F1;
-  --brand-hover: #4F46E5;
-  --danger: #EF4444;
-  --success: #10B981;
-  --warning: #F59E0B;
+  --accent:        #10b981;   /* emerald */
+  --accent-hover:  #059669;
+  --accent-dim:    rgba(16, 185, 129, 0.12);
+  --accent-border: rgba(16, 185, 129, 0.30);
 }
 
 /* * reset — provided by shared.css */
