@@ -153,10 +153,23 @@ body.light-mode {
   --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
 
-  --danger-dim:   rgba(239, 68, 68, 0.08);
-  --warning-dim:  rgba(245, 158, 11, 0.08);
-  --success-dim:  rgba(16, 185, 129, 0.08);
-  --neutral-dim:  rgba(90, 96, 128, 0.07);
+  /* Semantic: darker shades for WCAG AA contrast on white */
+  --danger:        #b91c1c;
+  --danger-hover:  #991b1b;
+  --warning:       #92400e;
+  --warning-hover: #78350f;
+  --success:       #059669;
+  --success-hover: #047857;
+
+  /* Tint backgrounds: higher opacity needed on white vs dark surface */
+  --danger-dim:    rgba(185, 28,  28, 0.10);
+  --warning-dim:   rgba(146, 64,  14, 0.10);
+  --success-dim:   rgba(  5, 150, 105, 0.10);
+  --neutral-dim:   rgba( 90,  96, 128, 0.08);
+
+  /* Accent: slightly reduced opacity for white backgrounds */
+  --accent-dim:    rgba(99, 102, 241, 0.10);
+  --accent-border: rgba(99, 102, 241, 0.25);
 }
 
 /* ══════════════════════════════════════════════════════════════
