@@ -39,7 +39,7 @@ def file_hash(path: Path) -> str:
     """Return MD5 hex digest of a file, or empty string if it doesn't exist."""
     if not path.exists():
         return ""
-    return hashlib.md5(path.read_bytes()).hexdigest()
+    return hashlib.md5(path.read_bytes(), usedforsecurity=False).hexdigest()  # nosec B324 — used for change detection only
 
 
 def node_check(path: Path):
