@@ -111,7 +111,7 @@ def telegram_report(override_message: str = None) -> bool:
         return False
 
     latest = runs[-1]
-    site_url = os.getenv("SITE_URL", "file://./site")
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com")
 
     if latest.get("status") == "success":
         product = latest.get("product") or {}

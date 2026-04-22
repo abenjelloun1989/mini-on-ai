@@ -254,7 +254,7 @@ def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
     log("pipeline", f"Product: {meta['title']}")
 
     import os
-    site_url = os.getenv("SITE_URL", "file://./site")
+    site_url = os.getenv("SITE_URL", "https://mini-on-ai.com")
     log("pipeline", f"Site: {site_url}/products/{meta['id']}.html")
     if gumroad_url:
         log("pipeline", f"Gumroad: {gumroad_url}")
