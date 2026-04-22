@@ -105,6 +105,9 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
 
+  /* Color scheme — tells browser to render native controls (select, input) in dark mode */
+  color-scheme: dark;
+
   /* Transitions */
   --transition: 0.15s ease;
 
@@ -137,6 +140,8 @@
    2. LIGHT MODE
    ══════════════════════════════════════════════════════════════ */
 body.light-mode {
+  color-scheme: light;
+
   --bg:             #f5f6fa;
   --surface:        #ffffff;
   --surface-raised: #f0f2f8;

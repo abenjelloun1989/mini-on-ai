@@ -97,12 +97,13 @@ function setupTabs(onSwitch) {
     tab.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
       document.querySelectorAll(".tab-content").forEach(c => {
-        c.classList.remove("active");
+        c.classList.remove("active", "hidden");
         c.style.display = "none";
       });
       tab.classList.add("active");
       const content = document.getElementById(`tab-${tab.dataset.tab}`);
       if (content) {
+        content.classList.remove("hidden");
         content.style.display = "block";
         content.classList.add("active");
       }
