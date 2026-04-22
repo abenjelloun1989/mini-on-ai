@@ -1,14 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Background: deep indigo -->
-  <rect width="128" height="128" rx="24" fill="#1e1b4b"/>
-  <g transform="translate(64,64)">
-    <!-- Shield body (indigo, semi-transparent fill) -->
-    <path d="M0-34l-24 9v20c0 16 10.5 31 24 36 13.5-5 24-20 24-36V-25Z"
-          fill="#6366f1" opacity="0.25"/>
-    <path d="M0-34l-24 9v20c0 16 10.5 31 24 36 13.5-5 24-20 24-36V-25Z"
-          fill="none" stroke="#6366f1" stroke-width="3" stroke-linejoin="round"/>
-    <!-- Checkmark -->
-    <path d="M-11 2l8 8 14-16"
-          stroke="#6366f1" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  </g>
+  
+  <rect width="128" height="128" rx="24" fill="#6366f1"></rect>
+  
+  <path d="M64 18L30 32v28c0 22 14.5 42.5 34 48 19.5-5.5 34-26 34-48V32Z" fill="white" opacity="0.18"></path>
+  <path d="M64 18L30 32v28c0 22 14.5 42.5 34 48 19.5-5.5 34-26 34-48V32Z" fill="none" stroke="white" stroke-width="5" stroke-linejoin="round"></path>
+  
+  <path d="M46 63l13 13 24-26" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
 </svg>

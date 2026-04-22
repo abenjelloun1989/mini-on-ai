@@ -10,68 +10,73 @@
 
 ## Source SVGs
 
-| Extension    | SVG                                              | Background  |
-|-------------|--------------------------------------------------|-------------|
-| ClauseGuard  | `clauseguard/store-assets/clauseguard-128.svg`  | `#1e1b4b`   |
-| InvoiceGuard | `invoiceguard/store-assets/invoiceguard-128.svg`| `#0d1a15`   |
-| JobGuard     | `jobguard/store-assets/jobguard-128.svg`        | `#1c1503`   |
+Two SVGs per extension — **use the right one per size**:
+
+| Extension    | 16px source                                    | 48/128px source                                |
+|-------------|------------------------------------------------|------------------------------------------------|
+| ClauseGuard  | `clauseguard/store-assets/clauseguard-16.svg`  | `clauseguard/store-assets/clauseguard-128.svg`  |
+| InvoiceGuard | `invoiceguard/store-assets/invoiceguard-16.svg`| `invoiceguard/store-assets/invoiceguard-128.svg`|
+| JobGuard     | `jobguard/store-assets/jobguard-16.svg`        | `jobguard/store-assets/jobguard-128.svg`        |
+
+### Why two sources?
+
+At 16px (Chrome toolbar), fine details disappear. The `*-16.svg` files use a pure solid-fill silhouette with no strokes or overlay badges. The `*-128.svg` files include the overlay details (clock, magnifier) that read clearly at larger sizes.
+
+| Extension    | 16px approach                                 |
+|-------------|-----------------------------------------------|
+| ClauseGuard  | White filled shield + indigo checkmark cutout |
+| InvoiceGuard | White filled receipt + tiny clock badge       |
+| JobGuard     | White filled briefcase, no magnifier          |
 
 ## Option A — Node.js + Sharp (recommended)
 
 ```bash
 cd /Users/minion/Dev/mini-on-factory
-npm install sharp   # one-time
+npm install --prefix /tmp/sharp-tmp sharp   # one-time install
 
-node - <<'EOF'
-import sharp from 'sharp';
-import { readFileSync } from 'fs';
-import { mkdirSync } from 'fs';
+node --input-type=module <<'EOF'
+import { createRequire } from 'module';
+const require = createRequire('/tmp/sharp-tmp/');
+const sharp = require('sharp');
+import { readFileSync, mkdirSync } from 'fs';
 
 const icons = [
-  { name: 'clauseguard',  src: 'clauseguard/store-assets/clauseguard-128.svg',  dest: 'clauseguard/icons' },
-  { name: 'invoiceguard', src: 'invoiceguard/store-assets/invoiceguard-128.svg', dest: 'invoiceguard/icons' },
-  { name: 'jobguard',     src: 'jobguard/store-assets/jobguard-128.svg',         dest: 'jobguard/icons' },
+  { name: 'clauseguard',  src16: 'clauseguard/store-assets/clauseguard-16.svg',   src128: 'clauseguard/store-assets/clauseguard-128.svg',   dest: 'clauseguard/icons' },
+  { name: 'invoiceguard', src16: 'invoiceguard/store-assets/invoiceguard-16.svg',  src128: 'invoiceguard/store-assets/invoiceguard-128.svg',  dest: 'invoiceguard/icons' },
+  { name: 'jobguard',     src16: 'jobguard/store-assets/jobguard-16.svg',          src128: 'jobguard/store-assets/jobguard-128.svg',          dest: 'jobguard/icons' },
 ];
-const sizes = [16, 48, 128];
 
-for (const { name, src, dest } of icons) {
+for (const { name, src16, src128, dest } of icons) {
   mkdirSync(dest, { recursive: true });
-  const svg = readFileSync(src);
-  for (const size of sizes) {
-    const out = `${dest}/icon-${size}.png`;
-    await sharp(svg).resize(size, size).png().toFile(out);
-    // Also write no-dash variant for Chrome compatibility
-    await sharp(svg).resize(size, size).png().toFile(`${dest}/icon${size}.png`);
-    console.log(`Wrote ${out}`);
-  }
+  // 16px — dedicated simplified icon
+  await sharp(readFileSync(src16)).resize(16, 16).png().toFile(`${dest}/icon-16.png`);
+  await sharp(readFileSync(src16)).resize(16, 16).png().toFile(`${dest}/icon16.png`);
+  // 48px and 128px — full detail icon
+  await sharp(readFileSync(src128)).resize(48, 48).png().toFile(`${dest}/icon-48.png`);
+  await sharp(readFileSync(src128)).resize(48, 48).png().toFile(`${dest}/icon48.png`);
+  await sharp(readFileSync(src128)).resize(128, 128).png().toFile(`${dest}/icon-128.png`);
+  await sharp(readFileSync(src128)).resize(128, 128).png().toFile(`${dest}/icon128.png`);
+  console.log(`✓ ${name}`);
 }
+console.log('Done!');
 EOF
 ```
 
 ## Option B — Inkscape (free desktop app)
 
 ```bash
-# For each extension:
-inkscape clauseguard/store-assets/clauseguard-128.svg \
-  --export-type=png --export-width=128 --export-filename=clauseguard/icons/icon-128.png
-inkscape clauseguard/store-assets/clauseguard-128.svg \
-  --export-type=png --export-width=48  --export-filename=clauseguard/icons/icon-48.png
-inkscape clauseguard/store-assets/clauseguard-128.svg \
-  --export-type=png --export-width=16  --export-filename=clauseguard/icons/icon-16.png
+# 16px — use dedicated simplified icons
+inkscape clauseguard/store-assets/clauseguard-16.svg   --export-type=png --export-width=16  --export-filename=clauseguard/icons/icon16.png
+inkscape invoiceguard/store-assets/invoiceguard-16.svg --export-type=png --export-width=16  --export-filename=invoiceguard/icons/icon16.png
+inkscape jobguard/store-assets/jobguard-16.svg         --export-type=png --export-width=16  --export-filename=jobguard/icons/icon16.png
 
-# Repeat for invoiceguard and jobguard
-```
-
-## After export — copy to both naming conventions
-
-Chrome's manifest and the store both expect consistent filenames.
-Run this after exporting:
-
-```bash
-for ext in clauseguard invoiceguard jobguard; do
-  cp $ext/icons/icon-48.png  $ext/icons/icon48.png
-  cp $ext/icons/icon-128.png $ext/icons/icon128.png
-done
+# 48px and 128px — use full detail icons
+inkscape clauseguard/store-assets/clauseguard-128.svg   --export-type=png --export-width=48  --export-filename=clauseguard/icons/icon48.png
+inkscape clauseguard/store-assets/clauseguard-128.svg   --export-type=png --export-width=128 --export-filename=clauseguard/icons/icon128.png
+inkscape invoiceguard/store-assets/invoiceguard-128.svg --export-type=png --export-width=48  --export-filename=invoiceguard/icons/icon48.png
+inkscape invoiceguard/store-assets/invoiceguard-128.svg --export-type=png --export-width=128 --export-filename=invoiceguard/icons/icon128.png
+inkscape jobguard/store-assets/jobguard-128.svg         --export-type=png --export-width=48  --export-filename=jobguard/icons/icon48.png
+inkscape jobguard/store-assets/jobguard-128.svg         --export-type=png --export-width=128 --export-filename=jobguard/icons/icon128.png
 ```
 
 ## CWS submission checklist
@@ -81,4 +86,4 @@ done
 - [ ] No text at 16px or 48px
 - [ ] No screenshots or UI elements in the icon
 - [ ] All three sizes supplied per extension
-- [ ] 16px: fine detail is lost — all three icons render readably at 16px (viewBox scaling handles it)
+- [ ] 16px and 48px/128px generated from their respective source files

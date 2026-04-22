@@ -3,175 +3,432 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JobGuard Report</title>
-  <link rel="stylesheet" href="shared.css">
+  <title>JobGuard — Offer Analysis Report</title>
   <style>
+    /* Always light — no dark mode override */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --accent: #F59E0B;
-      --green:  #10b981;
-      --danger: #ef4444;
-      --warn:   #f59e0b;
-      --orange: #f97316;
+      --accent:        #f59e0b;
+      --accent-hover:  #d97706;
+      --accent-dim:    rgba(245,158,11,0.09);
+      --accent-border: rgba(245,158,11,0.28);
+      --text:          #141625;
+      --text-muted:    #5a6080;
+      --text-light:    #8892aa;
+      --border:        #e2e5f0;
+      --border-subtle: #eef0f8;
+      --surface:       #ffffff;
+      --surface-alt:   #f8f9fc;
+      --danger:        #ef4444;
+      --danger-dim:    rgba(239,68,68,0.07);
+      --danger-border: rgba(239,68,68,0.20);
+      --warning:       #d97706;
+      --warning-dim:   rgba(245,158,11,0.08);
+      --warning-border:rgba(245,158,11,0.22);
+      --success:       #059669;
+      --success-dim:   rgba(16,185,129,0.08);
+      --success-border:rgba(16,185,129,0.20);
+      --neutral-dim:   rgba(90,96,128,0.06);
+      --neutral-border:rgba(90,96,128,0.18);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: #f0f0f0; min-height: 100%; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: var(--font);
       font-size: 14px;
+      color: var(--text);
       background: #f0f0f0;
-      color: #111;
+      min-height: 100vh;
       line-height: 1.55;
     }
-    .page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 48px 80px;
-      background: #fff;
+
+    /* ── Canvas + paper ─────────────────────────────── */
+    .canvas {
+      background: #f0f0f0;
       min-height: 100vh;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+      padding: 40px 24px;
     }
 
-    /* ── Header ── */
+    .paper {
+      background: #fff;
+      max-width: 900px;
+      min-height: 100vh;
+      margin: 0 auto;
+      border-radius: 12px;
+      padding: 48px 56px 64px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
     .report-header {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
-    .report-logo { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
-    .report-logo span { color: var(--accent); }
-    .report-meta { font-size: 12px; color: #666; }
-    .btn-print {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 9px 18px;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .btn-print:hover { opacity: 0.88; }
 
-    /* ── Risk banner ── */
-    .risk-banner {
+    .report-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .report-brand svg { color: var(--accent); }
+    .report-brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+    .report-brand-sep { font-size: 13px; color: var(--border); }
+    .report-brand-type { font-size: 13px; color: var(--text-muted); }
+
+    .report-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .report-subtitle {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .report-meta { margin-top: 10px; }
+    .report-meta .pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--surface-alt);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+    .btn-print {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--font);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-print svg { width: 14px; height: 14px; }
+
+    /* ── Divider ─────────────────────────────────────── */
+    .divider { height: 1px; background: var(--border-subtle); margin: 32px 0; }
+
+    /* ── Risk score ─────────────────────────────────── */
+    .risk-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .risk-ring-wrap {
       display: flex;
       align-items: center;
       gap: 18px;
-      padding: 18px 20px;
-      border-radius: 10px;
-      border: 1.5px solid;
-      margin-bottom: 20px;
-    }
-    .risk-banner.green  { background: #ecfdf5; border-color: var(--green); }
-    .risk-banner.yellow { background: #fffbeb; border-color: var(--warn); }
-    .risk-banner.orange { background: #fff7ed; border-color: var(--orange); }
-    .risk-banner.red    { background: #fef2f2; border-color: var(--danger); }
-
-    .score-circle {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 900;
       flex-shrink: 0;
     }
-    .green  .score-circle { background: var(--green);  color: #fff; }
-    .yellow .score-circle { background: var(--warn);   color: #000; }
-    .orange .score-circle { background: var(--orange); color: #fff; }
-    .red    .score-circle { background: var(--danger); color: #fff; }
-
-    .risk-label    { font-size: 17px; font-weight: 800; }
-    .risk-platform { font-size: 13px; color: #555; margin-top: 2px; }
-
-    /* ── Sections ── */
-    .summary {
-      background: #f9f9f9;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 13px;
-      color: #444;
-      margin-bottom: 24px;
+    .risk-ring-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
     }
-    .section-title {
-      font-size: 11px;
+    .risk-ring-value {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .risk-ring-value.high   { color: var(--danger); }
+    .risk-ring-value.medium { color: var(--warning); }
+    .risk-ring-value.low    { color: var(--success); }
+    .risk-ring-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+    .summary-col { flex: 1; min-width: 260px; }
+    .summary-label {
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #888;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
       margin-bottom: 10px;
-      margin-top: 24px;
     }
-    .flag-list { display: flex; flex-direction: column; gap: 10px; }
+    .summary-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── Section heading ─────────────────────────────── */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .section-heading h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .section-count {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 10px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border-subtle); }
+    .section-spacer { height: 20px; }
+
+    /* ── Flag card ───────────────────────────────────── */
     .flag-card {
+      display: flex;
+      flex-direction: column;
+      padding: 16px 18px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      break-inside: avoid;
+    }
+    .flag-card.danger  { background: var(--danger-dim);  border-color: var(--danger-border); }
+    .flag-card.warning { background: var(--warning-dim); border-color: var(--warning-border); }
+    .flag-card.success { background: var(--success-dim); border-color: var(--success-border); }
+    .flag-card.neutral { background: var(--neutral-dim); border-color: var(--neutral-border); }
+
+    .flag-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .flag-inner svg { flex-shrink: 0; margin-top: 2px; }
+    .flag-card.danger  .flag-inner svg { color: var(--danger); }
+    .flag-card.warning .flag-inner svg { color: var(--warning); }
+    .flag-card.success .flag-inner svg { color: var(--success); }
+    .flag-card.neutral .flag-inner svg { color: var(--text-muted); }
+
+    .flag-content {}
+    .flag-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+    .flag-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .flag-quote {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 8px 12px;
+      border-left: 3px solid currentColor;
+      margin-top: 10px;
+      line-height: 1.6;
+      background: rgba(0,0,0,0.025);
+      border-radius: 0 4px 4px 0;
+    }
+    .flag-card.danger  .flag-quote { color: var(--danger); }
+    .flag-card.warning .flag-quote { color: var(--warning); }
+
+    /* ── Tip item ────────────────────────────────────── */
+    .tips-list { display: flex; flex-direction: column; }
+    .tip-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .tip-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tip-content { flex: 1; }
+    .tip-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .tip-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Market rate box ─────────────────────────────── */
+    .market-rate {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 12px 14px;
-      border: 1px solid #e5e5e5;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      break-inside: avoid;
     }
-    .flag-card.danger  { border-color: #fca5a5; background: #fef2f2; }
-    .flag-card.warning { border-color: #fcd34d; background: #fffbeb; }
-    .flag-card.green   { border-color: #6ee7b7; background: #ecfdf5; }
-    .flag-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
-    .flag-icon   { font-size: 14px; flex-shrink: 0; }
-    .flag-title  { font-size: 13px; font-weight: 700; }
-    .flag-body   { font-size: 13px; color: #555; }
-    .flag-quote  {
-      font-size: 12px; color: #777; font-style: italic;
-      margin-top: 6px; padding-left: 10px;
-      border-left: 2px solid #d1d5db;
-    }
-    .market-rate {
-      background: #f9f9f9; border: 1px solid #e5e5e5;
-      border-radius: 8px; padding: 12px 14px;
-      font-size: 13px; color: #444;
-    }
-    .tips-list { display: flex; flex-direction: column; gap: 8px; }
-    .tip-item {
-      display: flex; gap: 10px;
-      font-size: 13px; color: #444;
-      background: #f9f9f9; border: 1px solid #e5e5e5;
-      border-radius: 8px; padding: 10px 12px;
-    }
-    .tip-num { font-weight: 800; color: var(--accent); min-width: 18px; }
 
-    /* ── Footer ── */
+    /* ── Footer ──────────────────────────────────────── */
     .report-footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid #e5e5e5;
-      font-size: 11px;
-      color: #aaa;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-note { font-size: 12px; color: var(--text-light); }
+    .btn-save-pdf {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background 0.15s;
+    }
+    .btn-save-pdf:hover { background: rgba(245,158,11,0.15); }
+    .btn-save-pdf svg { width: 13px; height: 13px; }
+
+    /* ── No-data / loading ───────────────────────────── */
+    #loadingMsg {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-muted);
+      font-size: 14px;
     }
 
-    /* ── Print ── */
+    /* ── Print ───────────────────────────────────────── */
     @media print {
-      .btn-print { display: none; }
-      .page { padding: 20px; max-width: 100%; margin: 0; box-shadow: none; background: #fff; }
-      body { background: #fff; }
-      .risk-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .flag-card   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      html, body { background: #fff; }
+      .canvas { padding: 0; background: #fff; }
+      .paper {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 32px 48px;
+        max-width: 100%;
+      }
+      .no-print { display: none !important; }
+      .flag-card { break-inside: avoid; }
+      .section-heading, .risk-row { break-inside: avoid; }
+      .flag-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 640px) {
+      .paper { padding: 32px 24px 48px; }
+      .risk-row { gap: 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+
+<!-- SVG icon defs (inline — no external fetch needed) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="fp-jobguard" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="2"/>
+    <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="16.5" cy="16.5" r="2.8" stroke="currentColor" stroke-width="2"/>
+    <path d="M18.5 18.5l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="fp-alert" viewBox="0 0 24 24" fill="none">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+    <path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="fp-info" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/>
+    <path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="fp-check-circle" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/>
+    <path d="M8.5 12l2.5 2.5 4.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="fp-print" viewBox="0 0 24 24" fill="none">
+    <path d="M6 9V2h12v7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    <rect x="6" y="14" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.75"/>
+  </symbol>
+  <symbol id="fp-download" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<div class="canvas">
+  <div class="paper">
+
+    <!-- Header row -->
     <div class="report-header">
       <div>
-        <div class="report-logo"><img src="../icons/icon48.png" width="22" height="22" style="vertical-align:-5px;border-radius:5px;"> Job<span>Guard</span> Report</div>
-        <div class="report-meta" id="reportMeta"></div>
+        <div class="report-brand">
+          <svg width="20" height="20"><use href="#fp-jobguard"/></svg>
+          <span class="report-brand-name">JobGuard</span>
+          <span class="report-brand-sep">·</span>
+          <span class="report-brand-type">Offer Analysis Report</span>
+        </div>
+        <div id="reportTitle" class="report-title" style="display:none"></div>
+        <div id="reportMeta" class="report-meta"></div>
       </div>
-      <button class="btn-print" id="printBtn">🖨 Save as PDF</button>
+      <button class="btn-print no-print" id="printBtn">
+        <svg><use href="#fp-print"/></svg>
+        Print Report
+      </button>
     </div>
-    <div id="report">Loading…</div>
+
+    <!-- Report body (populated by fullpage.js) -->
+    <div id="report">
+      <div id="loadingMsg">Loading report…</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Footer -->
     <div class="report-footer">
-      <span>Generated by JobGuard — mini-on-ai.com/jobguard.html</span>
-      <span id="reportDate"></span>
+      <span class="footer-note">Generated by JobGuard · <span id="reportDate"></span> · For personal use only</span>
+      <button class="btn-save-pdf no-print" id="savePdfBtn">
+        <svg><use href="#fp-download"/></svg>
+        Save as PDF
+      </button>
     </div>
+
   </div>
-  <script src="shared.js"></script>
-  <script src="fullpage.js"></script>
+</div>
+
+<script src="shared.js"></script>
+<script src="fullpage.js"></script>
 </body>
 </html>
