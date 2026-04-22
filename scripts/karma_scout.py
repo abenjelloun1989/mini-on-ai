@@ -240,7 +240,7 @@ def _reddit_new(subreddit: str, limit: int = 25) -> list:
     params = urllib.parse.urlencode({"limit": limit})
     url = f"https://api.reddit.com/r/{subreddit}/new?{params}"
     req = urllib.request.Request(url, headers={"User-Agent": REDDIT_USER_AGENT})
-    with urllib.request.urlopen(req, timeout=15) as resp:
+    with urllib.request.urlopen(req, timeout=15) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         children = json.loads(resp.read().decode("utf-8")).get("data", {}).get("children", [])
     return [c["data"] for c in children if c.get("kind") == "t3"]
 
@@ -374,7 +374,7 @@ def comment_for_url(url: str) -> str:
     json_url = f"https://api.reddit.com/comments/{post_id}.json?limit=1"
     req = urllib.request.Request(json_url, headers={"User-Agent": REDDIT_USER_AGENT})
     try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
             data = json.loads(resp.read().decode("utf-8"))
         post_data = data[0]["data"]["children"][0]["data"]
         subreddit = post_data.get("subreddit", subreddit)

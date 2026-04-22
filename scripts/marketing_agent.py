@@ -111,7 +111,7 @@ def _tg_api(method: str, data: dict) -> dict:
     url = f"https://api.telegram.org/bot{token}/{method}"
     payload = json.dumps(data).encode("utf-8")
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=15) as resp:
+    with urllib.request.urlopen(req, timeout=15) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         return json.loads(resp.read())
 
 
@@ -257,7 +257,7 @@ def devto_publish(post: dict) -> str:
         },
     )
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
+        with urllib.request.urlopen(req, timeout=20) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
             data = json.loads(resp.read())
             return data.get("url", "https://dev.to")
     except urllib.error.HTTPError as e:

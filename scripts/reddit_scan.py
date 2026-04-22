@@ -52,7 +52,7 @@ def _reddit_search(subreddit: str, keyword: str, size: int = 25) -> list:
     })
     url = REDDIT_SEARCH_BASE.format(subreddit=subreddit) + f"?{params}"
     req = urllib.request.Request(url, headers={"User-Agent": REDDIT_USER_AGENT})
-    with urllib.request.urlopen(req, timeout=15) as resp:
+    with urllib.request.urlopen(req, timeout=15) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         children = json.loads(resp.read().decode("utf-8")).get("data", {}).get("children", [])
     return [c["data"] for c in children if c.get("kind") == "t3"]
 

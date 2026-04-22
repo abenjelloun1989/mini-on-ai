@@ -109,7 +109,7 @@ def post_tweet(text: str) -> dict:
         },
         method="POST",
     )
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         response = json.loads(resp.read().decode("utf-8"))
     return response
 

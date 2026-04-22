@@ -179,7 +179,7 @@ def fetch_weather(city: str) -> str:
         encoded = urllib.parse.quote(city_name)
         url = f"https://wttr.in/{encoded}?format=j1"
         req = urllib.request.Request(url, headers={"User-Agent": "holiday-planner/1.0"})
-        with urllib.request.urlopen(req, timeout=10) as r:
+        with urllib.request.urlopen(req, timeout=10) as r:  # nosec B310 -- URL constructed from hardcoded https:// base
             data = json.loads(r.read().decode("utf-8"))
 
         weather_days = data.get("weather", [])

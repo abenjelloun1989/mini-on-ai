@@ -39,7 +39,7 @@ def _brevo(method: str, path: str, body: dict = None) -> dict:
     req.add_header("Content-Type", "application/json")
     req.add_header("Accept", "application/json")
     try:
-        with urllib.request.urlopen(req) as resp:
+        with urllib.request.urlopen(req) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
             content = resp.read()
             return json.loads(content) if content else {}
     except urllib.error.HTTPError as e:

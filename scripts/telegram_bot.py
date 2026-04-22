@@ -70,7 +70,7 @@ def api(method: str, data: dict = None) -> dict:
     url = f"https://api.telegram.org/bot{TOKEN}/{method}"
     payload = json.dumps(data or {}).encode("utf-8")
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
+    with urllib.request.urlopen(req, timeout=30) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         return json.loads(resp.read())
 
 

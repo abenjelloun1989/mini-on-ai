@@ -39,7 +39,7 @@ def send_telegram(text: str) -> bool:
     }).encode("utf-8")
 
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         if resp.status != 200:
             raise RuntimeError(f"Telegram API error {resp.status}")
 
@@ -182,7 +182,7 @@ def send_approval_request(idea: dict) -> bool:
 
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         if resp.status != 200:
             raise RuntimeError(f"Telegram API error {resp.status}")
 
@@ -206,7 +206,7 @@ def _send_with_buttons(text: str, buttons: list) -> bool:
     }).encode("utf-8")
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req) as resp:  # nosec B310 -- URL constructed from hardcoded https:// base
         if resp.status != 200:
             raise RuntimeError(f"Telegram API error {resp.status}")
     return True

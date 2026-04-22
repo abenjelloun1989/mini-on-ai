@@ -124,7 +124,7 @@ def _telegram_send_text(text: str) -> None:
         headers={"Content-Type": "application/json"},
     )
     try:
-        with urllib.request.urlopen(req, timeout=15):
+        with urllib.request.urlopen(req, timeout=15):  # nosec B310 -- URL constructed from hardcoded https:// base
             pass
     except Exception as e:
         log("publish", f"Telegram text error: {e}")
