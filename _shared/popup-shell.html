@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  mini-on-ai Chrome Extension — Popup Shell Template                     ║
+  ║  Source: _shared/popup-shell.html                                        ║
+  ║                                                                          ║
+  ║  USAGE: Copy this file to {extension}/popup/popup.html and search for   ║
+  ║         every "CUSTOMIZE" comment. Do not sync — this is a one-time     ║
+  ║         copy. shared.js and shared.css ARE synced by sync_shared.py.    ║
+  ║                                                                          ║
+  ║  SHARED UTILS (from shared.js — available globally in popup.js):        ║
+  ║    escHtml(str)                 — safe HTML escaping                     ║
+  ║    escAttr(str)                 — safe attribute escaping                ║
+  ║    copyText(btn, text, label)   — clipboard with "✓ Copied!" feedback   ║
+  ║    initDarkMode(key, toggleId)  — dark/light toggle with localStorage   ║
+  ║                                                                          ║
+  ║  STATE MANAGEMENT PATTERN (three mutually exclusive states):            ║
+  ║    #inputState   — shown by default                                      ║
+  ║    #loadingState — shown while API call is in flight                     ║
+  ║    #resultsState — shown when results arrive                             ║
+  ║    Switch with: el.style.display = 'block' / 'none'                     ║
+  ║    or add/remove the .hidden class (defined in shared.css)              ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CUSTOMIZE: change to your extension's name -->
+  <title>MyExtension</title>
+  <!-- popup.css: extension-specific styles (colors, :root tokens, body size) -->
+  <link rel="stylesheet" href="popup.css">
+  <!-- shared.css: universal reset, flag-cards, section-title, layout shell — do not remove -->
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       HEADER
+       CSS: .header / .header-left / .header-right / .header-title (shared.css)
+       .tier-badge / .tier-badge--pro (shared.css — swap text via JS)
+       Remove: darkModeToggle if extension is dark-only (no light toggle)
+       Remove: expandBtn if there is no fullpage.html
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <header class="header">
+    <div class="header-left">
+      <!-- CUSTOMIZE: swap icon — use a 16px PNG from icons/ or an inline SVG -->
+      <img src="../icons/icon16.png" width="16" height="16" alt="">
+      <!-- CUSTOMIZE: extension name shown in header -->
+      <span class="header-title">MyExtension</span>
+    </div>
+    <div class="header-right">
+      <!-- tier badge — JS sets text to "Pro" and adds .tier-badge--pro for Pro users -->
+      <span class="tier-badge" id="tierBadge">Free</span>
+      <!-- dark/light toggle — wire to: initDarkMode("myext-theme", "darkModeToggle") in popup.js -->
+      <button class="btn-icon" id="darkModeToggle" title="Toggle theme">🌙</button>
+      <!-- expand button — opens fullpage.html via: chrome.tabs.create({url: chrome.runtime.getURL("popup/fullpage.html")}) -->
+      <!-- CUSTOMIZE: remove this button if there is no fullpage.html -->
+      <button class="btn-icon" id="expandBtn" title="Open full page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+          <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TAB NAVIGATION
+       CSS: .tabs / .tab / .tab.active / .pro-chip (shared.css)
+       JS pattern: document.querySelectorAll('.tab').forEach(tab => {
+         tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+       });
+       CUSTOMIZE: rename tabs, add/remove tabs, drop pro-chip where not needed
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <nav class="tabs">
+    <!-- CUSTOMIZE: first tab label (main functionality) -->
+    <button class="tab active" data-tab="main">Analyze</button>
+    <!-- CUSTOMIZE: add more Pro-gated tabs as needed, or remove this one -->
+    <button class="tab" data-tab="history">
+      History
+      <span class="pro-chip">Pro</span>
+    </button>
+    <!-- Account tab — keep this in every extension -->
+    <button class="tab" data-tab="account">Account</button>
+  </nav>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TAB: MAIN  (customize this tab entirely for your feature)
+       CSS: .tab-content / .tab-content.active (shared.css) — display toggled by JS
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="tab-content active" id="tab-main">
+
+    <!-- ── INPUT STATE ──────────────────────────────────────────────────────
+         Shown by default. Hidden by JS when loading or showing results.
+         JS: document.getElementById('inputState').style.display = 'none'
+    ─────────────────────────────────────────────────────────────────────── -->
+    <div id="inputState">
+
+      <!-- CUSTOMIZE: add a contract type selector, textarea, file upload, etc. -->
+      <!-- Example: textarea for user input -->
+      <textarea id="inputText"
+        placeholder="Paste your text here…"
+        rows="8"></textarea>
+      <div id="charCount" class="char-count">0 / 10,000</div>
+
+      <!-- Usage indicator — JS populates #usageText with "2 of 3 analyses used" -->
+      <div class="usage-row" id="usageRow">
+        <span id="usageText">Loading…</span>
+      </div>
+
+      <!-- Primary CTA — disabled until there's input; JS enables it -->
+      <!-- CUSTOMIZE: label and icon -->
+      <button class="btn-primary" id="analyzeBtn" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Analyze
+      </button>
+
+      <!-- Upgrade banner — shown when free limit is reached (JS toggles .hidden) -->
+      <div class="upgrade-banner hidden" id="upgradeBanner">
+        <div>
+          <strong style="display:block;margin-bottom:3px;">Monthly limit reached 🔒</strong>
+          <!-- CUSTOMIZE: update copy for your extension -->
+          <span>You've used all 3 free analyses. Upgrade to Pro for unlimited access.</span>
+        </div>
+        <button class="btn-upgrade" id="upgradeFromBanner">Upgrade — $7/mo →</button>
+      </div>
+
+    </div><!-- /inputState -->
+
+    <!-- ── LOADING STATE ────────────────────────────────────────────────────
+         Hidden by default. JS shows this while awaiting the API response.
+         CUSTOMIZE: swap the spinner for an animated SVG matching your brand.
+         JobGuard uses an animated shield; ClauseGuard uses a shield fill.
+    ─────────────────────────────────────────────────────────────────────── -->
+    <div id="loadingState" class="hidden">
+      <div class="loading-wrap">
+        <!-- CUSTOMIZE: replace with your brand's loading animation -->
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <!-- CUSTOMIZE: update text -->
+        <p class="loading-text">Analyzing…</p>
+        <p class="loading-sub">Reviewing every detail</p>
+      </div>
+    </div>
+
+    <!-- ── RESULTS STATE ────────────────────────────────────────────────────
+         Hidden by default. JS populates and shows this after a successful API call.
+         CUSTOMIZE: replace the placeholder sections with your result components.
+         Use .flag-card / .flag-card--danger etc. from shared.css for result cards.
+         Use .section-title for section headers.
+         Use .tips-list / .tip-item / .tip-num for numbered tip lists.
+    ─────────────────────────────────────────────────────────────────────── -->
+    <div id="resultsState" class="hidden">
+
+      <!-- Results header: score/badge + action buttons -->
+      <div class="results-header">
+        <div class="risk-badge" id="riskBadge">
+          <!-- JS populates score and label -->
+          <span id="riskScore">0</span>
+          <span id="riskLabel">Low Risk</span>
+        </div>
+        <div class="results-actions">
+          <button class="btn-text" id="newAnalysisBtn">← New analysis</button>
+          <!-- CUSTOMIZE: add export button for Pro, or remove -->
+          <button class="btn-text pro-only hidden" id="exportBtn">Export PDF</button>
+        </div>
+      </div>
+
+      <!-- Summary box — JS sets innerHTML using escHtml() -->
+      <div class="summary-box" id="summaryBox"></div>
+
+      <!-- Disclaimer — JS may set this for legal copy -->
+      <div class="disclaimer-box hidden" id="disclaimerBox"></div>
+
+      <!-- CUSTOMIZE: add your result sections here using .flag-list + .flag-card -->
+      <!-- Example: Red flags section -->
+      <div class="section" id="flagsSection">
+        <h3 class="section-title">Flags</h3>
+        <!-- JS renders flag cards here:
+             <div class="flag-card flag-card--danger">
+               <div class="flag-header">
+                 <span class="flag-icon">⚠️</span>
+                 <span class="flag-title">Flag title</span>
+               </div>
+               <div class="flag-body">Explanation…</div>
+               <div class="flag-quote">"quoted clause text"</div>
+             </div>
+        -->
+        <div class="flag-list" id="flagsList"></div>
+      </div>
+
+      <!-- Example: Tips section -->
+      <div class="section" id="tipsSection">
+        <h3 class="section-title">Tips</h3>
+        <!-- JS renders tip items here:
+             <div class="tip-item">
+               <span class="tip-num">01</span>
+               <span>Tip text…</span>
+             </div>
+        -->
+        <div class="tips-list" id="tipsList"></div>
+      </div>
+
+    </div><!-- /resultsState -->
+
+  </div><!-- /tab-main -->
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TAB: HISTORY  (Pro gate pattern — reuse for any gated feature)
+       CUSTOMIZE: change icon, heading, description, and Pro feature content.
+       JS pattern: if (isPro) { historyGate.classList.add('hidden'); historyContent.classList.remove('hidden'); }
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="tab-content hidden" id="tab-history">
+
+    <!-- Gate (shown for Free users) -->
+    <div class="pro-gate" id="historyGate">
+      <!-- CUSTOMIZE: pick an emoji that fits the feature -->
+      <div class="pro-gate-icon">📋</div>
+      <!-- CUSTOMIZE: feature name and description -->
+      <h3>Analysis History</h3>
+      <p>Save and revisit your past analyses. Upgrade to Pro to unlock unlimited history.</p>
+      <button class="btn-primary" id="upgradeFromHistory">Upgrade to Pro — $7/month</button>
+    </div>
+
+    <!-- Pro content (hidden for Free users, shown for Pro) -->
+    <div class="hidden" id="historyContent">
+      <!-- CUSTOMIZE: render history items here -->
+      <div id="historyList"></div>
+    </div>
+
+  </div><!-- /tab-history -->
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TAB: ACCOUNT  (keep this in every extension — identical structure)
+       CSS: .account-section / .account-card / .account-card-label /
+            .account-card-value / .account-card-desc / .ltd-row /
+            .ltd-input / .ltd-message / .account-footer (all in shared.css)
+       JS: see renderAccountTab() pattern in jobguard/popup/popup.js
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="tab-content hidden" id="tab-account">
+    <div class="account-section">
+
+      <!-- Plan card — JS populates planName and may inject upgrade/manage button -->
+      <div class="account-card" id="planCard">
+        <div class="account-card-label">Current Plan</div>
+        <div class="account-card-value" id="planName">Loading…</div>
+        <!--
+          JS injects for Free:
+            <button class="btn-primary" id="upgradePlanBtn" style="margin-top:10px">
+              Upgrade to Pro — $7/month
+            </button>
+          JS injects for Pro:
+            <p style="font-size:12px;margin-top:8px;color:var(--text-muted)">
+              Renews monthly · <a href="..." target="_blank">Manage</a>
+            </p>
+        -->
+      </div>
+
+      <!-- Usage card — JS updates usedCount and limitCount; hide for Pro if unlimited -->
+      <div class="account-card" id="usageCard">
+        <div class="account-card-label">Analyses this month</div>
+        <div class="account-card-value">
+          <span id="usedCount">0</span> / <span id="limitCount">3</span>
+        </div>
+      </div>
+
+      <!-- LTD code redemption — JS hides #ltdSection for Pro users -->
+      <div class="account-card" id="ltdSection">
+        <div class="account-card-label">🎟 Lifetime Deal Code</div>
+        <p class="account-card-desc">
+          Have a lifetime deal code? Enter it below to unlock Pro permanently.
+        </p>
+        <div class="ltd-row">
+          <!-- CUSTOMIZE: update placeholder format for your LTD codes -->
+          <input
+            id="ltdInput"
+            type="text"
+            placeholder="XX-XXXX-XXXX"
+            maxlength="24"
+            autocomplete="off"
+            spellcheck="false"
+            class="ltd-input"
+          >
+          <button id="ltdRedeemBtn" class="btn-primary" style="width:auto;padding:8px 14px;">
+            Redeem
+          </button>
+        </div>
+        <!-- JS sets success/error message here with color styling -->
+        <div id="ltdMessage" class="ltd-message"></div>
+      </div>
+
+    </div><!-- /account-section -->
+
+    <!-- CUSTOMIZE: update email address -->
+    <div class="account-footer">
+      For issues, email
+      <a href="mailto:hello@mini-on-ai.com" style="color:var(--accent,#6366f1);">
+        hello@mini-on-ai.com
+      </a>
+    </div>
+
+  </div><!-- /tab-account -->
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SCRIPTS
+       shared.js is copied here by sync_shared.py — do not remove it.
+       CUSTOMIZE: add additional lib scripts before shared.js if needed (e.g. pdf.min.js).
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+
+</body>
+</html>

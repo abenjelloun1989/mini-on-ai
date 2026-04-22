@@ -100,3 +100,231 @@
   min-width: 16px;
   padding-top: 1px;
 }
+
+/* ── Popup Shell Layout ──────────────────────────────────────────────────────
+   Structural/layout components for new extensions built from popup-shell.html.
+   Uses CSS var fallbacks so they render correctly in all three colorways:
+     JobGuard:    --accent: #f59e0b (amber)
+     ClauseGuard: --accent falls back to --brand, then #6366f1 (indigo)
+     InvoiceGuard: --accent falls back to --brand: #6366f1 (indigo)
+   Existing extensions do NOT need to remove their popup.css equivalents —
+   specificity is equal and declaration order (shared.css first) means popup.css
+   overrides cleanly. New extensions get these for free with no popup.css needed.
+*/
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Tab navigation */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.tab {
+  flex: 1;
+  padding: 10px 4px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted, #888);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.tab:hover { color: var(--text); }
+.tab.active {
+  color: var(--accent, var(--brand, #6366f1));
+  border-bottom-color: var(--accent, var(--brand, #6366f1));
+}
+
+/* Tab content panels */
+.tab-content { display: none; padding: 12px 14px; }
+.tab-content.active { display: block; }
+
+/* Pro chip inside a tab label */
+.pro-chip {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--accent, var(--brand, #6366f1));
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
+
+/* Pro gate (upsell screen for locked tabs) */
+.pro-gate {
+  text-align: center;
+  padding: 32px 16px;
+}
+.pro-gate-icon { font-size: 32px; margin-bottom: 12px; }
+.pro-gate h3   { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.pro-gate p    { font-size: 12px; color: var(--text-muted, #888); margin-bottom: 16px; line-height: 1.5; }
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent, var(--brand, #6366f1));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-primary:hover:not(:disabled) { opacity: 0.85; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+.btn-secondary:hover { border-color: var(--accent, var(--brand, #6366f1)); }
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--accent, var(--brand, #6366f1));
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+.btn-text:hover { text-decoration: underline; }
+
+/* Account tab layout */
+.account-section { display: flex; flex-direction: column; gap: 10px; padding: 12px 0; }
+.account-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.account-card-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #888);
+  margin-bottom: 4px;
+}
+.account-card-value { font-size: 15px; font-weight: 700; }
+.account-card-desc  {
+  font-size: 12px;
+  color: var(--text-muted, #888);
+  margin: 4px 0 10px;
+  line-height: 1.5;
+}
+.ltd-row   { display: flex; gap: 8px; }
+.ltd-input {
+  flex: 1;
+  padding: 8px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+}
+.ltd-input:focus { outline: none; border-color: var(--accent, var(--brand, #6366f1)); }
+.ltd-message { font-size: 12px; margin-top: 8px; min-height: 16px; }
+.account-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted, #888);
+  margin-top: 4px;
+  padding: 8px 0 4px;
+}
+
+/* Usage row (shown between input and CTA) */
+.usage-row {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted, #888);
+  margin: 6px 0;
+}
+
+/* Loading state */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 12px;
+}
+.loading-text { font-size: 13px; color: var(--text-muted, #888); }
+.loading-sub  { font-size: 11px; color: var(--text-muted, #888); opacity: 0.7; }
+
+/* CSS spinner (fallback if no branded animation is added) */
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent, var(--brand, #6366f1));
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Char count (for textareas) */
+.char-count {
+  font-size: 11px;
+  color: var(--text-muted, #888);
+  text-align: right;
+  margin: 2px 0 6px;
+}
+
+/* Light mode — compatible with all three extensions (harmless if unused) */
+body.light-mode {
+  --bg:        #ffffff;
+  --surface:   #f5f5f7;
+  --border:    #e5e5ea;
+  --text:      #1d1d1f;
+  --text-muted:#6e6e73;
+}
+
+/* Hidden utility class */
+.hidden { display: none !important; }
