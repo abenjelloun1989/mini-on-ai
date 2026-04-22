@@ -7,6 +7,9 @@ let currentAnalysis = null;
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Dark/light mode toggle — provided by shared.js
+  initDarkMode("cg-theme", "darkModeToggle");
+
   // Full-page mode when opened as a tab
   if (window.outerWidth > 600) {
     document.body.classList.add("full-page");
