@@ -75,9 +75,14 @@ async function initPopup() {
     });
   });
 
-  // Settings button
-  document.getElementById("settingsBtn").addEventListener("click", () => {
+  // Settings button (optional — not always in header)
+  document.getElementById("settingsBtn")?.addEventListener("click", () => {
     chrome.runtime.openOptionsPage();
+  });
+
+  // Header expand button — open full-page report
+  document.getElementById("headerExpandBtn")?.addEventListener("click", () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL("popup/fullpage.html") });
   });
 
   // Textarea — char count + enable button
@@ -418,7 +423,7 @@ function renderResults(analysis, usage, originalText, opts = {}) {
     <div class="results-footer">
       <button class="btn-secondary" id="newAnalysisBtn">← New</button>
       <button class="btn-secondary" id="copyResultBtn">📋 Copy</button>
-      <button class="btn-secondary" id="expandBtn">⤢ Full page</button>
+      <button class="btn-secondary" id="resultsExpandBtn">⤢ Full page</button>
     </div>
     ${usageLine}
   `;
@@ -442,7 +447,7 @@ function renderResults(analysis, usage, originalText, opts = {}) {
     copyText(e.currentTarget, text);
   });
 
-  document.getElementById("expandBtn").addEventListener("click", () => openFullPage(analysis));
+  document.getElementById("resultsExpandBtn").addEventListener("click", () => openFullPage(analysis));
 
   document.getElementById("clearRestoredBtn")?.addEventListener("click", () => {
     results.style.display = "none";

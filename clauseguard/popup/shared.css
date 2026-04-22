@@ -200,6 +200,19 @@ body.light-mode {
   flex-shrink: 0;
   background: var(--surface);
 }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
 .header-icon {
   width: 20px;
   height: 20px;
@@ -210,7 +223,6 @@ body.light-mode {
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   color: var(--text);
-  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

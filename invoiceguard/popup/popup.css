@@ -37,38 +37,7 @@ body {
   top: 0;
   z-index: 10;
 }
-.header h1 {
-  font-size: 15px;
-  font-weight: 700;
-}
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.tier-badge {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--border);
-  color: var(--text-muted);
-}
-.tier-badge--pro {
-  background: #312e81;
-  color: #a5b4fc;
-}
-.btn-icon {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px;
-}
-.btn-icon:hover { color: var(--text); }
+/* header-left, header-right, header-title, tier-badge, btn-icon → shared.css */
 
 /* Summary */
 .summary {

@@ -15,7 +15,7 @@
 }
 
 body {
-  width: 540px;
+  width: 380px;
   min-height: 200px;
   max-height: 680px;
   overflow-y: auto;
@@ -43,12 +43,12 @@ body.full-page .header {
   padding: 16px 52px;
 }
 
-body.full-page .header-logo {
+body.full-page .header-left {
   font-size: 17px;
   gap: 10px;
 }
 
-body.full-page .header-logo svg {
+body.full-page .header-left img {
   width: 24px;
   height: 24px;
 }
@@ -403,36 +403,28 @@ body.full-page .pro-gate p {
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: var(--bg-card);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.3px;
-}
+/* header-left / header-right / header-title come from shared.css */
 
-.header-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 20px;
-  background: var(--border);
+/* btn-icon: ClauseGuard header icon button */
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 15px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
 }
-.header-badge.pro {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
-}
+.btn-icon:hover { color: var(--text); background: var(--border); }
 
 /* ─── Tabs ───────────────────────────────────────────────────────────────────── */
 .tabs {
