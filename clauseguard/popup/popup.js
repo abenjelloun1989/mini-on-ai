@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   await loadUser();
-  setupTabs();
+  _initTabs();
   setupAnalyzeTab();
   setupCompareTab();
   setupLibraryTab();
@@ -125,9 +125,9 @@ function updateProGates(isPro) {
 
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
 
-function setupTabs() {
+function _initTabs() {
   // Use shared setupTabs() from shared.js with extension-specific callbacks
-  window.setupTabs((tabName) => {
+  setupTabs((tabName) => {
     if (tabName === "library" && userTier === "pro") loadLibrary();
     if (tabName === "account") loadAccountTab();
   });
