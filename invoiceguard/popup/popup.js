@@ -72,13 +72,7 @@ async function loadUser() {
     if (!res.ok) return;
     const data = await res.json();
 
-    const badge = document.getElementById("tierBadge");
-    if (data.tier === "pro") {
-      badge.textContent = "Pro";
-      badge.classList.add("tier-badge--pro");
-    } else {
-      badge.textContent = "Free";
-    }
+    updateTierBadge(data.tier);
   } catch (e) {
     console.error("Load user error:", e);
   }
@@ -332,23 +326,8 @@ async function generateReminder(tone) {
   }
 }
 
-async function upgrade() {
-  try {
-    const res = await fetch(`${API_BASE}/api/subscribe`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: userId }),
-    });
-    const data = await res.json();
-    if (data.checkout_url) {
-      chrome.tabs.create({ url: data.checkout_url });
-    } else {
-      alert(data.error || "Failed to start checkout.");
-    }
-  } catch (e) {
-    alert("Network error. Please try again.");
-  }
-}
+// upgrade() → shared startUpgrade() from shared.js
+function upgrade() { startUpgrade(API_BASE, userId); }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

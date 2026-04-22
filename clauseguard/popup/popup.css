@@ -11,19 +11,18 @@
   --accent-hover:  #4f52d6;
   --accent-dim:    rgba(99, 102, 241, 0.15);
   --accent-border: rgba(99, 102, 241, 0.35);
-  --radius-sm:     5px;       /* ClauseGuard-specific radius */
 }
 
 body {
   width: 380px;
-  min-height: 200px;
-  max-height: 680px;
+  min-height: 480px;
+  max-height: 560px;
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -435,7 +434,7 @@ body.full-page .pro-gate p {
 
 .tab {
   flex: 1;
-  padding: 9px 12px;
+  padding: 8px;
   background: none;
   border: none;
   color: var(--text-muted);
@@ -519,8 +518,7 @@ textarea.drag-over { border-color: var(--accent); background: rgba(99,102,241,0.
   opacity: 0.6;
   transition: color 0.2s, opacity 0.2s;
 }
-.char-count.typing { opacity: 0.8; }
-.char-count.ready { color: var(--green); opacity: 1; font-weight: 600; }
+/* .char-count.ready / .char-count.typing → shared.css */
 textarea::placeholder { color: var(--text-muted); }
 
 /* Analyze current page button */
@@ -611,17 +609,7 @@ textarea::placeholder { color: var(--text-muted); }
 }
 .btn-text:hover { color: var(--text); }
 
-.btn-upgrade {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  border: none;
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  white-space: nowrap;
-}
+/* .btn-upgrade → shared.css */
 
 /* ─── Upgrade banner ─────────────────────────────────────────────────────────── */
 .upgrade-banner {
@@ -1048,12 +1036,23 @@ textarea::placeholder { color: var(--text-muted); }
   min-height: 18px;
 }
 
+/* Upgrade banner title */
+.banner-title { display: block; margin-bottom: 3px; }
+
+/* LTD code row */
+.ltd-row { display: flex; gap: 8px; }
+
+/* Library toolbar */
+.library-toolbar { display: flex; justify-content: flex-end; padding: 10px 0 4px; }
+.library-export-btn { font-size: 11px; color: var(--text-muted); }
+
 .account-footer-note {
   margin: 10px 14px 14px;
   color: var(--text-muted);
   font-size: 11px;
   line-height: 1.5;
 }
+.account-footer-note a { color: var(--accent); }
 
 /* Full-page overrides for account tab */
 body.full-page .account-card {

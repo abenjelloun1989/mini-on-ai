@@ -87,13 +87,7 @@ async function refreshUsage() {
     userTier = data.tier;
 
     // Update tier badge
-    const badge = document.getElementById("tierBadge");
-    if (data.tier === "pro") {
-      badge.textContent = "Pro";
-      badge.classList.add("pro");
-    } else {
-      badge.textContent = "Free";
-    }
+    updateTierBadge(data.tier);
 
     // Update usage text
     const usageText = document.getElementById("usageRow");
@@ -128,21 +122,10 @@ function updateProGates(isPro) {
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
 
 function setupTabs() {
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      document.querySelectorAll(".tab-content").forEach(c => {
-        c.classList.remove("active");
-        c.classList.add("hidden");
-      });
-      tab.classList.add("active");
-      const target = document.getElementById(`tab-${tab.dataset.tab}`);
-      target.classList.remove("hidden");
-      target.classList.add("active");
-
-      if (tab.dataset.tab === "library" && userTier === "pro") loadLibrary();
-      if (tab.dataset.tab === "account") loadAccountTab();
-    });
+  // Use shared setupTabs() from shared.js with extension-specific callbacks
+  window.setupTabs((tabName) => {
+    if (tabName === "library" && userTier === "pro") loadLibrary();
+    if (tabName === "account") loadAccountTab();
   });
 }
 
@@ -707,14 +690,14 @@ async function loadLibrary() {
       container.innerHTML = '<p style="color:var(--text-muted);font-size:12px;text-align:center;padding:20px">No saved clauses yet. Analyze a contract and save fair clauses to your library.</p>';
       // Hide export button when empty
       const exportLibBtn = document.getElementById("exportLibraryBtn");
-      if (exportLibBtn) exportLibBtn.style.display = "none";
+      if (exportLibBtn) exportLibBtn.classList.add("hidden");
       return;
     }
 
     // Show export button when there are clauses
     const exportLibBtn = document.getElementById("exportLibraryBtn");
     if (exportLibBtn) {
-      exportLibBtn.style.display = "";
+      exportLibBtn.classList.remove("hidden");
       exportLibBtn.onclick = () => exportLibrary(data.clauses);
     }
 

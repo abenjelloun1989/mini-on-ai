@@ -63,16 +63,10 @@ async function initPopup() {
     }
   }
 
-  // Wire up tabs
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
-      tab.classList.add("active");
-      document.getElementById(`tab-${tab.dataset.tab}`).style.display = "block";
-      if (tab.dataset.tab === "account") loadAccount();
-      if (tab.dataset.tab === "history") loadHistory();
-    });
+  // Wire up tabs — shared utility from shared.js
+  setupTabs((tabName) => {
+    if (tabName === "account") loadAccount();
+    if (tabName === "history") loadHistory();
   });
 
   // Settings button (optional — not always in header)
@@ -220,7 +214,7 @@ async function initPopup() {
   });
 
   // Upgrade banner
-  document.getElementById("upgradeBannerBtn")?.addEventListener("click", startUpgrade);
+  document.getElementById("upgradeBannerBtn")?.addEventListener("click", () => startUpgrade(API_BASE, userId));
 
   // Load usage badge
   loadUsageBadge();
@@ -236,11 +230,7 @@ async function loadUsageBadge() {
     currentTier = data.tier;
     await chrome.storage.local.set({ tier: data.tier });
 
-    const badge = document.getElementById("tierBadge");
-    if (data.tier === "pro") {
-      badge.textContent = "Pro";
-      badge.classList.add("tier-badge--pro");
-    }
+    updateTierBadge(data.tier);
 
     // Show upgrade banner if at limit
     if (data.tier !== "pro" && data.usage_this_month >= FREE_LIMIT) {
@@ -284,7 +274,7 @@ async function runAnalysis(text) {
             <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">You've used all ${FREE_LIMIT} free analyses this month.</p>
             <button class="btn-primary btn-full" id="upgradeResultBtn">Upgrade to Pro — $7/month</button>
           </div>`;
-        document.getElementById("upgradeResultBtn")?.addEventListener("click", startUpgrade);
+        document.getElementById("upgradeResultBtn")?.addEventListener("click", () => startUpgrade(API_BASE, userId));
         inputSection.style.display = "flex";
         return;
       }
@@ -488,7 +478,7 @@ async function loadAccount() {
       // Use .onclick to avoid stacking duplicate listeners on repeated tab visits
       document.getElementById("manageSubBtn").onclick = openPortal;
     } else {
-      document.getElementById("upgradeBtn").onclick = startUpgrade;
+      document.getElementById("upgradeBtn").onclick = () => startUpgrade(API_BASE, userId);
       document.getElementById("redeemBtn").onclick = redeemLtd;
       document.getElementById("ltdCodeInput").onkeydown = (e) => {
         if (e.key === "Enter") redeemLtd();
@@ -501,23 +491,7 @@ async function loadAccount() {
 
 // ─── Billing actions ──────────────────────────────────────────────────────────
 
-async function startUpgrade() {
-  try {
-    const res = await fetch(`${API_BASE}/api/subscribe`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: userId }),
-    });
-    const data = await res.json();
-    if (data.checkout_url) {
-      chrome.tabs.create({ url: data.checkout_url });
-    } else {
-      alert(data.error || "Failed to start checkout.");
-    }
-  } catch (e) {
-    alert("Network error. Please try again.");
-  }
-}
+// startUpgrade(apiBase, userId) — provided by shared.js
 
 async function openPortal() {
   try {
@@ -556,6 +530,10 @@ async function redeemLtd() {
     if (data.success) {
       await chrome.storage.local.set({ tier: "pro" });
       currentTier = "pro";
+      updateTierBadge("pro");
+      // Show pro actions immediately without waiting for full reload
+      document.getElementById("freeActions")?.style.setProperty("display", "none");
+      document.getElementById("proActions")?.style.setProperty("display", "block");
       msgEl.textContent = "✓ Lifetime access activated!";
       msgEl.className = "ltd-message ltd-message--ok";
       // Refresh account UI

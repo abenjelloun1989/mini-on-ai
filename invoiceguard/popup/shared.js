@@ -64,6 +64,7 @@ function copyText(btn, text, resetLabel) {
 /**
  * Apply stored dark/light preference and wire up the toggle button.
  * Call once on DOMContentLoaded, before any rendering, to avoid FOUC.
+ * Icon toggling is CSS-driven via body.light-mode .icon-moon / .icon-sun rules.
  *
  * @param {string} storageKey - localStorage key (e.g. "jg-theme", "ig-theme")
  * @param {string} toggleId   - id of the toggle button element
@@ -73,13 +74,81 @@ function initDarkMode(storageKey, toggleId) {
   const stored = localStorage.getItem(storageKey);
   if (stored === "light") {
     document.body.classList.add("light-mode");
-    if (toggle) toggle.textContent = "☀";
   }
   if (toggle) {
     toggle.addEventListener("click", () => {
       const isLight = document.body.classList.toggle("light-mode");
       localStorage.setItem(storageKey, isLight ? "light" : "dark");
-      toggle.textContent = isLight ? "☀" : "☾";
     });
+  }
+}
+
+// ─── Tab Navigation ───────────────────────────────────────────────────────────
+
+/**
+ * Wire up tab navigation for popups.
+ * Expects buttons with [data-tab="name"] and matching #tab-{name} content divs.
+ * The first tab must start with class "active"; content divs hidden via style or .hidden.
+ *
+ * @param {Function} [onSwitch] - Optional callback(tabName) called after switching.
+ */
+function setupTabs(onSwitch) {
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => {
+        c.classList.remove("active");
+        c.style.display = "none";
+      });
+      tab.classList.add("active");
+      const content = document.getElementById(`tab-${tab.dataset.tab}`);
+      if (content) {
+        content.style.display = "block";
+        content.classList.add("active");
+      }
+      if (onSwitch) onSwitch(tab.dataset.tab);
+    });
+  });
+}
+
+// ─── Tier Badge ───────────────────────────────────────────────────────────────
+
+/**
+ * Update the #tierBadge element to reflect the current subscription tier.
+ *
+ * @param {string} tier - "pro" or "free"
+ */
+function updateTierBadge(tier) {
+  const badge = document.getElementById("tierBadge");
+  if (!badge) return;
+  const isPro = tier === "pro";
+  badge.textContent = isPro ? "Pro" : "Free";
+  badge.classList.toggle("tier-badge--pro", isPro);
+  badge.classList.toggle("tier-badge--free", !isPro);
+}
+
+// ─── Upgrade / Stripe ────────────────────────────────────────────────────────
+
+/**
+ * Fetch a Stripe checkout URL from the extension API and open it in a new tab.
+ *
+ * @param {string} apiBase - e.g. "https://jobguard-api.kirozdormu.workers.dev"
+ * @param {string} userId  - stored user UUID
+ */
+async function startUpgrade(apiBase, userId) {
+  try {
+    const res = await fetch(`${apiBase}/api/subscribe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: userId }),
+    });
+    const data = await res.json();
+    if (data.checkout_url) {
+      chrome.tabs.create({ url: data.checkout_url });
+    } else {
+      alert(data.error || "Failed to start checkout. Please try again.");
+    }
+  } catch {
+    alert("Network error. Please check your connection and try again.");
   }
 }

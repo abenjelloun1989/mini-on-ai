@@ -148,7 +148,7 @@ body {
   gap: 8px;
 }
 .char-count { font-size: 11px; color: var(--text-muted); }
-.char-count.ready { color: var(--green); }
+/* .char-count.ready / .char-count.typing → shared.css */
 
 /* ── Buttons ───────────────────────────────────────────────────────────────── */
 .btn-primary {
@@ -181,19 +181,8 @@ body {
 .btn-secondary:hover { border-color: var(--accent); }
 .btn-secondary.btn-full { width: 100%; }
 
-.btn-upgrade {
-  width: 100%;
-  padding: 10px;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius);
-  color: #000;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-.btn-upgrade:hover { opacity: 0.88; }
+/* .btn-upgrade base → shared.css; amber needs dark text */
+.btn-upgrade { color: var(--text-on-accent, #0f1117); }
 
 .btn-text {
   background: none;

@@ -90,7 +90,7 @@
 
       <div class="upgrade-banner hidden" id="upgradeBanner">
         <div>
-          <strong style="display:block;margin-bottom:3px;">Monthly limit reached 🔒</strong>
+          <strong class="banner-title">Monthly limit reached 🔒</strong>
           <span>You've used all 3 free analyses. Upgrade to Pro for unlimited reviews, PDF export, and clause library.</span>
         </div>
         <button class="btn-upgrade" id="upgradeFromBanner">Upgrade — $7/mo →</button>
@@ -198,8 +198,8 @@
       <button class="btn-primary" id="upgradeFromLibrary">Upgrade to Pro — $7/month</button>
     </div>
     <div class="hidden" id="libraryContent">
-      <div style="display:flex;justify-content:flex-end;padding:10px 0 4px;">
-        <button id="exportLibraryBtn" class="btn-text" style="display:none;font-size:11px;color:var(--text-muted);">
+      <div class="library-toolbar">
+        <button id="exportLibraryBtn" class="btn-text library-export-btn hidden">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Export library
         </button>
@@ -222,7 +222,7 @@
       <div class="account-card-desc">
         Have a lifetime deal code? Enter it below to unlock Pro permanently.
       </div>
-      <div style="display:flex;gap:8px;">
+      <div class="ltd-row">
         <input
           id="ltdCodeInput"
           type="text"
@@ -239,7 +239,7 @@
 
     <!-- Footer note -->
     <div class="account-footer-note">
-      For issues, email <a href="mailto:hello@mini-on-ai.com" style="color:var(--accent);">hello@mini-on-ai.com</a>
+      For issues, email <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a>
     </div>
 
   </div>
