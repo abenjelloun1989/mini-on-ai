@@ -69,15 +69,54 @@ function copyText(btn, text, resetLabel) {
  * @param {string} storageKey - localStorage key (e.g. "jg-theme", "ig-theme")
  * @param {string} toggleId   - id of the toggle button element
  */
-function initDarkMode(storageKey, toggleId) {
-  const toggle = document.getElementById(toggleId);
-  const stored = localStorage.getItem(storageKey);
-  if (stored === "light") {
-    document.body.classList.add("light-mode");
+// Light-mode token values — mirrors body.light-mode block in base.css.
+// Applied as inline styles on :root so they win over any CSS cascade/cache issue
+// in the Chrome extension popup context.
+const _LIGHT_VARS = {
+  '--bg':             '#f5f6fa',
+  '--surface':        '#ffffff',
+  '--surface-raised': '#f0f2f8',
+  '--surface-hover':  '#eaecf5',
+  '--border':         '#dde0ee',
+  '--border-subtle':  '#eaecf5',
+  '--text':           '#141625',
+  '--text-muted':     '#5a6080',
+  '--text-disabled':  '#adb5cc',
+  '--shadow-sm':      '0 1px 3px rgba(0,0,0,0.08)',
+  '--shadow-md':      '0 4px 12px rgba(0,0,0,0.10)',
+  '--shadow-lg':      '0 8px 24px rgba(0,0,0,0.12)',
+  '--warning':        '#92400e',
+  '--success':        '#059669',
+  '--danger':         '#b91c1c',
+  '--danger-dim':     'rgba(185,28,28,0.10)',
+  '--warning-dim':    'rgba(146,64,14,0.10)',
+  '--success-dim':    'rgba(5,150,105,0.10)',
+  '--neutral-dim':    'rgba(90,96,128,0.08)',
+  '--accent-dim':     'rgba(99,102,241,0.10)',
+  '--accent-border':  'rgba(99,102,241,0.25)',
+};
+
+function _applyTheme(isLight) {
+  const root = document.documentElement;
+  document.body.classList.toggle("light-mode", isLight);
+  if (isLight) {
+    Object.entries(_LIGHT_VARS).forEach(([k, v]) => root.style.setProperty(k, v));
+    root.style.setProperty('color-scheme', 'light');
+  } else {
+    Object.keys(_LIGHT_VARS).forEach(k => root.style.removeProperty(k));
+    root.style.removeProperty('color-scheme');
   }
+}
+
+function initDarkMode(storageKey, toggleId) {
+  const stored = localStorage.getItem(storageKey);
+  _applyTheme(stored === "light");
+
+  const toggle = document.getElementById(toggleId);
   if (toggle) {
     toggle.addEventListener("click", () => {
-      const isLight = document.body.classList.toggle("light-mode");
+      const isLight = !document.body.classList.contains("light-mode");
+      _applyTheme(isLight);
       localStorage.setItem(storageKey, isLight ? "light" : "dark");
     });
   }
