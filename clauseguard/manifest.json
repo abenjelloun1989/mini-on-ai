@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ClauseGuard - AI Contract & NDA Analyzer",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Analyze contracts for risks, red flags & unfair clauses. Plain English explanations for freelancers & small business owners.",
   "permissions": [
     "storage",

@@ -327,3 +327,32 @@ export async function getHistory(request, env) {
 
   return corsJson(env, { analyses: results });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GET /api/history/:id?user_id=...
+// Returns the full analysis JSON from KV, verifying ownership via D1.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export async function getHistoryItem(request, env, path) {
+  const url = new URL(request.url);
+  const userId = url.searchParams.get("user_id");
+  const analysisId = path.split("/api/history/")[1];
+
+  if (!analysisId) return corsJson(env, { error: "Missing analysis ID" }, 400);
+
+  const user = await requireUser(env, userId);
+  if (!user) return corsJson(env, { error: "User not found" }, 404);
+
+  // Verify this analysis belongs to this user
+  const row = await env.DB.prepare(
+    "SELECT id FROM analyses WHERE id = ? AND user_id = ?"
+  ).bind(analysisId, user.id).first();
+  if (!row) return corsJson(env, { error: "Not found" }, 404);
+
+  // Fetch full analysis from KV
+  const raw = await env.KV.get(`analysis:${analysisId}`);
+  if (!raw) return corsJson(env, { error: "Analysis expired or not found" }, 404);
+
+  const analysis = JSON.parse(raw);
+  return corsJson(env, { analysis });
+}

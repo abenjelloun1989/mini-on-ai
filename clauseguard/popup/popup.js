@@ -821,6 +821,11 @@ async function loadHistory() {
         </div>` : "");
 
     document.getElementById("historyUpgradeBtn")?.addEventListener("click", openUpgrade);
+
+    // Wire up tap-to-reopen
+    container.querySelectorAll(".history-item[data-id]").forEach(card => {
+      card.addEventListener("click", () => openHistoryItem(card.dataset.id, card));
+    });
   } catch (e) {
     container.innerHTML = `
       <div style="text-align:center;padding:20px;">
@@ -843,14 +848,41 @@ function renderHistoryItem(a) {
   ].filter(Boolean).join(" · ");
 
   return `
-    <div class="history-item">
+    <div class="history-item" data-id="${escAttr(a.id)}">
       <div class="history-item-header">
         <span class="history-type">${escHtml(label)}</span>
         <span class="history-score ${cls}">${score}/10</span>
       </div>
       ${meta ? `<div class="history-meta">${escHtml(meta)}</div>` : ""}
       ${a.summary ? `<div class="history-summary">${escHtml(a.summary)}</div>` : ""}
+      <div class="history-open-hint">Tap to reopen →</div>
     </div>`;
+}
+
+async function openHistoryItem(analysisId, cardEl) {
+  // Visual feedback on the card
+  cardEl.classList.add("history-item--loading");
+  const hint = cardEl.querySelector(".history-open-hint");
+  if (hint) hint.textContent = "Loading…";
+
+  try {
+    const data = await apiFetch(`/api/history/${analysisId}?user_id=${userId}`);
+    if (!data.analysis) throw new Error("Empty response");
+
+    // Switch to Analyze tab and show results
+    currentAnalysis = data.analysis;
+    const analyzeTab = document.querySelector('.tab[data-tab="analyze"]');
+    analyzeTab?.click();
+    showResults(data.analysis);
+  } catch (e) {
+    cardEl.classList.remove("history-item--loading");
+    if (hint) hint.textContent = "Tap to reopen →";
+    if (e.message?.includes("expired") || e.message?.includes("Not found")) {
+      alert("This analysis has expired (analyses are stored for 30 days).");
+    } else {
+      alert("Could not load analysis. Please try again.");
+    }
+  }
 }
 
 // ─── Account tab ──────────────────────────────────────────────────────────────

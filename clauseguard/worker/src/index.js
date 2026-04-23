@@ -10,7 +10,8 @@
  *   POST /api/webhook/stripe  — Stripe webhook handler
  *   GET  /api/subscription    — get subscription status
  *   POST /api/portal          — create Stripe Customer Portal session
- *   GET  /api/history         — get analysis history
+ *   GET  /api/history         — get analysis history (summary list)
+ *   GET  /api/history/:id    — get full analysis JSON from KV
  *   POST /api/clauses         — save a clause (Pro)
  *   GET  /api/clauses         — list saved clauses (Pro)
  *   DELETE /api/clauses/:id   — delete a saved clause (Pro)
@@ -25,7 +26,7 @@
  */
 
 import { handleRegister, getUsage } from "./auth.js";
-import { handleAnalyze, handleCompare, getHistory } from "./analyze.js";
+import { handleAnalyze, handleCompare, getHistory, getHistoryItem } from "./analyze.js";
 import {
   handleSubscribe,
   handleStripeWebhook,
@@ -60,6 +61,9 @@ export default {
       }
       if (path === "/api/history" && request.method === "GET") {
         return getHistory(request, env);
+      }
+      if (path.startsWith("/api/history/") && request.method === "GET") {
+        return getHistoryItem(request, env, path);
       }
 
       // LTD code redemption

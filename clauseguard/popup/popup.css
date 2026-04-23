@@ -1038,6 +1038,18 @@ textarea::placeholder { color: var(--text-muted); }
   font-size: 13px;
 }
 .history-empty-icon { font-size: 28px; margin-bottom: 10px; }
+.history-item[data-id] {
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.history-item[data-id]:hover { border-color: var(--accent); background: var(--surface-hover); }
+.history-open-hint {
+  font-size: 10px;
+  color: var(--text-disabled);
+  margin-top: 5px;
+  letter-spacing: 0.2px;
+}
+.history-item--loading { opacity: 0.6; pointer-events: none; }
 .history-upgrade-nudge {
   display: flex;
   align-items: center;
