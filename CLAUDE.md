@@ -117,6 +117,15 @@ Workers:
 
 All three have dedicated landing pages (`clauseguard.html`, `invoiceguard.html`, `jobguard.html`) and appear in the Tools & Services section on the homepage. Shared code lives in `_shared/` (synced via `scripts/sync_shared.py`).
 
+## Extension Assets & ZIPs
+
+When generating a submission ZIP or any store asset (screenshots, marquee tiles, promo images) for a Chrome extension, always save it to the extension's `store-assets/` folder:
+- `clauseguard/store-assets/clauseguard-X.X.X.zip`
+- `invoiceguard/store-assets/invoiceguard-X.X.X.zip`
+- `jobguard/store-assets/jobguard-X.X.X.zip`
+
+Never drop ZIPs or assets in the repo root.
+
 ## Conventions
 
 - Product IDs: `{prefix}-{kebab-title}-{YYYYMMDD}` e.g. `prompts-marketing-hooks-20260312`
