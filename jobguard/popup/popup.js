@@ -162,6 +162,32 @@ async function initPopup() {
           } catch (e) { /* invalid JSON, skip */ }
         }
 
+        // ── Strategy 1.5: Split-pane job board panels ────────────────────────
+        // Sites like Indeed and LinkedIn show a list on the left and the
+        // selected job description in a right panel. These selectors target
+        // the description panel specifically so we never grab list content.
+        const panelSelectors = [
+          '#jobDescriptionText',                     // Indeed (primary)
+          '[class*="jobDescriptionText"]',           // Indeed variant
+          '[class*="jobsearch-jobDescription"]',     // Indeed container
+          '[data-testid="job-description"]',         // Indeed / Glassdoor
+          '[data-testid="jobDescriptionText"]',      // Indeed alt
+          '.jobs-description__content',             // LinkedIn
+          '[class*="jobs-description__content"]',   // LinkedIn
+          '[class*="job-details-jobs-unified"]',    // LinkedIn newer
+          '.job-description-body',                  // Glassdoor
+          '#job-description',                        // Generic boards
+          '[class*="job-description-content"]',     // Generic
+          '[class*="job-desc"]',                    // Generic
+        ];
+        for (const sel of panelSelectors) {
+          const el = document.querySelector(sel);
+          if (el) {
+            const t = el.innerText?.trim() || "";
+            if (t.length > 100) return t;  // No stripChrome needed — these are description-only panels
+          }
+        }
+
         // ── Helper: strip nav chrome before reading innerText ────────────────
         const stripChrome = (el) => {
           const clone = el.cloneNode(true);
@@ -256,7 +282,7 @@ async function loadUsageBadge() {
 
 // ─── Analysis ────────────────────────────────────────────────────────────────
 
-async function runAnalysis(text) {
+async function runAnalysis(text, opts = {}) {
   const inputSection = document.getElementById("inputSection");
   const loadingState = document.getElementById("loadingState");
   const results = document.getElementById("results");
@@ -304,19 +330,25 @@ async function runAnalysis(text) {
       return;
     }
 
-    // If AI detected a listing page (not a single job posting), show a friendly message
-    if (data.analysis?.risk_score === 0) {
+    // If AI detected a listing page (not a single job posting), show a friendly message.
+    // forceAnalyze skips this gate — used when the user explicitly says "try anyway".
+    if (data.analysis?.risk_score === 0 && !opts.forceAnalyze) {
       loadingState.style.display = "none";
       results.style.display = "block";
       results.innerHTML = `
         <div style="text-align:center;padding:24px;">
           <p style="font-size:28px;margin-bottom:10px;">🔍</p>
-          <p style="font-weight:600;margin-bottom:6px;">This looks like a listing page</p>
+          <p style="font-weight:600;margin-bottom:6px;">Looks like a listing page</p>
           <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">
-            Open a single job posting and click Analyze again.
+            The page contains multiple jobs. Click a specific posting to load its description,
+            then analyze again — or try anyway if one job is already open.
           </p>
+          <button class="btn-primary btn-full" id="forceAnalyzeBtn" style="margin-bottom:8px;">Try anyway →</button>
           <button class="btn-secondary" id="backFromListBtn">← Go back</button>
         </div>`;
+      document.getElementById("forceAnalyzeBtn").addEventListener("click", () => {
+        runAnalysis(text, { forceAnalyze: true });
+      });
       document.getElementById("backFromListBtn").addEventListener("click", () => {
         results.style.display = "none";
         results.innerHTML = "";
