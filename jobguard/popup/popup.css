@@ -374,7 +374,14 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
 }
+.history-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
 .history-score {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -388,11 +395,14 @@ body {
 .history-score--red    { background: var(--danger);  color: #fff; }
 
 .history-info { flex: 1; min-width: 0; }
-.history-label { font-size: 12px; font-weight: 600; }
-.history-meta  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.history-label { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.history-meta  { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.history-restore {
-  padding: 5px 10px;
-  font-size: 11px;
+.history-arrow {
+  font-size: 18px;
+  color: var(--text-muted);
   flex-shrink: 0;
+  line-height: 1;
+  transition: color 0.15s;
 }
+.history-card:hover .history-arrow { color: var(--accent); }

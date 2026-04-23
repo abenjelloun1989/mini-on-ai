@@ -629,19 +629,19 @@ async function loadHistory() {
     const platform = a.platform_detected && a.platform_detected !== "Unknown"
       ? a.platform_detected : "Unknown platform";
     return `
-      <div class="history-card">
+      <div class="history-card" data-index="${i}">
         <div class="history-score history-score--${cls}">${score}</div>
         <div class="history-info">
           <div class="history-label">${escHtml(a.risk_label || "Unknown")}</div>
           <div class="history-meta">${escHtml(platform)} · ${date}</div>
         </div>
-        <button class="btn-secondary history-restore" data-index="${i}">Restore</button>
+        <span class="history-arrow">›</span>
       </div>`;
   }).join("");
 
-  container.querySelectorAll(".history-restore").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const item = jgHistory[parseInt(btn.dataset.index)];
+  container.querySelectorAll(".history-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const item = jgHistory[parseInt(card.dataset.index)];
       // Switch to Analyze tab and show restored result
       document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
       document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
