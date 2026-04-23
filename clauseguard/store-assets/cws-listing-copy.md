@@ -1,4 +1,4 @@
-# ClauseGuard — CWS Listing Copy (v1.3.1)
+# ClauseGuard — CWS Listing Copy (v1.3.3)
 
 ## Extension Name (45 chars max)
 ClauseGuard — AI Contract & NDA Analyzer
@@ -25,6 +25,7 @@ ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, 
 ✓ Missing Protections — spots important clauses absent from the contract (late payment penalties, liability caps, IP ownership clauses, etc.)
 ✓ Negotiation Tips — actionable advice tailored to this specific contract
 ✓ Context preserved — your contract and results survive closing and reopening the popup
+✓ Analysis History — every past analysis saved; tap any entry to reopen the full results
 ✓ Expand to full page — open ClauseGuard in a full browser tab for a larger, more comfortable reading experience
 
 **Works on:**
@@ -35,9 +36,9 @@ ClauseGuard analyzes any contract, NDA, or legal document for risks, red flags, 
 – Lease contracts
 – Any contract text you paste, drag-and-drop as PDF, or extract from a webpage
 
-**Free plan:** 3 full analyses per month — risk score, all red flags, and suggested rewrites included. No account needed.
+**Free plan:** 3 full analyses per month — risk score, all red flags, suggested rewrites, and your last 5 analyses in History. No account needed.
 
-**Pro plan ($7/month):** Unlimited analyses + contract comparison (diff two versions side by side) + PDF export + saved clause library (save, organize, delete, and export fair clauses for reuse).
+**Pro plan ($7/month):** Unlimited analyses + full analysis history (tap to reopen any past result) + contract comparison (diff two versions side by side) + PDF export + saved clause library (save, organize, delete, and export fair clauses for reuse).
 
 **Lifetime Deal:** Available for a limited time via selected partner platforms. Redeem a lifetime code in the Account tab for permanent Pro access.
 
@@ -98,6 +99,17 @@ Free · No signup needed
 contract review, AI contract analyzer, NDA analyzer, contract red flag detector, freelance contract review, legal document review, contract risk score, unfair clause detector, contract analysis, employment contract review
 
 ---
+
+## What changed in v1.3.3 (for your own notes — don't paste in store)
+
+- **History tab** — new 5th tab showing all past analyses. Each card shows contract type, risk score badge, red flag count, clause count, date, and a summary snippet
+- **Tap to reopen** — tapping a history card fetches the full analysis from the server and reopens it in the Results view, identical to a fresh analysis
+- **Free gate** — free users see their last 5 analyses; older entries are hidden behind an upgrade nudge
+- **Backend** — new `GET /api/history/:id` endpoint verifies ownership then returns the full analysis JSON from KV (already stored at analysis time with 30-day TTL)
+
+## What changed in v1.3.2 (for your own notes — don't paste in store)
+
+- Internal release only — History tab UI without tap-to-reopen (shipped same session, superseded by v1.3.3)
 
 ## What changed in v1.3.1 (for your own notes — don't paste in store)
 

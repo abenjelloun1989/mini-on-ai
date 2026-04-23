@@ -106,7 +106,7 @@ Three Chrome extensions, separate from the pipeline-generated product catalog:
 
 | Extension | Version | Status | CWS URL |
 |---|---|---|---|
-| **ClauseGuard** — AI contract analyzer | v1.3.1 | Live | [CWS link](https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl) |
+| **ClauseGuard** — AI contract analyzer | v1.3.3 | Live | [CWS link](https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl) |
 | **InvoiceGuard** — Gmail invoice tracker | v1.1.1 | Live | [CWS link](https://chrome.google.com/webstore/detail/lppombokbcoafaahfhnjmckhnkbmhalp) |
 | **JobGuard** — AI job posting analyzer | v1.0.1 | Pending CWS review | — |
 

@@ -47,7 +47,7 @@
       {"@type": "Question", "name": "Is my contract data safe and private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ClauseGuard assigns you an anonymous random ID — no name or email collected. Contract text is sent to the API for analysis and cached temporarily for performance, then deleted after 30 days. We never sell or share your contract data."}},
       {"@type": "Question", "name": "How fast does the contract analysis take?", "acceptedAnswer": {"@type": "Answer", "text": "Most contracts are analyzed in under 15 seconds. You get a full risk score, list of red flags with explanations, suggested clause rewrites, and negotiation tips."}},
       {"@type": "Question", "name": "Does ClauseGuard work on webpages and PDFs?", "acceptedAnswer": {"@type": "Answer", "text": "ClauseGuard works on any webpage — click Analyze current page to pull the contract text automatically. For PDFs, drag-and-drop the file directly into the extension popup (v1.3.0+) or paste the text manually."}},
-      {"@type": "Question", "name": "What is the difference between Free and Pro?", "acceptedAnswer": {"@type": "Answer", "text": "The Free plan gives you 3 contract analyses per month with full red flag detection and suggested changes. Pro ($7/month) gives unlimited analyses plus contract comparison (diff), PDF export, and a saved clause library."}}
+      {"@type": "Question", "name": "What is the difference between Free and Pro?", "acceptedAnswer": {"@type": "Answer", "text": "The Free plan gives you 3 contract analyses per month with full red flag detection, suggested changes, and your last 5 analyses in History. Pro ($7/month) gives unlimited analyses, full analysis history, contract comparison (diff), PDF export, and a saved clause library."}}
     ]
   }
   </script>
@@ -437,6 +437,13 @@
           <p>Any webpage or PDF (drag-and-drop supported). Detects NDA, freelance, employment, lease, and SaaS contracts automatically.</p>
         </div>
       </div>
+      <div class="cg-feature">
+        <div class="cg-feature-icon">🕐</div>
+        <div>
+          <h3>Analysis History</h3>
+          <p>Every past analysis is saved. Browse your history, see risk scores at a glance, and tap any entry to reopen the full results.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -457,9 +464,11 @@
           <li>Full risk score & red flags</li>
           <li>Suggested clause changes</li>
           <li>Missing protections check</li>
+          <li>Last 5 analyses in History</li>
           <li class="no">Contract comparison</li>
           <li class="no">PDF export</li>
           <li class="no">Clause library</li>
+          <li class="no">Full analysis history</li>
         </ul>
         <a href="https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl" class="btn-cg-secondary" style="width:100%;justify-content:center;text-decoration:none;" target="_blank" rel="noopener">Add to Chrome — Free</a>
       </div>
@@ -474,6 +483,7 @@
           <li>Full risk score & red flags</li>
           <li>Suggested clause changes</li>
           <li>Missing protections check</li>
+          <li>Full analysis history (tap to reopen)</li>
           <li>Contract comparison (diff)</li>
           <li>PDF export</li>
           <li>Clause library</li>
