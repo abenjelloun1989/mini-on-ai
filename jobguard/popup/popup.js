@@ -162,6 +162,19 @@ async function initPopup() {
           } catch (e) { /* invalid JSON, skip */ }
         }
 
+        // ── Helper: strip nav chrome before reading innerText ────────────────
+        const stripChrome = (el) => {
+          const clone = el.cloneNode(true);
+          const noiseSelectors = [
+            'nav', 'header', 'footer', 'aside',
+            '[role="navigation"]', '[role="banner"]', '[role="complementary"]',
+            '[class*="breadcrumb"]', '[class*="sidebar"]', '[class*="menu"]',
+            '[class*="cookie"]', '[class*="consent"]', '[id*="cookie"]',
+          ];
+          noiseSelectors.forEach(s => clone.querySelectorAll(s).forEach(n => n.remove()));
+          return clone.innerText?.trim() || "";
+        };
+
         // ── Strategy 2: semantic DOM selectors ──────────────────────────────
         const selectors = [
           '[itemprop="description"]',
@@ -173,13 +186,13 @@ async function initPopup() {
         for (const sel of selectors) {
           const el = document.querySelector(sel);
           if (el) {
-            const t = el.innerText?.trim() || "";
+            const t = stripChrome(el);
             if (t.length > 300) return t;
           }
         }
 
-        // ── Strategy 3: body fallback ────────────────────────────────────────
-        return document.body.innerText?.trim() || "";
+        // ── Strategy 3: body fallback — strip nav/chrome ─────────────────────
+        return stripChrome(document.body);
       };
 
       let results = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: extractFn });
@@ -273,9 +286,18 @@ async function runAnalysis(text) {
             <p style="font-weight:600;margin-bottom:6px;">Monthly limit reached</p>
             <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">You've used all ${FREE_LIMIT} free analyses this month.</p>
             <button class="btn-primary btn-full" id="upgradeResultBtn">Upgrade to Pro — $7/month</button>
+            <button class="btn-secondary btn-full" id="backFromLimitBtn" style="margin-top:8px;">← Back</button>
           </div>`;
         document.getElementById("upgradeResultBtn")?.addEventListener("click", () => startUpgrade(API_BASE, userId));
-        inputSection.style.display = "flex";
+        document.getElementById("backFromLimitBtn")?.addEventListener("click", () => {
+          results.style.display = "none";
+          results.innerHTML = "";
+          inputSection.style.display = "flex";
+          document.getElementById("upgradeBanner").style.display = "block";
+        });
+        // Keep inputSection hidden — user can't analyze at limit anyway.
+        // Hide the duplicate upgrade banner since results already shows the CTA.
+        document.getElementById("upgradeBanner").style.display = "none";
         return;
       }
       renderError(data.error || "Analysis failed. Please try again.", text);

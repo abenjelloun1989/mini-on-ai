@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "Edit|Write",
+      "hooks": [{"type": "command", "command": "grep -rn '\\$5\\|old-price' . || true"}]
+    }],
+    "Stop": [{
+      "hooks": [{"type": "command", "command": "find /Users/minion/.claude/plans -name '*.md' -delete 2>/dev/null; true"}]
+    }]
+  }
+}
