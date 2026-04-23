@@ -130,6 +130,7 @@ function _initTabs() {
   setupTabs((tabName) => {
     if (tabName === "library" && userTier === "pro") loadLibrary();
     if (tabName === "account") loadAccountTab();
+    if (tabName === "history") loadHistory();
   });
 }
 
@@ -767,6 +768,89 @@ function exportLibrary(clauses) {
   a.download = `clauseguard-library-${new Date().toISOString().slice(0, 10)}.txt`;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+// ─── History tab ──────────────────────────────────────────────────────────────
+
+const CONTRACT_TYPE_LABELS = {
+  general:    "General",
+  freelance:  "Freelance",
+  nda:        "NDA",
+  employment: "Employment",
+  saas:       "SaaS",
+  lease:      "Lease",
+  investment: "Investment",
+};
+
+function formatHistoryDate(isoString) {
+  if (!isoString) return "";
+  try {
+    return new Date(isoString).toLocaleDateString("en-US", {
+      month: "short", day: "numeric", year: "numeric",
+    });
+  } catch { return ""; }
+}
+
+async function loadHistory() {
+  const container = document.getElementById("historyList");
+  container.innerHTML = '<p class="history-empty">Loading…</p>';
+
+  try {
+    const data = await apiFetch(`/api/history?user_id=${userId}`);
+    const analyses = data.analyses || [];
+
+    if (!analyses.length) {
+      container.innerHTML = `
+        <div class="history-empty-state">
+          <div class="history-empty-icon">📋</div>
+          <p>No analyses yet.</p>
+          <p style="font-size:11px;color:var(--text-muted);">Analyze a contract and it will appear here.</p>
+        </div>`;
+      return;
+    }
+
+    const FREE_LIMIT = 5;
+    const visible = userTier === "pro" ? analyses : analyses.slice(0, FREE_LIMIT);
+    const hidden  = userTier === "pro" ? [] : analyses.slice(FREE_LIMIT);
+
+    container.innerHTML = visible.map(a => renderHistoryItem(a)).join("") +
+      (hidden.length ? `
+        <div class="history-upgrade-nudge">
+          <span>+${hidden.length} older ${hidden.length === 1 ? "analysis" : "analyses"} hidden</span>
+          <button class="btn-upgrade history-upgrade-btn" id="historyUpgradeBtn">Upgrade Pro →</button>
+        </div>` : "");
+
+    document.getElementById("historyUpgradeBtn")?.addEventListener("click", openUpgrade);
+  } catch (e) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:20px;">
+        <p style="color:var(--danger);font-size:12px;margin-bottom:8px;">Failed to load history.</p>
+        <button class="btn-text" id="retryHistoryBtn" style="font-size:12px;">Try again</button>
+      </div>`;
+    document.getElementById("retryHistoryBtn")?.addEventListener("click", loadHistory);
+  }
+}
+
+function renderHistoryItem(a) {
+  const score = a.risk_score || 0;
+  const cls   = score <= 3 ? "low" : score <= 6 ? "medium" : score <= 8 ? "high" : "critical";
+  const label = CONTRACT_TYPE_LABELS[a.contract_type] || a.contract_type || "Contract";
+  const date  = formatHistoryDate(a.created_at);
+  const meta  = [
+    a.red_flag_count  ? `${a.red_flag_count} red flag${a.red_flag_count !== 1 ? "s" : ""}` : null,
+    a.clause_count    ? `${a.clause_count} clause${a.clause_count !== 1 ? "s" : ""}` : null,
+    date,
+  ].filter(Boolean).join(" · ");
+
+  return `
+    <div class="history-item">
+      <div class="history-item-header">
+        <span class="history-type">${escHtml(label)}</span>
+        <span class="history-score ${cls}">${score}/10</span>
+      </div>
+      ${meta ? `<div class="history-meta">${escHtml(meta)}</div>` : ""}
+      ${a.summary ? `<div class="history-summary">${escHtml(a.summary)}</div>` : ""}
+    </div>`;
 }
 
 // ─── Account tab ──────────────────────────────────────────────────────────────
