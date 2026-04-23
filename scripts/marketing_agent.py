@@ -382,9 +382,11 @@ def run_email_blast(state: dict) -> None:
 
     subject = f"New this week on mini-on-ai: {first_title[:50]}"
 
-    # Send via email_blast.py subprocess
+    # Send via email_blast.py subprocess.
+    # Safe: list form without shell=True — each element is a separate argv,
+    # so shell metacharacters in subject/body cannot cause injection.
     result = subprocess.run(
-        [sys.executable, str(ROOT / "scripts/email_blast.py"),
+        [sys.executable, str(ROOT / "scripts/email_blast.py"),  # nosemgrep: dangerous-subprocess-use-tainted-env-args
          "--subject", subject, "--body", body],
         capture_output=True, text=True, cwd=str(ROOT),
     )

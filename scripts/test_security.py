@@ -69,6 +69,30 @@ for script in SCRIPTS.glob("*.py"):
         f"{len(hits)} raw string urlopen call(s)"
     )
 
+# ── Subprocess safety: no shell=True, no shell-string calls ──────────────────
+import ast as _ast
+for script in SCRIPTS.glob("*.py"):
+    if script.name == "test_security.py": continue
+    try:
+        tree = _ast.parse(script.read_text())
+    except SyntaxError:
+        continue
+    bad = []
+    for node in _ast.walk(tree):
+        if not isinstance(node, _ast.Call): continue
+        func = node.func
+        if not (isinstance(func, _ast.Attribute) and func.attr in ("run", "Popen", "call", "check_output")): continue
+        for kw in node.keywords:
+            if kw.arg == "shell" and isinstance(kw.value, _ast.Constant) and kw.value.value is True:
+                bad.append(f"line {node.lineno}: shell=True")
+        if node.args and isinstance(node.args[0], _ast.Constant) and isinstance(node.args[0].value, str):
+            bad.append(f"line {node.lineno}: shell-string arg")
+    check(
+        f"No shell=True or shell-string subprocess in {script.name}",
+        len(bad) == 0,
+        "; ".join(bad)
+    )
+
 print(f"\n{'='*40}")
 if failures:
     print(f"FAILED: {len(failures)} check(s) failed")
