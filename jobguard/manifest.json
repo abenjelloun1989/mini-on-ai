@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "JobGuard \u2014 AI Job Posting Analyzer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Spot scam signals, spec work traps, and lowball pay in any job posting before you apply. Free AI analyzer for freelancers.",
   "permissions": [
     "storage",

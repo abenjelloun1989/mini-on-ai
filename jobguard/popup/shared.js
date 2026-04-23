@@ -129,9 +129,25 @@ function initDarkMode(storageKey, toggleId) {
  * Expects buttons with [data-tab="name"] and matching #tab-{name} content divs.
  * The first tab must start with class "active"; content divs hidden via style or .hidden.
  *
+ * Also initializes the active tab on call so extensions that rely on CSS
+ * `.tab-content { display:none }` get the correct initial display without
+ * needing an extra inline style or class on the default content div.
+ *
  * @param {Function} [onSwitch] - Optional callback(tabName) called after switching.
  */
 function setupTabs(onSwitch) {
+  // Initialize: make the currently-active tab visible immediately.
+  // Needed when CSS hides all .tab-content by default.
+  const initialTab = document.querySelector(".tab.active");
+  if (initialTab) {
+    const initialContent = document.getElementById(`tab-${initialTab.dataset.tab}`);
+    if (initialContent) {
+      initialContent.classList.add("active");
+      initialContent.classList.remove("hidden");
+      initialContent.style.display = "block";
+    }
+  }
+
   document.querySelectorAll(".tab").forEach(tab => {
     tab.addEventListener("click", () => {
       document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));

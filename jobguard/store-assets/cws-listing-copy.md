@@ -1,4 +1,4 @@
-# JobGuard — CWS Listing Copy (v1.0.0)
+# JobGuard — CWS Listing Copy (v1.0.2)
 
 ## Extension Name (≤45 chars)
 JobGuard — AI Job Posting Analyzer
@@ -53,6 +53,17 @@ Built by mini-on-ai.com
 
 ## Keywords
 job posting analyzer, job scam detector, freelance job red flags, upwork job analyzer, AI job analyzer, Chrome extension freelancer, spec work detector, job posting chrome extension
+
+---
+
+## What changed in v1.0.2 (for your own notes — don't paste in store)
+
+- **Analyze tab blank fix** — shared CSS hides all `.tab-content` by default; the active tab div was missing its `active` class, so the input form was invisible on every popup open. Fixed by adding `active` class to `#tab-analyze` in popup.html AND updating `setupTabs()` in shared.js to initialize the active tab on call (self-healing for future extensions).
+- **CSP fix** — inline `<script>` in popup.html blocked by MV3 `script-src 'self'`; extracted to `popup/icons-loader.js`.
+
+## What changed in v1.0.1 (for your own notes — don't paste in store)
+
+- Initial CWS review submission (unused release, superseded by v1.0.2).
 
 ## Category
 Productivity

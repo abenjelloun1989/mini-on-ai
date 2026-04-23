@@ -8,17 +8,8 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <!-- SVG icon sprite — must be first in body for <use href="#..."> to resolve -->
-  <div style="display:none" aria-hidden="true">
-    <svg><!-- populated by icons.svg inlined below --></svg>
-  </div>
-  <script>
-    // Inline icons.svg sprite synchronously before any rendering
-    fetch(chrome && chrome.runtime ? chrome.runtime.getURL('popup/icons.svg') : 'icons.svg')
-      .then(r => r.text())
-      .then(svg => { document.body.insertAdjacentHTML('afterbegin', svg); })
-      .catch(() => {});
-  </script>
+  <!-- SVG icon sprite — populated by icons-loader.js -->
+  <script src="icons-loader.js"></script>
   <div class="popup">
 
     <!-- Header -->
@@ -45,7 +36,7 @@
     </nav>
 
     <!-- ── Analyze Tab ─────────────────────────────────────────────────── -->
-    <div class="tab-content" id="tab-analyze">
+    <div class="tab-content active" id="tab-analyze">
 
       <!-- Input area -->
       <div class="input-section" id="inputSection">
