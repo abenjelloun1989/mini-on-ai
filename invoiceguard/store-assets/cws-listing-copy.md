@@ -1,4 +1,4 @@
-# InvoiceGuard — CWS Listing Copy (paste into Chrome Web Store dashboard)
+# InvoiceGuard — CWS Listing Copy (v1.1.1)
 
 ## Extension Name (45 chars max)
 InvoiceGuard — Gmail Invoice Tracker & Alerts
@@ -70,3 +70,18 @@ Track invoices from Gmail. Get paid on time. Free Chrome extension.
 
 ## Store keywords to work into the listing naturally (for CWS internal search)
 invoice tracker, Gmail invoice tracker, freelance invoice tracking, overdue invoice alert, invoice reminder, payment tracker Gmail, track invoices Chrome extension, freelance payment tracker, invoice follow-up, Gmail payment tracking
+
+---
+
+## What changed in v1.1.1 (for your own notes — don't paste in store)
+
+- **Design consistency** — normalized popup sizing, header layout, and tab padding to match the shared design system used across all three extensions
+- **Light mode improvements** — CSS custom property cascade now applied via inline styles on `document.documentElement` for reliable rendering in Chrome extension popup context
+- **Shared code sync** — updated to latest `_shared/utils.js` (copyText, initDarkMode, setupTabs, updateTierBadge, startUpgrade)
+
+## What changed in v1.1.0 (for reference)
+
+- Security hardening: Stripe webhook signature made mandatory, LTD users protected from accidental downgrade
+- LTD code redemption module added (Account tab)
+- GDPR: DELETE /api/user endpoint added
+- Debug info removed from production 500 responses

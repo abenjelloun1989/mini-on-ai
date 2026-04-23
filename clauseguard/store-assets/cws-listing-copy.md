@@ -1,4 +1,4 @@
-# ClauseGuard — CWS Listing Copy (v1.3.0)
+# ClauseGuard — CWS Listing Copy (v1.3.1)
 
 ## Extension Name (45 chars max)
 ClauseGuard — AI Contract & NDA Analyzer
@@ -96,6 +96,16 @@ Free · No signup needed
 
 ## Store keywords (work into listing naturally for CWS internal search)
 contract review, AI contract analyzer, NDA analyzer, contract red flag detector, freelance contract review, legal document review, contract risk score, unfair clause detector, contract analysis, employment contract review
+
+---
+
+## What changed in v1.3.1 (for your own notes — don't paste in store)
+
+- **Tab switching fixed** — renamed internal `setupTabs()` wrapper to `_initTabs()` to prevent it shadowing the shared utility, which caused an infinite recursion that broke all tabs and PDF upload after popup reload
+- **PDF upload restored** — was broken as a side-effect of the tab recursion bug; now works correctly on every popup open
+- **Light mode fixed** — CSS custom property cascade was unreliable in Chrome extension popup context; fixed by setting inline styles directly on `document.documentElement` via `_applyTheme()`
+- **CSP violation fixed** — inline `<script>` in popup.html blocked by MV3 `script-src 'self'`; extracted to `popup/icons-loader.js`
+- **Account view** — replaced shield emoji 🛡 with ClauseGuard logo (icon48.png) in the Free Plan card
 
 ---
 

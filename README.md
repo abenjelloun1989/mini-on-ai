@@ -167,6 +167,20 @@ flowchart LR
 
 ---
 
+## Chrome Extensions
+
+Three Chrome extensions ship alongside the product factory — independently maintained, not pipeline-generated:
+
+| Extension | Version | Description | Status |
+|---|---|---|---|
+| [**ClauseGuard**](https://mini-on-ai.com/clauseguard.html) | v1.3.1 | AI contract & NDA analyzer — risk score, red flags, suggested rewrites | Live on CWS |
+| [**InvoiceGuard**](https://mini-on-ai.com/invoiceguard.html) | v1.1.1 | Gmail invoice tracker — AI extraction, overdue alerts, follow-up reminders | Live on CWS |
+| [**JobGuard**](https://mini-on-ai.com/jobguard.html) | v1.0.1 | AI job posting analyzer — spot scam signals, spec work traps, lowball pay | Pending CWS review |
+
+All three are free with a $7/month Pro tier. Shared UI code lives in `_shared/` and is synced to each extension by `scripts/sync_shared.py`.
+
+---
+
 ## Telegram Commands
 
 | Command | Description |
@@ -217,6 +231,8 @@ mini-on-factory/
 │   ├── email_blast.py         — Brevo email campaign sender
 │   ├── publish_product.py     — Gumroad API: create/update listings
 │   ├── reddit_scan.py         — scan subreddits for pain-point posts
+│   ├── sync_shared.py         — sync _shared/ code to all 3 extensions
+│   ├── test_security.py       — permanent security assertions (bandit/semgrep checks)
 │   └── lib/
 │       ├── claude_cli.py      — wrapper for claude CLI (Pro subscription)
 │       ├── utils.py           — shared helpers (JSON, logging, paths)
@@ -224,6 +240,19 @@ mini-on-factory/
 ├── worker/
 │   ├── generate.js            — CF Worker: Build Your Own (Anthropic + Stripe + ZIP)
 │   └── subscribe.js           — CF Worker: Brevo email subscribe proxy
+├── clauseguard/               — Chrome extension v1.3.1: AI contract & NDA analyzer
+│   ├── popup/                 — Extension UI (HTML/CSS/JS)
+│   ├── store-assets/          — CWS listing copy, screenshots
+│   └── worker/                — Cloudflare Worker backend (D1 + KV)
+├── invoiceguard/              — Chrome extension v1.1.1: Gmail invoice tracker
+│   ├── popup/
+│   ├── store-assets/
+│   └── worker/
+├── jobguard/                  — Chrome extension v1.0.1: AI job posting analyzer
+│   ├── popup/
+│   ├── store-assets/
+│   └── worker/
+├── _shared/                   — Shared JS/CSS (utils.js, base.css) synced to all extensions
 ├── data/
 │   ├── product-catalog.json   — published products
 │   ├── idea-backlog.json      — idea candidates
@@ -243,6 +272,9 @@ mini-on-factory/
     ├── index.html             — rebuilt by update_site.py
     ├── style.css              — Dark Premium design system
     ├── build.html             — Build Your Own interactive page
+    ├── clauseguard.html       — ClauseGuard landing page
+    ├── invoiceguard.html      — InvoiceGuard landing page
+    ├── jobguard.html          — JobGuard landing page
     ├── _headers               — Cloudflare Pages security headers
     ├── blog/
     └── products/{id}.html
@@ -265,6 +297,8 @@ mini-on-factory/
 | Email | Brevo API via Cloudflare Worker proxy |
 | Thumbnails | Pillow (Python image library) |
 | Scheduling | launchd plist on Mac mini |
+| Chrome extensions | MV3, shared design system (`_shared/`), Cloudflare Workers + D1 backends |
+| Security | bandit + semgrep + npm audit (run via `python3 scripts/test_security.py`) |
 
 ---
 

@@ -31,10 +31,19 @@ mini-on-factory/
 ├── worker/
 │   ├── generate.js              ← CF Worker: Build Your Own (generate/checkout/download)
 │   └── subscribe.js             ← CF Worker: Brevo email subscribe proxy
-├── clauseguard/                 ← Chrome extension: AI contract analyzer
+├── clauseguard/                 ← Chrome extension: AI contract analyzer (v1.3.1)
+│   ├── popup/                   ← Extension UI (HTML/CSS/JS)
+│   ├── store-assets/            ← CWS listing copy, screenshots
 │   └── worker/                  ← Cloudflare Worker backend
-├── invoiceguard/                ← Chrome extension: Gmail invoice tracker
+├── invoiceguard/                ← Chrome extension: Gmail invoice tracker (v1.1.1)
+│   ├── popup/
+│   ├── store-assets/
 │   └── worker/                  ← Cloudflare Worker backend
+├── jobguard/                    ← Chrome extension: AI job posting analyzer (v1.0.1)
+│   ├── popup/
+│   ├── store-assets/
+│   └── worker/                  ← Cloudflare Worker backend
+├── _shared/                     ← Shared JS/CSS synced to all 3 extensions
 ├── skills/                      ← skill specifications
 ├── products/                    ← one folder per product
 │   └── {id}/
@@ -93,15 +102,20 @@ Both use `ALLOWED_ORIGIN = "https://mini-on-ai.com"` CORS. Secrets in CF environ
 
 ## Chrome Extensions
 
-Two free Chrome extensions, separate from the pipeline-generated product catalog:
+Three Chrome extensions, separate from the pipeline-generated product catalog:
 
-- **ClauseGuard** (`clauseguard/`) — AI contract analyzer. Live on CWS:
-  https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl
-- **InvoiceGuard** (`invoiceguard/`) — Gmail invoice tracker. Live on CWS:
-  https://chrome.google.com/webstore/detail/lppombokbcoafaahfhnjmckhnkbmhalp
-  Worker: https://invoiceguard-api.kirozdormu.workers.dev
+| Extension | Version | Status | CWS URL |
+|---|---|---|---|
+| **ClauseGuard** — AI contract analyzer | v1.3.1 | Live | [CWS link](https://chromewebstore.google.com/detail/clauseguard-ai-contract-n/nknbofmcikmpifeopelgngnhdcajffdl) |
+| **InvoiceGuard** — Gmail invoice tracker | v1.1.1 | Live | [CWS link](https://chrome.google.com/webstore/detail/lppombokbcoafaahfhnjmckhnkbmhalp) |
+| **JobGuard** — AI job posting analyzer | v1.0.1 | Pending CWS review | — |
 
-Both have dedicated pages (`clauseguard.html`, `invoiceguard.html`) and appear in the Tools & Services section on the homepage.
+Workers:
+- ClauseGuard: `clauseguard-api.kirozdormu.workers.dev`
+- InvoiceGuard: `invoiceguard-api.kirozdormu.workers.dev`
+- JobGuard: `jobguard-api.kirozdormu.workers.dev`
+
+All three have dedicated landing pages (`clauseguard.html`, `invoiceguard.html`, `jobguard.html`) and appear in the Tools & Services section on the homepage. Shared code lives in `_shared/` (synced via `scripts/sync_shared.py`).
 
 ## Conventions
 
@@ -111,6 +125,23 @@ Both have dedicated pages (`clauseguard.html`, `invoiceguard.html`) and appear i
 - Never commit `.env` file
 - Never explain the factory on the public website — products only
 - After any edit: commit + push immediately (user preference)
+
+## Pricing/Value Updates
+
+When updating prices or key values across a site:
+1. Run `grep -rn "OLD_VALUE" .` across the whole repo first — including HTML meta tags, OG tags, JSON-LD, markdown docs, and comments
+2. List every hit before touching anything
+3. Update all of them
+4. Run `grep -rn "OLD_VALUE" .` again to confirm zero remaining matches
+Never report a value change as done until the final grep returns no results.
+
+## Environment & Tooling
+
+- **Claude Code install:** Homebrew (`brew install claude-code`). Check current version with `brew list --versions claude-code` before suggesting upgrades — don't assume it's outdated.
+- **Remote/phone access:** Telegram bot only. `/remote-control` is VSCode-only and does not work in this setup.
+- **Deployment:** Cloudflare Pages (git push → auto-deploy). Workers managed via Cloudflare dashboard, not wrangler CLI.
+- **Python:** Python 3, no virtualenv — scripts run directly with `python3`.
+- **Node:** Not used for the pipeline. Only present for PDF.js lib bundled in Chrome extensions.
 
 ## Active Workflow Skills
 
