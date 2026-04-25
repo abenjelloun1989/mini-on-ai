@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- GitHub Opportunity Scout: runs daily at 7:00am -->
+  <key>Label</key>
+  <string>com.mini-on-ai.github-opportunity</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/minion/Dev/mini-on-factory/scripts/github_opportunity_report.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/minion/Dev/mini-on-factory</string>
+
+  <!-- Run daily at 7:00am -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- Start on login -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/minion/Dev/mini-on-factory/logs/github-opportunity.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/minion/Dev/mini-on-factory/logs/github-opportunity-error.log</string>
+</dict>
+</plist>
