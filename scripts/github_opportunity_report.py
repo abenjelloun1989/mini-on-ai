@@ -352,12 +352,11 @@ def main():
     ideas = analyze_repos(repos)
 
     if not ideas:
-        send_telegram(f"🔍 GitHub Scout — {datetime.now().strftime('%d %b')} — no opportunities ≥{SCORE_THRESHOLD} today out of {len(repos)} repos scanned.")
+        log("github-scout", f"No opportunities ≥{SCORE_THRESHOLD} today out of {len(repos)} repos scanned.")
         log_run(len(repos), [])
         return
 
     send_email_report(ideas, len(repos))
-    send_telegram_report(ideas, len(repos))
     log_run(len(repos), ideas)
 
     elapsed = round(time.time() - start, 1)
