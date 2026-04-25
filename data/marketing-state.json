@@ -1,24 +1,30 @@
 {
-  "last_blog_post_date": "2026-04-08",
-  "blog_posts_this_week": 2,
-  "last_tweet_date": "2026-04-05",
+  "last_blog_post_date": "2026-04-10",
+  "blog_posts_this_week": 3,
+  "last_tweet_date": "2026-04-22",
   "tweeted_product_ids": [
     "guide-how-i-built-an-ai-product-factory-20260330",
-    "skills-claude-code-skill-architecture-overview-free-20260326"
+    "skills-claude-code-skill-architecture-overview-free-20260326",
+    "n8n-n8n-social-media-auth-posting-workflow-20260322",
+    "n8n-n8n-customer-dashboard-roi-template-20260322"
   ],
   "pending_tweet": null,
   "directories_submitted": [],
   "appsumo_submitted": true,
-  "last_run": "2026-04-10T07:00:00.275380+00:00",
+  "last_run": "2026-04-25T07:00:04.637708+00:00",
   "_week_start": "2026-04-06",
   "pending_directory": "There's An AI For That",
   "devto_published_post_ids": [
     "blog-claude-code-skills-for-backend-developers-practical-aut-20260330"
   ],
   "last_email_blast_date": null,
-  "last_reddit_reply_date": "2026-04-07",
+  "last_reddit_reply_date": "2026-04-22",
   "reddit_replied_post_ids": [
-    "1s8karr"
+    "1s8karr",
+    "1sg26ma",
+    "1shktka",
+    "1shorev",
+    "1sm0prw"
   ],
   "producthunt_submitted": true,
   "generic_tweet_index": 0

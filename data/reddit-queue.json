@@ -2006,6 +2006,2333 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1sgaafh",
+      "subreddit": "nocode",
+      "title": "No-code seems great until the person running the workflow isn’t technical. How do you handle that?",
+      "body": "one thing i keep noticing is that a lot of nocode setups make sense when the builder is also the one operating it\n\nbut once the actual day to day work is being done by someone less technical, the whole thing can start feeling fragile pretty fast\n\nespecially with workflows around bookings, changes, availability, payments, customer notes, etc\n\ndo you try to simplify the nocode stack as much as possible  \nor is that usually the point where a more purpose-built tool makes more sense?",
+      "url": "https://reddit.com/r/nocode/comments/1sgaafh/nocode_seems_great_until_the_person_running_the/",
+      "author": "GoddessGripWeb",
+      "found_at": "2026-04-10T07:02:07.639238+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Non-Technical User No-Code Workflow Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping no-code builders design workflows that non-technical team members can safely operate, maintain, and troubleshoot without breaking critical processes.",
+        "tags": [
+          "no-code",
+          "delegation",
+          "team-operations",
+          "workflow-design",
+          "user-experience"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1scuxwf",
+      "subreddit": "nocode",
+      "title": "Where do I start to become an automation specialist?",
+      "body": "Hi everyone, I'd be very thankful if someone shared their road map on becoming an automation specialist in 3-6 months. I started with Python (automate the boring stuff) but I'm not sure if that's the right decision to start earning fast. Maybe I should've started with no-code low code. Planning to learn n8n and how to make chatbots ai integrations etc. Does anyone do automations without having to code and also earn well? Which set of tools do you use? Thanks a lot for answers",
+      "url": "https://reddit.com/r/nocode/comments/1scuxwf/where_do_i_start_to_become_an_automation/",
+      "author": "Sigh_Die",
+      "found_at": "2026-04-10T07:02:09.566460+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code Automation Specialist Roadmap",
+        "category": "mini-guide",
+        "description": "A structured 3-6 month learning path for non-technical users wanting to build automation skills and earn income using no-code tools like n8n, without needing to code.",
+        "tags": [
+          "automation",
+          "n8n",
+          "no-code",
+          "career-path",
+          "learning-roadmap"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1se4qak",
+      "subreddit": "freelance",
+      "title": "Need to send an updated invoice - how do i make sure i dont get paid from the first one?",
+      "body": "So recently I got my first job where I have had to make an invoice, doing some work for a theatre. They sent an email detailing the payment schedule and when they were due. 2 payments of £500, the first payment due on the 10th April. I sent mine in last week, with them needing to be in by 7th April at the latest. Its a pdf of a word document that I made, and emailed to the provided email address.\n\nHowever I had to leave the job partway through due to an injury, and after discussing what my new payment should be, I have a new invoice ready to send. However, I'm not sure what the new payment date should be? Can i just leave that off and put pay within 30 days? Or can can I put the payment date that the second payment should be which is the 17th?\n\nAnd do I need to do anything specific to make",
+      "url": "https://reddit.com/r/freelance/comments/1se4qak/need_to_send_an_updated_invoice_how_do_i_make/",
+      "author": "butlerwithagun",
+      "found_at": "2026-04-10T07:02:11.898431+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Freelance Invoice Management Checklist",
+        "category": "checklist",
+        "description": "Helps freelancers manage multiple invoice versions, track payment schedules, and communicate updates to clients to prevent duplicate payments and confusion.",
+        "tags": [
+          "invoicing",
+          "freelance",
+          "payment-tracking",
+          "client-communication"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sfp6wy",
+      "subreddit": "smallbusiness",
+      "title": "Recommended banks in California for small business with little to no monthly fees",
+      "body": "Hello again!\n\n  \nI've been looking into opening an account for my LLC, but a lot of the major banks have CRAZY requirements to waive the monthly fees that aren't viable for a starting small business.\n\n  \nSomeone mentioned Bluevine, but after reading some testimonies about random account closures and bad customer service, I'm debating against it.\n\n  \nI currently live in Orange County, California. Can anyone recommend a good bank to go to for a business account?\n\n  \nThanks in advanced!",
+      "url": "https://reddit.com/r/smallbusiness/comments/1sfp6wy/recommended_banks_in_california_for_small/",
+      "author": "DragonGrl0701",
+      "found_at": "2026-04-10T07:02:14.717386+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "California LLC Banking Comparison & Fee Waiver Guide",
+        "category": "mini-guide",
+        "description": "A comprehensive guide comparing low-fee and no-fee banking options for California LLCs with specific fee-waiver requirements, alternative banks beyond major chains, and step-by-step account opening checklists.",
+        "tags": [
+          "small-business",
+          "banking",
+          "llc-setup",
+          "california",
+          "cost-reduction"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1shximd",
+      "subreddit": "n8n",
+      "title": "Has anyone actually connected a chatbot and voice agent to the same CRM and lived to tell the tale?",
+      "body": "Been going down a rabbit hole on this for a few weeks now and honestly the more I dig the more questions I have.\n\nMost stuff online covers chatbots or voice agents separately but the part I can't find good info on is making both work together without the context falling apart when someone switches from chat to a call or vice versa.\n\nLike if someone chats in, gets halfway through qualifying, then a voice agent follows up the next day, does the CRM actually hold that thread together cleanly or does it feel like starting from scratch every time?\n\nCurious if anyone has actually built this in production. What CRM did you use, what broke first, and what would you do differently.",
+      "url": "https://reddit.com/r/n8n/comments/1shximd/has_anyone_actually_connected_a_chatbot_and_voice/",
+      "author": "Fun_Nefariousness30",
+      "found_at": "2026-04-15T07:00:44.233130+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Multi-Channel CRM Context Persistence Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping teams architect chatbot and voice agent integrations that maintain customer context and conversation history across channels in a unified CRM system.",
+        "tags": [
+          "n8n",
+          "omnichannel",
+          "voice-agents",
+          "chatbots",
+          "CRM-integration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1si6g70",
+      "subreddit": "n8n",
+      "title": "Free ngrok alternative for n8n in Docker without limits?",
+      "body": "I'm currently using n8n with Docker, and I was relying on ngrok to expose it for production use. The problem is that ngrok sometimes hits its limits, which makes it unreliable.\n\nCan anyone recommend a free alternative that works better and doesn't have these limits?",
+      "url": "https://reddit.com/r/n8n/comments/1si6g70/free_ngrok_alternative_for_n8n_in_docker_without/",
+      "author": "marwan_rashad5",
+      "found_at": "2026-04-15T07:00:46.478511+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Docker Webhook Exposure Setup Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide showing n8n users how to expose their Docker instances for production webhooks using free, reliable alternatives to ngrok without rate limits or reliability issues.",
+        "tags": [
+          "n8n",
+          "docker",
+          "webhooks",
+          "ngrok-alternatives",
+          "devops"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sg26ma",
+      "subreddit": "n8n",
+      "title": "Documentation of JSON workflow.",
+      "body": "Hey builders, I was curious about what builders and small agencies typically do after delivering their workflow to clients. Do you record Loom videos demonstrating how the workflow functions? That process can be quite time-consuming. What if there were a tool that could automatically generate comprehensive documentation of the workflow by inputting the JSON data, producing detailed documentation, and creating a Mermaid diagram that illustrates how all components are connected and interact within the system?",
+      "url": "https://reddit.com/r/n8n/comments/1sg26ma/documentation_of_json_workflow/",
+      "author": "kellyjames436",
+      "found_at": "2026-04-15T07:00:50.446705+00:00",
+      "status": "reply_sent",
+      "brief": {
+        "score": 78,
+        "title": "Auto-Generate n8n Workflow Documentation from JSON",
+        "category": "n8n-template",
+        "description": "An n8n workflow that automatically generates comprehensive documentation from JSON workflow exports, eliminating the need for time-consuming manual Loom videos and documentation for client delivery.",
+        "tags": [
+          "n8n",
+          "documentation",
+          "automation",
+          "client-delivery",
+          "workflow-documentation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": "Most builders in the community seem to use a mix of Loom videos and written docs, but yeah, the Loom route definitely eats up time—a lot of people mention this frustration. Auto-generating documentation from JSON would be genuinely useful since it could handle the repetitive parts and let you focus on adding context that only you understand. The Mermaid diagram idea is solid too; visual workflow maps are way easier for clients to reference than trying to parse node connections themselves. Have you checked out n8n's built-in documentation features or looked into whether any community members have already built something similar for this exact use case? Might be worth asking in the n8n Discord or checking the templates section to see if there's existing automation for this.",
+      "replied_at": "2026-04-15T07:01:33.865192+00:00"
+    },
+    {
+      "post_id": "1sj1gbn",
+      "subreddit": "automation",
+      "title": "My first Automation project",
+      "body": "I have been manually doing all marketing work for my clients. From creating websites, meta and google ads to sending emails using hubspot CRM. \n\nI am looking forward to some ideas on how i could automate my process. \n\nPlease provide me the best entry level strategies. I am not very technical with coding but I can easily work with front end applications.",
+      "url": "https://reddit.com/r/automation/comments/1sj1gbn/my_first_automation_project/",
+      "author": "digital_entrpreneur",
+      "found_at": "2026-04-15T07:00:57.922306+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code Marketing Automation Workflow Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide teaching non-technical marketers how to automate their client workflows (website creation, ad management, email campaigns) using no-code tools like n8n, Zapier, and HubSpot.",
+        "tags": [
+          "marketing-automation",
+          "no-code",
+          "hubspot",
+          "client-workflows",
+          "entry-level"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1simg35",
+      "subreddit": "automation",
+      "title": "Looking for a tool to auto-reply to TikTok video comments",
+      "body": "Hi everyone,\n\nI’m looking for a chatbot or an automation tool that can:\n\nAuto-reply to comments based on specific keywords (e.g., \"price\", \"link\", \"how to buy\").\n\nSupport multiple accounts in one dashboard.\n\n\n\nSafe to use: I want to avoid anything that might get my accounts flagged for spam.\n\n\n\nI’ve searched on Google and YouTube but mostly found tools for Instagram/Facebook or DMs only. I'm currently using a workflow with Zapier and Buffer for uploading, but I'm struggling with the engagement part (comment replies).\n\n\n\nDoes anyone know of a reliable tool or a \"no-code\" way (like using Make or APIs) to automate TikTok comment replies in 2026?\n\n\n\nAny recommendations or advice would be greatly appreciated! Thanks in advance.",
+      "url": "https://reddit.com/r/automation/comments/1simg35/looking_for_a_tool_to_autoreply_to_tiktok_video/",
+      "author": "minhseomoz",
+      "found_at": "2026-04-15T07:01:00.266416+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "TikTok Comment Auto-Reply Automation Setup",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that monitors TikTok video comments, detects keyword triggers, and sends automated replies across multiple accounts while minimizing spam risk through rate-limiting and safety checks.",
+        "tags": [
+          "TikTok",
+          "automation",
+          "comment-management",
+          "multi-account",
+          "keyword-triggers"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1skjzt4",
+      "subreddit": "automation",
+      "title": "Are we overcomplicating our automations without even realizing it?",
+      "body": "I've been sitting with this question a lot lately and I genuinely don't think people notice when it happens.\n\nIt starts simple. You need something automated, you open n8n, you connect a few nodes. Clean, done, feels great. A week later you're back adding a branch, and then another, and then the branch has a branch. Then someone asks \"what does this do?\" and you need 10 minutes to explain it.\n\nWhat's funny is I see this exact pattern playing out across real workflows constantly. Not hypothetically. I work on synta (an n8n mcp + workflow builder) every day we analyze the n8n workflows that individuals and businesses make. And let me assure you, the patterns we see are wild.\n\nOne of the most common: webhook event routing that grows a full separate pipeline for every event type. Someone needs",
+      "url": "https://reddit.com/r/automation/comments/1skjzt4/are_we_overcomplicating_our_automations_without/",
+      "author": "Expert-Sink2302",
+      "found_at": "2026-04-15T07:01:11.658628+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Workflow Simplification & Documentation Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping automation builders recognize complexity creep in n8n workflows, refactor overgrown automations, and document them clearly so teammates can understand them without lengthy explanations.",
+        "tags": [
+          "n8n",
+          "automation",
+          "workflow-design",
+          "technical-debt",
+          "documentation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sh2jzh",
+      "subreddit": "n8n",
+      "title": "Want to learn N8N, need help!",
+      "body": "I am not a technical person, do not know to code. However, I have jumped into technical functional work in the past. That mentioned, I am not highly technical I can manage surface level technical stuff.\n\nI need some good resources where I can learn how to create workflows for my role as Client Account Management role, most of the content I have seen online I see people modifying already existing wokflows, nobody seems to explain how to create something from scratch and this driving me up the wall.\n\nI had recently start learning the basics of N8N from the official N8N channel itself, but still some aspect I need clarification on based on my use case (I need help!)\n\nCould somebody please provide me the best available resources to learn how to create simple to really advanced level N8N workfl",
+      "url": "https://reddit.com/r/n8n/comments/1sh2jzh/want_to_learn_n8n_need_help/",
+      "author": "sushimajesty",
+      "found_at": "2026-04-15T07:01:15.738147+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "N8N Workflows for Client Account Managers",
+        "category": "n8n-template",
+        "description": "Pre-built, non-technical N8N workflow templates specifically designed for client account management tasks, with step-by-step explanations for non-coders to customize and deploy.",
+        "tags": [
+          "n8n",
+          "automation",
+          "account-management",
+          "no-code",
+          "client-operations"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sjeqcu",
+      "subreddit": "n8n",
+      "title": "How do you handle data privacy when processing sensitive documents with AI nodes? (EU/Swiss context)",
+      "body": "Hey everyone,\n\nI'm building n8n workflows for accounting firms here in Switzerland that automate document classification and routing — think invoices, payslips, receipts coming in via email, getting classified by an AI node (Claude API), then sorted into the right client folders on their server.\n\nThe workflow itself works great, but the elephant in the room when talking to clients is **data privacy**. These documents contain highly sensitive financial data, and under Swiss/EU law there are strict rules about cross-border data transfers (our new data protection law nDSG is basically GDPR-equivalent).\n\nRight now I'm using the Anthropic API directly, which means data hits US servers. Anthropic doesn't train on API data and has a 30-day retention policy, but for some clients that's still a har",
+      "url": "https://reddit.com/r/n8n/comments/1sjeqcu/how_do_you_handle_data_privacy_when_processing/",
+      "author": "Inca_PVP",
+      "found_at": "2026-04-15T07:01:17.942016+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "EU/Swiss Data Privacy Compliance for n8n AI Workflows",
+        "category": "mini-guide",
+        "description": "A practical guide helping accounting firms and service providers implement GDPR/Swiss privacy-compliant n8n workflows when processing sensitive documents with AI APIs, covering data residency, encryption, and vendor assessment.",
+        "tags": [
+          "n8n",
+          "data-privacy",
+          "GDPR",
+          "compliance",
+          "ai-workflows",
+          "accounting"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sjjnvl",
+      "subreddit": "automation",
+      "title": "Help with automating shiftplan generator in google doc",
+      "body": "Hello guys, \n\ni havent really dabbled with AI much so far, but now i have some task that i would like to try utilize AI on. I am manager in casino bussiness, i manage around 100 fulltime workers with 100-200 freelance workers and at the moment i am creating shiftplan manually every month. As i said my AI usage experience is extremely limited, i used chatbots like 5-6 times in total for mundane things. \n\nSo here are my questions. Are there tools avaliable at the moment for me to use AI to access data i am using for generating said shiftplan in the form of google doc/excel/anything similar and create series of prompts/rules for it to generate the plan for me? If so, which AI platform/tool would you recommend for that task? \n\nThe way i imagine it, i would give it access to safe copy of basic",
+      "url": "https://reddit.com/r/automation/comments/1sjjnvl/help_with_automating_shiftplan_generator_in/",
+      "author": "OGaRsony",
+      "found_at": "2026-04-15T07:01:26.551395+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Casino Shift Planner AI Prompt Pack",
+        "category": "prompt-packs",
+        "description": "Guides managers through using AI to automate monthly shift scheduling for large teams (100+ full-time and 100-200+ freelance workers) with customizable constraints and rules.",
+        "tags": [
+          "shift-scheduling",
+          "workforce-management",
+          "casino-operations",
+          "ai-automation",
+          "time-saving"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sgl200",
+      "subreddit": "automation",
+      "title": "AI workflows are getting complex fast. How do you actually know what's happening inside them?",
+      "body": "This has been quietly bothering me for months and I finally want to hear how others are handling it.\n\n  \nThe more I build, the more I notice the same pattern: the workflow runs, the output looks right, and I have no real idea what decisions got made in the middle to produce it. Most of the time that's fine. But when something goes wrong — wrong record updated, wrong branch taken, unexpected output slipping through — tracing back through what actually happened is genuinely painful.\n\n  \nI've been using Latenode for a lot of my automation work, and one thing I've started doing is treating each node as a deliberate checkpoint rather than just a step. Logging inputs and outputs at every decision point, adding explicit branching conditions instead of letting the model decide implicitly, building",
+      "url": "https://reddit.com/r/automation/comments/1sgl200/ai_workflows_are_getting_complex_fast_how_do_you/",
+      "author": "parwemic",
+      "found_at": "2026-04-15T07:01:29.895841+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Workflow Debugging & Observability Guide",
+        "category": "mini-guide",
+        "description": "A practical guide that teaches users how to add logging, checkpoints, and visibility into complex AI workflows to understand decision-making and troubleshoot failures.",
+        "tags": [
+          "workflow-debugging",
+          "automation",
+          "observability",
+          "AI-troubleshooting",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sj58j8",
+      "subreddit": "nocode",
+      "title": "Nocode is getting too expensive and nobody wants to say it.",
+      "body": "Zapier pricing just went up again, Make quietly changed their plan limits and Bubble's pricing has been a moving target for two years. Somehow the whole pitch of nocode that it democratises building for people without big budgets is starting to feel disconnected from what these tools actually cost at any meaningful scale. Think about it because the promise was: anyone can build without a developer and the reality at scale is that the monthly subscriptions add up to what a part time developer would cost anyway.\n\nAnd now there's a weird middle ground where: Nocode is too expensive to scale cheaply. But hiring a developer for everything is still out of reach. So what actually wins? Is the answer hybrid nocode for speed, code for scale?\n\nIs the answer self-hosted open source tools like n8n tha",
+      "url": "https://reddit.com/r/nocode/comments/1sj58j8/nocode_is_getting_too_expensive_and_nobody_wants/",
+      "author": "Better_Charity5112",
+      "found_at": "2026-04-16T07:01:11.457420+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Nocode Cost Optimization & Vendor Comparison Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping nocode builders understand pricing tiers across platforms, identify cost-saving strategies, and evaluate when to switch tools or build custom solutions to reduce expenses at scale.",
+        "tags": [
+          "nocode",
+          "cost-optimization",
+          "zapier",
+          "make",
+          "bubble",
+          "budget-planning"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sginfd",
+      "subreddit": "nocode",
+      "title": "From “How do I code this?” → “How do I connect this?” This shift changed everything for me",
+      "body": "Hey everyone,\n\nI’ve been spending a lot of time in the no-code / automation space recently (mostly with tools like n8n), and I noticed a mindset shift that genuinely changed how I build things:\n\nI stopped asking **“how do I code this?”**  \nand started asking **“how do I connect this?”**\n\nAt first it felt like a small change, but it completely changed my workflow.\n\nNow instead of starting from scratch, I think in terms of:\n\n* What tools already exist?\n* What APIs can I use?\n* How can I connect pieces instead of building everything myself?\n\nBecause of that:\n\n* I can go from idea → MVP in hours\n* I experiment way more (since building is cheap now)\n* I focus more on *logic and flow* instead of syntax\n\nBut I’ve also noticed the trade-offs:\n\n* Debugging complex workflows can get messy fast\n* Sca",
+      "url": "https://reddit.com/r/nocode/comments/1sginfd/from_how_do_i_code_this_how_do_i_connect_this/",
+      "author": "mirzabilalahmad",
+      "found_at": "2026-04-16T07:01:13.636680+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code Connector Mindset: From Code to Integration",
+        "category": "mini-guide",
+        "description": "A practical guide helping developers transition from traditional coding thinking to no-code/low-code automation by reframing problems around API connections and tool integrations rather than custom code.",
+        "tags": [
+          "no-code",
+          "automation",
+          "n8n",
+          "mindset-shift",
+          "integration"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1skgd06",
+      "subreddit": "automation",
+      "title": "Which AI Video Editing Software are these Youtubers using to edit these hour long videos??",
+      "body": "Every YouTuber I see, especially in the AI space, talks about every new topic and makes videos every couple of days. They have really long videos—40 to 50 minutes, or even an hour long—and they are always really well-edited. Every five seconds there is a transition, highlights, text boxes, and so on.\n\n\n\nClearly, nobody has that much time to create all these videos, record them, script them, and then also sit down to edit and publish them so fast. Everyone is obviously using some kind of video editing AI software, but I just haven't figured out which one it is.\n\n\n\nDoes anybody know which video editing software they use to do this? Everything they talk about in their screenshots is pertinent to the video they are making themselves. I guess it could be a screen recording and the AI is just",
+      "url": "https://reddit.com/r/automation/comments/1skgd06/which_ai_video_editing_software_are_these/",
+      "author": "newuxtreme",
+      "found_at": "2026-04-16T07:01:22.776482+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Video Editing Workflow & Tool Stack",
+        "category": "mini-guide",
+        "description": "A practical guide revealing the AI tools, workflows, and strategies that prolific YouTubers use to produce heavily-edited hour-long videos in just days, with templates for rapid video production.",
+        "tags": [
+          "video-editing",
+          "youtube-automation",
+          "ai-tools",
+          "content-creation",
+          "workflow-optimization"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1shktka",
+      "subreddit": "n8n",
+      "title": "how to deliver the worflow to the client and make it working in their system",
+      "body": "Hey guys, I am new to AI automation. I use n8n for creating workflows. \n\nI just want to know how to deploy the workflow on the client side. Like what actually happen???? how should I do it and what all things should I keep in mind while delivering the workflow to the client???\n\nAlso another question, what all legal things like documentations, aggreements and stuff. What should I keep track of while delivering so that me and the client dont face any problem.\n\nI am so confused that I am not even able to explain what's going through my head lol. sorry!\n\nHave a nice day everyone!!!",
+      "url": "https://reddit.com/r/n8n/comments/1shktka/how_to_deliver_the_worflow_to_the_client_and_make/",
+      "author": "RadiantWinter8613",
+      "found_at": "2026-04-16T07:01:36.432325+00:00",
+      "status": "reply_sent",
+      "brief": {
+        "score": 78,
+        "title": "n8n Workflow Deployment & Client Delivery Guide",
+        "category": "mini-guide",
+        "description": "A comprehensive guide helping n8n automation developers deploy workflows to client systems, covering technical setup, configuration, documentation, legal agreements, and best practices for client handoff.",
+        "tags": [
+          "n8n",
+          "workflow-deployment",
+          "client-delivery",
+          "automation",
+          "legal-docs"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": "For deployment, you have a few options: you can set up n8n on your client's server (self-hosted), use n8n Cloud with their credentials, or build a custom integration depending on their infrastructure. The key is understanding their tech stack and security requirements first—some clients want everything on-premise, others are fine with cloud solutions. On the legal side, definitely have a clear service agreement that covers data ownership, API credentials security, workflow maintenance responsibilities, and what happens if something breaks. Document everything thoroughly including setup instructions, how to update credentials, troubleshooting steps, and which integrations are being used—this saves you support headaches later. Also consider whether you'll provide ongoing support/monitoring or if they'll manage it themselves, and price accordingly since poorly-documented handoffs always lead to problems down the line.",
+      "replied_at": "2026-04-16T07:02:07.455505+00:00"
+    },
+    {
+      "post_id": "1siktda",
+      "subreddit": "n8n",
+      "title": "Merge node issue",
+      "body": "IM BEGGING FOR HELP\n\nI have a problem with my merge node here who doesn't want to pass data to the next node, normally even if there is only on input Fed with data it should pass it onto the next node but it won't do it here and I can't finish my workflow, I've already tried looking on the internet and in the documentation what could be the issue but I didn't find anything it should just be working.\n\nSo if anyone here as any information about what could be the reason I'm desperately waiting for answer thanks🙏",
+      "url": "https://reddit.com/r/n8n/comments/1siktda/merge_node_issue/",
+      "author": "Longjumping_Cod_8568",
+      "found_at": "2026-04-16T07:01:39.010200+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Merge Node Troubleshooting Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that diagnoses common merge node issues in n8n workflows, including data passing failures, configuration mistakes, and debugging techniques to get stuck workflows running again.",
+        "tags": [
+          "n8n",
+          "merge-node",
+          "troubleshooting",
+          "workflow-debugging"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1shq9cz",
+      "subreddit": "n8n",
+      "title": "What useful n8n workflow can you build with Brand DNA?",
+      "body": "I want to try a small community challenge around a workflow idea.\n\nThere is Apify Actor called Brand DNA that extracts structured brand information from websites like colors, typography, tone, positioning, and reusable brand signals.\n\nThe challenge: Build a useful n8n workflow that uses Brand DNA in a practical way.\n\nA few example ideas:\n\nlead enrichment\n\ncompetitor monitoring\n\nAI prompt/context generation\n\nbrand consistency checks\n\nautomatic marketing asset preparation\n\nWhat I’m looking for:\n\na real workflow\n\nclear use case\n\nshort explanation\n\nscreenshots, JSON, or demo if possible\n\nI’ll pick my favorite submission and send a small special gift to the winner.\n\nMain criteria:\n\nusefulness\n\ncreativity\n\npractical execution\n\nreusability\n\nI’m mainly doing this to discover real workflow ideas pe",
+      "url": "https://reddit.com/r/n8n/comments/1shq9cz/what_useful_n8n_workflow_can_you_build_with_brand/",
+      "author": "Hayder_Germany",
+      "found_at": "2026-04-16T07:01:49.591439+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Brand DNA n8n Workflow Templates Pack",
+        "category": "n8n-template",
+        "description": "Ready-to-use n8n workflows that integrate Brand DNA for lead enrichment, competitor monitoring, and AI context generation without building from scratch.",
+        "tags": [
+          "n8n",
+          "Brand DNA",
+          "lead-enrichment",
+          "competitor-monitoring",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sige0r",
+      "subreddit": "n8n",
+      "title": "what nobody tells you before you start with n8n",
+      "body": "I've been running n8n builds for about two years now and there's a pattern to how people learn it - they hit the same walls in the same order\n\n\n\nmost courses and tutorials teach you to think of n8n like a flowchart. \n\ntrigger → node → node → result. clean, linear, logical\n\n\n\nbut the moment you hit a real production workflow, flowchart thinking breaks down. because production workflows aren't linear. they're state machines. things run on schedules, wait for external events, branch based on data that arrives in different shapes, retry when services are down, and need to recover gracefully when something fails mid-execution\n\n\n\nhere's what took me way too long to understand:\n\n\n\n**1. n8n is event-driven, not flow-driven**\n\n\n\nthe trigger isn't the start of a process - it's an event in a system t",
+      "url": "https://reddit.com/r/n8n/comments/1sige0r/what_nobody_tells_you_before_you_start_with_n8n/",
+      "author": "Professional_Ebb1870",
+      "found_at": "2026-04-16T07:01:51.796887+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Production n8n Workflows: Beyond Flowchart Thinking",
+        "category": "mini-guide",
+        "description": "A practical guide that teaches n8n users how to architect production-ready workflows by moving beyond linear flowchart thinking to handle real-world complexity, error handling, and non-linear patterns.",
+        "tags": [
+          "n8n",
+          "workflow-design",
+          "production-patterns",
+          "advanced-automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sjpvg4",
+      "subreddit": "n8n",
+      "title": "Context lost after HTTP Request node in parallel execution — Reduce always gets only 1 competitor's data",
+      "body": "I've been debugging this for several versions and can't crack it. Posting here hoping someone has hit this before.\n\n\n\n**What the workflow does**\n\n\n\nIt rewrites old blog posts automatically. The relevant section of the pipeline is:\n\n\n\nSplit URLs → Jina HTTP Request → Clean text → Pre-filter MAP → LLM MAP (Haiku) → Parse MAP → Reduce\n\n\n\nSplit URLs generates 5 items, one per competitor. Each item carries context fields: paa, relatedSearches, keyword, competitorUrl, etc.\n\n[https://gist.github.com/Clemenza666/0857ccbdb7fee7aa9fa74dc8c265222e](https://gist.github.com/Clemenza666/0857ccbdb7fee7aa9fa74dc8c265222e)\n\n\n\n**The root problem**\n\n\n\nThe Jina HTTP Request node replaces the item completely with its response (code, status, data.content, meta). All original context fields are gone. Every node",
+      "url": "https://reddit.com/r/n8n/comments/1sjpvg4/context_lost_after_http_request_node_in_parallel/",
+      "author": "JosetxoXbox",
+      "found_at": "2026-04-16T07:01:56.302738+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "n8n Parallel Execution & Data Loss Troubleshooting",
+        "category": "n8n-template",
+        "description": "A step-by-step n8n workflow template that demonstrates proper context handling in parallel execution chains with HTTP requests, Map, and Reduce nodes to prevent data loss.",
+        "tags": [
+          "n8n",
+          "parallel-execution",
+          "data-loss",
+          "debugging",
+          "workflow-patterns"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1slisy1",
+      "subreddit": "automation",
+      "title": "Bullhorn Automation - Recurring Task Question",
+      "body": "Is it possible to create a placement automation that sends and email 7 days after the placement start date and then every 2 weeks after until the placement end date hits?\n\nIm finding it difficult to determine the best way and most efficient.\n\nI created a list of all placements in a certain status with end dates in the future. i then created a placement startdate date based automation. I have a wait step first that brings the records in 1 day before the the start date, then another wait step to then send an email after seven days, then another 2 weeks later. \n\nI have branches that look if the end date has passed before sending the email. How do i allow start dates that have already passed, into the automation and mange them?",
+      "url": "https://reddit.com/r/automation/comments/1slisy1/bullhorn_automation_recurring_task_question/",
+      "author": "Any-Animator-1503",
+      "found_at": "2026-04-16T07:01:58.310727+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Bullhorn Recurring Placement Email Automation",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that automates sending emails 7 days after a Bullhorn placement starts, then every 2 weeks until the placement end date, eliminating manual setup complexity.",
+        "tags": [
+          "bullhorn",
+          "recruitment",
+          "automation",
+          "recurring-emails",
+          "placement-management"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1slx18f",
+      "subreddit": "nocode",
+      "title": "Am I the only one lost between vibe coding and real understanding?",
+      "body": "With the bloom of vibe coding, coding line by line starts to feel… kinda outdated. Instead, people are shifting toward understanding systems as higher-level chunks. But here’s the catch — understanding itself can’t be skipped.\n\nSo now I’m stuck in this weird middle ground.\n\nI don’t really “write” everything anymore… but I also don’t want to just blindly accept whatever AI spits out. What I’ve been doing lately is asking Codex (or similar tools) to explain what a file or function does, almost like I’m building a mental map instead of a codebase.\n\nBut honestly, it still feels messy.\n\nSometimes the explanations are too surface-level. Sometimes they’re too detailed and I lose the bigger picture. And sometimes I don’t even know what to ask to get the right chunk-level understanding.\n\nLike:\n\nHow",
+      "url": "https://reddit.com/r/nocode/comments/1slx18f/am_i_the_only_one_lost_between_vibe_coding_and/",
+      "author": "Forsaken-Nature5272",
+      "found_at": "2026-04-16T07:02:02.611257+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI-Assisted Code Review & Understanding Checklist",
+        "category": "checklist",
+        "description": "A checklist that helps developers validate and understand AI-generated code before implementing it, bridging the gap between vibe coding and genuine comprehension.",
+        "tags": [
+          "ai-coding",
+          "code-review",
+          "vibe-coding",
+          "validation",
+          "learning"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1siaokt",
+      "subreddit": "automation",
+      "title": "Struggling to scale my ChatGPT to Gemini image workflow, need suggestions",
+      "body": "Hi guys,\n\nI am currently working on a very specific, repetitive workflow to generate targeted images, and I am trying to find a way to optimize it.\n\nRight now, my process looks like this:  \nStep 1, I use ChatGPT to generate detailed prompts.  \nStep 2, I use Gemini (Nano Banana Pro) to generate the images based on those prompts.  \nStep 3, I manually refine everything in Photoshop to ensure consistency, fix imperfections, and maintain a uniform final output.\n\nThe challenge is that steps 1 and 2 are quite time-consuming because I am doing everything one by one. Step 3 will stay manual since quality control and consistency are critical for my work.\n\n**So I am looking for a way to automate Step 1 and Step 2 while still maintaining the same level of output quality.** Ideally, something that can",
+      "url": "https://reddit.com/r/automation/comments/1siaokt/struggling_to_scale_my_chatgpt_to_gemini_image/",
+      "author": "Swimming_Task6633",
+      "found_at": "2026-04-17T07:01:00.359878+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "ChatGPT to Gemini Image Generation Workflow",
+        "category": "n8n-template",
+        "description": "An n8n automation template that connects ChatGPT prompt generation to Gemini image generation, eliminating manual steps and enabling scaled, consistent image production workflows.",
+        "tags": [
+          "image-generation",
+          "automation",
+          "chatgpt",
+          "gemini",
+          "workflow-scaling"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1shwefz",
+      "subreddit": "n8n",
+      "title": "How to create an API key in N8N??",
+      "body": "Guys, I need help connecting N8N to my MCP server in Antigravity. I need to create an API key, but I can't find it anywhere on the site. Does anyone have a solution?",
+      "url": "https://reddit.com/r/n8n/comments/1shwefz/how_to_create_an_api_key_in_n8n/",
+      "author": "polaroids3x",
+      "found_at": "2026-04-17T07:01:08.429981+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "N8N API Key Setup & MCP Integration",
+        "category": "mini-guide",
+        "description": "Step-by-step guide helping N8N users create API keys and connect to MCP servers like Antigravity, solving a common friction point in the setup process.",
+        "tags": [
+          "n8n",
+          "api-keys",
+          "mcp-servers",
+          "integration-setup"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1snctih",
+      "subreddit": "n8n",
+      "title": "My OpenAI node went crazy",
+      "body": "Hey guys, I'm having a problem with the OpenAI chat model node. Everything was working fine creating a workflow for an agent to query a database, but in one of the final tests it started doing this: empty queries that just consumed tokens for no apparent reason. It didn't matter if I closed the workflow, pressed F5, refreshed the cache, it just kept happening. I've now deactivated it, but I'm curious to know, does anyone have an answer about this?\n\nhttps://preview.redd.it/fwrgszq5nlvg1.png?width=244&amp;format=png&amp;auto=webp&amp;s=8fe88e5ebadcbabab2f8e02f0b0d6123dbf49b01\n\nhttps://preview.redd.it/tzdkj6h7nlvg1.png?width=378&amp;format=png&amp;auto=webp&amp;s=dbc9c4ebaa17ba08dc2d32bbd033607735098f6f",
+      "url": "https://reddit.com/r/n8n/comments/1snctih/my_openai_node_went_crazy/",
+      "author": "Altruistic-Candy3143",
+      "found_at": "2026-04-17T07:01:10.752329+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 68,
+        "title": "OpenAI Node Debugging & Troubleshooting Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping n8n users diagnose and fix common OpenAI node issues like token waste, empty queries, and cache problems that persist across workflow resets.",
+        "tags": [
+          "n8n",
+          "openai",
+          "debugging",
+          "troubleshooting",
+          "token-optimization"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sifduu",
+      "subreddit": "nocode",
+      "title": "Chatbase vs CustomGPT ai - which one actually works better in real use?",
+      "body": "So I've been going down a rabbit hole trying to automate support for my site and these two keep showing up. In the last few days I tested both instead of just reading reviews because honestly the reviews contradict each other constantly.\n\nWanted to share what I found and see if others have had similar experiences.\n\nChatbase: got it live pretty fast, connected my docs and it was answering questions the same day. The thing that surprised me was the stripe integration, didn't expect that to be native. For a website assistant it felt like the right size tool, not too much overhead.\n\nCustomGPT: setup took longer, interface is more complex. The source citations are genuinely useful if you need the bot to show where it's pulling answers from. Starts at $99/mo though which is a big jump, and they",
+      "url": "https://reddit.com/r/nocode/comments/1sifduu/chatbase_vs_customgpt_ai_which_one_actually_works/",
+      "author": "Difficult_Depth_860",
+      "found_at": "2026-04-17T07:01:20.639916+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Chatbot Platform Comparison & Setup Guide",
+        "category": "mini-guide",
+        "description": "A practical comparison guide helping SaaS founders and support teams evaluate and implement AI chatbot solutions (Chatbase, CustomGPT, etc.) for customer support automation with real-world testing criteria and setup checklists.",
+        "tags": [
+          "customer-support",
+          "ai-chatbots",
+          "automation",
+          "no-code",
+          "comparison"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1shorev",
+      "subreddit": "n8n",
+      "title": "I need Workflow",
+      "body": "If there is a LinkedIn post with 500+ comments, I want to extract all the email IDs from those comments. Does anyone have a workflow in regard to it?",
+      "url": "https://reddit.com/r/n8n/comments/1shorev/i_need_workflow/",
+      "author": "dhruvdanky",
+      "found_at": "2026-04-17T07:01:24.624357+00:00",
+      "status": "reply_sent",
+      "brief": {
+        "score": 78,
+        "title": "LinkedIn Comments Email Extractor Workflow",
+        "category": "n8n-template",
+        "description": "An n8n workflow that automatically extracts email addresses from LinkedIn post comments (500+) and exports them to a structured format for outreach or analysis.",
+        "tags": [
+          "linkedin",
+          "email-extraction",
+          "automation",
+          "data-scraping"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": "That's a pretty specific use case, and unfortunately n8n doesn't have a direct LinkedIn comment scraper built-in, so you'd need to get creative with the available tools. Your best bet would be to use the HTTP Request node to pull comments via LinkedIn's API (if you have access) or combine it with a web scraping node, then use regex or a JavaScript node to extract email patterns from the text. You might also want to check out the n8n community forum or Discord since others have tackled LinkedIn integrations and could share their workarounds. Fair warning though—LinkedIn's terms of service can be strict about scraping, so make sure whatever approach you take aligns with their policies.",
+      "replied_at": "2026-04-17T07:02:08.838431+00:00"
+    },
+    {
+      "post_id": "1si5t3b",
+      "subreddit": "n8n",
+      "title": "why my workflow do not write the file in the archives? (in description, more info&gt;docker compose path for archives&gt;workflow JSON)",
+      "body": "basically everytime I try save something it show me:  \n\"ENOENT: no such file or directory, realpath '/files/youtube' \"  \n\n\nIn the write node the path is /files/youtube/audio\\_english.mp3 (I am working with audio)\n\n\n\n\n\nthat is how is within my docker compose:\n\nvolumes:\n\n\\- n8n\\_data:/home/node/.n8n\n\n\\- /docker/n8n/youtube:/files/youtube\n\n\n\n\n\nthat is my workflow\n\n{\n\n  \"nodes\": \\[\n\n{\n\n\"parameters\": {\n\n\"options\": {}\n\n},\n\n\"type\": \"n8n-nodes-base.splitInBatches\",\n\n\"typeVersion\": 3,\n\n\"position\": \\[\n\n768,\n\n144\n\n\\],\n\n\"name\": \"Loop Over Items\",\n\n\"id\": \"038cb313-5e42-449f-bdd0-cc3547196ac3\"\n\n},\n\n{\n\n\"parameters\": {\n\n\"resource\": \"speech\",\n\n\"voice\": {\n\n\"\\_\\_rl\": true,\n\n\"value\": \"7lu3ze7orhWaNeSPowWx\",\n\n\"mode\": \"id\"\n\n},\n\n\"text\": \"={{ $json.content }}\",\n\n\"additionalOptions\": {\n\n\"voiceSettings\": \"{\\\\n  \\\\\"",
+      "url": "https://reddit.com/r/n8n/comments/1si5t3b/why_my_workflow_do_not_write_the_file_in_the/",
+      "author": "Tiag0liv",
+      "found_at": "2026-04-17T07:01:28.940310+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Docker File Write Troubleshooting Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that helps n8n users diagnose and fix common file path and volume mounting issues in Docker Compose setups, specifically addressing ENOENT errors when writing files.",
+        "tags": [
+          "n8n",
+          "docker",
+          "file-operations",
+          "troubleshooting",
+          "docker-compose"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sil0nz",
+      "subreddit": "n8n",
+      "title": "I want to know more about the policies",
+      "body": "Hello, I've heard that we cannot use N8n to create a saas bussiness. is that true?  \nIf it's true I want to know if I can set ut from my vps N8n different flows for different enterprises and connec it with a front end and delivers a personalized app for the enterprise that runs in my vps n8n. is something valid? or they could banned me? Someone that can help me please?",
+      "url": "https://reddit.com/r/n8n/comments/1sil0nz/i_want_to_know_more_about_the_policies/",
+      "author": "Witty-Line9507",
+      "found_at": "2026-04-17T07:01:39.260877+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "N8n SaaS Compliance & Multi-Tenant Architecture Guide",
+        "category": "mini-guide",
+        "description": "A practical guide clarifying N8n's acceptable use policies for SaaS businesses and providing legitimate multi-tenant architecture patterns for VPS deployments without violating terms of service.",
+        "tags": [
+          "n8n",
+          "saas",
+          "multi-tenant",
+          "compliance",
+          "vps-deployment"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sjbvy1",
+      "subreddit": "n8n",
+      "title": "Feels like cheating",
+      "body": "Hey everyone, I’m new to n8n and building workflows to help businesses. I’ve been talking to business owners and professionals to understand the problems they’re facing that could be automated.\n\nWhat I’ve found is that some of these problems can be solved with simple workflows that almost anyone could build. Because of that, charging a monthly retainer feels a bit unfair, since they could spend two or three hours and figure it out themselves.\n\nObviously, I’m not talking about very complex workflows that require deeper expertise, but in many cases, the workflows seem too simple to justify ongoing charges.",
+      "url": "https://reddit.com/r/n8n/comments/1sjbvy1/feels_like_cheating/",
+      "author": "SayedSaqlain",
+      "found_at": "2026-04-17T07:01:41.505765+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Workflow Pricing Strategy Guide",
+        "category": "mini-guide",
+        "description": "Helps freelancers and agencies determine fair pricing models for n8n automation work based on complexity, time savings, and client value rather than just build difficulty.",
+        "tags": [
+          "n8n",
+          "pricing-strategy",
+          "freelance",
+          "automation-business"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn89ef",
+      "subreddit": "n8n",
+      "title": "Open AI struggles with logic",
+      "body": "Anyone running an automated text message to where a person fills out a form and gets put into text message communication back and forth and then AI puts them on the calendar to be called. I'm using openai 4.o it starts wondering and loses track of conversation the memory is set up but I don't understand. Example I'm a real estate agent lead asks you questions AI response and then then books them for Google calendar at a certain time and day Friday 5:45 p.m.. then lead asks remind me when was my appointment and the response would be Friday 5:45 p.m. would you like 12:00 p.m. or 5:00 p.m. appointment? Or I can completely ignore a question and just throw something random. I'm trying to make the flow as human as possible so me running Google ads bringing people to a form on a real estate page",
+      "url": "https://reddit.com/r/n8n/comments/1sn89ef/open_ai_struggles_with_logic/",
+      "author": "Lost-Commercial-2638",
+      "found_at": "2026-04-17T07:01:46.859095+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Lead Qualification & Calendar Booking Workflow",
+        "category": "n8n-template",
+        "description": "A production-ready n8n workflow that manages multi-turn conversations with leads, maintains conversation context reliably, qualifies them based on responses, and automatically books qualified leads onto a calendar.",
+        "tags": [
+          "real-estate",
+          "lead-qualification",
+          "conversation-memory",
+          "calendar-integration",
+          "openai"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn3qbg",
+      "subreddit": "automation",
+      "title": "The automation that broke me wasn't the complex one. It was the 3-step one touching 4 APIs.",
+      "body": "**My most complex automation is 20 steps.  It's been running for 8 weeks with zero maintenance.** \n\n**My simplest automation is 3 steps - pull, transform, push. It breaks every 10-14 days.**\n\n**The difference isn't the code. The complex one touches on internal database. The simple one touches four external services.**\n\n**Maintenance cost scales with external dependencies, not with how complicated your logic is.\\*\\* This is the single most important thing I wish someone had told me before I started automating things.**\n\n**The internal 20-step pipeline never breaks because nothing changes underneath it. I control the schema. I control the code. The only way it breaks is if I break it.**\n\n**The 3-step pipeline touches:**\n\n**- An image generation API (changed response format twice in 8 weeks)*",
+      "url": "https://reddit.com/r/automation/comments/1sn3qbg/the_automation_that_broke_me_wasnt_the_complex/",
+      "author": "Most-Agent-7566",
+      "found_at": "2026-04-17T07:02:03.100252+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "External API Dependency Monitoring Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping automation builders identify, monitor, and architect workflows to minimize maintenance costs from external API dependencies rather than code complexity.",
+        "tags": [
+          "automation",
+          "api-reliability",
+          "maintenance",
+          "n8n",
+          "workflow-design"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sm1elk",
+      "subreddit": "automation",
+      "title": "How are you using Claude for automation?",
+      "body": "I've been using Claude in my work for a while, and the more I learn about it, the more I think I'm only scratching the surface. There are so many things you can do with it that I'm sure people have found ways to use it that I haven't even thought of yet\n\nWhat are you really using it for? I'm especially interested in things that are unexpected or not obvious.\n\nAlso worth mentioning: I have no coding background, so if you're sharing something technical, it would be helpful to know whether it requires programming experience or not.",
+      "url": "https://reddit.com/r/automation/comments/1sm1elk/how_are_you_using_claude_for_automation/",
+      "author": "Howistheweathernow",
+      "found_at": "2026-04-18T07:01:39.123426+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Claude Automation Ideas & Use Cases",
+        "category": "mini-guide",
+        "description": "A curated guide showing 20+ unexpected, non-obvious ways to use Claude for automation that go beyond basic chatting, specifically designed for non-coders looking to expand their capabilities.",
+        "tags": [
+          "claude",
+          "automation",
+          "use-cases",
+          "non-coder",
+          "workflows"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1so38ep",
+      "subreddit": "nocode",
+      "title": "Would AI game generators actually help non coders build games?",
+      "body": "&amp;#x200B;\n\nThere are a lot of people with great ideas for games but no coding background. Traditionally, that meant either learning development from scratch or finding a team. But now AI tools claim they can generate playable worlds and systems from text prompts, which sounds like it could lower the barrier significantly.\n\nDo you think this actually helps non-technical creators build real playable concepts, or is coding still the biggest bottleneck no matter what?",
+      "url": "https://reddit.com/r/nocode/comments/1so38ep/would_ai_game_generators_actually_help_non_coders/",
+      "author": "darkluna_94",
+      "found_at": "2026-04-18T07:01:52.036549+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Game Development for Non-Coders",
+        "category": "mini-guide",
+        "description": "A practical guide helping non-technical creators evaluate AI game generators, understand what's actually possible, and navigate the workflow from idea to playable prototype.",
+        "tags": [
+          "game-development",
+          "ai-tools",
+          "no-code",
+          "creative-entrepreneurs"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1smxr76",
+      "subreddit": "nocode",
+      "title": "People keep mixing up AI tools, automation, and agents — they’re not the same thing",
+      "body": "Been seeing “AI agents” mentioned everywhere lately, and after digging into it a bit, I realized a lot of people are mixing up completely different things. Most explanations either go super technical or stay so vague that they don’t actually help, so here’s how I’ve started thinking about it in simple terms. There’s basically three layers: first, a single AI tool — like ChatGPT or a writing assistant. You give it a prompt, it gives you an answer, and that’s it. No memory across tasks, no actions, no autonomy. Then you’ve got workflow automation — Zapier, Make, n8n — which is more like rule-based chains. If X happens, do Y. That works really well until something unexpected shows up, then the whole thing tends to break because it’s following a script, not making decisions.\n\nWhere it actually",
+      "url": "https://reddit.com/r/nocode/comments/1smxr76/people_keep_mixing_up_ai_tools_automation_and/",
+      "author": "Helpful-Guava7452",
+      "found_at": "2026-04-18T07:01:56.411324+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Tools vs Agents vs Automation Breakdown",
+        "category": "mini-guide",
+        "description": "A clear, practical guide that distinguishes between AI tools, automation, and agents in simple terms, helping non-technical users understand what each does and when to use them.",
+        "tags": [
+          "AI-education",
+          "no-code",
+          "automation-basics",
+          "agent-frameworks"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1siar28",
+      "subreddit": "n8n",
+      "title": "Struggling to scale my ChatGPT to Gemini image workflow, need suggestions",
+      "body": "Hi guys,\n\nI am currently working on a very specific, repetitive workflow to generate targeted images, and I am trying to find a way to optimize it.\n\nRight now, my process looks like this:  \nStep 1, I use ChatGPT to generate detailed prompts.  \nStep 2, I use Gemini (Nano Banana Pro) to generate the images based on those prompts.  \nStep 3, I manually refine everything in Photoshop to ensure consistency, fix imperfections, and maintain a uniform final output.\n\nThe challenge is that steps 1 and 2 are quite time-consuming because I am doing everything one by one. Step 3 will stay manual since quality control and consistency are critical for my work.\n\nSo I am looking for a way to automate Step 1 and Step 2 while still maintaining the same level of output quality. Ideally, something that can hand",
+      "url": "https://reddit.com/r/n8n/comments/1siar28/struggling_to_scale_my_chatgpt_to_gemini_image/",
+      "author": "Swimming_Task6633",
+      "found_at": "2026-04-18T07:02:00.790608+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "ChatGPT to Gemini Image Generation Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that automates the process of generating detailed image prompts with ChatGPT and converting them to images via Gemini, eliminating manual steps and scaling repetitive image generation tasks.",
+        "tags": [
+          "image-generation",
+          "automation",
+          "chatgpt",
+          "gemini",
+          "workflow-scaling"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn4jww",
+      "subreddit": "nocode",
+      "title": "The hardest part of no-code isn’t building… it’s knowing when to stop",
+      "body": "Hey everyone,\n\nSomething I’ve been struggling with lately:\n\nNo-code makes it *too easy* to keep building.\n\nYou start with a simple idea →  \nthen you add one more step →  \nthen another integration →  \nthen “just one more improvement”…\n\nAnd before you realize it,  \na simple workflow turns into a complex system with 20+ nodes.\n\nAt that point:  \nDebugging gets harder  \nFailures become harder to trace  \nSmall changes start breaking unrelated parts\n\nI’ve had workflows where the first version worked perfectly…  \nand then I kept “improving” it until it became fragile.\n\nThat’s when I realized:\n\nThe real skill isn’t just building automation  \nIt’s knowing when the automation is *already good enough*\n\nNow I try to think in terms of:\n\nIs this solving the core problem?  \nIs it reliable enough?  \nIs the",
+      "url": "https://reddit.com/r/nocode/comments/1sn4jww/the_hardest_part_of_nocode_isnt_building_its/",
+      "author": "mirzabilalahmad",
+      "found_at": "2026-04-19T07:01:31.725393+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code Workflow Simplification Checklist",
+        "category": "checklist",
+        "description": "A decision-making checklist that helps no-code builders identify scope creep, evaluate whether each node adds real value, and know when to stop building before workflows become unmaintainable.",
+        "tags": [
+          "no-code",
+          "workflow-design",
+          "scope-creep",
+          "debugging"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sor5k0",
+      "subreddit": "automation",
+      "title": "stop arguing about python vs javascript and tell me why i shouldn't just use both for my saas??",
+      "body": "everyone is acting like its a marriage or something lol.. listen i want the clean ai logic of python for the heavy lifting and the fast chaotic web power of javascript for the frontend.. is it actually a nightmare to connect them or are you guys just lazy?? seriously why is everyone picking sides when you can build a hybrid beast?? tell me the real struggle of connecting a fastapi backend with a react frontend before i go all in and regret my life choices.. is the latency gonna kill me or is this the ultimate founder stack for 2026?? roast my logic or give me the blueprint but stop with the \"it depends\" talk already lets gooo ..",
+      "url": "https://reddit.com/r/automation/comments/1sor5k0/stop_arguing_about_python_vs_javascript_and_tell/",
+      "author": "Admirable-Edge8346",
+      "found_at": "2026-04-19T07:01:41.244751+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "FastAPI + React Integration Blueprint",
+        "category": "mini-guide",
+        "description": "A practical guide showing developers how to connect a Python FastAPI backend with a JavaScript/React frontend, addressing common integration challenges, deployment patterns, and architectural decisions for hybrid Python-JavaScript SaaS applications.",
+        "tags": [
+          "python",
+          "javascript",
+          "fastapi",
+          "react",
+          "saas-architecture",
+          "backend-frontend-integration"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1skbsvs",
+      "subreddit": "automation",
+      "title": "I wanted to optimise my process but implementing AI only made things complex by moving complex steps into AI-enabled application.",
+      "body": "I used to believe that introducing more AI tools would simplify my process.\n\nThis led me to the use of ChatGPT in some cases, Claude in other cases, some search engine, and eventually the introduction of an automation level between all of this. The worst part was neither the output, but the handovers in general.\n\nI had to move back and forth between four to five AI tools to perform some activities, which felt quite tedious in general.\n\nLately, I have been experimenting with accio work and integrating it into my existing workflows just to see if centralizing more tasks can help eliminate some of the tedious work. I am not necessarily trying to optimize my workflows entirely at this point, but trying to limit human intervention and switching operations as much as possible.\n\nTo those of you b",
+      "url": "https://reddit.com/r/automation/comments/1skbsvs/i_wanted_to_optimise_my_process_but_implementing/",
+      "author": "Ancient-Ad-2507",
+      "found_at": "2026-04-19T07:01:45.443519+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Tool Integration Workflow Consolidator",
+        "category": "n8n-template",
+        "description": "A pre-built n8n workflow that consolidates multiple AI tools (ChatGPT, Claude, search engines) into a single unified interface, eliminating context-switching and manual handovers between platforms.",
+        "tags": [
+          "ai-automation",
+          "workflow-consolidation",
+          "tool-integration",
+          "process-optimization"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1snxqgm",
+      "subreddit": "automation",
+      "title": "the most expensive mistake in automation isn't building the wrong thing. it's building the right thing for the wrong person",
+      "body": "built a full outbound automation for a client last year. technically perfect. infrastructure clean, warmup done right, AI sorting replies, everything running smooth\n\nproblem: the client's offer was garbage. he was selling a generic \"marketing package\" to \"any small business.\" his emails were landing in inboxes, people were reading them, and nobody replied because there was no reason to. the email was fine. the offer behind it had zero specificity\n\nspent 3 weeks building and tuning the system before i realized the issue had nothing to do with the automation. his business fundamentally didn't have a compelling reason for anyone to respond\n\nnow i qualify the OFFER before i build anything. if the client can't tell me in one sentence what specific problem they solve for a specific type of busin",
+      "url": "https://reddit.com/r/automation/comments/1snxqgm/the_most_expensive_mistake_in_automation_isnt/",
+      "author": "Admirable-Station223",
+      "found_at": "2026-04-19T07:01:49.365571+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Pre-Launch Offer Validation Checklist",
+        "category": "checklist",
+        "description": "Helps entrepreneurs validate their offer's market fit and messaging before automating outreach, preventing wasted time scaling the wrong solution.",
+        "tags": [
+          "offer-validation",
+          "sales-fundamentals",
+          "pre-automation",
+          "outbound-sales",
+          "product-market-fit"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sk75rw",
+      "subreddit": "automation",
+      "title": "IT teams struggling with constant CRM updates from sales (ai ticketing system)",
+      "body": "Our sales team has like 20 reps all manually typing lead notes and status changes into the CRM after every call. Takes them forever and half the time they forget or mess it up. Then they bug us to clean it up or run reports because its all garbage. I spent yesterday fixing 50 duplicate leads because someone copy pasted wrong.\n\nTried telling them to use the mobile app but they say its clunky. Is there anything that auto pulls from email or calendar and just updates the damn thing feels like this should be basic by now with some kind of customer support automation tool handling it in the background.",
+      "url": "https://reddit.com/r/automation/comments/1sk75rw/it_teams_struggling_with_constant_crm_updates/",
+      "author": "Additional_Twist_595",
+      "found_at": "2026-04-19T07:01:55.150204+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 78,
+        "title": "Sales CRM Auto-Logging AI Workflow",
+        "category": "n8n-template",
+        "description": "An n8n workflow that automatically logs call notes and status updates to CRM systems by processing voice recordings or call transcripts, eliminating manual data entry for sales teams.",
+        "tags": [
+          "CRM automation",
+          "sales",
+          "call logging",
+          "lead management",
+          "no-code workflow"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn0dgg",
+      "subreddit": "automation",
+      "title": "Why my background suddenly zooms in?",
+      "body": "I’m currently struggling with an issue in my Power Apps canvas app.\n\nWhenever I change the background image, it looks fine in edit mode but when I preview the app, the background suddenly zooms in. Because of this, the layout looks off and some parts of the image get cropped.\n\nI already tried the common fix:\n\nSet X = 0\n\n• Set Y = 0\n\n• Set Width = App.Width\n\n• Set Height = App.Height\n\nBut the issue still happens during preview.\n\nHas anyone experienced this before?\n\nIs this related to ImagePosition (Fill vs Fit) (I choose Fill) or Display settings like Scale to fit / Lock aspect ratio? (i locked this both)",
+      "url": "https://reddit.com/r/automation/comments/1sn0dgg/why_my_background_suddenly_zooms_in/",
+      "author": "StomachLeading6618",
+      "found_at": "2026-04-19T07:02:03.753255+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Power Apps Background Image Troubleshooting Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide helping Power Apps developers fix background image zoom and cropping issues in preview mode, with advanced solutions beyond standard property settings.",
+        "tags": [
+          "power-apps",
+          "canvas-apps",
+          "troubleshooting",
+          "ui-layout"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1socgqe",
+      "subreddit": "nocode",
+      "title": "Any good ai app builder that doesn't suck?",
+      "body": "So I've been trying to build this a͏pp idea I have for months now, and honestly, I'm getting nowhere fast. tried a few different platforms but they're either way too basic or stupidly complicated  \n\n  \n\nI can do some basic coding stuff, but not enough to build a whole app from scratch. need something that can handle the a͏i integration part too since that's basically the main feature  \n\n  \n\nMost of the ai app builders i've looked at seem pretty sketchy or have terrible reviews. either that or they cost like $200/month which is insane for someone just starting out  \n\n  \n\nAnyone actually built something decent with an ai app builder that didn't completely drain your bank account?",
+      "url": "https://reddit.com/r/nocode/comments/1socgqe/any_good_ai_app_builder_that_doesnt_suck/",
+      "author": "Ancient-Ad-2507",
+      "found_at": "2026-04-20T07:01:12.617655+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI App Builder Step-by-Step Mini Guide",
+        "category": "mini-guide",
+        "description": "A practical guide that walks developers through choosing and implementing an AI app builder, with decision frameworks for balancing simplicity vs. capability and integration patterns for AI features.",
+        "tags": [
+          "ai-integration",
+          "app-building",
+          "no-code",
+          "platform-selection"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn8p69",
+      "subreddit": "n8n",
+      "title": "The \"wait\" node disrupts the execution queue, causing all processes to remain stuck in the \"waiting\" state",
+      "body": "Guys, we've started having some problems here. The \"wait\" node is causing issues with client flows. It's queuing everything like this: (print 1). The \"workaround\" we did to get it back to normal was to add a JS code node as an alternative (print 2). But it can't stay like this, has anyone else experienced this? We've already reset the entire server, it normalizes for a while and then comes back again. The version we are using is 2.16.1.\n\nhttps://preview.redd.it/y0f65niaxkvg1.png?width=328&amp;format=png&amp;auto=webp&amp;s=d24bf06b3f5d888fe32ed4fb683c18d337124927\n\nhttps://preview.redd.it/w5tz9q3ixkvg1.png?width=504&amp;format=png&amp;auto=webp&amp;s=5b4a50316dd4a2ef9bb7a1252f2dff3071b813bb",
+      "url": "https://reddit.com/r/n8n/comments/1sn8p69/the_wait_node_disrupts_the_execution_queue/",
+      "author": "NormanAthomic",
+      "found_at": "2026-04-20T07:01:27.394628+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Wait Node Troubleshooting & Alternatives",
+        "category": "n8n-template",
+        "description": "A collection of production-ready n8n workflow patterns that replace or properly implement the Wait node to prevent queue disruption and execution hangs in client flows.",
+        "tags": [
+          "n8n",
+          "wait-node",
+          "workflow-optimization",
+          "debugging"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1spvnj0",
+      "subreddit": "automation",
+      "title": "Everyone explains how to build AI agents. Nobody explains how to make them run reliably over time.",
+      "body": "The demo-to-production gap for agents is maybe the most underdiscussed problem in the whole space right now, and I think it's because the people writing tutorials have never had to maintain what they built past week two.\n\n  \nMy current theory is that \"reliability\" is actually three separate problems we keep smushing into one:\n\n  \nProblem 1: State. Most agents are built stateless and then have state bolted on via conversation history. That works until turn 20. Teams that handle this well stop treating the LLM as the system of record. The agent reads state, modifies state, writes state — but the state itself lives in a proper database with a schema. Conversation history becomes a log, not a source of truth. Huge difference in stability.\n\n  \nProblem 2: Determinism. The more decisions the LLM",
+      "url": "https://reddit.com/r/automation/comments/1spvnj0/everyone_explains_how_to_build_ai_agents_nobody/",
+      "author": "resbeefspat",
+      "found_at": "2026-04-20T07:01:31.506271+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "AI Agent Reliability & State Management Guide",
+        "category": "mini-guide",
+        "description": "A practical guide that breaks down the three separate reliability problems in production AI agents (state management, error handling, monitoring) with concrete solutions and patterns for each.",
+        "tags": [
+          "ai-agents",
+          "production-reliability",
+          "state-management",
+          "n8n",
+          "automation"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1smy12y",
+      "subreddit": "n8n",
+      "title": "Stop Hiring. Start Fixing Your Workflows.",
+      "body": "Over the past few months, I’ve been spending a lot of time building automations and small MVPs, and it has genuinely changed how I think about work.\n\nOne pattern I keep noticing is this: \n\na lot of problems that look like  we need to hire more people are actually just poorly designed workflows.\n\nWhen you break down most day-to-day operations, a huge chunk of the work is repetitive sending emails, updating records, creating tasks, following up, syncing data between tools. These are important tasks, but they don’t really require constant human attention. They require consistency.\n\nThat’s where tools like n8n become really powerful. Not because they automate one task, but because they let you design how your entire workflow behaves.\n\nFor example, instead of manually handling onboarding step b",
+      "url": "https://reddit.com/r/n8n/comments/1smy12y/stop_hiring_start_fixing_your_workflows/",
+      "author": "Upper_Bass_2590",
+      "found_at": "2026-04-20T07:01:33.751383+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Workflow Audit & Optimization Checklist",
+        "category": "checklist",
+        "description": "A systematic checklist that helps teams identify repetitive tasks, bottlenecks, and inefficiencies in their workflows before considering hiring, with steps to redesign and automate common operations.",
+        "tags": [
+          "workflow-optimization",
+          "automation",
+          "hiring-alternative",
+          "operations"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqhmvj",
+      "subreddit": "nocode",
+      "title": "We audited a founder's app last week. Here's every problem we found in order of how badly it was going to hurt them.",
+      "body": "A founder came to us with a SaaS product that had been built by a freelance team over about four months. It was live, it had users, and on the surface it worked. The brief was simple: \"something feels unstable and we're scared to add features.\"\n\nHere's what we found in 48 hours, roughly in order of severity:\n\n**1. The database had no indexes on the columns being queried most frequently.**  \nFine at 100 users. At 2,000 it would have been visibly painful. At 10,000 it would have tabled the whole thing. The freelancers had built every query to work just not to scale.\n\n**2. API keys were hardcoded into the frontend JavaScript.**  \nNot in environment variables. Not server-side. In the bundle that gets shipped to every browser. Stripe key, email provider key, third-party data key. Anyone who ope",
+      "url": "https://reddit.com/r/nocode/comments/1sqhmvj/we_audited_a_founders_app_last_week_heres_every/",
+      "author": "Efficient_Pea_9984",
+      "found_at": "2026-04-20T07:01:36.286796+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "SaaS App Audit Checklist for Founders",
+        "category": "checklist",
+        "description": "A prioritized checklist helping founders and teams systematically audit their SaaS applications for critical infrastructure, security, and performance issues before they cause user-facing problems.",
+        "tags": [
+          "saas",
+          "technical-audit",
+          "database-optimization",
+          "founder-tools"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sm0prw",
+      "subreddit": "n8n",
+      "title": "N8n HelloFresh personal menu picker (weekly)",
+      "body": "Can someone create a template for a menu selector workflow based on personal preferences?\n\nEx:\n\nNo mushrooms, no raisins\n\nI like burgers, pasta, roasted tomatoes, less chicken meat more cow and pig,… vary the menu types and open to try new dishes, other cultures.\n\nWith an optional manual verification and ranked list of menu preference.\n\nOther option is completely automated \n\nAnd open source it for free?",
+      "url": "https://reddit.com/r/n8n/comments/1sm0prw/n8n_hellofresh_personal_menu_picker_weekly/",
+      "author": "DietsePiraat",
+      "found_at": "2026-04-20T07:01:44.173983+00:00",
+      "status": "reply_sent",
+      "brief": {
+        "score": 82,
+        "title": "HelloFresh Menu Picker N8n Workflow",
+        "category": "n8n-template",
+        "description": "An automated n8n workflow that filters HelloFresh weekly menus based on personal dietary preferences, restrictions, and cuisine preferences, with optional manual verification and ranked recommendations.",
+        "tags": [
+          "meal-planning",
+          "hellofresh",
+          "automation",
+          "dietary-preferences",
+          "workflow"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": "This is a great use case for n8n! You'd want to build a workflow that pulls HelloFresh's weekly menu via their API (or web scraping if needed), then filters it through a custom logic node with your preferences stored as variables—things like excluded ingredients, preferred cuisines, protein ratios, etc. After filtering, you could have it rank remaining options by a scoring system (how many preference matches, novelty factor, etc.) and either send you a ranked list for manual approval or auto-select the top choice if you go fully automated. The manual verification step would be easy to add with n8n's pause/approval nodes so you can review before it executes any follow-up actions. Definitely shareable as a community template since the logic is pretty modular—others could easily swap in their own dietary restrictions and preferences.",
+      "replied_at": "2026-04-22T07:02:02.837927+00:00"
+    },
+    {
+      "post_id": "1sp20nh",
+      "subreddit": "nocode",
+      "title": "Whats the most annoying thing abt vibe-coding",
+      "body": "I’ve been vibe coding a lot lately — shipping things way faster than I used to.\n\nBut I’ve noticed something weird.\n\nSometimes I end up with features that *work perfectly*… and yet if someone asked me to explain how it actually works under the hood, I’d probably struggle.\n\nYou'd probably think \"Why wouldnt u just ask AI to explain\", Well I like to understand whats going on myself.\n\nCurious if others hit this too.\n\n* What’s the last thing you built using AI?\n* Was there a moment where you felt like “this works but I don’t fully get it”?\n* Which part usually gets confusing (API calls, state, backend logic, something else)?\n* When that happens, what do you actually do?\n   * dig into the code?\n   * ask the AI to explain?\n   * just move on?\n\nAlso wondering:\n\n* Do you ever come back later to unde",
+      "url": "https://reddit.com/r/nocode/comments/1sp20nh/whats_the_most_annoying_thing_abt_vibecoding/",
+      "author": "Forsaken-Nature5272",
+      "found_at": "2026-04-20T07:01:51.650614+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Vibe Code Documentation & Explanation Guide",
+        "category": "mini-guide",
+        "description": "A structured guide that helps developers understand and document AI-generated code by breaking down logic, tracing execution flow, and building mental models of how their features actually work under the hood.",
+        "tags": [
+          "vibe-coding",
+          "AI-generated code",
+          "code comprehension",
+          "documentation"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sq3vkd",
+      "subreddit": "n8n",
+      "title": "Schema breaks in automation workflows",
+      "body": "Ran into a few problems with automations breaking from upstream responses changing. A field gets renamed, a type flips from int to string, a required column just stops showing up. By the time we noticed, something downstream was already broken.   \n  \nWas curious to see how others have handled issues like this is the past. A few things I'm trying to understand if anyone has an early warning system to find out when something breaks? Do you use formal agreements with a data producer about what their output should look like? How do you currently document what you expect from an upstream source, does anyone actually reference it? \n\nAsking because I'm trying to understand how widespread this is before assuming our situation is unique.",
+      "url": "https://reddit.com/r/n8n/comments/1sq3vkd/schema_breaks_in_automation_workflows/",
+      "author": "Worried-Nobody-2965",
+      "found_at": "2026-04-20T07:01:53.867702+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Schema Validation & Monitoring System",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that monitors upstream API/data source schema changes and alerts users before downstream workflows break, with automated schema validation and change detection.",
+        "tags": [
+          "data-integrity",
+          "schema-monitoring",
+          "workflow-reliability",
+          "error-prevention"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ski617",
+      "subreddit": "n8n",
+      "title": "WhatsApp Automation",
+      "body": "Hi everyone, I'm trying to build a WhatsApp automation for my services, and I'm facing some challenges. I would like to achieve the following task, so please let me know if you can help me with it. \\[Please do not DM me if you want to sell anything.\\]\n\nI only know the basics of N8N.\n\nTask:\n\nI need a sequence for follow-up messages. I'm running ads on Meta, and leads come to me on WhatsApp. However, after I show them my work, they often forget to reply or ghost me. I want to be able to message them multiple times. If I send five follow-ups and they still don't respond, I want to mark them as not interested.\n\nAdditionally, the bot should keep track of the client's status. For example, if I chat with someone on Day 1 and they approve my work, and then I take two days to complete the task, the",
+      "url": "https://reddit.com/r/n8n/comments/1ski617/whatsapp_automation/",
+      "author": "workvipulsoni",
+      "found_at": "2026-04-20T07:01:55.947554+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "WhatsApp Lead Follow-Up Automation",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that automates WhatsApp follow-up message sequences for Meta ad leads, helping service providers nurture prospects without manual effort.",
+        "tags": [
+          "whatsapp",
+          "automation",
+          "lead-nurture",
+          "meta-ads",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1snutdj",
+      "subreddit": "n8n",
+      "title": "Limit reached: You have already scheduled the maximum number of posts Pinterest allows in a day (5).",
+      "body": "Hello everyone \n\nI’ve been building an automation in n8n to post Pinterest content through Buffer, but I keep hitting this error:\n\n\"Limit reached: You have already scheduled the maximum number of posts Pinterest allows in a day (5).\"\n\nThe weird part is:\n\n\\- If I go to Buffer manually, I can schedule posts without hitting this limit\n\n\\- But through n8n (using MCP / API), I get blocked at 5 posts\n\nMy setup:\n\n\\- n8n self-hosted locally\n\n\\- Using Buffer MCP endpoint (https://mcp.buffer.com/mcp)\n\n\\- create\\_post tool with schedulingType = automatic\n\n\\- Pinterest channel is connected and email is verified\n\nAny help would be appreciated because everything else in the automation works perfectly.",
+      "url": "https://reddit.com/r/n8n/comments/1snutdj/limit_reached_you_have_already_scheduled_the/",
+      "author": "Western_Pomelo3424",
+      "found_at": "2026-04-21T07:00:47.193704+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Pinterest Buffer Rate Limit Handler",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that intelligently manages Pinterest's 5-post-per-day limit when scheduling through Buffer via API, with queue management and error handling.",
+        "tags": [
+          "n8n",
+          "pinterest",
+          "buffer",
+          "rate-limiting",
+          "automation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqhljw",
+      "subreddit": "n8n",
+      "title": "Help: Image/pdf parsing through Evolution API",
+      "body": "Hi, I used to use whapi for my WhatsApp chat bot, and it was downloading and analysing images smoothly, but ever since I switched to Evolution, images/docs have become a nightmare.\n\nI couldn't get a single image to flow through my workflow.\n\nEvolution sends images in MIME Type: application/octet-stream, and Gemini only takes JPG. If anyone has a solution or has faced a similar issue, please help me too.\n\nThanks.",
+      "url": "https://reddit.com/r/n8n/comments/1sqhljw/help_imagepdf_parsing_through_evolution_api/",
+      "author": "axwhyzed",
+      "found_at": "2026-04-21T07:00:51.432273+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Evolution API Image Parsing n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that converts MIME application/octet-stream images from Evolution API into JPG format for Gemini AI processing, eliminating the painful image parsing bottleneck.",
+        "tags": [
+          "evolution-api",
+          "whatsapp-automation",
+          "image-conversion",
+          "gemini-integration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sm7gyt",
+      "subreddit": "n8n",
+      "title": "Building a tool to call local businesses for quotes, looking for feedback on the plan",
+      "body": "I've found myself needing to get quotes from local businesses for various things (all personal, this is NOT a business solution) and as a millennial, I absolutely despise having to actually place a voice call. Plus it takes time out of my day.\n\nSo I'm wanting to build a tool where I can send a slack message to a bot, detailing the quote/information that I need, and it looks up local businesses, calls them (voice call), gathers the information needed, and then sends me a recap so I can schedule the one I want to use.\n\nBelow is the outline that Claude suggested - any improvements, either in the planned workflow structure or the tool stack suggested, before I start building?\n\n# Project: Local Business Quote Caller\n\n# What We're Building\n\nA two-workflow n8n system that accepts a natural langua",
+      "url": "https://reddit.com/r/n8n/comments/1sm7gyt/building_a_tool_to_call_local_businesses_for/",
+      "author": "DruVatier",
+      "found_at": "2026-04-21T07:00:53.975877+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Local Business Quote Request n8n Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that integrates Slack, local business lookup APIs, and voice calling services to automate quote requests from local businesses without manual phone calls.",
+        "tags": [
+          "automation",
+          "local-business",
+          "slack-integration",
+          "voice-calling",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqjw0m",
+      "subreddit": "nocode",
+      "title": "YouTube embeds are ELEPHANTINE &amp; we've a solution",
+      "body": "I was reading a blog about how youtube embed can hurt your website. Basically, when you are embedding a YouTube video , you are loading an entire ecosystem of scripts, stylesheet, fonts and so much more apart from the player itself. The blog read that YouTube embeds can add up to 2.6 MB on your website. That’s CRAZYYY. Now this means that with such a heavy file, your page speed will be painfully slow which also means your user experience will fall apart. And if you have a website where you are embedding 6-7 videos or more; than your website is basically gasping for air. \n\nBasically, the more you are embedding a YT player on your website, the heavier your page becomes, the slower your website, ultimately affecting the conversion rate.\n\nOn top of this, Youtube doesn’t allow you to brand your",
+      "url": "https://reddit.com/r/nocode/comments/1sqjw0m/youtube_embeds_are_elephantine_weve_a_solution/",
+      "author": "MeasurementMundane",
+      "found_at": "2026-04-21T07:00:56.554208+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Lightweight YouTube Embed Implementation Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide showing no-code builders how to embed YouTube videos without bloating page speed, including lazy-loading techniques and alternative lightweight solutions.",
+        "tags": [
+          "youtube",
+          "page-speed",
+          "web-performance",
+          "embeds",
+          "no-code"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn439d",
+      "subreddit": "nocode",
+      "title": "The first step in building AI agents",
+      "body": "Just to give knowledge to everyone. If you're building AI agents with no-code tools, the drag-and-drop part is honestly the easy bit. \n\nPicking models, connecting integrations, setting up the flow. All fairly straightforward once you've done it once. \n\nThe thing that actually determines whether your agent works well is something less visual. \n\nThe system prompt.\n\nI've seen loads of agents built with great setups that still produce weak outputs. Almost every time, the system prompt is too vague. \n\nHere's how I structure mine now (My suggestion only, Please don't hate):\n\n**Role.** Be specific about who the agent is. \"You are a friendly financial advisor assistant\" works. \"Help with finance\" does not. The model uses this to anchor every response, so clarity here matters.\n\n**Rules.** Set firm",
+      "url": "https://reddit.com/r/nocode/comments/1sn439d/the_first_step_in_building_ai_agents/",
+      "author": "LLFounder",
+      "found_at": "2026-04-21T07:01:03.472561+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "System Prompt Mastery for AI Agents",
+        "category": "mini-guide",
+        "description": "A practical guide teaching no-code builders how to craft effective system prompts that determine whether their AI agents actually work well, moving beyond the visual drag-and-drop basics.",
+        "tags": [
+          "ai-agents",
+          "system-prompts",
+          "no-code",
+          "prompt-engineering"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1spsznt",
+      "subreddit": "automation",
+      "title": "What's the biggest automation failure you've witnessed, and what did it teach you",
+      "body": "I'll go first. Was helping a client set up an automated email sequence last year, pretty standard stuff, and somewhere in the logic a condition got misconfigured. Instead of sending a single welcome email to new signups, it fired the same email every 20 minutes for about six hours. We caught it when their unsubscribe rate spiked and someone posted about it publicly. Around 300 people got hammered with the same message repeatedly. The fix took 10 minutes. The reputation cleanup took a lot longer. The lesson I took from it was pretty simple but easy to overlook: always test with a small segment before you let anything run at scale. We had tested the logic in isolation but never stress-tested the trigger conditions in a live environment. That gap is where a lot of failures actually live. What",
+      "url": "https://reddit.com/r/automation/comments/1spsznt/whats_the_biggest_automation_failure_youve/",
+      "author": "Avocado_Faya",
+      "found_at": "2026-04-21T07:01:08.109928+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Email Automation Safety Checklist",
+        "category": "checklist",
+        "description": "A pre-launch verification checklist that helps automation builders catch logic errors, loop conditions, and timing misconfigurations before deploying email sequences to users.",
+        "tags": [
+          "email-automation",
+          "n8n",
+          "zapier",
+          "mistake-prevention",
+          "testing"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn7nbu",
+      "subreddit": "n8n",
+      "title": "You probably don't need to build a full RAG pipeline for most n8n agent workflows",
+      "body": "You probably don't need to build a full RAG pipeline for most n8n agent workflows.\n\nMost of the complexity — chunking, embeddings, vector search, query planning, reranking — exists to solve problems you might not have yet. If your goal is giving an n8n agent accurate context to make decisions, there's a shorter path.\n\nThere's a verified Pinecone Assistant node in n8n that handles the entire retrieval layer as a single node. I used it to build a workflow that answers questions about release notes mid-execution — no pipeline decisions required.\n\nHere's how to try it yourself:\n\n1. Create an Assistant in the Pinecone console [here](https://app.pinecone.io/organizations/-/projects/-/assistant).\n2. In n8n, open the nodes panel, search \"Pinecone Assistant\", and install it\n3. Import this workflow",
+      "url": "https://reddit.com/r/n8n/comments/1sn7nbu/you_probably_dont_need_to_build_a_full_rag/",
+      "author": "http418teapot",
+      "found_at": "2026-04-21T07:01:41.034815+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Simplified n8n Agent RAG Without Embeddings",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that sets up agent context retrieval using simpler methods (direct search, keyword matching, or basic vector lookup) without full RAG complexity, helping builders avoid over-engineering for common use cases.",
+        "tags": [
+          "n8n",
+          "agents",
+          "RAG",
+          "context-retrieval",
+          "workflow-template"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1soy1m5",
+      "subreddit": "nocode",
+      "title": "Claude Code Help for Car Deal Checking Website (non-tech founder)",
+      "body": "I have a functioning second hand car deal checking website built with claude code (non-technical person here).\n\nI want to allow users to create a profile on the website so they can login and view their history/saved searches. I also need profile creation for adding a paywall. I also want to create a better landing page aswell. \n\nWill all these features have to be created through claude code? Or is their other tools online that can help with this? \n\nMy website functions the way I want it to, I just need to sort out homepage/paywall/profile creation.",
+      "url": "https://reddit.com/r/nocode/comments/1soy1m5/claude_code_help_for_car_deal_checking_website/",
+      "author": "Hamish_9638402ej",
+      "found_at": "2026-04-22T07:00:52.560136+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Claude Code User Authentication & Paywall Setup",
+        "category": "claude-code-skill",
+        "description": "A Claude Code skill pack that teaches non-technical founders how to add user profiles, login functionality, and payment walls to their Claude Code websites without leaving the platform.",
+        "tags": [
+          "claude-code",
+          "authentication",
+          "paywall",
+          "no-code",
+          "user-profiles"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srsasr",
+      "subreddit": "n8n",
+      "title": "We are looking for facebook api integration and automation",
+      "body": "We are a financial education firm currently running lead generation campaigns on Facebook. \n\nRight now, we are downloading and processing these leads manually. We are looking for an experienced developer/automation expert to eliminate this manual work and help us build the infrastructure to scale our campaigns.\n\n\n\nWhat we need you to do:\n\nConnect our Facebook Lead Ads to our CRM/database.\n\nAutomate the real-time routing and notification of new leads so our team can follow up instantly.\n\n\n\nRequirements:\n\nProven experience with the Facebook Graph API and Meta Business Suite.\n\n\n\n[https://maplenamu.com/](https://maplenamu.com/)",
+      "url": "https://reddit.com/r/n8n/comments/1srsasr/we_are_looking_for_facebook_api_integration_and/",
+      "author": "mysfmcjobs",
+      "found_at": "2026-04-22T07:00:57.582590+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "Facebook Lead Ads to CRM Automation",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow that automatically syncs Facebook Lead Ads to CRM databases, eliminating manual lead processing for financial education companies and agencies running lead generation campaigns.",
+        "tags": [
+          "facebook-api",
+          "lead-generation",
+          "crm-integration",
+          "automation",
+          "lead-ads"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srbish",
+      "subreddit": "n8n",
+      "title": "What automation projects actually save you time in real life? (Python + APIs)",
+      "body": "Hi everyone,\n\nI’ve been learning Python and working a bit with APIs and web scraping, and I want to build an automation project that’s genuinely useful — not just another tutorial project.\n\nRight now, I’m at an early-intermediate level. I can:\n\n* Work with APIs (requests, basic JSON handling)\n* Do some web scraping\n* Automate simple workflows\n\nWhat I’m struggling with is identifying problems that are actually worth solving.\n\nFor example, I’ve considered:\n\n* Price tracking + alerts\n* Automating repetitive file or email tasks\n* Scraping data and turning it into notifications\n\nBut I’m not sure which of these are genuinely useful long-term vs just “cool demos.”\n\nIf you’ve built or used any automation that actually saved you time or made your life easier, I’d really appreciate hearing about it.",
+      "url": "https://reddit.com/r/n8n/comments/1srbish/what_automation_projects_actually_save_you_time/",
+      "author": "minopix1420",
+      "found_at": "2026-04-22T07:01:01.949457+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Real-World Automation Ideas for Python Developers",
+        "category": "mini-guide",
+        "description": "A practical guide that maps common pain points to specific automation projects with APIs and Python, helping developers identify high-impact problems worth solving instead of building tutorial projects.",
+        "tags": [
+          "automation",
+          "python",
+          "apis",
+          "project-ideas",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srlhtg",
+      "subreddit": "automation",
+      "title": "Safely automate posts on 30+ social media(YT, tt,ig) accounts?",
+      "body": "Has anyone figured out how to automate posts on multiple social accounts safely (no bans or shadow bans etc)? Would we need to create a small phone farm to have the best chance at doing this? Or could we spin up emulators to do something similar?",
+      "url": "https://reddit.com/r/automation/comments/1srlhtg/safely_automate_posts_on_30_social_mediayt_ttig/",
+      "author": "Yo_Style2274",
+      "found_at": "2026-04-22T07:01:11.415964+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Safe Multi-Account Social Media Automation",
+        "category": "n8n-template",
+        "description": "An n8n workflow template that safely automates posts across 30+ social media accounts (YouTube, TikTok, Instagram) with best-practice rate limiting, proxy rotation, and anti-ban strategies built in.",
+        "tags": [
+          "social-media-automation",
+          "multi-account-posting",
+          "anti-shadowban",
+          "n8n-workflow"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sr4nuq",
+      "subreddit": "automation",
+      "title": "Only using GHL for SMS drip + webchat widget - what's the cheapest alternative?",
+      "body": "Running a small performance marketing agency (just me and one other guy). We manage Meta ads for aesthetic clinics across Australia.\n\nCurrently paying \\~$300 USD/month for GHL Agency plan + SMS costs and honestly only using two features:\n\n1. Webchat widget on client landing pages - when someone lands and has a question it routes to SMS so we can reply. Basically a janky live chat.\n2. 3-step SMS drip - our sales guy cold calls, when they don't pick up we fire them into a short SMS sequence over a few days.\n\nWe're sending roughly 1,400-1,500 SMS/month to Australian numbers.\n\nTried Salesmsg but at that volume it's $250/month which isn't much better &amp; GHL is already setup.\n\nMake + Twilio is an option but I'd need to rebuild the drip from scratch and Twilio is pretty bare bones for managing",
+      "url": "https://reddit.com/r/automation/comments/1sr4nuq/only_using_ghl_for_sms_drip_webchat_widget_whats/",
+      "author": "BrisbaneRoarFC",
+      "found_at": "2026-04-22T07:01:18.994515+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "GHL Alternative Setup: SMS + Chat Widget",
+        "category": "mini-guide",
+        "description": "A step-by-step guide helping small agencies replace expensive GHL setups with cheaper alternatives (Twilio + open-source chat widget or n8n workflows) for SMS drips and webchat routing.",
+        "tags": [
+          "sms-automation",
+          "webchat-widget",
+          "cost-reduction",
+          "martech-stack"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ss2v4u",
+      "subreddit": "automation",
+      "title": "WPS Office API",
+      "body": "Planning out an automated workflow that has document operations as a core component and trying to establish whether WPS Office has a mature enough API to build on reliably before committing to an architecture that depends on it.\n\nThe workflow I'm putting together involves programmatic document creation from templates, some data population into spreadsheets, and PDF generation as an output step. Nothing exotic but it needs to be reliable enough for a production environment where document operations are happening automatically without manual intervention.\n\nOn the MS Office side the story is well established, the Microsoft Graph API for cloud operations and the win32 interface for local application control are both extensively documented with years of community resources. Before committing to",
+      "url": "https://reddit.com/r/automation/comments/1ss2v4u/wps_office_api/",
+      "author": "afrofem_magazine",
+      "found_at": "2026-04-22T07:01:21.889698+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "WPS Office API Integration Workflow Template",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that handles WPS Office document creation from templates, spreadsheet data population, and PDF generation for users building automation without API uncertainty.",
+        "tags": [
+          "wps-office",
+          "document-automation",
+          "pdf-generation",
+          "n8n-workflow",
+          "api-integration"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sn1vp8",
+      "subreddit": "nocode",
+      "title": "spent $400 in cursor credits watching it fix bugs it introduced in the previous prompt. here is what we learned about where vibe coding actually breaks down.",
+      "body": "I am going to share something honest because I see this question come up a lot and most of the answers miss what is actually happening.\n\nwe use AI coding tools in our development work. we have built real products with them. we are not anti vibe coding. but we have learned exactly where it falls apart and why, and I think it is worth saying clearly.\n\nthe credit spiral is real and it is not random. it follows a pattern almost every time.\n\nthe first 60 to 70 percent of the build goes surprisingly well. UI gets generated fast. basic flows connect. things look impressive. this is where vibe coding genuinely earns its reputation.\n\nthen you hit something that needs real judgment underneath.\n\ndatabase structure. authentication edge cases. row level security. proper error handling. anything where t",
+      "url": "https://reddit.com/r/nocode/comments/1sn1vp8/spent_400_in_cursor_credits_watching_it_fix_bugs/",
+      "author": "Academic_Flamingo302",
+      "found_at": "2026-04-22T07:01:32.592928+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Coding Cost Control & Bug Prevention",
+        "category": "mini-guide",
+        "description": "A guide that teaches developers how to structure prompts, validate outputs, and implement safeguards to prevent the 'credit spiral' of AI tools fixing bugs they introduced, saving money and improving code quality.",
+        "tags": [
+          "ai-coding",
+          "cost-optimization",
+          "prompt-engineering",
+          "bug-prevention",
+          "cursor-alternatives"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ss4spc",
+      "subreddit": "nocode",
+      "title": "Vibecoded apps are NOT safe. Please, secure your apps!!!",
+      "body": "I've seen so many vibecoded apps with obvious security issues that is truly nerve wracking. I'm not talking complex XSS, stealing cookies, etc, but simple stuff like IDOR (Insecure Direct Object Reference):\n\nExample:  \n1. Login  \n2. Make an API requests  \n3. Change the user id  \n4. Retrieve another user profile and related data\n\nStuff like that, which should be basic stuff is out there.\n\nI talked to a few, even offered my services for FREE (arch review &amp; OSINT/Pentest), and they were like \"nah bruh, I'm good, I won't get hacked\", which is absolutely bonkers. Like, come on dude, you're exposing other people's data and I'm giving you, not only the hint but also the steps to repro and then fix it.\n\nI don't know... sorry for my rant. But please, secure your apps. CC, Cursor, Copilot or wha",
+      "url": "https://reddit.com/r/nocode/comments/1ss4spc/vibecoded_apps_are_not_safe_please_secure_your/",
+      "author": "builtbygio",
+      "found_at": "2026-04-22T07:01:40.533219+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code Security Audit Checklist",
+        "category": "checklist",
+        "description": "A practical checklist helping no-code developers identify and fix common security vulnerabilities like IDOR, authentication bypass, and data exposure before deployment.",
+        "tags": [
+          "security",
+          "no-code",
+          "vulnerability-testing",
+          "IDOR",
+          "best-practices"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srmwci",
+      "subreddit": "nocode",
+      "title": "How do you keep track of your automation stack as it grows? Looking for insights",
+      "body": "Hi all, I'm doing research on how people manage their automation setups once they've gone past the \"a few workflows\" stage, and specifically when automations are touching core business processes and/or are active across different departments, and were built incrementally rather than designed top-down - this especially when agents use different foundation models.  \n  \nI'm not selling anything. I'm in the early stages of building something in this space - just want to understand what the day-to-day actually looks like for people running serious stacks and what kind of headaches they run into.  \n  \nA comment under this post or a private chat on here would be of great help, ~20 mins call would be absolutely wonderful.   \n  \nTo recap, my ideal profile is someone that:  \n- Has 10+ automations in",
+      "url": "https://reddit.com/r/nocode/comments/1srmwci/how_do_you_keep_track_of_your_automation_stack_as/",
+      "author": "darthwhy",
+      "found_at": "2026-04-22T07:01:52.079360+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Automation Stack Documentation & Governance Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping teams document, organize, and govern their growing automation stacks across departments and multiple AI models, turning incremental builds into maintainable systems.",
+        "tags": [
+          "automation-management",
+          "multi-department",
+          "governance",
+          "documentation",
+          "scaling-workflows"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqcvz2",
+      "subreddit": "automation",
+      "title": "What's an automation that genuinely improved your personal life?",
+      "body": "Hi all, I manage some people in an SMB and have a family, so things have been quite hectic. I'm looking into AI quite extensively lately to find something that help me get more things done and less overwhelmed. Can be around home automation, budgeting, work tasks... open to any cool automation you've made for your self. Please share how you set up the automation if possible. For context I'm non technical",
+      "url": "https://reddit.com/r/automation/comments/1sqcvz2/whats_an_automation_that_genuinely_improved_your/",
+      "author": "Oldguy3494",
+      "found_at": "2026-04-22T07:01:58.345026+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Personal Life Automation Quick Start Guide",
+        "category": "mini-guide",
+        "description": "A practical guide helping busy managers and parents identify, prioritize, and implement 3-5 high-impact automations across work, home, and finances without technical expertise.",
+        "tags": [
+          "automation",
+          "productivity",
+          "work-life-balance",
+          "busy-professionals",
+          "ai-tools"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ssljgn",
+      "subreddit": "n8n",
+      "title": "Help chatbot rag",
+      "body": "Hi guys, I need help. When I run execute and put the vector data into Postgres, I get this error. Could someone help me?",
+      "url": "https://reddit.com/r/n8n/comments/1ssljgn/help_chatbot_rag/",
+      "author": "IcySkill9167",
+      "found_at": "2026-04-23T07:01:24.781711+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "RAG Chatbot with Vector Database Setup",
+        "category": "n8n-template",
+        "description": "A complete n8n workflow template that guides users through building a RAG chatbot with vector data integration into PostgreSQL, eliminating common configuration errors.",
+        "tags": [
+          "rag",
+          "chatbot",
+          "vector-database",
+          "postgres",
+          "n8n"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srfgs7",
+      "subreddit": "automation",
+      "title": "My LinkedIn automation kept getting flagged until I changed one thing",
+      "body": "Last quarter I was running outreach for a SaaS client and we kept hitting the same wall. Engagement rates were decent on paper but the account kept getting soft-restricted. LinkedIn does impose temporary restrictions on messaging and connecting when automation is detected, and the symptoms we were seeing fit that pattern exactly. Classic situation that most people blame on volume, but that wasn't it.\n\n  \nThe actual problem was pattern uniformity. Every comment, every follow-up, every connection note had the same rhythm. LinkedIn's detection picks up on behavioral patterns like identical time intervals, consistent daily patterns, sequential requests, low engagement, and semantic analysis of messages, pattern uniformity in timing and actions is very much a real signal they're watching. The s",
+      "url": "https://reddit.com/r/automation/comments/1srfgs7/my_linkedin_automation_kept_getting_flagged_until/",
+      "author": "taisferour",
+      "found_at": "2026-04-23T07:01:35.911377+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "LinkedIn Automation Detection Prevention Checklist",
+        "category": "checklist",
+        "description": "A checklist that identifies and helps users avoid LinkedIn automation detection flags by covering messaging patterns, connection behaviors, and account safety practices.",
+        "tags": [
+          "linkedin",
+          "automation",
+          "outreach",
+          "account-safety",
+          "saas-growth"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sp0lwn",
+      "subreddit": "n8n",
+      "title": "Struggling to build n8n workflows efficiently, how did it “click” for you?",
+      "body": "I’ve been working with tools like n8n and Make, and I understand the overall logic of automation pretty well.\n\nFor example, I can map flows like:\n\nmissed call → SMS follow-up → log data → notify someone\n\nBut when it comes to actually building it node by node in n8n, I feel much slower than I should be. It’s not that I don’t understand what to do, it just takes me a long time to execute and structure everything properly.\n\nI’m trying to figure out what I’m missing.\n\nFor those who are now fast and comfortable with n8n:\n\nWhat actually made things click for you?\n\nNot the docs, but specific tutorials, creators, or resources that helped you understand webhooks, HTTP requests, and structuring workflows.\n\nDid you follow any learning path, or was it just repetition over time?\n\nAny tips to speed up b",
+      "url": "https://reddit.com/r/n8n/comments/1sp0lwn/struggling_to_build_n8n_workflows_efficiently_how/",
+      "author": "optimus_prime2321",
+      "found_at": "2026-04-23T07:01:42.816022+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Node-by-Node Workflow Builder Guide",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that teaches users how to efficiently structure and build n8n workflows node-by-node, bridging the gap between understanding automation logic and executing it quickly in the platform.",
+        "tags": [
+          "n8n",
+          "workflow-automation",
+          "execution-speed",
+          "node-mapping"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ssj50a",
+      "subreddit": "n8n",
+      "title": "I wasted months building AI agents in n8n before realising what actually matters",
+      "body": "for a while I thought getting better at n8n meant building more agent workflows\n\n\n\nmore memory\n\nmore tools\n\nmore prompt logic\n\nmore “autonomous” behaviour\n\n\n\nbut the workflows that actually survived in production were usually the boring ones with 3 things nailed properly:\n\n\n\n**1. data contracts**\n\nif the payload changes shape and your workflow only works when the data looks exactly how you imagined, it isn't production ready\n\n\n\n**2. retries with intent**\n\nnot every failure should retry the same way. rate limits, bad input, missing auth, temporary API issues - those all need different handling\n\n\n\n**3. idempotency**\n\nif the same trigger fires twice, do you create two records, send two emails, and bill twice? this is where a lot of “AI agent” workflows quietly fall apart\n\n\n\nthe weird part is",
+      "url": "https://reddit.com/r/n8n/comments/1ssj50a/i_wasted_months_building_ai_agents_in_n8n_before/",
+      "author": "Professional_Ebb1870",
+      "found_at": "2026-04-23T07:01:51.291267+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Production Workflows: Data Contracts Checklist",
+        "category": "checklist",
+        "description": "A checklist that helps n8n users validate the three critical foundations (data contracts, error handling, and monitoring) before deploying AI agent workflows to production, preventing months of wasted development.",
+        "tags": [
+          "n8n",
+          "workflow-validation",
+          "production-readiness",
+          "ai-agents"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srgrst",
+      "subreddit": "n8n",
+      "title": "the n8n skill that actually matters has nothing to do with AI",
+      "body": "for way too long I thought getting better at n8n meant learning more nodes, better prompting, better agents, better tools\n\nit didn't\n\nthe workflows that survive in production usually come down to 3 boring things:\n\n**1. data contracts**\n\nmost failures aren't because the node is bad. it's because the data coming in isn't what you thought it was\n\na field disappears\n\na type changes\n\nan API returns one weird payload\n\nand suddenly half the workflow is running on assumptions that stopped being true 20 minutes ago\n\n**2. retries with intent**\n\npeople either don't retry at all or they retry everything the same way\n\nrate limits need backoff\n\ntemporary API issues need retry\n\nbad input needs to fail fast\n\nthose are 3 different problems and they need 3 different responses\n\n**3. idempotency**\n\nthis is th",
+      "url": "https://reddit.com/r/n8n/comments/1srgrst/the_n8n_skill_that_actually_matters_has_nothing/",
+      "author": "Professional_Ebb1870",
+      "found_at": "2026-04-23T07:01:57.071044+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Data Contract Validation Playbook",
+        "category": "mini-guide",
+        "description": "A practical guide teaching n8n users how to implement data contracts, validate incoming data types and structures, and build resilient workflows that handle API changes and missing fields.",
+        "tags": [
+          "n8n",
+          "data-validation",
+          "production-workflows",
+          "reliability"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1ssqcl0",
+      "subreddit": "automation",
+      "title": "Automating contract review with workflow automation platforms?",
+      "body": "I run a small boutique firm and we are buried in NDAs and standard vendor contracts. I know there are workflow automation platforms that claim to help with document review and filing, but I’m worried about the accuracy. \n\nIf an automation misses a key clause, it’s my reputation on the line. I need a system that can scan documents for specific red-flag terms and then route them to the right person for approval. \n\nIs there a platform that is reliable enough for legal work? We need to speed up our turnaround time for clients without compromising on the meticulous nature of our reviews.",
+      "url": "https://reddit.com/r/automation/comments/1ssqcl0/automating_contract_review_with_workflow/",
+      "author": "trr2024_",
+      "found_at": "2026-04-24T07:01:24.135110+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 78,
+        "title": "Contract Review Red-Flag Detection Workflow",
+        "category": "n8n-template",
+        "description": "A pre-built n8n workflow that scans uploaded contracts for customizable red-flag terms and automatically routes flagged documents to designated team members for review.",
+        "tags": [
+          "contract-review",
+          "document-automation",
+          "compliance",
+          "vendor-management"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sskhwr",
+      "subreddit": "zapier",
+      "title": "Full Sales Automation Setup: From Prospecting to Lead Follow-up (PerfexCRM + Zapier)",
+      "body": "Hi everyone,\n\n​I am looking to build a fully automated sales machine using PerfexCRM and Zapier. My goal is to automate the entire funnel, and I would love some guidance on the best tools and workflows to achieve this.\n\n​Specifically, I want to automate:\n\n​Prospecting &amp; Email Discovery: How can I automatically push found leads (from tools like Apollo.io or Hunter.io) directly into PerfexCRM?\n\n​Email Sequencing: What is the best way to trigger automated cold email sequences when a new lead is added?\n\n​Lead Enrichment: How can I use Zapier to automatically gather more data about a lead before my sales team contacts them?\n\n​Automated Follow-ups: How can I set up Zaps to send follow-up reminders or emails based on lead status changes within Perfex?\n\n​Integration Method: Should I rely on th",
+      "url": "https://reddit.com/r/zapier/comments/1sskhwr/full_sales_automation_setup_from_prospecting_to/",
+      "author": "bouhinho",
+      "found_at": "2026-04-24T07:01:33.080534+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 75,
+        "title": "PerfexCRM + Zapier Sales Automation Setup",
+        "category": "n8n-template",
+        "description": "A pre-built workflow template that automates lead discovery from Apollo.io/Hunter.io and syncs contacts directly into PerfexCRM, eliminating manual data entry for sales teams.",
+        "tags": [
+          "sales-automation",
+          "lead-generation",
+          "crm-integration",
+          "perfexcrm",
+          "zapier"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqcim3",
+      "subreddit": "n8n",
+      "title": "Help! Complete Newbie Trying to Set Up Job Scraping Workflow",
+      "body": "Hey everyone,\n\nI'm in **dire need of help** and honestly feeling pretty overwhelmed right now. I'm trying to set up a workflow to scrape job listings from LinkedIn and Indeed, but I'm completely new to this and have no idea where to even start.\n\nI've been staring at tutorials for hours and everything seems way over my head. I understand the *concept* \\- get job data from these sites and organize it - but the actual execution? I'm lost.\n\n**What I'm trying to do:**\n\n* Scrape job postings from LinkedIn and Indeed\n* Filter by specific criteria (location, job title, etc.)\n* Store the data somewhere I can actually use it.\n\n**Questions:**\n\n1. What's the easiest/most beginner-friendly way to do this?\n2. Are there no-code tools that could help?\n3. Is this even legal/allowed by these sites?\n\nI know",
+      "url": "https://reddit.com/r/n8n/comments/1sqcim3/help_complete_newbie_trying_to_set_up_job/",
+      "author": "Zestyclose_Onion4242",
+      "found_at": "2026-04-24T07:01:43.517695+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 78,
+        "title": "LinkedIn & Indeed Job Scraping Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-use n8n workflow template that scrapes job listings from LinkedIn and Indeed, extracts key data, and organizes results—designed for complete beginners with no automation experience.",
+        "tags": [
+          "job-scraping",
+          "linkedin",
+          "indeed",
+          "n8n-workflow",
+          "web-scraping",
+          "beginner-friendly"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1srl3q2",
+      "subreddit": "nocode",
+      "title": "Can someone explain why exactly OpenClaw is needed?",
+      "body": "Am I correct in understanding that OpenClaw is a hook-based bot that triggers the corresponding actions when these hooks are triggered? And i have next question: why do I need OpenClaw if I can code the same simple bot myself or ask Claude for that. And as I read online, it can burn quite a lot of tokens. Does anyone here use it? If so, in what cases?",
+      "url": "https://reddit.com/r/nocode/comments/1srl3q2/can_someone_explain_why_exactly_openclaw_is_needed/",
+      "author": "No_Winner_6296",
+      "found_at": "2026-04-24T07:01:45.358212+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "When to Use OpenClaw vs Custom Code",
+        "category": "mini-guide",
+        "description": "A guide explaining OpenClaw's use cases, token efficiency, and when building custom bot solutions yourself makes more sense for no-code builders.",
+        "tags": [
+          "openClaw",
+          "no-code",
+          "automation",
+          "cost-optimization",
+          "webhooks"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1spbcdt",
+      "subreddit": "automation",
+      "title": "Where to start in this?",
+      "body": "Hi,\n\nI want to get into automation but don’t know where to start.\n\nWhat apps are best, where’s the best place to learn, how have you used automation personally and commercially? Are you guys paying for all this software or can it be free?\n\nI am looking to learn and thinking of a my first project as helping a family member with invoicing, client outreach and call automation but literally no clue how to start!\n\nTIA",
+      "url": "https://reddit.com/r/automation/comments/1spbcdt/where_to_start_in_this/",
+      "author": "MudrykLover123",
+      "found_at": "2026-04-24T07:01:49.835978+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Automation Beginner's Blueprint: Invoicing & Outreach",
+        "category": "mini-guide",
+        "description": "A step-by-step guide that walks non-technical users through choosing the right automation tools, building their first workflow (invoicing + client outreach), and understanding free vs. paid options for small business automation.",
+        "tags": [
+          "automation",
+          "small-business",
+          "invoicing",
+          "beginner-friendly",
+          "no-code"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sr9af7",
+      "subreddit": "automation",
+      "title": "Spent Weeks Learning AI Automation… But Will It Stick?",
+      "body": "I’ve been learning AI automation for about three weeks now, trying to upskill and gain a skill that I believe will benefit me in the long run. However, I find myself worrying about how AI automation will evolve over the next few years. I wonder if, in the future, specialists who are excellent at creating automation might no longer be needed, since even people without formal AI automation training might be able to deploy automation in their workflows easily. This makes me concerned that all the time I invest in learning AI automation might not remain in high demand.\n\nI’ve also noticed that every day I learn a new tool, there seems to be a better tool or method that replaces it. This makes me feel like the time I spend mastering one tool may quickly become less valuable.\n\nAs the YouTuber Nic",
+      "url": "https://reddit.com/r/automation/comments/1sr9af7/spent_weeks_learning_ai_automation_but_will_it/",
+      "author": "Successful_Muscle630",
+      "found_at": "2026-04-24T07:01:51.932875+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 68,
+        "title": "AI Automation Skills That Won't Become Obsolete",
+        "category": "mini-guide",
+        "description": "A practical guide helping learners identify which AI automation skills remain future-proof, understand the evolving landscape, and build a sustainable automation career strategy.",
+        "tags": [
+          "ai-automation",
+          "career-development",
+          "future-proofing",
+          "skill-building"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sr9bp6",
+      "subreddit": "automation",
+      "title": "Multi-channel B2B outreach is basically table stakes now, not a differentiator",
+      "body": "There's a shift that's been picking up speed in the B2B automation space and it's worth paying attention to if you run any kind of outbound workflow. Isolated tactics, just LinkedIn OR just email OR just cold calls, are producing noticeably worse results compared to coordinated sequences that treat all three as one conversation.\n\n  \nThe numbers backing this up aren't surprising in hindsight. AI-driven conversations on LinkedIn have been climbing, and teams running omnichannel sequences are consistently outperforming single-channel setups in pipeline metrics. The interesting part isn't the stat itself, it's that the tooling has finally caught up. Some tools aim to handle LinkedIn plus email plus additional channels in unified builders, though the specific feature sets vary and are worth ver",
+      "url": "https://reddit.com/r/automation/comments/1sr9bp6/multichannel_b2b_outreach_is_basically_table/",
+      "author": "outasra",
+      "found_at": "2026-04-24T07:01:53.992889+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 68,
+        "title": "Multi-Channel B2B Outreach Workflow Template",
+        "category": "n8n-template",
+        "description": "An n8n automation template that coordinates LinkedIn, email, and cold call outreach as one unified conversation sequence, helping B2B teams implement multi-channel campaigns without building from scratch.",
+        "tags": [
+          "B2B outreach",
+          "multi-channel automation",
+          "sales sequences",
+          "LinkedIn email integration"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sqkf08",
+      "subreddit": "nocode",
+      "title": "I want AI to build a website from a wireframe, but also want to be able to easily edit it myself",
+      "body": "So I hired a designer for a business rebrand, and they provided a website wireframe as part of that service which looks great.\n\nCan anyone recommend the best approach to have AI copy and build the initial website from the wireframe, but then be left with a straightforward way to drag / drop / make simple edits myself?\n\n  \nThanks so much!",
+      "url": "https://reddit.com/r/nocode/comments/1sqkf08/i_want_ai_to_build_a_website_from_a_wireframe_but/",
+      "author": "scrmedia",
+      "found_at": "2026-04-24T07:01:59.775345+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Wireframe to Editable Website AI Workflow",
+        "category": "n8n-template",
+        "description": "An n8n workflow that converts design wireframes into functional, editable websites using AI, then outputs clean code ready for no-code site builders with drag-and-drop editing capabilities.",
+        "tags": [
+          "website-builder",
+          "ai-automation",
+          "wireframe-to-code",
+          "no-code"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sp31cs",
+      "subreddit": "nocode",
+      "title": "Is No-Code Making Us Lazy… or More Efficient?",
+      "body": "I’ve been thinking about this a lot lately…\n\nIs no-code making us *lazy* — or just more efficient?\n\nOn one hand, no-code tools remove a lot of the “hard parts” of building. You don’t need to write code, set up infrastructure, or worry about low-level details.\n\nBut on the other hand…\n\nAre we skipping important fundamentals?\n\n• Do we understand what’s happening behind the scenes?  \n• Are we building things we can’t truly control?  \n• What happens when something breaks and we don’t know why?\n\nAt the same time, no-code is empowering thousands of people to build things they never could before.\n\nSo maybe it’s not about laziness vs efficiency…\n\nMaybe it’s about *how* we use these tools.\n\nWhat you all think:  \nIs no-code a shortcut that hurts learning or a superpower that accelerates it?",
+      "url": "https://reddit.com/r/nocode/comments/1sp31cs/is_nocode_making_us_lazy_or_more_efficient/",
+      "author": "mirzabilalahmad",
+      "found_at": "2026-04-24T07:02:01.603726+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 68,
+        "title": "No-Code Fundamentals: What's Really Happening",
+        "category": "mini-guide",
+        "description": "A practical guide that demystifies what happens behind the scenes in no-code tools, helping builders understand core concepts without writing code so they can make better architectural decisions.",
+        "tags": [
+          "no-code",
+          "fundamentals",
+          "learning",
+          "architecture"
+        ],
+        "why_not_buildable": null,
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }

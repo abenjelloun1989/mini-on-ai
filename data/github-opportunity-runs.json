@@ -1,0 +1,100 @@
+[
+  {
+    "run_at": "2026-04-25T20:35:33.465120+00:00",
+    "repos_fetched": 25,
+    "ideas_found": 10,
+    "top_score": 82,
+    "ideas": [
+      {
+        "repo": "alchaincyf/huashu-design",
+        "stars": 6456,
+        "score": 82,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Code HTML Design Prompts for Devs",
+        "rationale": "This repo is exploding because developers want to generate stunning HTML prototypes and slides with Claude Code but lack structured prompts to do so. There is no Gumroad prompt pack specifically for Claude Code HTML design workflows—this is a clear, timely gap.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'Claude Code HTML Design Prompt Pack' for freelancers and developers who use Claude Code (or similar AI coding agents) to generate high-fidelity HTML prototypes, landing pages, and presentation slides. Audience: frontend devs, indie hackers, no-code builders. Product type: prompt-pack (25 prompts, $19 on Gumroad). Sections: (1) Hero & Landing Page Layouts (5 prompts for generating modern hero sections, pricing tables, CTA blocks), (2) Data Visualization Slides (5 prompts for charts, infographics, and stat callout slides in HTML), (3) Interactive Prototypes (5 prompts for tabs, modals, accordions, and form flows), (4) Presentation Decks (5 prompts for magazine-style horizontal swipe decks, cover slides, and section dividers), (5) Animation & Polish (5 prompts for CSS transitions, WebGL backgrounds, scroll animations). Each prompt should be copy-paste ready for Claude Code, include a short description of what it produces, and a 'remix tip' to customize. Tone: practical, no-fluff, dev-friendly. Sell angle: stop starting from scratch—get pixel-perfect HTML in one prompt."
+      },
+      {
+        "repo": "op7418/guizang-ppt-skill",
+        "stars": 2650,
+        "score": 78,
+        "opportunity_type": "prompt-pack",
+        "product_title": "AI Prompt Pack for Magazine HTML Slide Decks",
+        "rationale": "This repo proves massive demand for AI-generated presentation decks in HTML—but there is no Gumroad product giving freelancers and consultants ready-made prompts for generating polished slide decks via Claude Code or ChatGPT. The gap is specific and the audience (consultants, course creators, marketers) is large.",
+        "plan_prompt": "/plan Build a 20-prompt pack titled 'AI-Powered HTML Slide Deck Prompt Pack' for consultants, course creators, and marketers who want to generate magazine-style HTML presentations using Claude Code, ChatGPT, or Cursor. Product type: prompt-pack, $19 on Gumroad. Sections: (1) Cover & Title Slides (4 prompts: bold typography covers, gradient hero slides, photo backgrounds, animated titles), (2) Content Layout Slides (4 prompts: two-column layouts, bullet-to-visual conversions, quote callouts, timeline slides), (3) Data & Chart Slides (4 prompts: bar chart slides, KPI dashboards, comparison tables, funnel diagrams in HTML/CSS), (4) Theme & Style Control (4 prompts: apply dark/light themes, switch color palettes, add WebGL backgrounds, animate slide transitions), (5) Export & Polish (4 prompts: single-file output, print-ready export, mobile-responsive check, accessibility pass). Each prompt includes a 'what it generates' note and a customization tip. Tone: confident, results-focused. Sell angle: skip PowerPoint forever—generate boardroom-ready decks with one prompt."
+      },
+      {
+        "repo": "TheRealSeanDonahoe/agents-md",
+        "stars": 513,
+        "score": 76,
+        "opportunity_type": "checklist",
+        "product_title": "AGENTS.md Setup Checklist for Senior-Level AI",
+        "rationale": "This repo solves a real pain point—AI coding agents behaving like interns instead of senior engineers—and the AGENTS.md pattern is rapidly being adopted. A checklist for writing and customizing AGENTS.md files has no equivalent on Gumroad and directly serves the freelancer/dev audience.",
+        "plan_prompt": "/plan Build an 18-step checklist titled 'AGENTS.md Setup Checklist: Make Your AI Code Like a Senior Engineer' for freelance developers and indie hackers who use Claude Code, Cursor, Codex, or similar AI coding agents. Product type: checklist, $19 on Gumroad. Steps should cover: (1) Understand what AGENTS.md does and why it matters, (2) Place the file at the repo root, (3) Define the agent's primary role and scope, (4) Write an explicit anti-sycophancy instruction (agent must push back on bad ideas), (5) Add a 'no drive-by refactors' rule (only change what was asked), (6) Define the verification loop (agent must test before marking done), (7) Set code style and naming conventions, (8) Add a 'ask before deleting' rule for files and functions, (9) Define how the agent should handle ambiguous requirements (ask, don't guess), (10) Set a max diff size per task to prevent scope creep, (11) Add a 'explain your reasoning' instruction for non-obvious changes, (12) Define what counts as 'done' (tests pass, lint clean, PR description written), (13) Add a forbidden actions list (no force push, no schema changes without approval), (14) Specify preferred libraries and frameworks, (15) Add a debugging protocol (log first, fix second), (16) Set a 'human review required' trigger for security-sensitive code, (17) Test the AGENTS.md with a real task and iterate, (18) Version-control your AGENTS.md and update it after each project. Include a 'sample instruction snippet' for each step. Tone: direct, engineering-grade, no fluff. Sell angle: stop fighting your AI agent—one file makes it behave like your best hire."
+      },
+      {
+        "repo": "Russell-cell/PPT-Design-Prompt",
+        "stars": 479,
+        "score": 74,
+        "opportunity_type": "prompt-pack",
+        "product_title": "AI PowerPoint & Slide Design Prompt Pack",
+        "rationale": "PPT design prompts are consistently in demand from consultants, marketers, and educators—and this trending repo confirms the gap. No well-organized Gumroad prompt pack exists specifically for AI-generated slide design across PowerPoint, Google Slides, and HTML decks.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'AI Slide Design Prompt Pack: PowerPoint, Google Slides & HTML' for consultants, marketers, educators, and freelancers who use ChatGPT, Claude, or Gemini to design presentations. Product type: prompt-pack, $19 on Gumroad. Sections: (1) Structure & Outline Prompts (5 prompts: generate a 10-slide deck outline, create a story arc, write an executive summary slide, build a problem-solution-benefit flow, write section divider text), (2) Visual Layout Prompts (5 prompts: describe a two-column slide layout, design a data visualization slide, create a timeline visual, design an icon-and-text grid, write a quote callout slide), (3) Content Writing Prompts (5 prompts: rewrite bullet points as headlines, shorten dense paragraphs for slides, write a persuasive closing slide, create speaker notes, write a slide deck title and subtitle), (4) Style & Theme Prompts (5 prompts: define a color palette for a tech brand, write a font pairing recommendation, describe a minimalist slide theme, create a dark mode deck style, adapt slides for print vs. screen), (5) Review & Polish Prompts (5 prompts: audit a slide deck for consistency, check slide flow and narrative logic, suggest missing slides, simplify a cluttered slide, write a one-sentence summary for each slide). Each prompt includes a 'works with' note (ChatGPT / Claude / Gemini) and a customization tip. Tone: professional, results-oriented. Sell angle: design boardroom-ready decks in half the time—no design degree required."
+      },
+      {
+        "repo": "ConardLi/garden-skills",
+        "stars": 1221,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Agent Skills Prompt Pack for Builders",
+        "rationale": "This collection of Claude/GPT agent skills (web design, RAG, image gen) signals a growing cohort of builders who want plug-and-play AI agent prompts but lack a curated, documented set. No comparable Gumroad product exists for 'agent skill' prompt packs targeting this audience.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'AI Agent Skills Prompt Pack for Builders' for developers, indie hackers, and AI power users who build or use Claude Code, Cursor, or GPT-based agents. Product type: prompt-pack, $19 on Gumroad. Sections: (1) Web Design Agent Prompts (5 prompts: generate landing pages, design system components, responsive layouts, dark mode variants, CSS animation), (2) RAG & Knowledge Retrieval Prompts (5 prompts: chunk documents, build retrieval queries, summarize with citations, answer from context, fact-check outputs), (3) Image Generation Prompts (5 prompts: GPT Image 2 product shots, hero illustrations, icon sets, infographic visuals, style-consistent assets), (4) Agent Orchestration Prompts (5 prompts: define agent roles, write tool use instructions, set permission boundaries, create fallback logic, write agent system prompts), (5) Debugging & Evaluation Prompts (5 prompts: audit agent outputs, check for hallucinations, evaluate task completion, write test cases, log structured errors). Each prompt includes a use-case note and a 'chain this with' tip for multi-step workflows. Tone: builder-focused, terse, high-signal. Sell angle: skip the experimentation phase—drop these into your agent and ship faster."
+      },
+      {
+        "repo": "wuyoscar/gpt_image_2_skill",
+        "stars": 435,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "GPT Image 2 Prompt Pack for Creators",
+        "rationale": "GPT Image 2 is the hottest new image generation model and freelancers/creators are actively searching for high-quality prompts—this repo is a signal that demand is real. A curated, structured Gumroad prompt pack for GPT Image 2 would fill a clear gap.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'GPT Image 2 Prompt Pack for Creators & Marketers' for freelancers, content creators, social media managers, and indie hackers who use GPT Image 2 (OpenAI) for product visuals, marketing assets, and illustrations. Product type: prompt-pack, $19 on Gumroad. Sections: (1) Product Photography Prompts (5 prompts: product on white background, lifestyle product shot, flat lay composition, hero banner product, before/after comparison), (2) Marketing & Ad Visuals (5 prompts: social media ad creative, email header illustration, blog post featured image, promotional banner, testimonial graphic), (3) Brand & Identity Visuals (5 prompts: logo concept exploration, brand color palette mockup, icon set generation, brand mascot concept, brand pattern/texture), (4) Illustration & Art Styles (5 prompts: editorial illustration, isometric scene, watercolor style, flat vector style, retro/vintage poster), (5) Editing & Variation Prompts (5 prompts: change background of existing image, add text overlay space, create a dark/light version, resize for different platforms, apply consistent style across a set). Each prompt includes the exact GPT Image 2 syntax, a 'style tip' for consistency, and a 'use case' note. Tone: creative but practical, creator-friendly. Sell angle: stop spending hours on Canva—generate scroll-stopping visuals in seconds with these tested prompts."
+      },
+      {
+        "repo": "GammaLabTechnologies/harmonist",
+        "stars": 589,
+        "score": 70,
+        "opportunity_type": "checklist",
+        "product_title": "Multi-Agent AI Orchestration Setup Checklist",
+        "rationale": "Multi-agent orchestration (186 agents, zero dependencies) is a genuinely hard problem that freelance developers and AI builders face repeatedly, and there is no practical Gumroad checklist walking through setup, protocol design, and debugging for multi-agent systems.",
+        "plan_prompt": "/plan Build a 20-step checklist titled 'Multi-Agent AI Orchestration Setup Checklist' for freelance developers and AI engineers who want to build and deploy multi-agent systems using frameworks like Harmonist, LangGraph, or CrewAI. Product type: checklist, $19 on Gumroad. Steps should cover: (1) Define the overall task the agent network will solve, (2) Map out agent roles and responsibilities, (3) Choose an orchestration framework (Harmonist, LangGraph, CrewAI, etc.), (4) Write a system prompt for each agent role, (5) Define inter-agent communication protocol (JSON schema, message format), (6) Set permission boundaries for each agent (read/write/execute), (7) Implement a token budget per agent to control costs, (8) Build a task router / dispatcher agent, (9) Add a verification loop (agent checks its own output before passing on), (10) Implement error handling and fallback logic, (11) Add a logging layer for all agent actions, (12) Test single-agent paths before full orchestration, (13) Run a full integration test with a real task, (14) Add a human-in-the-loop checkpoint for high-stakes decisions, (15) Monitor for agent loops and infinite retries, (16) Set up a kill switch / pause mechanism, (17) Document the agent graph for future maintenance, (18) Benchmark total task completion time and cost, (19) Optimize the slowest agent bottleneck, (20) Deploy with zero-dependency packaging (single binary or container). Include a 'common mistake to avoid' note for each step. Tone: engineering-grade, practical. Sell angle: build agent systems that actually finish tasks—without 3am debugging sessions."
+      },
+      {
+        "repo": "cosmicstack-labs/mercury-agent",
+        "stars": 1051,
+        "score": 65,
+        "opportunity_type": "checklist",
+        "product_title": "Deploy Your Own 24/7 AI Agent Checklist",
+        "rationale": "Deploying a persistent AI agent (CLI + Telegram, permission-hardened, token-budgeted) is a real pain point for solo devs and small teams—many want this but don't know where to start. A deployment checklist fills a specific how-to gap with no good Gumroad equivalent.",
+        "plan_prompt": "/plan Build an 18-step checklist titled 'Deploy Your Own 24/7 AI Agent: Setup Checklist' for freelance developers and indie hackers who want to run a persistent AI agent (like Mercury Agent) from CLI or Telegram. Product type: checklist, $9–$19 on Gumroad. Steps should cover: (1) Choose your LLM provider and get API keys, (2) Define agent purpose and scope, (3) Set up permission-hardened tool list, (4) Configure token budgets to control costs, (5) Write your system prompt (link to a prompt template), (6) Set up CLI entry point, (7) Configure Telegram bot token and webhook, (8) Test locally with a mock task, (9) Add logging and error handling, (10) Set up a VPS or cloud runner (Railway, Fly.io, etc.), (11) Configure environment variables securely, (12) Set up uptime monitoring, (13) Define fallback behavior on tool failure, (14) Add a kill switch / pause command, (15) Test multi-channel access (CLI + Telegram), (16) Set cost alerts on your LLM dashboard, (17) Document your agent's capabilities for future tweaks, (18) Schedule a weekly review of agent logs. Include a 'why this matters' note for each step. Tone: pragmatic, developer-friendly. Sell angle: stop babysitting your AI—deploy it once, run it forever."
+      },
+      {
+        "repo": "victorchen96/deepseek_v4_rolepaly_instruct",
+        "stars": 795,
+        "score": 62,
+        "opportunity_type": "prompt-pack",
+        "product_title": "DeepSeek Roleplay & Character Prompt Pack",
+        "rationale": "DeepSeek-V4 roleplay control is a hot topic among AI power users and creators, and there is a clear gap for an English-language Gumroad prompt pack targeting writers, game designers, and chatbot builders who want structured character/roleplay prompts for DeepSeek models.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'DeepSeek Roleplay & Character Control Prompt Pack' for writers, game designers, and AI chatbot builders who use DeepSeek-V4 or similar LLMs for roleplay, storytelling, and character simulation. Product type: prompt-pack, $19 on Gumroad. Sections: (1) Character Definition Prompts (5 prompts: define personality, backstory, speech patterns, emotional range, moral alignment), (2) Scene & Dialogue Prompts (5 prompts: set scene context, write opening lines, handle conflict dialogue, write inner monologue, create plot twists), (3) World-Building Prompts (5 prompts: establish setting rules, define factions, create lore, set time period, build a magic/tech system), (4) Control & Consistency Prompts (5 prompts: keep character in role, handle out-of-character breaks, reinforce personality traits, manage multiple characters, reset scene), (5) Advanced Roleplay Mechanics (5 prompts: run a branching narrative, simulate NPC reactions, write a mystery reveal, create a moral dilemma, end a story arc). Each prompt includes a 'model note' with tips for DeepSeek-V4 vs. GPT-4. Tone: creative, structured, beginner-to-intermediate friendly. Sell angle: get consistent, immersive AI roleplay without constant prompt engineering."
+      },
+      {
+        "repo": "ZeroZ-lab/cc-design",
+        "stars": 631,
+        "score": 60,
+        "opportunity_type": "checklist",
+        "product_title": "AI Agent HTML Prototype Design Checklist",
+        "rationale": "This repo targets a growing need for structured design guidance when using AI agents to build HTML prototypes, but it overlaps with the huashu-design opportunity. A checklist rather than a prompt pack would differentiate and still capture the audience.",
+        "plan_prompt": "/plan Build an 18-step checklist titled 'AI Agent HTML Prototype Design Checklist' for frontend developers and designers who use Claude Code, Cursor, or GPT to generate high-fidelity HTML prototypes. Product type: checklist, $9 on Gumroad. Steps should cover: (1) Define the prototype goal and user flow, (2) Choose a layout system (grid, flexbox, or CSS container queries), (3) Set up a design token file (colors, spacing, typography), (4) Write a design brief prompt for your AI agent, (5) Generate the base HTML structure, (6) Apply a consistent color theme, (7) Add responsive breakpoints, (8) Implement interactive states (hover, focus, active), (9) Add micro-animations and transitions, (10) Test in multiple browsers, (11) Check accessibility (contrast, ARIA labels, keyboard nav), (12) Export as a single HTML file, (13) Add a PDF/screenshot export flow, (14) Review with stakeholders using a shared link, (15) Iterate based on feedback with targeted AI prompts, (16) Document component patterns for reuse, (17) Hand off to developer with annotated HTML, (18) Archive the prototype with version notes. Include a 'AI prompt tip' for each step. Tone: practical, design-forward. Sell angle: ship pixel-perfect prototypes without a design tool subscription."
+      }
+    ]
+  }
+]

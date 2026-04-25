@@ -1,6 +1,29 @@
 {
   "products": [
     {
+      "id": "prompts-claude-code-html-design-prompt-pack-20260425",
+      "title": "Claude Code HTML Design Prompt Pack",
+      "description": "25 copy-paste prompts for frontend devs, indie hackers, and no-code builders.",
+      "category": "prompt-packs",
+      "tags": [
+        "claude-code",
+        "html",
+        "frontend",
+        "prototypes",
+        "prompts",
+        "design"
+      ],
+      "item_count": 23,
+      "prompt_count": 23,
+      "created_at": "2026-04-25T20:44:20.886778+00:00",
+      "package_path": "products/prompts-claude-code-html-design-prompt-pack-20260425/package.zip",
+      "site_path": "site/products/prompts-claude-code-html-design-prompt-pack-20260425.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null,
+      "is_free": null
+    },
+    {
       "id": "guide-how-i-built-an-ai-product-factory-20260330",
       "title": "How I Built an AI Product Factory on a Mac mini",
       "description": "A candid build-in-public guide: full pipeline architecture, Claude API patterns, Telegram bot control panel, static site generation, and honest lessons from building an automated digital product factory from scratch.",

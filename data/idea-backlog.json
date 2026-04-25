@@ -3310,13 +3310,33 @@
       ],
       "score": 72,
       "rationale": "Sourced from Reddit r/n8n: https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/",
-      "selected": true,
+      "selected": false,
       "status": "produced",
       "product_id": "n8n-n8n-social-media-auth-posting-workflow-20260322",
       "generated_at": "2026-03-22T22:11:45.517756+00:00",
       "source": "reddit-scan",
       "reddit_post_id": "1rz6lol",
       "reddit_url": "https://reddit.com/r/n8n/comments/1rz6lol/i_need_some_advice_on_something/"
+    },
+    {
+      "id": "idea-manual-html-design-prompts",
+      "title": "Claude Code HTML Design Prompt Pack",
+      "description": "25 copy-paste prompts for frontend devs, indie hackers, and no-code builders who use Claude Code or similar AI coding agents to generate high-fidelity HTML prototypes, landing pages, and presentation slides. Sections: Hero & Landing Page Layouts, Data Visualization Slides, Interactive Prototypes, Presentation Decks, Animation & Polish.",
+      "category": "prompt-packs",
+      "tags": [
+        "claude-code",
+        "html",
+        "frontend",
+        "prototypes",
+        "prompts",
+        "design"
+      ],
+      "score": 78,
+      "rationale": "Trending GitHub repos show high demand for AI-generated HTML design. No quality prompt pack exists on Gumroad for this specific workflow.",
+      "selected": false,
+      "status": "produced",
+      "source": "github-scout",
+      "product_id": "prompts-claude-code-html-design-prompt-pack-20260425"
     }
   ]
 }

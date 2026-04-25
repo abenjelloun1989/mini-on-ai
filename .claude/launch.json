@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8080", "--directory", "site"],
       "port": 8080
+    },
+    {
+      "name": "clauseguard-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8081", "--directory", "clauseguard"],
+      "port": 8081
     }
   ]
 }

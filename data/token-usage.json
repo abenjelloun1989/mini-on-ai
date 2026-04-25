@@ -2006,5 +2006,77 @@
     "model": "claude-haiku-4-5",
     "input_tokens": 378,
     "output_tokens": 1312
+  },
+  {
+    "ts": "2026-04-10T16:14:33.055830+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 854,
+    "output_tokens": 630
+  },
+  {
+    "ts": "2026-04-10T16:22:23.933106+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1573,
+    "output_tokens": 3917
+  },
+  {
+    "ts": "2026-04-10T16:28:00.513543+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 854,
+    "output_tokens": 656
+  },
+  {
+    "ts": "2026-04-10T16:35:46.884918+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-fallback",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 1573,
+    "output_tokens": 3831
+  },
+  {
+    "ts": "2026-04-14T08:17:12.919286+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 368,
+    "output_tokens": 1450
+  },
+  {
+    "ts": "2026-04-14T08:17:14.599757+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 375,
+    "output_tokens": 1344
+  },
+  {
+    "ts": "2026-04-18T15:49:10.537505+00:00",
+    "run_id": "unknown",
+    "stage": "holiday-ideation",
+    "model": "claude-haiku-4-5-20251001",
+    "input_tokens": 854,
+    "output_tokens": 679
+  },
+  {
+    "ts": "2026-04-19T20:11:13.600936+00:00",
+    "run_id": "unknown",
+    "stage": "generate-blog-post",
+    "model": "claude-haiku-4-5",
+    "input_tokens": 377,
+    "output_tokens": 1218
+  },
+  {
+    "ts": "2026-04-25T20:44:20.882268+00:00",
+    "run_id": "unknown",
+    "stage": "generate",
+    "model": "claude-sonnet-4-6",
+    "input_tokens": 439,
+    "output_tokens": 8000
   }
 ]
