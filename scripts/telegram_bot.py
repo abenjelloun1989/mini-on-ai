@@ -33,6 +33,19 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, timestamp, log, ROOT, get_run_token_summary, get_lifetime_token_summary
 
+# --- trading-routine integration ----------------------------------------------
+# Optional: lets /pea-* commands and pea:* callbacks route to the trading-routine repo.
+_TRADING_BOT_DIR = os.environ.get("TRADING_ROUTINE_BOT_DIR", "/Users/minion/Dev/trading-routine/bot")
+try:
+    if _TRADING_BOT_DIR not in sys.path:
+        sys.path.insert(0, _TRADING_BOT_DIR)
+    import handlers as pea_handlers  # type: ignore
+    log("bot", f"trading-routine handlers loaded from {_TRADING_BOT_DIR}")
+except Exception as _trading_err:  # pragma: no cover
+    pea_handlers = None
+    log("bot", f"trading-routine handlers not loaded: {_trading_err}")
+# ------------------------------------------------------------------------------
+
 DAEMON_STATE = ROOT / "data/daemon-state.json"
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
@@ -74,12 +87,15 @@ def api(method: str, data: dict = None) -> dict:
         return json.loads(resp.read())
 
 
-def send(text: str, chat_id: str = None) -> None:
-    api("sendMessage", {
+def send(text: str, chat_id: str = None, reply_markup: dict = None) -> None:
+    payload = {
         "chat_id": chat_id or CHAT_ID,
         "text": text,
         "parse_mode": "HTML",
-    })
+    }
+    if reply_markup is not None:
+        payload["reply_markup"] = reply_markup
+    api("sendMessage", payload)
 
 
 def get_updates(offset: int) -> list:
@@ -1271,6 +1287,25 @@ def handle_command(text: str) -> str:
     text = text.strip()
     lower = text.lower()
 
+    # --- trading-routine: /pea-* commands and free-text continuation --------
+    if pea_handlers is not None:
+        if lower.startswith("/pea-"):
+            try:
+                return pea_handlers.handle_text(text, send=send, api=api)
+            except Exception as e:
+                log("bot", f"pea handler error: {e}")
+                return f"❌ trading-routine error: {e}"
+        # Free-text continuation of a /pea-update or rejection-reason flow.
+        if not text.startswith("/"):
+            try:
+                from repo import load_session  # type: ignore
+                session = load_session(Path(_TRADING_BOT_DIR).parent)
+                if session.get("awaiting"):
+                    return pea_handlers.handle_text(text, send=send, api=api)
+            except Exception:
+                pass
+    # ------------------------------------------------------------------------
+
     # Free-text intercept for holiday planner
     if not text.startswith("/"):
         holiday_st = _holiday_state()
@@ -1668,6 +1703,18 @@ def main():
 
                 if cq_chat_id != str(CHAT_ID):
                     log("bot", f"Callback ignored: chat_id mismatch")
+                elif cq_data.startswith("pea:") and pea_handlers is not None:
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    try:
+                        reply = pea_handlers.handle_callback(cq_data, send=send, api=api)
+                    except Exception as e:
+                        log("bot", f"pea callback error: {e}")
+                        reply = f"❌ trading-routine callback error: {e}"
+                    if reply:
+                        send(reply, cq_chat_id)
                 elif cq_data.startswith("approval:"):
                     decision = "approved" if cq_data == "approval:go" else "rejected"
                     log("bot", f"Approval decision: {decision}")
