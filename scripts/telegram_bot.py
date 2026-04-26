@@ -478,8 +478,24 @@ def cmd_help(group: str = "") -> str:
             "Use /products to see product IDs."
         )
 
+    if group == "trading" or group == "pea":
+        if pea_handlers is not None:
+            try:
+                return pea_handlers.HELP
+            except Exception:
+                pass
+        return "trading-routine handlers not loaded."
+
     # Default — grouped overview
+    pea_block = (
+        "📈 <b>Trading (PEA)</b>\n"
+        "  /pea_help — full /pea_* command list\n"
+        "  /pea_status · /pea_positions · /pea_update\n"
+        "  /pea_morning · /pea_midday · /pea_evening · /pea_weekly\n"
+        "  /pea_proposals · /pea_approve · /pea_reject\n\n"
+    ) if pea_handlers is not None else ""
     return (
+        pea_block +
         "🏭 <b>Factory</b>\n"
         "  /run [seed] [category] — Generate a product\n"
         "  /go · /skip — Approve or reject pending idea\n"
@@ -512,7 +528,7 @@ def cmd_help(group: str = "") -> str:
         "  /blog — Auto-generate + publish an SEO blog post\n"
         "  /blog \"topic\" — Blog post on a specific keyword\n\n"
         "Type /help {group} for more detail:\n"
-        "<code>factory · posts · karma · products · twitter</code>"
+        "<code>factory · posts · karma · products · twitter · trading</code>"
     )
 
 
@@ -1289,7 +1305,7 @@ def handle_command(text: str) -> str:
 
     # --- trading-routine: /pea-* commands and free-text continuation --------
     if pea_handlers is not None:
-        if lower.startswith("/pea-"):
+        if lower.startswith("/pea-") or lower.startswith("/pea_"):
             try:
                 return pea_handlers.handle_text(text, send=send, api=api)
             except Exception as e:
@@ -1686,6 +1702,40 @@ def main():
         send("🤖 <b>mini-on-ai bot online</b>\n\nType /help to see commands.")
     except Exception as e:
         log("bot", f"Startup notification failed (non-fatal): {e}")
+
+    # Register the slash-command autocomplete menu (incl. /pea-* if loaded)
+    try:
+        cmds = [
+            {"command": "help",     "description": "Show command help"},
+            {"command": "status",   "description": "Factory status"},
+            {"command": "run",      "description": "Generate a product"},
+            {"command": "go",       "description": "Approve pending idea"},
+            {"command": "skip",     "description": "Reject pending idea"},
+            {"command": "stats",    "description": "Gumroad sales & revenue"},
+            {"command": "tweet",    "description": "Draft a tweet"},
+            {"command": "blog",     "description": "Generate a blog post"},
+            {"command": "blast",    "description": "Email blast"},
+            {"command": "tokens",   "description": "API cost breakdown"},
+        ]
+        if pea_handlers is not None:
+            cmds += [
+                {"command": "pea_help",      "description": "Trading: full /pea-* help"},
+                {"command": "pea_status",    "description": "Trading: phase, NAV, proposals"},
+                {"command": "pea_positions", "description": "Trading: latest snapshot"},
+                {"command": "pea_update",    "description": "Trading: post a position update"},
+                {"command": "pea_morning",   "description": "Trading: run morning research"},
+                {"command": "pea_midday",    "description": "Trading: run midday deep-read"},
+                {"command": "pea_evening",   "description": "Trading: run evening digest"},
+                {"command": "pea_weekly",    "description": "Trading: run weekend deep-dive"},
+                {"command": "pea_proposals", "description": "Trading: list pending proposals"},
+                {"command": "pea_journal",   "description": "Trading: today's journal"},
+                {"command": "pea_universe",  "description": "Trading: universe stats"},
+                {"command": "pea_freeze",    "description": "Trading: fire kill switch"},
+            ]
+        api("setMyCommands", {"commands": cmds})
+        log("bot", f"setMyCommands ok ({len(cmds)} entries)")
+    except Exception as e:
+        log("bot", f"setMyCommands failed (non-fatal): {e}")
 
     offset = 0
     while True:
