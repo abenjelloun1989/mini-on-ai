@@ -1,12 +1,12 @@
 {
   "id": "prompts-claude-code-html-presentation-prompt-pac-20260427",
   "title": "Claude Code HTML Presentation Prompt Pack",
-  "description": "This trending skill proves massive demand for AI-generated HTML slide decks, but there's no prompt pack teaching freelancers/devs how to prompt their way to polished presentations without coding. The gap is a structured pack of 25 prompts covering layouts, themes, content types, and client deliverables.",
+  "description": "Build a prompt-pack product titled 'Claude Code HTML Presentation Prompt Pack' for freelancers, consultants, and developers who want to generate beautiful single-file HTML slide decks using AI coding agents like Claude Code. The pack should contain 25 ready-to-use prompts organized into 5 sections: (1) Deck Structure & Layout Prompts — prompts for setting up 5 distinct slide layouts (hero, data, quote, timeline, comparison); (2) Visual Theme Prompts — prompts for applying dark, light, corporate, minimal, and creative themes with CSS variables; (3) Content-Type Prompts — prompts for case studies, project proposals, sales decks, and status reports; (4) Interactivity & Animation Prompts — prompts for adding swipe navigation, scroll effects, and WebGL/canvas hero backgrounds; (5) Client Delivery Prompts — prompts for exporting single-file output, adding client branding, and generating a PDF-ready version. Each prompt should include the full text, a brief usage note, and a 'remix tip'. Tone is practical and efficient. Price point $19. This sells because HTML deck generation via Claude Code is exploding (3,200+ stars in days) and no Gumroad product addresses it yet.",
   "category": "prompt-packs",
   "tags": [],
   "item_count": 20,
   "prompt_count": 20,
-  "created_at": "2026-04-27T08:33:44.485019+00:00",
+  "created_at": "2026-04-27T08:51:03.112820+00:00",
   "status": "published",
   "package_path": "products/prompts-claude-code-html-presentation-prompt-pac-20260427/package.zip",
   "site_path": "site/products/prompts-claude-code-html-presentation-prompt-pac-20260427.html",
@@ -14,5 +14,5 @@
   "price": null,
   "gumroad_product_id": null,
   "gumroad_url": null,
-  "gumroad_description": "You've been asked to build a presentation, and you're about to waste two hours fighting with PowerPoint when Claude could do it in ten minutes — if you knew how to ask.\n\nWho this is for:\n— Freelancers delivering client decks without a design background\n— Developers who'd rather write a prompt than touch Keynote\n— Agency owners who want repeatable, billable presentation workflows\n\nWhat's inside:\n— 20 copy-paste prompts covering layouts, themes, content structures, and client-ready slide logic\n— Markdown and JSON formats so you can drop them straight into your workflow\n— Prompts tested across Claude, ChatGPT, and Gemini — no tool lock-in\n— Coverage for pitch decks, reports, onboarding flows, and educational content\n\nEach prompt is built to get you a working HTML slide deck on the first try, not after six rounds of back-and-forth.\n\nThis is the shortcut between \"I know AI can do this\" and actually shipping polished work.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
+  "gumroad_description": "You're spending 3 hours in PowerPoint on a deck that Claude Code can build in 8 minutes — this pack closes that gap.\n\nWho this is for:\n— Freelancers who deliver polished client presentations without a design budget\n— Consultants who need professional decks fast between back-to-back projects\n— Developers who want to hand clients a single, self-contained HTML file that just works\n\nWhat's inside:\n— 25 battle-tested prompts across 5 sections: structure, themes, content types, interactivity, and client delivery\n— Every prompt includes full text, a usage note, and a remix tip so you adapt it in 30 seconds\n— Delivered in both Markdown and JSON — drop it into Claude Code, ChatGPT, or Gemini\n— Covers hero slides, WebGL backgrounds, swipe navigation, PDF-ready export, and client branding\n\nThis is the only prompt pack built specifically for HTML slide generation via AI coding agents — a workflow that went from zero to 3,200 stars in days and has no dedicated resource yet.\n\n$19. One purchase, instant output.\n\nDownload and use it today.\n\nDiscover more tools like this at mini-on-ai.com"
 }
