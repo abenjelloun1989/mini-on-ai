@@ -93,13 +93,34 @@ Product types available:
 - mini-guide: concise practitioner guide 800–1200 words ($9)
 - chrome-extension: browser tool (bigger build, score only if truly obvious gap)"""
 
+def _load_existing_titles() -> list[str]:
+    """Return titles of already-published products so Claude can avoid them."""
+    catalog_path = ROOT / "data/product-catalog.json"
+    try:
+        catalog = json.loads(catalog_path.read_text())
+        return [p["title"] for p in catalog.get("products", []) if p.get("title")]
+    except Exception:
+        return []
+
+
 def analyze_repos(repos: list[dict]) -> list[dict]:
     """Ask Claude to score each repo for product opportunity. Returns sorted list."""
     client = anthropic.Anthropic()
 
+    existing_titles = _load_existing_titles()
+    existing_block = ""
+    if existing_titles:
+        titles_str = "\n".join(f"- {t}" for t in existing_titles)
+        existing_block = f"""
+IMPORTANT — already published products (do NOT propose anything that covers the same topic):
+{titles_str}
+
+Score 0 for any idea that substantially overlaps with the above list.
+"""
+
     repos_json = json.dumps(repos, indent=2)
     prompt = f"""Here are {len(repos)} trending GitHub repos from the past 7 days.
-
+{existing_block}
 For each repo, score the digital product opportunity for mini-on-ai.com (0–100).
 Only score above 60 if there is a real, specific product gap worth building.
 
@@ -352,6 +373,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true", help="Print report without sending")
+    parser.add_argument("--skip-email", action="store_true", help="Skip email (re-send Telegram only)")
     args = parser.parse_args()
 
     if args.dry_run:
@@ -374,7 +396,10 @@ def main():
         return
 
     save_latest_opportunities(ideas)
-    send_email_report(ideas, len(repos))
+    if not args.skip_email:
+        send_email_report(ideas, len(repos))
+    else:
+        log("github-scout", "Skipping email (--skip-email)")
     send_telegram_summary(ideas, len(repos))
     log_run(len(repos), ideas)
 
