@@ -300,6 +300,111 @@ def run_pipeline(seed: str = "", skip_scan: bool = False, category: str = ""):
         log("telegram", f"Warning: notification failed: {e}")
 
 
+def build_for_scout(index: int) -> None:
+    """
+    Build a product from the GitHub Scout opportunity list.
+    index is 1-based (matches the number tapped in Telegram).
+    Mirrors build_for_post() from reddit_pipeline.py.
+    """
+    import os as _os
+    scout_file = ROOT / "data/github-scout-latest.json"
+    if not scout_file.exists():
+        log("scout-pipeline", "data/github-scout-latest.json not found — run the scout first")
+        raise RuntimeError("github-scout-latest.json missing")
+
+    opportunities = read_json("data/github-scout-latest.json")
+    entry = next((o for o in opportunities if o.get("index") == index), None)
+    if not entry:
+        raise RuntimeError(f"Opportunity #{index} not found in github-scout-latest.json")
+
+    # Map scout opportunity_type → pipeline category
+    TYPE_MAP = {
+        "prompt-pack":      "prompt-packs",
+        "checklist":        "checklist",
+        "mini-guide":       "mini-guide",
+        "chrome-extension": "prompt-packs",  # not directly buildable — default
+    }
+    category = TYPE_MAP.get(entry.get("opportunity_type", ""), "prompt-packs")
+
+    log("scout-pipeline", f"Building #{index}: \"{entry.get('product_title', '?')}\" ({category})")
+
+    # Inject into idea-backlog so generate_product can pick it up
+    backlog = read_json("data/idea-backlog.json")
+    for existing in backlog.get("ideas", []):
+        existing["selected"] = False
+
+    idea = {
+        "id":          f"idea-scout-{index}-{int(time.time())}",
+        "title":       entry.get("product_title", f"GitHub Scout #{index}"),
+        "description": entry.get("rationale", ""),
+        "category":    category,
+        "tags":        [],
+        "score":       entry.get("score", 75),
+        "rationale":   (
+            f"GitHub trending: github.com/{entry.get('repo', '')} "
+            f"· ⭐{entry.get('stars', 0):,} · {entry.get('rationale', '')}"
+        ),
+        "selected":    True,
+        "status":      None,
+        "product_id":  None,
+        "generated_at": timestamp(),
+        "source":      "github-scout",
+        "scout_index": index,
+        "scout_repo":  entry.get("repo", ""),
+    }
+    backlog.setdefault("ideas", []).append(idea)
+    write_json("data/idea-backlog.json", backlog)
+
+    start_time = time.time()
+    run_id = f"run-scout-{int(time.time())}"
+    _os.environ["PIPELINE_RUN_ID"] = run_id
+
+    try:
+        log("scout-pipeline", "Stage: generate-product")
+        meta = generate_product()
+
+        log("scout-pipeline", "Stage: package-product")
+        meta = package_product()
+
+        log("scout-pipeline", "Stage: update-site")
+        meta = update_site()
+    except Exception as e:
+        log("scout-pipeline", f"Build failed: {e}")
+        try:
+            telegram_report()
+        except Exception:
+            pass
+        raise
+
+    # git commit + push
+    try:
+        pid = meta.get("id", "")
+        title = meta.get("title", "?")
+        subprocess.run(
+            ["git", "add", "-A"],
+            cwd=str(ROOT), check=True
+        )
+        subprocess.run(
+            ["git", "commit", "-m", f"feat: add {pid} (GitHub Scout #{index})"],
+            cwd=str(ROOT), check=True
+        )
+        subprocess.run(
+            ["git", "push"],
+            cwd=str(ROOT), check=True
+        )
+        log("scout-pipeline", f"Committed and pushed: {pid}")
+    except Exception as e:
+        log("scout-pipeline", f"Warning: git push failed: {e}")
+
+    try:
+        telegram_report()
+    except Exception as e:
+        log("scout-pipeline", f"Warning: Telegram notification failed: {e}")
+
+    elapsed = round(time.time() - start_time, 1)
+    log("scout-pipeline", f"Done in {elapsed}s — {meta.get('title', '?')}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Run the full product factory pipeline")
     parser.add_argument("--seed", default="", help="Keyword to seed the trend scan")
@@ -309,6 +414,7 @@ def main():
     parser.add_argument("--reddit-build", metavar="POST_ID", help="Build product for a Reddit post from the queue")
     parser.add_argument("--reddit-dry-run", action="store_true", help="Scan Reddit and print candidates without saving")
     parser.add_argument("--reddit-subreddit", default="", help="Single subreddit to scan (overrides REDDIT_SUBREDDITS)")
+    parser.add_argument("--scout-build", metavar="INDEX", type=int, default=None, help="Build opportunity #N from data/github-scout-latest.json")
     args = parser.parse_args()
 
     if args.reddit_mode or args.reddit_dry_run or args.reddit_build:
@@ -317,6 +423,8 @@ def main():
             build_for_post(args.reddit_build)
         else:
             reddit_pipeline(dry_run=args.reddit_dry_run, subreddit=args.reddit_subreddit)
+    elif args.scout_build is not None:
+        build_for_scout(args.scout_build)
     else:
         run_pipeline(seed=args.seed, skip_scan=args.skip_scan, category=args.category)
 

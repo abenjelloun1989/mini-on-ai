@@ -227,53 +227,70 @@ def send_email_report(ideas: list[dict], repos_count: int) -> bool:
         return False
 
 
-# ── Telegram report ───────────────────────────────────────────────────────────
+# ── Telegram summary (numbered list + build buttons) ─────────────────────────
 
 def _tg_escape(text: str) -> str:
     """Escape special HTML chars for Telegram HTML mode."""
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def send_telegram_report(ideas: list[dict], repos_count: int) -> bool:
-    """Send summary + one message per top idea to stay under Telegram's 4096-char limit."""
-    top = ideas[:TOP_TELEGRAM]
-    date_str = datetime.now().strftime("%d %b %Y")
-    top_score = ideas[0]["score"] if ideas else 0
-    ok = True
+def save_latest_opportunities(ideas: list[dict]) -> None:
+    """Persist the current ranked list so the bot can reference it by index."""
+    indexed = [{"index": i + 1, **idea} for i, idea in enumerate(ideas)]
+    write_json("data/github-scout-latest.json", indexed)
+    log("github-scout", f"Saved {len(indexed)} opportunities to data/github-scout-latest.json")
 
-    # Message 1: summary header
-    header = (
-        f"🔍 <b>GitHub Opportunity Scout — {date_str}</b>\n"
-        f"📊 {repos_count} repos · {len(ideas)} opportunities found · top score {top_score}/100\n"
-        f"Full report in your email."
-    )
-    try:
-        send_telegram(header)
-    except Exception as e:
-        log("github-scout", f"Telegram header failed: {e}")
+
+def send_telegram_summary(ideas: list[dict], repos_count: int) -> bool:
+    """
+    Send a compact numbered list with inline 🔨 #N build buttons.
+    Full details go to email; this message is the quick decision surface.
+    """
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_OWNER_ID") or os.getenv("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        log("github-scout", "Telegram credentials not set — skipping summary")
         return False
 
-    # Messages 2…N: one per top idea
-    for idea in top:
-        hot = "🔥" if idea["score"] >= HOT_THRESHOLD else "📦"
-        plan = _tg_escape(idea.get("plan_prompt", ""))[:1500]  # cap plan length
-        rationale = _tg_escape(idea.get("rationale", ""))
-        msg = (
-            f"{hot} <b>[{idea['score']}/100] {_tg_escape(idea.get('product_title','?'))}</b>\n"
-            f"<i>{idea.get('opportunity_type','').upper()} · "
-            f"github.com/{idea.get('repo','')} · ⭐{idea.get('stars',0):,}</i>\n\n"
-            f"{rationale}\n\n"
-            f"📋 <b>Copy-paste plan:</b>\n"
-            f"<code>{plan}</code>"
-        )
-        try:
-            send_telegram(msg)
-        except Exception as e:
-            log("github-scout", f"Telegram idea message failed: {e}")
-            ok = False
+    date_str = datetime.now().strftime("%d %b %Y")
+    top_score = ideas[0]["score"] if ideas else 0
 
-    log("github-scout", f"Telegram report sent (top {len(top)} ideas)")
-    return ok
+    lines = [
+        f"🔍 <b>GitHub Scout — {date_str}</b>",
+        f"📊 {repos_count} repos · {len(ideas)} opportunities · top {top_score}/100\n",
+    ]
+    for i, idea in enumerate(ideas, 1):
+        hot = "🔥" if idea["score"] >= HOT_THRESHOLD else "📦"
+        title = _tg_escape(idea.get("product_title", "?"))[:45]
+        otype = _tg_escape(idea.get("opportunity_type", ""))
+        lines.append(f"{i}. {hot} [{idea['score']}] {title} <i>({otype})</i>")
+
+    lines.append("\n<i>Full report → email · Tap a number to build 👇</i>")
+    text = "\n".join(lines)
+
+    # Inline keyboard: 3 build buttons per row
+    all_btns = [{"text": f"🔨 #{i}", "callback_data": f"scout:build:{i}"}
+                for i in range(1, len(ideas) + 1)]
+    keyboard = [all_btns[j:j + 3] for j in range(0, len(all_btns), 3)]
+
+    payload = json.dumps({
+        "chat_id": chat_id,
+        "text": text,
+        "parse_mode": "HTML",
+        "reply_markup": {"inline_keyboard": keyboard},
+    }).encode("utf-8")
+
+    import urllib.request as _req
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    request = _req.Request(url, data=payload, headers={"Content-Type": "application/json"})
+    try:
+        with _req.urlopen(request, timeout=15) as resp:  # nosec B310
+            ok = resp.status == 200
+        log("github-scout", f"Telegram summary sent ({len(ideas)} opportunities)")
+        return ok
+    except Exception as e:
+        log("github-scout", f"Telegram summary failed: {e}")
+        return False
 
 
 # ── Run log ───────────────────────────────────────────────────────────────────
@@ -356,7 +373,9 @@ def main():
         log_run(len(repos), [])
         return
 
+    save_latest_opportunities(ideas)
     send_email_report(ideas, len(repos))
+    send_telegram_summary(ideas, len(repos))
     log_run(len(repos), ideas)
 
     elapsed = round(time.time() - start, 1)

@@ -1774,6 +1774,20 @@ def main():
                     except Exception:
                         pass
                     send(reply, cq_chat_id)
+                elif cq_data.startswith("scout:build:"):
+                    idx_str = cq_data.split(":", 2)[2]
+                    log("bot", f"GitHub Scout build requested: #{idx_str}")
+                    try:
+                        api("answerCallbackQuery", {"callback_query_id": cq_id})
+                    except Exception:
+                        pass
+                    send(f"⏳ Building GitHub Scout opportunity #{idx_str}…", cq_chat_id)
+                    subprocess.Popen(
+                        [sys.executable, str(ROOT / "scripts/run_pipeline.py"), "--scout-build", idx_str],
+                        cwd=str(ROOT),
+                        stdout=open(ROOT / "logs/pipeline.log", "a"),
+                        stderr=open(ROOT / "logs/pipeline-error.log", "a"),
+                    )
                 elif cq_data.startswith("reddit:build:"):
                     post_id = cq_data.split(":", 2)[2]
                     log("bot", f"Reddit build requested: {post_id}")
