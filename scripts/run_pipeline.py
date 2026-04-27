@@ -328,6 +328,13 @@ def build_for_scout(index: int) -> None:
 
     log("scout-pipeline", f"Building #{index}: \"{entry.get('product_title', '?')}\" ({category})")
 
+    # Use plan_prompt as description so generate_product gets the full spec
+    # Strip the leading "/plan " prefix if present
+    plan_raw = entry.get("plan_prompt", entry.get("rationale", ""))
+    if plan_raw.startswith("/plan "):
+        plan_raw = plan_raw[len("/plan "):]
+    description = plan_raw
+
     # Inject into idea-backlog so generate_product can pick it up
     backlog = read_json("data/idea-backlog.json")
     for existing in backlog.get("ideas", []):
@@ -336,7 +343,7 @@ def build_for_scout(index: int) -> None:
     idea = {
         "id":          f"idea-scout-{index}-{int(time.time())}",
         "title":       entry.get("product_title", f"GitHub Scout #{index}"),
-        "description": entry.get("rationale", ""),
+        "description": description,
         "category":    category,
         "tags":        [],
         "score":       entry.get("score", 75),
@@ -359,6 +366,32 @@ def build_for_scout(index: int) -> None:
     run_id = f"run-scout-{int(time.time())}"
     _os.environ["PIPELINE_RUN_ID"] = run_id
 
+    # Write a pipeline-log entry so telegram_report() shows the right run
+    pipeline_log = read_json("data/pipeline-log.json")
+    run_entry = {
+        "id":            run_id,
+        "started_at":    timestamp(),
+        "status":        "running",
+        "failed_stage":  None,
+        "error":         None,
+        "product":       None,
+        "duration_seconds": None,
+        "tokens":        None,
+        "source":        f"github-scout-{index}",
+    }
+
+    def _fail(stage: str, error: str) -> None:
+        run_entry["status"] = "failed"
+        run_entry["failed_stage"] = stage
+        run_entry["error"] = error
+        run_entry["duration_seconds"] = round(time.time() - start_time)
+        pipeline_log["runs"].append(run_entry)
+        write_json("data/pipeline-log.json", pipeline_log)
+        try:
+            telegram_report()
+        except Exception:
+            pass
+
     try:
         log("scout-pipeline", "Stage: generate-product")
         meta = generate_product()
@@ -370,31 +403,29 @@ def build_for_scout(index: int) -> None:
         meta = update_site()
     except Exception as e:
         log("scout-pipeline", f"Build failed: {e}")
-        try:
-            telegram_report()
-        except Exception:
-            pass
+        _fail("generate-product", str(e))
         raise
 
     # git commit + push
     try:
         pid = meta.get("id", "")
-        title = meta.get("title", "?")
-        subprocess.run(
-            ["git", "add", "-A"],
-            cwd=str(ROOT), check=True
-        )
+        subprocess.run(["git", "add", "-A"], cwd=str(ROOT), check=True)
         subprocess.run(
             ["git", "commit", "-m", f"feat: add {pid} (GitHub Scout #{index})"],
             cwd=str(ROOT), check=True
         )
-        subprocess.run(
-            ["git", "push"],
-            cwd=str(ROOT), check=True
-        )
+        subprocess.run(["git", "push"], cwd=str(ROOT), check=True)
         log("scout-pipeline", f"Committed and pushed: {pid}")
     except Exception as e:
         log("scout-pipeline", f"Warning: git push failed: {e}")
+
+    # Mark run as success in pipeline-log
+    run_entry["status"] = "success"
+    run_entry["product"] = meta
+    run_entry["duration_seconds"] = round(time.time() - start_time)
+    run_entry["tokens"] = get_run_token_summary(run_id)
+    pipeline_log["runs"].append(run_entry)
+    write_json("data/pipeline-log.json", pipeline_log)
 
     try:
         telegram_report()
