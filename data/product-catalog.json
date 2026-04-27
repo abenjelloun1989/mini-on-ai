@@ -1,6 +1,22 @@
 {
   "products": [
     {
+      "id": "prompts-claude-code-html-presentation-prompt-pac-20260427",
+      "title": "Claude Code HTML Presentation Prompt Pack",
+      "description": "This trending skill proves massive demand for AI-generated HTML slide decks, but there's no prompt pack teaching freelancers/devs how to prompt their way to polished presentations without coding. The gap is a structured pack of 25 prompts covering layouts, themes, content types, and client deliverables.",
+      "category": "prompt-packs",
+      "tags": [],
+      "item_count": 20,
+      "prompt_count": 20,
+      "created_at": "2026-04-27T08:33:44.485019+00:00",
+      "package_path": "products/prompts-claude-code-html-presentation-prompt-pac-20260427/package.zip",
+      "site_path": "site/products/prompts-claude-code-html-presentation-prompt-pac-20260427.html",
+      "thumbnail": null,
+      "gumroad_url": null,
+      "price": null,
+      "is_free": null
+    },
+    {
       "id": "prompts-claude-code-html-design-prompt-pack-20260425",
       "title": "Claude Code HTML Design Prompt Pack",
       "description": "25 copy-paste prompts for frontend devs, indie hackers, and no-code builders.",

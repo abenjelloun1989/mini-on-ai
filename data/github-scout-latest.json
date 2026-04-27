@@ -1,0 +1,82 @@
+[
+  {
+    "index": 1,
+    "repo": "op7418/guizang-ppt-skill",
+    "stars": 3232,
+    "score": 82,
+    "opportunity_type": "prompt-pack",
+    "product_title": "Claude Code HTML Presentation Prompt Pack",
+    "rationale": "This trending skill proves massive demand for AI-generated HTML slide decks, but there's no prompt pack teaching freelancers/devs how to prompt their way to polished presentations without coding. The gap is a structured pack of 25 prompts covering layouts, themes, content types, and client deliverables.",
+    "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code HTML Presentation Prompt Pack' for freelancers, consultants, and developers who want to generate beautiful single-file HTML slide decks using AI coding agents like Claude Code. The pack should contain 25 ready-to-use prompts organized into 5 sections: (1) Deck Structure & Layout Prompts — prompts for setting up 5 distinct slide layouts (hero, data, quote, timeline, comparison); (2) Visual Theme Prompts — prompts for applying dark, light, corporate, minimal, and creative themes with CSS variables; (3) Content-Type Prompts — prompts for case studies, project proposals, sales decks, and status reports; (4) Interactivity & Animation Prompts — prompts for adding swipe navigation, scroll effects, and WebGL/canvas hero backgrounds; (5) Client Delivery Prompts — prompts for exporting single-file output, adding client branding, and generating a PDF-ready version. Each prompt should include the full text, a brief usage note, and a 'remix tip'. Tone is practical and efficient. Price point $19. This sells because HTML deck generation via Claude Code is exploding (3,200+ stars in days) and no Gumroad product addresses it yet."
+  },
+  {
+    "index": 2,
+    "repo": "freestylefly/awesome-gpt-image-2",
+    "stars": 961,
+    "score": 78,
+    "opportunity_type": "prompt-pack",
+    "product_title": "GPT-Image-2 Prompt Engineering Pack for Creators",
+    "rationale": "This repo reverse-engineers 329 GPT-Image-2 prompts across 13 industrial templates — proving huge demand for structured image prompts. No Gumroad product exists for GPT-Image-2 specifically, and freelancers/creators need curated, ready-to-use prompts for client work.",
+    "plan_prompt": "/plan Build a prompt-pack product titled 'GPT-Image-2 Prompt Engineering Pack for Creators' targeting freelance designers, content creators, e-commerce sellers, and social media managers who want to generate professional-quality images using GPT-Image-2 via ChatGPT or the API. Include 28 prompts organized into 6 sections: (1) Product Photography Prompts (5 prompts) — clean studio shots, lifestyle contexts, transparent background renders for e-commerce; (2) Social Media Visual Prompts (5 prompts) — Instagram posts, YouTube thumbnails, LinkedIn banners with brand color instructions; (3) Brand & Logo Treatment Prompts (4 prompts) — mockups, brand identity boards, and logo-on-product placements; (4) Editorial & Blog Image Prompts (5 prompts) — article headers, abstract concept illustrations, data visualization infographics; (5) Batch Variation Prompts (5 prompts) — prompts structured to generate 4–6 variants of a scene with lighting/style/angle variations; (6) Editing & Inpainting Prompts (4 prompts) — targeted edits, background swaps, object removal, and face-preserving style transfers. Each prompt includes full text, a 'copy-paste ready' format, style parameters, and a 'client use case' note. Tone is practical for non-technical creators. Price $19. This sells because GPT-Image-2 is brand new, trending hard, and creators desperately need tested prompts that skip the trial-and-error phase."
+  },
+  {
+    "index": 3,
+    "repo": "seulee26/mckinsey-pptx",
+    "stars": 305,
+    "score": 75,
+    "opportunity_type": "prompt-pack",
+    "product_title": "McKinsey-Style Slide Deck Prompt Pack for Consultants",
+    "rationale": "This Claude Code plugin generating consulting-grade PPTX with 40 templates is trending and proves demand from consultants and freelancers. No Gumroad product teaches how to prompt AI for McKinsey-style slide structures, pyramid logic, and consulting frameworks — a clear gap.",
+    "plan_prompt": "/plan Build a prompt-pack product titled 'McKinsey-Style Slide Deck Prompt Pack for Consultants' targeting freelance consultants, business analysts, and agency strategists who need to produce polished, logic-driven slide decks using AI tools like Claude or ChatGPT. Include 26 prompts in 5 sections: (1) Slide Structure & Pyramid Logic Prompts (5 prompts) — prompts for applying SCQA (Situation-Complication-Question-Answer) framework, building executive summary slides, and structuring 3-act narratives in decks; (2) Consulting Chart & Data Slide Prompts (6 prompts) — prompts for generating waterfall charts, 2x2 matrices, swim-lane process diagrams, and benchmark comparison tables as slide descriptions or HTML/JSON; (3) Template Selection Prompts (5 prompts) — prompts that describe a business situation and ask AI to choose the right slide template type with justification (mirrors the seulee26 subagent logic); (4) Executive Communication Prompts (5 prompts) — prompts for rewriting verbose content into single-message slides, creating 'so what' headlines, and simplifying data to one key insight; (5) Full Deck Assembly Prompts (5 prompts) — end-to-end prompts for generating a complete 8–12 slide deck outline for use cases like market entry, cost reduction, and quarterly business review. Each prompt includes full text, a framework reference, and a 'consulting tip' note. Tone is sharp and professional. Price $19. This sells because consulting-quality presentations are a perennial freelancer need and the McKinsey-style AI deck space is exploding with no Gumroad product covering it."
+  },
+  {
+    "index": 4,
+    "repo": "ConardLi/garden-skills",
+    "stars": 1461,
+    "score": 72,
+    "opportunity_type": "prompt-pack",
+    "product_title": "Claude Code Skills Starter Pack for Web Creators",
+    "rationale": "This collection covers web design, RAG, and image generation skills for Claude/GPT agents — a hot space with no Gumroad product teaching non-engineers how to prompt and deploy these agent skills. The gap is a curated prompt pack helping creators activate and customize web-design and knowledge-retrieval skills without touching source code.",
+    "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code Skills Starter Pack for Web Creators' targeting freelance web designers, no-code builders, and content creators who want to use Claude Code agent skills for web design, knowledge retrieval, and AI image generation. Include 25 prompts organized into 5 sections: (1) Web Design Skill Activation — prompts to invoke and customize HTML/CSS web design skills, specify layout preferences, and iterate on visual output; (2) Knowledge Retrieval (RAG) Prompts — prompts for building simple retrieval flows from documents, FAQs, and notes; (3) GPT Image Generation Prompts — prompts for generating product images, blog headers, and social assets using image skills; (4) Skill Chaining Prompts — prompts that combine two skills in sequence (e.g., design a page then generate hero image); (5) Skill Customization & Debugging — prompts for modifying skill parameters, fixing broken outputs, and adapting skills to a specific brand. Each prompt includes full text, a one-line context note, and a 'when to use this' tip. Tone is approachable for non-engineers. Price $19. This sells because the garden-skills repo has 1,400+ stars and there is zero Gumroad guidance for creators wanting to use these skills without coding."
+  },
+  {
+    "index": 5,
+    "repo": "GammaLabTechnologies/harmonist",
+    "stars": 703,
+    "score": 70,
+    "opportunity_type": "prompt-pack",
+    "product_title": "Multi-Agent Orchestration Prompt Pack for Developers",
+    "rationale": "Harmonist's 186-agent orchestration system signals huge developer interest in multi-agent workflows, but there's no Gumroad prompt pack specifically for prompting and coordinating multiple AI agents in Claude Code or Cursor. This is distinct from the existing Multi-Agent API Integration Blueprint.",
+    "plan_prompt": "/plan Build a prompt-pack product titled 'Multi-Agent Orchestration Prompt Pack for Developers' targeting freelance developers, solo founders, and AI builders who want to coordinate multiple AI agents using tools like Claude Code, Cursor, or custom agent frameworks. Include 25 prompts in 5 sections: (1) Agent Role Definition Prompts (5 prompts) — prompts for defining agent personas, responsibilities, input/output contracts, and tool access for roles like Planner, Executor, Critic, and Reporter; (2) Task Decomposition Prompts (5 prompts) — prompts for breaking a complex user request into parallelizable subtasks and assigning them to named agents; (3) Inter-Agent Communication Prompts (5 prompts) — prompts for structuring handoff messages between agents, passing context objects, and requesting clarification from upstream agents; (4) Orchestrator Control Prompts (5 prompts) — prompts for the orchestrator agent to monitor progress, handle failures, re-route stuck tasks, and synthesize final outputs; (5) Debugging & Observability Prompts (5 prompts) — prompts for logging agent decisions, tracing reasoning chains, and diagnosing why a sub-agent produced wrong output. Each prompt includes full text, a role/context header, and a 'when to use' note. Tone is technical but practical. Price $19. This sells because multi-agent orchestration is exploding and developers need structured prompts to get agents to coordinate reliably."
+  },
+  {
+    "index": 6,
+    "repo": "openclaw/clawsweeper",
+    "stars": 1073,
+    "score": 68,
+    "opportunity_type": "checklist",
+    "product_title": "GitHub Issues & PR Cleanup Checklist for Dev Teams",
+    "rationale": "ClawSweeper automates stale issue/PR triage — a real pain point for freelance devs and small teams managing open-source or client repos. No existing Gumroad checklist covers GitHub repo hygiene and issue debt cleanup specifically.",
+    "plan_prompt": "/plan Build a checklist product titled 'GitHub Issues & PR Cleanup Checklist for Dev Teams' targeting freelance developers, indie hackers, and small engineering teams who have accumulated issue debt and stale PRs in their GitHub repos. The checklist should have 18 action steps organized into 5 sections: (1) Audit Setup (3 steps) — label taxonomy review, milestone audit, assignee audit; (2) Issue Triage Rules (4 steps) — criteria for closing stale issues, labeling needs-info, archiving won't-fix, and tagging good-first-issues; (3) PR Review & Merge Hygiene (4 steps) — steps for closing draft PRs older than 90 days, resolving conflicts, requesting final reviews, and squash-merge decisions; (4) Automation & Scheduling (4 steps) — setting up GitHub Actions for stale bot, weekly digest, auto-close rules, and ClawSweeper-style weekly scans; (5) Communication & Closure (3 steps) — how to notify contributors on closed issues, write a cleanup commit message, and document the new triage policy. Each step includes a one-sentence action, a 'why it matters' note, and a suggested tool or GitHub Action. Tone is direct and practical. Price $9. This sells because repo debt is universal for developers and no Gumroad product addresses it."
+  },
+  {
+    "index": 7,
+    "repo": "future-agi/future-agi",
+    "stars": 578,
+    "score": 65,
+    "opportunity_type": "checklist",
+    "product_title": "LLM App Evaluation & Observability Setup Checklist",
+    "rationale": "Future-AGI covers evals, tracing, guardrails, and observability for LLM apps — a critical but under-documented workflow for freelance AI developers. No Gumroad product addresses how to set up LLM evaluation and observability from scratch for client-facing AI applications.",
+    "plan_prompt": "/plan Build a checklist product titled 'LLM App Evaluation & Observability Setup Checklist' targeting freelance AI developers, solo founders, and small teams building production LLM applications who need to implement evals, tracing, and guardrails without a full MLOps team. The checklist should have 18 action steps in 5 sections: (1) Baseline Tracing Setup (3 steps) — choosing a tracing tool (LangSmith, Future-AGI, Helicone), instrumenting LLM calls, and capturing input/output pairs; (2) Eval Dataset Creation (4 steps) — curating 50+ golden examples, defining pass/fail criteria, building a regression test set, and tagging by use-case category; (3) Automated Evaluation Runs (4 steps) — setting up LLM-as-judge prompts, running evals on each deploy, scoring accuracy/hallucination/format adherence, and alerting on regression; (4) Guardrails & Safety Checks (4 steps) — adding input validation, output filtering, PII detection, and toxicity scoring to the pipeline; (5) Client Reporting & Iteration (3 steps) — building a one-page eval summary, sharing with stakeholders, and using failure cases to improve prompts. Each step includes a one-sentence action, a recommended tool, and a 'common mistake' note. Tone is practical for working developers. Price $9. This sells because LLM observability is a real production gap and no Gumroad checklist exists for it."
+  },
+  {
+    "index": 8,
+    "repo": "wuyoscar/gpt_image_2_skill",
+    "stars": 738,
+    "score": 62,
+    "opportunity_type": "checklist",
+    "product_title": "GPT-Image-2 API Setup & Workflow Checklist",
+    "rationale": "This Claude Code skill for GPT-Image-2 generation/editing is trending, but no Gumroad checklist covers the full setup-to-production workflow for developers using the API. The gap is a practical action checklist for devs integrating image generation into client projects.",
+    "plan_prompt": "/plan Build a checklist product titled 'GPT-Image-2 API Setup & Workflow Checklist' targeting freelance developers and indie hackers who want to integrate GPT-Image-2 image generation and editing into client apps, SaaS tools, or automation workflows. The checklist should have 17 action steps organized into 5 sections: (1) API Access & Configuration (3 steps) — getting API key, setting up environment variables, testing the endpoint with a curl example; (2) Prompt Engineering Setup (4 steps) — building a prompt template library, setting size/quality/style parameters, testing system vs user prompt placement, iterating on negative prompting; (3) Image Editing Workflow (3 steps) — setting up inpainting masks, structuring edit requests, handling multi-turn image edits; (4) Production Integration (4 steps) — rate limit handling, cost monitoring, storing generated images to S3/CDN, building a fallback for API failures; (5) Client Delivery & Handoff (3 steps) — building a prompt gallery for clients, documenting regeneration instructions, setting up a simple front-end trigger. Each step has a one-sentence action, a tool/code snippet reference, and a 'gotcha to avoid' note. Tone is developer-friendly and concise. Price $9. This sells because GPT-Image-2 is brand new and developers need a fast-start production checklist."
+  }
+]

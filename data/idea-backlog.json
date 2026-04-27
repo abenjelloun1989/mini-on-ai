@@ -3337,6 +3337,22 @@
       "status": "produced",
       "source": "github-scout",
       "product_id": "prompts-claude-code-html-design-prompt-pack-20260425"
+    },
+    {
+      "id": "idea-scout-1-1777278726",
+      "title": "Claude Code HTML Presentation Prompt Pack",
+      "description": "This trending skill proves massive demand for AI-generated HTML slide decks, but there's no prompt pack teaching freelancers/devs how to prompt their way to polished presentations without coding. The gap is a structured pack of 25 prompts covering layouts, themes, content types, and client deliverables.",
+      "category": "prompt-packs",
+      "tags": [],
+      "score": 82,
+      "rationale": "GitHub trending: github.com/op7418/guizang-ppt-skill · ⭐3,232 · This trending skill proves massive demand for AI-generated HTML slide decks, but there's no prompt pack teaching freelancers/devs how to prompt their way to polished presentations without coding. The gap is a structured pack of 25 prompts covering layouts, themes, content types, and client deliverables.",
+      "selected": true,
+      "status": "produced",
+      "product_id": "prompts-claude-code-html-presentation-prompt-pac-20260427",
+      "generated_at": "2026-04-27T08:32:06.977415+00:00",
+      "source": "github-scout",
+      "scout_index": 1,
+      "scout_repo": "op7418/guizang-ppt-skill"
     }
   ]
 }
