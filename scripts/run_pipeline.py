@@ -330,10 +330,12 @@ def build_for_scout(index: int) -> None:
 
     # Use plan_prompt as description so generate_product gets the full spec
     # Strip the leading "/plan " prefix if present
+    # Use plan_prompt as the generation brief (internal only — not shown on site card)
     plan_raw = entry.get("plan_prompt", entry.get("rationale", ""))
     if plan_raw.startswith("/plan "):
         plan_raw = plan_raw[len("/plan "):]
-    description = plan_raw
+    # Short public-facing description for the product card (one punchy line)
+    short_desc = entry.get("rationale", "").split(".")[0] + "."
 
     # Inject into idea-backlog so generate_product can pick it up
     backlog = read_json("data/idea-backlog.json")
@@ -343,7 +345,8 @@ def build_for_scout(index: int) -> None:
     idea = {
         "id":          f"idea-scout-{index}-{int(time.time())}",
         "title":       entry.get("product_title", f"GitHub Scout #{index}"),
-        "description": description,
+        "description": short_desc,
+        "generation_brief": plan_raw,  # used by generate_product for content, not shown on site
         "category":    category,
         "tags":        [],
         "score":       entry.get("score", 75),
