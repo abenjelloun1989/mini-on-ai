@@ -417,5 +417,281 @@
         "plan_prompt": "/plan Build a checklist product titled 'GPT-Image-2 API Setup & Workflow Checklist' targeting freelance developers and indie hackers who want to integrate GPT-Image-2 image generation and editing into client apps, SaaS tools, or automation workflows. The checklist should have 17 action steps organized into 5 sections: (1) API Access & Configuration (3 steps) — getting API key, setting up environment variables, testing the endpoint with a curl example; (2) Prompt Engineering Setup (4 steps) — building a prompt template library, setting size/quality/style parameters, testing system vs user prompt placement, iterating on negative prompting; (3) Image Editing Workflow (3 steps) — setting up inpainting masks, structuring edit requests, handling multi-turn image edits; (4) Production Integration (4 steps) — rate limit handling, cost monitoring, storing generated images to S3/CDN, building a fallback for API failures; (5) Client Delivery & Handoff (3 steps) — building a prompt gallery for clients, documenting regeneration instructions, setting up a simple front-end trigger. Each step has a one-sentence action, a tool/code snippet reference, and a 'gotcha to avoid' note. Tone is developer-friendly and concise. Price $9. This sells because GPT-Image-2 is brand new and developers need a fast-start production checklist."
       }
     ]
+  },
+  {
+    "run_at": "2026-04-28T05:02:02.505132+00:00",
+    "repos_fetched": 25,
+    "ideas_found": 9,
+    "top_score": 78,
+    "ideas": [
+      {
+        "repo": "freestylefly/awesome-gpt-image-2",
+        "stars": 1363,
+        "score": 78,
+        "opportunity_type": "prompt-pack",
+        "product_title": "GPT-Image-2 Prompt Pack for Freelancers",
+        "rationale": "GPT-Image-2 is surging and this repo proves massive appetite for reusable image prompts, yet no product in our catalog addresses AI image generation prompts for client-facing creative work. Freelancers (social media managers, e-commerce designers, content creators) need production-ready prompts they can reuse immediately without reverse-engineering from scratch.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'GPT-Image-2 Prompt Pack for Freelancers & Small Businesses' for mini-on-ai.com, priced at $19 on Gumroad. Audience: freelancers doing social media content, e-commerce product imagery, branding visuals, and small business owners who want to generate professional images without hiring a designer. The pack contains 25 ready-to-use GPT-Image-2 prompts organized into 5 sections: (1) E-Commerce Product Photography — 5 prompts for clean product shots on white/lifestyle backgrounds with lighting direction and shadow control; (2) Social Media Content — 5 prompts for scroll-stopping Instagram/LinkedIn visuals including quote cards, announcement graphics, and behind-the-scenes style shots; (3) Brand Identity Assets — 5 prompts for logo mockups, brand color palette visualizations, and brand pattern backgrounds; (4) Marketing Collateral — 5 prompts for hero banners, email header images, and ad creative in specific aspect ratios; (5) Client Presentation Visuals — 5 prompts for professional charts-as-infographics, team culture photos, and case study imagery. Each prompt includes a [BRAND_NAME], [COLOR_PALETTE], [STYLE] variable block and a 'pro tip' note on getting consistent results. Tone is practical and results-focused. Sell angle: 25 field-tested prompts that produce client-ready images on the first try."
+      },
+      {
+        "repo": "seulee26/mckinsey-pptx",
+        "stars": 322,
+        "score": 74,
+        "opportunity_type": "prompt-pack",
+        "product_title": "McKinsey-Style Consulting Deck Prompt Pack",
+        "rationale": "Consultants, freelance strategists, and agency owners constantly need to produce executive-quality slide decks and this repo's 322 stars in days proves strong appetite. While our HTML Presentation pack covers design, no existing product targets consulting storytelling conventions (pyramid principle, MECE, so-what framing) that make a deck look McKinsey-grade — a specific and valuable gap.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'McKinsey-Style Consulting Deck Prompt Pack' for mini-on-ai.com, priced at $19 on Gumroad. Audience: freelance consultants, agency strategists, and business owners who need to produce executive-quality slide decks for client presentations, board updates, and strategy proposals — and want AI to do the heavy lifting without sacrificing credibility. The pack contains 25 ready-to-use prompts organized into 5 sections: (1) Pyramid Principle Structuring — 5 prompts for building a slide argument from conclusion-first logic, supporting data, and action recommendation using top-down communication; (2) MECE Framework Application — 5 prompts for ensuring slide groupings are mutually exclusive and collectively exhaustive, covering segmentation, option matrices, and issue trees; (3) Slide Title as Insight — 5 prompts for rewriting descriptive titles ('Q1 Revenue') into insight-driven headlines ('Q1 Revenue Miss Driven by 3 Fixable Factors'); (4) Data Visualization Direction — 5 prompts for instructing AI on which chart type fits which story, annotation placement, and simplification of complex datasets; (5) Executive Summary & Next Steps — 5 prompts for generating crisp 1-slide exec summaries, decision-forcing final slides, and stakeholder-specific recommendation framing. Each prompt includes a [TOPIC], [AUDIENCE_LEVEL], and [RECOMMENDATION] variable block. Tone is sharp and business-precise. Sell angle: the prompt pack that makes your AI output pass the partner review — structured like McKinsey, clear enough for any boardroom."
+      },
+      {
+        "repo": "op7418/guizang-ppt-skill",
+        "stars": 3509,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Code Magazine-Style Slide Deck Prompt Pack",
+        "rationale": "This repo is exploding with stars around AI-generated HTML slide decks, but our existing HTML Presentation and Design packs focus on Claude Code output styling, not on crafting the actual content prompts that drive compelling slide narratives. A prompt pack targeting freelancers and consultants who want to generate polished magazine-style decks for client deliverables fills a specific gap beyond the technical skill layer.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code Magazine-Style Slide Deck Prompt Pack' for mini-on-ai.com, priced at $19 on Gumroad. Audience: freelancers, consultants, and developers who use Claude Code (or similar AI agents) to generate horizontal-swipe HTML presentation decks for client pitches, product demos, and internal briefings. The pack contains 25 ready-to-use prompts organized into 5 sections: (1) Slide Narrative Architecture — 5 prompts for structuring a story arc across 8–12 slides including hook, conflict, resolution; (2) Visual Layout Direction — 5 prompts instructing AI on magazine-style layout choices, image placement, whitespace, and hero backgrounds; (3) Content Density Control — 5 prompts for specifying copy length, headline vs. body ratio, and callout formatting per slide type; (4) Theme & Brand Alignment — 5 prompts for encoding color palette, typography mood, and visual identity into the generation instruction; (5) Client-Ready Polish — 5 prompts for final QA instructions like consistency checks, transition labeling, and export-ready single-file output. Each prompt includes a fill-in-the-blank variable section (e.g., [TOPIC], [AUDIENCE], [TONE]). Tone is practical and professional. Sell angle: stop wrestling with generic AI output — these prompts are engineered to produce decks that look like a designer built them."
+      },
+      {
+        "repo": "GammaLabTechnologies/harmonist",
+        "stars": 753,
+        "score": 70,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Multi-Agent Orchestration Design Prompt Pack",
+        "rationale": "Harmonist's 186-agent orchestration framework signals massive developer interest in designing reliable multi-agent systems, and while we have a Multi-Agent API Integration Blueprint, it focuses on API connections rather than agent role design, protocol enforcement, and orchestration logic. A prompt pack helping developers design, document, and debug agent systems fills a distinct gap for the growing agentic AI developer audience on Gumroad.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Multi-Agent Orchestration Design Prompt Pack for Developers' for mini-on-ai.com, priced at $19 on Gumroad. Audience: developers and technical founders building multi-agent AI systems using Claude Code, Codex, Cursor, or custom frameworks who need to design reliable agent coordination without starting from a blank page. The pack contains 25 ready-to-use prompts organized into 5 sections: (1) Agent Role Definition — 5 prompts for writing clear agent charters including responsibilities, decision authority, input/output contracts, and failure modes; (2) Orchestration Protocol Design — 5 prompts for designing task routing logic, priority queues, and handoff rules between agents; (3) Agent Communication Schemas — 5 prompts for defining structured message formats, context-passing rules, and state synchronization between agents; (4) Failure & Recovery Planning — 5 prompts for identifying failure cascades, designing retry logic, and writing graceful degradation instructions; (5) Observability & Debugging — 5 prompts for generating logging schemas, trace summaries, and agent audit trails. Each prompt includes fill-in-the-blank variables for agent count, domain, and constraint type. Tone is technical but accessible to senior devs and technical founders. Sell angle: stop rebuilding agent logic from scratch — these prompts encode production-tested orchestration patterns into Claude-ready instructions."
+      },
+      {
+        "repo": "future-agi/future-agi",
+        "stars": 653,
+        "score": 65,
+        "opportunity_type": "checklist",
+        "product_title": "LLM App Evaluation & Observability Checklist",
+        "rationale": "As more developers ship LLM-powered apps, evaluating quality, catching hallucinations, and setting up observability are recurring painful gaps — and this trending platform proves the demand. No existing product in our catalog covers LLM eval/observability setup, making this a real gap for the developer audience on Gumroad.",
+        "plan_prompt": "/plan Build a checklist product titled 'LLM App Evaluation & Observability Launch Checklist for Developers' for mini-on-ai.com, priced at $9 on Gumroad. Audience: developers and technical founders who have built or are shipping LLM-powered features or AI agents and need to ensure quality, catch regressions, and monitor behavior in production. The checklist contains 18 action items organized into 4 sections: (1) Output Quality Evaluation Setup (5 items) — define eval metrics, set up golden dataset, choose auto-eval vs. human-eval strategy, configure hallucination detection, establish pass/fail thresholds; (2) Tracing & Logging (4 items) — instrument LLM calls with trace IDs, log input/output pairs with latency, set up cost-per-call tracking, store session context for replay; (3) Regression Testing (4 items) — create regression test suite from real user queries, run evals on every model update, flag output drift, version prompt changes alongside test results; (4) Guardrails & Safety (5 items) — configure input sanitization, set output refusal rules, define PII redaction policy, test adversarial inputs, document incident response for model failures. Each item includes a 'why this matters' one-liner and a 'minimum viable version' note for solo developers. Tone is pragmatic and ship-focused. Sell angle: the pre-launch quality checklist that keeps your LLM app from embarrassing you in production."
+      },
+      {
+        "repo": "chiefautism/privacy-parser",
+        "stars": 364,
+        "score": 63,
+        "opportunity_type": "checklist",
+        "product_title": "PII Audit & Data Privacy Compliance Checklist",
+        "rationale": "Freelancers and small dev shops building apps that handle user data face PII/privacy compliance questions constantly but rarely have a structured process — this trending repo signals the pain point is active. No existing product in our catalog covers data privacy audit processes, making this a genuine gap for developers and consultants working with client data.",
+        "plan_prompt": "/plan Build a checklist product titled 'PII Audit & Data Privacy Compliance Checklist for Developers & Consultants' for mini-on-ai.com, priced at $9 on Gumroad. Audience: freelance developers, small SaaS teams, and consultants who build or maintain apps that collect, store, or process user data and need to ensure they are not creating privacy liability for themselves or their clients. The checklist contains 18 action items organized into 4 sections: (1) Data Inventory & Mapping (5 items) — identify all PII fields in your database, map data flows between services, flag third-party tools that receive user data, document retention periods, confirm encryption at rest and in transit; (2) Collection & Consent (4 items) — audit data collection forms for necessity, verify consent language is present and specific, check opt-out mechanisms work, review cookie/tracking consent banners; (3) Access & Storage Controls (4 items) — review who has database access, confirm PII is masked in logs, test data deletion/export endpoints, validate backup encryption; (4) Incident Readiness (5 items) — document breach notification timeline, identify who owns privacy incidents, test data subject access request (DSAR) process, review third-party DPAs, confirm privacy policy matches actual data practices. Each item includes a risk level tag (High/Medium/Low) and a 'quick fix' note. Tone is clear and action-oriented with no legal jargon. Sell angle: the 30-minute privacy audit that protects you and your clients before a problem becomes a breach."
+      },
+      {
+        "repo": "openclaw/clawsweeper",
+        "stars": 1207,
+        "score": 62,
+        "opportunity_type": "checklist",
+        "product_title": "GitHub Repo Hygiene Audit Checklist for Dev Teams",
+        "rationale": "ClawSweeper addresses a real repeated pain — stale issues and PRs choking GitHub repos — and dev teams/freelancers managing client repos face this constantly. No existing product in our catalog covers GitHub project hygiene, and a practical checklist with decision criteria for closing/archiving/prioritizing issues would sell well to indie devs and small dev shops.",
+        "plan_prompt": "/plan Build a checklist product titled 'GitHub Repo Hygiene Audit Checklist for Dev Teams & Freelancers' for mini-on-ai.com, priced at $9 on Gumroad. Audience: freelance developers, small dev teams, and open-source maintainers who are drowning in stale issues, zombie PRs, and unmaintained branches. The checklist contains 18 action items organized into 4 sections: (1) Issue Triage (5 items) — criteria for closing stale issues including age thresholds, no-response rules, duplicate detection, and label hygiene; (2) Pull Request Cleanup (4 items) — rules for identifying abandoned PRs, conflicted branches, and superseded work; (3) Branch Management (4 items) — merged branch deletion, naming convention audit, long-running branch risk flags; (4) Repo Health Signals (5 items) — README freshness check, CI/CD status, dependency vulnerability scan, contributor activity review, and milestone/project board cleanup. Each item includes a 'do this if' trigger condition and a 'how to decide' one-liner. Tone is direct and time-saving. Format as a scannable PDF checklist. Sell angle: run this once a quarter and reclaim your repo from chaos — takes 30 minutes, saves hours of confusion for your team."
+      },
+      {
+        "repo": "epoko77-ai/im-not-ai",
+        "stars": 541,
+        "score": 62,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Write Like a Human: AI Text Naturalizer Prompt Pack",
+        "rationale": "The pain of AI-sounding writing is universal among freelancers, content marketers, and small business owners who use AI drafts but need them to pass as human — a real recurring problem with no existing product in our catalog addressing it directly. A prompt pack with techniques for naturalizing AI output would sell well to our core audience.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Write Like a Human: AI Text Naturalizer Prompt Pack' for mini-on-ai.com, priced at $19 on Gumroad. Audience: freelancers, content marketers, and small business owners who draft with AI (ChatGPT, Claude, etc.) but need the output to sound natural, personal, and human — not robotic or obviously AI-generated. The pack contains 25 ready-to-use prompts organized into 5 sections: (1) Voice Injection — 5 prompts for loading a personal writing voice into the AI rewrite instruction, including tone descriptors, sentence rhythm guidance, and vocabulary constraints; (2) Phrase & Filler Removal — 5 prompts for stripping AI-tell phrases ('certainly', 'it is worth noting', 'in conclusion') and replacing with natural connectives; (3) Structural Humanization — 5 prompts for varying sentence length, adding intentional fragments, injecting first-person perspective, and removing over-formality; (4) Context-Specific Rewrites — 5 prompts for humanizing specific content types: emails, LinkedIn posts, blog intros, proposals, and social captions; (5) Final Polish Pass — 5 prompts for readability review, authenticity check, and 'would a real person say this?' audit. Each prompt includes a [ORIGINAL_TEXT] input block and a [VOICE_STYLE] variable. Tone is conversational and direct. Sell angle: 25 prompts that transform obvious AI copy into writing your audience actually believes."
+      },
+      {
+        "repo": "chekusu/wanman",
+        "stars": 387,
+        "score": 60,
+        "opportunity_type": "mini-guide",
+        "product_title": "Autonomous Multi-Agent Workflow Design Mini-Guide",
+        "rationale": "The concept of humans stepping back to an observer role while agents coordinate autonomously is genuinely novel and trending, and no existing guide in our catalog covers how to design observer-mode agentic workflows. However the audience is technical and the concept is still early-stage, keeping the score at the threshold boundary.",
+        "plan_prompt": "/plan Score at threshold. If building, create a mini-guide titled 'Observer-Mode AI: Designing Autonomous Multi-Agent Workflows' for developers and technical founders who want to orchestrate AI agents with minimal human intervention. 800-1000 words covering: what observer-mode means vs. traditional human-in-the-loop, 5 design principles for reliable agent handoffs, how to define agent stop conditions and escalation triggers, monitoring what autonomous agents are doing without micromanaging, and 3 real workflow examples (content pipeline, code review, lead research). Priced at $9."
+      }
+    ]
+  },
+  {
+    "run_at": "2026-04-29T05:01:55.288766+00:00",
+    "repos_fetched": 25,
+    "ideas_found": 11,
+    "top_score": 74,
+    "ideas": [
+      {
+        "repo": "freestylefly/awesome-gpt-image-2",
+        "stars": 1791,
+        "score": 74,
+        "opportunity_type": "prompt-pack",
+        "product_title": "GPT-Image-2 Prompt Pack for Creators",
+        "rationale": "1,800 stars on an image-prompt engineering repo confirms strong demand for structured GPT-Image-2 prompting workflows; no product in the catalog covers image generation prompts or GPT-Image-2 specifically. Freelancers and creators need reusable templates that reverse-engineer professional results without starting from scratch.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'GPT-Image-2 Prompt Pack for Creators' for sale on Gumroad at $19. Audience: freelancers, content creators, and small business owners using OpenAI's GPT-Image-2 API or ChatGPT image generation for client work, marketing assets, and product visuals. Deliver 25 ready-to-use prompts across 5 sections: (1) Product Photography Prompts — 5 prompts for generating clean, white-background and lifestyle product shots with lighting and angle control; (2) Brand & Marketing Asset Prompts — 5 prompts for social media graphics, ad creatives, and banner images with brand-consistent style; (3) Editorial & Illustration Prompts — 5 prompts for magazine-style editorial images, infographic backgrounds, and concept illustrations; (4) Image Editing & Inpainting Prompts — 5 prompts for directed edits, background replacement, and object removal using the edit endpoint; (5) Consistency & Style Lock Prompts — 5 prompts for maintaining visual consistency across a series of images for a brand or campaign. Each prompt includes a formula breakdown explaining which variables to swap. Tone: creative-practical, jargon-light. Include a one-page 'prompt anatomy' cheat sheet. This sells because GPT-Image-2 is brand new, the repo proves demand, and no structured prompt pack exists on Gumroad yet."
+      },
+      {
+        "repo": "op7418/guizang-ppt-skill",
+        "stars": 3915,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Code Magazine Deck Prompt Pack",
+        "rationale": "3,900+ stars signals massive demand for AI-generated HTML presentations beyond basic slides; existing products cover basic HTML design but not magazine-style swipe decks with layout variety. A prompt pack teaching users to direct layout choices, theme selection, and content structure fills the gap between 'install the skill' and 'get great results'.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code Magazine Deck Prompt Pack' for sale on Gumroad at $19. Audience: freelancers, consultants, and developers who use Claude Code to build HTML presentation decks and want professional magazine-style results. Deliver 25 ready-to-use prompts across 5 sections: (1) Deck Brief Prompts — 5 prompts for defining topic, audience, and visual tone before generation; (2) Layout Direction Prompts — 5 prompts for specifying horizontal swipe structure, hero section, and section flow; (3) Theme & Color Prompts — 5 prompts for communicating brand palettes, dark/light mode, and WebGL background intent; (4) Content Density Prompts — 5 prompts for controlling text vs. visual balance, headline hierarchy, and callout placement; (5) Export & Polish Prompts — 5 prompts for single-file cleanup, animation timing, and mobile-safe output. Each prompt should be copy-paste ready with bracketed placeholders. Tone: practical, creative-professional. Include a one-page quick-start guide explaining the workflow from brief to final HTML file. This sells because the skill is trending but users still struggle to direct AI toward polished, consistent output."
+      },
+      {
+        "repo": "ksimback/tech-debt-skill",
+        "stars": 283,
+        "score": 71,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Code Tech Debt Audit Prompt Pack",
+        "rationale": "A dedicated Claude Code skill for tech debt audits at 283 stars confirms developers want AI-assisted codebase diagnosis; no catalog product covers technical debt identification or remediation prompting. Freelancers inheriting legacy codebases or prepping for client handoffs need this repeatedly.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code Tech Debt Audit Prompt Pack' for sale on Gumroad at $19. Audience: freelance developers, contractor engineers, and indie builders who inherit or maintain codebases and want to use Claude Code to systematically identify, document, and prioritize technical debt. Deliver 25 ready-to-use prompts across 5 sections: (1) Initial Audit Prompts — 5 prompts for scanning file structure, dependency staleness, and naming inconsistencies across a codebase; (2) Code Quality Prompts — 5 prompts for identifying duplicated logic, overly complex functions, missing error handling, and anti-patterns; (3) Prioritization Prompts — 5 prompts for scoring debt items by impact/effort, generating a ranked remediation backlog, and writing JIRA-ready tickets; (4) Documentation Debt Prompts — 5 prompts for identifying missing comments, outdated READMEs, and undocumented APIs; (5) Client Communication Prompts — 5 prompts for generating a plain-English tech debt summary report for non-technical stakeholders. Each prompt is copy-paste ready with bracketed placeholders for repo context. Tone: engineering-practical. Include a one-page 'tech debt triage matrix' cheat sheet. This sells because freelancers inheriting codebases face this exact problem on every engagement and need a repeatable AI-assisted audit workflow."
+      },
+      {
+        "repo": "seulee26/mckinsey-pptx",
+        "stars": 338,
+        "score": 70,
+        "opportunity_type": "prompt-pack",
+        "product_title": "McKinsey-Style Consulting Slide Prompt Pack",
+        "rationale": "338 stars on a McKinsey-style PPTX generator confirms consultant and analyst demand for AI-generated structured slides; no catalog product covers consulting-style presentation prompts or PPTX content structure. Freelance consultants and strategists need prompts that produce the right narrative logic, not just pretty slides.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'McKinsey-Style Consulting Slide Prompt Pack' for sale on Gumroad at $19. Audience: freelance consultants, strategy analysts, and agency owners who use AI tools to build client-facing presentations and need structured, argument-driven slide content. Deliver 25 ready-to-use prompts across 5 sections: (1) Storyline Architecture Prompts — 5 prompts for building a Pyramid Principle narrative, exec summary, and logical flow from a brief; (2) Slide Type Prompts — 5 prompts for generating content for specific slide types: situation/complication/resolution, 2x2 matrix, waterfall chart narrative, comparison table, and recommendation slide; (3) Data Visualization Narrative Prompts — 5 prompts for writing the 'so what' headline and supporting bullets for charts and data slides; (4) Client Communication Prompts — 5 prompts for adapting deck tone for C-suite, board, and operational audiences; (5) Rapid Deck Assembly Prompts — 5 prompts for converting a meeting brief or email thread into a 10-slide deck outline with template selection rationale. Each prompt is copy-paste ready with bracketed placeholders. Tone: precise, consulting-register. Include a one-page 'Pyramid Principle cheat sheet'. This sells because consulting-style slide prompting is a genuine gap and the repo's star count confirms real interest."
+      },
+      {
+        "repo": "nexu-io/open-design",
+        "stars": 1902,
+        "score": 68,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Claude Code Design System Prompt Pack",
+        "rationale": "Open-design's 71 brand-grade design systems and 19 skills signals a gap in guidance on how to prompt AI for consistent, production-ready UI components rather than one-off screens. No existing product in the catalog addresses design system prompting or brand-token communication to Claude Code.",
+        "plan_prompt": "/plan Build a prompt-pack product titled 'Claude Code Design System Prompt Pack' for sale on Gumroad at $19. Audience: freelance developers and small agency owners using Claude Code or open-design to generate UI components and brand-consistent interfaces. Deliver 25 ready-to-use prompts across 5 sections: (1) Brand Token Prompts — 5 prompts for communicating color, typography, and spacing tokens to Claude; (2) Component Generation Prompts — 5 prompts for generating buttons, cards, modals, and nav bars that match a design system; (3) Design System Audit Prompts — 5 prompts for identifying inconsistencies across existing HTML/CSS files; (4) Multi-Theme Prompts — 5 prompts for generating dark mode, high-contrast, and white-label variants; (5) Export & Handoff Prompts — 5 prompts for producing clean, annotated single-file HTML or CSS outputs ready for client delivery. Each prompt should be copy-paste ready with bracketed placeholders for brand values. Tone: precise, developer-friendly. Include a one-page cheat sheet mapping prompt type to use case. This sells because open-design is trending but users need structured prompting workflows to get consistent brand-grade output."
+      },
+      {
+        "repo": "evanklem/evanflow",
+        "stars": 339,
+        "score": 66,
+        "opportunity_type": "checklist",
+        "product_title": "TDD AI Development Loop Checklist",
+        "rationale": "A 16-skill TDD feedback loop for AI-assisted development signals demand for structured development discipline when using Claude Code; no catalog product covers test-driven development workflows with AI assistance specifically. Freelance developers shipping client code need this process.",
+        "plan_prompt": "/plan Build a checklist product titled 'TDD AI Development Loop Checklist' for sale on Gumroad at $9. Audience: freelance developers and indie builders using Claude Code, Cursor, or Codex who want to ship higher-quality code by combining TDD principles with AI-assisted development. Deliver a 18-step checklist across 4 phases: (1) Brainstorm to Plan — 4 steps for using AI to convert a feature idea into a testable spec, user stories, and acceptance criteria; (2) Test-First Setup — 5 steps for writing failing tests before prompting AI to generate implementation, including prompt templates for each; (3) Execute and Iterate — 5 steps for running AI-generated code against tests, reading failures, and directing Claude toward fixes; (4) Checkpoint and Ship — 4 steps for code review prompts, regression test runs, and documentation generation before merge. Include 4 bonus Claude prompts for spec generation, test writing, failure diagnosis, and refactor review. Tone: engineering-practical, process-driven. This sells because TDD + AI coding is an emerging best practice that freelancers want but lack a structured workflow for."
+      },
+      {
+        "repo": "GammaLabTechnologies/harmonist",
+        "stars": 845,
+        "score": 65,
+        "opportunity_type": "mini-guide",
+        "product_title": "Multi-Agent Orchestration Setup Mini-Guide",
+        "rationale": "Harmonist's 186-agent framework with zero runtime dependencies signals a real practitioner gap: developers want to run multi-agent systems without cloud lock-in but lack a plain-language setup guide. The existing 'Multi-Agent API Integration Blueprint' covers API wiring, not local agent orchestration architecture.",
+        "plan_prompt": "/plan Build a mini-guide product titled 'Multi-Agent Orchestration Setup Mini-Guide' for sale on Gumroad at $9. Audience: freelance developers and technical founders building AI-powered tools who want to run multi-agent workflows locally without cloud dependencies or complex infrastructure. Word count: 900–1,100 words. Structure: (1) Introduction — why local multi-agent orchestration matters (cost, privacy, reliability); (2) Core Concepts in Plain English — agents vs. orchestrators, protocol enforcement, task delegation; (3) Choosing Your Architecture — when to use 2-agent vs. 5+ agent setups, decision criteria; (4) Setup Checklist — 8-step list for wiring agents together with a portable framework; (5) Common Failure Modes — top 4 orchestration mistakes and how to avoid them; (6) Quick-Start Prompt Templates — 3 Claude prompts for defining agent roles, handoff logic, and failure recovery. Tone: practitioner-direct, no academic fluff. This sells because multi-agent building is trending, the repo proves interest, and developers need a conceptual map before diving into code."
+      },
+      {
+        "repo": "future-agi/future-agi",
+        "stars": 712,
+        "score": 63,
+        "opportunity_type": "checklist",
+        "product_title": "LLM App Evaluation and Observability Checklist",
+        "rationale": "A 712-star eval/observability platform signals that developers shipping LLM apps lack structured processes for testing and monitoring; no catalog product covers LLM app quality assurance or eval setup. Freelancers building AI apps for clients need a repeatable checklist before handing off.",
+        "plan_prompt": "/plan Build a checklist product titled 'LLM App Evaluation and Observability Checklist' for sale on Gumroad at $9. Audience: freelance developers and indie builders who ship LLM-powered applications to clients or end users and need a structured pre-launch and ongoing quality process. Deliver a 17-step checklist across 4 phases: (1) Pre-Launch Eval Setup — 4 steps covering trace logging, baseline prompt tests, and output schema validation; (2) Evaluation Criteria Definition — 4 steps for defining accuracy, hallucination rate, latency, and safety thresholds; (3) Live Observability — 5 steps for monitoring token costs, error rates, model drift, and user feedback signals; (4) Iteration & Improvement — 4 steps for dataset curation, prompt regression testing, and eval-driven prompt updates. Include 3 bonus AI prompts for writing eval criteria, summarizing trace logs, and drafting client-facing quality reports. Tone: technical but accessible, process-oriented. This sells because every developer shipping an LLM app needs this process and no Gumroad product currently delivers it."
+      },
+      {
+        "repo": "openclaw/clawsweeper",
+        "stars": 1283,
+        "score": 62,
+        "opportunity_type": "checklist",
+        "product_title": "GitHub Issue and PR Triage Checklist",
+        "rationale": "ClawSweeper's 1,200+ stars confirm widespread pain around bloated GitHub backlogs; no product in the catalog addresses GitHub project hygiene or issue management. Freelancers and dev teams waste hours manually triaging stale issues, and a structured checklist with AI-assist prompts fills that gap cleanly.",
+        "plan_prompt": "/plan Build a checklist product titled 'GitHub Issue and PR Triage Checklist' for sale on Gumroad at $9. Audience: freelance developers, open-source maintainers, and small engineering teams who manage GitHub repositories and want to systematically reduce backlog bloat. Deliver a 18-step checklist across 4 phases: (1) Audit Phase — 4 steps for pulling stale issue/PR reports, labeling by age, and identifying duplicates; (2) Close Criteria Phase — 5 steps for defining closure rules (no activity, outdated context, resolved by other PR, etc.) with example label structures; (3) AI-Assisted Triage Phase — 5 steps for using Claude or ChatGPT to draft closure comments, summarize PR context, and suggest merge/close decisions; (4) Prevention Phase — 4 steps for setting up auto-stale bots, triage SLAs, and contributor response templates. Include 3 bonus AI prompts for generating closure messages and triage summaries. Tone: direct, ops-minded, developer-friendly. Format: clean numbered checklist with brief explanations per step. This sells because backlog triage is a recurring pain for any active dev and no Gumroad product currently addresses it."
+      },
+      {
+        "repo": "browser-use/bux",
+        "stars": 256,
+        "score": 62,
+        "opportunity_type": "mini-guide",
+        "product_title": "24/7 Claude Code Browser Agent Setup Guide",
+        "rationale": "Running a persistent Claude Code agent with browser access on your own hardware is a real setup challenge with no existing guide in the catalog; freelance developers want autonomous agents but lack a clear deployment walkthrough. 256 stars in a short window signals fast-growing interest.",
+        "plan_prompt": "/plan Build a mini-guide product titled '24/7 Claude Code Browser Agent Setup Guide' for sale on Gumroad at $9. Audience: freelance developers and technical founders who want to run a persistent, browser-capable Claude Code agent on their own machine or VPS without relying on cloud services. Word count: 950–1,100 words. Structure: (1) What a Persistent Browser Agent Actually Does — real use cases: automated research, form filling, scraping, monitoring; (2) Hardware and OS Requirements — minimum specs for Mac, Linux, and VPS; (3) Step-by-Step Setup — 7-step guide covering installation, browser harness config, Claude API key wiring, and process persistence (screen/tmux/systemd); (4) Giving Your Agent Tasks — 3 prompt templates for defining long-running tasks with checkpoints and failure recovery; (5) Safety and Cost Controls — rate limiting, API cost caps, and sandboxing browser access; (6) Troubleshooting — top 5 setup errors and fixes. Tone: concise, developer-friendly, step-by-step. This sells because autonomous agent deployment on personal hardware is a trending capability that developers want but find underdocumented."
+      },
+      {
+        "repo": "alash3al/stash",
+        "stars": 524,
+        "score": 60,
+        "opportunity_type": "mini-guide",
+        "product_title": "AI Agent Memory Setup Mini-Guide",
+        "rationale": "Persistent memory for AI agents is an emerging pain point with real practitioner demand, and no catalog product covers agent memory architecture. However, at 524 stars the audience size is still forming, making this a borderline opportunity.",
+        "plan_prompt": "/plan Build a mini-guide product titled 'AI Agent Memory Setup Mini-Guide' for sale on Gumroad at $9. Audience: freelance developers and technical builders who are building AI agents that need to remember context across sessions — chat bots, research agents, personal assistants. Word count: 900–1,000 words. Structure: (1) Why Agent Memory Matters — the cost of stateless agents, what users actually expect; (2) Three Memory Layers Explained — episodic (past interactions), factual (user/world data), and working context (current task state); (3) Self-Hosted vs. Cloud Memory — trade-offs of Postgres-backed local memory vs. hosted vector stores; (4) Setup Walkthrough — 6-step guide to connecting a memory layer to an agent using MCP or direct API; (5) Prompt Design for Memory — 4 prompt templates for storing, retrieving, and summarizing agent memory; (6) Common Mistakes — top 3 memory design errors that cause agents to hallucinate or loop. Tone: practical, developer-friendly. This sells because agent memory is a trending unsolved problem and developers need a conceptual framework before writing code."
+      }
+    ]
+  },
+  {
+    "run_at": "2026-04-30T05:02:00.564118+00:00",
+    "repos_fetched": 25,
+    "ideas_found": 8,
+    "top_score": 78,
+    "ideas": [
+      {
+        "repo": "ksimback/tech-debt-skill",
+        "stars": 299,
+        "score": 78,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Tech Debt Audit Prompt Pack for Claude Code",
+        "rationale": "A Claude Code skill for thorough, file-cited tech debt audits is trending and no existing product in the published list covers tech debt analysis. Freelance developers and dev team leads face tech debt audit requests constantly and need structured prompts to produce credible, actionable reports.",
+        "plan_prompt": "/plan Build a 20-prompt pack titled 'Tech Debt Audit Prompt Pack for Claude Code' priced at $19 on Gumroad. Audience: freelance developers, tech leads, and engineering consultants who need to audit codebases for tech debt and communicate findings clearly to clients or stakeholders. Product type: prompt-pack. Structure in 5 sections: (1) Codebase Discovery (4 prompts: generate file-by-file tech debt inventory, identify dead code and unused dependencies, map circular dependencies and tight coupling, surface outdated library versions with CVE risk), (2) Code Quality Analysis (4 prompts: audit for missing error handling patterns, identify duplicated logic and DRY violations, flag overly complex functions by cyclomatic complexity, find inconsistent naming and style violations), (3) Architecture Debt (4 prompts: identify architectural anti-patterns, surface missing abstraction layers, flag scalability bottlenecks in data access patterns, identify missing or weak test coverage by module), (4) Prioritization and Roadmap (4 prompts: score debt items by effort vs. risk matrix, generate a phased remediation roadmap, write executive summary of debt severity, create a 30/60/90 day debt paydown plan), (5) Stakeholder Communication (4 prompts: write client-facing tech debt report, generate engineering team debt retrospective agenda, create debt tracking ticket templates, write justification for debt remediation budget). Each prompt copy-paste ready for Claude Code with [codebase], [tech stack], and [audience] placeholders. Tone: authoritative, engineer-credible, client-presentable. Selling angle: turn any codebase into a documented, prioritized tech debt audit in hours instead of days."
+      },
+      {
+        "repo": "freestylefly/awesome-gpt-image-2",
+        "stars": 2197,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "GPT Image-2 Prompt Pack for Creators",
+        "rationale": "329 reverse-engineered image prompt examples signals massive creator demand for structured GPT Image-2 prompting — no equivalent product exists on Gumroad yet. Freelancers and social media creators need ready-to-use, categorized prompts for commercial image generation.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'GPT Image-2 Prompt Pack for Freelancers and Creators' priced at $19 on Gumroad. Audience: freelance designers, social media managers, e-commerce sellers, and content creators using GPT Image-2 (via ChatGPT or API) to generate commercial-grade images. Product type: prompt-pack. Structure the pack in 5 sections: (1) Product Photography (5 prompts: hero product shot on white, lifestyle product in scene, flat lay arrangement, close-up texture detail, before/after comparison), (2) Social Media Content (5 prompts: Instagram carousel cover, Pinterest pin visual, YouTube thumbnail scene, LinkedIn thought leadership graphic, TikTok-style bold text overlay scene), (3) Brand and Marketing Assets (5 prompts: logo concept mood board, brand announcement graphic, event promotional banner, newsletter header illustration, pitch deck hero image), (4) E-Commerce and Ads (5 prompts: Amazon-style product listing image, Facebook/Meta ad creative, Google display banner scene, seasonal sale promotional image, unboxing concept visual), (5) Editorial and Content (5 prompts: blog post hero illustration, infographic base visual, case study cover image, ebook cover design concept, webinar promotional graphic). Each prompt should be fully written out with style modifiers, lighting cues, aspect ratio suggestions, and placeholders in [brackets] for customization. Tone: practical, results-focused. Selling angle: skip the trial-and-error — get commercial-grade GPT Image-2 outputs on the first try."
+      },
+      {
+        "repo": "evanklem/evanflow",
+        "stars": 355,
+        "score": 72,
+        "opportunity_type": "prompt-pack",
+        "product_title": "TDD Feedback Loop Prompt Pack for Claude Code",
+        "rationale": "A 16-skill TDD-driven development loop (brainstorm → plan → execute → iterate) is a genuinely novel workflow pattern not covered by any existing product in the published list. Freelance developers using Claude Code need structured prompts for disciplined iterative development, not just one-off code generation.",
+        "plan_prompt": "/plan Build a 20-prompt pack titled 'TDD Feedback Loop Prompt Pack for Claude Code' priced at $19 on Gumroad. Audience: freelance developers and indie hackers using Claude Code who want to move from ad-hoc AI coding to a disciplined test-driven, iterative development workflow. Product type: prompt-pack. Structure in 5 sections mirroring the TDD loop: (1) Brainstorm and Scope (4 prompts: generate user stories from rough idea, identify edge cases before writing code, define acceptance criteria from feature description, create minimal viable scope from requirements), (2) Plan and Architect (4 prompts: generate implementation plan with file structure, identify dependencies and risks before coding, write pseudocode for complex function, create checkpoint milestones for iterative build), (3) Test-First Writing (4 prompts: write failing unit tests before implementation, generate test cases from acceptance criteria, write integration test stubs for new feature, create mock data for test scenarios), (4) Execute and Implement (4 prompts: implement code to pass existing tests, refactor after green tests, handle edge cases identified in tests, generate error handling from test failure patterns), (5) Review and Iterate (4 prompts: run post-implementation code review checklist, identify next iteration improvements, generate regression test additions, write commit message and PR description from changes). Each prompt copy-paste ready with [placeholders]. Tone: disciplined, developer-focused, respects TDD principles. Selling angle: stop writing throwaway code — use Claude Code as a true TDD partner with structured prompts for every phase of the loop."
+      },
+      {
+        "repo": "browser-use/bux",
+        "stars": 265,
+        "score": 70,
+        "opportunity_type": "mini-guide",
+        "product_title": "24/7 Claude Code Agent Setup Mini-Guide",
+        "rationale": "Running a persistent, always-on Claude Code agent with browser capabilities on your own machine is a genuinely new workflow pattern with no existing product in the published list. Freelance developers and indie hackers want to automate background tasks but don't know how to configure and run persistent agents reliably.",
+        "plan_prompt": "/plan Build an 800–1200 word mini-guide titled '24/7 Claude Code Agent Setup Mini-Guide: Run Autonomous AI Agents on Your Own Machine' priced at $9 on Gumroad. Audience: freelance developers, indie hackers, and automation-oriented small business owners who want to run persistent AI agents that browse the web, execute tasks, and run unsupervised on their own hardware. Product type: mini-guide. Structure: (1) What a 24/7 Agent Actually Means (difference between one-shot AI and persistent agent, what 'on any box you own' unlocks vs. cloud-only agents, 150 words), (2) Hardware and OS Requirements (minimum specs, recommended Linux/Mac setup, Docker vs. bare metal trade-offs, 150 words), (3) Installing and Configuring Claude Code for Agent Mode (API key setup, agent permission scopes, browser harness installation, 200 words), (4) Defining Agent Tasks and Goals (how to write persistent task files, setting success criteria, configuring retry and error recovery behavior, 200 words), (5) Keeping the Agent Running (systemd service vs. screen/tmux vs. Docker restart policy, monitoring agent health, log rotation, 150 words), (6) Safety and Cost Controls (rate limiting API calls, setting spend caps, sandboxing browser access, what to never let an agent do unsupervised, 150 words), (7) Quick-Start Checklist (10 action items to go from zero to running agent in one afternoon, 100 words). Tone: pragmatic, security-conscious, developer-friendly. Selling angle: stop babysitting your AI — configure a persistent agent that works while you sleep, safely, on hardware you control."
+      },
+      {
+        "repo": "cursor/cookbook",
+        "stars": 1802,
+        "score": 68,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Cursor AI Workflow Prompt Pack for Developers",
+        "rationale": "Cursor's official cookbook signals massive developer interest in structured Cursor workflows, yet no Cursor-specific prompt pack exists in the already-published list. Freelance developers need ready-to-use prompts for common Cursor tasks beyond basic autocomplete.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'Cursor AI Workflow Prompt Pack for Developers' priced at $19 on Gumroad. Audience: freelance developers and small dev teams using Cursor IDE to accelerate coding workflows. Product type: prompt-pack. Structure in 5 sections: (1) Code Review and Refactor (5 prompts: full function refactor for readability, dead code detection, naming convention audit, performance bottleneck scan, security vulnerability check), (2) Feature Development (5 prompts: scaffold new API endpoint, generate CRUD from schema, write unit tests for new function, add error handling to existing code, generate TypeScript types from JSON), (3) Debugging and Bug Fixes (5 prompts: trace async bug root cause, explain cryptic error message, find off-by-one errors, debug race condition, reproduce flaky test), (4) Documentation Generation (5 prompts: write JSDoc from function signature, generate README section from code, create API endpoint docs, write inline comments for complex logic, generate changelog entry from diff), (5) Codebase Navigation and Understanding (5 prompts: summarize unfamiliar codebase, map data flow through module, identify coupling between files, explain third-party library usage, document architectural decisions). Each prompt should be copy-paste ready for Cursor's chat or composer with [placeholders]. Tone: developer-native, no fluff. Selling angle: turn Cursor from autocomplete into a true pair programmer with battle-tested prompts."
+      },
+      {
+        "repo": "alash3al/stash",
+        "stars": 565,
+        "score": 65,
+        "opportunity_type": "mini-guide",
+        "product_title": "AI Agent Memory Setup Mini-Guide",
+        "rationale": "Persistent memory for AI agents (episodes, facts, working context via Postgres + MCP) is a real gap developers face when building production agents — no existing product covers this topic in the published list. A concise practitioner guide on setting up and using agent memory layers would sell to the growing AI agent builder audience.",
+        "plan_prompt": "/plan Build an 800–1200 word mini-guide titled 'AI Agent Memory Setup Mini-Guide: Persistent Context for Production Agents' priced at $9 on Gumroad. Audience: freelance developers and indie hackers building AI agents with Claude, GPT, or open-source models who need agents to remember context across sessions. Product type: mini-guide. Structure: (1) Why Agent Memory Matters (the stateless problem — why agents forget, and what it costs in UX and reliability, 150 words), (2) Three Types of Agent Memory (episodic/conversational history, factual/entity memory, working context — explain each with one real example, 200 words), (3) Architecture Options (self-hosted Postgres approach vs. hosted vector DBs vs. simple file-based memory, with trade-offs, 200 words), (4) MCP Server Integration (what MCP is, how to connect a memory layer to Claude Code or similar via MCP, step-by-step overview, 250 words), (5) What to Store and What to Forget (memory hygiene — TTLs, relevance scoring, avoiding context bloat, 150 words), (6) Quick-Start Checklist (10 action items to get a working memory layer in one afternoon, 150 words). Tone: pragmatic, developer-friendly, no academic jargon. Selling angle: stop building amnesiac agents — add persistent memory in an afternoon without a cloud dependency."
+      },
+      {
+        "repo": "nexu-io/open-design",
+        "stars": 4878,
+        "score": 62,
+        "opportunity_type": "prompt-pack",
+        "product_title": "Open Design System Prompt Pack for Claude Code",
+        "rationale": "This repo builds on Claude Code for AI-driven design systems, a hot intersection of dev and design. While HTML Design/Presentation packs exist, a pack focused on design system generation, brand tokens, and component specs via Claude Code is a distinct gap.",
+        "plan_prompt": "/plan Build a 25-prompt pack titled 'Open Design System Prompt Pack for Claude Code' priced at $19 on Gumroad. Audience: freelance designers and frontend developers using Claude Code or similar AI coding tools to generate UI components and design systems. Product type: prompt-pack. The pack should include prompts in 5 sections: (1) Design System Bootstrap (5 prompts: generate color token system, typography scale, spacing system, icon library spec, and component naming conventions), (2) Component Generation (5 prompts: button variants, form elements, card layouts, navigation components, modal/dialog patterns), (3) Brand Style Guide Creation (5 prompts: brand voice + visual identity doc, logo usage guidelines, dark/light mode variants, accessibility contrast audit, export-ready style guide), (4) Design-to-Code Handoff (5 prompts: convert Figma-style specs to HTML/CSS, generate Tailwind config from brand tokens, document component API props, create Storybook-ready component stubs, generate design review checklist), (5) Design QA and Iteration (5 prompts: audit existing UI for consistency, generate A/B test variants, create responsive breakpoint specs, write design critique prompts, generate stakeholder presentation copy for design decisions). Tone: practical, professional, immediately usable. Each prompt should be copy-paste ready with clear placeholders in [brackets]. Sell angle: saves designers 3-5 hours per design system sprint by giving Claude Code precise instructions it can act on."
+      },
+      {
+        "repo": "t8y2/dbx",
+        "stars": 265,
+        "score": 62,
+        "opportunity_type": "checklist",
+        "product_title": "Database Client Setup Checklist for Developers",
+        "rationale": "Open-source multi-database GUI client trending signals freelance developers setting up local database environments — a practical setup + configuration checklist for multi-DB environments (MySQL, Postgres, MongoDB, Redis) has no equivalent in the existing product list and fills a real repeated pain point.",
+        "plan_prompt": "/plan Build a 20-step checklist titled 'Multi-Database Setup and Configuration Checklist for Freelance Developers' priced at $9 on Gumroad. Audience: freelance developers and consultants who need to quickly set up, connect, and manage multiple database types (MySQL, PostgreSQL, SQLite, Redis, MongoDB) for client projects using lightweight GUI or CLI tools. Product type: checklist. Structure in 5 sections: (1) Environment Prep (4 steps: install database engines locally vs. Docker, set up environment variables for connection strings, configure firewall/network rules for local access, create .env template for multi-DB project), (2) Connection Setup Per DB Type (4 steps: connect MySQL/Postgres with role-based credentials, configure MongoDB connection string with auth, set Redis connection with optional TLS, test all connections with a health-check query), (3) Security Hardening (4 steps: disable remote root login, rotate credentials before client handoff, enable SSL/TLS for production connections, set up read-only replica credentials for reporting), (4) Query and Management Workflow (4 steps: set up saved queries library, configure query history and audit logging, set up scheduled backup exports, document schema version for client), (5) Handoff and Documentation (4 steps: generate connection config summary doc for client, write database access runbook, create offboarding credential revocation checklist, tag and archive schema snapshots). Tone: practical, checklist-native, no assumed expertise. Selling angle: never forget a database config step on a client project again — every DB type covered in one checklist."
+      }
+    ]
   }
 ]

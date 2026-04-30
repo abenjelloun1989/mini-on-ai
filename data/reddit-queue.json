@@ -4609,6 +4609,200 @@
       "product_id": null,
       "reply_text": null,
       "replied_at": null
+    },
+    {
+      "post_id": "1suplm6",
+      "subreddit": "automation",
+      "title": "Choosing between different robotic process automation tools for UI tasks",
+      "body": "My company has a lot of legacy desktop software that doesn't have any modern integrations. I’ve been researching various robotic process automation tools to handle the repetitive data entry between our old ERP and our new cloud-based CRM. \n\nThe problem is that most of these tools are either too enterprise and expensive, or too flimsy and break the moment a window moves. I need something robust but manageable for a medium-sized team. Has anyone found a sweet spot for RPA that doesn't require a dedicated maintenance engineer?",
+      "url": "https://reddit.com/r/automation/comments/1suplm6/choosing_between_different_robotic_process/",
+      "author": "smartyladyphd",
+      "found_at": "2026-04-28T07:01:39.022990+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "Legacy ERP to Cloud CRM Integration Blueprint",
+        "category": "n8n-template",
+        "description": "A pre-built n8n workflow template that automates repetitive data entry between legacy desktop ERP systems and modern cloud-based CRMs without requiring expensive enterprise RPA tools.",
+        "tags": [
+          "automation",
+          "legacy-systems",
+          "data-integration",
+          "rpa-alternative",
+          "enterprise"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sw5twu",
+      "subreddit": "nocode",
+      "title": "Everyone tells founders to start with no-code. I tell mine the opposite. Here's why it's the wrong move for ~30% of you.",
+      "body": "I'm going to get downvoted in a sub literally called nocode for saying this, but it's been on my mind for a while.\n\nQuick context so you know where I'm coming from. I build MVPs for founders for a living, and a decent chunk of that work is rebuilding no-code apps that hit a wall. So if I were being smart, my whole pitch would be \"start on Lovable or Bubble, just call me when it breaks.\" That'd be great for my pipeline, but for about three out of every ten founders who reach out, no-code is the wrong starting point, and I keep talking them out of it on the discovery call against my own financial interest because the rebuild work has started to feel a little sad.\n\nIf you're validating an idea, building something that's mostly forms and dashboards, selling to consumers or small businesses, or",
+      "url": "https://reddit.com/r/nocode/comments/1sw5twu/everyone_tells_founders_to_start_with_nocode_i/",
+      "author": "Warm-Reaction-456",
+      "found_at": "2026-04-28T07:01:41.312737+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "No-Code to Custom Code Migration Playbook",
+        "category": "mini-guide",
+        "description": "A practical guide helping founders and builders identify when to abandon no-code platforms, what specific walls they'll hit, and a step-by-step framework for transitioning to custom code without losing momentum or rebuilding from scratch.",
+        "tags": [
+          "no-code",
+          "mvp-strategy",
+          "technical-debt",
+          "founder-decisions",
+          "scaling"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1strwba",
+      "subreddit": "n8n",
+      "title": "Looking for ideas for something to build to learn n8n on my own",
+      "body": "I'm looking to get into AI Automation as a career. I see Zapier, n8n, and similar platforms mentioned often, and it seems crucial to gain some experience with these platforms. They seem really powerful for creating complex automations across multiple enterprise-grade softwares, but I'm not sure how that can translate into anything I can do on my own beyond some basic tutorials of the features. \n\nIf you've learned these platforms on your own, what did you build with them?",
+      "url": "https://reddit.com/r/n8n/comments/1strwba/looking_for_ideas_for_something_to_build_to_learn/",
+      "author": "-endjamin-",
+      "found_at": "2026-04-28T07:01:54.719236+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "n8n Learning Projects: From Basics to Portfolio",
+        "category": "mini-guide",
+        "description": "A structured guide providing 5-10 progressively complex n8n project ideas with step-by-step instructions that help career-changers build practical automation skills and portfolio pieces without needing to already know what to build.",
+        "tags": [
+          "n8n",
+          "automation",
+          "learning-projects",
+          "career-transition",
+          "hands-on"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sufth5",
+      "subreddit": "nocode",
+      "title": "Best AI headshot tool in 2026?",
+      "body": "Asking here because I trust real community recommendations over SEO listicles.\n\nMost comparison posts I find are clearly not written from actual experience. Just the same tools listed in a different order.\n\nStarted looking into the best AI headshot tools in 2026 because my profile photo across LinkedIn, my site, and anywhere else I show up professionally is overdue for an update.\n\nThe tools that keep coming up as genuinely worth trying are the ones that train on your own photos rather than generating a polished face that barely resembles you. This [AI headshot tool](http://aiphotocool.com) gets mentioned a lot for this reason. The likeness accuracy seems to be the main thing that separates it from the generic filter approach most tools use.\n\nMain things I care about:\n\n* Output actually loo",
+      "url": "https://reddit.com/r/nocode/comments/1sufth5/best_ai_headshot_tool_in_2026/",
+      "author": "Impossibu",
+      "found_at": "2026-04-28T07:01:56.917830+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Headshot Tools Evaluation & Selection Guide",
+        "category": "mini-guide",
+        "description": "A hands-on guide helping professionals evaluate and select the best AI headshot tool for their needs, with real-world testing criteria, tool comparisons, and a decision framework.",
+        "tags": [
+          "ai-tools",
+          "professional-branding",
+          "headshots",
+          "tool-evaluation"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1svg7ut",
+      "subreddit": "nocode",
+      "title": "How do you keep track of useful insights from AI chats?",
+      "body": "I started using AI a couple of months ago and noticed that I often get really useful ideas from ChatGPT / Claude, but weeks later I can hardly remember where they were.\n\n\n\nSaving full conversations doesn’t help much because main problem is findind concrete answers in full transcripts.\n\n\n\nFor those who use AI tools regularly:\n\n\n\nHow do you preserve valuable outputs or ideas so you can actually use them later?\n\n\n\nDo you rely on notes, bookmarks, copy-paste workflows, or something else?",
+      "url": "https://reddit.com/r/nocode/comments/1svg7ut/how_do_you_keep_track_of_useful_insights_from_ai/",
+      "author": "No_Winner_6296",
+      "found_at": "2026-04-29T07:01:59.559834+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Chat Insights Organization System",
+        "category": "mini-guide",
+        "description": "A practical guide that teaches users how to systematically capture, tag, and retrieve valuable insights from AI conversations so they can quickly find and reuse them weeks later.",
+        "tags": [
+          "ai-productivity",
+          "knowledge-management",
+          "claude",
+          "chatgpt",
+          "organization"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sziqx4",
+      "subreddit": "automation",
+      "title": "AI Agents for Lead Management: What Actually Works",
+      "body": "Over the last few months, we basically rebuilt our whole lead pipeline around AI agents. It wasn't some grand strategic decision, more like we were getting buried in leads and something had to change.\n\nHere's the problem we had: Leads were coming from everywhere. Demo signups, webinars, some cold outreach responses. Our sales team was manually sorting through them to figure out what was actually worth calling. You know how that ends. They miss stuff, spend time on low-quality leads, and the good ones get stuck in a queue waiting for attention.\n\nWe tried the normal automation thing first. Score leads based on company size, industry, email domain. Fine for filtering out obvious noise. Doesn't work when you need to understand what someone actually wants. A three-person founder asking about pr",
+      "url": "https://reddit.com/r/automation/comments/1sziqx4/ai_agents_for_lead_management_what_actually_works/",
+      "author": "Cnye36",
+      "found_at": "2026-04-30T07:01:58.880025+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Lead Scoring & Qualification Workflow",
+        "category": "n8n-template",
+        "description": "A ready-to-deploy n8n workflow that automatically ingests leads from multiple sources, scores and qualifies them using AI agents, and routes them to sales teams based on priority—eliminating manual lead sorting.",
+        "tags": [
+          "lead-management",
+          "sales-automation",
+          "ai-agents",
+          "qualification"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
+    },
+    {
+      "post_id": "1sw53iy",
+      "subreddit": "automation",
+      "title": "Let's learn together",
+      "body": "Like many of you I have been wanting to learn new skills like ai automation , prompting ... but I am not really motivated so if there anyone here facing the Same problem let's start together and motivate each other",
+      "url": "https://reddit.com/r/automation/comments/1sw53iy/lets_learn_together/",
+      "author": "Hopeful_Eggplant1072",
+      "found_at": "2026-04-30T07:02:01.095796+00:00",
+      "status": "pending",
+      "brief": {
+        "score": 72,
+        "title": "AI Automation & Prompting Learning Roadmap",
+        "category": "mini-guide",
+        "description": "A structured learning guide with weekly milestones, practical exercises, and accountability checkpoints that helps beginners overcome motivation barriers while building AI automation and prompting skills together with peers.",
+        "tags": [
+          "ai-automation",
+          "prompting",
+          "motivation",
+          "learning-path",
+          "beginner-friendly"
+        ],
+        "why_not_buildable": "",
+        "buildable": true
+      },
+      "product_id": null,
+      "reply_text": null,
+      "replied_at": null
     }
   ]
 }
