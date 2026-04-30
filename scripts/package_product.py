@@ -57,8 +57,10 @@ def package_product(product_id_arg: str = None) -> dict:
     folder_name = "".join(c for c in meta["title"] if c.isalnum() or c in " -_").strip()
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-        for asset_file in assets_dir.iterdir():
-            zf.write(asset_file, f"{folder_name}/{asset_file.name}")
+        for asset_file in assets_dir.rglob("*"):
+            if asset_file.is_file():
+                arc_name = f"{folder_name}/{asset_file.relative_to(assets_dir)}"
+                zf.write(asset_file, arc_name)
 
     size_kb = round(zip_path.stat().st_size / 1024, 1)
     log("package-product", f"Created package.zip ({size_kb}KB)")
