@@ -4,7 +4,7 @@
 ClauseGuard — AI Contract & NDA Analyzer
 
 ## Short Description (132 chars max)
-Spot red flags in any contract before you sign. AI-powered risk score, clause rewrites, and negotiation tips — free.
+Spot red flags in any contract before you sign. Risk score, clause rewrites & negotiation tips. Free + Pro ($7/mo) for unlimited.
 
 ## Detailed Description (5000 chars max — paste as-is)
 
