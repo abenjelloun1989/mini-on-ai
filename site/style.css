@@ -940,6 +940,50 @@ body.light-mode .site-header {
   transform: translateY(-1px);
 }
 
+.product-upsell {
+  margin: -24px 0 32px;
+  padding: 18px 22px;
+  border-left: 4px solid var(--brand);
+  background: var(--brand-glow);
+  border-radius: 8px;
+}
+
+.product-upsell-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: 6px;
+}
+
+.product-upsell-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.product-upsell-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.product-upsell-cta {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.product-upsell-cta:hover {
+  text-decoration: underline;
+}
+
 .product-gumroad-desc {
   background: var(--surface);
   border: 1px solid var(--border);

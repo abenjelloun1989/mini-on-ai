@@ -369,6 +369,53 @@ def _gumroad_copy_block(meta: dict) -> str:
     return ""  # Moved to Telegram notification
 
 
+_UPSELL_CATALOG_CACHE = None
+
+
+def _load_catalog_cached() -> dict:
+    """Load the product catalog once per process for upsell lookups."""
+    global _UPSELL_CATALOG_CACHE
+    if _UPSELL_CATALOG_CACHE is None:
+        try:
+            _UPSELL_CATALOG_CACHE = read_json("data/product-catalog.json")
+        except Exception:
+            _UPSELL_CATALOG_CACHE = {"products": []}
+    return _UPSELL_CATALOG_CACHE
+
+
+def _render_upsell_block(meta: dict) -> str:
+    """Render an upsell card if meta declares an upsell_to target."""
+    target_id = meta.get("upsell_to")
+    if not target_id:
+        return ""
+    catalog = _load_catalog_cached()
+    target = next((p for p in catalog.get("products", []) if p.get("id") == target_id), None)
+    if not target:
+        return ""
+    title = escape_html(target.get("title", ""))
+    desc_full = target.get("description", "") or ""
+    # First sentence only, capped
+    first_sentence = desc_full.split(". ")[0].strip()
+    if len(first_sentence) > 180:
+        first_sentence = first_sentence[:177] + "..."
+    elif first_sentence and not first_sentence.endswith("."):
+        first_sentence += "."
+    desc = escape_html(first_sentence)
+    price_cents = target.get("price") or 0
+    price_label = f"${price_cents // 100}" if price_cents else "Free"
+    gumroad_url = target.get("gumroad_url") or ""
+    if not gumroad_url:
+        return ""
+    tracked = _utm_url(gumroad_url, "upsell", meta.get("id", "unknown"))
+    return f"""
+    <aside class="product-upsell">
+      <div class="product-upsell-label">⚡ Upgrade for the full pack</div>
+      <div class="product-upsell-title">{title}</div>
+      <div class="product-upsell-desc">{desc}</div>
+      <a href="{escape_html(tracked)}" class="product-upsell-cta" target="_blank" rel="noopener">Get the full pack — {price_label} →</a>
+    </aside>"""
+
+
 def build_product_page(meta: dict) -> str:
     cat = meta.get("category", "prompt-packs")
     cat_color = CATEGORY_COLORS.get(cat, "#6366F1")
@@ -417,6 +464,7 @@ def build_product_page(meta: dict) -> str:
     <p class="product-detail-desc">{escape_html(meta['description'])}</p>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">{count_label}</p>
     {cta_html}
+{_render_upsell_block(meta)}
 
     <div class="product-gumroad-desc">
 {_rich_description_html(meta)}
