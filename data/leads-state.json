@@ -1,0 +1,23 @@
+{
+  "contacted": [
+    "advisors@emlawyers.com.au",
+    "contact@lgmadvisors.com.au",
+    "elizabeth.lewis@eclewis.com",
+    "enquiries@nathsolicitors.co.uk",
+    "info@mcculloughlaw.com",
+    "Jonathan@JKleiman.com",
+    "team@sprintlaw.com.au"
+  ],
+  "skipped_domains": [
+    "eclewis.com",
+    "emlawyers.com.au",
+    "insightlawfirm.ca",
+    "jkleiman.com",
+    "kellylegalgroup.com",
+    "lgmadvisors.com.au",
+    "mcculloughlaw.com",
+    "nathsolicitors.co.uk",
+    "sprintlaw.com.au",
+    "theblakefirm.com"
+  ]
+}
