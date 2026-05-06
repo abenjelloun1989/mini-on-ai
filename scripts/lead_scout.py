@@ -128,14 +128,16 @@ def draft_email(lead: dict) -> str:
 Their hook: {lead.get('personalization_hook', '')}
 Practice note: {lead.get('practice_note', '')}
 
-Goal: offer ClauseGuard — AI contract review tool. 14-day free Pro trial. No commitment.
-ClauseGuard: https://mini-on-ai.com/clauseguard.html
+Goal: introduce ClauseGuard — a Chrome extension that reviews contracts with AI in seconds.
+ClauseGuard landing page: https://mini-on-ai.com/clauseguard.html
 
 Constraints:
 - Under 110 words
 - Open with one specific detail about THEM (use the hook). Lead with a question or observation, not a pitch.
-- End with a soft ask (try the trial, or short call)
+- End with a soft ask: invite them to check out the Chrome extension or ask a question — no phone call, no trial promise, no commitment language
+- ClauseGuard is a Chrome extension — always name it as such, never imply it is a website or webapp
 - No emojis, no marketing fluff, no "I hope this finds you well"
+- No mention of free trials, phone calls, demos, or any offer the sender cannot guarantee
 - Sender is "hello@mini-on-ai.com"
 - MANDATORY: include a brief signature/P.S. that references mini-on-ai.com OR a related product (ClauseGuard / InvoiceGuard / JobGuard). Keep it natural, one short line.
 
