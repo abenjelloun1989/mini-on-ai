@@ -231,7 +231,8 @@ def main():
             send_telegram(f"⚠️ lead-scout failed: {e}")
         sys.exit(1)
 
-    if len(leads) < 3:
+    min_leads = 1 if args.dry_run else 3
+    if len(leads) < min_leads:
         log("lead-scout", f"Only {len(leads)} leads — too few, aborting send")
         if not args.dry_run:
             from telegram_notify import send_telegram
