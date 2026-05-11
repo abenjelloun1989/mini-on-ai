@@ -488,11 +488,15 @@ def cmd_help(group: str = "") -> str:
 
     # Default — grouped overview
     pea_block = (
-        "📈 <b>Trading (PEA)</b>\n"
-        "  /pea_help — full /pea_* command list\n"
-        "  /pea_status · /pea_positions · /pea_update\n"
+        "📈 <b>Trading PEA</b>\n"
+        "  /pea_status — état (valeur, allocation, coût agent)\n"
+        "  /pea_positions · /pea_costs · /pea_journal\n"
+        "  /pea_bootstrap — ordres Jour 0\n"
+        "  /pea_done_jour0 · /pea_jour0_detail\n"
+        "  /pea_update — mettre à jour le snapshot\n"
         "  /pea_morning · /pea_midday · /pea_evening · /pea_weekly\n"
-        "  /pea_proposals · /pea_approve · /pea_reject\n\n"
+        "  /pea_proposals · /pea_approve · /pea_reject\n"
+        "  /pea_help — aide complète\n\n"
     ) if pea_handlers is not None else ""
     return (
         pea_block +
