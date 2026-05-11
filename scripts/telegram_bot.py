@@ -1719,18 +1719,22 @@ def main():
         ]
         if pea_handlers is not None:
             cmds += [
-                {"command": "pea_help",      "description": "Trading: full /pea-* help"},
-                {"command": "pea_status",    "description": "Trading: phase, NAV, proposals"},
-                {"command": "pea_positions", "description": "Trading: latest snapshot"},
-                {"command": "pea_update",    "description": "Trading: post a position update"},
-                {"command": "pea_morning",   "description": "Trading: run morning research"},
-                {"command": "pea_midday",    "description": "Trading: run midday deep-read"},
-                {"command": "pea_evening",   "description": "Trading: run evening digest"},
-                {"command": "pea_weekly",    "description": "Trading: run weekend deep-dive"},
-                {"command": "pea_proposals", "description": "Trading: list pending proposals"},
-                {"command": "pea_journal",   "description": "Trading: today's journal"},
-                {"command": "pea_universe",  "description": "Trading: universe stats"},
-                {"command": "pea_freeze",    "description": "Trading: fire kill switch"},
+                {"command": "pea_status",       "description": "PEA: état (valeur, allocation, coût)"},
+                {"command": "pea_positions",    "description": "PEA: détail des lignes"},
+                {"command": "pea_costs",        "description": "PEA: coût agent mois + 7j"},
+                {"command": "pea_bootstrap",    "description": "PEA: envoyer les ordres Jour 0 ici"},
+                {"command": "pea_jour0_detail", "description": "PEA: détail des ordres Jour 0"},
+                {"command": "pea_done_jour0",   "description": "PEA: confirmer Jour 0 exécuté"},
+                {"command": "pea_update",       "description": "PEA: mettre à jour le snapshot"},
+                {"command": "pea_morning",      "description": "PEA: forcer le run matin"},
+                {"command": "pea_midday",       "description": "PEA: forcer le run midi"},
+                {"command": "pea_evening",      "description": "PEA: forcer le run soir"},
+                {"command": "pea_weekly",       "description": "PEA: forcer le run weekend"},
+                {"command": "pea_proposals",    "description": "PEA: propositions en attente"},
+                {"command": "pea_journal",      "description": "PEA: dernier digest"},
+                {"command": "pea_universe",     "description": "PEA: stats des listes"},
+                {"command": "pea_freeze",       "description": "PEA: déclencher le kill switch"},
+                {"command": "pea_help",         "description": "PEA: aide complète"},
             ]
         api("setMyCommands", {"commands": cmds})
         log("bot", f"setMyCommands ok ({len(cmds)} entries)")
