@@ -404,8 +404,48 @@ def cmd_tokens() -> str:
     return "\n".join(lines)
 
 
+def cmd_vault_reindex() -> None:
+    """Handle /vault_reindex — trigger the daily vault reindex now."""
+    send("🗂 <b>Vault reindex started…</b>\nFiling inbox captures — this takes ~30s.")
+
+    import threading
+
+    def _run():
+        result = subprocess.run(
+            ["/bin/bash", str(Path.home() / ".claude/vault-setup/run-reindex.sh")],
+            capture_output=True, text=True, timeout=300,
+        )
+        log_path = Path.home() / ".claude/vault-setup/reindex-last-run.log"
+        try:
+            lines = log_path.read_text().strip().splitlines()
+            summary_lines = [l for l in lines if not l.startswith("===")]
+            summary = "\n".join(summary_lines).strip()
+            send(f"✅ <b>Vault reindex done</b>\n\n{summary}" if summary else "✅ <b>Vault reindex done.</b>")
+        except Exception as e:
+            send(f"✅ Vault reindex done. (log unreadable: {e})")
+
+    threading.Thread(target=_run, daemon=True).start()
+
+
 def cmd_help(group: str = "") -> str:
     group = group.strip().lower()
+
+    if group == "vault":
+        return (
+            "🗂 <b>Knowledge Vault — full detail</b>\n\n"
+            "<b>/vault_reindex</b>\n"
+            "  File all captures in <code>90-inbox/</code> into their proper vault folders.\n"
+            "  Runs automatically every day at <b>07:00 Paris time</b>.\n"
+            "  Use this to process a capture immediately (e.g. right after a voice note).\n\n"
+            "Routing rules:\n"
+            "  'new project idea' → <code>20-projects/ideas/</code>\n"
+            "  'just bought / PEA / shares of' → <code>60-money/pea/transactions.md</code>\n"
+            "  'rule: / I always' → <code>40-workflows/</code>\n"
+            "  'useful tool / URL' → <code>50-references/tools.md</code>\n"
+            "  'learned that / gotcha:' → <code>30-domains/{topic}.md</code>\n"
+            "  Uncertain → left in inbox with <code>needs: triage</code>\n\n"
+            "Log: <code>~/.claude/vault-setup/reindex-last-run.log</code>"
+        )
 
     if group == "factory":
         return (
@@ -531,8 +571,10 @@ def cmd_help(group: str = "") -> str:
         "✍️ <b>Blog</b>\n"
         "  /blog — Auto-generate + publish an SEO blog post\n"
         "  /blog \"topic\" — Blog post on a specific keyword\n\n"
+        "🗂 <b>Knowledge Vault</b>\n"
+        "  /vault_reindex — File inbox captures now (auto-runs daily at 7am)\n\n"
         "Type /help {group} for more detail:\n"
-        "<code>factory · posts · karma · products · twitter · trading</code>"
+        "<code>factory · posts · karma · products · twitter · trading · vault</code>"
     )
 
 
@@ -1630,6 +1672,10 @@ def handle_command(text: str) -> str:
         run_pipeline_bg(seed=seed, category=category)
         return f"🚀 Pipeline started{note_str}.\nI'll send an approval request when an idea is ready."
 
+    if lower == "/vault_reindex":
+        cmd_vault_reindex()
+        return None
+
     if lower == "/blast" or lower.startswith("/blast "):
         cmd_blast()
         return None
@@ -1719,7 +1765,8 @@ def main():
             {"command": "tweet",    "description": "Draft a tweet"},
             {"command": "blog",     "description": "Generate a blog post"},
             {"command": "blast",    "description": "Email blast"},
-            {"command": "tokens",   "description": "API cost breakdown"},
+            {"command": "tokens",        "description": "API cost breakdown"},
+            {"command": "vault_reindex", "description": "File vault inbox captures now"},
         ]
         if pea_handlers is not None:
             cmds += [
