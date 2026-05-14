@@ -4,23 +4,7 @@
   <url><loc>https://mini-on-ai.com/blog/index.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-html-presentation-prompt-pac-20260427.html</loc><lastmod>2026-04-27</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-html-design-prompt-pack-20260425.html</loc><lastmod>2026-04-25</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-how-i-built-an-ai-product-factory-20260330.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skill-architecture-overview-free-20260326.html</loc><lastmod>2026-03-26</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html</loc><lastmod>2026-03-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-n8n-customer-dashboard-roi-template-20260322.html</loc><lastmod>2026-03-22</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-ai-usage-service-pricing-strategy-guide-20260318.html</loc><lastmod>2026-03-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-google-calendar-service-account-setup-gu-20260318.html</loc><lastmod>2026-03-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-multi-agent-api-integration-blueprint-20260318.html</loc><lastmod>2026-03-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-pdf-image-text-extraction-n8n-workflow-20260318.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-ai-automation-agency-launch-playbook-20260318.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-whatsapp-ai-agent-setup-guide-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-n8n-production-ready-workflow-research-g-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-follow-up-call-automation-workflow-pack-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-lead-qualifying-email-n8n-workflow-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-n8n-carpet-photography-location-automati-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-n8n-starter-guide-for-zapier-users-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-instagram-messaging-api-setup-guide-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skills-pack-automated-report-20260315.html</loc><lastmod>2026-03-15</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skills-pack-team-standards-b-20260315.html</loc><lastmod>2026-03-15</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skills-pack-release-and-chan-20260315.html</loc><lastmod>2026-03-15</lastmod><priority>0.8</priority></url>
@@ -33,31 +17,13 @@
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skills-pack-project-status-r-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/skills-claude-code-skills-pack-user-story-writi-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-n8n-api-authentication-troubleshooting-p-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/swipe-notion-workspace-structure-examples-swip-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-skill-docsync-automatic-read-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-skill-postman-collection-bui-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-skill-integration-test-write-20260314.html</loc><lastmod>2026-03-14</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-claude-code-skill-mock-server-scaffolder-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/checklist-notion-workspace-debt-cleanup-checklist--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-how-to-build-a-notion-crm-that-actually--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/swipe-notion-template-sales-page-copy-swipe-fi-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-how-to-build-a-lead-velocity-rate-dashbo-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-lead-nurture-content-brief-prompts-for-c-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-n8n-workflow-documentation-prompts-for-t-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-n8n-workflow-error-handling-prompts-for--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/checklist-client-onboarding-checklist-for-independ-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-lead-generation-channel-mix-mini-guide-f-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/checklist-client-red-flag-screening-decision-tree--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-lead-nurture-sequence-logic-builder-for--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-freelance-niche-positioning-statement-bu-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-freelance-dry-spell-survival-and-pipelin-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/swipe-landing-page-conversion-audit-swipe-file-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/guide-inbox-zero-triage-rules-for-high-volume--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/checklist-lead-source-attribution-audit-checklist--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/swipe-freelance-service-tier-pricing-architect-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/swipe-freelance-proposal-structure-swipe-file--20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://mini-on-ai.com/products/prompts-late-invoice-follow-up-sequence-for-free-20260313.html</loc><lastmod>2026-03-13</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.html</loc><lastmod>2026-03-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-shopify-product-description-packs-for-e--20260312.html</loc><lastmod>2026-03-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://mini-on-ai.com/products/prompts-meeting-notes-to-action-items-fast-20260312.html</loc><lastmod>2026-03-12</lastmod><priority>0.8</priority></url>

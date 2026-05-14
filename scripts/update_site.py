@@ -87,8 +87,8 @@ def _og_tags_product(meta: dict) -> str:
 
 
 def _og_tags_index() -> str:
-    title = "mini-on-ai — Claude Code Skills & AI Workflows for Engineering Teams"
-    desc  = "Claude Code skills and n8n automation workflows crafted by a seasoned software engineer. Deploy in minutes, save hours every week."
+    title = "mini-on-ai — Claude Code Skills & Prompt Packs for Engineering Teams"
+    desc  = "Ready-to-use Claude Code skills and prompt packs crafted by a seasoned software engineer. Deploy in minutes, save hours every week."
     img   = f"{SITE_URL}/images/og-default.svg"
     return (
         f'  <meta property="og:type" content="website">\n'
@@ -556,8 +556,6 @@ def _site_header(back_href: str = None, back_label: str = "← Products", prefix
     else:
         nav_items += f'        <a href="{prefix}index.html" class="nav-link">Products</a>\n'
         nav_items += f'        <a href="{prefix}blog/index.html" class="nav-link">Blog</a>\n'
-        nav_items += f'        <a href="{prefix}services.html" class="nav-link">Services</a>\n'
-        nav_items += f'        <a href="{prefix}build.html" class="nav-link-cta">✦ Build your own</a>\n'
     nav_items += '        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle theme">☾ Dark</button>'
     return f"""  <header class="site-header">
     <div class="site-header-inner">
@@ -773,11 +771,11 @@ def rebuild_index(catalog: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-on-ai — AI Tools, Prompt Packs &amp; Automation Workflows</title>
+  <title>mini-on-ai — Claude Code Skills &amp; Prompt Packs</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Prompt packs, Claude Code skills, n8n templates, and AI-powered tools for freelancers and professionals. Deploy in minutes, save hours every week.">
+  <meta name="description" content="Claude Code skills and prompt packs for developers and professionals. Deploy in minutes, save hours every week.">
   <meta name="google-site-verification" content="_bUSLc4yVdu115P3SlUFsKIZ15YTewr70wL6yFRxHGs">
 {og_tags}
 </head>
@@ -785,16 +783,16 @@ def rebuild_index(catalog: dict) -> str:
 {header}
 
   <div class="launch-bar">
-    April 2026 launch — {count} products live. <a href="build.html">Try a free preview →</a>
+    {count} Claude Code skills &amp; prompt packs live. <a href="#catalog">Browse →</a>
   </div>
 
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="hero-headline">AI tools &amp; workflows —<br>built for professionals who ship</h1>
-      <p class="hero-sub">Prompt packs, Claude Code skills, n8n templates, and AI-powered tools. Drop one in, save hours this week.</p>
+      <h1 class="hero-headline">Claude Code skills &amp; prompt packs —<br>built for professionals who ship</h1>
+      <p class="hero-sub">Ready-to-use Claude Code skills and prompt packs. Drop one in, save hours this week.</p>
       <div class="hero-cta-group">
-        <a href="build.html" class="hero-cta-primary">✦ Build your own — free</a>
-        <a href="#catalog" class="hero-cta-secondary">Browse {count} products</a>
+        <a href="#catalog" class="hero-cta-primary">Browse {count} products</a>
+        <a href="blog/index.html" class="hero-cta-secondary">Read the blog</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -814,16 +812,8 @@ def rebuild_index(catalog: dict) -> str:
   </section>
 
   <section class="tools-section">
-    <p class="tools-section-heading">Tools &amp; Services</p>
+    <p class="tools-section-heading">Tools</p>
     <div class="tools-grid">
-      <a href="build.html" class="tool-card">
-        <span class="tool-card-icon">✦</span>
-        <div>
-          <strong class="tool-card-title">Build Your Own</strong>
-          <p class="tool-card-desc">Describe a use case, get a custom AI product in 30 seconds.</p>
-        </div>
-        <span class="tool-card-cta">Build for free →</span>
-      </a>
       <a href="ats.html" class="tool-card">
         <span class="tool-card-icon">◈</span>
         <div>
@@ -848,14 +838,6 @@ def rebuild_index(catalog: dict) -> str:
         </div>
         <span class="tool-card-cta">Add to Chrome →</span>
       </a>
-      <a href="services.html" class="tool-card">
-        <span class="tool-card-icon">⚙</span>
-        <div>
-          <strong class="tool-card-title">Services</strong>
-          <p class="tool-card-desc">Custom AI pipelines, automations, and Claude Code integrations.</p>
-        </div>
-        <span class="tool-card-cta">View services →</span>
-      </a>
     </div>
   </section>
 
@@ -879,14 +861,6 @@ def rebuild_index(catalog: dict) -> str:
     </div>
   </main>
 
-  <div class="build-banner">
-    <div class="build-banner-text">
-      <h2>Didn't find what you need?</h2>
-      <p>Describe your use case and get a custom product generated in 30 seconds.</p>
-    </div>
-    <a href="build.html" class="build-banner-cta">✦ Build your own →</a>
-  </div>
-
   <section class="newsletter-cta">
     <div class="newsletter-cta-inner">
       <p class="newsletter-label">Newsletter</p>
@@ -901,7 +875,7 @@ def rebuild_index(catalog: dict) -> str:
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
-    <p class="site-footer-tools"><a href="build.html">Build Your Own</a> &nbsp;·&nbsp; <a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a></p>
+    <p class="site-footer-tools"><a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a></p>
   </footer>
 
 {_dark_mode_js()}
@@ -1056,7 +1030,7 @@ def rebuild_blog_index(posts: list) -> str:
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" href="../style.css">
-  <meta name="description" content="Practical guides on Claude Code, n8n automation, and AI workflows for developers and makers.">
+  <meta name="description" content="Practical guides on Claude Code, prompt engineering, and AI workflows for developers and makers.">
   <meta property="og:title" content="Blog — mini-on-ai">
   <meta property="og:url" content="{SITE_URL}/blog/index.html">
   <link rel="canonical" href="{SITE_URL}/blog/index.html">
@@ -1067,7 +1041,7 @@ def rebuild_blog_index(posts: list) -> str:
   <main class="blog-listing-page">
     <div class="blog-listing-header">
       <h1>Blog</h1>
-      <p>Practical guides on Claude Code, n8n, and AI automation.</p>
+      <p>Practical guides on Claude Code, prompt engineering, and AI workflows.</p>
     </div>
     <div class="blog-grid">
 {cards}    </div>

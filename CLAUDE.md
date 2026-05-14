@@ -5,7 +5,7 @@
 mini-on-ai is an AI-powered digital product factory running on a Mac mini.
 It continuously generates, packages, and publishes small digital products to a public showcase website at `mini-on-ai.com`.
 
-Products are sold via Gumroad ($9–$49). Visitors can also generate a custom product on-demand via the "Build Your Own" page (Stripe, $9).
+Products are sold via Gumroad ($9–$49). The vitrine is focused on Claude Code skills & prompt packs (see `archive/README.md`). The "Build Your Own" page was pulled from the site but its Worker (`mini-on-ai-generate`) stays deployed.
 
 ## Quick Context Recovery
 
@@ -53,20 +53,26 @@ mini-on-factory/
 └── site/                        ← static showcase website
     ├── index.html               ← rebuilt by update_site.py
     ├── style.css                ← Dark Premium design system
-    ├── build.html               ← Build Your Own page
     ├── _headers                 ← Cloudflare Pages security headers (CSP etc.)
     ├── blog/
     └── products/{id}.html
 ```
 
-## Product Categories (all active)
+## Product Categories
 
-- `prompt-packs` — 20–30 ready-to-use prompts
-- `checklist` — structured action/decision list
-- `swipe-file` — copy-ready examples
-- `mini-guide` — concise practitioner guide
-- `n8n-template` — ready-to-import automation workflow
+The public vitrine was focused on 2026-05-14 down to the two AI categories
+that match the only proven funnel. See `archive/README.md`.
+
+**Active (on the site):**
 - `claude-code-skill` — Claude Code skill configuration pack
+- `prompt-packs` — 20–30 ready-to-use prompts
+
+**Archived (in `archive/`, restorable, not deleted):**
+- `checklist`, `swipe-file`, `mini-guide`, `n8n-template`
+
+`Build Your Own` (`build.html`) and `Services` (`services.html`) were also
+pulled from the vitrine — files in `archive/pages/`, the
+`mini-on-ai-generate` Worker stays deployed.
 
 ## Pipeline
 
