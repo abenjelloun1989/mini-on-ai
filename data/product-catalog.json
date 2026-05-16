@@ -14,7 +14,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/bnnkk",
       "thumbnail": null,
       "price": null,
-      "is_free": null
+      "is_free": null,
+      "bestseller": null
     },
     {
       "id": "prompts-claude-code-html-design-prompt-pack-20260425",
@@ -37,7 +38,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/dwqllf",
       "thumbnail": null,
       "price": null,
-      "is_free": null
+      "is_free": null,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skill-architecture-overview-free-20260326",
@@ -59,7 +61,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/vmkqra",
       "thumbnail": null,
       "price": 0,
-      "is_free": true
+      "is_free": true,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-automated-report-20260315",
@@ -81,7 +84,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/wivxio",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-automated-report-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-team-standards-b-20260315",
@@ -102,7 +106,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/wwalxm",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-team-standards-b-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-release-and-chan-20260315",
@@ -123,7 +128,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/yfiywi",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-release-and-chan-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-codebase-onboard-20260315",
@@ -144,7 +150,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/vpqbfs",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-codebase-onboard-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": true
     },
     {
       "id": "skills-claude-code-skills-pack-database-migrati-20260315",
@@ -165,7 +172,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/lfpqrq",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-database-migrati-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-dashboard-delive-20260315",
@@ -186,7 +194,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/avmkcf",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-dashboard-delive-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-data-quality-5-s-20260315",
@@ -207,7 +216,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/jhlfcl",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-data-quality-5-s-20260315.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-sprint-planning--20260314",
@@ -228,7 +238,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/rpjsa",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-sprint-planning--20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-roadmap-planning-20260314",
@@ -249,7 +260,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/xilgrw",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-roadmap-planning-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-project-status-r-20260314",
@@ -270,7 +282,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/qtqzvu",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-project-status-r-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "skills-claude-code-skills-pack-user-story-writi-20260314",
@@ -291,7 +304,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/mcdnfk",
       "thumbnail": "images/thumbnails/skills-claude-code-skills-pack-user-story-writi-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-n8n-api-authentication-troubleshooting-p-20260314",
@@ -312,7 +326,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/lqfwpt",
       "thumbnail": "images/thumbnails/prompts-n8n-api-authentication-troubleshooting-p-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-claude-code-skill-docsync-automatic-read-20260314",
@@ -333,7 +348,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/qxufl",
       "thumbnail": "images/thumbnails/prompts-claude-code-skill-docsync-automatic-read-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-claude-code-skill-postman-collection-bui-20260314",
@@ -354,7 +370,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/trhnz",
       "thumbnail": "images/thumbnails/prompts-claude-code-skill-postman-collection-bui-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-claude-code-skill-integration-test-write-20260314",
@@ -375,7 +392,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/lwyhii",
       "thumbnail": "images/thumbnails/prompts-claude-code-skill-integration-test-write-20260314.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-claude-code-skill-mock-server-scaffolder-20260313",
@@ -396,7 +414,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/nmaisba",
       "thumbnail": "images/thumbnails/prompts-claude-code-skill-mock-server-scaffolder-20260313.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-lead-nurture-content-brief-prompts-for-c-20260313",
@@ -416,7 +435,8 @@
       "gumroad_url": null,
       "thumbnail": "images/thumbnails/prompts-lead-nurture-content-brief-prompts-for-c-20260313.png",
       "price": 1900,
-      "is_free": null
+      "is_free": null,
+      "bestseller": null
     },
     {
       "id": "prompts-n8n-workflow-documentation-prompts-for-t-20260313",
@@ -437,7 +457,8 @@
       "gumroad_url": null,
       "thumbnail": "images/thumbnails/prompts-n8n-workflow-documentation-prompts-for-t-20260313.png",
       "price": 1900,
-      "is_free": null
+      "is_free": null,
+      "bestseller": null
     },
     {
       "id": "prompts-n8n-workflow-error-handling-prompts-for--20260313",
@@ -458,7 +479,8 @@
       "gumroad_url": null,
       "thumbnail": "images/thumbnails/prompts-n8n-workflow-error-handling-prompts-for--20260313.png",
       "price": 1900,
-      "is_free": null
+      "is_free": null,
+      "bestseller": null
     },
     {
       "id": "prompts-ats-optimized-resume-bullet-rewriter-by--20260312",
@@ -478,7 +500,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/hromk",
       "thumbnail": "images/thumbnails/prompts-ats-optimized-resume-bullet-rewriter-by--20260312.png",
       "price": 500,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-shopify-product-description-packs-for-e--20260312",
@@ -498,7 +521,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/eqiso",
       "thumbnail": "images/thumbnails/prompts-shopify-product-description-packs-for-e--20260312.png",
       "price": 500,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     },
     {
       "id": "prompts-meeting-notes-to-action-items-fast-20260312",
@@ -518,7 +542,8 @@
       "gumroad_url": "https://minionai.gumroad.com/l/jvogn",
       "thumbnail": "images/thumbnails/prompts-meeting-notes-to-action-items-fast-20260312.png",
       "price": 1900,
-      "is_free": false
+      "is_free": false,
+      "bestseller": null
     }
   ]
 }

@@ -579,6 +579,8 @@ def build_product_card(meta: dict) -> str:
     # Badges
     free_attr = ' data-free="true"' if meta.get("is_free") else ""
     badges = ""
+    if meta.get("bestseller"):
+        badges += '<span class="badge-bestseller">🏆 Best Seller</span>'
     if meta.get("is_free"):
         badges += '<span class="badge-free">Free</span>'
     created = meta.get("created_at", "")
@@ -1157,6 +1159,7 @@ def update_site(product_id_arg: str = None) -> dict:
         "gumroad_url": meta.get("gumroad_url"),
         "price": meta.get("price"),
         "is_free": meta.get("is_free"),
+        "bestseller": meta.get("bestseller"),
     }
 
     existing_idx = next((i for i, p in enumerate(catalog["products"]) if p["id"] == pid), None)
@@ -1219,6 +1222,7 @@ def rebuild_all() -> None:
             "thumbnail": meta.get("thumbnail"),
             "price": meta.get("price"),
             "is_free": meta.get("is_free"),
+            "bestseller": meta.get("bestseller"),
         })
 
     write_json("data/product-catalog.json", catalog)
