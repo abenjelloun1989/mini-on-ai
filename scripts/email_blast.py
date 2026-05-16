@@ -124,30 +124,36 @@ def _text_to_html(text: str) -> str:
 
 
 def create_and_send(subject: str, body: str) -> dict:
-    """Create a campaign and send it immediately. Returns {campaign_id, recipients}."""
+    """Send email to all contacts in the list via transactional API. Returns {recipients}."""
+    import time
     html = _text_to_html(body)
-    count = get_contact_count()
-    name  = f"blast-{datetime.now().strftime('%Y%m%d-%H%M')}"
+    tag  = f"blast-{datetime.now().strftime('%Y%m%d-%H%M')}"
 
-    campaign = _brevo("POST", "/emailCampaigns", {
-        "name":       name,
-        "subject":    subject,
-        "type":       "classic",
-        "sender":     {"name": SENDER_NAME, "email": SENDER_EMAIL},
-        "replyTo":    SENDER_EMAIL,
-        "htmlContent": html,
-        "recipients": {"listIds": [BREVO_LIST_ID]},
-    })
+    resp     = _brevo("GET", f"/contacts?listIds={BREVO_LIST_ID}&limit=100")
+    contacts = [c for c in resp.get("contacts", []) if not c.get("emailBlacklisted")]
 
-    campaign_id = campaign.get("id")
-    if not campaign_id:
-        raise RuntimeError(f"Campaign creation failed: {campaign}")
+    sent, failed = 0, []
+    for c in contacts:
+        email = c["email"]
+        try:
+            _brevo("POST", "/smtp/email", {
+                "sender":      {"name": SENDER_NAME, "email": SENDER_EMAIL},
+                "to":          [{"email": email}],
+                "subject":     subject,
+                "htmlContent": html,
+                "tags":        [tag],
+            })
+            sent += 1
+            time.sleep(0.3)
+        except Exception as e:
+            log("email-blast", f"Failed {email}: {e}")
+            failed.append(email)
 
-    log("email-blast", f"Campaign created: id={campaign_id}")
-    _brevo("POST", f"/emailCampaigns/{campaign_id}/sendNow")
-    log("email-blast", f"Campaign sent to ~{count} subscribers")
+    log("email-blast", f"Blast {tag}: {sent} sent, {len(failed)} failed")
+    if failed:
+        log("email-blast", f"Failed addresses: {failed}")
 
-    return {"campaign_id": campaign_id, "recipients": count}
+    return {"recipients": sent, "failed": len(failed)}
 
 
 def main():

@@ -1116,7 +1116,9 @@ def _handle_blast_callback(data: str) -> str:
             if r.returncode == 0:
                 result = json.loads(r.stdout.strip())
                 n = result.get("recipients", "?")
-                return f"✅ <b>Email sent</b> to {n} subscriber{'s' if n != 1 else ''}!"
+                f = result.get("failed", 0)
+                suffix = f" ({f} failed)" if f else ""
+                return f"✅ <b>Email sent</b> to {n} subscriber{'s' if n != 1 else ''}{suffix}!"
             else:
                 return f"❌ Send failed:\n<code>{r.stderr[-300:]}</code>"
         except Exception as e:
