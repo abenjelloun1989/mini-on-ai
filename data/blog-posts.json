@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": "blog-effective-onboarding-a-developer-s-guide-to-faster-team-20260517",
+      "title": "Effective Onboarding: A Developer's Guide to Faster Team Integration",
+      "slug": "effective-onboarding-a-developer-s-guide-to-faster-team-20260517",
+      "excerpt": "Master onboarding processes to accelerate new team member productivity and reduce knowledge transfer time.",
+      "topic": "onboarding",
+      "created_at": "2026-05-17T15:24:25.629421"
+    },
+    {
       "id": "blog-api-testing-best-practices-tools-and-strategies-for-rel-20260514",
       "title": "API Testing Best Practices: Tools and Strategies for Reliable Endpoints",
       "slug": "api-testing-best-practices-tools-and-strategies-for-rel-20260514",
