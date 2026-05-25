@@ -1,0 +1,42 @@
+# Archived 2026-05-14 vitrine focus — see archive/README.md
+# 301 to homepage so Google deindexes these gracefully (was 404)
+
+/build.html      /  301
+/services.html   /  301
+
+# Archived product pages (34)
+/products/checklist-client-onboarding-checklist-for-independ-20260313.html / 301
+/products/checklist-client-red-flag-screening-decision-tree--20260313.html / 301
+/products/checklist-crm-data-hygiene-audit-checklist-for-sal-20260313.html / 301
+/products/checklist-lead-source-attribution-audit-checklist--20260313.html / 301
+/products/checklist-notion-workspace-debt-cleanup-checklist--20260313.html / 301
+/products/guide-ai-automation-agency-launch-playbook-20260318.html / 301
+/products/guide-ai-usage-service-pricing-strategy-guide-20260318.html / 301
+/products/guide-freelance-dry-spell-survival-and-pipelin-20260313.html / 301
+/products/guide-freelance-niche-positioning-statement-bu-20260313.html / 301
+/products/guide-google-calendar-service-account-setup-gu-20260318.html / 301
+/products/guide-how-i-built-an-ai-product-factory-20260330.html / 301
+/products/guide-how-to-build-a-lead-velocity-rate-dashbo-20260313.html / 301
+/products/guide-how-to-build-a-notion-crm-that-actually--20260313.html / 301
+/products/guide-inbox-zero-triage-rules-for-high-volume--20260313.html / 301
+/products/guide-instagram-messaging-api-setup-guide-20260317.html / 301
+/products/guide-lead-generation-channel-mix-mini-guide-f-20260313.html / 301
+/products/guide-lead-nurture-sequence-logic-builder-for--20260313.html / 301
+/products/guide-n8n-production-ready-workflow-research-g-20260317.html / 301
+/products/guide-n8n-starter-guide-for-zapier-users-20260317.html / 301
+/products/guide-whatsapp-ai-agent-setup-guide-20260317.html / 301
+/products/n8n-follow-up-call-automation-workflow-pack-20260317.html / 301
+/products/n8n-lead-qualifying-email-n8n-workflow-20260317.html / 301
+/products/n8n-multi-agent-api-integration-blueprint-20260318.html / 301
+/products/n8n-n8n-carpet-photography-location-automati-20260317.html / 301
+/products/n8n-n8n-customer-dashboard-roi-template-20260322.html / 301
+/products/n8n-n8n-sms-filter-unknown-contacts-workflow-20260317.html / 301
+/products/n8n-n8n-social-media-auth-posting-workflow-20260322.html / 301
+/products/n8n-pdf-image-text-extraction-n8n-workflow-20260318.html / 301
+/products/prompts-25-cold-email-prompts-for-saas-founders-20260312.html / 301
+/products/prompts-late-invoice-follow-up-sequence-for-free-20260313.html / 301
+/products/swipe-freelance-proposal-structure-swipe-file--20260313.html / 301
+/products/swipe-freelance-service-tier-pricing-architect-20260313.html / 301
+/products/swipe-landing-page-conversion-audit-swipe-file-20260313.html / 301
+/products/swipe-notion-template-sales-page-copy-swipe-fi-20260313.html / 301
+/products/swipe-notion-workspace-structure-examples-swip-20260314.html / 301
