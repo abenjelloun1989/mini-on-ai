@@ -6,12 +6,12 @@ compatibility_date = "2025-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "f1"
-database_id = "REPLACE_WITH_D1_ID_AFTER_wrangler_d1_create"
+database_id = "37fe9fcd-40fd-4754-b80f-01380454b1eb"
 
 # KV — hot-path cache: f1_key_id → {account_id, tier, monthly_token_quota}
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_ID_AFTER_wrangler_kv_namespace_create"
+id = "4c8f3a38eaa7488a82938f1e8cbdd97c"
 
 [vars]
 # Origin allowed to call /api/* dashboard endpoints
