@@ -5,12 +5,12 @@ sys.path.insert(0, os.path.dirname(__file__))
 from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), override=True)
 
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, log
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
-client = anthropic.Anthropic()
+MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-20250514")
+client = make_client()
 
 catalog = read_json("data/product-catalog.json")
 products = catalog.get("products", [])

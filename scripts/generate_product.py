@@ -24,10 +24,10 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import os
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, write_file, ensure_dir, product_id, timestamp, log, extract_json, log_token_usage
 
-client = anthropic.Anthropic()
+client = make_client()
 MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 
 VALID_CATEGORIES = {"prompt-packs", "checklist", "swipe-file", "mini-guide", "n8n-template", "claude-code-skill"}

@@ -20,12 +20,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-import anthropic
+from lib.f1_client import make_client, claude_call
 from lib.utils import read_json, write_json, log, timestamp, extract_json, log_token_usage, ROOT
-from lib.claude_cli import claude_call
 
-RESEARCH_MODEL = "claude-sonnet-4-6"
-HAIKU_MODEL = "claude-haiku-4-5-20251001"
+RESEARCH_MODEL = "claude-sonnet-4-20250514"
+HAIKU_MODEL = "claude-haiku-4-20250514"
 
 # French school holidays 2025-2026 (source: education.gouv.fr)
 FRENCH_SCHOOL_HOLIDAYS_2026 = [
@@ -567,7 +566,7 @@ def research_trips(constraints: dict) -> list:
     3. Weather enrichment (wttr.in)
     Serendipity mode when no destination specified.
     """
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = make_client()
 
     dest = constraints.get("destination", "").lower().strip()
     serendipity = dest in ("", "ouvert", "open", "pas de préférence", "surprise",

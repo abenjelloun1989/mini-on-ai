@@ -462,6 +462,7 @@ def cmd_help(group: str = "") -> str:
             "<b>/pause · /resume</b> — start/stop the daemon\n"
             "<b>/status</b> — last run, product count, API costs\n"
             "<b>/stats [days]</b> — Gumroad revenue, sales, top products, referrers\n"
+            "<b>/f1-stats</b> — F1 proxy spend + MRR (today / 30d / subscribers)\n"
             "<b>/products</b> — all published products with links\n"
             "<b>/ideas</b> — top 5 scored ideas in the backlog"
         )
@@ -702,6 +703,46 @@ def cmd_stats(days: int = 30) -> str:
         err = result.stderr.strip() or "No output from gumroad_stats.py"
         return f"❌ Stats error: {err[:300]}"
     return output
+
+
+def cmd_f1_stats(args: str = "") -> str:
+    """Fetch F1 proxy spend + MRR stats via /api/admin-stats."""
+    import urllib.request
+    import urllib.error
+
+    f1_api_url = os.getenv("F1_API_URL", "https://f1-api.kirozdormu.workers.dev")
+    admin_token = os.getenv("F1_ADMIN_TOKEN", "")
+
+    if not admin_token:
+        return "❌ F1_ADMIN_TOKEN not set in .env — can't fetch F1 stats."
+
+    url = f"{f1_api_url}/api/admin-stats?token={admin_token}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "mini-on-factory-telegram-bot/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        return f"❌ F1 API error {e.code}: {e.reason}"
+    except Exception as e:
+        return f"❌ F1 stats fetch failed: {e}"
+
+    today_usd = data.get("today_usd") or 0
+    today_calls = data.get("today_calls") or 0
+    month_usd = data.get("month_usd") or 0
+    month_calls = data.get("month_calls") or 0
+    mrr = data.get("mrr") or 0
+    subs = data.get("subscribers") or 0
+    by_tier = data.get("by_tier") or []
+
+    tier_lines = "  ".join(f"{r['tier']}: {r['n']}" for r in by_tier) if by_tier else "none"
+
+    return (
+        f"📊 <b>F1 Proxy Stats</b>\n\n"
+        f"Today: <b>${today_usd:.4f}</b> ({today_calls} calls)\n"
+        f"30d:   <b>${month_usd:.4f}</b> ({month_calls} calls)\n\n"
+        f"MRR:  <b>${mrr}</b>\n"
+        f"Subs: <b>{subs}</b>  ({tier_lines})"
+    )
 
 
 def cmd_products() -> str:
@@ -1000,8 +1041,8 @@ def _load_blast_state() -> dict:
 
 def _generate_blast_draft() -> dict:
     """Use Claude Haiku to draft a short email based on latest products + blog posts."""
-    import anthropic as _anthropic
-    client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    from lib.f1_client import make_client
+    client = make_client()
 
     catalog = read_json("data/product-catalog.json")
     products = [p for p in catalog.get("products", []) if p.get("gumroad_url")][:3]
@@ -1194,8 +1235,8 @@ def _handle_tweet_regen(product_id: str, cq_id: str, chat_id: str) -> None:
 
     send("🔄 Regenerating tweet…", chat_id)
     try:
-        import anthropic as _anthropic
-        client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        from lib.f1_client import make_client
+        client = make_client()
         site_url = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
         pid = meta.get("id", "")
         product_url = f"{site_url}/products/{pid}.html" if pid else site_url
@@ -1446,6 +1487,9 @@ def handle_command(text: str) -> str:
         except (IndexError, ValueError):
             pass
         return cmd_stats(days)
+
+    if lower == "/f1-stats":
+        return cmd_f1_stats()
 
     if lower == "/marketing-done-dir":
         state = _load_marketing_state()

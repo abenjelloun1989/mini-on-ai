@@ -27,10 +27,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, timestamp, log, ROOT
 
-REDDIT_USER_AGENT = "script:mini-on-ai-karma-scout:v1.0 (by /u/minionai)"
+REDDIT_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
 
 # Subreddit-specific posting rules (injected into the prompt)
@@ -119,7 +119,7 @@ Hard rules:
 
 Respond ONLY with valid JSON: {{"title": "...", "body": "..."}}"""
 
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = make_client()
     try:
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
@@ -207,7 +207,7 @@ Under 120 words. No em-dashes, no bullet lists, no "I'm excited", no "someone bu
 
 Respond ONLY with valid JSON: {{"title": "...", "body": "...", "change_summary": "what was changed and why it now complies"}}"""
 
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = make_client()
     try:
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
@@ -302,7 +302,7 @@ def _assess_and_draft(post: dict) -> Optional[dict]:
     Use Claude Haiku to score the post for commentability and draft a comment.
     Returns dict with score and comment, or None on failure.
     """
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = make_client()
 
     title = post["title"]
     body = post["body"][:400] if post["body"] else ""

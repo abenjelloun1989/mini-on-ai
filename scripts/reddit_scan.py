@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, timestamp, log, ROOT
 
 # Reddit public JSON API — no auth required, just a descriptive User-Agent
@@ -149,7 +149,7 @@ def assess_post(post: dict) -> Optional[dict]:
     buildable flag, and (if not buildable) why_not_buildable.
     Returns None if the API call fails.
     """
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = make_client()
 
     text_excerpt = f"Title: {post['title']}\n\nBody: {post['body'][:400]}"
 

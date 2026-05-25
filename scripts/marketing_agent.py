@@ -39,8 +39,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, log, timestamp, ROOT
-
-import anthropic
+from lib.f1_client import make_client
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -352,7 +351,7 @@ def run_email_blast(state: dict) -> None:
     first_title = new_products[0].get("title", "new AI tools")
 
     try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        client = make_client()
         resp = client.messages.create(
             model="claude-haiku-4-5",
             max_tokens=400,
@@ -484,7 +483,7 @@ def run_reddit_reply_copy(state: dict) -> None:
         product_line = f"\nIf score >= 70, add ONE final line: \"Happen to have built something for this: {product_url}\""
 
     try:
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        client = make_client()
         resp = client.messages.create(
             model="claude-haiku-4-5",
             max_tokens=300,

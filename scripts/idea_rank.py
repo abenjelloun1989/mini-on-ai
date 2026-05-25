@@ -16,10 +16,10 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import json
 import os
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, log, extract_json, log_token_usage
 
-client = anthropic.Anthropic()
+client = make_client()
 MODEL = "claude-haiku-4-5-20251001"  # scoring task — Haiku is sufficient
 
 

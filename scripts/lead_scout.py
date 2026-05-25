@@ -30,7 +30,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, log, file_exists, ROOT
-from lib.claude_cli import claude_call
+from lib.f1_client import claude_call
 
 
 STATE_FILE = "data/leads-state.json"

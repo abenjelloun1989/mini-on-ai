@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(ROOT / ".env", override=True)
 
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, write_json, log, timestamp, extract_json
 from telegram_notify import send_telegram
 from email_blast import _brevo, _text_to_html, SENDER_NAME, SENDER_EMAIL
@@ -105,7 +105,7 @@ def _load_existing_titles() -> list[str]:
 
 def analyze_repos(repos: list[dict]) -> list[dict]:
     """Ask Claude to score each repo for product opportunity. Returns sorted list."""
-    client = anthropic.Anthropic()
+    client = make_client()
 
     existing_titles = _load_existing_titles()
     existing_block = ""

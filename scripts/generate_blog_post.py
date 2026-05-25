@@ -19,11 +19,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
-import anthropic
+from lib.f1_client import make_client
 from lib.utils import read_json, log, log_token_usage, ROOT
 
-MODEL = "claude-haiku-4-5"
-client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+MODEL = "claude-haiku-4-20250514"
+client = make_client()
 
 BLOG_POSTS_PATH = "data/blog-posts.json"
 SITE_URL = os.getenv("SITE_URL", "https://mini-on-ai.com").rstrip("/")
