@@ -1,5 +1,19 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://mini-on-ai-generate.kirozdormu.workers.dev https://mini-on-ai-subscribe.kirozdormu.workers.dev; img-src 'self' data: https:; font-src 'self'; frame-ancestors 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://mini-on-ai-generate.kirozdormu.workers.dev https://mini-on-ai-subscribe.kirozdormu.workers.dev https://f1-api.kirozdormu.workers.dev; img-src 'self' data: https:; font-src 'self'; frame-ancestors 'none';
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# F1 landing page — inline scripts for live-stats widget + checkout modal
+/f1
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://f1-api.kirozdormu.workers.dev; img-src 'self' data: https:; font-src 'self'; frame-ancestors 'none';
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# F1 sub-pages (dashboard, security) — dashboard uses inline scripts + F1 API
+/f1/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://f1-api.kirozdormu.workers.dev; img-src 'self' data: https:; font-src 'self'; frame-ancestors 'none';
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

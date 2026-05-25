@@ -1,0 +1,5 @@
+Contact: mailto:security@mini-on-ai.com
+Expires: 2027-06-01T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://mini-on-ai.com/f1/security
+Acknowledgments: https://mini-on-ai.com/f1/security#responsible-disclosure

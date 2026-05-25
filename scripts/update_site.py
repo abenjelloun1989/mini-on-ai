@@ -840,6 +840,14 @@ def rebuild_index(catalog: dict) -> str:
         </div>
         <span class="tool-card-cta">Add to Chrome →</span>
       </a>
+      <a href="f1.html" class="tool-card">
+        <span class="tool-card-icon">⬡</span>
+        <div>
+          <strong class="tool-card-title">F1 Proxy</strong>
+          <p class="tool-card-desc">Anthropic API cost tracking &amp; optimization insights. BYOK, $19/mo.</p>
+        </div>
+        <span class="tool-card-cta">Try F1 →</span>
+      </a>
     </div>
   </section>
 
@@ -877,7 +885,7 @@ def rebuild_index(catalog: dict) -> str:
 
   <footer class="site-footer">
     <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
-    <p class="site-footer-tools"><a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a></p>
+    <p class="site-footer-tools"><a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a> &nbsp;·&nbsp; <a href="f1.html">F1 Proxy</a></p>
   </footer>
 
 {_dark_mode_js()}

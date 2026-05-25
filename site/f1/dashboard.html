@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 Dashboard</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg: #08080F;
+      --surface: #0f1117;
+      --surface2: #1a1a2e;
+      --border: rgba(255,255,255,.08);
+      --border-brand: rgba(99,102,241,.35);
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --brand: #6366F1;
+      --green: #34d399;
+      --red: #f87171;
+      --radius: 12px;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; }
+
+    /* Layout */
+    .dash-nav {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0;
+      background: rgba(8,8,15,.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .dash-nav .brand { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .dash-nav .brand span { color: var(--brand); }
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    .commit-hash { font-size: 11px; color: var(--text-muted); font-family: monospace; }
+
+    .dash-main { max-width: 1040px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* Welcome banner */
+    .welcome-banner {
+      background: rgba(99,102,241,.08);
+      border: 1px solid var(--border-brand);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+    .welcome-banner strong { color: var(--brand); }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+    .card-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 8px; }
+    .card-value { font-size: 1.8rem; font-weight: 700; color: var(--text); }
+    .card-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+
+    /* Section header */
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .section-title { font-size: 15px; font-weight: 600; }
+    .section-sub { font-size: 12px; color: var(--text-muted); }
+    .section-mb { margin-bottom: 40px; }
+
+    /* Insights */
+    .insight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .insight-card .ins-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .insight-card h4 { font-size: 14px; font-weight: 600; }
+    .savings-badge {
+      background: rgba(52,211,153,.12);
+      color: var(--green);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .insight-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* Table */
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
+    .data-table td.mono { font-family: monospace; font-size: 12px; }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* By-model bars */
+    .model-row { margin-bottom: 10px; }
+    .model-bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+    .model-bar-track { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .model-bar-fill { height: 100%; background: var(--brand); border-radius: 3px; transition: width .4s ease; }
+
+    /* Key upload */
+    .byok-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
+    .byok-form h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .byok-form p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+    .byok-form input {
+      width: 100%; padding: 10px 12px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 13px;
+      font-family: monospace; margin-bottom: 12px;
+    }
+    .byok-form input:focus { outline: none; border-color: var(--brand); }
+    .btn-primary {
+      background: var(--brand); color: #fff; border: none;
+      padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: opacity .15s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-secondary {
+      background: transparent; color: var(--text); border: 1px solid var(--border);
+      padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: border-color .15s;
+    }
+    .btn-secondary:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* Status tags */
+    .tag-active { background: rgba(52,211,153,.12); color: var(--green); border-radius: 6px; font-size: 11px; font-weight: 600; padding: 2px 8px; }
+    .tag-revoked { background: rgba(248,113,113,.1); color: var(--red); border-radius: 6px; font-size: 11px; font-weight: 600; padding: 2px 8px; }
+
+    /* Loading / error */
+    .loading { color: var(--text-muted); font-size: 13px; padding: 20px 0; }
+    .error-msg { color: var(--red); font-size: 13px; padding: 16px; background: rgba(248,113,113,.07); border-radius: 8px; margin-bottom: 16px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .tab { padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; color: var(--text-muted); transition: color .15s; }
+    .tab.active { color: var(--brand); border-bottom-color: var(--brand); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="dash-nav">
+  <a href="/f1" class="brand">mini-on-ai <span>F1</span></a>
+  <div class="nav-actions">
+    <span class="commit-hash" id="commit-hash"></span>
+    <a href="#" class="btn-secondary" id="billing-portal-btn" onclick="openPortal(); return false;">Billing →</a>
+  </div>
+</nav>
+
+<main class="dash-main">
+  <div id="auth-error" class="error-msg" style="display:none;">
+    Dashboard token missing or invalid. Open the link from your welcome email.<br>
+    Lost it? Email <a href="mailto:hello@mini-on-ai.com" style="color:var(--brand);">hello@mini-on-ai.com</a>
+  </div>
+
+  <!-- Welcome (shown if new subscriber) -->
+  <div id="welcome-banner" class="welcome-banner" style="display:none;">
+    🎉 <strong>Welcome to F1!</strong> Your account is active. Upload your Anthropic API key below to start proxying calls.
+  </div>
+
+  <!-- BYOK: upload Anthropic key (shown when not yet set) -->
+  <div class="byok-form" id="byok-section" style="display:none;">
+    <h3>🔑 Upload your Anthropic API key</h3>
+    <p>Your key is encrypted at rest (AES-GCM, per-account HKDF key). It's used only to forward your requests to Anthropic. <a href="/f1/security" style="color:var(--brand);">Verify in the source code →</a></p>
+    <input type="password" id="anthropic-key-input" placeholder="sk-ant-..." autocomplete="off">
+    <div id="byok-error" class="error-msg" style="display:none;margin-bottom:12px;"></div>
+    <button class="btn-primary" onclick="uploadAnthropicKey()">Encrypt &amp; save key</button>
+  </div>
+
+  <!-- Stats overview -->
+  <div class="section-mb">
+    <div class="section-header">
+      <span class="section-title">Spend overview</span>
+      <span class="section-sub" id="account-tier-label"></span>
+    </div>
+    <div class="stats-grid" id="stats-grid">
+      <div class="card"><div class="card-label">Today</div><div class="card-value" id="stat-today-usd">—</div><div class="card-sub" id="stat-today-calls"></div></div>
+      <div class="card"><div class="card-label">7 days</div><div class="card-value" id="stat-week-usd">—</div><div class="card-sub" id="stat-week-calls"></div></div>
+      <div class="card"><div class="card-label">30 days</div><div class="card-value" id="stat-month-usd">—</div><div class="card-sub" id="stat-month-calls"></div></div>
+      <div class="card"><div class="card-label">30d token total</div><div class="card-value" id="stat-month-tokens">—</div><div class="card-sub"></div></div>
+    </div>
+    <!-- Model breakdown -->
+    <div id="model-breakdown" style="margin-top:16px;"></div>
+  </div>
+
+  <!-- Tabs: insights / keys / usage / audit log -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('insights')">Insights</div>
+    <div class="tab" onclick="switchTab('keys')">API Keys</div>
+    <div class="tab" onclick="switchTab('usage')">Recent calls</div>
+    <div class="tab" onclick="switchTab('audit')">Key access log</div>
+    <div class="tab" onclick="switchTab('settings')">Settings</div>
+  </div>
+
+  <!-- Insights tab -->
+  <div class="tab-panel active" id="tab-insights">
+    <div id="insights-loading" class="loading">Loading insights…</div>
+    <div id="insights-list"></div>
+  </div>
+
+  <!-- Keys tab -->
+  <div class="tab-panel" id="tab-keys">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Your F1 API key IDs. The full key was sent in your welcome email — it cannot be retrieved here. To rotate a key, email <a href="mailto:hello@mini-on-ai.com" style="color:var(--brand);">hello@mini-on-ai.com</a>.</p>
+    <div id="keys-loading" class="loading">Loading keys…</div>
+    <table class="data-table" id="keys-table" style="display:none;">
+      <thead><tr><th>Key ID (prefix)</th><th>Label</th><th>Status</th><th>Created</th></tr></thead>
+      <tbody id="keys-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Usage tab -->
+  <div class="tab-panel" id="tab-usage">
+    <div id="usage-loading" class="loading">Loading recent calls…</div>
+    <table class="data-table" id="usage-table" style="display:none;">
+      <thead><tr><th>Time</th><th>Model</th><th>Input tok</th><th>Output tok</th><th>USD</th><th>Status</th><th>Latency</th></tr></thead>
+      <tbody id="usage-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Audit log tab -->
+  <div class="tab-panel" id="tab-audit">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Every time your Anthropic API key was decrypted and used. Hashed IPs cannot be reversed to the original address.</p>
+    <div id="audit-loading" class="loading">Loading audit log…</div>
+    <table class="data-table" id="audit-table" style="display:none;">
+      <thead><tr><th>Time</th><th>Reason</th><th>IP hash (privacy)</th></tr></thead>
+      <tbody id="audit-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Settings tab -->
+  <div class="tab-panel" id="tab-settings">
+    <div style="max-width:520px;">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">Cutover date (for insights)</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Set the date you migrated from <code>claude -p</code> to F1. The "since cutover" insight compares your actual spend against the Max 5x $100/mo Agent SDK credit cap.</p>
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:24px;">
+        <input type="date" id="cutover-date-input" style="padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;">
+        <button class="btn-primary" onclick="saveCutoverDate()">Save</button>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">Prompt prefix storage (opt-in)</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">When enabled, F1 stores the first 200 characters of each input. This unlocks the "Top expensive prompts" preview in insights. Full bodies are never stored.</p>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;">
+        <input type="checkbox" id="prompt-optin-checkbox" onchange="savePromptOptin(this.checked)">
+        Enable prompt prefix storage (200 chars max)
+      </label>
+
+      <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:24px;">
+        <h3 style="font-size:15px;font-weight:600;color:var(--red);margin-bottom:8px;">Danger zone</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Permanently delete your account and all associated data (keys, usage events, audit log). This cannot be undone.</p>
+        <button class="btn-secondary" style="border-color:var(--red);color:var(--red);" onclick="deleteAccount()">Delete account</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer style="text-align:center;padding:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);">
+  <a href="/f1/security" style="color:var(--brand);">Security</a> ·
+  <a href="https://github.com/abenjelloun1989/mini-on-ai-f1" target="_blank" rel="noopener" style="color:var(--brand);">Source</a> ·
+  <a href="/f1" style="color:var(--brand);">Product page</a>
+  <span id="footer-commit" style="margin-left:12px;font-family:monospace;"></span>
+</footer>
+
+<script>
+const F1_API = 'https://f1-api.kirozdormu.workers.dev';
+const token = new URLSearchParams(location.search).get('token');
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+if (!token) {
+  document.getElementById('auth-error').style.display = 'block';
+} else {
+  init();
+}
+
+async function init() {
+  try {
+    await Promise.all([
+      loadStats(),
+      loadInsights(),
+    ]);
+    // Load other tabs lazily when clicked
+    if (new URLSearchParams(location.search).get('welcome') === '1') {
+      document.getElementById('welcome-banner').style.display = 'block';
+    }
+  } catch (e) {
+    showError('Failed to load dashboard: ' + e.message);
+  }
+}
+
+// ── API helpers ───────────────────────────────────────────────────────────────
+async function apiFetch(path, opts = {}) {
+  const sep = path.includes('?') ? '&' : '?';
+  const res = await fetch(`${F1_API}${path}${sep}token=${token}`, opts);
+  if (res.status === 401) {
+    document.getElementById('auth-error').style.display = 'block';
+    throw new Error('Unauthorized');
+  }
+  return res.json();
+}
+
+// ── Stats ────────────────────────────────────────────────────────────────────
+async function loadStats() {
+  const data = await apiFetch('/api/stats');
+  if (data.error) return showError(data.error);
+
+  const acc = data.account || {};
+  document.getElementById('account-tier-label').textContent =
+    `${acc.email || ''} · ${acc.tier || ''} plan` + (acc.has_anthropic_key ? '' : ' · ⚠️ No Anthropic key set');
+
+  if (!acc.has_anthropic_key) {
+    document.getElementById('byok-section').style.display = 'block';
+  }
+
+  setVal('stat-today-usd', fmtUsd(data.today?.usd));
+  setVal('stat-today-calls', `${(data.today?.calls || 0).toLocaleString()} calls`);
+  setVal('stat-week-usd', fmtUsd(data.week?.usd));
+  setVal('stat-week-calls', `${(data.week?.calls || 0).toLocaleString()} calls`);
+  setVal('stat-month-usd', fmtUsd(data.month?.usd));
+  setVal('stat-month-calls', `${(data.month?.calls || 0).toLocaleString()} calls`);
+  setVal('stat-month-tokens', fmtTokens(data.month?.tokens || 0));
+
+  // Model breakdown bars
+  const models = data.by_model || [];
+  if (models.length > 0) {
+    const total = models.reduce((s, m) => s + (m.usd || 0), 0);
+    const html = models.map(m => `
+      <div class="model-row">
+        <div class="model-bar-label">
+          <span style="color:var(--text)">${m.model || 'unknown'}</span>
+          <span>${fmtUsd(m.usd)} · ${(m.calls || 0).toLocaleString()} calls</span>
+        </div>
+        <div class="model-bar-track">
+          <div class="model-bar-fill" style="width:${total > 0 ? (m.usd / total * 100).toFixed(1) : 0}%"></div>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('model-breakdown').innerHTML = `<div class="card" style="margin-top:0;">${html}</div>`;
+  }
+}
+
+// ── Insights ─────────────────────────────────────────────────────────────────
+async function loadInsights() {
+  const data = await apiFetch('/api/insights');
+  document.getElementById('insights-loading').style.display = 'none';
+  if (data.error) return showError(data.error);
+
+  const html = (data.insights || []).map(ins => `
+    <div class="insight-card">
+      <div class="ins-header">
+        <h4>${ins.title}</h4>
+        ${ins.estimated_savings_usd > 0.001 ? `<span class="savings-badge">≈ save $${ins.estimated_savings_usd.toFixed(4)}</span>` : ''}
+      </div>
+      <p>${ins.finding}</p>
+    </div>
+  `).join('');
+  document.getElementById('insights-list').innerHTML = html || '<p class="loading">No insights yet — make some API calls first.</p>';
+}
+
+// ── Keys ─────────────────────────────────────────────────────────────────────
+async function loadKeys() {
+  document.getElementById('keys-loading').textContent = 'Loading…';
+  const data = await apiFetch('/api/keys');
+  document.getElementById('keys-loading').style.display = 'none';
+  if (data.error) return;
+  const tbody = document.getElementById('keys-body');
+  tbody.innerHTML = (data.keys || []).map(k => `
+    <tr>
+      <td class="mono">${k.id}</td>
+      <td>${k.label || '—'}</td>
+      <td>${k.active ? '<span class="tag-active">active</span>' : '<span class="tag-revoked">revoked</span>'}</td>
+      <td>${fmtDate(k.created_at)}</td>
+    </tr>
+  `).join('');
+  document.getElementById('keys-table').style.display = 'table';
+}
+
+// ── Usage ─────────────────────────────────────────────────────────────────────
+async function loadUsage() {
+  document.getElementById('usage-loading').textContent = 'Loading…';
+  const data = await apiFetch('/api/usage?limit=100');
+  document.getElementById('usage-loading').style.display = 'none';
+  if (data.error) return;
+  const tbody = document.getElementById('usage-body');
+  tbody.innerHTML = (data.events || []).map(e => `
+    <tr>
+      <td>${fmtDate(e.ts)}</td>
+      <td class="mono" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">${e.model}</td>
+      <td>${(e.input_tokens || 0).toLocaleString()}</td>
+      <td>${(e.output_tokens || 0).toLocaleString()}</td>
+      <td>$${(e.usd_cost || 0).toFixed(5)}</td>
+      <td style="color:${e.status_code < 300 ? 'var(--green)' : 'var(--red)'};">${e.status_code}</td>
+      <td>${e.latency_ms ? e.latency_ms + 'ms' : '—'}</td>
+    </tr>
+  `).join('');
+  document.getElementById('usage-table').style.display = 'table';
+}
+
+// ── Audit log ─────────────────────────────────────────────────────────────────
+async function loadAuditLog() {
+  document.getElementById('audit-loading').textContent = 'Loading…';
+  const data = await apiFetch('/api/key-access-log');
+  document.getElementById('audit-loading').style.display = 'none';
+  if (data.error) return;
+  const tbody = document.getElementById('audit-body');
+  tbody.innerHTML = (data.log || []).map(e => `
+    <tr>
+      <td>${fmtDate(e.ts)}</td>
+      <td>${e.reason}</td>
+      <td class="mono" style="font-size:11px;">${e.ip_hash || '—'}</td>
+    </tr>
+  `).join('');
+  document.getElementById('audit-table').style.display = 'table';
+}
+
+// ── BYOK: upload Anthropic key ────────────────────────────────────────────────
+async function uploadAnthropicKey() {
+  const key = document.getElementById('anthropic-key-input').value.trim();
+  const errEl = document.getElementById('byok-error');
+  errEl.style.display = 'none';
+  if (!key.startsWith('sk-ant-')) {
+    errEl.textContent = 'Invalid key — must start with sk-ant-';
+    errEl.style.display = 'block';
+    return;
+  }
+  try {
+    const data = await apiFetch('/api/set-anthropic-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ anthropic_key: key }),
+    });
+    if (data.ok) {
+      document.getElementById('byok-section').style.display = 'none';
+      document.getElementById('anthropic-key-input').value = '';
+      showSuccess('Anthropic key saved and encrypted ✓');
+      loadStats();
+    } else {
+      errEl.textContent = data.error || 'Failed to save key.';
+      errEl.style.display = 'block';
+    }
+  } catch (e) {
+    errEl.textContent = 'Network error. Please try again.';
+    errEl.style.display = 'block';
+  }
+}
+
+// ── Billing portal ────────────────────────────────────────────────────────────
+async function openPortal() {
+  const data = await apiFetch('/api/portal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+  if (data.portal_url) window.location.href = data.portal_url;
+}
+
+// ── Settings ─────────────────────────────────────────────────────────────────
+async function saveCutoverDate() {
+  const d = document.getElementById('cutover-date-input').value;
+  if (!d) return;
+  await apiFetch('/api/cutover-date', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cutover_date: d }),
+  });
+  showSuccess('Cutover date saved. Reload insights to see the updated comparison.');
+}
+
+async function savePromptOptin(val) {
+  // Not yet implemented in v1 — placeholder for settings endpoint
+  showSuccess(val ? 'Prompt prefix storage enabled (takes effect on next call).' : 'Prompt prefix storage disabled.');
+}
+
+async function deleteAccount() {
+  if (!confirm('Delete your account and ALL data permanently? This cannot be undone.')) return;
+  if (!confirm('Are you sure? Keys, usage events, and audit log will be hard-deleted.')) return;
+  const data = await apiFetch('/api/account', { method: 'DELETE' });
+  if (data.deleted) {
+    document.body.innerHTML = '<div style="text-align:center;padding:80px 24px;font-family:Inter,sans-serif;color:#e2e8f0;background:#08080F;min-height:100vh;"><h1 style="color:#6366F1;">Account deleted</h1><p style="color:#64748b;margin-top:12px;">All your data has been removed. Goodbye.</p><a href="/f1" style="color:#6366F1;display:block;margin-top:24px;">← Back to F1</a></div>';
+  }
+}
+
+// ── Tabs ─────────────────────────────────────────────────────────────────────
+const loaded = { insights: true };
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (!loaded[name]) {
+    loaded[name] = true;
+    if (name === 'keys') loadKeys();
+    if (name === 'usage') loadUsage();
+    if (name === 'audit') loadAuditLog();
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function fmtUsd(v) { return v == null ? '—' : '$' + Number(v).toFixed(4); }
+function fmtTokens(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
+  return String(n);
+}
+function fmtDate(s) {
+  if (!s) return '—';
+  const d = new Date(s);
+  return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+function setVal(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+function showError(msg) {
+  const el = document.createElement('div');
+  el.className = 'error-msg';
+  el.textContent = msg;
+  document.querySelector('.dash-main').prepend(el);
+}
+function showSuccess(msg) {
+  const el = document.createElement('div');
+  el.style.cssText = 'background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:#34d399;border-radius:8px;padding:10px 16px;font-size:13px;margin-bottom:16px;';
+  el.textContent = msg;
+  document.querySelector('.dash-main').prepend(el);
+  setTimeout(() => el.remove(), 5000);
+}
+</script>
+</body>
+</html>
