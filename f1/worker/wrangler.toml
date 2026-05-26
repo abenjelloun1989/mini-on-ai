@@ -22,8 +22,8 @@ ALLOWED_ORIGIN = "https://mini-on-ai.com"
 SITE_URL = "https://mini-on-ai.com"
 
 # Stripe Price IDs — fill in after creating products in Stripe dashboard
-STRIPE_PRICE_PRO = "REPLACE_WITH_STRIPE_PRICE_ID_PRO_19"
-STRIPE_PRICE_SCALE = "REPLACE_WITH_STRIPE_PRICE_ID_SCALE_99"
+STRIPE_PRICE_PRO = "price_1TbSDbCHYMwZNPVbdfHXRwcH"
+STRIPE_PRICE_SCALE = "price_1TbSG2CHYMwZNPVbRSxxNeMD"
 
 # Pricing-tier quotas
 PRO_MONTHLY_TOKEN_QUOTA = "1000000"
