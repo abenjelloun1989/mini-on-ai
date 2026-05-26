@@ -70,7 +70,7 @@ def make_client():
 
 # Map legacy model aliases to current Anthropic model IDs
 _MODEL_ALIASES = {
-    "haiku": "claude-haiku-4-20250514",
+    "haiku": "claude-haiku-4-5-20251001",
     "sonnet": "claude-sonnet-4-20250514",
     "opus": "claude-opus-4-20250514",
     # Passthrough: if it's already a full model ID, use as-is

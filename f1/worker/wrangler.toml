@@ -1,6 +1,7 @@
 name = "f1-api"
 main = "src/index.js"
 compatibility_date = "2025-01-01"
+account_id = "a71cb466c487a320303ee15bc04c4f44"
 
 # D1 — primary store for accounts, keys, usage events, audit log
 [[d1_databases]]

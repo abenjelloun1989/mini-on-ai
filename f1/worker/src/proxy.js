@@ -142,51 +142,71 @@ export async function handleProxy(request, env, ctx, path) {
   const latencyMs = Date.now() - start;
 
   // ── 6. Extract usage from response (non-streaming only in v1) ───────────
-  // Clone the response so we can read the body for usage extraction
-  // while still forwarding the original stream to the client.
-  const responseForClient = new Response(upstreamResponse.body, upstreamResponse);
-
-  // For streaming (SSE), we can't read the body here without buffering.
-  // v1: record with 0 tokens for streaming; non-streaming reads usage from JSON.
   const contentType = upstreamResponse.headers.get("content-type") || "";
   const isStreaming = contentType.includes("text/event-stream");
   const isSuccess = upstreamResponse.status >= 200 && upstreamResponse.status < 300;
 
+  let responseForClient;
+
   if (isSuccess && !isStreaming) {
-    // We need to tee the body to read usage without consuming the response.
-    // But we've already started streaming responseForClient above. For non-streaming
-    // responses (the common case), buffer the entire body, extract usage, re-stream.
-    // This is acceptable because non-streaming responses are small.
+    // Tee the body: one stream for the client, one for usage extraction.
+    // Non-streaming Anthropic responses are small JSON — tee() buffering is fine.
+    const [clientStream, usageStream] = upstreamResponse.body.tee();
+    responseForClient = new Response(clientStream, upstreamResponse);
+
     ctx.waitUntil(
-      extractAndRecordUsage({
-        env,
-        request,
-        keyMeta,
-        upstreamResponse,
-        latencyMs,
-      })
+      (async () => {
+        try {
+          const body = await new Response(usageStream).json();
+          const usage = body.usage || {};
+          const model = body.model || "unknown";
+          const { usd } = computeCost(usage, model);
+          await recordUsageEvent(env, {
+            accountId: keyMeta.accountId,
+            apiKeyId: keyMeta.keyId,
+            model,
+            inputTokens: usage.input_tokens ?? 0,
+            outputTokens: usage.output_tokens ?? 0,
+            cacheCreationTokens: usage.cache_creation_input_tokens ?? 0,
+            cacheReadTokens: usage.cache_read_input_tokens ?? 0,
+            usdCost: usd,
+            statusCode: upstreamResponse.status,
+            latencyMs,
+            promptStorageOptin: keyMeta.promptStorageOptin,
+            promptPrefix: null,
+            inputHash: null,
+          });
+        } catch (e) {
+          console.warn("[proxy] Failed to extract/record usage:", e.message);
+        }
+      })()
     );
-  } else if (!isStreaming) {
-    // Error response — record with 0 tokens
-    ctx.waitUntil(
-      recordUsageEvent(env, {
-        accountId: keyMeta.accountId,
-        apiKeyId: keyMeta.keyId,
-        model: extractModelFromRequest(request),
-        inputTokens: 0,
-        outputTokens: 0,
-        cacheCreationTokens: 0,
-        cacheReadTokens: 0,
-        usdCost: 0,
-        statusCode: upstreamResponse.status,
-        latencyMs,
-        promptStorageOptin: keyMeta.promptStorageOptin,
-        promptPrefix: null,
-        inputHash: null,
-      })
-    );
+  } else {
+    // Streaming or error response — forward body directly.
+    responseForClient = new Response(upstreamResponse.body, upstreamResponse);
+
+    if (!isStreaming) {
+      // Error response: record with 0 tokens.
+      ctx.waitUntil(
+        recordUsageEvent(env, {
+          accountId: keyMeta.accountId,
+          apiKeyId: keyMeta.keyId,
+          model: "unknown",
+          inputTokens: 0,
+          outputTokens: 0,
+          cacheCreationTokens: 0,
+          cacheReadTokens: 0,
+          usdCost: 0,
+          statusCode: upstreamResponse.status,
+          latencyMs,
+          promptStorageOptin: keyMeta.promptStorageOptin,
+          promptPrefix: null,
+          inputHash: null,
+        })
+      );
+    }
+    // Streaming: v1 skips usage extraction. Future: parse SSE `message_stop` event.
   }
-  // Streaming: v1 does not extract usage from SSE stream. Future: parse `message_stop` event.
 
   // ── 7. Audit log: key was used ───────────────────────────────────────────
   ctx.waitUntil(
@@ -195,58 +215,7 @@ export async function handleProxy(request, env, ctx, path) {
     ).bind(keyMeta.accountId, ipHash).run()
   );
 
-  // Forward the response to the client unchanged
   return responseForClient;
-}
-
-// ---------------------------------------------------------------------------
-// Usage extraction from non-streaming response
-// ---------------------------------------------------------------------------
-
-async function extractAndRecordUsage({ env, request, keyMeta, upstreamResponse, latencyMs }) {
-  let usage = {};
-  let model = extractModelFromRequest(request);
-  let promptPrefix = null;
-  let inputHash = null;
-
-  try {
-    const body = await upstreamResponse.clone().json();
-
-    // Anthropic Messages API: response.usage
-    if (body.usage) {
-      usage = body.usage;
-    }
-    // Model echo in response
-    if (body.model) model = body.model;
-
-    // Prompt prefix (opt-in only) + input hash
-    // We already have the request body — but we can't clone a consumed request.
-    // v1: derive hash from model+usage shape as a proxy for content uniqueness.
-    // TODO: in proxy.js, tee the request body to capture input text for hashing.
-    // For now, generate a unique ID so the hash column is non-null but not meaningful.
-    inputHash = null; // will be populated when request-body tee is implemented
-  } catch (e) {
-    // Non-JSON response (shouldn't happen for /v1/messages) — skip
-    console.warn("[proxy] Could not parse upstream response body for usage:", e.message);
-  }
-
-  const { usd } = computeCost(usage, model);
-
-  await recordUsageEvent(env, {
-    accountId: keyMeta.accountId,
-    apiKeyId: keyMeta.keyId,
-    model,
-    inputTokens: usage.input_tokens ?? 0,
-    outputTokens: usage.output_tokens ?? 0,
-    cacheCreationTokens: usage.cache_creation_input_tokens ?? 0,
-    cacheReadTokens: usage.cache_read_input_tokens ?? 0,
-    usdCost: usd,
-    statusCode: upstreamResponse.status,
-    latencyMs,
-    promptStorageOptin: keyMeta.promptStorageOptin,
-    promptPrefix,
-    inputHash,
-  });
 }
 
 // ---------------------------------------------------------------------------
@@ -283,12 +252,6 @@ async function recordUsageEvent(env, {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-function extractModelFromRequest(request) {
-  // Model may be in the URL for some Anthropic endpoints; for /v1/messages it's in the body.
-  // v1: we return a placeholder; the actual model is extracted from the response body.
-  return "unknown";
-}
 
 async function recordFailedAuth(env, rateLimitKey) {
   try {
