@@ -472,7 +472,7 @@ def build_product_page(meta: dict) -> str:
   </main>
 
   <footer class="site-footer">
-    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
   </footer>
 
 {_dark_mode_js()}
@@ -884,7 +884,7 @@ def rebuild_index(catalog: dict) -> str:
   </section>
 
   <footer class="site-footer">
-    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
     <p class="site-footer-tools"><a href="ats.html">ATS Resume Checker</a> &nbsp;·&nbsp; <a href="clauseguard.html">ClauseGuard</a> &nbsp;·&nbsp; <a href="invoiceguard.html">InvoiceGuard</a> &nbsp;·&nbsp; <a href="f1.html">F1 Proxy</a></p>
   </footer>
 
@@ -958,15 +958,113 @@ def _markdown_to_html(md: str) -> str:
     return "\n".join(result)
 
 
+def _related_products_cta(post: dict) -> str:
+    """Render up to 2 product cards at the bottom of a blog post.
+
+    Selection rule: best overlap between post.topic + post.title tokens
+    and product.tags. Fallback: 2 most recent live products with a Gumroad URL.
+
+    Outbound clicks land on Gumroad with utm_source=site & utm_medium=blog_cta
+    & utm_campaign=<post_slug> so attribution flows back. Future client-side
+    beacon will append to data/post-cta-clicks.json (see C2 in plan).
+    """
+    catalog = _load_catalog_cached()
+    products = [p for p in catalog.get("products", []) if p.get("gumroad_url")]
+    if not products:
+        return ""
+
+    # Build a token set from the post topic + title
+    topic = (post.get("topic") or "").lower()
+    title = (post.get("title") or "").lower()
+    tokens = set()
+    for blob in (topic, title):
+        for w in blob.replace("-", " ").replace(",", " ").split():
+            if len(w) >= 3:
+                tokens.add(w)
+
+    def score(p: dict) -> int:
+        tags = [str(t).lower() for t in (p.get("tags") or [])]
+        cat  = (p.get("category") or "").lower()
+        return sum(1 for tag in tags if any(tok in tag or tag in tok for tok in tokens)) + (
+            2 if any(tok in cat for tok in tokens) else 0
+        )
+
+    ranked = sorted(products, key=lambda p: (-score(p), p.get("created_at", "")), reverse=False)
+    # Sort by score desc; tie-break by newest first
+    ranked = sorted(products, key=lambda p: (-score(p), -1 if p.get("created_at") else 0), reverse=False)
+    ranked.sort(key=lambda p: (-score(p), -(int((p.get("created_at") or "0").replace("-","").replace(":","").replace("T","").replace("Z","").replace(".","")[:14] or 0))))
+
+    picks = ranked[:2] if ranked else products[:2]
+    # If best score is 0 across the board, fall back to newest 2
+    if picks and score(picks[0]) == 0:
+        picks = sorted(products, key=lambda p: p.get("created_at", ""), reverse=True)[:2]
+
+    slug = post.get("slug", "unknown")
+    cards_html = []
+    for p in picks:
+        url = _utm_url(p.get("gumroad_url", ""), "blog_cta", slug)
+        title_html = escape_html(p.get("title", ""))
+        desc_html  = escape_html((p.get("description") or "")[:140])
+        price = p.get("price")
+        price_label = f"${price // 100}" if price else "Free"
+        cards_html.append(
+            f'      <a href="{escape_html(url)}" class="related-card" target="_blank" rel="noopener" data-blog-cta="{slug}">\n'
+            f'        <div class="related-card-label">From mini-on-ai</div>\n'
+            f'        <h3 class="related-card-title">{title_html}</h3>\n'
+            f'        <p class="related-card-desc">{desc_html}</p>\n'
+            f'        <span class="related-card-cta">Get it — {price_label} →</span>\n'
+            f'      </a>'
+        )
+
+    if not cards_html:
+        return ""
+
+    return (
+        '    <aside class="related-products" aria-label="Related products">\n'
+        '      <p class="related-products-label">Continue with a related product</p>\n'
+        '      <div class="related-grid">\n'
+        + "\n".join(cards_html)
+        + "\n      </div>\n"
+        '    </aside>'
+    )
+
+
 def build_blog_post_page(post: dict) -> str:
+    import json as _json
     title   = escape_html(post.get("title", ""))
     excerpt = escape_html(post.get("excerpt", ""))
     slug    = post.get("slug", "")
     url     = f"{SITE_URL}/blog/{slug}.html"
     date    = (post.get("created_at") or "")[:10]
+    created_iso = post.get("created_at") or ""
     body_html = _markdown_to_html(post.get("body_markdown", ""))
     year    = datetime.now().year
     header  = _site_header(back_href="index.html", back_label="← All posts", prefix="../")
+
+    # JSON-LD BlogPosting schema for SEO (Google Rich Results, etc.)
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.get("title", ""),
+        "description": post.get("excerpt", ""),
+        "url": url,
+        "datePublished": created_iso,
+        "dateModified": created_iso,
+        "image": f"{SITE_URL}/images/og-default.svg",
+        "author": {"@type": "Organization", "name": "mini-on-ai", "url": SITE_URL},
+        "publisher": {
+            "@type": "Organization",
+            "name": "mini-on-ai",
+            "url": SITE_URL,
+            "logo": {"@type": "ImageObject", "url": f"{SITE_URL}/favicon.svg"},
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+    }
+    json_ld_block = f'<script type="application/ld+json">{_json.dumps(json_ld, ensure_ascii=False)}</script>'
+
+    # Related-products CTA (see C1 below). data sink for click telemetry:
+    # data/post-cta-clicks.json (future client-side beacon writes here).
+    related_cta = _related_products_cta(post)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -985,6 +1083,7 @@ def build_blog_post_page(post: dict) -> str:
   <meta property="og:image" content="{SITE_URL}/images/og-default.svg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="{url}">
+  {json_ld_block}
 </head>
 <body>
 {header}
@@ -1000,10 +1099,11 @@ def build_blog_post_page(post: dict) -> str:
 {body_html}
       </div>
     </article>
+{related_cta}
   </main>
 
   <footer class="site-footer">
-    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
   </footer>
 
 {_dark_mode_js()}
@@ -1058,7 +1158,7 @@ def rebuild_blog_index(posts: list) -> str:
   </main>
 
   <footer class="site-footer">
-    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+    <p>&copy; {year} mini-on-ai &nbsp;·&nbsp; <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
   </footer>
 
 {_dark_mode_js()}

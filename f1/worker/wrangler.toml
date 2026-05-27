@@ -18,6 +18,11 @@ id = "4c8f3a38eaa7488a82938f1e8cbdd97c"
 # Origin allowed to call /api/* dashboard endpoints
 ALLOWED_ORIGIN = "https://mini-on-ai.com"
 
+# Deployed git SHA from the public mini-on-ai/f1 repo.
+# Manually bumped on each deploy; surfaced via X-F1-Commit response header
+# so customers can verify the running code matches the open-source commit.
+BUILD_COMMIT = "1bca67c878c1917189342c884c7a7f9f761c3407"
+
 # Site URL used in Stripe success/cancel callbacks
 SITE_URL = "https://mini-on-ai.com"
 

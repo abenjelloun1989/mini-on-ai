@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="description" content="What data mini-on-ai collects, how we use it, our subprocessors, and your rights.">
+  <link rel="canonical" href="https://mini-on-ai.com/privacy">
+  <style>
+    .sec-page { max-width: 740px; margin: 0 auto; padding: 80px 24px; }
+    .sec-page h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .sec-page .lead { color: var(--text-muted); font-size: 15px; margin-bottom: 56px; line-height: 1.6; }
+    .sec-section { margin-bottom: 48px; }
+    .sec-section h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--brand); margin-bottom: 16px; }
+    .sec-section p, .sec-section li { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+    .sec-section ul { padding-left: 20px; margin-top: 8px; }
+    .sec-section ul li { margin-bottom: 4px; }
+    .sec-section code { font-family: 'SF Mono', monospace; font-size: 12px; background: #1a1a2e; padding: 2px 6px; border-radius: 4px; color: var(--text); }
+    .sec-page a { color: var(--brand); }
+    .updated { font-size: 12px; color: var(--text-muted); margin-bottom: 40px; }
+    .highlight-box {
+      background: #0f1117;
+      border: 1px solid var(--border-brand);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .highlight-box p { font-size: 14px; color: var(--text); line-height: 1.7; margin: 0; }
+    .highlight-box strong { color: var(--brand); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo" aria-label="mini-on-ai home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+        <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+        <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+        <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+        <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+        <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+      </svg>
+    </a>
+    <nav style="display:flex;gap:16px;align-items:center;">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/f1" class="nav-link">F1</a>
+    </nav>
+  </div>
+</header>
+
+<div class="sec-page">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: May 2026</p>
+
+  <p class="lead">mini-on-ai sells digital products (Claude Code skills, prompt packs) and operates F1, a BYOK proxy for the Anthropic API. This page explains exactly what we collect, why, who sees it, and what you can do about it. Plain English — no dark patterns.</p>
+
+  <div class="highlight-box">
+    <p><strong>The short version:</strong> We collect the minimum to run the business — your email if you sign up for the newsletter or buy a product, payment info via Stripe (which we never see in full), and for F1 only: API usage metadata (token counts, USD cost, status) and your encrypted Anthropic key. We never store your prompts or responses. We never sell or share your data.</p>
+  </div>
+
+  <!-- Newsletter / contact -->
+  <div class="sec-section">
+    <h2>If you sign up for the newsletter</h2>
+    <p>We collect: your email address.</p>
+    <p>We use it to: send the weekly "One AI Workflow a Week" email (one per Friday).</p>
+    <p>Where it's stored: <a href="https://www.brevo.com" target="_blank" rel="noopener">Brevo</a> (EU-based). You can unsubscribe with one click from any email.</p>
+    <p>We never share newsletter addresses with anyone, including affiliates.</p>
+  </div>
+
+  <!-- Purchases -->
+  <div class="sec-section">
+    <h2>If you buy a product on Gumroad</h2>
+    <p>Gumroad handles the entire checkout, payment, and delivery flow. We see only: the order ID, product, price, your email, and your country. We never see card details.</p>
+    <p>For F1 subscriptions purchased via Stripe: same principle. Stripe handles the card; we see the customer email and subscription tier.</p>
+  </div>
+
+  <!-- F1 specifics -->
+  <div class="sec-section">
+    <h2>If you use F1 (BYOK Anthropic proxy)</h2>
+    <p>F1 has its own dedicated security page that goes deeper: <a href="/f1/security">/f1/security</a>. Summary of what we store:</p>
+    <ul>
+      <li>One row per API call in our <code>usage_events</code> table: timestamp, model, token counts, USD cost, HTTP status, latency, and a SHA-256 hash of the first 2 KB of your input (one-way; never reversible).</li>
+      <li>Your Anthropic API key, encrypted at rest with AES-GCM. The encryption master key lives only as a Cloudflare Worker secret — never in code or environment files.</li>
+      <li>A "key access log" with timestamps and a privacy-preserving IP hash for every decryption of your Anthropic key.</li>
+    </ul>
+    <p style="margin-top:12px;"><strong style="color:var(--text);">We never store the body of any request or response.</strong> This is a hard policy enforced at the code level; the Worker source is MIT-licensed and public at <a href="https://github.com/mini-on-ai/f1" target="_blank" rel="noopener">github.com/mini-on-ai/f1</a>.</p>
+  </div>
+
+  <!-- Subprocessors -->
+  <div class="sec-section">
+    <h2>Who sees your data (subprocessors)</h2>
+    <ul>
+      <li><strong style="color:var(--text);">Cloudflare</strong> — Workers, D1, KV, Pages hosting (all our infrastructure).</li>
+      <li><strong style="color:var(--text);">Stripe</strong> — payment processing for F1 subscriptions.</li>
+      <li><strong style="color:var(--text);">Gumroad</strong> — payment processing for one-time digital products.</li>
+      <li><strong style="color:var(--text);">Brevo</strong> — transactional email (welcome emails, F1 key delivery) and newsletter.</li>
+      <li><strong style="color:var(--text);">Anthropic</strong> — for F1 customers, your API calls are forwarded verbatim to Anthropic (this is the entire point of the proxy).</li>
+    </ul>
+    <p style="margin-top:12px;">No analytics SDKs, no tracking pixels, no ad networks. The only third-party JavaScript on the site is Cloudflare Web Analytics (privacy-preserving, no cookies). Full subprocessor list with data-sharing details: <a href="/f1/security#subprocessors">/f1/security#subprocessors</a>.</p>
+  </div>
+
+  <!-- Cookies -->
+  <div class="sec-section">
+    <h2>Cookies</h2>
+    <p>The site itself sets no cookies. The dashboard and product pages use <code>localStorage</code> only to remember your dark-mode preference. Cloudflare may set a session cookie for bot detection — that's at the infrastructure layer and we have no access to it.</p>
+  </div>
+
+  <!-- Retention -->
+  <div class="sec-section">
+    <h2>How long we keep things</h2>
+    <ul>
+      <li><strong style="color:var(--text);">Newsletter addresses</strong> — until you unsubscribe.</li>
+      <li><strong style="color:var(--text);">F1 usage events</strong> — 90 days in full, then aggregated to daily rollups and the per-call rows are deleted.</li>
+      <li><strong style="color:var(--text);">F1 key-access log</strong> — last 1000 entries, FIFO.</li>
+      <li><strong style="color:var(--text);">F1 account + encrypted Anthropic key</strong> — while your subscription is active, plus a 30-day grace period after cancellation.</li>
+      <li><strong style="color:var(--text);">Gumroad / Stripe order data</strong> — retained per their respective policies for tax and chargeback compliance.</li>
+    </ul>
+  </div>
+
+  <!-- Your rights -->
+  <div class="sec-section">
+    <h2>Your rights</h2>
+    <p>You can, at any time:</p>
+    <ul>
+      <li>Request a copy of everything we have on you.</li>
+      <li>Ask for everything to be deleted. For F1: use the DELETE button in your dashboard Settings tab. For newsletter: click "unsubscribe" in any email. For Gumroad orders: contact us and we'll remove what we hold.</li>
+      <li>Object to or withdraw consent for any processing.</li>
+    </ul>
+    <p style="margin-top:12px;">To exercise any of these, email <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a>. We respond within 7 days.</p>
+  </div>
+
+  <!-- Anonymous brand note -->
+  <div class="sec-section">
+    <h2>About the brand</h2>
+    <p>mini-on-ai is operated by an anonymous solo founder. We acknowledge this creates a trust asymmetry for a product that handles credentials. Our mitigation: the F1 Worker source is MIT-licensed and public, encryption is verifiable in the code, and our subprocessors (Cloudflare, Stripe, Brevo, Anthropic) are all recognizable infrastructure providers you can evaluate independently. See <a href="/f1/security#anonymous-founder-verifiable-trust">/f1/security</a> for the full reasoning.</p>
+  </div>
+
+  <!-- Changes -->
+  <div class="sec-section">
+    <h2>Changes to this policy</h2>
+    <p>If we make material changes, we'll update the "Last updated" date at the top and email anyone whose data is materially affected. The full revision history is in the git log of our public site repo.</p>
+  </div>
+
+  <!-- Contact -->
+  <div class="sec-section">
+    <h2>Contact</h2>
+    <p>Privacy questions: <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a><br>
+    Security disclosures: <a href="mailto:security@mini-on-ai.com">security@mini-on-ai.com</a> (see also <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a>)</p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
+</footer>
+
+</body>
+</html>

@@ -1711,3 +1711,69 @@ body.light-mode .site-header {
   .tools-grid { grid-template-columns: 1fr; }
   .hero h1, .hero-headline { font-size: 24px; }
 }
+
+/* ── Blog post: related-products CTA (added 2026-05-27) ──────────────── */
+.related-products {
+  max-width: 720px;
+  margin: 64px auto 0;
+  padding: 32px 24px;
+  background: #0f1117;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+body.light-mode .related-products {
+  background: #f8fafc;
+}
+.related-products-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--brand);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.related-card {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  transition: border-color .15s, transform .15s;
+}
+.related-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+.related-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.related-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+.related-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.related-card-cta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand);
+}

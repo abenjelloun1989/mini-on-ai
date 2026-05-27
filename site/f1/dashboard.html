@@ -306,11 +306,28 @@ async function init() {
 async function apiFetch(path, opts = {}) {
   const sep = path.includes('?') ? '&' : '?';
   const res = await fetch(`${F1_API}${path}${sep}token=${token}`, opts);
+  // Capture the deployed commit SHA from the response header on every call
+  // so the dashboard can show which build is running.
+  const commit = res.headers.get('X-F1-Commit');
+  if (commit) renderCommitBadge(commit);
   if (res.status === 401) {
     document.getElementById('auth-error').style.display = 'block';
     throw new Error('Unauthorized');
   }
   return res.json();
+}
+
+let _commitRendered = false;
+function renderCommitBadge(commit) {
+  if (_commitRendered || !commit || commit === 'dev') return;
+  _commitRendered = true;
+  const short = commit.length > 7 ? commit.slice(0, 7) : commit;
+  const url = `https://github.com/mini-on-ai/f1/commit/${commit}`;
+  const html = `<a href="${url}" target="_blank" rel="noopener" title="Verify the deployed Worker against the open-source repo" style="color:var(--text-muted);text-decoration:none;">build ${short} ↗</a>`;
+  const top = document.getElementById('commit-hash');
+  const foot = document.getElementById('footer-commit');
+  if (top) top.innerHTML = html;
+  if (foot) foot.innerHTML = html;
 }
 
 // ── Stats ────────────────────────────────────────────────────────────────────
@@ -477,8 +494,16 @@ async function saveCutoverDate() {
 }
 
 async function savePromptOptin(val) {
-  // Not yet implemented in v1 — placeholder for settings endpoint
-  showSuccess(val ? 'Prompt prefix storage enabled (takes effect on next call).' : 'Prompt prefix storage disabled.');
+  const data = await apiFetch('/api/prompt-optin', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt_optin: val ? 1 : 0 }),
+  });
+  if (data && data.ok) {
+    showSuccess(val
+      ? 'Prompt prefix storage enabled (takes effect on next call).'
+      : 'Prompt prefix storage disabled.');
+  }
 }
 
 async function deleteAccount() {

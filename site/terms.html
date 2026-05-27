@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | mini-on-ai</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="description" content="Terms of service for mini-on-ai products and the F1 BYOK Anthropic proxy.">
+  <link rel="canonical" href="https://mini-on-ai.com/terms">
+  <style>
+    .sec-page { max-width: 740px; margin: 0 auto; padding: 80px 24px; }
+    .sec-page h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .sec-page .lead { color: var(--text-muted); font-size: 15px; margin-bottom: 56px; line-height: 1.6; }
+    .sec-section { margin-bottom: 48px; }
+    .sec-section h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--brand); margin-bottom: 16px; }
+    .sec-section p, .sec-section li { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+    .sec-section ul { padding-left: 20px; margin-top: 8px; }
+    .sec-section ul li { margin-bottom: 4px; }
+    .sec-section code { font-family: 'SF Mono', monospace; font-size: 12px; background: #1a1a2e; padding: 2px 6px; border-radius: 4px; color: var(--text); }
+    .sec-page a { color: var(--brand); }
+    .updated { font-size: 12px; color: var(--text-muted); margin-bottom: 40px; }
+    .highlight-box {
+      background: #0f1117;
+      border: 1px solid var(--border-brand);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .highlight-box p { font-size: 14px; color: var(--text); line-height: 1.7; margin: 0; }
+    .highlight-box strong { color: var(--brand); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo" aria-label="mini-on-ai home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" fill="none" aria-hidden="true">
+        <rect x="0"  y="1.5" width="17" height="17" rx="4" fill="#6366F1"/>
+        <rect x="20" y="1.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.35"/>
+        <rect x="0"  y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.6"/>
+        <rect x="20" y="21.5" width="17" height="17" rx="4" fill="#6366F1" opacity="0.18"/>
+        <text x="50" y="29" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5" fill="currentColor">mini-on-ai</text>
+      </svg>
+    </a>
+    <nav style="display:flex;gap:16px;align-items:center;">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/f1" class="nav-link">F1</a>
+    </nav>
+  </div>
+</header>
+
+<div class="sec-page">
+  <h1>Terms of Service</h1>
+  <p class="updated">Last updated: May 2026</p>
+
+  <p class="lead">By using mini-on-ai.com, buying a digital product, or subscribing to F1, you agree to these terms. They're short on purpose — we'd rather you actually read them.</p>
+
+  <div class="highlight-box">
+    <p><strong>The short version:</strong> Use our stuff for legal purposes. Don't resell or rebrand F1. The service is provided as-is. If something goes wrong, our liability is capped at what you paid us. You can cancel anytime via Stripe.</p>
+  </div>
+
+  <!-- Acceptable use -->
+  <div class="sec-section">
+    <h2>Acceptable use</h2>
+    <p>You agree not to use F1 or any digital product to:</p>
+    <ul>
+      <li>Violate Anthropic's <a href="https://www.anthropic.com/legal/usage-policy" target="_blank" rel="noopener">Usage Policy</a> — F1 is a proxy and any policy violation in your prompts is your responsibility, but it will also get your account terminated.</li>
+      <li>Resell, rebrand, or repackage F1 as your own product. Building <em>on top of</em> F1 (e.g. an internal tool that calls F1) is fine; reselling F1 access to third parties is not.</li>
+      <li>Attempt to circumvent rate limits, billing, or our security mechanisms.</li>
+      <li>Use the service for any illegal purpose under applicable law.</li>
+    </ul>
+  </div>
+
+  <!-- F1 subscription -->
+  <div class="sec-section">
+    <h2>F1 subscriptions</h2>
+    <p>F1 is billed monthly via Stripe. Your subscription auto-renews at the end of each billing period.</p>
+    <ul>
+      <li><strong style="color:var(--text);">Cancel anytime</strong> — open your dashboard, click "Billing →", and cancel via the Stripe customer portal. You retain access until the end of the paid period.</li>
+      <li><strong style="color:var(--text);">No prorated refunds</strong> — once a monthly period has started, we don't issue partial refunds. If you cancel on day 2 of the month, you keep access until day 30.</li>
+      <li><strong style="color:var(--text);">Refund within 7 days</strong> — if F1 doesn't work for you and you ask within 7 days of your first charge, we'll refund in full. Email <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a>.</li>
+      <li><strong style="color:var(--text);">Token quotas</strong> — Pro: 1M tokens/month. Scale: 25M tokens/month. These are informational in v1 — we don't currently throttle when exceeded, but reserve the right to as the product matures (with at least 14 days' notice).</li>
+      <li><strong style="color:var(--text);">Account deletion</strong> — when you cancel, your data is retained 30 days then hard-deleted. Or use the DELETE button in your dashboard to delete immediately.</li>
+    </ul>
+  </div>
+
+  <!-- Digital products -->
+  <div class="sec-section">
+    <h2>Digital products (Gumroad)</h2>
+    <p>One-time purchases (prompt packs, Claude Code skills) are handled by Gumroad. Their <a href="https://gumroad.com/terms" target="_blank" rel="noopener">terms</a> apply to the transaction. Refunds: contact us via Gumroad within 30 days if a product doesn't deliver what's described and we'll issue a full refund.</p>
+    <p>All digital products are licensed for the buyer's personal or single-team use. You can use the prompts/skills in client work; you can't resell or redistribute the files themselves.</p>
+  </div>
+
+  <!-- No warranty -->
+  <div class="sec-section">
+    <h2>No warranty, no SLA</h2>
+    <p>F1 and all digital products are provided "as is" without warranty of any kind, express or implied. We make no guarantee about uptime, availability, or fitness for any particular purpose. F1 depends on Cloudflare Workers and the Anthropic API — outages there will affect F1.</p>
+    <p>We monitor and aim for high availability, but if you're running a mission-critical workload, evaluate that risk before depending on us.</p>
+  </div>
+
+  <!-- Liability -->
+  <div class="sec-section">
+    <h2>Liability cap</h2>
+    <p>To the maximum extent permitted by law, our total liability for any claim related to F1 or our digital products is capped at the amount you paid us in the 12 months preceding the claim. We are not liable for indirect, consequential, or punitive damages.</p>
+    <p>If you're an EU consumer, statutory protections apply and are not waived by this clause.</p>
+  </div>
+
+  <!-- Changes -->
+  <div class="sec-section">
+    <h2>Changes to terms</h2>
+    <p>We may update these terms. Material changes will be announced with at least 14 days' notice (banner on the site + email to active F1 subscribers). Continued use after the effective date constitutes acceptance.</p>
+  </div>
+
+  <!-- Termination -->
+  <div class="sec-section">
+    <h2>Termination</h2>
+    <p>You can terminate at any time by cancelling your F1 subscription or unsubscribing from the newsletter. We may terminate or suspend your account if you breach these terms, with notice where reasonable.</p>
+  </div>
+
+  <!-- Governing law -->
+  <div class="sec-section">
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of the founder's country of residence. Any dispute will first be attempted to be resolved by good-faith email exchange before any other action. The founder operates under an anonymous brand; for binding legal correspondence, contact <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a> and we'll provide the legal entity details directly.</p>
+  </div>
+
+  <!-- Contact -->
+  <div class="sec-section">
+    <h2>Contact</h2>
+    <p>Questions about these terms: <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a></p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>&copy; 2026 mini-on-ai &nbsp;·&nbsp; <a href="mailto:hello@mini-on-ai.com">hello@mini-on-ai.com</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></p>
+</footer>
+
+</body>
+</html>
