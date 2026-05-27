@@ -253,6 +253,38 @@
         <button class="btn-primary" onclick="saveCutoverDate()">Save</button>
       </div>
 
+      <div style="margin-bottom:32px;border-top:1px solid var(--border);padding-top:24px;">
+        <h3 style="font-size:15px;font-weight:600;margin-bottom:8px;">Spend alerts</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Get an email the moment your month-to-date Anthropic spend crosses a number you set. Fires at most once per month. Free on every tier.</p>
+
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;">Monthly budget (USD)</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span style="color:var(--text-muted);">$</span>
+            <input type="number" min="1" step="1" id="alert-budget-input" placeholder="50" style="padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;width:120px;">
+            <span id="alert-suggested-hint" style="font-size:12px;color:var(--text-muted);"></span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;">Alert email</label>
+          <input type="email" id="alert-email-input" placeholder="(your account email)" style="padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;width:280px;">
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;">Webhook URL (optional)</label>
+          <input type="url" id="alert-webhook-input" placeholder="https://hooks.slack.com/services/…" style="padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;width:420px;max-width:100%;">
+          <p style="font-size:12px;color:var(--text-muted);margin-top:6px;">Slack webhook URLs work directly. For Discord, paste your webhook URL and append <code>/slack</code>.</p>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
+          <button class="btn-primary" onclick="saveAlerts()">Save alert settings</button>
+          <button class="btn-secondary" onclick="testAlert()">Send test alert</button>
+          <button class="btn-secondary" onclick="clearAlerts()" title="Turn off alerts">Turn off</button>
+        </div>
+        <p id="alert-status" style="font-size:13px;color:var(--text-muted);margin:0;"></p>
+      </div>
+
       <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">Prompt prefix storage (opt-in)</h3>
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">When enabled, F1 stores the first 200 characters of each input. This unlocks the "Top expensive prompts" preview in insights. Full bodies are never stored.</p>
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;">
@@ -506,6 +538,88 @@ async function savePromptOptin(val) {
   }
 }
 
+// ── Spend alerts ────────────────────────────────────────────────────────────
+async function loadAlerts() {
+  const data = await apiFetch('/api/alerts');
+  if (!data) return;
+  const budgetInput = document.getElementById('alert-budget-input');
+  const emailInput = document.getElementById('alert-email-input');
+  const webhookInput = document.getElementById('alert-webhook-input');
+  const hint = document.getElementById('alert-suggested-hint');
+  const status = document.getElementById('alert-status');
+
+  if (data.alert_budget_usd != null) budgetInput.value = data.alert_budget_usd;
+  else budgetInput.placeholder = String(data.suggested_budget_usd ?? 50);
+  if (data.alert_email) emailInput.value = data.alert_email;
+  if (data.account_email) emailInput.placeholder = data.account_email;
+  if (data.alert_webhook_url) webhookInput.value = data.alert_webhook_url;
+
+  if (hint) {
+    const spent = Number(data.spent_last_30d_usd || 0);
+    if (spent > 0) {
+      hint.textContent = `Suggested: $${data.suggested_budget_usd} (1.5× your last 30d spend of $${spent.toFixed(2)})`;
+    } else {
+      hint.textContent = `Suggested: $${data.suggested_budget_usd} (no usage history yet)`;
+    }
+  }
+
+  if (status) {
+    if (data.alert_budget_usd == null) {
+      status.textContent = 'Alerts off — set a budget to enable.';
+    } else {
+      const lastFired = data.alert_fired_at
+        ? `last fired ${new Date(data.alert_fired_at).toLocaleString()}`
+        : 'never fired';
+      status.textContent = `Budget $${data.alert_budget_usd} · ${lastFired}.`;
+    }
+  }
+}
+
+async function saveAlerts() {
+  const budgetRaw = document.getElementById('alert-budget-input').value.trim();
+  const email = document.getElementById('alert-email-input').value.trim();
+  const webhook = document.getElementById('alert-webhook-input').value.trim();
+  const body = {
+    alert_budget_usd: budgetRaw === '' ? null : Number(budgetRaw),
+    alert_email: email || null,
+    alert_webhook_url: webhook || null,
+  };
+  const data = await apiFetch('/api/alerts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (data && data.ok) {
+    if (data.warning) showSuccess('Saved. Heads up: ' + data.warning);
+    else if (data.alert_budget_usd == null) showSuccess('Alerts turned off.');
+    else showSuccess('Alert settings saved.');
+    loadAlerts();
+  } else if (data && data.error) {
+    showError(data.error);
+  }
+}
+
+async function testAlert() {
+  const data = await apiFetch('/api/alerts/test', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (data && data.ok) {
+    const parts = [];
+    parts.push(data.sent.email ? 'email sent ✓' : 'email failed ✗');
+    if (data.sent.webhook !== null) parts.push(data.sent.webhook ? 'webhook sent ✓' : 'webhook failed ✗');
+    showSuccess('Test alert: ' + parts.join(' · ') + ' — check your inbox (and Slack/Discord if set).');
+  } else if (data && data.error) {
+    showError(data.error);
+  }
+}
+
+async function clearAlerts() {
+  document.getElementById('alert-budget-input').value = '';
+  document.getElementById('alert-webhook-input').value = '';
+  await saveAlerts();
+}
+
 async function deleteAccount() {
   if (!confirm('Delete your account and ALL data permanently? This cannot be undone.')) return;
   if (!confirm('Are you sure? Keys, usage events, and audit log will be hard-deleted.')) return;
@@ -527,6 +641,7 @@ function switchTab(name) {
     if (name === 'keys') loadKeys();
     if (name === 'usage') loadUsage();
     if (name === 'audit') loadAuditLog();
+    if (name === 'settings') loadAlerts();
   }
 }
 
