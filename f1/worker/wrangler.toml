@@ -21,7 +21,7 @@ ALLOWED_ORIGIN = "https://mini-on-ai.com"
 # Deployed git SHA from the public mini-on-ai/f1 repo.
 # Manually bumped on each deploy; surfaced via X-F1-Commit response header
 # so customers can verify the running code matches the open-source commit.
-BUILD_COMMIT = "2ae02feced176fe40d168a5c60fd04657a2c2292"
+BUILD_COMMIT = "77eb186d768394f8c316ba28cda49379eab9428f"
 
 # Site URL used in Stripe success/cancel callbacks
 SITE_URL = "https://mini-on-ai.com"
