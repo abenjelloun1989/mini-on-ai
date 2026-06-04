@@ -12,6 +12,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8081", "--directory", "clauseguard"],
       "port": 8081
+    },
+    {
+      "name": "finances-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "finances/public"],
+      "port": 8123
     }
   ]
 }

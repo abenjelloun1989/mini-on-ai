@@ -1,0 +1,24 @@
+name = "finances-worker"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "finances-db"
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+[vars]
+# The Cloudflare Pages URL serving the PWA (used for CORS). No trailing slash.
+ALLOWED_ORIGIN = "https://finances.pages.dev"
+# The single email address allowed by the Cloudflare Access policy.
+ALLOWED_EMAIL = "you@example.com"
+# The Application Audience (AUD) tag from the Access application overview page.
+CF_ACCESS_AUD = "REPLACE_WITH_YOUR_ACCESS_AUD_TAG"
+
+# Secrets — never put these in wrangler.toml. Set with:
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put CF_ACCESS_TEAM_DOMAIN     (e.g. myteam.cloudflareaccess.com)
+#
+# Local dev only — bypass Access JWT verification when running `wrangler dev`.
+# NEVER set this in production. Put it in a local-only .dev.vars file:
+#   echo 'DEV_BYPASS_AUTH = "1"' >> .dev.vars

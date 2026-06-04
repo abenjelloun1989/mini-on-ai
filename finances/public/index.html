@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#1F3864" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Finances" />
+  <title>Finances</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- App bar -->
+  <header class="appbar" id="appbar">
+    <div class="appbar-left">
+      <span class="appbar-title" id="appbarMonth">—</span>
+    </div>
+    <div class="appbar-right">
+      <span class="balance-badge" id="balanceBadge" title="Balance du mois">🟢</span>
+      <button class="icon-btn" id="themeToggle" aria-label="Thème">🌙</button>
+      <button class="icon-btn" id="settingsBtn" aria-label="Réglages">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Active screen renders here -->
+  <main class="view" id="view"></main>
+
+  <!-- Bottom navigation -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab" data-route="accueil"><span class="tab-ico">🏠</span><span class="tab-lbl">Accueil</span></button>
+    <button class="tab" data-route="historique"><span class="tab-ico">📋</span><span class="tab-lbl">Historique</span></button>
+    <button class="fab" id="fab" aria-label="Ajouter une transaction">+</button>
+    <button class="tab" data-route="stats"><span class="tab-ico">📊</span><span class="tab-lbl">Stats</span></button>
+    <button class="tab" data-route="reserves"><span class="tab-ico">🛡️</span><span class="tab-lbl">Réserves</span></button>
+    <button class="tab" data-route="chat"><span class="tab-ico">💬</span><span class="tab-lbl">Chat</span></button>
+  </nav>
+
+  <!-- Add-transaction bottom sheet -->
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <section class="sheet" id="txSheet" hidden aria-hidden="true"></section>
+
+  <!-- Toast host -->
+  <div class="toast-host" id="toastHost"></div>
+
+  <script src="vendor/chart.umd.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
