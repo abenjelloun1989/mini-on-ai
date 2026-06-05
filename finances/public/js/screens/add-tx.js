@@ -10,6 +10,12 @@ const backdrop = document.getElementById("sheetBackdrop");
 
 let st = null; // working state
 
+/** Today's date as YYYY-MM-DD in the user's local timezone (not UTC). */
+function localDate() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
 /** Open the sheet. Pass an existing tx object to edit. */
 export function openTxSheet(tx = null) {
   st = {
@@ -18,7 +24,7 @@ export function openTxSheet(tx = null) {
     type: tx ? (tx.amount >= 0 ? "income" : "expense") : "expense",
     categoryId: tx ? tx.budget_line_id : store.getLastCategory(),
     label: tx ? tx.label : "",
-    date: tx ? tx.date : new Date().toISOString().slice(0, 10),
+    date: tx ? tx.date : localDate(),
     notes: tx ? tx.notes || "" : "",
     notesOpen: !!(tx && tx.notes),
     step: tx ? 3 : 1,
@@ -167,7 +173,7 @@ function renderConfirm() {
 
 async function save() {
   st.label = sheet.querySelector("#fLabel").value.trim() || "Sans libellé";
-  st.date = sheet.querySelector("#fDate").value || new Date().toISOString().slice(0, 10);
+  st.date = sheet.querySelector("#fDate").value || localDate();
   const notesEl = sheet.querySelector("#fNotes");
   if (notesEl) st.notes = notesEl.value.trim();
 
@@ -182,11 +188,12 @@ async function save() {
   const btn = sheet.querySelector("#saveBtn");
   btn.disabled = true; btn.textContent = "…";
   try {
-    if (st.editing) await api.transactions.update(st.editing, payload);
+    const wasEditing = st.editing; // capture before closeTxSheet() nulls st
+    if (wasEditing) await api.transactions.update(wasEditing, payload);
     else await api.transactions.create(payload);
     store.setLastCategory(st.categoryId);
-    closeTxSheet();
-    toast(st.editing ? "Modifié" : "Enregistré ✓", { type: "ok" });
+    closeTxSheet(); // st = null from here on
+    toast(wasEditing ? "Modifié ✓" : "Enregistré ✓", { type: "ok" });
     if (window.refreshAppbar) window.refreshAppbar();
     if (window.appReload) window.appReload();
   } catch (e) {

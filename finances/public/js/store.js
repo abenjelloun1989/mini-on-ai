@@ -10,8 +10,8 @@ const LS = {
 };
 
 export const store = {
-  // current YYYY-MM being viewed (shared across screens)
-  month: new Date().toISOString().slice(0, 7),
+  // current YYYY-MM being viewed — local timezone so midnight CET stays on the right month
+  month: (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`; })(),
   // cache of budget lines (refreshed by loadBudgetLines)
   budgetLines: [],
 
