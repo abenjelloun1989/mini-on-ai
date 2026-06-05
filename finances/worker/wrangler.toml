@@ -10,6 +10,7 @@ database_id = "dff7756e-1a14-4938-88ac-7b913ccd8be6"
 
 [vars]
 # The Cloudflare Pages URL serving the PWA (used for CORS). No trailing slash.
+# UPDATE THIS once Pages is deployed, then run: npx wrangler deploy
 ALLOWED_ORIGIN = "https://finances.pages.dev"
 # The single email address allowed by the Cloudflare Access policy.
 ALLOWED_EMAIL = "kirozdormu@gmail.com"
