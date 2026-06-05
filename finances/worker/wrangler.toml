@@ -1,17 +1,18 @@
 name = "finances-worker"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
+account_id = "a71cb466c487a320303ee15bc04c4f44"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "finances-db"
-database_id = "REPLACE_WITH_YOUR_D1_ID"
+database_id = "dff7756e-1a14-4938-88ac-7b913ccd8be6"
 
 [vars]
 # The Cloudflare Pages URL serving the PWA (used for CORS). No trailing slash.
 ALLOWED_ORIGIN = "https://finances.pages.dev"
 # The single email address allowed by the Cloudflare Access policy.
-ALLOWED_EMAIL = "you@example.com"
+ALLOWED_EMAIL = "kirozdormu@gmail.com"
 # The Application Audience (AUD) tag from the Access application overview page.
 CF_ACCESS_AUD = "REPLACE_WITH_YOUR_ACCESS_AUD_TAG"
 
