@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
+from lib.claude_cli import claude_call as _cli_call   # WebSearch — needs CLI
 from lib.f1_client import make_client, claude_call
 from lib.utils import read_json, write_json, log, timestamp, extract_json, log_token_usage, ROOT
 
@@ -362,7 +363,7 @@ def _run_web_search_loop(client, prompt: str, max_uses: int = 12) -> str:
     `client` is kept as a parameter for API fallback compatibility but is not used here.
     """
     try:
-        text, usage = claude_call(
+        text, usage = _cli_call(
             prompt,
             tools=["WebSearch"],
             timeout=300,  # 5 minutes max for web research

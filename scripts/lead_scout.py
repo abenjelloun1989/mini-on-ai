@@ -30,7 +30,8 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 from lib.utils import read_json, write_json, log, file_exists, ROOT
-from lib.f1_client import claude_call
+from lib.claude_cli import claude_call as _cli_call   # WebSearch/WebFetch — needs CLI
+from lib.f1_client import claude_call as _f1_call     # pure completions — tracked via F1
 
 
 STATE_FILE = "data/leads-state.json"
@@ -97,7 +98,7 @@ Use WebSearch to find candidates. Use WebFetch to verify each email is on the fi
 Return ONLY a JSON array of {n} objects. No prose, no commentary, no markdown fences other than ```json if needed."""
 
     log("lead-scout", f"Asking Claude to find {n} leads (with WebSearch+WebFetch)...")
-    text, _ = claude_call(
+    text, _ = _cli_call(
         prompt,
         system=system,
         tools=["WebSearch", "WebFetch"],
@@ -148,7 +149,7 @@ Subject: <subject line>
 
 <signature line>"""
 
-    text, _ = claude_call(prompt, model="haiku", timeout=120)
+    text, _ = _f1_call(prompt, model="haiku", timeout=120)
     text = text.strip()
 
     # Guard: ensure cross-link is present, append default signature if not
