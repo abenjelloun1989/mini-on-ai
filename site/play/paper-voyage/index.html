@@ -497,13 +497,13 @@ const T = FR ? {
   grandLivre: 'Le Grand Livre', pageTrouvee: 'Page retrouvée !', pagesSur: (n, t) => `${n} page${s_(n)} sur ${t}`, pagePerdue: 'Page encore perdue',
   offert: 'Offert', cadeau: 'Choisis un bateau, il t\'est offert.',
   mondes: { printemps: 'Canaux de printemps', ete: "Marais d'été", automne: "Ville d'automne", hiver: "Cimes d'hiver", nuit: 'Nuit des lanternes' },
-  raretes: { commune: 'Normal', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire' }, notePapiers: 'Les papiers habillent le Petit Papier.',
+  raretes: { commune: 'Normal', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire' },
   tonNom: 'Ton nom de capitaine', nomDefaut: 'Capitaine', effacer: 'Effacer ma progression', sur: 'Vraiment ? Tout sera perdu. Confirme encore une fois',
   chCanaux: n => (n > 1 ? 'canaux' : 'canal'), chEtoiles: n => `étoile${s_(n)}`, chFleurs: n => `fleur${s_(n)}`, chOr: n => `médaille${s_(n)} d'or`,
   gagneNom: n => `Au port, ${n} !`,
   boutique: 'Boutique', pause: 'Pause', reprendre: 'Reprendre', retour: 'Retour', partir: 'En route',
   sansBonus: "Aucun bonus n'est nécessaire pour finir le canal.",
-  ongletBateaux: 'Bateaux', ongletPapiers: 'Papiers', ongletBonus: 'Bonus',
+  ongletBateaux: 'Bateaux', ongletBonus: 'Bonus',
   equipe: 'Équipé', utiliser: 'Utiliser', surBateau: 'Sur ton bateau', aToi: 'À toi', dispo: 'À acheter', manque: n => `Encore ${n} fleur${s_(n)}`,
   apercu: 'Aperçu', noteBateaux: 'Chaque canal te rapporte des fleurs.',
   noteBonus: 'Les bonus sont facultatifs : tous les canaux se finissent sans eux.',
@@ -514,7 +514,6 @@ const T = FR ? {
   doubler: 'Doubler mes fleurs', peutAcheter: 'Tu peux acheter', voir: 'Voir',
   desc: { ciree: 'Encaisse un choc.', voile: "Un coup d'accélérateur. Rien ne peut te toucher.", abeille: 'Attire les fleurs vers toi.', libellule: 'Tout ralentit et le chrono s\'arrête.' },
   nomsBonus: { ciree: 'Ciré', voile: 'Grande voile', abeille: 'Abeille', libellule: 'Libellule' },
-  papiers: { uni: 'Uni', raye: 'Rayé', pois: 'À pois', journal: 'Journal' },
   noms: { classique: 'Petit Papier', pirogue: 'Pirogue', papyrus: 'Barque de papyrus', coracle: 'Coracle', noix: 'Coquille de noix', bicorne: 'Bicorne', trireme: 'Trirème', jonque: 'Jonque', gondole: 'Gondole', cocotte: 'Cocotte', sabot: 'Sabot', drakkar: 'Drakkar', caravelle: 'Caravelle', aubes: 'Bateau à aubes', theiere: 'Théière', baignoire: 'Baignoire', galion: 'Galion', zhenghe: 'Navire au trésor', clipper: 'Clipper', paquebot: 'Paquebot', dragon: 'Dragon' },
 } : {
   canal: 'Canal', carnet: 'My logbook', bateaux: 'Boats', canaux: 'Canals', fermer: 'Close',
@@ -546,13 +545,13 @@ const T = FR ? {
   grandLivre: 'The Great Book', pageTrouvee: 'Page found!', pagesSur: (n, t) => `${n} of ${t} page${s_(t)}`, pagePerdue: 'Still lost',
   offert: 'Free', cadeau: 'Pick a boat. It\'s a gift!',
   mondes: { printemps: 'Spring Canals', ete: 'Summer Marsh', automne: 'Autumn Town', hiver: 'Winter Peaks', nuit: 'Lantern Night' },
-  raretes: { commune: 'Common', rare: 'Rare', epique: 'Epic', legendaire: 'Legendary' }, notePapiers: 'Papers change the look of the Little Paper.',
+  raretes: { commune: 'Common', rare: 'Rare', epique: 'Epic', legendaire: 'Legendary' },
   tonNom: 'Your captain name', nomDefaut: 'Captain', effacer: 'Erase my progress', sur: 'Are you sure? Everything will be lost. Press again',
   chCanaux: n => `canal${s_(n)}`, chEtoiles: n => `star${s_(n)}`, chFleurs: n => `flower${s_(n)}`, chOr: n => `gold medal${s_(n)}`,
   gagneNom: n => `Safe in port, ${n}!`,
   boutique: 'Shop', pause: 'Paused', reprendre: 'Resume', retour: 'Back', partir: 'Set sail',
   sansBonus: 'No bonus needed to finish the canal.',
-  ongletBateaux: 'Boats', ongletPapiers: 'Papers', ongletBonus: 'Bonuses',
+  ongletBateaux: 'Boats', ongletBonus: 'Bonuses',
   equipe: 'Equipped', utiliser: 'Use', surBateau: 'On your boat', aToi: 'Yours', dispo: 'Ready to buy', manque: n => `${n} more flower${s_(n)}`,
   apercu: 'Preview', noteBateaux: 'Every canal you sail earns flowers.',
   noteBonus: 'Bonuses are optional. Every canal can be finished without them.',
@@ -563,7 +562,6 @@ const T = FR ? {
   doubler: 'Double my flowers', peutAcheter: 'You can buy', voir: 'See',
   desc: { ciree: 'Blocks one crash.', voile: 'A short burst of speed. Nothing can touch you.', abeille: 'Pulls nearby flowers to you.', libellule: 'Everything slows down and the clock stops.' },
   nomsBonus: { ciree: 'Raincoat', voile: 'Big Sail', abeille: 'Bee', libellule: 'Dragonfly' },
-  papiers: { uni: 'Plain', raye: 'Striped', pois: 'Dotted', journal: 'Newspaper' },
   noms: { classique: 'Little Paper', pirogue: 'Dugout', papyrus: 'Papyrus Skiff', coracle: 'Coracle', noix: 'Walnut Shell', bicorne: 'Bicorne', trireme: 'Trireme', jonque: 'Junk', gondole: 'Gondola', cocotte: 'Paper Hen', sabot: 'Clog', drakkar: 'Longship', caravelle: 'Caravel', aubes: 'Paddle Steamer', theiere: 'Teapot', baignoire: 'Bathtub', galion: 'Galleon', zhenghe: 'Treasure Ship', clipper: 'Clipper', paquebot: 'Ocean Liner', dragon: 'Dragon' },
 };
 const H = HISTOIRES[FR ? 'fr' : 'en'];
@@ -800,7 +798,6 @@ const BATEAUX = [
   ['classique', 0, 'commune'], ['pirogue', 60, 'commune'], ['papyrus', 120, 'commune'], ['coracle', 120, 'commune'], ['noix', 150, 'commune'], ['bicorne', 150, 'commune'],
 ].map(([id, prix, rarete]) => ({ id, prix, rarete }));
 const rareteChoisie = () => BATEAUX.find(b => b.id === bateauChoisi()).rarete;
-const PAPIERS = [{ id: 'uni', prix: 0 }, { id: 'raye', prix: 80 }, { id: 'pois', prix: 120 }, { id: 'journal', prix: 400 }];
 const BONUS = [
   { id: 'ciree', prix: 30 }, { id: 'voile', prix: 50, duree: 4 },
   { id: 'abeille', prix: 40, duree: 15 }, { id: 'libellule', prix: 60, duree: 6 },
@@ -810,8 +807,7 @@ const BATEAUX_LIVRE = [['pirogue', 'papyrus', 'coracle'], ['trireme', 'jonque', 
   ['noix', 'bicorne'], ['cocotte', 'sabot'], ['theiere', 'baignoire'], ['galion'], ['dragon']];
 const possede = (cle, id) => id === 'classique' || id === 'uni' || store.get(cle, []).includes(id);
 const bateauChoisi = () => (BATEAUX.some(b => b.id === store.get('bateau')) ? store.get('bateau') : 'classique');
-const papierChoisi = () => (PAPIERS.some(b => b.id === store.get('papier')) ? store.get('papier') : 'uni');
-const feuilleBateau = () => (bateauChoisi() === 'classique' ? `bateau-classique-${papierChoisi()}` : `bateau-${bateauChoisi()}`);
+const feuilleBateau = () => (bateauChoisi() === 'classique' ? 'bateau-classique-uni' : `bateau-${bateauChoisi()}`);
 
 // A new world every 5 canals. Adding #hiver to the address previews one.
 const MONDES = [
@@ -1389,16 +1385,8 @@ function choisirBateau(id) {
   charger(feuilleBateau());
 }
 
-function choisirPapier(id) {
-  store.set('papier', id);
-  charger(feuilleBateau());
-}
-
 // The next thing to save for: the cheapest boat or paper not owned yet.
-const aAcheter = () => [
-  ...BATEAUX.filter(b => !possede('bateaux', b.id)).map(b => ({ ...b, nom: T.noms[b.id], onglet: 'bateaux' })),
-  ...PAPIERS.filter(b => !possede('papiers', b.id)).map(b => ({ ...b, nom: T.papiers[b.id], onglet: 'papiers' })),
-].sort((a, b) => a.prix - b.prix);
+const aAcheter = () => BATEAUX.filter(b => !possede('bateaux', b.id)).map(b => ({ ...b, nom: T.noms[b.id] })).sort((a, b) => a.prix - b.prix);
 
 function montrerProgres(el, avant, apres) {
   const suivant = aAcheter().find(b => b.prix > apres);
@@ -1416,10 +1404,10 @@ function montrerNouveau(avant, apres) {
   el.hidden = !dispo;
   if (!dispo) return;
   el.innerHTML = `<span>${T.peutAcheter}<br>${dispo.nom}</span>`;
-  el.prepend(icone(dispo.onglet === 'bateaux' ? 'vignette-' + dispo.id : 'papier-' + dispo.id));
+  el.prepend(icone('vignette-' + dispo.id));
   const b = document.createElement('button');
   b.textContent = T.voir;
-  b.addEventListener('click', () => ouvrirBoutique(dispo.onglet));
+  b.addEventListener('click', () => ouvrirBoutique('bateaux'));
   el.appendChild(b);
 }
 
@@ -1605,7 +1593,7 @@ function ouvrirBoutique(o = onglet) {
   $('boutiqueSolde').innerHTML = flor + fleurs;
   const tabs = $('boutiqueOnglets');
   tabs.innerHTML = '';
-  for (const [id, label] of [['bateaux', T.ongletBateaux], ['papiers', T.ongletPapiers], ['bonus', T.ongletBonus]]) {
+  for (const [id, label] of [['bateaux', T.ongletBateaux], ['bonus', T.ongletBonus]]) {
     const b = document.createElement('button');
     b.textContent = label;
     if (id === onglet) b.className = 'actif';
@@ -1614,9 +1602,9 @@ function ouvrirBoutique(o = onglet) {
   }
   const zone = $('boutiqueFiches');
   zone.innerHTML = '';
-  $('boutiqueNote').textContent = onglet === 'bonus' ? T.noteBonus : onglet === 'papiers' ? T.notePapiers : T.noteBateaux;
+  $('boutiqueNote').textContent = onglet === 'bonus' ? T.noteBonus : T.noteBateaux;
   if (onglet === 'bonus') BONUS.forEach(b => zone.appendChild(ficheBonus(b, fleurs)));
-  else if (onglet === 'bateaux') {
+  else {
     for (const r of ['legendaire', 'epique', 'rare', 'commune']) {
       const titre = document.createElement('div');
       titre.className = 'rarete';
@@ -1628,15 +1616,6 @@ function ouvrirBoutique(o = onglet) {
         zone.appendChild(f);
       });
     }
-  }
-  else {
-    const p = document.createElement('div'), actuel = papierChoisi();
-    p.className = 'fiche grande';
-    p.innerHTML = '<div class="eau"></div>';
-    p.firstChild.append(icone('papier-' + actuel, 228));
-    p.insertAdjacentHTML('beforeend', `<b>${T.noms.classique} · ${T.papiers[actuel]}</b><small>${T.apercu}</small>`);
-    zone.appendChild(p);
-    PAPIERS.forEach(b => zone.appendChild(ficheTenue(b, 'papiers', 'papier-' + b.id, T.papiers[b.id], actuel, choisirPapier, fleurs)));
   }
   $('boutique').hidden = false;
 }
@@ -1661,7 +1640,7 @@ function ficheTenue(b, cle, image, nom, actuel, choisir, fleurs) {
       else store.set('fleurs', fleurs - b.prix);
       store.set(cle, [...liste, b.id]);
       choisir(b.id);
-      revelerAchat(cle, b, nom, () => ouvrirBoutique());
+      revelerAchat(b, nom, () => ouvrirBoutique());
     });
   }
   el.appendChild(btn);
@@ -1676,25 +1655,23 @@ function ficheHistoire(id) {
 }
 
 // A sheet folds itself, spins away in a flash, and the new boat bursts out.
-function revelerAchat(cle, b, nom, fin) {
-  const rarete = cle === 'bateaux' ? b.rarete : 'rare', [papier, lueur] = PAPIER_RARETE[rarete];
-  const el = $('pliage'), fiche = cle === 'bateaux' ? ficheHistoire(b.id) : null;
+function revelerAchat(b, nom, fin) {
+  const rarete = b.rarete, [papier, lueur] = PAPIER_RARETE[rarete];
+  const el = $('pliage'), fiche = ficheHistoire(b.id);
   el.style.setProperty('--papier', papier);
   el.style.setProperty('--lueur', lueur);
   el.innerHTML = `<div class="plieuse"><b></b><i></i><i></i><i></i><i></i></div><div class="eclair"></div>
     <div class="revele"><div class="rayons"></div><h2></h2><span></span><p></p><button></button></div>`;
-  const zone = el.querySelector('.revele'), vu = icone(cle === 'bateaux' ? 'vignette-' + b.id : 'papier-' + b.id, 288);
+  const zone = el.querySelector('.revele'), vu = icone('vignette-' + b.id, 288);
   vu.className = 'bateau-vu';
   zone.querySelector('.rayons').after(vu);
   zone.querySelector('h2').textContent = nom;
   zone.querySelector('span').textContent = fiche ? `${T.raretes[rarete]} · ${fiche[1]}` : T.plie;
   zone.querySelector('p').textContent = fiche ? fiche[2] : '';
   zone.querySelector('p').hidden = !fiche;
-  if (cle === 'bateaux') {
-    const t = icone('rarete-' + rarete, 90);
-    t.className = 'tampon';
-    zone.querySelector('h2').before(t);
-  }
+  const t = icone('rarete-' + rarete, 90);
+  t.className = 'tampon';
+  zone.querySelector('h2').before(t);
   const ok = zone.querySelector('button');
   ok.textContent = T.plie;
   ok.onclick = () => { el.hidden = true; el.innerHTML = ''; fin(); };
@@ -1871,7 +1848,7 @@ function ouvrirProfil() {
   $('carnetChiffres').innerHTML = [[store.get('niveau', 1) - 1, T.chCanaux], [nb, T.chEtoiles], [fleurs, T.chFleurs], [ors, T.chOr]]
     .map(([v, l]) => `<span><b>${v}</b>${l(v)}</span>`).join('');
   const bateau = $('profilBateau');
-  bateau.innerHTML = `<div><b>${T.noms[id]}</b><small>${T.papiers[papierChoisi()]}</small></div>`;
+  bateau.innerHTML = `<div><b>${T.noms[id]}</b></div>`;
   bateau.prepend(icone('vignette-' + id));
   const change = document.createElement('button');
   change.textContent = T.changer;
