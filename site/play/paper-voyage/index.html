@@ -192,13 +192,13 @@
   .profilBateau div { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .profilBateau button { min-height: 44px; font-size: 15px; padding: 0 12px; background: var(--reserve); color: var(--encre); border-width: 1.5px; box-shadow: none; }
   #recit { z-index: 7; position: fixed; inset: 0; background: #0c1118; overflow: hidden; display: flex; justify-content: center; }
-  #recit .cadre { position: relative; width: min(100%, 62vh); height: 100%; overflow: hidden; }
+  #recit .cadre { position: relative; width: min(100%, 46.2vh); height: 100%; overflow: hidden; }
   #recitImage { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; animation: fondu 1.1s ease-out; }
   #recitImage.objet { inset: 12% 10% auto; width: 80%; height: 42%; object-fit: contain; object-position: center; }
   @keyframes fondu { from { opacity: 0; transform: scale(1.03); } }
   /* On wide screens the picture's own dark foot is cropped, so the text brings its shade along. */
-  #recitOmbre { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; pointer-events: none; background: linear-gradient(to bottom, rgba(10, 14, 20, 0), rgba(10, 14, 20, .82) 42%, rgba(10, 14, 20, .96) 100%); }
-  #recitTexte { text-shadow: 0 1px 8px rgba(5, 8, 12, .9); position: absolute; left: 28px; right: 28px; bottom: 104px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.3; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
+  #recitOmbre { position: absolute; left: 0; right: 0; bottom: 0; height: 34%; pointer-events: none; background: linear-gradient(to bottom, rgba(10, 14, 20, 0), rgba(10, 14, 20, .85) 38%, rgba(10, 14, 20, .96) 100%); }
+  #recitTexte { text-shadow: 0 1px 8px rgba(5, 8, 12, .9); position: absolute; left: 22px; right: 22px; bottom: 88px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 23px; line-height: 1.28; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
   #recitBarre { position: absolute; left: 12px; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); display: flex; gap: 8px; align-items: center; z-index: 2; }
   #recitBarre select { flex: 1; min-width: 0; min-height: 44px; font: inherit; font-size: 15px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; padding: 0 8px; }
   #recitBarre span { color: #f2ebdd; font-size: 13px; white-space: nowrap; }
@@ -495,7 +495,7 @@ const T = FR ? {
   relire: 'Relire toute l\'histoire', relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
   recommencer: 'Recommencer ce canal',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
-  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
+  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
   ouvertApres: m => `Après « ${m} »`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
   finale: 'Dernier canal !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
@@ -543,7 +543,7 @@ const T = FR ? {
   relire: 'Read the whole story', relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
   recommencer: 'Restart this canal',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
-  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, toi: 'you', frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
+  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
   ouvertApres: m => `Opens after ${m}`, enCours: 'In progress', termine: 'Finished', etoilesSur: (e, t) => `${e} / ${t} stars`,
   finale: 'Last canal of this world!', passer: 'Skip', suivante: 'Next', terminer: 'Close', auPhare: 'Reach the lighthouse', lire: 'Read',
@@ -1447,7 +1447,7 @@ function proposerReparation(btns) {
 }
 
 // ---------- Story ----------
-const nomCapitaine = () => store.get('nom') || T.toi;
+const nomCapitaine = () => store.get('nom') || '';
 
 // Reads panels one at a time. Everything can be skipped.
 function imageRecit(nom) {
@@ -1481,7 +1481,7 @@ function raconter(panneaux, visuels, fin) {
 // Temporary reading tool, opened with #relire: every story beat with no need to play.
 function relireHistoire() {
   const etapes = [], ajoute = (groupe, image, texte) => etapes.push({ groupe, image, texte });
-  H.intro.forEach((t, i) => ajoute(T.relireIntro, `recit-${i + 1}`, t));
+  H.intro.forEach((t, i) => ajoute(T.relireIntro, IMAGES_INTRO[i], t));
   H.chapitres.forEach((c, i) => {
     const groupe = `${i + 1}. ${c.titre}`;
     ajoute(groupe, 'capitaine-mains', c.depart);
@@ -1564,9 +1564,10 @@ function ouvrirLivre(aMontrer = null) {
   if (cible) cible.scrollIntoView({ block: 'start' });
 }
 
+const IMAGES_INTRO = ['recit-1', 'recit-1', 'recit-2', 'recit-3', 'recit-3'];
 const IMAGES_FIN = {
-  fin1: ['recit-fin-1', 'livre-manquant', 'recit-fin-2', 'recit-fin-2', 'recit-fin-3'],
-  fin2: ['livre-ouvert', 'recit-fin-3', 'recit-lettre', 'recit-lettre'],
+  fin1: ['recit-fin-1', 'livre-manquant', 'recit-fin-2', 'recit-fin-2', 'recit-fin-3', 'recit-fin-3'],
+  fin2: ['livre-ouvert', 'livre-ouvert', 'recit-fin-3', 'recit-lettre', 'recit-lettre', 'recit-fin-3'],
 };
 
 function terminerVoyage(cle, panneaux) {
@@ -2326,7 +2327,7 @@ function demarrer() {
     verifierCompte();
     if (RELIRE) relireHistoire();
     else if (ESSAI) lancerEssai();
-    else if (!store.get('introVue')) raconter(H.intro, ['recit-1', 'recit-2', 'recit-3'], () => store.set('introVue', true));
+    else if (!store.get('introVue')) raconter(H.intro, IMAGES_INTRO, () => store.set('introVue', true));
     MONDES.forEach(chargerMonde);          // the rest quietly, so the next world is ready
   });
 }
