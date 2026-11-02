@@ -393,7 +393,11 @@
 <div id="pause" class="voile sombre" hidden>
   <div class="carte">
     <h1 data-t="pause"></h1>
-    <div class="boutons"><button id="pauseReprendre" data-t="reprendre"></button></div>
+    <div class="boutons">
+      <button id="pauseReprendre" data-t="reprendre"></button>
+      <button id="pauseRecommencer" class="discret" data-t="recommencer"></button>
+      <div class="duo"><button id="pauseBoutique" class="discret" data-t="boutique"></button><button id="pauseCarnet" class="discret" data-t="carnet"></button></div>
+    </div>
   </div>
 </div>
 
@@ -484,6 +488,7 @@ const T = FR ? {
   aides: { ciree: 'Ciré : il encaisse le prochain choc.', voile: 'Grande voile : tu fonces, rien ne te touche.', abeille: 'Abeille : elle attire les fleurs.', libellule: 'Libellule : tout ralentit et le chrono s\'arrête.' },
   record: 'Record !', medailles: ['', 'Bronze', 'Argent', 'Or'],
   relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
+  recommencer: 'Recommencer ce canal',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
   connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
@@ -532,6 +537,7 @@ const T = FR ? {
   aides: { ciree: 'Raincoat: blocks your next crash.', voile: 'Big Sail: full speed, nothing can touch you.', abeille: 'Bee: pulls flowers towards you.', libellule: 'Dragonfly: everything slows down and the clock stops.' },
   record: 'New record!', medailles: ['', 'Bronze', 'Silver', 'Gold'],
   relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
+  recommencer: 'Restart this canal',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
   connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, toi: 'you', frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
@@ -878,6 +884,15 @@ function mettrePause() {
 function reprendre() {
   $('pause').hidden = true;
   avecPub(pub.commercialBreak()).then(() => { state = 'jeu'; pub.gameplayStart(); hud(); });
+}
+
+// Leaving a run keeps the flowers and the lives it ended with.
+function garderPartie() {
+  const av = store.get('fleurs', 0);
+  store.set('fleurs', av + gain - encaisse);
+  encaisse = gain;
+  store.set('vies', boat.hp);
+  hud();
 }
 
 function activerBonus(id) {
@@ -1888,6 +1903,9 @@ $('pretBoutique').addEventListener('click', () => ouvrirBoutique());
 $('boutiqueRetour').addEventListener('click', () => { $('boutique').hidden = true; });
 $('btnPause').addEventListener('click', mettrePause);
 $('pauseReprendre').addEventListener('click', reprendre);
+$('pauseRecommencer').addEventListener('click', () => { garderPartie(); relancer(level); });
+$('pauseBoutique').addEventListener('click', () => { garderPartie(); ouvrirBoutique(); });
+$('pauseCarnet').addEventListener('click', () => { garderPartie(); ouvrirCarnet(); });
 // The name stays in this browser and is only ever shown back to the player.
 $('profilNom').addEventListener('input', e => store.set('nom', e.target.value.trim()));
 $('profilNom').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
