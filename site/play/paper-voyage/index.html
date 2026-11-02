@@ -7,6 +7,8 @@
 <meta name="robots" content="noindex, nofollow">
 <style>
   @font-face { font-family: "Nunito"; src: url(assets/nunito.woff2) format("woff2"); font-weight: 200 1000; font-display: swap; }
+  @font-face { font-family: "Cormorant"; src: url(assets/cormorant.woff2) format("woff2"); font-display: swap; }
+  @font-face { font-family: "Cormorant"; src: url(assets/cormorant-italique.woff2) format("woff2"); font-style: italic; font-display: swap; }
   @font-face { font-family: "Caveat Brush"; src: url(assets/caveat-brush.woff2) format("woff2"); font-display: swap; }
   :root {
     --encre: #2e3a4f;
@@ -64,10 +66,11 @@
   .carte p { margin: 0; font-size: 17px; line-height: 1.35; }
   #pret { pointer-events: none; justify-content: space-between; padding: calc(env(safe-area-inset-top, 0px) + 84px) 24px 5vh; }
   #pret img { width: min(78vw, 310px); height: auto; display: block; }
-  #pretPortrait canvas { display: block; width: 90px; height: 90px; margin: 0 auto -6px; }
-  #finWindy canvas { display: block; width: 76px; height: 76px; margin-bottom: -6px; }
+  #pret #pretPortrait img { width: 104px; margin: 0 auto 4px; }
+  #finWindy img { display: block; width: 86px; height: 86px; margin-bottom: -10px; }
+  #finPage img { width: 52px; height: 52px; flex: none; }
   .livre-tete { display: flex; justify-content: center; }
-  .livre-tete canvas { width: 150px; height: auto; }
+  .livre-tete img { width: 190px; height: auto; }
   #pret p {
     margin: auto 0 0; max-width: 30ch; padding: 10px 16px; font-size: 17px; line-height: 1.35;
     background: var(--reserve); border: 1.5px solid var(--encre); border-radius: 14px 11px 15px 10px; box-shadow: var(--ombre);
@@ -186,21 +189,55 @@
   .profilBateau canvas { width: 64px; height: 64px; }
   .profilBateau div { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .profilBateau button { min-height: 44px; font-size: 15px; padding: 0 12px; background: var(--reserve); color: var(--encre); border-width: 1.5px; box-shadow: none; }
-  .feuille { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; min-height: 60vh; padding: 28px 22px; box-sizing: border-box; background: #fbf4e2; border: 1.5px solid var(--encre); border-radius: 6px 12px 7px 14px; box-shadow: 3px 4px 0 rgba(46,58,79,.2); }
-  .feuille canvas { width: 210px; height: auto; max-height: 46vh; align-self: center; }
-  .feuille img { width: calc(100% + 44px); margin: -28px -22px 0; height: 52vh; object-fit: cover; object-position: center 62%; display: block; border-radius: 6px 12px 0 0; }
-  .feuille p { margin: 0; font-size: 21px; font-weight: 800; line-height: 1.4; text-align: center; }
-  .feuille h2 { margin: 0; text-align: center; font-family: "Caveat Brush", cursive; font-weight: 400; font-size: 34px; }
+  #recit { z-index: 7; position: fixed; inset: 0; background: #0c1118; overflow: hidden; display: flex; justify-content: center; }
+  #recit .cadre { position: relative; width: min(100%, 62vh); height: 100%; overflow: hidden; }
+  #recitImage { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; animation: fondu 1.1s ease-out; }
+  #recitImage.objet { inset: 12% 10% auto; width: 80%; height: 42%; object-fit: contain; object-position: center; }
+  @keyframes fondu { from { opacity: 0; transform: scale(1.03); } }
+  #recitTexte { position: absolute; left: 28px; right: 28px; bottom: 104px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.3; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
+  #recit .suite { position: absolute; left: 20px; right: 20px; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); }
+  #recit .suite button { min-height: 48px; font-family: "Cormorant", Georgia, serif; font-size: 20px; font-weight: 500; color: #f2ebdd; background: transparent; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
+  #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .7); }
+  @media (prefers-reduced-motion: reduce) { #recitImage, #recitTexte { animation: none; } }
   .suite { display: flex; gap: 10px; }
   .suite button { flex: 1; }
-  .page-livre { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: #fbf4e2; border: 1.5px solid var(--encre); border-radius: 6px 12px 7px 14px; }
-  .page-livre.perdue { opacity: .55; background: #eadfc8; border-style: dashed; }
-  .page-livre h2 { margin: 0; font-family: "Caveat Brush", cursive; font-weight: 400; font-size: 26px; }
-  .page-livre article b { font-size: 16px; font-weight: 900; }
-  .page-livre article small { font-size: 12px; color: #4c5d7a; margin-left: 6px; }
+  .page-livre { display: flex; flex-direction: column; gap: 12px; padding: 16px 14px; background: #e6d9ba; border: 1px solid #8a7350; border-radius: 2px; font-family: "Cormorant", Georgia, serif; color: #2a1e14; }
+  .page-livre.perdue { opacity: .55; background: #d8cdb4; border-style: dashed; }
+  .page-livre h2 { margin: 0; padding-bottom: 6px; border-bottom: 1px solid #8a7350; font-family: inherit; font-weight: 500; font-size: 25px; }
+  .page-livre article b { font-size: 20px; font-weight: 500; }
+  .page-livre article small { font-size: 15px; font-style: italic; color: #5a4a36; margin-left: 6px; }
   .page-livre article { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 8px; }
   .page-livre article canvas { grid-row: 1 / 3; width: 64px; height: 64px; }
-  .page-livre article p { margin: 2px 0 0; font-size: 14px; font-weight: 700; line-height: 1.35; }
+  .page-livre article p { margin: 2px 0 0; font-size: 17px; line-height: 1.3; }
+  #pliage { z-index: 9; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(21, 28, 41, .96); }
+  .plieuse { position: relative; width: 210px; height: 210px; perspective: 700px; animation: tourne .5s 1.25s ease-in forwards; }
+  .plieuse b, .plieuse i { position: absolute; inset: 0; background: var(--papier, #efe6d2); }
+  .plieuse b { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); box-shadow: inset 0 0 40px rgba(46, 58, 79, .18); }
+  .plieuse i { backface-visibility: visible; filter: drop-shadow(0 2px 3px rgba(21, 28, 41, .4)); animation: .32s ease-in-out forwards; }
+  .plieuse i:nth-child(2) { clip-path: polygon(0 0, 50% 0, 0 50%); transform-origin: 25% 25%; animation-name: plia; animation-delay: .1s; }
+  .plieuse i:nth-child(3) { clip-path: polygon(100% 0, 100% 50%, 50% 0); transform-origin: 75% 25%; animation-name: plib; animation-delay: .4s; }
+  .plieuse i:nth-child(4) { clip-path: polygon(100% 100%, 50% 100%, 100% 50%); transform-origin: 75% 75%; animation-name: plia; animation-delay: .7s; }
+  .plieuse i:nth-child(5) { clip-path: polygon(0 100%, 0 50%, 50% 100%); transform-origin: 25% 75%; animation-name: plib; animation-delay: 1s; }
+  @keyframes plia { to { transform: rotate3d(1, -1, 0, 180deg); background: color-mix(in srgb, var(--papier, #efe6d2) 82%, #2e3a4f); } }
+  @keyframes plib { to { transform: rotate3d(1, 1, 0, 180deg); background: color-mix(in srgb, var(--papier, #efe6d2) 82%, #2e3a4f); } }
+  @keyframes tourne { to { transform: rotate(540deg) scale(.08); opacity: 0; } }
+  .eclair { position: absolute; inset: 0; background: #fffdf6; opacity: 0; animation: eclair .5s 1.7s ease-out; pointer-events: none; }
+  @keyframes eclair { 0% { opacity: 0; } 15% { opacity: 1; } 100% { opacity: 0; } }
+  .revele { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; box-sizing: border-box; color: #fffdf6; text-align: center; opacity: 0; animation: apparait .3s 1.75s forwards; }
+  @keyframes apparait { to { opacity: 1; } }
+  .rayons { position: absolute; left: 50%; top: 36%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; background: repeating-conic-gradient(var(--lueur, #fff) 0 9deg, transparent 9deg 24deg); opacity: .22; -webkit-mask-image: radial-gradient(closest-side, #000 8%, transparent 62%); mask-image: radial-gradient(closest-side, #000 8%, transparent 62%); animation: rayons 16s linear infinite; }
+  @keyframes rayons { to { transform: rotate(360deg); } }
+  .revele canvas.bateau-vu { position: relative; width: 250px; height: 250px; animation: jaillit .6s 1.75s cubic-bezier(.2, 1.7, .4, 1) backwards; filter: drop-shadow(0 0 22px var(--lueur, #fff)); }
+  @keyframes jaillit { from { transform: scale(.2) rotate(-16deg); } }
+  .revele canvas.tampon { position: relative; width: 58px; height: 58px; animation: tampon .4s 2.2s ease-out backwards; }
+  .revele h2 { position: relative; margin: 0; font-family: "Caveat Brush", cursive; font-weight: 400; font-size: 42px; line-height: 1; }
+  .revele span { position: relative; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--lueur, #fff); }
+  .revele p { position: relative; margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.4; font-weight: 700; }
+  .revele button { position: relative; margin-top: 8px; min-width: 200px; }
+  .fin-soin { display: flex; gap: 8px; }
+  .fin-soin button { flex: 1; min-width: 0; padding: 0 6px; font-size: 16px; }
+  .fin-soin button.video { font-size: 15px; }
+  @media (prefers-reduced-motion: reduce) { .plieuse, .eclair { display: none; } .revele { animation-delay: 0s; } .revele canvas.bateau-vu, .revele canvas.tampon { animation: none; } .rayons { animation: none; } }
   .fiche.equipe { border: 2.5px solid #2f7591; }
   .fiche .eau { display: flex; justify-content: center; border-radius: 9px; background: #7cc0d0 url(assets/printemps-eau.webp) center / 240px; overflow: hidden; }
   .fiche canvas { width: 92px; height: 92px; display: block; }
@@ -292,10 +329,13 @@
   </div>
 </div>
 
-<div id="recit" class="ecran" hidden>
-  <div class="page" style="min-height: 100%">
-    <div class="feuille" id="recitFeuille"></div>
-    <div class="suite"><button id="recitPasser" class="discret" data-t="passer"></button><button id="recitSuite"></button></div>
+<div id="pliage" hidden></div>
+
+<div id="recit" hidden>
+  <div class="cadre">
+    <img id="recitImage" alt="">
+    <p id="recitTexte"></p>
+    <div class="suite"><button id="recitPasser" data-t="passer"></button><button id="recitSuite"></button></div>
   </div>
 </div>
 
@@ -412,57 +452,58 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 // ---------- Language ----------
 // English everywhere, French for French browsers.
 const FR = (navigator.language || '').toLowerCase().startsWith('fr');
-const s_ = n => (n > 1 ? 's' : '');
+const s_ = n => ((FR ? n > 1 : n !== 1) ? 's' : '');
 const T = FR ? {
   canal: 'Canal', carnet: 'Mon carnet', bateaux: 'Bateaux', canaux: 'Canaux', fermer: 'Fermer',
   son: 'Couper ou remettre le son',
-  depart1: t => (t ? "Touche l'écran" : 'Clique, ou utilise les flèches') + " : une rafale pousse le bateau à l'opposé.",
-  depart2: 'Attention aux tourbillons : une rafale pour en sortir.',
+  depart1: t => (t ? "Touche l'écran : le bateau s'éloigne de ton doigt." : 'Clique pour pousser le bateau, ou utilise les flèches.'),
+  depart2: 'Attention aux tourbillons : une rafale pour en sortir.',
   depart3: 'Les canards bougent. Patience, ou une rafale pour freiner.',
-  depart4: 'Enchaîne les fleurs sans choc : elles comptent double, puis triple.',
-  vies: n => `${n} vies sur 3`,
-  gagne: 'Au port !', perdu: "Le bateau a pris l'eau",
-  score: (f, t, parfait) => `${f} fleur${s_(f)} sur ${t}${parfait ? ', sans une goutte.' : '.'}`,
-  reste: p => `Plus que ${p} % du canal !`,
+  depart4: 'Enchaîne les fleurs sans choc : elles comptent double, puis triple.',
+  vies: n => `${n} vie${s_(n)} sur 3`,
+  gagne: 'Au port !', perdu: "Le bateau a pris l'eau",
+  score: (f, t, parfait) => `${f} fleur${s_(f)} sur ${t}${parfait ? ', sans une goutte.' : '.'}`,
+  reste: p => `Plus que ${p} % du canal !`,
   suivant: 'Canal suivant', rejouerCanal: 'Rejouer ce canal', rejouer: 'Rejouer', repartir: "Repartir d'ici",
-  tous: 'Tous les bateaux sont à toi !',
+  tous: 'Tous les bateaux sont à toi !',
   plus: n => `+${n} fleur${s_(n)} · `,
   prochain: (nom, n) => `${nom} dans ${n}`,
-  nouveau: 'Nouveau bateau !', prendre: 'Le prendre',
+  nouveau: 'Nouveau bateau !', prendre: 'Le prendre',
   prix: n => `${n} fleurs`,
-  objets: { ciree: 'Ciré !', voile: 'Grande voile !', abeille: 'Abeille !', libellule: 'Libellule !' },
-  aides: { ciree: 'Ciré : il encaisse le prochain choc.', voile: 'Grande voile : tu fonces, rien ne te touche.', abeille: 'Abeille : elle attire les fleurs.', libellule: 'Libellule : tout ralentit et le chrono s\'arrête.' },
-  record: 'Record !', medailles: ['', 'Bronze', 'Argent', 'Or'],
-  connecter: 'Sauvegarder ma progression', connecte: n => `Connecté : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
+  objets: { ciree: 'Ciré !', voile: 'Grande voile !', abeille: 'Abeille !', libellule: 'Libellule !' },
+  aides: { ciree: 'Ciré : il encaisse le prochain choc.', voile: 'Grande voile : tu fonces, rien ne te touche.', abeille: 'Abeille : elle attire les fleurs.', libellule: 'Libellule : tout ralentit et le chrono s\'arrête.' },
+  record: 'Record !', medailles: ['', 'Bronze', 'Argent', 'Or'],
+  reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
+  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
-  ouvertApres: m => `S'ouvre après ${m}`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
-  finale: 'Dernier canal du monde !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
-  grandLivre: 'Le Grand Livre', pageTrouvee: 'Page retrouvée !', pagesSur: (n, t) => `${n} page${s_(n)} sur ${t}`, pagePerdue: 'Page encore perdue',
+  ouvertApres: m => `Après « ${m} »`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
+  finale: 'Dernier canal !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
+  grandLivre: 'Le Grand Livre', pageTrouvee: 'Page retrouvée !', pagesSur: (n, t) => `${n} page${s_(n)} sur ${t}`, pagePerdue: 'Page encore perdue',
   offert: 'Offert', cadeau: 'Choisis un bateau, il t\'est offert.',
   mondes: { printemps: 'Canaux de printemps', ete: "Marais d'été", automne: "Ville d'automne", hiver: "Cimes d'hiver", nuit: 'Nuit des lanternes' },
   raretes: { commune: 'Normal', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire' }, notePapiers: 'Les papiers habillent le Petit Papier.',
-  tonNom: 'Ton nom de capitaine', nomDefaut: 'Capitaine', effacer: 'Effacer ma progression', sur: 'Sûr ? Tout sera perdu. Touche encore',
-  chCanaux: 'canaux', chEtoiles: 'étoiles', chFleurs: 'fleurs', chOr: 'médailles d\'or',
-  gagneNom: n => `Au port, ${n} !`,
+  tonNom: 'Ton nom de capitaine', nomDefaut: 'Capitaine', effacer: 'Effacer ma progression', sur: 'Vraiment ? Tout sera perdu. Confirme encore une fois',
+  chCanaux: n => (n > 1 ? 'canaux' : 'canal'), chEtoiles: n => `étoile${s_(n)}`, chFleurs: n => `fleur${s_(n)}`, chOr: n => `médaille${s_(n)} d'or`,
+  gagneNom: n => `Au port, ${n} !`,
   boutique: 'Boutique', pause: 'Pause', reprendre: 'Reprendre', retour: 'Retour', partir: 'En route',
   sansBonus: "Aucun bonus n'est nécessaire pour finir le canal.",
   ongletBateaux: 'Bateaux', ongletPapiers: 'Papiers', ongletBonus: 'Bonus',
-  equipe: 'Équipé', utiliser: 'Utiliser', surBateau: 'Sur ton bateau', aToi: 'À toi', dispo: 'À acheter', manque: n => `Encore ${n} fleurs`,
+  equipe: 'Équipé', utiliser: 'Utiliser', surBateau: 'Sur ton bateau', aToi: 'À toi', dispo: 'À acheter', manque: n => `Encore ${n} fleur${s_(n)}`,
   apercu: 'Aperçu', noteBateaux: 'Chaque canal te rapporte des fleurs.',
-  noteBonus: 'Les bonus sont facultatifs : tous les canaux se finissent sans eux.',
+  noteBonus: 'Les bonus sont facultatifs : tous les canaux se finissent sans eux.',
   video: 'Regarder une vidéo', tuAs: n => `Tu en as ${n}`,
   meilleur: 'Ton record', premier: 'Premier passage', offre: 'Facultatif',
-  departAvec: k => `Partir avec ${{ ciree: 'un ciré', voile: 'la grande voile', abeille: "l'abeille", libellule: 'la libellule' }[k]} ?`,
-  utiliserUn: n => `En utiliser un (${n})`,
+  departAvec: k => `Partir avec ${{ ciree: 'un ciré', voile: 'la grande voile', abeille: "l'abeille", libellule: 'la libellule' }[k]} ?`,
+  utiliserUn: n => `Utiliser (${n})`,
   doubler: 'Doubler mes fleurs', peutAcheter: 'Tu peux acheter', voir: 'Voir',
-  desc: { ciree: 'Encaisse un choc.', voile: "Un coup d'accélération. Rien ne peut te toucher.", abeille: 'Attire les fleurs vers toi.', libellule: 'Tout ralentit et le chrono s\'arrête.' },
+  desc: { ciree: 'Encaisse un choc.', voile: "Un coup d'accélérateur. Rien ne peut te toucher.", abeille: 'Attire les fleurs vers toi.', libellule: 'Tout ralentit et le chrono s\'arrête.' },
   nomsBonus: { ciree: 'Ciré', voile: 'Grande voile', abeille: 'Abeille', libellule: 'Libellule' },
   papiers: { uni: 'Uni', raye: 'Rayé', pois: 'À pois', journal: 'Journal' },
   noms: { classique: 'Petit Papier', pirogue: 'Pirogue', papyrus: 'Barque de papyrus', coracle: 'Coracle', noix: 'Coquille de noix', bicorne: 'Bicorne', trireme: 'Trirème', jonque: 'Jonque', gondole: 'Gondole', cocotte: 'Cocotte', sabot: 'Sabot', drakkar: 'Drakkar', caravelle: 'Caravelle', aubes: 'Bateau à aubes', theiere: 'Théière', baignoire: 'Baignoire', galion: 'Galion', zhenghe: 'Navire au trésor', clipper: 'Clipper', paquebot: 'Paquebot', dragon: 'Dragon' },
 } : {
   canal: 'Canal', carnet: 'My logbook', bateaux: 'Boats', canaux: 'Canals', fermer: 'Close',
   son: 'Sound on or off',
-  depart1: t => (t ? 'Tap the screen' : 'Click, or use the arrow keys') + ': a gust pushes the boat away.',
+  depart1: t => (t ? 'Tap the screen: the boat moves away from your finger.' : 'Click to push the boat away, or use the arrow keys.'),
   depart2: 'Watch out for whirlpools: one gust gets you out.',
   depart3: 'Ducks move. Be patient, or use a gust to slow down.',
   depart4: 'Chain flowers without a crash: they count double, then triple.',
@@ -473,27 +514,28 @@ const T = FR ? {
   suivant: 'Next canal', rejouerCanal: 'Replay this canal', rejouer: 'Play again', repartir: 'Continue from here',
   tous: 'You own every boat!',
   plus: n => `+${n} flower${s_(n)} · `,
-  prochain: (nom, n) => `${nom} in ${n}`,
+  prochain: (nom, n) => `${n} more for ${nom}`,
   nouveau: 'New boat!', prendre: 'Use it',
   prix: n => `${n} flowers`,
-  objets: { ciree: 'Raincoat!', voile: 'Big sail!', abeille: 'Bee!', libellule: 'Dragonfly!' },
-  aides: { ciree: 'Raincoat: blocks your next crash.', voile: 'Big sail: full speed, nothing can touch you.', abeille: 'Bee: pulls flowers towards you.', libellule: 'Dragonfly: everything slows and the clock stops.' },
+  objets: { ciree: 'Raincoat!', voile: 'Big Sail!', abeille: 'Bee!', libellule: 'Dragonfly!' },
+  aides: { ciree: 'Raincoat: blocks your next crash.', voile: 'Big Sail: full speed, nothing can touch you.', abeille: 'Bee: pulls flowers towards you.', libellule: 'Dragonfly: everything slows down and the clock stops.' },
   record: 'New record!', medailles: ['', 'Bronze', 'Silver', 'Gold'],
+  reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
   connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, toi: 'you', frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
   ouvertApres: m => `Opens after ${m}`, enCours: 'In progress', termine: 'Finished', etoilesSur: (e, t) => `${e} / ${t} stars`,
   finale: 'Last canal of this world!', passer: 'Skip', suivante: 'Next', terminer: 'Close', auPhare: 'Reach the lighthouse', lire: 'Read',
   grandLivre: 'The Great Book', pageTrouvee: 'Page found!', pagesSur: (n, t) => `${n} of ${t} page${s_(t)}`, pagePerdue: 'Still lost',
-  offert: 'Free', cadeau: 'Pick a boat, it\'s a gift.',
+  offert: 'Free', cadeau: 'Pick a boat. It\'s a gift!',
   mondes: { printemps: 'Spring Canals', ete: 'Summer Marsh', automne: 'Autumn Town', hiver: 'Winter Peaks', nuit: 'Lantern Night' },
-  raretes: { commune: 'Common', rare: 'Rare', epique: 'Epic', legendaire: 'Legendary' }, notePapiers: 'Papers dress the Little Paper boat.',
-  tonNom: 'Your captain name', nomDefaut: 'Captain', effacer: 'Erase my progress', sur: 'Sure? Everything will be lost. Tap again',
-  chCanaux: 'canals', chEtoiles: 'stars', chFleurs: 'flowers', chOr: 'gold medals',
+  raretes: { commune: 'Common', rare: 'Rare', epique: 'Epic', legendaire: 'Legendary' }, notePapiers: 'Papers change the look of the Little Paper.',
+  tonNom: 'Your captain name', nomDefaut: 'Captain', effacer: 'Erase my progress', sur: 'Are you sure? Everything will be lost. Press again',
+  chCanaux: n => `canal${s_(n)}`, chEtoiles: n => `star${s_(n)}`, chFleurs: n => `flower${s_(n)}`, chOr: n => `gold medal${s_(n)}`,
   gagneNom: n => `Safe in port, ${n}!`,
   boutique: 'Shop', pause: 'Paused', reprendre: 'Resume', retour: 'Back', partir: 'Set sail',
   sansBonus: 'No bonus needed to finish the canal.',
   ongletBateaux: 'Boats', ongletPapiers: 'Papers', ongletBonus: 'Bonuses',
-  equipe: 'Equipped', utiliser: 'Use', surBateau: 'On your boat', aToi: 'Yours', dispo: 'Ready to buy', manque: n => `${n} more to go`,
+  equipe: 'Equipped', utiliser: 'Use', surBateau: 'On your boat', aToi: 'Yours', dispo: 'Ready to buy', manque: n => `${n} more flower${s_(n)}`,
   apercu: 'Preview', noteBateaux: 'Every canal you sail earns flowers.',
   noteBonus: 'Bonuses are optional. Every canal can be finished without them.',
   video: 'Watch a video', tuAs: n => `You have ${n}`,
@@ -501,7 +543,7 @@ const T = FR ? {
   departAvec: k => `Start with ${{ ciree: 'a Raincoat', voile: 'the Big Sail', abeille: 'the Bee', libellule: 'the Dragonfly' }[k]}?`,
   utiliserUn: n => `Use one (${n})`,
   doubler: 'Double my flowers', peutAcheter: 'You can buy', voir: 'See',
-  desc: { ciree: 'Shrugs off one bump.', voile: 'A short burst of speed. Nothing can touch you.', abeille: 'Pulls nearby flowers to you.', libellule: 'Everything slows and the clock stops.' },
+  desc: { ciree: 'Blocks one crash.', voile: 'A short burst of speed. Nothing can touch you.', abeille: 'Pulls nearby flowers to you.', libellule: 'Everything slows down and the clock stops.' },
   nomsBonus: { ciree: 'Raincoat', voile: 'Big Sail', abeille: 'Bee', libellule: 'Dragonfly' },
   papiers: { uni: 'Plain', raye: 'Striped', pois: 'Dotted', journal: 'Newspaper' },
   noms: { classique: 'Little Paper', pirogue: 'Dugout', papyrus: 'Papyrus Skiff', coracle: 'Coracle', noix: 'Walnut Shell', bicorne: 'Bicorne', trireme: 'Trireme', jonque: 'Junk', gondole: 'Gondola', cocotte: 'Paper Hen', sabot: 'Clog', drakkar: 'Longship', caravelle: 'Caravel', aubes: 'Paddle Steamer', theiere: 'Teapot', baignoire: 'Bathtub', galion: 'Galleon', zhenghe: 'Treasure Ship', clipper: 'Clipper', paquebot: 'Ocean Liner', dragon: 'Dragon' },
@@ -729,7 +771,8 @@ function makeLevel(n) {
 let L, boat, parts, rings, t, state, level, flowersGot, usedContinue, gusts, shake;
 let gain, encaisse, serie, dernierGust;
 let chrono, trace, fantome, prises, bonusUtilise;
-let gel = 0, flash = 0, finT = 0;
+let gel = 0, flash = 0, finT = 0, chocsPartie = 0;
+const PRIX_REPARATION = 30;
 
 // Flowers are the only currency: they buy boats, papers and start bonuses.
 const BATEAUX = [
@@ -771,13 +814,17 @@ const estTactile = matchMedia('(pointer: coarse)').matches;
 
 function start(n, direct = false, bonus = null) {
   level = n;
+  // Lives carry from canal to canal. A new world repairs the boat.
+  const repare = n > 1 && n % CANAUX_MONDE === 1 && store.get('vies', 3) < 3;
+  if (repare) store.set('vies', 3);
   L = makeLevel(n);
-  boat = { x: L.center(0), y: 0, vx: 0, vy: L.speed, hp: 3, inv: 0, cap: 0, souffle: { x: 0, y: 0, t: 0 }, ciree: false, boost: 0, abeille: 0, ralenti: 0, pop: 0 };
+  boat = { x: L.center(0), y: 0, vx: 0, vy: L.speed, hp: store.get('vies', 3), inv: 0, cap: 0, souffle: { x: 0, y: 0, t: 0 }, ciree: false, boost: 0, abeille: 0, ralenti: 0, pop: 0 };
   camY = 0; parts = []; rings = []; t = 0; flowersGot = 0;
   usedContinue = false; gusts = 0; shake = 0;
   gain = 0; encaisse = 0; serie = 0; dernierGust = -1;
   prises = []; bonusUtilise = false;
-  gel = 0; flash = 0; finT = 0;
+  gel = 0; flash = 0; finT = 0; chocsPartie = 0;
+  if (repare) toast(T.repare);
   chargerMonde(mondeDe(n));
   chrono = 0; trace = []; fantome = store.get('fantomes', {})[n] || null;
   $('toast').hidden = true;
@@ -796,7 +843,7 @@ function start(n, direct = false, bonus = null) {
   $('pretMenus').hidden = store.get('fleurs', 0) === 0 && store.get('niveau', 1) === 1;
   $('pretLogo').hidden = n > 1;
   const ouverture = n > 1 && n % CANAUX_MONDE === 1 ? H.chapitres[chapitreDe(n)].depart : null;
-  $('pretPortrait').replaceChildren(...(ouverture && images.sprites ? [icone('capitaine-sourire', 200)] : []));
+  $('pretPortrait').replaceChildren(...(ouverture && images.sprites ? [imageRecit('capitaine-mains')] : []));
   $('pretTexte').textContent = ouverture || n === 1 ? ouverture || T.depart1(estTactile) : n === 2 ? T.depart2 : n === 3 ? T.depart3 : T.depart4;
 }
 
@@ -862,7 +909,7 @@ cv.addEventListener('pointerdown', e => {
 });
 const FLECHES = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
 addEventListener('keydown', e => {
-  if (!$('recit').hidden || !$('livre').hidden || !$('voyage').hidden || !$('profil').hidden || !$('boutique').hidden || !$('avant').hidden) return;
+  if (!$('pliage').hidden || !$('recit').hidden || !$('livre').hidden || !$('voyage').hidden || !$('profil').hidden || !$('boutique').hidden || !$('avant').hidden) return;
   if (e.key === 'Escape' || (e.key === ' ' && state !== 'pret')) {
     if (state === 'jeu') mettrePause();
     else if (state === 'pause') reprendre();
@@ -934,6 +981,7 @@ function hit(nx, ny) {
   boat.inv = 1.2;
   shake = 0.35;
   serie = 0;
+  chocsPartie++;
   gel = 0.075;
   flash = calme ? 0 : 0.12;
   vibrer(boat.hp <= 1 ? 90 : 45);
@@ -1132,6 +1180,8 @@ function update(dt) {
       const mult = multiplicateur();
       gain += mult;
       son.fleur(serie);
+      // A long clean chain patches the boat up.
+      if (serie % 12 === 0 && b.hp < 3) { b.hp++; texte(T.vieGagnee, b.x, b.y + 34, 26); toast(T.vieGagnee); son.bonus(); }
       if (mult > 1 && serie % 3 === 0) { texte('×' + mult, f.x, f.y, 30 + mult * 6); rings.push({ x: f.x, y: f.y, t: 0, or: true }); }
       vibrer(6 + mult * 3);
       bump($('hFl'));
@@ -1173,16 +1223,18 @@ function end(won) {
   if (won) son.port(); else son.coule();
   vibrer(won ? [20, 50, 20, 50, 40] : 90);
   if (won) feteArrivee();
+  // A sunk boat is folded again from scratch.
+  store.set('vies', won ? boat.hp : 3);
   const total = L.flowers.length;
   const avant = store.get('fleurs', 0), apres = avant + gain - encaisse;
   encaisse = gain;
   store.set('fleurs', apres);
-  $('finWindy').replaceChildren(icone(won ? 'windy-fier' : 'windy-gene', 152));
+  $('finWindy').replaceChildren(imageRecit(won ? 'vent-4' : 'vent-2'));
   $('finTitre').textContent = won ? (store.get('nom') ? T.gagneNom(store.get('nom')) : T.gagne) : T.perdu;
   $('finTexte').textContent = won
-    ? T.score(flowersGot, total, boat.hp === 3)
+    ? T.score(flowersGot, total, chocsPartie === 0)
     : T.reste(Math.max(1, Math.round((1 - boat.y / L.len) * 100)));
-  const stars = won ? 1 + (flowersGot >= total * 0.6) + (boat.hp === 3) : 0;
+  const stars = won ? 1 + (flowersGot >= total * 0.6) + (chocsPartie === 0) : 0;
   $('finEtoiles').innerHTML = won ? [0, 1, 2].map(i => `<span class="${i < stars ? '' : 'vide'}">★</span>`).join('') : '';
   montrerTemps(won);
   if (won) {
@@ -1231,6 +1283,7 @@ function end(won) {
         montrerNouveau(av, ap);
       }));
     }
+    if (boat.hp < 3) proposerReparation(btns);
     add(T.rejouerCanal, 'discret', () => relancer(level));
     if (SDK && !compte && level % CANAUX_MONDE === 0) add(T.connecter, 'discret', connecter);
     menus();
@@ -1334,25 +1387,59 @@ function montrerNouveau(avant, apres) {
   el.appendChild(b);
 }
 
+// Between canals, a lost life comes back for flowers or a video.
+function proposerReparation(btns) {
+  const duo = document.createElement('div');
+  duo.className = 'fin-soin';
+  const soigner = () => {
+    boat.hp++;
+    store.set('vies', boat.hp);
+    son.bonus();
+    hud();
+    if (boat.hp >= 3) duo.remove(); else achat.disabled = store.get('fleurs', 0) < PRIX_REPARATION;
+  };
+  const achat = document.createElement('button');
+  achat.className = 'achat';
+  achat.innerHTML = `<span class="prix">${T.reparer} ${flor}${PRIX_REPARATION}</span>`;
+  achat.disabled = store.get('fleurs', 0) < PRIX_REPARATION;
+  achat.addEventListener('click', () => {
+    const av = store.get('fleurs', 0);
+    store.set('fleurs', av - PRIX_REPARATION);
+    montrerProgres($('finProgres'), av - PRIX_REPARATION, av - PRIX_REPARATION);
+    soigner();
+  });
+  const video = document.createElement('button');
+  video.className = 'video';
+  video.innerHTML = PELLICULE + '+1';
+  video.setAttribute('aria-label', T.video);
+  video.addEventListener('click', () => avecPub(pub.rewardedBreak()).then(ok => { if (ok) soigner(); }));
+  duo.append(achat, video);
+  btns.appendChild(duo);
+}
+
 // ---------- Story ----------
 const nomCapitaine = () => store.get('nom') || T.toi;
 
 // Reads panels one at a time. Everything can be skipped.
+function imageRecit(nom) {
+  const img = new Image();
+  img.alt = '';
+  img.src = `assets/${nom}.webp`;
+  return img;
+}
+
 function raconter(panneaux, visuels, fin) {
   let i = 0;
+  const texte = $('recitTexte');
+  visuels.forEach(imageRecit);           // fetched ahead, so no picture pops in late
   const montrer = () => {
-    const f = $('recitFeuille'), texte = panneaux[i], v = visuels[i];
-    f.innerHTML = '<p></p>';
-    if (v.startsWith('recit-')) {
-      const img = new Image();
-      img.alt = '';
-      img.src = `assets/${v}.webp`;
-      f.prepend(img);
-    } else {
-      const [, , cw, ch] = ATLAS.cases[v];
-      f.prepend(icone(v, cw, ch));
-    }
-    f.querySelector('p').textContent = typeof texte === 'function' ? texte(nomCapitaine()) : texte;
+    const ancienne = $('recitImage'), nouvelle = imageRecit(visuels[i]), t = panneaux[i];
+    nouvelle.id = 'recitImage';
+    nouvelle.className = visuels[i].startsWith('recit-') ? '' : 'objet';
+    ancienne.replaceWith(nouvelle);
+    const p = texte.cloneNode();         // a fresh node restarts the fade
+    p.textContent = typeof t === 'function' ? t(nomCapitaine()) : t;
+    $('recitTexte').replaceWith(p);
     $('recitSuite').textContent = i < panneaux.length - 1 ? T.suivante : T.terminer;
   };
   const clore = () => { $('recit').hidden = true; fin(); };
@@ -1370,7 +1457,7 @@ function montrerPage(won) {
   if (!pages.includes(c)) store.set('pages', [...pages, c]);
   const ch = H.chapitres[c];
   el.innerHTML = `<span>${T.pageTrouvee}<br>${ch.titre}<br><small>${ch.trouve}</small></span>`;
-  el.prepend(icone('page-perdue'));
+  el.prepend(imageRecit('page-perdue'));
   const b = document.createElement('button');
   b.textContent = T.lire;
   b.addEventListener('click', () => ouvrirLivre(c));
@@ -1381,8 +1468,7 @@ function ouvrirLivre(aMontrer = null) {
   const pages = store.get('pages', []), zone = $('livrePages');
   // The childhood pages stay secret until the first book is complete.
   const total = store.get('fin1') ? H.chapitres.length : 5;
-  const [, , lw, lh] = ATLAS.cases['livre-ouvert'];
-  $('livreImage').replaceChildren(icone('livre-ouvert', lw, lh));
+  $('livreImage').replaceChildren(imageRecit(store.get('fin1') ? 'livre-complet' : 'livre-manquant'));
   $('livreCompte').textContent = T.pagesSur(pages.filter(c => c < total).length, total);
   zone.innerHTML = '';
   let cible = null;
@@ -1409,8 +1495,8 @@ function ouvrirLivre(aMontrer = null) {
 }
 
 const IMAGES_FIN = {
-  fin1: ['recit-fin', 'livre-manquant', 'capitaine-sourire', 'livre-complet', 'windy-fier'],
-  fin2: ['livre-ouvert', 'capitaine-sourire', 'windy-gene', 'windy-gene'],
+  fin1: ['recit-fin-1', 'livre-manquant', 'recit-fin-2', 'recit-fin-2', 'recit-fin-3'],
+  fin2: ['livre-ouvert', 'recit-fin-3', 'recit-lettre', 'recit-lettre'],
 };
 
 function terminerVoyage(cle, panneaux) {
@@ -1500,12 +1586,50 @@ function ficheTenue(b, cle, image, nom, actuel, choisir, fleurs) {
       else store.set('fleurs', fleurs - b.prix);
       store.set(cle, [...liste, b.id]);
       choisir(b.id);
-      son.bonus();
-      ouvrirBoutique();
+      revelerAchat(cle, b, nom, () => ouvrirBoutique());
     });
   }
   el.appendChild(btn);
   return el;
+}
+
+const PAPIER_RARETE = { commune: ['#efe6d2', '#cfe3ea'], rare: ['#a9d3e8', '#8fd8f0'], epique: ['#c9b6ec', '#c7a6ff'], legendaire: ['#f2cf6e', '#ffd86b'] };
+
+function ficheHistoire(id) {
+  const c = BATEAUX_LIVRE.findIndex(l => l.includes(id));
+  return c < 0 ? null : H.chapitres[c].bateaux[BATEAUX_LIVRE[c].indexOf(id)];
+}
+
+// A sheet folds itself, spins away in a flash, and the new boat bursts out.
+function revelerAchat(cle, b, nom, fin) {
+  const rarete = cle === 'bateaux' ? b.rarete : 'rare', [papier, lueur] = PAPIER_RARETE[rarete];
+  const el = $('pliage'), fiche = cle === 'bateaux' ? ficheHistoire(b.id) : null;
+  el.style.setProperty('--papier', papier);
+  el.style.setProperty('--lueur', lueur);
+  el.innerHTML = `<div class="plieuse"><b></b><i></i><i></i><i></i><i></i></div><div class="eclair"></div>
+    <div class="revele"><div class="rayons"></div><h2></h2><span></span><p></p><button></button></div>`;
+  const zone = el.querySelector('.revele'), vu = icone(cle === 'bateaux' ? 'vignette-' + b.id : 'papier-' + b.id, 288);
+  vu.className = 'bateau-vu';
+  zone.querySelector('.rayons').after(vu);
+  zone.querySelector('h2').textContent = nom;
+  zone.querySelector('span').textContent = fiche ? `${T.raretes[rarete]} · ${fiche[1]}` : T.plie;
+  zone.querySelector('p').textContent = fiche ? fiche[2] : '';
+  zone.querySelector('p').hidden = !fiche;
+  if (cle === 'bateaux') {
+    const t = icone('rarete-' + rarete, 90);
+    t.className = 'tampon';
+    zone.querySelector('h2').before(t);
+  }
+  const ok = zone.querySelector('button');
+  ok.textContent = T.plie;
+  ok.onclick = () => { el.hidden = true; el.innerHTML = ''; fin(); };
+  el.hidden = false;
+  [100, 400, 700, 1000].forEach(d => setTimeout(() => vibrer(5), calme ? 0 : d));
+  setTimeout(() => {
+    if (el.hidden) return;
+    if (rarete === 'legendaire' || rarete === 'epique') son.port(); else son.bonus();
+    vibrer(rarete === 'legendaire' ? [30, 40, 30, 40, 60] : 20);
+  }, calme ? 0 : 1750);
 }
 
 function ajouterStock(id, n) {
@@ -1640,7 +1764,7 @@ function ouvrirProfil() {
   $('profilNom').value = store.get('nom', '');
   $('profilNom').placeholder = T.nomDefaut;
   $('carnetChiffres').innerHTML = [[store.get('niveau', 1) - 1, T.chCanaux], [nb, T.chEtoiles], [fleurs, T.chFleurs], [ors, T.chOr]]
-    .map(([v, l]) => `<span><b>${v}</b>${l}</span>`).join('');
+    .map(([v, l]) => `<span><b>${v}</b>${l(v)}</span>`).join('');
   const bateau = $('profilBateau');
   bateau.innerHTML = `<div><b>${T.noms[id]}</b><small>${T.papiers[papierChoisi()]}</small></div>`;
   bateau.prepend(icone('vignette-' + id));
@@ -1850,7 +1974,13 @@ function draw() {
   // The lost page, on the last canal of a world
   if (L.page && !L.page.pris) {
     const hy = Y(L.page.y) + Math.sin(t * 2) * 3;
-    if (hy > -40 && hy < viewH + 40) sprite('page-perdue', L.page.x, hy, 1.1, Math.sin(t * 1.4) * 0.12);
+    if (hy > -40 && hy < viewH + 40 && images['page-perdue']) {
+      ctx.save();
+      ctx.translate(L.page.x, hy);
+      ctx.rotate(Math.sin(t * 1.4) * 0.12);
+      ctx.drawImage(images['page-perdue'], -32, -32, 64, 64);
+      ctx.restore();
+    }
   }
 
   // Flowers
@@ -2102,7 +2232,7 @@ function frame(now) {
 function demarrer() {
   start(store.get('niveau', 1));
   const premier = mondeDe(store.get('niveau', 1));
-  Promise.all([...['sprites', 'bateau-classique-uni', feuilleBateau()].map(charger), chargerMonde(premier)]).then(() => {
+  Promise.all([...['sprites', 'page-perdue', 'bateau-classique-uni', feuilleBateau()].map(charger), chargerMonde(premier)]).then(() => {
     if (SDK) SDK.gameLoadingFinished();
     requestAnimationFrame(frame);
     verifierCompte();
