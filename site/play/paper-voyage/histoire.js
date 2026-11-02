@@ -3,8 +3,8 @@ const HISTOIRES = {
   fr: {
     intro: ["Dans son phare, la capitaine Maren écrivait pour ne pas oublier. Soixante ans de mer tenaient dans un seul livre.",
       "Depuis quelque temps, les noms lui échappaient. Les ports. Les bateaux. Le livre se souvenait pour elle.",
-      "Une nuit, le vent entra. Il voulait seulement regarder. Toutes les pages s'envolèrent.",
-      "À l'aube, il n'en restait qu'une, la toute première. Le vent la plia en bateau. Il ne savait pas réparer autrement.",
+      "Au petit matin, le vent entra. Il voulait seulement regarder. Toutes les pages s'envolèrent.",
+      "Quand il se calma, il n'en restait qu'une, la toute première. Le vent la plia en bateau. Il ne savait pas réparer autrement.",
       "Le vent porte les voix. La sienne le suivit : « Commence par le plus ancien. C'est ce que j'oublierai en dernier. »"],
     fin: ["Le bateau de papier atteignit le pied du phare. Il flottait encore, à peine.",
       "La capitaine remit chaque page à sa place, et chaque nom lui revint. Il en manquait une : la toute première.",
@@ -55,8 +55,8 @@ const HISTOIRES = {
   en: {
     intro: ["In her lighthouse, Captain Maren wrote so she wouldn't forget. Sixty years at sea, kept in a single book.",
       "Lately, names had been slipping away. Harbours. Boats. The book remembered for her.",
-      "One night, the wind came in. It only wanted to look. Every page flew out.",
-      "By dawn only one was left, the very first. The wind folded it into a boat. It knew no other way to make amends.",
+      "Early one morning, the wind came in. It only wanted to look. Every page flew out.",
+      "When it calmed, only one was left, the very first. The wind folded it into a boat. It knew no other way to make amends.",
       "Wind carries voices. Hers followed it: \"Start with the oldest. That's what I'll forget last.\""],
     fin: ["The paper boat reached the foot of the lighthouse. Still afloat, barely.",
       "The captain put each page back, and each name came back to her. One was missing: the very first.",

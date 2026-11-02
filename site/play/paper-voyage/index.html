@@ -141,7 +141,7 @@
   .canal canvas { width: 14px; height: 16px; }
   .duo { display: flex; gap: 10px; }
   .duo button { flex: 1; min-width: 0; padding: 0 6px; }
-  #pret .duo { margin-top: 12px; pointer-events: auto; }
+  #pret .duo { width: min(100%, 360px); margin-top: 12px; pointer-events: auto; }
   #pret .duo button { margin-top: 0; }
   .pellicule { font-size: 20px; line-height: 1; }
 
@@ -220,26 +220,19 @@
   .page-livre article canvas { grid-row: 1 / 3; width: 64px; height: 64px; }
   .page-livre article p { margin: 2px 0 0; font-size: 17px; line-height: 1.3; }
   #pliage { z-index: 9; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(21, 28, 41, .96); }
-  .plieuse { position: relative; width: 210px; height: 210px; perspective: 700px; animation: tourne .5s 1.25s ease-in forwards; }
-  .plieuse b, .plieuse i { position: absolute; inset: 0; background: var(--papier, #efe6d2); }
-  .plieuse b { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); box-shadow: inset 0 0 40px rgba(46, 58, 79, .18); }
-  .plieuse i { backface-visibility: visible; filter: drop-shadow(0 2px 3px rgba(21, 28, 41, .4)); animation: .32s ease-in-out forwards; }
-  .plieuse i:nth-child(2) { clip-path: polygon(0 0, 50% 0, 0 50%); transform-origin: 25% 25%; animation-name: plia; animation-delay: .1s; }
-  .plieuse i:nth-child(3) { clip-path: polygon(100% 0, 100% 50%, 50% 0); transform-origin: 75% 25%; animation-name: plib; animation-delay: .4s; }
-  .plieuse i:nth-child(4) { clip-path: polygon(100% 100%, 50% 100%, 100% 50%); transform-origin: 75% 75%; animation-name: plia; animation-delay: .7s; }
-  .plieuse i:nth-child(5) { clip-path: polygon(0 100%, 0 50%, 50% 100%); transform-origin: 25% 75%; animation-name: plib; animation-delay: 1s; }
-  @keyframes plia { to { transform: rotate3d(1, -1, 0, 180deg); background: color-mix(in srgb, var(--papier, #efe6d2) 82%, #2e3a4f); } }
-  @keyframes plib { to { transform: rotate3d(1, 1, 0, 180deg); background: color-mix(in srgb, var(--papier, #efe6d2) 82%, #2e3a4f); } }
-  @keyframes tourne { to { transform: rotate(540deg) scale(.08); opacity: 0; } }
-  .eclair { position: absolute; inset: 0; background: #fffdf6; opacity: 0; animation: eclair .5s 1.7s ease-out; pointer-events: none; }
+  #pliage canvas.plieuse { position: relative; width: min(94vw, 380px); height: min(94vw, 380px); background: radial-gradient(closest-side, color-mix(in srgb, var(--lueur, #fff) 24%, transparent), transparent); transition: opacity .16s; }
+  #pliage.ouvert canvas.plieuse { opacity: 0; }
+  .eclair { position: absolute; inset: 0; background: #fffdf6; opacity: 0; pointer-events: none; }
+  .ouvert .eclair { animation: eclair .5s ease-out; }
   @keyframes eclair { 0% { opacity: 0; } 15% { opacity: 1; } 100% { opacity: 0; } }
-  .revele { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; box-sizing: border-box; color: #fffdf6; text-align: center; opacity: 0; animation: apparait .3s 1.75s forwards; }
+  .revele { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; box-sizing: border-box; color: #fffdf6; text-align: center; opacity: 0; pointer-events: none; }
+  .ouvert .revele { pointer-events: auto; animation: apparait .3s .05s forwards; }
   @keyframes apparait { to { opacity: 1; } }
   .rayons { position: absolute; left: 50%; top: 36%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; background: repeating-conic-gradient(var(--lueur, #fff) 0 9deg, transparent 9deg 24deg); opacity: .22; -webkit-mask-image: radial-gradient(closest-side, #000 8%, transparent 62%); mask-image: radial-gradient(closest-side, #000 8%, transparent 62%); animation: rayons 16s linear infinite; }
   @keyframes rayons { to { transform: rotate(360deg); } }
-  .revele canvas.bateau-vu { position: relative; width: 250px; height: 250px; animation: jaillit .6s 1.75s cubic-bezier(.2, 1.7, .4, 1) backwards; filter: drop-shadow(0 0 22px var(--lueur, #fff)); }
+  .revele canvas.bateau-vu { position: relative; width: 250px; height: 250px; animation: jaillit .6s .05s cubic-bezier(.2, 1.7, .4, 1) backwards; filter: drop-shadow(0 0 22px var(--lueur, #fff)); }
   @keyframes jaillit { from { transform: scale(.2) rotate(-16deg); } }
-  .revele canvas.tampon { position: relative; width: 58px; height: 58px; animation: tampon .4s 2.2s ease-out backwards; }
+  .revele canvas.tampon { position: relative; width: 58px; height: 58px; animation: tampon .4s .5s ease-out backwards; }
   .revele h2 { position: relative; margin: 0; font-family: "Caveat Brush", cursive; font-weight: 400; font-size: 42px; line-height: 1; }
   .revele span { position: relative; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--lueur, #fff); }
   .revele p { position: relative; margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.4; font-weight: 700; }
@@ -247,7 +240,7 @@
   .fin-soin { display: flex; gap: 8px; }
   .fin-soin button { flex: 1; min-width: 0; padding: 0 6px; font-size: 16px; }
   .fin-soin button.video { font-size: 15px; }
-  @media (prefers-reduced-motion: reduce) { .plieuse, .eclair { display: none; } .revele { animation-delay: 0s; } .revele canvas.bateau-vu, .revele canvas.tampon { animation: none; } .rayons { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .plieuse, .eclair { display: none; } .ouvert .revele { animation-delay: 0s; } .revele canvas.bateau-vu, .revele canvas.tampon { animation: none; } .rayons { animation: none; } }
   .fiche.equipe { border: 2.5px solid #2f7591; }
   .fiche .eau { display: flex; justify-content: center; border-radius: 9px; background: #7cc0d0 url(assets/printemps-eau.webp) center / 240px; overflow: hidden; }
   .fiche canvas { width: 92px; height: 92px; display: block; }
@@ -323,6 +316,7 @@
   <div class="duo" id="pretMenus" hidden>
     <button id="pretBoutique" data-t="boutique"></button>
     <button id="pretCarnet" data-t="carnet"></button>
+    <button id="pretLivre" data-t="livreCourt"></button>
   </div>
 </div>
 
@@ -371,7 +365,6 @@
       <h1 data-t="carnet"></h1>
       <button class="retour" id="voyageProfil" data-a="profil"></button>
     </div>
-    <button id="voyageLivre" class="video" data-t="grandLivre"></button>
     <button id="voyageRelire" class="discret" data-t="relire" hidden></button>
     <div id="voyageMondes" style="display: flex; flex-direction: column; gap: 10px"></div>
     <p class="note" data-t="noteVoyage"></p>
@@ -401,7 +394,7 @@
     <div class="boutons">
       <button id="pauseReprendre" data-t="reprendre"></button>
       <button id="pauseRecommencer" class="discret" data-t="recommencer"></button>
-      <div class="duo"><button id="pauseBoutique" class="discret" data-t="boutique"></button><button id="pauseCarnet" class="discret" data-t="carnet"></button></div>
+      <div class="duo"><button id="pauseBoutique" class="discret" data-t="boutique"></button><button id="pauseCarnet" class="discret" data-t="carnet"></button><button id="pauseLivre" class="discret" data-t="livreCourt"></button></div>
     </div>
   </div>
 </div>
@@ -499,7 +492,7 @@ const T = FR ? {
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
   ouvertApres: m => `Après « ${m} »`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
   finale: 'Dernier canal !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
-  grandLivre: 'Le Grand Livre', pageTrouvee: 'Page retrouvée !', pagesSur: (n, t) => `${n} page${s_(n)} sur ${t}`, pagePerdue: 'Page encore perdue',
+  grandLivre: 'Le Grand Livre', livreCourt: 'Grand Livre', pageTrouvee: 'Page retrouvée !', pagesSur: (n, t) => `${n} page${s_(n)} sur ${t}`, pagePerdue: 'Page encore perdue',
   offert: 'Offert', cadeau: 'Choisis un bateau, il t\'est offert.',
   mondes: { printemps: 'Canaux de printemps', ete: "Marais d'été", automne: "Ville d'automne", hiver: "Cimes d'hiver", nuit: 'Nuit des lanternes' },
   raretes: { commune: 'Normal', rare: 'Rare', epique: 'Épique', legendaire: 'Légendaire' },
@@ -547,7 +540,7 @@ const T = FR ? {
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
   ouvertApres: m => `Opens after ${m}`, enCours: 'In progress', termine: 'Finished', etoilesSur: (e, t) => `${e} / ${t} stars`,
   finale: 'Last canal of this world!', passer: 'Skip', suivante: 'Next', terminer: 'Close', auPhare: 'Reach the lighthouse', lire: 'Read',
-  grandLivre: 'The Great Book', pageTrouvee: 'Page found!', pagesSur: (n, t) => `${n} of ${t} page${s_(t)}`, pagePerdue: 'Still lost',
+  grandLivre: 'The Great Book', livreCourt: 'Great Book', pageTrouvee: 'Page found!', pagesSur: (n, t) => `${n} of ${t} page${s_(t)}`, pagePerdue: 'Still lost',
   offert: 'Free', cadeau: 'Pick a boat. It\'s a gift!',
   mondes: { printemps: 'Spring Canals', ete: 'Summer Marsh', automne: 'Autumn Town', hiver: 'Winter Peaks', nuit: 'Lantern Night' },
   raretes: { commune: 'Common', rare: 'Rare', epique: 'Epic', legendaire: 'Legendary' },
@@ -642,6 +635,7 @@ const son = {
     s.connect(f).connect(g).connect(this.master);
     s.start(t0, Math.random() * 1.5, duree + 0.05);
   },
+  pli() { this.souffle('bandpass', 2400, 900, 0.14, 0.1, 0.8); },
   note(freq, retard, duree, gain, type = 'sine', vers = freq) {
     if (!this.ctx) return;
     const c = this.ctx, t0 = c.currentTime + retard;
@@ -862,7 +856,7 @@ function start(n, direct = false, bonus = null) {
   $('pretMenus').hidden = store.get('fleurs', 0) === 0 && store.get('niveau', 1) === 1;
   $('pretLogo').hidden = n > 1;
   const ouverture = n > 1 && n % CANAUX_MONDE === 1 ? H.chapitres[chapitreDe(n)].depart : null;
-  $('pretPortrait').replaceChildren(...(ouverture && images.sprites ? [imageRecit('capitaine-mains')] : []));
+  $('pretPortrait').replaceChildren(...(ouverture && images.sprites ? [imageRecit('capitaine-casquette')] : []));
   $('pretTexte').textContent = ouverture || n === 1 ? ouverture || T.depart1(estTactile) : n === 2 ? T.depart2 : n === 3 ? T.depart3 : T.depart4;
 }
 
@@ -1295,7 +1289,7 @@ function end(won) {
   const menus = () => {
     const duo = document.createElement('div');
     duo.className = 'duo';
-    for (const [label, fn] of [[T.boutique, () => ouvrirBoutique()], [T.carnet, ouvrirCarnet]]) {
+    for (const [label, fn] of [[T.boutique, () => ouvrirBoutique()], [T.carnet, ouvrirCarnet], [T.livreCourt, () => ouvrirLivre()]]) {
       const el = document.createElement('button');
       el.textContent = label; el.className = 'discret';
       el.addEventListener('click', fn);
@@ -1484,7 +1478,7 @@ function relireHistoire() {
   H.intro.forEach((t, i) => ajoute(T.relireIntro, IMAGES_INTRO[i], t));
   H.chapitres.forEach((c, i) => {
     const groupe = `${i + 1}. ${c.titre}`;
-    ajoute(groupe, 'capitaine-mains', c.depart);
+    ajoute(groupe, 'capitaine-casquette', c.depart);
     ajoute(groupe, 'page-perdue', `${T.pageTrouvee} ${c.titre}. ${c.trouve}`);
     c.bateaux.forEach(([nom, epoque, texte], j) => ajoute(groupe, 'vignette-' + BATEAUX_LIVRE[i][j], `${nom} (${epoque}) : ${texte}`));
   });
@@ -1662,13 +1656,167 @@ function ficheHistoire(id) {
   return c < 0 ? null : H.chapitres[c].bateaux[BATEAUX_LIVRE[c].indexOf(id)];
 }
 
-// A sheet folds itself, spins away in a flash, and the new boat bursts out.
+// ---------- A page folded into a paper boat ----------
+// The sheet is cut along its creases. Each fold is a rotation of some facets, then the sides are pulled open.
+const FACETTES = {
+  bt: [[0, 0], [-1.5, -1.5], [1.5, -1.5]], bg: [[0, 0], [-1.5, 0], [-1.5, -1.5]], bd: [[0, 0], [1.5, -1.5], [1.5, 0]], bb: [[-1.5, -1.5], [-1.5, -2], [1.5, -2], [1.5, -1.5]],
+  ft: [[0, 0], [-1.5, 1.5], [1.5, 1.5]], fg: [[0, 0], [-1.5, 0], [-1.5, 1.5]], fd: [[0, 0], [1.5, 1.5], [1.5, 0]], fb: [[-1.5, 1.5], [-1.5, 2], [1.5, 2], [1.5, 1.5]],
+};
+const PLIS = [
+  { de: .3, a: .7, quoi: 'ft fg fd fb', o: [0, 0], d: [1, 0], angle: Math.PI },
+  { de: .72, a: 1.02, quoi: 'fg bg', o: [0, 0], d: [-Math.SQRT1_2, -Math.SQRT1_2], angle: -Math.PI },
+  { de: .88, a: 1.18, quoi: 'fd bd', o: [0, 0], d: [Math.SQRT1_2, -Math.SQRT1_2], angle: Math.PI },
+  { de: 1.2, a: 1.46, quoi: 'fb', o: [0, -1.5], d: [1, 0], angle: -Math.PI },
+  { de: 1.62, a: 1.9, quoi: 'bb', o: [0, -1.5], d: [1, 0], angle: Math.PI },
+];
+const OUVERTURE = [1.92, 2.42], FIN_PLIAGE = 2.62, COUPS_PLI = [.3, .72, .88, 1.2, 1.62, 1.92];
+const VOILE_H = [0, .35, 0], VOILE_G = [-.95, -.9, 0], VOILE_D = [.95, -.9, 0], VOILE_M = [0, -.9, 0];
+const COQUE = z => [[-1.15, -1.6, z], [-2.15, -.8, 0], [2.15, -.8, 0], [1.15, -1.6, z]];
+const NAVIRE = {
+  bt: [VOILE_H, VOILE_G, VOILE_D], ft: [VOILE_H, VOILE_G, VOILE_D],
+  bg: [VOILE_H, VOILE_M, VOILE_G], fg: [VOILE_H, VOILE_M, VOILE_G],
+  bd: [VOILE_H, VOILE_D, VOILE_M], fd: [VOILE_H, VOILE_D, VOILE_M],
+  fb: COQUE(.34), bb: COQUE(-.34),
+};
+const COULEUR_MOTS = 'rgba(52, 44, 62, .62)';
+const borne = (t, de, a) => Math.min(1, Math.max(0, (t - de) / (a - de)));
+const doux = x => x * x * (3 - 2 * x);
+const rebond = x => 1 + 2.7 * (x - 1) ** 3 + 1.7 * (x - 1) ** 2;
+
+// Rodrigues, for an axis lying in the sheet.
+function tournerPoint([x0, y0, z], o, d, c, s) {
+  const x = x0 - o[0], y = y0 - o[1], k = (d[0] * x + d[1] * y) * (1 - c);
+  return [o[0] + x * c + d[1] * z * s + d[0] * k, o[1] + y * c - d[0] * z * s + d[1] * k, z * c + (d[0] * y - d[1] * x) * s];
+}
+
+// One written page of the book, on the paper of the boat's rarity.
+function feuilleEcrite(papier, lueur, rarete) {
+  const u = 150, c = document.createElement('canvas');
+  c.width = u * 3; c.height = u * 4;
+  const x = c.getContext('2d');
+  x.fillStyle = papier;
+  x.fillRect(0, 0, c.width, c.height);
+  for (let i = 0; i < 1400; i++) {
+    x.fillStyle = `rgba(92, 70, 48, ${Math.random() * .07})`;
+    x.fillRect(Math.random() * c.width, Math.random() * c.height, 1 + Math.random() * 5, 1);
+  }
+  const bord = x.createRadialGradient(c.width / 2, c.height / 2, c.height * .3, c.width / 2, c.height / 2, c.height * .72);
+  bord.addColorStop(0, 'rgba(92, 70, 48, 0)');
+  bord.addColorStop(1, 'rgba(92, 70, 48, .3)');
+  x.fillStyle = bord;
+  x.fillRect(0, 0, c.width, c.height);
+  x.strokeStyle = COULEUR_MOTS; x.lineWidth = 1.5; x.lineCap = 'round';
+  for (let y = 44; y < c.height - 30; y += 21) {
+    let m = 28 + Math.random() * 10;
+    const fin = c.width - 26 - Math.random() * 40;
+    x.beginPath();
+    while (m < fin) {
+      const mot = m + 16 + Math.random() * 38;
+      x.moveTo(m, y + Math.random() * 2);
+      for (let v = m; v < Math.min(mot, fin); v += 5) x.lineTo(v, y + Math.sin(v * 1.1) * 2.2 + Math.random() * 1.4);
+      m = mot + 7 + Math.random() * 6;
+    }
+    x.stroke();
+  }
+  if (rarete === 'epique' || rarete === 'legendaire') {
+    x.strokeStyle = lueur; x.lineWidth = rarete === 'legendaire' ? 5 : 3;
+    x.strokeRect(11, 11, c.width - 22, c.height - 22);
+    if (rarete === 'legendaire') { x.lineWidth = 1.5; x.strokeRect(20, 20, c.width - 40, c.height - 40); }
+  }
+  return { image: c, u };
+}
+
+// Returns the function that draws the fold at time t.
+function plieuse(canvas, papier, lueur, rarete) {
+  const cote = canvas.clientWidth || 340, ratio = Math.min(devicePixelRatio || 1, 2), e = cote * .158;
+  canvas.width = canvas.height = cote * ratio;
+  const x = canvas.getContext('2d'), page = feuilleEcrite(papier, lueur, rarete);
+  const nombre = { commune: 10, rare: 18, epique: 30, legendaire: 46 }[rarete] || 10;
+  const eclats = Array.from({ length: nombre }, () => ({
+    a: Math.random() * 6.28, v: 90 + Math.random() * 170, t0: OUVERTURE[0] + .16 + Math.random() * .2, cote: 2 + Math.random() * 4, tour: Math.random() * 6,
+  }));
+  return t => {
+    const hat = PLIS.map(p => doux(borne(t, p.de, p.a)));
+    const ouvre = borne(t, ...OUVERTURE), tire = rebond(ouvre);
+    const entree = doux(borne(t, 0, .3)), fin = doux(borne(t, OUVERTURE[1], FIN_PLIAGE));
+    const lacet = doux(borne(t, 1.42, 1.82)) * Math.PI + doux(ouvre) * Math.PI + Math.sin(t * 2.6) * .13 * (1 - ouvre);
+    const tangage = .34 - .2 * doux(borne(t, 0, 1.2)) + .08 * doux(ouvre), roulis = (1 - entree) * -.5 + Math.sin(t * 1.9) * .025;
+    const haut = hat[0] * .95 - ouvre * .35, echelle = (.72 + .28 * entree) * (1 + fin * .07) * e;
+    const [cl, sl, ct, st, cr, sr] = [lacet, tangage, roulis].flatMap(v => [Math.cos(v), Math.sin(v)]);
+    const coins = hat[1] > .5, ordre = { bb: 0, bt: 1, ft: 2, bg: coins ? 5 : 1, bd: coins ? 5 : 1, fg: coins ? 4 : 2, fd: coins ? 4 : 2, fb: 6, tout: 0 };
+    // Until the first fold the page is one piece, with no crease to show.
+    const vues = Object.entries(hat[0] ? FACETTES : { tout: [[-1.5, 2], [-1.5, -2], [1.5, -2], [1.5, 2]] }).map(([nom, plat]) => {
+      const pts = plat.map((pt, i) => {
+        let p = [pt[0], pt[1], 0];
+        PLIS.forEach((pl, k) => {
+          if (hat[k] && pl.quoi.includes(nom)) p = tournerPoint(p, pl.o, pl.d, Math.cos(pl.angle * hat[k]), Math.sin(pl.angle * hat[k]));
+        });
+        if (ouvre) { const n = NAVIRE[nom][i]; p = p.map((v, j) => v + (n[j] - v) * tire); }
+        const z = p[2] + ordre[nom] * .014, y = p[1] + haut;
+        const x1 = p[0] * cl + z * sl, z1 = -p[0] * sl + z * cl;
+        const y2 = y * ct - z1 * st, z2 = y * st + z1 * ct;
+        return [x1 * cr - y2 * sr, x1 * sr + y2 * cr, z2];
+      });
+      const [a, b, c] = pts, u = [b[0] - a[0], b[1] - a[1], b[2] - a[2]], v = [c[0] - a[0], c[1] - a[1], c[2] - a[2]];
+      const n = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]], l = Math.hypot(...n) || 1;
+      const lumiere = Math.abs(-.42 * n[0] + .55 * n[1] + .72 * n[2]) / l, reflet = Math.abs(-.23 * n[0] + .3 * n[1] + .93 * n[2]) / l;
+      const ecran = pts.map(p => { const k = 8 / (8 - p[2]); return [cote / 2 + p[0] * k * echelle, cote / 2 - p[1] * k * echelle]; });
+      return { nom, plat, ecran, lumiere, reflet, z: pts.reduce((s, p) => s + p[2], 0) / pts.length + ordre[nom] * .002 };
+    }).sort((a, b) => a.z - b.z);
+
+    x.setTransform(ratio, 0, 0, ratio, 0, 0);
+    x.clearRect(0, 0, cote, cote);
+    x.globalAlpha = entree;
+    const trace = p => { x.beginPath(); p.forEach(([a, b], i) => (i ? x.lineTo(a, b) : x.moveTo(a, b))); x.closePath(); };
+    x.save();
+    x.shadowColor = 'rgba(5, 8, 16, .5)'; x.shadowBlur = 26 * ratio; x.shadowOffsetY = (14 + hat[0] * 6) * ratio; x.fillStyle = papier;
+    for (const f of vues) { trace(f.ecran); x.fill(); }
+    x.restore();
+    const marque = Math.min(1, hat[0] * 2);
+    for (const f of vues) {
+      trace(f.ecran);
+      x.fillStyle = x.strokeStyle = papier; x.lineWidth = 1.1;
+      x.fill(); x.stroke();
+      const [[u0, v0], [u1, v1], [u2, v2]] = f.plat.map(([a, b]) => [(a + 1.5) * page.u, (2 - b) * page.u]);
+      const [[x0, y0], [x1, y1], [x2, y2]] = f.ecran, det = (u1 - u0) * (v2 - v0) - (u2 - u0) * (v1 - v0);
+      const a = ((x1 - x0) * (v2 - v0) - (x2 - x0) * (v1 - v0)) / det, c = ((x2 - x0) * (u1 - u0) - (x1 - x0) * (u2 - u0)) / det;
+      const b = ((y1 - y0) * (v2 - v0) - (y2 - y0) * (v1 - v0)) / det, d = ((y2 - y0) * (u1 - u0) - (y1 - y0) * (u2 - u0)) / det;
+      x.save();
+      x.clip();
+      x.transform(a, b, c, d, x0 - a * u0 - c * v0, y0 - b * u0 - d * v0);
+      x.drawImage(page.image, 0, 0);
+      x.restore();
+      trace(f.ecran);
+      x.fillStyle = `rgba(18, 22, 38, ${(1 - f.lumiere) * .62})`;
+      x.fill();
+      x.fillStyle = `rgba(255, 252, 240, ${f.reflet ** 24 * .3})`;
+      x.fill();
+      x.strokeStyle = `rgba(48, 36, 30, ${.42 * marque})`; x.lineWidth = .8;
+      x.stroke();
+    }
+    x.globalAlpha = 1;
+    x.fillStyle = lueur;
+    for (const p of eclats) {
+      const age = t - p.t0;
+      if (age <= 0) continue;
+      x.save();
+      x.translate(cote / 2 + Math.cos(p.a) * p.v * age, cote / 2 + 26 + Math.sin(p.a) * p.v * age + 110 * age * age);
+      x.rotate(p.tour + age * 9);
+      x.globalAlpha = Math.max(0, 1 - age * 1.9);
+      x.fillRect(-p.cote, -p.cote / 2, p.cote * 2, p.cote);
+      x.restore();
+    }
+  };
+}
+
+// A page of the book folds itself into a boat, flashes, and the new boat bursts out. A tap skips the folding.
 function revelerAchat(b, nom, fin) {
   const rarete = b.rarete, [papier, lueur] = PAPIER_RARETE[rarete];
   const el = $('pliage'), fiche = ficheHistoire(b.id);
+  el.classList.remove('ouvert');
   el.style.setProperty('--papier', papier);
   el.style.setProperty('--lueur', lueur);
-  el.innerHTML = `<div class="plieuse"><b></b><i></i><i></i><i></i><i></i></div><div class="eclair"></div>
+  el.innerHTML = `<canvas class="plieuse"></canvas><div class="eclair"></div>
     <div class="revele"><div class="rayons"></div><h2></h2><span></span><p></p><button></button></div>`;
   const zone = el.querySelector('.revele'), vu = icone('vignette-' + b.id, 288);
   vu.className = 'bateau-vu';
@@ -1684,12 +1832,25 @@ function revelerAchat(b, nom, fin) {
   ok.textContent = T.plie;
   ok.onclick = () => { el.hidden = true; el.innerHTML = ''; fin(); };
   el.hidden = false;
-  [100, 400, 700, 1000].forEach(d => setTimeout(() => vibrer(5), calme ? 0 : d));
-  setTimeout(() => {
-    if (el.hidden) return;
+  const ouvrir = () => {
+    el.onclick = null;
+    el.classList.add('ouvert');
     if (rarete === 'legendaire' || rarete === 'epique') son.port(); else son.bonus();
     vibrer(rarete === 'legendaire' ? [30, 40, 30, 40, 60] : 20);
-  }, calme ? 0 : 1750);
+  };
+  if (calme) { ouvrir(); return; }
+  const dessiner = plieuse(el.querySelector('canvas'), papier, lueur, rarete), debut = performance.now();
+  let coup = 0, saute = false;
+  el.onclick = () => { saute = true; };
+  const image = now => {
+    if (el.hidden) return;
+    const temps = (now - debut) / 1000;
+    if (saute || temps >= FIN_PLIAGE) { ouvrir(); return; }
+    if (coup < COUPS_PLI.length && temps >= COUPS_PLI[coup]) { coup++; son.pli(); vibrer(5); }
+    dessiner(temps);
+    requestAnimationFrame(image);
+  };
+  requestAnimationFrame(image);
 }
 
 function ajouterStock(id, n) {
@@ -1880,7 +2041,6 @@ function ouvrirProfil() {
 $('profilCompte').addEventListener('click', connecter);
 $('voyageRetour').addEventListener('click', () => { $('voyage').hidden = true; });
 $('voyageProfil').addEventListener('click', ouvrirProfil);
-$('voyageLivre').addEventListener('click', () => ouvrirLivre());
 // Temporary reading tool, off on Poki. Typing a # in the address doesn't reload a page, so react to it.
 $('voyageRelire').hidden = !!SDK;
 $('voyageRelire').addEventListener('click', relireHistoire);
@@ -1888,6 +2048,7 @@ if (!SDK) addEventListener('hashchange', () => location.reload());
 $('livreRetour').addEventListener('click', () => { $('livre').hidden = true; });
 $('profilRetour').addEventListener('click', () => { $('profil').hidden = true; ouvrirCarnet(); });
 $('pretCarnet').addEventListener('click', ouvrirCarnet);
+$('pretLivre').addEventListener('click', () => ouvrirLivre());
 $('pretBoutique').addEventListener('click', () => ouvrirBoutique());
 $('boutiqueRetour').addEventListener('click', () => { $('boutique').hidden = true; });
 $('btnPause').addEventListener('click', mettrePause);
@@ -1895,6 +2056,7 @@ $('pauseReprendre').addEventListener('click', reprendre);
 $('pauseRecommencer').addEventListener('click', () => { garderPartie(); relancer(level); });
 $('pauseBoutique').addEventListener('click', () => { garderPartie(); ouvrirBoutique(); });
 $('pauseCarnet').addEventListener('click', () => { garderPartie(); ouvrirCarnet(); });
+$('pauseLivre').addEventListener('click', () => { garderPartie(); ouvrirLivre(); });
 // The name stays in this browser and is only ever shown back to the player.
 $('profilNom').addEventListener('input', e => store.set('nom', e.target.value.trim()));
 $('profilNom').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
