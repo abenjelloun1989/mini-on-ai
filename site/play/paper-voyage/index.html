@@ -196,7 +196,9 @@
   #recitImage { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; animation: fondu 1.1s ease-out; }
   #recitImage.objet { inset: 12% 10% auto; width: 80%; height: 42%; object-fit: contain; object-position: center; }
   @keyframes fondu { from { opacity: 0; transform: scale(1.03); } }
-  #recitTexte { position: absolute; left: 28px; right: 28px; bottom: 104px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.3; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
+  /* On wide screens the picture's own dark foot is cropped, so the text brings its shade along. */
+  #recitOmbre { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; pointer-events: none; background: linear-gradient(to bottom, rgba(10, 14, 20, 0), rgba(10, 14, 20, .82) 42%, rgba(10, 14, 20, .96) 100%); }
+  #recitTexte { text-shadow: 0 1px 8px rgba(5, 8, 12, .9); position: absolute; left: 28px; right: 28px; bottom: 104px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.3; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
   #recitBarre { position: absolute; left: 12px; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); display: flex; gap: 8px; align-items: center; z-index: 2; }
   #recitBarre select { flex: 1; min-width: 0; min-height: 44px; font: inherit; font-size: 15px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; padding: 0 8px; }
   #recitBarre span { color: #f2ebdd; font-size: 13px; white-space: nowrap; }
@@ -204,7 +206,8 @@
   #recit canvas#recitImage { inset: 12% 15% auto; width: 70%; height: auto; }
   #recit .suite { position: absolute; left: 20px; right: 20px; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); }
   #recit .suite button { min-height: 48px; font-family: "Cormorant", Georgia, serif; font-size: 20px; font-weight: 500; color: #f2ebdd; background: transparent; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
-  #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .7); }
+  #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .8); }
+  #recit.lecture .suite button { font-size: 30px; line-height: 1; border-color: rgba(242, 235, 221, .45); }
   @media (prefers-reduced-motion: reduce) { #recitImage, #recitTexte { animation: none; } }
   .suite { display: flex; gap: 10px; }
   .suite button { flex: 1; }
@@ -343,6 +346,7 @@
   <div class="cadre">
     <div id="recitBarre" hidden><select id="recitChoix" aria-label="Story step"></select><span id="recitNumero"></span><button id="recitFermer" aria-label="Close">✕</button></div>
     <img id="recitImage" alt="">
+    <div id="recitOmbre"></div>
     <p id="recitTexte"></p>
     <div class="suite"><button id="recitPasser" data-t="passer"></button><button id="recitSuite"></button></div>
   </div>
@@ -1506,8 +1510,9 @@ function relireHistoire() {
   $('recitPasser').onclick = () => va(i - 1);
   $('recitSuite').onclick = () => va(i + 1);
   choix.onchange = () => va(etapes.findIndex(e => e.groupe === choix.value));
-  $('recitFermer').onclick = () => { $('recit').hidden = true; $('recitBarre').hidden = true; $('recitPasser').textContent = T.passer; };
+  $('recitFermer').onclick = () => { $('recit').hidden = true; $('recitBarre').hidden = true; $('recit').classList.remove('lecture'); $('recitPasser').textContent = T.passer; };
   $('recitBarre').hidden = false;
+  $('recit').classList.add('lecture');
   $('recit').hidden = false;
   montrer();
 }
