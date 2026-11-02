@@ -126,6 +126,8 @@
   .canal b { font-size: 19px; font-weight: 900; }
   .canal span { font-size: 13px; letter-spacing: 1px; color: #b98a12; -webkit-text-stroke: .5px var(--encre); }
   #hCombo { font-size: 14px; color: #c13a72; }
+  #voileLent { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s; background: radial-gradient(circle at center, rgba(124, 192, 208, .08) 45%, rgba(62, 139, 168, .42) 100%); }
+  #voileLent.actif { opacity: 1; }
   #hSous {
     z-index: 8; position: fixed; left: 50%; transform: translateX(-50%); top: calc(env(safe-area-inset-top, 0px) + 62px);
     display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none;
@@ -195,6 +197,11 @@
   #recitImage.objet { inset: 12% 10% auto; width: 80%; height: 42%; object-fit: contain; object-position: center; }
   @keyframes fondu { from { opacity: 0; transform: scale(1.03); } }
   #recitTexte { position: absolute; left: 28px; right: 28px; bottom: 104px; margin: 0; font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.3; color: #f2ebdd; text-align: center; animation: fondu 1.2s .25s ease-out backwards; }
+  #recitBarre { position: absolute; left: 12px; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); display: flex; gap: 8px; align-items: center; z-index: 2; }
+  #recitBarre select { flex: 1; min-width: 0; min-height: 44px; font: inherit; font-size: 15px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; padding: 0 8px; }
+  #recitBarre span { color: #f2ebdd; font-size: 13px; white-space: nowrap; }
+  #recitBarre button { min-height: 44px; width: 44px; padding: 0; font-size: 18px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); box-shadow: none; }
+  #recit canvas#recitImage { inset: 12% 15% auto; width: 70%; height: auto; }
   #recit .suite { position: absolute; left: 20px; right: 20px; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); }
   #recit .suite button { min-height: 48px; font-family: "Cormorant", Georgia, serif; font-size: 20px; font-weight: 500; color: #f2ebdd; background: transparent; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
   #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .7); }
@@ -287,6 +294,7 @@
 </head>
 <body>
 <canvas id="jeu"></canvas>
+<div id="voileLent"></div>
 
 <div id="hud">
   <div class="etiquette vies" id="hVies"></div>
@@ -333,6 +341,7 @@
 
 <div id="recit" hidden>
   <div class="cadre">
+    <div id="recitBarre" hidden><select id="recitChoix" aria-label="Story step"></select><span id="recitNumero"></span><button id="recitFermer" aria-label="Close">✕</button></div>
     <img id="recitImage" alt="">
     <p id="recitTexte"></p>
     <div class="suite"><button id="recitPasser" data-t="passer"></button><button id="recitSuite"></button></div>
@@ -432,6 +441,7 @@ const pub = {
 // #phare and #lettre preview the endings on a throwaway save, so real progress is safe.
 // They and the world previews are off on Poki, and poki_ignore keeps them out of cloud saves.
 const ESSAI = (!SDK && { phare: 25, lettre: 50 }[location.hash.slice(1)]) || 0;
+const RELIRE = !SDK && location.hash === '#relire';       // temporary: browse the whole story
 const SAUVE = ESSAI ? 'poki_ignore_essai.' : 'bourrasque.';
 const store = {
   get(k, d) { try { const v = localStorage.getItem(SAUVE + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
@@ -473,6 +483,7 @@ const T = FR ? {
   objets: { ciree: 'Ciré !', voile: 'Grande voile !', abeille: 'Abeille !', libellule: 'Libellule !' },
   aides: { ciree: 'Ciré : il encaisse le prochain choc.', voile: 'Grande voile : tu fonces, rien ne te touche.', abeille: 'Abeille : elle attire les fleurs.', libellule: 'Libellule : tout ralentit et le chrono s\'arrête.' },
   record: 'Record !', medailles: ['', 'Bronze', 'Argent', 'Or'],
+  relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
   connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
@@ -520,6 +531,7 @@ const T = FR ? {
   objets: { ciree: 'Raincoat!', voile: 'Big Sail!', abeille: 'Bee!', libellule: 'Dragonfly!' },
   aides: { ciree: 'Raincoat: blocks your next crash.', voile: 'Big Sail: full speed, nothing can touch you.', abeille: 'Bee: pulls flowers towards you.', libellule: 'Dragonfly: everything slows down and the clock stops.' },
   record: 'New record!', medailles: ['', 'Bronze', 'Silver', 'Gold'],
+  relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
   connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, toi: 'you', frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
@@ -818,7 +830,7 @@ function start(n, direct = false, bonus = null) {
   const repare = n > 1 && n % CANAUX_MONDE === 1 && store.get('vies', 3) < 3;
   if (repare) store.set('vies', 3);
   L = makeLevel(n);
-  boat = { x: L.center(0), y: 0, vx: 0, vy: L.speed, hp: store.get('vies', 3), inv: 0, cap: 0, souffle: { x: 0, y: 0, t: 0 }, ciree: false, boost: 0, abeille: 0, ralenti: 0, pop: 0 };
+  boat = { x: L.center(0), y: 0, vx: 0, vy: L.speed, hp: store.get('vies', 3), inv: 0, cap: 0, souffle: { x: 0, y: 0, t: 0 }, ciree: false, boost: 0, abeille: 0, ralenti: 0, pop: 0, libre: 0 };
   camY = 0; parts = []; rings = []; t = 0; flowersGot = 0;
   usedContinue = false; gusts = 0; shake = 0;
   gain = 0; encaisse = 0; serie = 0; dernierGust = -1;
@@ -885,6 +897,7 @@ function hud() {
   $('hNiv').textContent = level;
   $('hChrono').textContent = fmtTemps(temps());
   $('hChrono').classList.toggle('gele', boat.ralenti > 0);
+  $('voileLent').classList.toggle('actif', boat.ralenti > 0 && state === 'jeu');
   $('btnPause').hidden = state !== 'jeu';
   $('btnSon').hidden = state === 'jeu';
   $('hFl').textContent = gain;
@@ -945,6 +958,7 @@ function souffler(ux, uy, puissance) {
   boat.vy += uy * f * 0.65;
   boat.souffle = { x: ux * f * 0.35, y: uy * f * 0.35, t: 0.12 };
   boat.pop = 0.18;
+  boat.libre = 1;
   gusts++;
   vibrer(6);
   for (let i = 0; i < 3; i++) {
@@ -1111,12 +1125,19 @@ function update(dt) {
   const slope = (L.center(b.y + 2) - L.center(b.y - 2)) / 4;
   const courant = L.speed * (b.boost > 0 ? 2.2 : 1);
   let tx = slope * courant, ty = courant;
+  // Whirlpools reach beyond their rim, grip hard near the middle, and spin the boat.
+  // A gust breaks the grip for a moment, so escaping always works.
+  let prise = 0;
+  b.libre = Math.max(0, b.libre - reel);
   for (const w of L.whirls) {
-    const dx = b.x - w.x, dy = b.y - w.y, d = Math.hypot(dx, dy);
-    if (d < w.r && d > 1) {
-      const s = 1 - d / w.r;
-      tx += (-dy / d) * w.spin * s - dx / d * 70 * s;
-      ty += (dx / d) * w.spin * s - dy / d * 70 * s;
+    const dx = b.x - w.x, dy = b.y - w.y, d = Math.hypot(dx, dy), portee = w.r * 1.5;
+    if (d < portee && d > 1) {
+      const f = 1 - d / portee, lache = b.libre > 0 ? 0.05 : 1;
+      // Inside its reach the whirlpool replaces the current, it doesn't just add to it.
+      const courantReste = 1 - Math.min(1, f * 2.2) * lache;
+      tx = tx * courantReste + ((-dy / d) * w.spin * (0.5 + f) - dx / d * (110 + 300 * f)) * lache;
+      ty = ty * courantReste + ((dx / d) * w.spin * (0.5 + f) - dy / d * (110 + 300 * f)) * lache;
+      prise = Math.max(prise, f * lache);
     }
   }
   if (b.souffle.t > 0) {
@@ -1127,7 +1148,7 @@ function update(dt) {
   }
   const vitesse = Math.hypot(b.vx, b.vy);
   if (vitesse > 420) { b.vx *= 420 / vitesse; b.vy *= 420 / vitesse; }
-  const k = 1 - Math.exp(-1.6 * dt);
+  const k = 1 - Math.exp(-(1.6 + prise * 3.5) * dt);
   b.vx += (tx - b.vx) * k;
   b.vy += (ty - b.vy) * k;
   b.x += b.vx * dt;
@@ -1447,6 +1468,45 @@ function raconter(panneaux, visuels, fin) {
   $('recitPasser').onclick = clore;
   montrer();
   $('recit').hidden = false;
+}
+
+// Temporary reading tool, opened with #relire: every story beat with no need to play.
+function relireHistoire() {
+  const etapes = [], ajoute = (groupe, image, texte) => etapes.push({ groupe, image, texte });
+  H.intro.forEach((t, i) => ajoute(T.relireIntro, `recit-${i + 1}`, t));
+  H.chapitres.forEach((c, i) => {
+    const groupe = `${i + 1}. ${c.titre}`;
+    ajoute(groupe, 'capitaine-mains', c.depart);
+    ajoute(groupe, 'page-perdue', `${T.pageTrouvee} ${c.titre}. ${c.trouve}`);
+    c.bateaux.forEach(([nom, epoque, texte], j) => ajoute(groupe, 'vignette-' + BATEAUX_LIVRE[i][j], `${nom} (${epoque}) : ${texte}`));
+  });
+  H.fin.forEach((t, i) => ajoute(T.relireFin, IMAGES_FIN.fin1[i], t));
+  H.fin2.forEach((t, i) => ajoute(T.relireFin2, IMAGES_FIN.fin2[i], t));
+
+  const choix = $('recitChoix');
+  [...new Set(etapes.map(e => e.groupe))].forEach(g => choix.add(new Option(g, g)));
+  let i = 0;
+  const montrer = () => {
+    const e = etapes[i], vue = e.image.startsWith('vignette-') ? icone(e.image, 288) : imageRecit(e.image);
+    vue.id = 'recitImage';
+    vue.className = e.image.startsWith('recit-') ? '' : 'objet';
+    $('recitImage').replaceWith(vue);
+    const p = $('recitTexte').cloneNode();
+    p.textContent = typeof e.texte === 'function' ? e.texte(nomCapitaine()) : e.texte;
+    $('recitTexte').replaceWith(p);
+    choix.value = e.groupe;
+    $('recitNumero').textContent = `${i + 1} / ${etapes.length}`;
+  };
+  const va = n => { i = clamp(n, 0, etapes.length - 1); montrer(); };
+  $('recitPasser').textContent = '‹';
+  $('recitSuite').textContent = '›';
+  $('recitPasser').onclick = () => va(i - 1);
+  $('recitSuite').onclick = () => va(i + 1);
+  choix.onchange = () => va(etapes.findIndex(e => e.groupe === choix.value));
+  $('recitFermer').onclick = () => { $('recit').hidden = true; $('recitBarre').hidden = true; $('recitPasser').textContent = T.passer; };
+  $('recitBarre').hidden = false;
+  $('recit').hidden = false;
+  montrer();
 }
 
 // The hard canal closing each world hands back a page of the book.
@@ -2104,14 +2164,6 @@ function draw() {
     ctx.fillRect(xMin - 10, -10, xMax - xMin + 20, viewH + 20);
   }
 
-  if (boat.ralenti > 0) {
-    const voile = ctx.createRadialGradient(W / 2, viewH / 2, viewH * 0.3, W / 2, viewH / 2, viewH * 0.7);
-    voile.addColorStop(0, 'rgba(124,192,208,.08)');
-    voile.addColorStop(1, 'rgba(62,139,168,.42)');
-    ctx.fillStyle = voile;
-    ctx.fillRect(xMin - 10, -10, xMax - xMin + 20, viewH + 20);
-  }
-
   // The canal's name when a run starts, the world's when one begins, a warning on the last one
   const debutMonde = level % CANAUX_MONDE === 1, finMonde = level % CANAUX_MONDE === 0, duree = debutMonde || finMonde ? 2.6 : 1.6;
   if (state === 'jeu' && t < duree) {
@@ -2236,7 +2288,8 @@ function demarrer() {
     if (SDK) SDK.gameLoadingFinished();
     requestAnimationFrame(frame);
     verifierCompte();
-    if (ESSAI) lancerEssai();
+    if (RELIRE) relireHistoire();
+    else if (ESSAI) lancerEssai();
     else if (!store.get('introVue')) raconter(H.intro, ['recit-1', 'recit-2', 'recit-3'], () => store.set('introVue', true));
     MONDES.forEach(chargerMonde);          // the rest quietly, so the next world is ready
   });
