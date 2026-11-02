@@ -177,9 +177,9 @@
   .rarete canvas { width: 22px; height: 22px; }
   .monde { display: flex; flex-direction: column; gap: 8px; padding: 10px; box-sizing: border-box; background: var(--reserve); border: 1.5px solid var(--encre); border-radius: 14px 10px 15px 9px; box-shadow: 2px 3px 0 rgba(46,58,79,.15); }
   .monde.ferme { opacity: .6; background: #eadfc8; }
-  .monde > button { all: unset; display: flex; align-items: center; gap: 10px; cursor: pointer; min-height: 72px; }
-  .monde .vue { width: 96px; height: 72px; flex: none; border-radius: 9px; border: 1.5px solid var(--encre); background-size: 180px; }
-  .monde.ferme .vue { filter: grayscale(1); }
+  .monde > button { all: unset; display: flex; flex-direction: column; gap: 8px; cursor: pointer; }
+  .monde canvas.vue { display: block; width: 100%; height: auto; border-radius: 6px; border: 1.5px solid var(--encre); box-sizing: border-box; }
+  .monde.ferme canvas.vue { filter: grayscale(.85) brightness(.9); }
   .monde .titre { display: flex; flex-direction: column; gap: 2px; font-size: 13px; font-weight: 800; color: #4c5d7a; }
   .monde .titre b { font-family: "Caveat Brush", cursive; font-weight: 400; font-size: 25px; line-height: 1; color: var(--encre); }
   .tampons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
@@ -1773,6 +1773,35 @@ function grilleCanaux(de, a, atteint) {
   return g;
 }
 
+// A slice of the world's canal, built from its real sprites, so each page reads at a glance.
+function sceneMonde(m) {
+  const c = document.createElement('canvas'), w = 640, h = 200, g = c.getContext('2d');
+  c.width = w; c.height = h; c.className = 'vue';
+  chargerMonde(m).then(() => {
+    const berge = images[m.id + '-berge'], eau = images[m.id + '-eau'], atlas = images['monde-' + m.id], cases = ATLAS_MONDES[m.id];
+    if (!atlas) return;
+    g.fillStyle = berge ? g.createPattern(berge, 'repeat') : m.berge;
+    g.fillRect(0, 0, w, h);
+    const rive = (dy, sens) => {
+      for (let x = sens > 0 ? 0 : w; sens > 0 ? x <= w : x >= 0; x += 16 * sens) g.lineTo(x, 100 + dy + 12 * Math.sin(x / 90));
+    };
+    g.beginPath(); rive(-50, 1); rive(50, -1); g.closePath();
+    g.fillStyle = eau ? g.createPattern(eau, 'repeat') : m.eau;
+    g.fill();
+    for (const [dy, couleur, l] of [[-55, m.quai, 12], [55, m.quai, 12], [-50, m.encre, 2], [50, m.encre, 2]]) {
+      g.beginPath(); rive(dy, 1); g.strokeStyle = couleur; g.lineWidth = l; g.stroke();
+    }
+    const pose = (nom, x, y, k = 2) => {
+      const b = cases[nom];
+      if (b) g.drawImage(atlas, b[0], b[1], b[2], b[3], x - b[2] / 6 * k, y - b[3] / 6 * k, b[2] / 3 * k, b[3] / 3 * k);
+    };
+    pose('decor-0', 70, 26, 1.5); pose('decor-1', 330, 22, 1.5); pose('decor-2', 580, 28, 1.5);
+    pose('decor-3', 200, 178, 1.5); pose('decor-4', 470, 180, 1.5);
+    pose('rocher', 130, 100, 1.5); pose('fleur', 300, 96, 1.7); pose('mob-1', 480, 104, 1.8);
+  });
+  return c;
+}
+
 function ouvrirCarnet() {
   const atteint = store.get('niveau', 1), etoiles = store.get('etoiles', {}), zone = $('voyageMondes');
   zone.innerHTML = '';
@@ -1788,7 +1817,8 @@ function ouvrirCarnet() {
     const el = document.createElement('div');
     el.className = 'monde' + (ouvert ? '' : ' ferme');
     const statut = !ouvert ? T.ouvertApres(T.mondes[MONDES[(i - 1) % MONDES.length].id]) : courant ? T.enCours : T.termine;
-    el.innerHTML = `<button><div class="vue" style="background-image: url(assets/${m.id}-berge.webp)"></div><div class="titre"><b>${T.mondes[m.id]}</b><span>${T.etoilesSur(nb, CANAUX_MONDE * 3)}</span><span>${statut}</span></div></button>`;
+    el.innerHTML = `<button><div class="titre"><b>${T.mondes[m.id]}</b><span>${T.etoilesSur(nb, CANAUX_MONDE * 3)} · ${statut}</span></div></button>`;
+    el.firstChild.prepend(sceneMonde(m));
     const grille = grilleCanaux(de, a, atteint);
     grille.hidden = !courant;
     el.appendChild(grille);
