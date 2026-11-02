@@ -53,7 +53,8 @@ mini-on-factory/
 └── site/                        ← static showcase website
     ├── index.html               ← rebuilt by update_site.py
     ├── style.css                ← Dark Premium design system
-    ├── _headers                 ← Cloudflare Pages security headers (CSP etc.)
+    ├── _headers                 ← NOT in force on GitHub Pages (see Site Hosting)
+    ├── _redirects               ← NOT in force on GitHub Pages (see Site Hosting)
     ├── blog/
     └── products/{id}.html
 ```
@@ -96,7 +97,21 @@ After any change to product data or templates:
 ```bash
 python3 scripts/update_site.py --rebuild-all
 ```
-This regenerates all product pages, index, and blog index. Then `git push` deploys to Cloudflare Pages.
+This regenerates all product pages, index, and blog index. Then a push to `main` that touches `site/**` deploys to GitHub Pages.
+
+## Site Hosting
+
+`mini-on-ai.com` is served by **GitHub Pages**, not Cloudflare Pages. Verified 2026-11-02:
+
+- **Deploy:** `.github/workflows/deploy.yml` publishes `site/` on pushes to `main` that touch `site/**`. Custom domain comes from `site/CNAME`.
+- **DNS:** Namecheap BasicDNS (`dns1/dns2.registrar-servers.com`). Apex A records point to GitHub's `185.199.108-111.153`; `www` is a CNAME to `abenjelloun1989.github.io`, which redirects to the apex. The domain is not a Cloudflare zone, so Cloudflare rules (transform rules, Workers routes) cannot apply to it.
+- **`site/_headers` and `site/_redirects` do nothing.** They are Cloudflare Pages files; GitHub Pages serves them as plain downloads. No CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` or HSTS reaches browsers, and the archived URLs in `_redirects` return 404 rather than 301. The CSPs in `_headers` have never been enforced, so do not treat them as protection or as tested.
+- **`_headers` cannot go live as written.** It would break the site: see the warning below.
+- **Page-level protection available today:** `<meta http-equiv="Content-Security-Policy">` and `<meta name="referrer">` work. `frame-ancestors`, `X-Frame-Options`, `X-Content-Type-Options` and HSTS cannot be set from a page.
+
+Before moving to Cloudflare Pages or enforcing any CSP, fix `_headers`. Cloudflare Pages merges every matching rule and comma-joins repeated headers, so `/*` and `/f1` send two CSPs and browsers enforce both. Without `! Content-Security-Policy` in the specific rule, the strict `/*` policy blocks inline scripts on `/f1`. Inline `on*` handlers on `f1.html` and `f1/dashboard.html`, and the inline scripts on the 45 pages that have them, also need `'unsafe-inline'` or a refactor, and `connect-src` needs `https://cloudflareinsights.com` for the analytics beacon.
+
+Changing DNS or nameservers requires the user's explicit approval.
 
 ## Cloudflare Workers
 
@@ -154,7 +169,7 @@ Never report a value change as done until the final grep returns no results.
 
 - **Claude Code install:** Homebrew (`brew install claude-code`). Check current version with `brew list --versions claude-code` before suggesting upgrades — don't assume it's outdated.
 - **Remote/phone access:** Telegram bot only. `/remote-control` is VSCode-only and does not work in this setup.
-- **Deployment:** Cloudflare Pages (git push → auto-deploy). Workers managed via Cloudflare dashboard, not wrangler CLI.
+- **Deployment:** GitHub Pages via GitHub Actions (push to `main` touching `site/**` → auto-deploy; see Site Hosting). Workers managed via Cloudflare dashboard, not wrangler CLI.
 - **Python:** Python 3, no virtualenv — scripts run directly with `python3`.
 - **Node:** Not used for the pipeline. Only present for PDF.js lib bundled in Chrome extensions.
 
