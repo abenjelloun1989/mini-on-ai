@@ -372,6 +372,7 @@
       <button class="retour" id="voyageProfil" data-a="profil"></button>
     </div>
     <button id="voyageLivre" class="video" data-t="grandLivre"></button>
+    <button id="voyageRelire" class="discret" data-t="relire" hidden></button>
     <div id="voyageMondes" style="display: flex; flex-direction: column; gap: 10px"></div>
     <p class="note" data-t="noteVoyage"></p>
   </div>
@@ -491,7 +492,7 @@ const T = FR ? {
   objets: { ciree: 'Ciré !', voile: 'Grande voile !', abeille: 'Abeille !', libellule: 'Libellule !' },
   aides: { ciree: 'Ciré : il encaisse le prochain choc.', voile: 'Grande voile : tu fonces, rien ne te touche.', abeille: 'Abeille : elle attire les fleurs.', libellule: 'Libellule : tout ralentit et le chrono s\'arrête.' },
   record: 'Record !', medailles: ['', 'Bronze', 'Argent', 'Or'],
-  relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
+  relire: 'Relire toute l\'histoire', relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
   recommencer: 'Recommencer ce canal',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
   connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, toi: 'toi', frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
@@ -539,7 +540,7 @@ const T = FR ? {
   objets: { ciree: 'Raincoat!', voile: 'Big Sail!', abeille: 'Bee!', libellule: 'Dragonfly!' },
   aides: { ciree: 'Raincoat: blocks your next crash.', voile: 'Big Sail: full speed, nothing can touch you.', abeille: 'Bee: pulls flowers towards you.', libellule: 'Dragonfly: everything slows down and the clock stops.' },
   record: 'New record!', medailles: ['', 'Bronze', 'Silver', 'Gold'],
-  relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
+  relire: 'Read the whole story', relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
   recommencer: 'Restart this canal',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
   connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, toi: 'you', frole: 'Close! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
@@ -1491,6 +1492,7 @@ function relireHistoire() {
   H.fin2.forEach((t, i) => ajoute(T.relireFin2, IMAGES_FIN.fin2[i], t));
 
   const choix = $('recitChoix');
+  choix.options.length = 0;
   [...new Set(etapes.map(e => e.groupe))].forEach(g => choix.add(new Option(g, g)));
   let i = 0;
   const montrer = () => {
@@ -1878,6 +1880,10 @@ $('profilCompte').addEventListener('click', connecter);
 $('voyageRetour').addEventListener('click', () => { $('voyage').hidden = true; });
 $('voyageProfil').addEventListener('click', ouvrirProfil);
 $('voyageLivre').addEventListener('click', () => ouvrirLivre());
+// Temporary reading tool, off on Poki. Typing a # in the address doesn't reload a page, so react to it.
+$('voyageRelire').hidden = !!SDK;
+$('voyageRelire').addEventListener('click', relireHistoire);
+if (!SDK) addEventListener('hashchange', () => location.reload());
 $('livreRetour').addEventListener('click', () => { $('livre').hidden = true; });
 $('profilRetour').addEventListener('click', () => { $('profil').hidden = true; ouvrirCarnet(); });
 $('pretCarnet').addEventListener('click', ouvrirCarnet);
