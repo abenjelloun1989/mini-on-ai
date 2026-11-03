@@ -53,29 +53,29 @@ const HISTOIRES = {
     ],
   },
   en: {
-    intro: ["In her lighthouse, Captain Maren wrote so she would forget nothing. Sixty years at sea, kept in a single book.",
-      "Lately, names had been slipping away. Harbours. Boats. So the book remembered for her.",
-      "Early one morning, the wind came in. It just wanted to look. But every page flew out.",
-      "When it calmed, only one was left: the very first. The wind folded it into a boat. It knew no other way to make amends.",
-      "Wind carries voices. Maren's followed it: \"Start with the oldest. That's what I'll forget last.\""],
-    fin: ["The paper boat reached the foot of the lighthouse. Still afloat, barely.",
-      "The captain put each page back. Each name came back to her. One page was missing: the very first.",
-      "She took the wet boat and slowly unfolded it. It was her handwriting as a child.",
-      n => (n ? `She pasted it back at the front of the book, creases and all, and wrote beneath it: "The smallest of them all. Crew: one wind named ${n}."` : "She pasted it back at the front of the book, creases and all, and wrote beneath it: \"The smallest of them all. Captain: none. Crew: one wind.\""),
-      "Then she folded a new sheet and set it on the sill.",
+    intro: ["In her lighthouse, Captain Maren wrote everything down so she would forget nothing. Sixty years at sea, kept in a single book.",
+      "Lately, names had been slipping away from her. Harbours. Boats. So the book remembered for her.",
+      "Early one morning, the wind came in. It just wanted to look. But every page flew away.",
+      "When it died down, only one was left: the very first. The wind folded it into a boat. It knew no other way to make amends.",
+      "The wind carries voices. Maren's followed it: \"Start with the oldest. That's what I'll forget last.\""],
+    fin: ["The paper boat reached the foot of the lighthouse. It was still afloat, barely.",
+      "The captain put each page back in its place. Each name returned to her. One page was missing: the very first.",
+      "She took the wet boat and slowly unfolded it. It was her childhood handwriting.",
+      n => (n ? `She pasted the page back at the front of the book, creases and all. Beneath it, she wrote: "The smallest of them all. Crew: one wind named ${n}."` : "She pasted the page back at the front of the book, creases and all. Beneath it, she wrote: \"The smallest of them all. Captain: nobody. Crew: one wind.\""),
+      "Then she folded a new sheet and set it on the windowsill.",
       "This time she left the window open. \"Shall we go again?\""],
-    fin2: ["Behind the dragon, one more drawing: a lighthouse, an old woman, the wind.",
+    fin2: ["On the back of the dragon page, another drawing: a lighthouse, an old woman, the wind.",
       "Beneath it, in an eight-year-old's hand: \"Me, later.\"",
       "She had drawn it long before she met you.",
       "A letter slipped out of the book.",
       "\"Maren, have you seen my maps? It all flew out of the window. Felix.\"",
       "The curtain stopped moving."],
     chapitres: [
-      { titre: "The First Boats", depart: "\"Start with the oldest. That's what I'll forget last.\"", trouve: "Maren can see a river and a hollowed log. Four to go.", bateaux: [
+      { titre: "The First Boats", depart: "\"Start with the oldest. That's what I'll forget last.\"", trouve: "Maren pictures a river and a hollowed-out log. Four to go.", bateaux: [
         ["Dugout", "Prehistory", "A log, fire and patience. A dugout over 9,500 years old was found in the Netherlands in 1955 during roadworks. It's barely 3 metres long."],
         ["Papyrus Skiff", "Ancient Egypt", "On the Nile, bundles of papyrus were tied together to make boats. Later, many wooden boats kept the same raised ends."],
         ["Coracle", "Wales", "A small, almost round boat, so light that one person can carry it. In Wales, two coracles stretch a net between them to fish the river."]] },
-      { titre: "Seas and Canals", depart: "\"Here, the rowers did all the work. Don't take it badly.\"", trouve: "It still smells of salt. Maren remembers a name.", bateaux: [
+      { titre: "Seas and Canals", depart: "\"Here, the rowers did all the work. Don't take it personally.\"", trouve: "It still smells of salt. Maren remembers a name.", bateaux: [
         ["Trireme", "Ancient Greece", "About 170 rowers on three levels, all pulling together. Try clapping in time with 170 people."],
         ["Junk", "China", "Her hull was split into compartments, so one hole didn't flood the whole boat. Her big sails were stiffened with battens."],
         ["Gondola", "Venice", "Look closely: a gondola is lopsided. She's wider and longer on the left, so she goes straight with just one oar on the right."]] },
@@ -84,23 +84,23 @@ const HISTOIRES = {
         ["Caravel", "15th century", "Her triangular sails let her zigzag against the wind. Great news for sailors, and rather annoying for the wind."],
         ["Treasure Ship", "China, 1405", "Admiral Zheng He led seven great voyages from 1405 to 1433. Old books speak of ships over 130 metres long. Historians still argue about it."]] },
       { titre: "The Trade Routes", depart: "\"It's cold. Even the best sailors were cold.\"", trouve: "A little frozen, but still readable. The captain remembers the taste of tea on board.", bateaux: [
-        ["Galleon", "1565–1815", "For 250 years, from 1565 to 1815, galleons crossed the Pacific between Manila and Acapulco, with silk and porcelain one way and silver the other."],
+        ["Galleon", "1565–1815", "For 250 years, from 1565 to 1815, galleons crossed the Pacific between Manila and Acapulco, carrying silk and porcelain one way, and silver coins and bars the other."],
         ["Clipper", "1869", "The Cutty Sark could cover 363 nautical miles in a day. Yet she never brought the tea home first: in 1872, while in the lead, she lost her rudder at sea."]] },
-      { titre: "The Age of Steam", depart: "\"One day, boats stopped needing you. I never did.\"", trouve: "The last one. Far off, the lighthouse light.", bateaux: [
+      { titre: "The Age of Steam", depart: "\"One day, boats stopped needing you. I never did.\"", trouve: "The last one. In the distance, the lighthouse beam.", bateaux: [
         ["Paddle Steamer", "19th century", "In 1811, the first Mississippi steamboat left Pittsburgh. On the way, her crew sailed through a series of earthquakes."],
         ["Ocean Liner", "Around 1910", "On some great liners, the fourth funnel wasn't connected to any boiler. It helped air the ship and made her look grander."]] },
-      { titre: "Childhood: Tiny Sailors", depart: "\"You took others too, hidden in the binding. Don't read them.\"", trouve: "Crooked handwriting and a note in ink.", bateaux: [
-        ["Walnut Shell", "Maren, aged 8", "\"For very small sailors.\" In ink: \"Far from land, we all are.\""],
+      { titre: "Childhood: Tiny Sailors", depart: "\"You carried off others too, hidden in the binding. Don't read them.\"", trouve: "Crooked handwriting and a note in ink.", bateaux: [
+        ["Walnut Shell", "Maren, aged 8", "\"For very small sailors.\" In ink: \"Out at sea, we all are.\""],
         ["Bicorne", "Maren, aged 8", "\"My hat fell in the water. It floats.\" In ink: \"A few more folds and it was a boat.\""]] },
       { titre: "Childhood: The Farmyard", depart: "\"Don't laugh. I was eight.\"", trouve: "The page trembles. It isn't the cold.", bateaux: [
-        ["Paper Hen", "Maren, aged 8", "\"She lays eggs during storms.\" In ink: \"Checked off Cape Horn: she does not.\""],
+        ["Paper Hen", "Maren, aged 8", "\"She lays eggs during storms.\" In ink: \"Tested off Cape Horn: no.\""],
         ["Clog", "Maren, aged 8", "\"It's my father's. He doesn't know yet.\" In ink: \"He never found out.\""]] },
       { titre: "Childhood: Home Comforts", depart: "\"At eight, I thought you took your house to sea.\"", trouve: "A jam stain. It is seventy years old.", bateaux: [
         ["Teapot", "Maren, aged 8", "\"So you never run out of tea at sea.\" In ink: \"I was right. You do run out.\""],
-        ["Bathtub", "Maren, aged 8", "\"This way you get washed during the trip.\" In ink: \"Four months without a bath. I thought of this.\""]] },
+        ["Bathtub", "Maren, aged 8", "\"That way you can wash during the voyage.\" In ink: \"Four months without a bath. I remembered this.\""]] },
       { titre: "Childhood: The Great Ship", depart: "\"That one, I ended up commanding.\"", trouve: "The drawing fills two pages.", bateaux: [
         ["Flag Ship", "Maren, aged 8", "\"Mine will have flags everywhere.\" In ink: \"Mine never had any.\""]] },
-      { titre: "Childhood: The Dragon", depart: "\"The last one. I looked for this dragon for years.\"", trouve: "It's folded in four, with great care.", bateaux: [
+      { titre: "Childhood: The Dragon", depart: "\"The last one. I looked for this dragon for years.\"", trouve: "It has been folded into quarters, with great care.", bateaux: [
         ["Dragon", "Maren, aged 8", "\"He doesn't eat anyone. He's just very big.\" In ink: \"I never found him. I found everything else.\""]] },
     ],
   },
