@@ -1450,6 +1450,11 @@ function imageRecit(nom) {
   return img;
 }
 
+// On a short screen a long line runs above the 34% shade, so the shade grows to keep the text on dark.
+function ombreSous(p) {
+  $('recitOmbre').style.height = `max(34%, ${Math.ceil((p.offsetHeight + 88) / 0.7)}px)`;
+}
+
 function raconter(panneaux, visuels, fin) {
   let i = 0;
   const texte = $('recitTexte');
@@ -1462,6 +1467,7 @@ function raconter(panneaux, visuels, fin) {
     const p = texte.cloneNode();         // a fresh node restarts the fade
     p.textContent = typeof t === 'function' ? t(nomCapitaine()) : t;
     $('recitTexte').replaceWith(p);
+    ombreSous(p);
     $('recitSuite').textContent = i < panneaux.length - 1 ? T.suivante : T.terminer;
   };
   const clore = () => { $('recit').hidden = true; fin(); };
@@ -1496,6 +1502,7 @@ function relireHistoire() {
     const p = $('recitTexte').cloneNode();
     p.textContent = typeof e.texte === 'function' ? e.texte(nomCapitaine()) : e.texte;
     $('recitTexte').replaceWith(p);
+    ombreSous(p);
     choix.value = e.groupe;
     $('recitNumero').textContent = `${i + 1} / ${etapes.length}`;
   };
