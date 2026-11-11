@@ -2433,7 +2433,7 @@ function draw() {
 
 // Replays the best run, interpolating between samples taken every 0.1 s.
 function drawFantome() {
-  if (!fantome || state === 'pret') return;
+  if (!fantome || !fantome.length || state === 'pret') return;
   const i = Math.min(chrono * 10, fantome.length - 1), a = fantome[Math.floor(i)], b = fantome[Math.ceil(i)];
   const u = i % 1, x = a[0] + (b[0] - a[0]) * u, y = a[1] + (b[1] - a[1]) * u;
   sprite('boat-ghost', x, Y(y));
