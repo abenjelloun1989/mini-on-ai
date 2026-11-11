@@ -204,6 +204,7 @@
   #recitBarre span { color: #f2ebdd; font-size: 13px; white-space: nowrap; }
   #recitBarre button { min-height: 44px; width: 44px; padding: 0; font-size: 18px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); box-shadow: none; }
   #recit canvas#recitImage { inset: 12% 15% auto; width: 70%; height: auto; }
+  #recitLangue { position: absolute; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 2; min-height: 44px; padding: 0 14px; font-family: "Cormorant", Georgia, serif; font-size: 18px; font-weight: 500; color: #f2ebdd; background: rgba(12, 17, 24, .6); border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
   #recit .suite { position: absolute; left: 20px; right: 20px; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); }
   #recit .suite button { min-height: 48px; font-family: "Cormorant", Georgia, serif; font-size: 20px; font-weight: 500; color: #f2ebdd; background: transparent; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
   #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .8); }
@@ -339,6 +340,7 @@
 <div id="recit" hidden>
   <div class="cadre">
     <div id="recitBarre" hidden><select id="recitChoix" aria-label="Story step"></select><span id="recitNumero"></span><button id="recitFermer" aria-label="Close">✕</button></div>
+    <button id="recitLangue" hidden></button>
     <img id="recitImage" alt="">
     <div id="recitOmbre"></div>
     <p id="recitTexte"></p>
@@ -382,6 +384,7 @@
     <h2 style="margin: 4px 0 0; font-family: 'Caveat Brush', cursive; font-weight: 400; font-size: 26px" data-t="tampon"></h2>
     <div class="tampons" id="profilTampons"></div>
     <button id="profilCompte" hidden></button>
+    <button id="profilLangue" class="discret"></button>
     <button id="carnetVibre" class="discret"></button>
     <button id="carnetEffacer" class="discret" data-t="effacer"></button>
   </div>
@@ -461,8 +464,13 @@ const hash = n => mulberry32(n * 2654435761 + 7)();
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 // ---------- Language ----------
-// English everywhere, French for French browsers.
-const FR = (navigator.language || '').toLowerCase().startsWith('fr');
+// French for French browsers, English for everyone else, until the player picks one.
+const FR = store.get('langue', (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en') === 'fr';
+// Every text is set at start-up, so switching language reloads the game.
+function changerLangue() {
+  store.set('langue', FR ? 'en' : 'fr');
+  location.reload();
+}
 const s_ = n => ((FR ? n > 1 : n !== 1) ? 's' : '');
 const T = FR ? {
   canal: 'Canal', carnet: 'Mon carnet', bateaux: 'Bateaux', canaux: 'Canaux', fermer: 'Fermer',
@@ -487,7 +495,7 @@ const T = FR ? {
   relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
   recommencer: 'Recommencer ce canal',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
-  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non',
+  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non', langue: 'Langue : français', autreLangue: 'English', autreLangueAide: 'Play in English',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
   ouvertApres: m => `Après « ${m} »`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
   finale: 'Dernier canal !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
@@ -535,7 +543,7 @@ const T = FR ? {
   relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
   recommencer: 'Restart this canal',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
-  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, frole: 'Close call! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off',
+  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, frole: 'Close call! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off', langue: 'Language: English', autreLangue: 'Français', autreLangueAide: 'Jouer en français',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
   ouvertApres: m => `Opens after ${m}`, enCours: 'In progress', termine: 'Finished', etoilesSur: (e, t) => `${e} / ${t} stars`,
   finale: 'Last canal of this world!', passer: 'Skip', suivante: 'Next', terminer: 'Close', auPhare: 'Reach the lighthouse', lire: 'Read',
@@ -2064,6 +2072,11 @@ $('pauseLivre').addEventListener('click', () => { garderPartie(); ouvrirLivre();
 // The name stays in this browser and is only ever shown back to the player.
 $('profilNom').addEventListener('input', e => store.set('nom', e.target.value.trim()));
 $('profilNom').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
+$('profilLangue').textContent = T.langue;
+$('profilLangue').addEventListener('click', changerLangue);
+$('recitLangue').textContent = T.autreLangue;
+$('recitLangue').setAttribute('aria-label', T.autreLangueAide);
+$('recitLangue').addEventListener('click', changerLangue);
 const montrerVibre = () => { $('carnetVibre').textContent = store.get('vibre', true) ? T.vibreOui : T.vibreNon; };
 $('carnetVibre').hidden = !vibreDispo && !tocIphone;
 $('carnetVibre').addEventListener('click', () => {
@@ -2493,7 +2506,11 @@ function demarrer() {
     verifierCompte();
     if (RELIRE) relireHistoire();
     else if (ESSAI) lancerEssai();
-    else if (!store.get('introVue')) raconter(H.intro, IMAGES_INTRO, () => store.set('introVue', true));
+    else if (!store.get('introVue')) {
+      // The very first screen offers the other language, before any text has to be read.
+      $('recitLangue').hidden = false;
+      raconter(H.intro, IMAGES_INTRO, () => { $('recitLangue').hidden = true; store.set('introVue', true); });
+    }
     MONDES.forEach(chargerMonde);          // the rest quietly, so the next world is ready
   });
 }
