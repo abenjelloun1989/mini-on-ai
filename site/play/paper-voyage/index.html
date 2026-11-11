@@ -292,6 +292,22 @@
   @media (prefers-reduced-motion: reduce) { #fin .carte, .etoiles span { animation: none; } }
   .etoiles { font-size: 38px; line-height: 1; letter-spacing: 4px; color: var(--soleil); -webkit-text-stroke: 1.5px var(--encre); }
   .etoiles .vide, .canal span i { color: transparent; font-style: normal; }
+  /* Short screens (Poki's desktop frame, small phones, landscape): the end card stays clear of the HUD and fits */
+  #fin, #pause { padding: calc(env(safe-area-inset-top, 0px) + 56px) 16px 6px; }
+  #fin .carte, #pause .carte { max-height: 100%; overflow-y: auto; touch-action: pan-y; }
+  @media (max-height: 760px) {
+    .carte { gap: 5px; padding: 12px 18px; }
+    #fin .carte, #pause .carte { width: min(100%, 460px); }
+    #fin .boutons { position: sticky; bottom: -12px; padding-block: 6px 8px; background: var(--carnet); }
+    .carte h1 { font-size: 34px; }
+    .carte p { font-size: 16px; }
+    #finWindy img { width: 56px; height: 56px; margin-bottom: -6px; }
+    .etoiles { font-size: 26px; }
+    .boutons { gap: 8px; margin-top: 2px; }
+    button { min-height: 44px; font-size: 17px; }
+    button.discret { min-height: 38px; font-size: 15px; }
+  }
+  @media (max-height: 600px) { #finWindy { display: none; } }
 </style>
 </head>
 <body>
