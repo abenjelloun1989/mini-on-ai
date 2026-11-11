@@ -204,7 +204,12 @@
   #recitBarre span { color: #f2ebdd; font-size: 13px; white-space: nowrap; }
   #recitBarre button { min-height: 44px; width: 44px; padding: 0; font-size: 18px; color: #f2ebdd; background: rgba(12, 17, 24, .85); border: 1px solid rgba(242, 235, 221, .45); box-shadow: none; }
   #recit canvas#recitImage { inset: 12% 15% auto; width: 70%; height: auto; }
-  #recitLangue { position: absolute; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 2; min-height: 44px; padding: 0 14px; font-family: "Cormorant", Georgia, serif; font-size: 18px; font-weight: 500; color: #f2ebdd; background: rgba(12, 17, 24, .6); border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
+  #recitLangue { position: absolute; right: 12px; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 2; display: flex; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; background: rgba(12, 17, 24, .6); }
+  #recitLangue button { min-height: 40px; padding: 0 12px; font-family: "Cormorant", Georgia, serif; font-size: 17px; font-weight: 500; color: rgba(242, 235, 221, .75); background: transparent; border: 0; border-radius: 2px; box-shadow: none; }
+  #recitLangue button[aria-checked="true"] { color: #1a2230; background: #f2ebdd; }
+  .langues { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .langues button { min-height: 48px; font-size: 17px; color: var(--encre); background: var(--reserve); border-width: 1.5px; box-shadow: none; border-radius: 12px 9px 13px 8px; }
+  .langues button[aria-checked="true"] { background: var(--soleil); }
   #recit .suite { position: absolute; left: 20px; right: 20px; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); }
   #recit .suite button { min-height: 48px; font-family: "Cormorant", Georgia, serif; font-size: 20px; font-weight: 500; color: #f2ebdd; background: transparent; border: 1px solid rgba(242, 235, 221, .45); border-radius: 3px; box-shadow: none; }
   #recit .suite button#recitPasser { border-color: transparent; color: rgba(242, 235, 221, .8); }
@@ -340,7 +345,7 @@
 <div id="recit" hidden>
   <div class="cadre">
     <div id="recitBarre" hidden><select id="recitChoix" aria-label="Story step"></select><span id="recitNumero"></span><button id="recitFermer" aria-label="Close">✕</button></div>
-    <button id="recitLangue" hidden></button>
+    <div id="recitLangue" role="radiogroup" hidden></div>
     <img id="recitImage" alt="">
     <div id="recitOmbre"></div>
     <p id="recitTexte"></p>
@@ -384,7 +389,7 @@
     <h2 style="margin: 4px 0 0; font-family: 'Caveat Brush', cursive; font-weight: 400; font-size: 26px" data-t="tampon"></h2>
     <div class="tampons" id="profilTampons"></div>
     <button id="profilCompte" hidden></button>
-    <button id="profilLangue" class="discret"></button>
+    <div class="profil"><span data-t="langueTitre"></span><div class="langues" id="profilLangue" role="radiogroup"></div></div>
     <button id="carnetVibre" class="discret"></button>
     <button id="carnetEffacer" class="discret" data-t="effacer"></button>
   </div>
@@ -446,7 +451,9 @@ const pub = {
 // They and the world previews are off on Poki, and poki_ignore keeps them out of cloud saves.
 const ESSAI = (!SDK && { phare: 25, lettre: 50 }[location.hash.slice(1)]) || 0;
 const RELIRE = !SDK && location.hash === '#relire';       // temporary: browse the whole story
-const SAUVE = ESSAI ? 'poki_ignore_essai.' : 'bourrasque.';
+// New name with the Paper Voyage build, so every player starts it from zero.
+const PREFIXE = 'paper-voyage.';
+const SAUVE = ESSAI ? 'poki_ignore_essai.' : PREFIXE;
 const store = {
   get(k, d) { try { const v = localStorage.getItem(SAUVE + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem(SAUVE + k, JSON.stringify(v)); } catch {} },
@@ -467,9 +474,24 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 // French for French browsers, English for everyone else, until the player picks one.
 const FR = store.get('langue', (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en') === 'fr';
 // Every text is set at start-up, so switching language reloads the game.
-function changerLangue() {
-  store.set('langue', FR ? 'en' : 'fr');
+function changerLangue(langue, rouvrir) {
+  if ((langue === 'fr') === FR) return;
+  store.set('langue', langue);
+  if (rouvrir) store.set('rouvrir', rouvrir);
   location.reload();
+}
+// Each language is written in itself, and the current one is the highlighted one.
+function choixLangue(el, rouvrir) {
+  el.innerHTML = '';
+  for (const [code, nom] of [['fr', 'Français'], ['en', 'English']]) {
+    const b = document.createElement('button');
+    b.textContent = nom;
+    b.lang = code;
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-checked', String((code === 'fr') === FR));
+    b.addEventListener('click', () => changerLangue(code, rouvrir));
+    el.appendChild(b);
+  }
 }
 const s_ = n => ((FR ? n > 1 : n !== 1) ? 's' : '');
 const T = FR ? {
@@ -495,7 +517,7 @@ const T = FR ? {
   relireIntro: 'Introduction', relireFin: 'Fin au phare', relireFin2: 'Fin du deuxième voyage',
   recommencer: 'Recommencer ce canal',
   reparer: 'Réparer', vieGagnee: 'Une vie de plus !', repare: 'Bateau réparé pour ce nouveau monde.', plie: 'Il est à toi !',
-  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non', langue: 'Langue : français', autreLangue: 'English', autreLangueAide: 'Play in English',
+  connecter: 'Sauvegarder ma progression', connecte: n => `Compte : ${n}`, frole: 'Frôlé ! +1', vibreOui: 'Vibrations : oui', vibreNon: 'Vibrations : non', langueTitre: 'Langue',
   profil: 'Profil', tampon: 'Ton tampon', changer: 'Changer', noteVoyage: 'Chaque monde compte 5 canaux, et jusqu\'à 3 étoiles par canal.',
   ouvertApres: m => `Après « ${m} »`, enCours: 'En cours', termine: 'Terminé', etoilesSur: (e, t) => `${e} / ${t} étoiles`,
   finale: 'Dernier canal !', passer: 'Passer', suivante: 'Suite', terminer: 'Fermer', auPhare: 'Rejoindre le phare', lire: 'Lire',
@@ -543,7 +565,7 @@ const T = FR ? {
   relireIntro: 'Introduction', relireFin: 'Lighthouse ending', relireFin2: 'Second voyage ending',
   recommencer: 'Restart this canal',
   reparer: 'Repair', vieGagnee: 'Extra life!', repare: 'Boat repaired for this new world.', plie: 'It\'s yours!',
-  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, frole: 'Close call! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off', langue: 'Language: English', autreLangue: 'Français', autreLangueAide: 'Jouer en français',
+  connecter: 'Save my progress', connecte: n => `Logged in as ${n}`, frole: 'Close call! +1', vibreOui: 'Vibration: on', vibreNon: 'Vibration: off', langueTitre: 'Language',
   profil: 'Profile', tampon: 'Your stamp', changer: 'Change', noteVoyage: 'Each world has 5 canals, with up to 3 stars per canal.',
   ouvertApres: m => `Opens after ${m}`, enCours: 'In progress', termine: 'Finished', etoilesSur: (e, t) => `${e} / ${t} stars`,
   finale: 'Last canal of this world!', passer: 'Skip', suivante: 'Next', terminer: 'Close', auPhare: 'Reach the lighthouse', lire: 'Read',
@@ -1589,7 +1611,7 @@ function terminerVoyage(cle, panneaux) {
 // Drops the boat just before the last finish line, with no obstacles left.
 function lancerEssai() {
   try { Object.keys(localStorage).filter(k => k.startsWith(SAUVE)).forEach(k => localStorage.removeItem(k)); } catch {}
-  try { const nom = localStorage.getItem('bourrasque.nom'); if (nom) localStorage.setItem(SAUVE + 'nom', nom); } catch {}
+  try { const nom = localStorage.getItem(PREFIXE + 'nom'); if (nom) localStorage.setItem(SAUVE + 'nom', nom); } catch {}
   store.set('introVue', true);
   store.set('niveau', ESSAI);
   store.set('fin1', ESSAI === 50);
@@ -2072,11 +2094,10 @@ $('pauseLivre').addEventListener('click', () => { garderPartie(); ouvrirLivre();
 // The name stays in this browser and is only ever shown back to the player.
 $('profilNom').addEventListener('input', e => store.set('nom', e.target.value.trim()));
 $('profilNom').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
-$('profilLangue').textContent = T.langue;
-$('profilLangue').addEventListener('click', changerLangue);
-$('recitLangue').textContent = T.autreLangue;
-$('recitLangue').setAttribute('aria-label', T.autreLangueAide);
-$('recitLangue').addEventListener('click', changerLangue);
+choixLangue($('profilLangue'), 'profil');
+choixLangue($('recitLangue'));
+$('profilLangue').setAttribute('aria-label', T.langueTitre);
+$('recitLangue').setAttribute('aria-label', T.langueTitre);
 const montrerVibre = () => { $('carnetVibre').textContent = store.get('vibre', true) ? T.vibreOui : T.vibreNon; };
 $('carnetVibre').hidden = !vibreDispo && !tocIphone;
 $('carnetVibre').addEventListener('click', () => {
@@ -2093,7 +2114,8 @@ $('carnetEffacer').addEventListener('click', e => {
     setTimeout(() => { e.target.textContent = T.effacer; }, 4000);
     return;
   }
-  try { Object.keys(localStorage).filter(k => k.startsWith('bourrasque.')).forEach(k => localStorage.removeItem(k)); } catch {}
+  // The language is a setting, not progress, so it survives.
+  try { Object.keys(localStorage).filter(k => k.startsWith(PREFIXE) && k !== PREFIXE + 'langue').forEach(k => localStorage.removeItem(k)); } catch {}
   location.reload();
 });
 
@@ -2511,6 +2533,8 @@ function demarrer() {
       $('recitLangue').hidden = false;
       raconter(H.intro, IMAGES_INTRO, () => { $('recitLangue').hidden = true; store.set('introVue', true); });
     }
+    // Back on the profile after a language change made there
+    if (store.get('rouvrir') === 'profil') { store.set('rouvrir', null); if (!RELIRE && !ESSAI && store.get('introVue')) ouvrirProfil(); }
     MONDES.forEach(chargerMonde);          // the rest quietly, so the next world is ready
   });
 }
